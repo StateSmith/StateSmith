@@ -133,6 +133,26 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         Visit(node.Statement);
     }
 
+    public override void VisitWhileStatement(WhileStatementSyntax node)
+    {
+        var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+        list.VisitUpTo(node.CloseParenToken, including: false); // need to not output trailing whitespace
+        sb.Append(node.CloseParenToken.Text);
+        sb.AppendLine(":");
+
+        Visit(node.Statement);
+    }
+
+    public override void VisitBlock(BlockSyntax node)
+    {
+        sb.AppendLine();
+        foreach (var item in node.Statements)
+        {
+            Visit(item);
+        }
+    }
+
+
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
         VisitLeadingTrivia(node.GetFirstToken());
@@ -173,14 +193,6 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         {
             Visit(statement);
         }
-    }
-
-    public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
-    {
-        VisitToken(node.Keyword);
-        sb.Append("self.");
-        Visit(node.Value);
-        VisitToken(node.ColonToken);
     }
 
     public override void VisitIdentifierName(IdentifierNameSyntax node)
@@ -365,8 +377,23 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
         foreach (var statement in node.Statements)
         {
-            Visit(statement);
+            if (statement is BreakStatementSyntax)
+            {
+                // ignore break statements
+            }
+            else
+            {
+                Visit(statement);
+            }
         }
+    }
+
+    public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
+    {
+        VisitToken(node.Keyword);
+        sb.Append("self.");
+        Visit(node.Value);
+        VisitToken(node.ColonToken);
     }
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)

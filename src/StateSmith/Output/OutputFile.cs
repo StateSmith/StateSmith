@@ -128,6 +128,18 @@ public class OutputFile
         }
     }
 
+    public void AppendMaybeIndentLine(string code, bool indent)
+    {
+        if (indent)
+        {
+            AppendLine(code);
+        }
+        else
+        {
+            AppendWithoutIndent(code);
+        }
+    }
+
     public void AppendWithoutIndent(string code = "")
     {
         if (code.Length == 0)

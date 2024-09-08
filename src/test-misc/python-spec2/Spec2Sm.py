@@ -274,12 +274,12 @@ class Spec2Sm(Spec2SmBase):
         self.vars = None
     
     # Starts the state machine. Must be called before dispatching events. Not thread safe.
-    def start(self):    
+    def start(self):
         self._ROOT_enter()
         # ROOT behavior
         # uml: TransitionTo(ROOT.<InitialState>)
         if True:
-        
+
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: ``.
@@ -290,7 +290,7 @@ class Spec2Sm(Spec2SmBase):
             # ROOT.<InitialState> behavior
             # uml: / { trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE.") } TransitionTo(Spec2Sm__DECIDE)
             if True:
-            
+
                 # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE.")`.
@@ -301,21 +301,16 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for ROOT.<InitialState>
-         # end of behavior for ROOT
-    
     
     # Dispatches an event to the state machine. Not thread safe.
     # Note! This function assumes that the `eventId` parameter is valid.
-    def dispatchEvent(self, eventId):    
+    def dispatchEvent(self, eventId):
         match self.stateId:
             # STATE: Spec2Sm
             case self.StateId.ROOT:
                 match eventId:
                     case self.EventId.DO: 
                         self._ROOT_do() 
-                        break
-                break
             
             # STATE: PREFIXING
             case self.StateId.PREFIXING:
@@ -323,8 +318,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__ORDER_MENU
             case self.StateId.PREFIXING__ORDER_MENU:
@@ -332,35 +325,26 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__OM__BEVERAGE
             case self.StateId.PREFIXING__OM__BEVERAGE:
                 match eventId:
                     case self.EventId.EV2: 
                         self._PREFIXING__OM__BEVERAGE_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__OM__BEV__NONE
             case self.StateId.PREFIXING__OM__BEV__NONE:
                 match eventId:
                     case self.EventId.EV1: 
                         self._PREFIXING__OM__BEV__NONE_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__OM__BEVERAGE_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__OM__BEV__TEA
             case self.StateId.PREFIXING__OM__BEV__TEA:
@@ -368,68 +352,50 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__OM__BEVERAGE_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__OM__BEV__WATER
             case self.StateId.PREFIXING__OM__BEV__WATER:
                 match eventId:
                     case self.EventId.EV1: 
                         self._PREFIXING__OM__BEV__WATER_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__OM__BEVERAGE_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__OM__VEG
             case self.StateId.PREFIXING__OM__VEG:
                 match eventId:
                     case self.EventId.EV2: 
                         self._PREFIXING__OM__VEG_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__OM__VEG__NONE
             case self.StateId.PREFIXING__OM__VEG__NONE:
                 match eventId:
                     case self.EventId.EV1: 
                         self._PREFIXING__OM__VEG__NONE_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__OM__VEG_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__OM__VEG__POTATO
             case self.StateId.PREFIXING__OM__VEG__POTATO:
                 match eventId:
                     case self.EventId.EV1: 
                         self._PREFIXING__OM__VEG__POTATO_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__OM__VEG_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__OM__VEG__YAM
             case self.StateId.PREFIXING__OM__VEG__YAM:
@@ -437,11 +403,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__OM__VEG_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX
             case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
@@ -449,8 +412,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
             case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
@@ -458,35 +419,26 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
             case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
                 match eventId:
                     case self.EventId.EV2: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
             case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
                 match eventId:
                     case self.EventId.EV1: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
             case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
@@ -494,68 +446,50 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
             case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
                 match eventId:
                     case self.EventId.EV1: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
             case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
                 match eventId:
                     case self.EventId.EV2: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
             case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
                 match eventId:
                     case self.EventId.EV1: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
             case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
                 match eventId:
                     case self.EventId.EV1: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
             case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
@@ -563,50 +497,35 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: Spec2Sm__DECIDE
             case self.StateId.SPEC2SM__DECIDE:
                 match eventId:
                     case self.EventId.EV1: 
                         self._SPEC2SM__DECIDE_ev1() 
-                        break
                     case self.EventId.EV2: 
                         self._SPEC2SM__DECIDE_ev2() 
-                        break
                     case self.EventId.EV3: 
                         self._SPEC2SM__DECIDE_ev3() 
-                        break
                     case self.EventId.EV4: 
                         self._SPEC2SM__DECIDE_ev4() 
-                        break
                     case self.EventId.EV5: 
                         self._SPEC2SM__DECIDE_ev5() 
-                        break
                     case self.EventId.EV6: 
                         self._SPEC2SM__DECIDE_ev6() 
-                        break
                     case self.EventId.EV7: 
                         self._SPEC2SM__DECIDE_ev7() 
-                        break
                     case self.EventId.EV8: 
                         self._SPEC2SM__DECIDE_ev8() 
-                        break
                     case self.EventId.EV9: 
                         self._SPEC2SM__DECIDE_ev9() 
-                        break
                     case self.EventId.EV10: 
                         self._SPEC2SM__DECIDE_ev10() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST1_DO_EVENT_TESTING
             case self.StateId.TEST1_DO_EVENT_TESTING:
@@ -614,16 +533,12 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST1_ROOT
             case self.StateId.TEST1_ROOT:
                 match eventId:
                     case self.EventId.DO: 
                         self._TEST1_ROOT_do() 
-                        break
-                break
             
             # STATE: TEST1_S1
             case self.StateId.TEST1_S1:
@@ -631,27 +546,20 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._TEST1_ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST1_S1_1
             case self.StateId.TEST1_S1_1:
                 match eventId:
                     case self.EventId.DO: 
                         self._TEST1_S1_1_do() 
-                        break
                     case self.EventId.EV1: 
                         self._TEST1_S1_1_ev1() 
-                        break
-                break
             
             # STATE: TEST1_S2
             case self.StateId.TEST1_S2:
                 match eventId:
                     case self.EventId.DO: 
                         self._TEST1_S2_do() 
-                        break
-                break
             
             # STATE: TEST10_CHOICE_POINT
             case self.StateId.TEST10_CHOICE_POINT:
@@ -659,8 +567,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST10_A
             case self.StateId.TEST10_A:
@@ -668,8 +574,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST10_A_1
             case self.StateId.TEST10_A_1:
@@ -677,20 +581,15 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST10_ROOT
             case self.StateId.TEST10_ROOT:
                 match eventId:
                     case self.EventId.EV5: 
                         self._TEST10_ROOT_ev5() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST10_G
             case self.StateId.TEST10_G:
@@ -698,11 +597,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST10_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST10_G_S0
             case self.StateId.TEST10_G_S0:
@@ -710,11 +606,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST10_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST10_G_S1
             case self.StateId.TEST10_G_S1:
@@ -722,11 +615,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST10_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST10_G_S2
             case self.StateId.TEST10_G_S2:
@@ -734,11 +624,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST10_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST10_G_S3
             case self.StateId.TEST10_G_S3:
@@ -746,35 +633,25 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST10_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST10_S1
             case self.StateId.TEST10_S1:
                 match eventId:
                     case self.EventId.EV2: 
                         self._TEST10_S1_ev2() 
-                        break
                     case self.EventId.EV3: 
                         self._TEST10_S1_ev3() 
-                        break
                     case self.EventId.EV1: 
                         self._TEST10_S1_ev1() 
-                        break
                     case self.EventId.EV10: 
                         self._TEST10_S1_ev10() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST10_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST10_S4
             case self.StateId.TEST10_S4:
@@ -782,11 +659,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST10_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST2_REGULAR_EVENT_TESTING
             case self.StateId.TEST2_REGULAR_EVENT_TESTING:
@@ -794,22 +668,16 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST2_ROOT
             case self.StateId.TEST2_ROOT:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST2_ROOT_ev1() 
-                        break
                     case self.EventId.EV2: 
                         self._TEST2_ROOT_ev2() 
-                        break
                     case self.EventId.DO: 
                         self._TEST2_ROOT_do() 
-                        break
-                break
             
             # STATE: TEST2_S1
             case self.StateId.TEST2_S1:
@@ -817,44 +685,32 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._TEST2_ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST2_ROOT_ev1()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST2_ROOT_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST2_S1_1
             case self.StateId.TEST2_S1_1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST2_S1_1_ev1() 
-                        break
                     case self.EventId.DO: 
                         self._TEST2_S1_1_do() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.EV2: 
                         self._TEST2_ROOT_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST2_S2
             case self.StateId.TEST2_S2:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST2_S2_ev1() 
-                        break
                     case self.EventId.EV2: 
                         self._TEST2_S2_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._TEST2_ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST3_BEHAVIOR_ORDERING
             case self.StateId.TEST3_BEHAVIOR_ORDERING:
@@ -862,44 +718,33 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST3_ROOT
             case self.StateId.TEST3_ROOT:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST3_ROOT_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST3_S1
             case self.StateId.TEST3_S1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST3_S1_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST3_S2
             case self.StateId.TEST3_S2:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST3_S2_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST3_S3
             case self.StateId.TEST3_S3:
@@ -907,11 +752,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST3_ROOT_ev1()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4_PARENT_CHILD_TRANSITIONS
             case self.StateId.TEST4_PARENT_CHILD_TRANSITIONS:
@@ -919,8 +761,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4_B_AND_OTHERS
             case self.StateId.TEST4_B_AND_OTHERS:
@@ -928,8 +768,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4B_LOCAL
             case self.StateId.TEST4B_LOCAL:
@@ -937,35 +775,26 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4B_G
             case self.StateId.TEST4B_G:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST4B_G_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4B_G_1
             case self.StateId.TEST4B_G_1:
                 match eventId:
                     case self.EventId.EV2: 
                         self._TEST4B_G_1_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST4B_G_ev1()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4C_LOCAL_TO_ALIAS
             case self.StateId.TEST4C_LOCAL_TO_ALIAS:
@@ -973,35 +802,26 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4C_G
             case self.StateId.TEST4C_G:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST4C_G_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4C_G_1
             case self.StateId.TEST4C_G_1:
                 match eventId:
                     case self.EventId.EV2: 
                         self._TEST4C_G_1_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST4C_G_ev1()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4D_EXTERNAL
             case self.StateId.TEST4D_EXTERNAL:
@@ -1009,113 +829,82 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4D_G
             case self.StateId.TEST4D_G:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST4D_G_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4D_G_1
             case self.StateId.TEST4D_G_1:
                 match eventId:
                     case self.EventId.EV2: 
                         self._TEST4D_G_1_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST4D_G_ev1()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4_DECIDE
             case self.StateId.TEST4_DECIDE:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST4_DECIDE_ev1() 
-                        break
                     case self.EventId.EV2: 
                         self._TEST4_DECIDE_ev2() 
-                        break
                     case self.EventId.EV3: 
                         self._TEST4_DECIDE_ev3() 
-                        break
                     case self.EventId.EV4: 
                         self._TEST4_DECIDE_ev4() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4_ROOT
             case self.StateId.TEST4_ROOT:
                 match eventId:
                     case self.EventId.EV2: 
                         self._TEST4_ROOT_ev2() 
-                        break
                     case self.EventId.EV3: 
                         self._TEST4_ROOT_ev3() 
-                        break
                     case self.EventId.EV4: 
                         self._TEST4_ROOT_ev4() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4_S1
             case self.StateId.TEST4_S1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST4_S1_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST4_ROOT_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._TEST4_ROOT_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV4: 
                         self._TEST4_ROOT_ev4()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4_S10
             case self.StateId.TEST4_S10:
                 match eventId:
                     case self.EventId.EV4: 
                         self._TEST4_S10_ev4() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST4_ROOT_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._TEST4_ROOT_ev3()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4_S10_1
             case self.StateId.TEST4_S10_1:
@@ -1123,56 +912,40 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST4_ROOT_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._TEST4_ROOT_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV4: 
                         self._TEST4_S10_ev4()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4_S2
             case self.StateId.TEST4_S2:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST4_S2_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST4_ROOT_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._TEST4_ROOT_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV4: 
                         self._TEST4_ROOT_ev4()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4_S20
             case self.StateId.TEST4_S20:
                 match eventId:
                     case self.EventId.EV4: 
                         self._TEST4_S20_ev4() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST4_ROOT_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._TEST4_ROOT_ev3()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4_S20_1
             case self.StateId.TEST4_S20_1:
@@ -1180,38 +953,27 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST4_ROOT_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._TEST4_ROOT_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV4: 
                         self._TEST4_S20_ev4()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST4_S3
             case self.StateId.TEST4_S3:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST4_S3_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST4_ROOT_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._TEST4_ROOT_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV4: 
                         self._TEST4_ROOT_ev4()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
             case self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
@@ -1219,65 +981,48 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST5_ROOT
             case self.StateId.TEST5_ROOT:
                 match eventId:
                     case self.EventId.EV2: 
                         self._TEST5_ROOT_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST5_S1
             case self.StateId.TEST5_S1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST5_S1_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST5_ROOT_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST5_S2
             case self.StateId.TEST5_S2:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST5_S2_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST5_ROOT_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST5_S3
             case self.StateId.TEST5_S3:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST5_S3_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST5_ROOT_ev2()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST6_VARS_EXPANSIONS
             case self.StateId.TEST6_VARS_EXPANSIONS:
@@ -1285,8 +1030,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST6_ROOT
             case self.StateId.TEST6_ROOT:
@@ -1294,8 +1037,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: AUTO_VAR_TEST
             case self.StateId.AUTO_VAR_TEST:
@@ -1303,20 +1044,15 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: AUTO_VAR_TEST__S1
             case self.StateId.AUTO_VAR_TEST__S1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._AUTO_VAR_TEST__S1_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: AUTO_VAR_TEST__S2
             case self.StateId.AUTO_VAR_TEST__S2:
@@ -1324,8 +1060,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: META_EXPANSIONS
             case self.StateId.META_EXPANSIONS:
@@ -1333,47 +1067,35 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: META_EXPANSIONS__S1
             case self.StateId.META_EXPANSIONS__S1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._META_EXPANSIONS__S1_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: META_EXPANSIONS__S2
             case self.StateId.META_EXPANSIONS__S2:
                 match eventId:
                     case self.EventId.EV1: 
                         self._META_EXPANSIONS__S2_ev1() 
-                        break
                     case self.EventId.EV2: 
                         self._META_EXPANSIONS__S2_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: S3
             case self.StateId.S3:
                 match eventId:
                     case self.EventId.EV1: 
                         self._S3_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: S4
             case self.StateId.S4:
@@ -1381,8 +1103,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: S5
             case self.StateId.S5:
@@ -1390,8 +1110,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: NORMAL
             case self.StateId.NORMAL:
@@ -1399,20 +1117,15 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: NORMAL__S1
             case self.StateId.NORMAL__S1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._NORMAL__S1_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: NORMAL__S2
             case self.StateId.NORMAL__S2:
@@ -1420,26 +1133,19 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST6_VARS_EXPANSIONS__DECIDE
             case self.StateId.TEST6_VARS_EXPANSIONS__DECIDE:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST6_VARS_EXPANSIONS__DECIDE_ev1() 
-                        break
                     case self.EventId.EV2: 
                         self._TEST6_VARS_EXPANSIONS__DECIDE_ev2() 
-                        break
                     case self.EventId.EV3: 
                         self._TEST6_VARS_EXPANSIONS__DECIDE_ev3() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST7_INITIAL_OR_HISTORY
             case self.StateId.TEST7_INITIAL_OR_HISTORY:
@@ -1447,8 +1153,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST7
             case self.StateId.TEST7:
@@ -1456,8 +1160,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY1
             case self.StateId.T7__DEEP_HISTORY1:
@@ -1465,8 +1167,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__SANTAS_WORKSHOP
             case self.StateId.T7__DH1__SANTAS_WORKSHOP:
@@ -1474,20 +1174,15 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__ALIENS_DETECTED
             case self.StateId.T7__DH1__ALIENS_DETECTED:
                 match eventId:
                     case self.EventId.EV8: 
                         self._T7__DH1__ALIENS_DETECTED_ev8() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__GET_BACKUP
             case self.StateId.T7__DH1__GET_BACKUP:
@@ -1495,11 +1190,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV8: 
                         self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__HERO
             case self.StateId.T7__DH1__HERO:
@@ -1507,41 +1199,30 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV8: 
                         self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__CALL_BATMAN
             case self.StateId.T7__DH1__CALL_BATMAN:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__DH1__CALL_BATMAN_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV8: 
                         self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__CALL_THOR
             case self.StateId.T7__DH1__CALL_THOR:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__DH1__CALL_THOR_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV8: 
                         self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__LOCAL_HELP
             case self.StateId.T7__DH1__LOCAL_HELP:
@@ -1549,26 +1230,19 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV8: 
                         self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__BUDDY_ELF
             case self.StateId.T7__DH1__BUDDY_ELF:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__DH1__BUDDY_ELF_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV8: 
                         self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__POLAR_BEARS
             case self.StateId.T7__DH1__POLAR_BEARS:
@@ -1576,74 +1250,54 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV8: 
                         self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__GIVE_COOKIES
             case self.StateId.T7__DH1__GIVE_COOKIES:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__DH1__GIVE_COOKIES_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV8: 
                         self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__SNOWBALL_FIGHT
             case self.StateId.T7__DH1__SNOWBALL_FIGHT:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__DH1__SNOWBALL_FIGHT_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV8: 
                         self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__BUILD
             case self.StateId.T7__DH1__BUILD:
                 match eventId:
                     case self.EventId.EV6: 
                         self._T7__DH1__BUILD_ev6() 
-                        break
                     case self.EventId.EV7: 
                         self._T7__DH1__BUILD_ev7() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__TOOL
             case self.StateId.T7__DH1__TOOL:
                 match eventId:
                     case self.EventId.EV2: 
                         self._T7__DH1__TOOL_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__CIRCULAR_SAW
             case self.StateId.T7__DH1__CIRCULAR_SAW:
@@ -1651,92 +1305,66 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._T7__DH1__TOOL_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__IMPACT_DRILL
             case self.StateId.T7__DH1__IMPACT_DRILL:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__DH1__IMPACT_DRILL_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._T7__DH1__TOOL_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__TOY
             case self.StateId.T7__DH1__TOY:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__DH1__TOY_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__GLOW_WORM
             case self.StateId.T7__DH1__GLOW_WORM:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__DH1__GLOW_WORM_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__RACE_CAR
             case self.StateId.T7__DH1__RACE_CAR:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__DH1__RACE_CAR_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__ROBOT
             case self.StateId.T7__DH1__ROBOT:
@@ -1744,35 +1372,25 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._T7__DH1__TOY_ev1()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__BATTLEBOT
             case self.StateId.T7__DH1__BATTLEBOT:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__DH1__BATTLEBOT_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__WALL_E
             case self.StateId.T7__DH1__WALL_E:
@@ -1780,35 +1398,25 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._T7__DH1__TOY_ev1()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DH1__TEDDY_BEAR
             case self.StateId.T7__DH1__TEDDY_BEAR:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__DH1__TEDDY_BEAR_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY2
             case self.StateId.T7__DEEP_HISTORY2:
@@ -1816,68 +1424,50 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_0
             case self.StateId.T7__DEEP_HISTORY2__T7__STATE_0:
                 match eventId:
                     case self.EventId.EVOPEN: 
                         self._T7__DEEP_HISTORY2__T7__STATE_0_evopen() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_1
             case self.StateId.T7__DEEP_HISTORY2__T7__STATE_1:
                 match eventId:
                     case self.EventId.EVSTEP: 
                         self._T7__DEEP_HISTORY2__T7__STATE_1_evstep() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVOPEN: 
                         self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_2
             case self.StateId.T7__DEEP_HISTORY2__T7__STATE_2:
                 match eventId:
                     case self.EventId.EVBACK: 
                         self._T7__DEEP_HISTORY2__T7__STATE_2_evback() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVOPEN: 
                         self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_6
             case self.StateId.T7__DEEP_HISTORY2__T7__STATE_6:
                 match eventId:
                     case self.EventId.EVSTEP: 
                         self._T7__DEEP_HISTORY2__T7__STATE_6_evstep() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVOPEN: 
                         self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVBACK: 
                         self._T7__DEEP_HISTORY2__T7__STATE_2_evback()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_9
             case self.StateId.T7__DEEP_HISTORY2__T7__STATE_9:
@@ -1885,26 +1475,19 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVOPEN: 
                         self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVBACK: 
                         self._T7__DEEP_HISTORY2__T7__STATE_2_evback()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_3
             case self.StateId.T7__DEEP_HISTORY2__T7__STATE_3:
                 match eventId:
                     case self.EventId.EVCLOSE: 
                         self._T7__DEEP_HISTORY2__T7__STATE_3_evclose() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY3
             case self.StateId.T7__DEEP_HISTORY3:
@@ -1912,68 +1495,50 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_0
             case self.StateId.T7__DEEP_HISTORY3__T7__STATE_0:
                 match eventId:
                     case self.EventId.EVOPEN: 
                         self._T7__DEEP_HISTORY3__T7__STATE_0_evopen() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_1
             case self.StateId.T7__DEEP_HISTORY3__T7__STATE_1:
                 match eventId:
                     case self.EventId.EVSTEP: 
                         self._T7__DEEP_HISTORY3__T7__STATE_1_evstep() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVOPEN: 
                         self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_2
             case self.StateId.T7__DEEP_HISTORY3__T7__STATE_2:
                 match eventId:
                     case self.EventId.EVBACK: 
                         self._T7__DEEP_HISTORY3__T7__STATE_2_evback() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVOPEN: 
                         self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_6
             case self.StateId.T7__DEEP_HISTORY3__T7__STATE_6:
                 match eventId:
                     case self.EventId.EVSTEP: 
                         self._T7__DEEP_HISTORY3__T7__STATE_6_evstep() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVOPEN: 
                         self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVBACK: 
                         self._T7__DEEP_HISTORY3__T7__STATE_2_evback()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_9
             case self.StateId.T7__DEEP_HISTORY3__T7__STATE_9:
@@ -1981,26 +1546,19 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVOPEN: 
                         self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()  # First ancestor handler for this event
-                        break
                     case self.EventId.EVBACK: 
                         self._T7__DEEP_HISTORY3__T7__STATE_2_evback()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_3
             case self.StateId.T7__DEEP_HISTORY3__T7__STATE_3:
                 match eventId:
                     case self.EventId.EVCLOSE: 
                         self._T7__DEEP_HISTORY3__T7__STATE_3_evclose() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__HISTORY1
             case self.StateId.T7__HISTORY1:
@@ -2008,68 +1566,49 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__H1__OFF
             case self.StateId.T7__H1__OFF:
                 match eventId:
                     case self.EventId.EV3: 
                         self._T7__H1__OFF_ev3() 
-                        break
                     case self.EventId.EV4: 
                         self._T7__H1__OFF_ev4() 
-                        break
                     case self.EventId.EV7: 
                         self._T7__H1__OFF_ev7() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__H1__OFF1
             case self.StateId.T7__H1__OFF1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__H1__OFF1_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._T7__H1__OFF_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV4: 
                         self._T7__H1__OFF_ev4()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__H1__OFF_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__H1__OFF2
             case self.StateId.T7__H1__OFF2:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__H1__OFF2_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._T7__H1__OFF_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV4: 
                         self._T7__H1__OFF_ev4()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__H1__OFF_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__H1__OFF3
             case self.StateId.T7__H1__OFF3:
@@ -2077,74 +1616,54 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._T7__H1__OFF_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV4: 
                         self._T7__H1__OFF_ev4()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV7: 
                         self._T7__H1__OFF_ev7()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__H1__ON
             case self.StateId.T7__H1__ON:
                 match eventId:
                     case self.EventId.EV6: 
                         self._T7__H1__ON_ev6() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__H1__ON1
             case self.StateId.T7__H1__ON1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__H1__ON1_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__H1__ON_ev6()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__H1__ON2
             case self.StateId.T7__H1__ON2:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__H1__ON2_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__H1__ON_ev6()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__H1__ON3
             case self.StateId.T7__H1__ON3:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__H1__ON3_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV6: 
                         self._T7__H1__ON_ev6()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__INITIAL1
             case self.StateId.T7__INITIAL1:
@@ -2152,35 +1671,26 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__INITIAL1__PARENT
             case self.StateId.T7__INITIAL1__PARENT:
                 match eventId:
                     case self.EventId.EV5: 
                         self._T7__INITIAL1__PARENT_ev5() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__INITIAL1__G
             case self.StateId.T7__INITIAL1__G:
                 match eventId:
                     case self.EventId.EV2: 
                         self._T7__INITIAL1__G_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._T7__INITIAL1__PARENT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__INITIAL1__G_S1
             case self.StateId.T7__INITIAL1__G_S1:
@@ -2188,14 +1698,10 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._T7__INITIAL1__G_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._T7__INITIAL1__PARENT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__INITIAL1__G_S2
             case self.StateId.T7__INITIAL1__G_S2:
@@ -2203,14 +1709,10 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._T7__INITIAL1__G_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._T7__INITIAL1__PARENT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__INITIAL1__G_S3
             case self.StateId.T7__INITIAL1__G_S3:
@@ -2218,56 +1720,40 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._T7__INITIAL1__G_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._T7__INITIAL1__PARENT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: T7__INITIAL1__S1
             case self.StateId.T7__INITIAL1__S1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._T7__INITIAL1__S1_ev1() 
-                        break
                     case self.EventId.EV3: 
                         self._T7__INITIAL1__S1_ev3() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._T7__INITIAL1__PARENT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST7_DECIDE
             case self.StateId.TEST7_DECIDE:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST7_DECIDE_ev1() 
-                        break
                     case self.EventId.EV2: 
                         self._TEST7_DECIDE_ev2() 
-                        break
                     case self.EventId.EV3: 
                         self._TEST7_DECIDE_ev3() 
-                        break
                     case self.EventId.EV4: 
                         self._TEST7_DECIDE_ev4() 
-                        break
                     case self.EventId.EV5: 
                         self._TEST7_DECIDE_ev5() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST8_ENTRY_CHOICE
             case self.StateId.TEST8_ENTRY_CHOICE:
@@ -2275,41 +1761,30 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST8_ROOT
             case self.StateId.TEST8_ROOT:
                 match eventId:
                     case self.EventId.EV5: 
                         self._TEST8_ROOT_ev5() 
-                        break
                     case self.EventId.EV3: 
                         self._TEST8_ROOT_ev3() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST8_G
             case self.StateId.TEST8_G:
                 match eventId:
                     case self.EventId.EV2: 
                         self._TEST8_G_ev2() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._TEST8_ROOT_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST8_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST8_G_S1
             case self.StateId.TEST8_G_S1:
@@ -2317,17 +1792,12 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST8_G_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._TEST8_ROOT_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST8_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST8_G_S2
             case self.StateId.TEST8_G_S2:
@@ -2335,17 +1805,12 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST8_G_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._TEST8_ROOT_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST8_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST8_G_S3
             case self.StateId.TEST8_G_S3:
@@ -2353,38 +1818,27 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV2: 
                         self._TEST8_G_ev2()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV3: 
                         self._TEST8_ROOT_ev3()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST8_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST8_S1
             case self.StateId.TEST8_S1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST8_S1_ev1() 
-                        break
                     case self.EventId.EV3: 
                         self._TEST8_S1_ev3() 
-                        break
                     case self.EventId.EV6: 
                         self._TEST8_S1_ev6() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST8_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9_EXIT_CHOICE
             case self.StateId.TEST9_EXIT_CHOICE:
@@ -2392,38 +1846,28 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9_DECIDE
             case self.StateId.TEST9_DECIDE:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST9_DECIDE_ev1() 
-                        break
                     case self.EventId.EV2: 
                         self._TEST9_DECIDE_ev2() 
-                        break
                     case self.EventId.EV3: 
                         self._TEST9_DECIDE_ev3() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9_ROOT
             case self.StateId.TEST9_ROOT:
                 match eventId:
                     case self.EventId.EV5: 
                         self._TEST9_ROOT_ev5() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9_G_S1
             case self.StateId.TEST9_G_S1:
@@ -2431,11 +1875,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST9_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9_G_S2
             case self.StateId.TEST9_G_S2:
@@ -2443,11 +1884,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST9_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9_G_S3
             case self.StateId.TEST9_G_S3:
@@ -2455,11 +1893,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST9_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9_G_S4
             case self.StateId.TEST9_G_S4:
@@ -2467,11 +1902,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST9_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9_S1
             case self.StateId.TEST9_S1:
@@ -2479,26 +1911,19 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST9_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9_S1_1
             case self.StateId.TEST9_S1_1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST9_S1_1_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV5: 
                         self._TEST9_ROOT_ev5()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9A_ROOT
             case self.StateId.TEST9A_ROOT:
@@ -2506,8 +1931,6 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9A_S1
             case self.StateId.TEST9A_S1:
@@ -2515,32 +1938,24 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9A_S1_1
             case self.StateId.TEST9A_S1_1:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST9A_S1_1_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9B_ROOT
             case self.StateId.TEST9B_ROOT:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST9B_ROOT_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9B_ROOT__A1
             case self.StateId.TEST9B_ROOT__A1:
@@ -2548,11 +1963,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9B_ROOT__A2
             case self.StateId.TEST9B_ROOT__A2:
@@ -2560,11 +1972,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9B_ROOT__A3
             case self.StateId.TEST9B_ROOT__A3:
@@ -2572,23 +1981,17 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9B_ROOT__A4
             case self.StateId.TEST9B_ROOT__A4:
                 match eventId:
                     case self.EventId.EV1: 
                         self._TEST9B_ROOT__A4_ev1() 
-                        break
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9B_ROOT__B1
             case self.StateId.TEST9B_ROOT__B1:
@@ -2596,11 +1999,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9B_ROOT__B2
             case self.StateId.TEST9B_ROOT__B2:
@@ -2608,11 +2008,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9B_ROOT__B3
             case self.StateId.TEST9B_ROOT__B3:
@@ -2620,11 +2017,8 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
-                        break
-                break
             
             # STATE: TEST9B_ROOT__B4
             case self.StateId.TEST9B_ROOT__B4:
@@ -2632,486 +2026,618 @@ class Spec2Sm(Spec2SmBase):
                     # Events not handled by this state:
                     case self.EventId.DO: 
                         self._ROOT_do()  # First ancestor handler for this event
-                        break
                     case self.EventId.EV1: 
                         self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
-                        break
-                break
-        
-    
     
     # This function is used when StateSmith doesn't know what the active leaf state is at
     # compile time due to sub states or when multiple states need to be exited.
-    def _exitUpToStateHandler(self, desiredState):    
-        while (self.stateId != desiredState)
-        
+    def _exitUpToStateHandler(self, desiredState):
+        while (self.stateId != desiredState):
+
             match self.stateId:
-                case self.StateId.PREFIXING: self._PREFIXING_exit() break
-                
-                case self.StateId.PREFIXING__ORDER_MENU: self._PREFIXING__ORDER_MENU_exit() break
-                
-                case self.StateId.PREFIXING__OM__BEVERAGE: self._PREFIXING__OM__BEVERAGE_exit() break
-                
-                case self.StateId.PREFIXING__OM__BEV__NONE: self._PREFIXING__OM__BEV__NONE_exit() break
-                
-                case self.StateId.PREFIXING__OM__BEV__TEA: self._PREFIXING__OM__BEV__TEA_exit() break
-                
-                case self.StateId.PREFIXING__OM__BEV__WATER: self._PREFIXING__OM__BEV__WATER_exit() break
-                
-                case self.StateId.PREFIXING__OM__VEG: self._PREFIXING__OM__VEG_exit() break
-                
-                case self.StateId.PREFIXING__OM__VEG__NONE: self._PREFIXING__OM__VEG__NONE_exit() break
-                
-                case self.StateId.PREFIXING__OM__VEG__POTATO: self._PREFIXING__OM__VEG__POTATO_exit() break
-                
-                case self.StateId.PREFIXING__OM__VEG__YAM: self._PREFIXING__OM__VEG__YAM_exit() break
-                
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX: self._PREFIXING__SHOWS_MANUAL_PREFIX_exit() break
-                
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: self._PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit() break
-                
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit() break
-                
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit() break
-                
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit() break
-                
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit() break
-                
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit() break
-                
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit() break
-                
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit() break
-                
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit() break
-                
-                case self.StateId.SPEC2SM__DECIDE: self._SPEC2SM__DECIDE_exit() break
-                
-                case self.StateId.TEST1_DO_EVENT_TESTING: self._TEST1_DO_EVENT_TESTING_exit() break
-                
-                case self.StateId.TEST1_ROOT: self._TEST1_ROOT_exit() break
-                
-                case self.StateId.TEST1_S1: self._TEST1_S1_exit() break
-                
-                case self.StateId.TEST1_S1_1: self._TEST1_S1_1_exit() break
-                
-                case self.StateId.TEST1_S2: self._TEST1_S2_exit() break
-                
-                case self.StateId.TEST10_CHOICE_POINT: self._TEST10_CHOICE_POINT_exit() break
-                
-                case self.StateId.TEST10_A: self._TEST10_A_exit() break
-                
-                case self.StateId.TEST10_A_1: self._TEST10_A_1_exit() break
-                
-                case self.StateId.TEST10_ROOT: self._TEST10_ROOT_exit() break
-                
-                case self.StateId.TEST10_G: self._TEST10_G_exit() break
-                
-                case self.StateId.TEST10_G_S0: self._TEST10_G_S0_exit() break
-                
-                case self.StateId.TEST10_G_S1: self._TEST10_G_S1_exit() break
-                
-                case self.StateId.TEST10_G_S2: self._TEST10_G_S2_exit() break
-                
-                case self.StateId.TEST10_G_S3: self._TEST10_G_S3_exit() break
-                
-                case self.StateId.TEST10_S1: self._TEST10_S1_exit() break
-                
-                case self.StateId.TEST10_S4: self._TEST10_S4_exit() break
-                
-                case self.StateId.TEST2_REGULAR_EVENT_TESTING: self._TEST2_REGULAR_EVENT_TESTING_exit() break
-                
-                case self.StateId.TEST2_ROOT: self._TEST2_ROOT_exit() break
-                
-                case self.StateId.TEST2_S1: self._TEST2_S1_exit() break
-                
-                case self.StateId.TEST2_S1_1: self._TEST2_S1_1_exit() break
-                
-                case self.StateId.TEST2_S2: self._TEST2_S2_exit() break
-                
-                case self.StateId.TEST3_BEHAVIOR_ORDERING: self._TEST3_BEHAVIOR_ORDERING_exit() break
-                
-                case self.StateId.TEST3_ROOT: self._TEST3_ROOT_exit() break
-                
-                case self.StateId.TEST3_S1: self._TEST3_S1_exit() break
-                
-                case self.StateId.TEST3_S2: self._TEST3_S2_exit() break
-                
-                case self.StateId.TEST3_S3: self._TEST3_S3_exit() break
-                
-                case self.StateId.TEST4_PARENT_CHILD_TRANSITIONS: self._TEST4_PARENT_CHILD_TRANSITIONS_exit() break
-                
-                case self.StateId.TEST4_B_AND_OTHERS: self._TEST4_B_AND_OTHERS_exit() break
-                
-                case self.StateId.TEST4B_LOCAL: self._TEST4B_LOCAL_exit() break
-                
-                case self.StateId.TEST4B_G: self._TEST4B_G_exit() break
-                
-                case self.StateId.TEST4B_G_1: self._TEST4B_G_1_exit() break
-                
-                case self.StateId.TEST4C_LOCAL_TO_ALIAS: self._TEST4C_LOCAL_TO_ALIAS_exit() break
-                
-                case self.StateId.TEST4C_G: self._TEST4C_G_exit() break
-                
-                case self.StateId.TEST4C_G_1: self._TEST4C_G_1_exit() break
-                
-                case self.StateId.TEST4D_EXTERNAL: self._TEST4D_EXTERNAL_exit() break
-                
-                case self.StateId.TEST4D_G: self._TEST4D_G_exit() break
-                
-                case self.StateId.TEST4D_G_1: self._TEST4D_G_1_exit() break
-                
-                case self.StateId.TEST4_DECIDE: self._TEST4_DECIDE_exit() break
-                
-                case self.StateId.TEST4_ROOT: self._TEST4_ROOT_exit() break
-                
-                case self.StateId.TEST4_S1: self._TEST4_S1_exit() break
-                
-                case self.StateId.TEST4_S10: self._TEST4_S10_exit() break
-                
-                case self.StateId.TEST4_S10_1: self._TEST4_S10_1_exit() break
-                
-                case self.StateId.TEST4_S2: self._TEST4_S2_exit() break
-                
-                case self.StateId.TEST4_S20: self._TEST4_S20_exit() break
-                
-                case self.StateId.TEST4_S20_1: self._TEST4_S20_1_exit() break
-                
-                case self.StateId.TEST4_S3: self._TEST4_S3_exit() break
-                
-                case self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: self._TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit() break
-                
-                case self.StateId.TEST5_ROOT: self._TEST5_ROOT_exit() break
-                
-                case self.StateId.TEST5_S1: self._TEST5_S1_exit() break
-                
-                case self.StateId.TEST5_S2: self._TEST5_S2_exit() break
-                
-                case self.StateId.TEST5_S3: self._TEST5_S3_exit() break
-                
-                case self.StateId.TEST6_VARS_EXPANSIONS: self._TEST6_VARS_EXPANSIONS_exit() break
-                
-                case self.StateId.TEST6_ROOT: self._TEST6_ROOT_exit() break
-                
-                case self.StateId.AUTO_VAR_TEST: self._AUTO_VAR_TEST_exit() break
-                
-                case self.StateId.AUTO_VAR_TEST__S1: self._AUTO_VAR_TEST__S1_exit() break
-                
-                case self.StateId.AUTO_VAR_TEST__S2: self._AUTO_VAR_TEST__S2_exit() break
-                
-                case self.StateId.META_EXPANSIONS: self._META_EXPANSIONS_exit() break
-                
-                case self.StateId.META_EXPANSIONS__S1: self._META_EXPANSIONS__S1_exit() break
-                
-                case self.StateId.META_EXPANSIONS__S2: self._META_EXPANSIONS__S2_exit() break
-                
-                case self.StateId.S3: self._S3_exit() break
-                
-                case self.StateId.S4: self._S4_exit() break
-                
-                case self.StateId.S5: self._S5_exit() break
-                
-                case self.StateId.NORMAL: self._NORMAL_exit() break
-                
-                case self.StateId.NORMAL__S1: self._NORMAL__S1_exit() break
-                
-                case self.StateId.NORMAL__S2: self._NORMAL__S2_exit() break
-                
-                case self.StateId.TEST6_VARS_EXPANSIONS__DECIDE: self._TEST6_VARS_EXPANSIONS__DECIDE_exit() break
-                
-                case self.StateId.TEST7_INITIAL_OR_HISTORY: self._TEST7_INITIAL_OR_HISTORY_exit() break
-                
-                case self.StateId.TEST7: self._TEST7_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY1: self._T7__DEEP_HISTORY1_exit() break
-                
-                case self.StateId.T7__DH1__SANTAS_WORKSHOP: self._T7__DH1__SANTAS_WORKSHOP_exit() break
-                
-                case self.StateId.T7__DH1__ALIENS_DETECTED: self._T7__DH1__ALIENS_DETECTED_exit() break
-                
-                case self.StateId.T7__DH1__GET_BACKUP: self._T7__DH1__GET_BACKUP_exit() break
-                
-                case self.StateId.T7__DH1__HERO: self._T7__DH1__HERO_exit() break
-                
-                case self.StateId.T7__DH1__CALL_BATMAN: self._T7__DH1__CALL_BATMAN_exit() break
-                
-                case self.StateId.T7__DH1__CALL_THOR: self._T7__DH1__CALL_THOR_exit() break
-                
-                case self.StateId.T7__DH1__LOCAL_HELP: self._T7__DH1__LOCAL_HELP_exit() break
-                
-                case self.StateId.T7__DH1__BUDDY_ELF: self._T7__DH1__BUDDY_ELF_exit() break
-                
-                case self.StateId.T7__DH1__POLAR_BEARS: self._T7__DH1__POLAR_BEARS_exit() break
-                
-                case self.StateId.T7__DH1__GIVE_COOKIES: self._T7__DH1__GIVE_COOKIES_exit() break
-                
-                case self.StateId.T7__DH1__SNOWBALL_FIGHT: self._T7__DH1__SNOWBALL_FIGHT_exit() break
-                
-                case self.StateId.T7__DH1__BUILD: self._T7__DH1__BUILD_exit() break
-                
-                case self.StateId.T7__DH1__TOOL: self._T7__DH1__TOOL_exit() break
-                
-                case self.StateId.T7__DH1__CIRCULAR_SAW: self._T7__DH1__CIRCULAR_SAW_exit() break
-                
-                case self.StateId.T7__DH1__IMPACT_DRILL: self._T7__DH1__IMPACT_DRILL_exit() break
-                
-                case self.StateId.T7__DH1__TOY: self._T7__DH1__TOY_exit() break
-                
-                case self.StateId.T7__DH1__GLOW_WORM: self._T7__DH1__GLOW_WORM_exit() break
-                
-                case self.StateId.T7__DH1__RACE_CAR: self._T7__DH1__RACE_CAR_exit() break
-                
-                case self.StateId.T7__DH1__ROBOT: self._T7__DH1__ROBOT_exit() break
-                
-                case self.StateId.T7__DH1__BATTLEBOT: self._T7__DH1__BATTLEBOT_exit() break
-                
-                case self.StateId.T7__DH1__WALL_E: self._T7__DH1__WALL_E_exit() break
-                
-                case self.StateId.T7__DH1__TEDDY_BEAR: self._T7__DH1__TEDDY_BEAR_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY2: self._T7__DEEP_HISTORY2_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_0: self._T7__DEEP_HISTORY2__T7__STATE_0_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_1: self._T7__DEEP_HISTORY2__T7__STATE_1_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_2: self._T7__DEEP_HISTORY2__T7__STATE_2_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_6: self._T7__DEEP_HISTORY2__T7__STATE_6_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_9: self._T7__DEEP_HISTORY2__T7__STATE_9_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_3: self._T7__DEEP_HISTORY2__T7__STATE_3_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY3: self._T7__DEEP_HISTORY3_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_0: self._T7__DEEP_HISTORY3__T7__STATE_0_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_1: self._T7__DEEP_HISTORY3__T7__STATE_1_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_2: self._T7__DEEP_HISTORY3__T7__STATE_2_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_6: self._T7__DEEP_HISTORY3__T7__STATE_6_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_9: self._T7__DEEP_HISTORY3__T7__STATE_9_exit() break
-                
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_3: self._T7__DEEP_HISTORY3__T7__STATE_3_exit() break
-                
-                case self.StateId.T7__HISTORY1: self._T7__HISTORY1_exit() break
-                
-                case self.StateId.T7__H1__OFF: self._T7__H1__OFF_exit() break
-                
-                case self.StateId.T7__H1__OFF1: self._T7__H1__OFF1_exit() break
-                
-                case self.StateId.T7__H1__OFF2: self._T7__H1__OFF2_exit() break
-                
-                case self.StateId.T7__H1__OFF3: self._T7__H1__OFF3_exit() break
-                
-                case self.StateId.T7__H1__ON: self._T7__H1__ON_exit() break
-                
-                case self.StateId.T7__H1__ON1: self._T7__H1__ON1_exit() break
-                
-                case self.StateId.T7__H1__ON2: self._T7__H1__ON2_exit() break
-                
-                case self.StateId.T7__H1__ON3: self._T7__H1__ON3_exit() break
-                
-                case self.StateId.T7__INITIAL1: self._T7__INITIAL1_exit() break
-                
-                case self.StateId.T7__INITIAL1__PARENT: self._T7__INITIAL1__PARENT_exit() break
-                
-                case self.StateId.T7__INITIAL1__G: self._T7__INITIAL1__G_exit() break
-                
-                case self.StateId.T7__INITIAL1__G_S1: self._T7__INITIAL1__G_S1_exit() break
-                
-                case self.StateId.T7__INITIAL1__G_S2: self._T7__INITIAL1__G_S2_exit() break
-                
-                case self.StateId.T7__INITIAL1__G_S3: self._T7__INITIAL1__G_S3_exit() break
-                
-                case self.StateId.T7__INITIAL1__S1: self._T7__INITIAL1__S1_exit() break
-                
-                case self.StateId.TEST7_DECIDE: self._TEST7_DECIDE_exit() break
-                
-                case self.StateId.TEST8_ENTRY_CHOICE: self._TEST8_ENTRY_CHOICE_exit() break
-                
-                case self.StateId.TEST8_ROOT: self._TEST8_ROOT_exit() break
-                
-                case self.StateId.TEST8_G: self._TEST8_G_exit() break
-                
-                case self.StateId.TEST8_G_S1: self._TEST8_G_S1_exit() break
-                
-                case self.StateId.TEST8_G_S2: self._TEST8_G_S2_exit() break
-                
-                case self.StateId.TEST8_G_S3: self._TEST8_G_S3_exit() break
-                
-                case self.StateId.TEST8_S1: self._TEST8_S1_exit() break
-                
-                case self.StateId.TEST9_EXIT_CHOICE: self._TEST9_EXIT_CHOICE_exit() break
-                
-                case self.StateId.TEST9_DECIDE: self._TEST9_DECIDE_exit() break
-                
-                case self.StateId.TEST9_ROOT: self._TEST9_ROOT_exit() break
-                
-                case self.StateId.TEST9_G_S1: self._TEST9_G_S1_exit() break
-                
-                case self.StateId.TEST9_G_S2: self._TEST9_G_S2_exit() break
-                
-                case self.StateId.TEST9_G_S3: self._TEST9_G_S3_exit() break
-                
-                case self.StateId.TEST9_G_S4: self._TEST9_G_S4_exit() break
-                
-                case self.StateId.TEST9_S1: self._TEST9_S1_exit() break
-                
-                case self.StateId.TEST9_S1_1: self._TEST9_S1_1_exit() break
-                
-                case self.StateId.TEST9A_ROOT: self._TEST9A_ROOT_exit() break
-                
-                case self.StateId.TEST9A_S1: self._TEST9A_S1_exit() break
-                
-                case self.StateId.TEST9A_S1_1: self._TEST9A_S1_1_exit() break
-                
-                case self.StateId.TEST9B_ROOT: self._TEST9B_ROOT_exit() break
-                
-                case self.StateId.TEST9B_ROOT__A1: self._TEST9B_ROOT__A1_exit() break
-                
-                case self.StateId.TEST9B_ROOT__A2: self._TEST9B_ROOT__A2_exit() break
-                
-                case self.StateId.TEST9B_ROOT__A3: self._TEST9B_ROOT__A3_exit() break
-                
-                case self.StateId.TEST9B_ROOT__A4: self._TEST9B_ROOT__A4_exit() break
-                
-                case self.StateId.TEST9B_ROOT__B1: self._TEST9B_ROOT__B1_exit() break
-                
-                case self.StateId.TEST9B_ROOT__B2: self._TEST9B_ROOT__B2_exit() break
-                
-                case self.StateId.TEST9B_ROOT__B3: self._TEST9B_ROOT__B3_exit() break
-                
-                case self.StateId.TEST9B_ROOT__B4: self._TEST9B_ROOT__B4_exit() break
-                
-                default: return  # Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
-        
-    
+                case self.StateId.PREFIXING: 
+                    self._PREFIXING_exit() 
+                    
+                case self.StateId.PREFIXING__ORDER_MENU: 
+                    self._PREFIXING__ORDER_MENU_exit() 
+                    
+                case self.StateId.PREFIXING__OM__BEVERAGE: 
+                    self._PREFIXING__OM__BEVERAGE_exit() 
+                    
+                case self.StateId.PREFIXING__OM__BEV__NONE: 
+                    self._PREFIXING__OM__BEV__NONE_exit() 
+                    
+                case self.StateId.PREFIXING__OM__BEV__TEA: 
+                    self._PREFIXING__OM__BEV__TEA_exit() 
+                    
+                case self.StateId.PREFIXING__OM__BEV__WATER: 
+                    self._PREFIXING__OM__BEV__WATER_exit() 
+                    
+                case self.StateId.PREFIXING__OM__VEG: 
+                    self._PREFIXING__OM__VEG_exit() 
+                    
+                case self.StateId.PREFIXING__OM__VEG__NONE: 
+                    self._PREFIXING__OM__VEG__NONE_exit() 
+                    
+                case self.StateId.PREFIXING__OM__VEG__POTATO: 
+                    self._PREFIXING__OM__VEG__POTATO_exit() 
+                    
+                case self.StateId.PREFIXING__OM__VEG__YAM: 
+                    self._PREFIXING__OM__VEG__YAM_exit() 
+                    
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX: 
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX_exit() 
+                    
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: 
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit() 
+                    
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: 
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit() 
+                    
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: 
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit() 
+                    
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: 
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit() 
+                    
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: 
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit() 
+                    
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: 
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit() 
+                    
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: 
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit() 
+                    
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: 
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit() 
+                    
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: 
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit() 
+                    
+                case self.StateId.SPEC2SM__DECIDE: 
+                    self._SPEC2SM__DECIDE_exit() 
+                    
+                case self.StateId.TEST1_DO_EVENT_TESTING: 
+                    self._TEST1_DO_EVENT_TESTING_exit() 
+                    
+                case self.StateId.TEST1_ROOT: 
+                    self._TEST1_ROOT_exit() 
+                    
+                case self.StateId.TEST1_S1: 
+                    self._TEST1_S1_exit() 
+                    
+                case self.StateId.TEST1_S1_1: 
+                    self._TEST1_S1_1_exit() 
+                    
+                case self.StateId.TEST1_S2: 
+                    self._TEST1_S2_exit() 
+                    
+                case self.StateId.TEST10_CHOICE_POINT: 
+                    self._TEST10_CHOICE_POINT_exit() 
+                    
+                case self.StateId.TEST10_A: 
+                    self._TEST10_A_exit() 
+                    
+                case self.StateId.TEST10_A_1: 
+                    self._TEST10_A_1_exit() 
+                    
+                case self.StateId.TEST10_ROOT: 
+                    self._TEST10_ROOT_exit() 
+                    
+                case self.StateId.TEST10_G: 
+                    self._TEST10_G_exit() 
+                    
+                case self.StateId.TEST10_G_S0: 
+                    self._TEST10_G_S0_exit() 
+                    
+                case self.StateId.TEST10_G_S1: 
+                    self._TEST10_G_S1_exit() 
+                    
+                case self.StateId.TEST10_G_S2: 
+                    self._TEST10_G_S2_exit() 
+                    
+                case self.StateId.TEST10_G_S3: 
+                    self._TEST10_G_S3_exit() 
+                    
+                case self.StateId.TEST10_S1: 
+                    self._TEST10_S1_exit() 
+                    
+                case self.StateId.TEST10_S4: 
+                    self._TEST10_S4_exit() 
+                    
+                case self.StateId.TEST2_REGULAR_EVENT_TESTING: 
+                    self._TEST2_REGULAR_EVENT_TESTING_exit() 
+                    
+                case self.StateId.TEST2_ROOT: 
+                    self._TEST2_ROOT_exit() 
+                    
+                case self.StateId.TEST2_S1: 
+                    self._TEST2_S1_exit() 
+                    
+                case self.StateId.TEST2_S1_1: 
+                    self._TEST2_S1_1_exit() 
+                    
+                case self.StateId.TEST2_S2: 
+                    self._TEST2_S2_exit() 
+                    
+                case self.StateId.TEST3_BEHAVIOR_ORDERING: 
+                    self._TEST3_BEHAVIOR_ORDERING_exit() 
+                    
+                case self.StateId.TEST3_ROOT: 
+                    self._TEST3_ROOT_exit() 
+                    
+                case self.StateId.TEST3_S1: 
+                    self._TEST3_S1_exit() 
+                    
+                case self.StateId.TEST3_S2: 
+                    self._TEST3_S2_exit() 
+                    
+                case self.StateId.TEST3_S3: 
+                    self._TEST3_S3_exit() 
+                    
+                case self.StateId.TEST4_PARENT_CHILD_TRANSITIONS: 
+                    self._TEST4_PARENT_CHILD_TRANSITIONS_exit() 
+                    
+                case self.StateId.TEST4_B_AND_OTHERS: 
+                    self._TEST4_B_AND_OTHERS_exit() 
+                    
+                case self.StateId.TEST4B_LOCAL: 
+                    self._TEST4B_LOCAL_exit() 
+                    
+                case self.StateId.TEST4B_G: 
+                    self._TEST4B_G_exit() 
+                    
+                case self.StateId.TEST4B_G_1: 
+                    self._TEST4B_G_1_exit() 
+                    
+                case self.StateId.TEST4C_LOCAL_TO_ALIAS: 
+                    self._TEST4C_LOCAL_TO_ALIAS_exit() 
+                    
+                case self.StateId.TEST4C_G: 
+                    self._TEST4C_G_exit() 
+                    
+                case self.StateId.TEST4C_G_1: 
+                    self._TEST4C_G_1_exit() 
+                    
+                case self.StateId.TEST4D_EXTERNAL: 
+                    self._TEST4D_EXTERNAL_exit() 
+                    
+                case self.StateId.TEST4D_G: 
+                    self._TEST4D_G_exit() 
+                    
+                case self.StateId.TEST4D_G_1: 
+                    self._TEST4D_G_1_exit() 
+                    
+                case self.StateId.TEST4_DECIDE: 
+                    self._TEST4_DECIDE_exit() 
+                    
+                case self.StateId.TEST4_ROOT: 
+                    self._TEST4_ROOT_exit() 
+                    
+                case self.StateId.TEST4_S1: 
+                    self._TEST4_S1_exit() 
+                    
+                case self.StateId.TEST4_S10: 
+                    self._TEST4_S10_exit() 
+                    
+                case self.StateId.TEST4_S10_1: 
+                    self._TEST4_S10_1_exit() 
+                    
+                case self.StateId.TEST4_S2: 
+                    self._TEST4_S2_exit() 
+                    
+                case self.StateId.TEST4_S20: 
+                    self._TEST4_S20_exit() 
+                    
+                case self.StateId.TEST4_S20_1: 
+                    self._TEST4_S20_1_exit() 
+                    
+                case self.StateId.TEST4_S3: 
+                    self._TEST4_S3_exit() 
+                    
+                case self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: 
+                    self._TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit() 
+                    
+                case self.StateId.TEST5_ROOT: 
+                    self._TEST5_ROOT_exit() 
+                    
+                case self.StateId.TEST5_S1: 
+                    self._TEST5_S1_exit() 
+                    
+                case self.StateId.TEST5_S2: 
+                    self._TEST5_S2_exit() 
+                    
+                case self.StateId.TEST5_S3: 
+                    self._TEST5_S3_exit() 
+                    
+                case self.StateId.TEST6_VARS_EXPANSIONS: 
+                    self._TEST6_VARS_EXPANSIONS_exit() 
+                    
+                case self.StateId.TEST6_ROOT: 
+                    self._TEST6_ROOT_exit() 
+                    
+                case self.StateId.AUTO_VAR_TEST: 
+                    self._AUTO_VAR_TEST_exit() 
+                    
+                case self.StateId.AUTO_VAR_TEST__S1: 
+                    self._AUTO_VAR_TEST__S1_exit() 
+                    
+                case self.StateId.AUTO_VAR_TEST__S2: 
+                    self._AUTO_VAR_TEST__S2_exit() 
+                    
+                case self.StateId.META_EXPANSIONS: 
+                    self._META_EXPANSIONS_exit() 
+                    
+                case self.StateId.META_EXPANSIONS__S1: 
+                    self._META_EXPANSIONS__S1_exit() 
+                    
+                case self.StateId.META_EXPANSIONS__S2: 
+                    self._META_EXPANSIONS__S2_exit() 
+                    
+                case self.StateId.S3: 
+                    self._S3_exit() 
+                    
+                case self.StateId.S4: 
+                    self._S4_exit() 
+                    
+                case self.StateId.S5: 
+                    self._S5_exit() 
+                    
+                case self.StateId.NORMAL: 
+                    self._NORMAL_exit() 
+                    
+                case self.StateId.NORMAL__S1: 
+                    self._NORMAL__S1_exit() 
+                    
+                case self.StateId.NORMAL__S2: 
+                    self._NORMAL__S2_exit() 
+                    
+                case self.StateId.TEST6_VARS_EXPANSIONS__DECIDE: 
+                    self._TEST6_VARS_EXPANSIONS__DECIDE_exit() 
+                    
+                case self.StateId.TEST7_INITIAL_OR_HISTORY: 
+                    self._TEST7_INITIAL_OR_HISTORY_exit() 
+                    
+                case self.StateId.TEST7: 
+                    self._TEST7_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY1: 
+                    self._T7__DEEP_HISTORY1_exit() 
+                    
+                case self.StateId.T7__DH1__SANTAS_WORKSHOP: 
+                    self._T7__DH1__SANTAS_WORKSHOP_exit() 
+                    
+                case self.StateId.T7__DH1__ALIENS_DETECTED: 
+                    self._T7__DH1__ALIENS_DETECTED_exit() 
+                    
+                case self.StateId.T7__DH1__GET_BACKUP: 
+                    self._T7__DH1__GET_BACKUP_exit() 
+                    
+                case self.StateId.T7__DH1__HERO: 
+                    self._T7__DH1__HERO_exit() 
+                    
+                case self.StateId.T7__DH1__CALL_BATMAN: 
+                    self._T7__DH1__CALL_BATMAN_exit() 
+                    
+                case self.StateId.T7__DH1__CALL_THOR: 
+                    self._T7__DH1__CALL_THOR_exit() 
+                    
+                case self.StateId.T7__DH1__LOCAL_HELP: 
+                    self._T7__DH1__LOCAL_HELP_exit() 
+                    
+                case self.StateId.T7__DH1__BUDDY_ELF: 
+                    self._T7__DH1__BUDDY_ELF_exit() 
+                    
+                case self.StateId.T7__DH1__POLAR_BEARS: 
+                    self._T7__DH1__POLAR_BEARS_exit() 
+                    
+                case self.StateId.T7__DH1__GIVE_COOKIES: 
+                    self._T7__DH1__GIVE_COOKIES_exit() 
+                    
+                case self.StateId.T7__DH1__SNOWBALL_FIGHT: 
+                    self._T7__DH1__SNOWBALL_FIGHT_exit() 
+                    
+                case self.StateId.T7__DH1__BUILD: 
+                    self._T7__DH1__BUILD_exit() 
+                    
+                case self.StateId.T7__DH1__TOOL: 
+                    self._T7__DH1__TOOL_exit() 
+                    
+                case self.StateId.T7__DH1__CIRCULAR_SAW: 
+                    self._T7__DH1__CIRCULAR_SAW_exit() 
+                    
+                case self.StateId.T7__DH1__IMPACT_DRILL: 
+                    self._T7__DH1__IMPACT_DRILL_exit() 
+                    
+                case self.StateId.T7__DH1__TOY: 
+                    self._T7__DH1__TOY_exit() 
+                    
+                case self.StateId.T7__DH1__GLOW_WORM: 
+                    self._T7__DH1__GLOW_WORM_exit() 
+                    
+                case self.StateId.T7__DH1__RACE_CAR: 
+                    self._T7__DH1__RACE_CAR_exit() 
+                    
+                case self.StateId.T7__DH1__ROBOT: 
+                    self._T7__DH1__ROBOT_exit() 
+                    
+                case self.StateId.T7__DH1__BATTLEBOT: 
+                    self._T7__DH1__BATTLEBOT_exit() 
+                    
+                case self.StateId.T7__DH1__WALL_E: 
+                    self._T7__DH1__WALL_E_exit() 
+                    
+                case self.StateId.T7__DH1__TEDDY_BEAR: 
+                    self._T7__DH1__TEDDY_BEAR_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY2: 
+                    self._T7__DEEP_HISTORY2_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_0: 
+                    self._T7__DEEP_HISTORY2__T7__STATE_0_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_1: 
+                    self._T7__DEEP_HISTORY2__T7__STATE_1_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_2: 
+                    self._T7__DEEP_HISTORY2__T7__STATE_2_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_6: 
+                    self._T7__DEEP_HISTORY2__T7__STATE_6_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_9: 
+                    self._T7__DEEP_HISTORY2__T7__STATE_9_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_3: 
+                    self._T7__DEEP_HISTORY2__T7__STATE_3_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY3: 
+                    self._T7__DEEP_HISTORY3_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_0: 
+                    self._T7__DEEP_HISTORY3__T7__STATE_0_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_1: 
+                    self._T7__DEEP_HISTORY3__T7__STATE_1_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_2: 
+                    self._T7__DEEP_HISTORY3__T7__STATE_2_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_6: 
+                    self._T7__DEEP_HISTORY3__T7__STATE_6_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_9: 
+                    self._T7__DEEP_HISTORY3__T7__STATE_9_exit() 
+                    
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_3: 
+                    self._T7__DEEP_HISTORY3__T7__STATE_3_exit() 
+                    
+                case self.StateId.T7__HISTORY1: 
+                    self._T7__HISTORY1_exit() 
+                    
+                case self.StateId.T7__H1__OFF: 
+                    self._T7__H1__OFF_exit() 
+                    
+                case self.StateId.T7__H1__OFF1: 
+                    self._T7__H1__OFF1_exit() 
+                    
+                case self.StateId.T7__H1__OFF2: 
+                    self._T7__H1__OFF2_exit() 
+                    
+                case self.StateId.T7__H1__OFF3: 
+                    self._T7__H1__OFF3_exit() 
+                    
+                case self.StateId.T7__H1__ON: 
+                    self._T7__H1__ON_exit() 
+                    
+                case self.StateId.T7__H1__ON1: 
+                    self._T7__H1__ON1_exit() 
+                    
+                case self.StateId.T7__H1__ON2: 
+                    self._T7__H1__ON2_exit() 
+                    
+                case self.StateId.T7__H1__ON3: 
+                    self._T7__H1__ON3_exit() 
+                    
+                case self.StateId.T7__INITIAL1: 
+                    self._T7__INITIAL1_exit() 
+                    
+                case self.StateId.T7__INITIAL1__PARENT: 
+                    self._T7__INITIAL1__PARENT_exit() 
+                    
+                case self.StateId.T7__INITIAL1__G: 
+                    self._T7__INITIAL1__G_exit() 
+                    
+                case self.StateId.T7__INITIAL1__G_S1: 
+                    self._T7__INITIAL1__G_S1_exit() 
+                    
+                case self.StateId.T7__INITIAL1__G_S2: 
+                    self._T7__INITIAL1__G_S2_exit() 
+                    
+                case self.StateId.T7__INITIAL1__G_S3: 
+                    self._T7__INITIAL1__G_S3_exit() 
+                    
+                case self.StateId.T7__INITIAL1__S1: 
+                    self._T7__INITIAL1__S1_exit() 
+                    
+                case self.StateId.TEST7_DECIDE: 
+                    self._TEST7_DECIDE_exit() 
+                    
+                case self.StateId.TEST8_ENTRY_CHOICE: 
+                    self._TEST8_ENTRY_CHOICE_exit() 
+                    
+                case self.StateId.TEST8_ROOT: 
+                    self._TEST8_ROOT_exit() 
+                    
+                case self.StateId.TEST8_G: 
+                    self._TEST8_G_exit() 
+                    
+                case self.StateId.TEST8_G_S1: 
+                    self._TEST8_G_S1_exit() 
+                    
+                case self.StateId.TEST8_G_S2: 
+                    self._TEST8_G_S2_exit() 
+                    
+                case self.StateId.TEST8_G_S3: 
+                    self._TEST8_G_S3_exit() 
+                    
+                case self.StateId.TEST8_S1: 
+                    self._TEST8_S1_exit() 
+                    
+                case self.StateId.TEST9_EXIT_CHOICE: 
+                    self._TEST9_EXIT_CHOICE_exit() 
+                    
+                case self.StateId.TEST9_DECIDE: 
+                    self._TEST9_DECIDE_exit() 
+                    
+                case self.StateId.TEST9_ROOT: 
+                    self._TEST9_ROOT_exit() 
+                    
+                case self.StateId.TEST9_G_S1: 
+                    self._TEST9_G_S1_exit() 
+                    
+                case self.StateId.TEST9_G_S2: 
+                    self._TEST9_G_S2_exit() 
+                    
+                case self.StateId.TEST9_G_S3: 
+                    self._TEST9_G_S3_exit() 
+                    
+                case self.StateId.TEST9_G_S4: 
+                    self._TEST9_G_S4_exit() 
+                    
+                case self.StateId.TEST9_S1: 
+                    self._TEST9_S1_exit() 
+                    
+                case self.StateId.TEST9_S1_1: 
+                    self._TEST9_S1_1_exit() 
+                    
+                case self.StateId.TEST9A_ROOT: 
+                    self._TEST9A_ROOT_exit() 
+                    
+                case self.StateId.TEST9A_S1: 
+                    self._TEST9A_S1_exit() 
+                    
+                case self.StateId.TEST9A_S1_1: 
+                    self._TEST9A_S1_1_exit() 
+                    
+                case self.StateId.TEST9B_ROOT: 
+                    self._TEST9B_ROOT_exit() 
+                    
+                case self.StateId.TEST9B_ROOT__A1: 
+                    self._TEST9B_ROOT__A1_exit() 
+                    
+                case self.StateId.TEST9B_ROOT__A2: 
+                    self._TEST9B_ROOT__A2_exit() 
+                    
+                case self.StateId.TEST9B_ROOT__A3: 
+                    self._TEST9B_ROOT__A3_exit() 
+                    
+                case self.StateId.TEST9B_ROOT__A4: 
+                    self._TEST9B_ROOT__A4_exit() 
+                    
+                case self.StateId.TEST9B_ROOT__B1: 
+                    self._TEST9B_ROOT__B1_exit() 
+                    
+                case self.StateId.TEST9B_ROOT__B2: 
+                    self._TEST9B_ROOT__B2_exit() 
+                    
+                case self.StateId.TEST9B_ROOT__B3: 
+                    self._TEST9B_ROOT__B3_exit() 
+                    
+                case self.StateId.TEST9B_ROOT__B4: 
+                    self._TEST9B_ROOT__B4_exit() 
+                    
+                case _:
+                    return  # Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
     
     
     ########################################
     # event handlers for state ROOT
     ########################################
     
-    def _ROOT_enter(self):    
+    def _ROOT_enter(self):
         self.stateId = StateId.ROOT
         
         # ROOT behavior
         # uml: enter / { trace("Enter Spec2Sm.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter Spec2Sm.")`
-            MainClass.trace("Enter Spec2Sm.")
-         # end of behavior for ROOT
+
     
-    
-    def _ROOT_do(self):    
+    def _ROOT_do(self):
         # ROOT behavior
         # uml: do [trace_guard("State Spec2Sm: check behavior `do`.", true)]
         if trace_guard("State Spec2Sm: check behavior `do`.", true):
-        
-            # Step 1: execute action ``
-         # end of behavior for ROOT
-        
-        # No ancestor handles this event.
-    
+
     
     
     ########################################
     # event handlers for state PREFIXING
     ########################################
     
-    def _PREFIXING_enter(self):    
+    def _PREFIXING_enter(self):
         self.stateId = StateId.PREFIXING
         
         # PREFIXING behavior
         # uml: enter / { trace("Enter PREFIXING.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING.")`
-            MainClass.trace("Enter PREFIXING.")
-         # end of behavior for PREFIXING
+
     
-    
-    def _PREFIXING_exit(self):    
+    def _PREFIXING_exit(self):
         # PREFIXING behavior
         # uml: exit / { trace("Exit PREFIXING.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING.")`
-            MainClass.trace("Exit PREFIXING.")
-         # end of behavior for PREFIXING
+
         
         self.stateId = StateId.ROOT
-    
     
     
     ########################################
     # event handlers for state PREFIXING__ORDER_MENU
     ########################################
     
-    def _PREFIXING__ORDER_MENU_enter(self):    
+    def _PREFIXING__ORDER_MENU_enter(self):
         self.stateId = StateId.PREFIXING__ORDER_MENU
         
         # PREFIXING__ORDER_MENU behavior
         # uml: enter / { trace("Enter PREFIXING__ORDER_MENU.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__ORDER_MENU.")`
-            MainClass.trace("Enter PREFIXING__ORDER_MENU.")
-         # end of behavior for PREFIXING__ORDER_MENU
+
     
-    
-    def _PREFIXING__ORDER_MENU_exit(self):    
+    def _PREFIXING__ORDER_MENU_exit(self):
         # PREFIXING__ORDER_MENU behavior
         # uml: exit / { trace("Exit PREFIXING__ORDER_MENU.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__ORDER_MENU.")`
-            MainClass.trace("Exit PREFIXING__ORDER_MENU.")
-         # end of behavior for PREFIXING__ORDER_MENU
+
         
         self.stateId = StateId.PREFIXING
-    
     
     
     ########################################
     # event handlers for state PREFIXING__OM__BEVERAGE
     ########################################
     
-    def _PREFIXING__OM__BEVERAGE_enter(self):    
+    def _PREFIXING__OM__BEVERAGE_enter(self):
         self.stateId = StateId.PREFIXING__OM__BEVERAGE
         
         # PREFIXING__OM__BEVERAGE behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEVERAGE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__OM__BEVERAGE.")`
-            MainClass.trace("Enter PREFIXING__OM__BEVERAGE.")
-         # end of behavior for PREFIXING__OM__BEVERAGE
+
     
-    
-    def _PREFIXING__OM__BEVERAGE_exit(self):    
+    def _PREFIXING__OM__BEVERAGE_exit(self):
         # PREFIXING__OM__BEVERAGE behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEVERAGE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__OM__BEVERAGE.")`
-            MainClass.trace("Exit PREFIXING__OM__BEVERAGE.")
-         # end of behavior for PREFIXING__OM__BEVERAGE
+
         
         self.stateId = StateId.PREFIXING__ORDER_MENU
     
-    
-    def _PREFIXING__OM__BEVERAGE_ev2(self):    
+    def _PREFIXING__OM__BEVERAGE_ev2(self):
         # PREFIXING__OM__BEVERAGE behavior
         # uml: EV2 [trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.") } TransitionTo(PREFIXING__OM__VEG)
         if trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.PREFIXING__ORDER_MENU)
             
@@ -3124,7 +2650,7 @@ class Spec2Sm(Spec2SmBase):
             # PREFIXING__OM__VEG.<InitialState> behavior
             # uml: / { trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE.") } TransitionTo(PREFIXING__OM__VEG__NONE)
             if True:
-            
+
                 # Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE.")`.
@@ -3135,17 +2661,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for PREFIXING__OM__VEG.<InitialState>
-         # end of behavior for PREFIXING__OM__BEVERAGE
-        
-        # No ancestor handles this event.
     
-    
-    def _PREFIXING__OM__BEVERAGE_InitialState_transition(self):    
+    def _PREFIXING__OM__BEVERAGE_InitialState_transition(self):
         # PREFIXING__OM__BEVERAGE.<InitialState> behavior
         # uml: / { trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE.") } TransitionTo(PREFIXING__OM__BEV__NONE)
         if True:
-        
+
             # Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE.")`.
@@ -3156,43 +2677,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for PREFIXING__OM__BEVERAGE.<InitialState>
-    
     
     
     ########################################
     # event handlers for state PREFIXING__OM__BEV__NONE
     ########################################
     
-    def _PREFIXING__OM__BEV__NONE_enter(self):    
+    def _PREFIXING__OM__BEV__NONE_enter(self):
         self.stateId = StateId.PREFIXING__OM__BEV__NONE
         
         # PREFIXING__OM__BEV__NONE behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__NONE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__NONE.")`
-            MainClass.trace("Enter PREFIXING__OM__BEV__NONE.")
-         # end of behavior for PREFIXING__OM__BEV__NONE
+
     
-    
-    def _PREFIXING__OM__BEV__NONE_exit(self):    
+    def _PREFIXING__OM__BEV__NONE_exit(self):
         # PREFIXING__OM__BEV__NONE behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEV__NONE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__NONE.")`
-            MainClass.trace("Exit PREFIXING__OM__BEV__NONE.")
-         # end of behavior for PREFIXING__OM__BEV__NONE
+
         
         self.stateId = StateId.PREFIXING__OM__BEVERAGE
     
-    
-    def _PREFIXING__OM__BEV__NONE_ev1(self):    
+    def _PREFIXING__OM__BEV__NONE_ev1(self):
         # PREFIXING__OM__BEV__NONE behavior
         # uml: EV1 [trace_guard("State PREFIXING__OM__BEV__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__WATER)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.") } TransitionTo(PREFIXING__OM__BEV__WATER)
         if trace_guard("State PREFIXING__OM__BEV__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__WATER)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition).
             self._PREFIXING__OM__BEV__NONE_exit()
             
@@ -3204,74 +2715,54 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for PREFIXING__OM__BEV__NONE
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state PREFIXING__OM__BEV__TEA
     ########################################
     
-    def _PREFIXING__OM__BEV__TEA_enter(self):    
+    def _PREFIXING__OM__BEV__TEA_enter(self):
         self.stateId = StateId.PREFIXING__OM__BEV__TEA
         
         # PREFIXING__OM__BEV__TEA behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__TEA.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__TEA.")`
-            MainClass.trace("Enter PREFIXING__OM__BEV__TEA.")
-         # end of behavior for PREFIXING__OM__BEV__TEA
+
     
-    
-    def _PREFIXING__OM__BEV__TEA_exit(self):    
+    def _PREFIXING__OM__BEV__TEA_exit(self):
         # PREFIXING__OM__BEV__TEA behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEV__TEA.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__TEA.")`
-            MainClass.trace("Exit PREFIXING__OM__BEV__TEA.")
-         # end of behavior for PREFIXING__OM__BEV__TEA
+
         
         self.stateId = StateId.PREFIXING__OM__BEVERAGE
-    
     
     
     ########################################
     # event handlers for state PREFIXING__OM__BEV__WATER
     ########################################
     
-    def _PREFIXING__OM__BEV__WATER_enter(self):    
+    def _PREFIXING__OM__BEV__WATER_enter(self):
         self.stateId = StateId.PREFIXING__OM__BEV__WATER
         
         # PREFIXING__OM__BEV__WATER behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__WATER.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__WATER.")`
-            MainClass.trace("Enter PREFIXING__OM__BEV__WATER.")
-         # end of behavior for PREFIXING__OM__BEV__WATER
+
     
-    
-    def _PREFIXING__OM__BEV__WATER_exit(self):    
+    def _PREFIXING__OM__BEV__WATER_exit(self):
         # PREFIXING__OM__BEV__WATER behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEV__WATER.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__WATER.")`
-            MainClass.trace("Exit PREFIXING__OM__BEV__WATER.")
-         # end of behavior for PREFIXING__OM__BEV__WATER
+
         
         self.stateId = StateId.PREFIXING__OM__BEVERAGE
     
-    
-    def _PREFIXING__OM__BEV__WATER_ev1(self):    
+    def _PREFIXING__OM__BEV__WATER_ev1(self):
         # PREFIXING__OM__BEV__WATER behavior
         # uml: EV1 [trace_guard("State PREFIXING__OM__BEV__WATER: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__TEA)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.") } TransitionTo(PREFIXING__OM__BEV__TEA)
         if trace_guard("State PREFIXING__OM__BEV__WATER: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__TEA)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition).
             self._PREFIXING__OM__BEV__WATER_exit()
             
@@ -3283,45 +2774,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for PREFIXING__OM__BEV__WATER
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state PREFIXING__OM__VEG
     ########################################
     
-    def _PREFIXING__OM__VEG_enter(self):    
+    def _PREFIXING__OM__VEG_enter(self):
         self.stateId = StateId.PREFIXING__OM__VEG
         
         # PREFIXING__OM__VEG behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__OM__VEG.")`
-            MainClass.trace("Enter PREFIXING__OM__VEG.")
-         # end of behavior for PREFIXING__OM__VEG
+
     
-    
-    def _PREFIXING__OM__VEG_exit(self):    
+    def _PREFIXING__OM__VEG_exit(self):
         # PREFIXING__OM__VEG behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__OM__VEG.")`
-            MainClass.trace("Exit PREFIXING__OM__VEG.")
-         # end of behavior for PREFIXING__OM__VEG
+
         
         self.stateId = StateId.PREFIXING__ORDER_MENU
     
-    
-    def _PREFIXING__OM__VEG_ev2(self):    
+    def _PREFIXING__OM__VEG_ev2(self):
         # PREFIXING__OM__VEG behavior
         # uml: EV2 [trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.") } TransitionTo(PREFIXING__OM__BEVERAGE)
         if trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.PREFIXING__ORDER_MENU)
             
@@ -3334,45 +2813,33 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._PREFIXING__OM__BEVERAGE_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for PREFIXING__OM__VEG
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state PREFIXING__OM__VEG__NONE
     ########################################
     
-    def _PREFIXING__OM__VEG__NONE_enter(self):    
+    def _PREFIXING__OM__VEG__NONE_enter(self):
         self.stateId = StateId.PREFIXING__OM__VEG__NONE
         
         # PREFIXING__OM__VEG__NONE behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__NONE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__NONE.")`
-            MainClass.trace("Enter PREFIXING__OM__VEG__NONE.")
-         # end of behavior for PREFIXING__OM__VEG__NONE
+
     
-    
-    def _PREFIXING__OM__VEG__NONE_exit(self):    
+    def _PREFIXING__OM__VEG__NONE_exit(self):
         # PREFIXING__OM__VEG__NONE behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG__NONE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__NONE.")`
-            MainClass.trace("Exit PREFIXING__OM__VEG__NONE.")
-         # end of behavior for PREFIXING__OM__VEG__NONE
+
         
         self.stateId = StateId.PREFIXING__OM__VEG
     
-    
-    def _PREFIXING__OM__VEG__NONE_ev1(self):    
+    def _PREFIXING__OM__VEG__NONE_ev1(self):
         # PREFIXING__OM__VEG__NONE behavior
         # uml: EV1 [trace_guard("State PREFIXING__OM__VEG__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__POTATO)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.") } TransitionTo(PREFIXING__OM__VEG__POTATO)
         if trace_guard("State PREFIXING__OM__VEG__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__POTATO)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition).
             self._PREFIXING__OM__VEG__NONE_exit()
             
@@ -3384,45 +2851,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for PREFIXING__OM__VEG__NONE
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state PREFIXING__OM__VEG__POTATO
     ########################################
     
-    def _PREFIXING__OM__VEG__POTATO_enter(self):    
+    def _PREFIXING__OM__VEG__POTATO_enter(self):
         self.stateId = StateId.PREFIXING__OM__VEG__POTATO
         
         # PREFIXING__OM__VEG__POTATO behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__POTATO.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__POTATO.")`
-            MainClass.trace("Enter PREFIXING__OM__VEG__POTATO.")
-         # end of behavior for PREFIXING__OM__VEG__POTATO
+
     
-    
-    def _PREFIXING__OM__VEG__POTATO_exit(self):    
+    def _PREFIXING__OM__VEG__POTATO_exit(self):
         # PREFIXING__OM__VEG__POTATO behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG__POTATO.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__POTATO.")`
-            MainClass.trace("Exit PREFIXING__OM__VEG__POTATO.")
-         # end of behavior for PREFIXING__OM__VEG__POTATO
+
         
         self.stateId = StateId.PREFIXING__OM__VEG
     
-    
-    def _PREFIXING__OM__VEG__POTATO_ev1(self):    
+    def _PREFIXING__OM__VEG__POTATO_ev1(self):
         # PREFIXING__OM__VEG__POTATO behavior
         # uml: EV1 [trace_guard("State PREFIXING__OM__VEG__POTATO: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__YAM)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.") } TransitionTo(PREFIXING__OM__VEG__YAM)
         if trace_guard("State PREFIXING__OM__VEG__POTATO: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__YAM)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition).
             self._PREFIXING__OM__VEG__POTATO_exit()
             
@@ -3434,132 +2889,96 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for PREFIXING__OM__VEG__POTATO
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state PREFIXING__OM__VEG__YAM
     ########################################
     
-    def _PREFIXING__OM__VEG__YAM_enter(self):    
+    def _PREFIXING__OM__VEG__YAM_enter(self):
         self.stateId = StateId.PREFIXING__OM__VEG__YAM
         
         # PREFIXING__OM__VEG__YAM behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__YAM.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__YAM.")`
-            MainClass.trace("Enter PREFIXING__OM__VEG__YAM.")
-         # end of behavior for PREFIXING__OM__VEG__YAM
+
     
-    
-    def _PREFIXING__OM__VEG__YAM_exit(self):    
+    def _PREFIXING__OM__VEG__YAM_exit(self):
         # PREFIXING__OM__VEG__YAM behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG__YAM.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__YAM.")`
-            MainClass.trace("Exit PREFIXING__OM__VEG__YAM.")
-         # end of behavior for PREFIXING__OM__VEG__YAM
+
         
         self.stateId = StateId.PREFIXING__OM__VEG
-    
     
     
     ########################################
     # event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX
     ########################################
     
-    def _PREFIXING__SHOWS_MANUAL_PREFIX_enter(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX_enter(self):
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX
         
         # PREFIXING__SHOWS_MANUAL_PREFIX behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.")`
-            MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
+
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX_exit(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")`
-            MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
+
         
         self.stateId = StateId.PREFIXING
-    
     
     
     ########################################
     # event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     ########################################
     
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter(self):
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")`
-            MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")`
-            MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX
-    
     
     
     ########################################
     # event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     ########################################
     
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter(self):
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`
-            MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`
-            MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         # uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)
         if trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU)
             
@@ -3572,7 +2991,7 @@ class Spec2Sm(Spec2SmBase):
             # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> behavior
             # uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE)
             if True:
-            
+
                 # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`.
@@ -3583,17 +3002,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState>
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
-        
-        # No ancestor handles this event.
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> behavior
         # uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE)
         if True:
-        
+
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`.
@@ -3604,43 +3018,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState>
-    
     
     
     ########################################
     # event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
     ########################################
     
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter(self):
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`
-            MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`
-            MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         # uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)
         if trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition).
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit()
             
@@ -3652,74 +3056,54 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
     ########################################
     
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter(self):
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`
-            MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`
-            MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
-    
     
     
     ########################################
     # event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
     ########################################
     
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter(self):
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`
-            MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`
-            MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         # uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)
         if trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition).
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit()
             
@@ -3731,45 +3115,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     ########################################
     
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter(self):
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`
-            MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`
-            MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         # uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)
         if trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU)
             
@@ -3782,45 +3154,33 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
     ########################################
     
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter(self):
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`
-            MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`
-            MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         # uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)
         if trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition).
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit()
             
@@ -3832,45 +3192,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
     ########################################
     
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter(self):
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`
-            MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`
-            MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         # uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)
         if trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)`.", true):
-        
+
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition).
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit()
             
@@ -3882,74 +3230,54 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
     ########################################
     
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter(self):
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`
-            MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+
     
-    
-    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(self):    
+    def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`
-            MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
-         # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
-    
     
     
     ########################################
     # event handlers for state SPEC2SM__DECIDE
     ########################################
     
-    def _SPEC2SM__DECIDE_enter(self):    
+    def _SPEC2SM__DECIDE_enter(self):
         self.stateId = StateId.SPEC2SM__DECIDE
         
         # Spec2Sm__DECIDE behavior
         # uml: enter / { trace("Enter Spec2Sm__DECIDE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter Spec2Sm__DECIDE.")`
-            MainClass.trace("Enter Spec2Sm__DECIDE.")
-         # end of behavior for Spec2Sm__DECIDE
+
     
-    
-    def _SPEC2SM__DECIDE_exit(self):    
+    def _SPEC2SM__DECIDE_exit(self):
         # Spec2Sm__DECIDE behavior
         # uml: exit / { trace("Exit Spec2Sm__DECIDE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit Spec2Sm__DECIDE.")`
-            MainClass.trace("Exit Spec2Sm__DECIDE.")
-         # end of behavior for Spec2Sm__DECIDE
+
         
         self.stateId = StateId.ROOT
     
-    
-    def _SPEC2SM__DECIDE_ev1(self):    
+    def _SPEC2SM__DECIDE_ev1(self):
         # Spec2Sm__DECIDE behavior
         # uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING.") } TransitionTo(TEST1_DO_EVENT_TESTING)
         if trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true):
-        
+
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3962,7 +3290,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST1_DO_EVENT_TESTING.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT.") } TransitionTo(TEST1_ROOT)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST1_DO_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT.")`.
@@ -3974,7 +3302,7 @@ class Spec2Sm(Spec2SmBase):
                 # TEST1_ROOT.<InitialState> behavior
                 # uml: / { trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1.") } TransitionTo(TEST1_S1_1)
                 if True:
-                
+
                     # Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1.")`.
@@ -3986,18 +3314,12 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for TEST1_ROOT.<InitialState>
-             # end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
-         # end of behavior for Spec2Sm__DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _SPEC2SM__DECIDE_ev10(self):    
+    def _SPEC2SM__DECIDE_ev10(self):
         # Spec2Sm__DECIDE behavior
         # uml: EV10 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV10 TransitionTo(TEST10_CHOICE_POINT)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST10_CHOICE_POINT.") } TransitionTo(TEST10_CHOICE_POINT)
         if trace_guard("State Spec2Sm__DECIDE: check behavior `EV10 TransitionTo(TEST10_CHOICE_POINT)`.", true):
-        
+
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -4010,7 +3332,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_CHOICE_POINT.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1.") } TransitionTo(TEST10_S1)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1.")`.
@@ -4022,17 +3344,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST10_CHOICE_POINT.<InitialState>
-         # end of behavior for Spec2Sm__DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _SPEC2SM__DECIDE_ev2(self):    
+    def _SPEC2SM__DECIDE_ev2(self):
         # Spec2Sm__DECIDE behavior
         # uml: EV2 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV2 TransitionTo(TEST2_REGULAR_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST2_REGULAR_EVENT_TESTING.") } TransitionTo(TEST2_REGULAR_EVENT_TESTING)
         if trace_guard("State Spec2Sm__DECIDE: check behavior `EV2 TransitionTo(TEST2_REGULAR_EVENT_TESTING)`.", true):
-        
+
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -4045,7 +3362,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST2_REGULAR_EVENT_TESTING.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT.") } TransitionTo(TEST2_ROOT)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST2_REGULAR_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT.")`.
@@ -4057,7 +3374,7 @@ class Spec2Sm(Spec2SmBase):
                 # TEST2_ROOT.<InitialState> behavior
                 # uml: / { trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1.") } TransitionTo(TEST2_S1_1)
                 if True:
-                
+
                     # Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1.")`.
@@ -4069,18 +3386,12 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for TEST2_ROOT.<InitialState>
-             # end of behavior for TEST2_REGULAR_EVENT_TESTING.<InitialState>
-         # end of behavior for Spec2Sm__DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _SPEC2SM__DECIDE_ev3(self):    
+    def _SPEC2SM__DECIDE_ev3(self):
         # Spec2Sm__DECIDE behavior
         # uml: EV3 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV3 TransitionTo(TEST3_BEHAVIOR_ORDERING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST3_BEHAVIOR_ORDERING.") } TransitionTo(TEST3_BEHAVIOR_ORDERING)
         if trace_guard("State Spec2Sm__DECIDE: check behavior `EV3 TransitionTo(TEST3_BEHAVIOR_ORDERING)`.", true):
-        
+
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -4093,7 +3404,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST3_BEHAVIOR_ORDERING.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT.") } TransitionTo(TEST3_ROOT)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST3_BEHAVIOR_ORDERING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT.")`.
@@ -4105,7 +3416,7 @@ class Spec2Sm(Spec2SmBase):
                 # TEST3_ROOT.<InitialState> behavior
                 # uml: / { trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1.") } TransitionTo(TEST3_S1)
                 if True:
-                
+
                     # Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1.")`.
@@ -4116,18 +3427,12 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for TEST3_ROOT.<InitialState>
-             # end of behavior for TEST3_BEHAVIOR_ORDERING.<InitialState>
-         # end of behavior for Spec2Sm__DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _SPEC2SM__DECIDE_ev4(self):    
+    def _SPEC2SM__DECIDE_ev4(self):
         # Spec2Sm__DECIDE behavior
         # uml: EV4 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV4 TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.") } TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)
         if trace_guard("State Spec2Sm__DECIDE: check behavior `EV4 TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)`.", true):
-        
+
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -4140,7 +3445,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE.") } TransitionTo(TEST4_DECIDE)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE.")`.
@@ -4151,17 +3456,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState>
-         # end of behavior for Spec2Sm__DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _SPEC2SM__DECIDE_ev5(self):    
+    def _SPEC2SM__DECIDE_ev5(self):
         # Spec2Sm__DECIDE behavior
         # uml: EV5 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV5 TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.") } TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)
         if trace_guard("State Spec2Sm__DECIDE: check behavior `EV5 TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)`.", true):
-        
+
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -4174,7 +3474,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT.") } TransitionTo(TEST5_ROOT)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT.")`.
@@ -4185,17 +3485,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState>
-         # end of behavior for Spec2Sm__DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _SPEC2SM__DECIDE_ev6(self):    
+    def _SPEC2SM__DECIDE_ev6(self):
         # Spec2Sm__DECIDE behavior
         # uml: EV6 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV6 TransitionTo(TEST6_VARS_EXPANSIONS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARS_EXPANSIONS.") } TransitionTo(TEST6_VARS_EXPANSIONS)
         if trace_guard("State Spec2Sm__DECIDE: check behavior `EV6 TransitionTo(TEST6_VARS_EXPANSIONS)`.", true):
-        
+
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -4208,7 +3503,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST6_VARS_EXPANSIONS.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT.") } TransitionTo(TEST6_ROOT)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST6_VARS_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT.")`.
@@ -4220,7 +3515,7 @@ class Spec2Sm(Spec2SmBase):
                 # TEST6_ROOT.<InitialState> behavior
                 # uml: / { trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE.") } TransitionTo(TEST6_VARS_EXPANSIONS__DECIDE)
                 if True:
-                
+
                     # Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE.")`.
@@ -4231,18 +3526,12 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for TEST6_ROOT.<InitialState>
-             # end of behavior for TEST6_VARS_EXPANSIONS.<InitialState>
-         # end of behavior for Spec2Sm__DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _SPEC2SM__DECIDE_ev7(self):    
+    def _SPEC2SM__DECIDE_ev7(self):
         # Spec2Sm__DECIDE behavior
         # uml: EV7 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_OR_HISTORY)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST7_INITIAL_OR_HISTORY.") } TransitionTo(TEST7_INITIAL_OR_HISTORY)
         if trace_guard("State Spec2Sm__DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_OR_HISTORY)`.", true):
-        
+
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -4255,7 +3544,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST7_INITIAL_OR_HISTORY.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE.") } TransitionTo(TEST7_DECIDE)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE.")`.
@@ -4266,17 +3555,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST7_INITIAL_OR_HISTORY.<InitialState>
-         # end of behavior for Spec2Sm__DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _SPEC2SM__DECIDE_ev8(self):    
+    def _SPEC2SM__DECIDE_ev8(self):
         # Spec2Sm__DECIDE behavior
         # uml: EV8 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV8 TransitionTo(TEST8_ENTRY_CHOICE)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST8_ENTRY_CHOICE.") } TransitionTo(TEST8_ENTRY_CHOICE)
         if trace_guard("State Spec2Sm__DECIDE: check behavior `EV8 TransitionTo(TEST8_ENTRY_CHOICE)`.", true):
-        
+
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -4289,7 +3573,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST8_ENTRY_CHOICE.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1).") } TransitionTo(TEST8_ROOT.<EntryPoint>(1))
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST8_ENTRY_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1).")`.
@@ -4302,17 +3586,12 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST8_ROOT_EntryPoint_1__transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for TEST8_ENTRY_CHOICE.<InitialState>
-         # end of behavior for Spec2Sm__DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _SPEC2SM__DECIDE_ev9(self):    
+    def _SPEC2SM__DECIDE_ev9(self):
         # Spec2Sm__DECIDE behavior
         # uml: EV9 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV9 TransitionTo(TEST9_EXIT_CHOICE)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST9_EXIT_CHOICE.") } TransitionTo(TEST9_EXIT_CHOICE)
         if trace_guard("State Spec2Sm__DECIDE: check behavior `EV9 TransitionTo(TEST9_EXIT_CHOICE)`.", true):
-        
+
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -4325,7 +3604,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST9_EXIT_CHOICE.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE.") } TransitionTo(TEST9_DECIDE)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE.")`.
@@ -4336,177 +3615,127 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST9_EXIT_CHOICE.<InitialState>
-         # end of behavior for Spec2Sm__DECIDE
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST1_DO_EVENT_TESTING
     ########################################
     
-    def _TEST1_DO_EVENT_TESTING_enter(self):    
+    def _TEST1_DO_EVENT_TESTING_enter(self):
         self.stateId = StateId.TEST1_DO_EVENT_TESTING
         
         # TEST1_DO_EVENT_TESTING behavior
         # uml: enter / { trace("Enter TEST1_DO_EVENT_TESTING.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST1_DO_EVENT_TESTING.")`
-            MainClass.trace("Enter TEST1_DO_EVENT_TESTING.")
-         # end of behavior for TEST1_DO_EVENT_TESTING
+
     
-    
-    def _TEST1_DO_EVENT_TESTING_exit(self):    
+    def _TEST1_DO_EVENT_TESTING_exit(self):
         # TEST1_DO_EVENT_TESTING behavior
         # uml: exit / { trace("Exit TEST1_DO_EVENT_TESTING.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST1_DO_EVENT_TESTING.")`
-            MainClass.trace("Exit TEST1_DO_EVENT_TESTING.")
-         # end of behavior for TEST1_DO_EVENT_TESTING
+
         
         self.stateId = StateId.ROOT
-    
     
     
     ########################################
     # event handlers for state TEST1_ROOT
     ########################################
     
-    def _TEST1_ROOT_enter(self):    
+    def _TEST1_ROOT_enter(self):
         self.stateId = StateId.TEST1_ROOT
         
         # TEST1_ROOT behavior
         # uml: enter / { trace("Enter TEST1_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST1_ROOT.")`
-            MainClass.trace("Enter TEST1_ROOT.")
-         # end of behavior for TEST1_ROOT
+
     
-    
-    def _TEST1_ROOT_exit(self):    
+    def _TEST1_ROOT_exit(self):
         # TEST1_ROOT behavior
         # uml: exit / { trace("Exit TEST1_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST1_ROOT.")`
-            MainClass.trace("Exit TEST1_ROOT.")
-         # end of behavior for TEST1_ROOT
+
         
         self.stateId = StateId.TEST1_DO_EVENT_TESTING
     
-    
-    def _TEST1_ROOT_do(self):    
+    def _TEST1_ROOT_do(self):
         bool consume_event = False
         
         # TEST1_ROOT behavior
         # uml: do [trace_guard("State TEST1_ROOT: check behavior `do`.", true)]
         if trace_guard("State TEST1_ROOT: check behavior `do`.", true):
-        
-            # `do` events are not normally consumed.
-            # Step 1: execute action ``
-         # end of behavior for TEST1_ROOT
+
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._ROOT_do()
-        
-    
     
     
     ########################################
     # event handlers for state TEST1_S1
     ########################################
     
-    def _TEST1_S1_enter(self):    
+    def _TEST1_S1_enter(self):
         self.stateId = StateId.TEST1_S1
         
         # TEST1_S1 behavior
         # uml: enter / { trace("Enter TEST1_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST1_S1.")`
-            MainClass.trace("Enter TEST1_S1.")
-         # end of behavior for TEST1_S1
+
     
-    
-    def _TEST1_S1_exit(self):    
+    def _TEST1_S1_exit(self):
         # TEST1_S1 behavior
         # uml: exit / { trace("Exit TEST1_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST1_S1.")`
-            MainClass.trace("Exit TEST1_S1.")
-         # end of behavior for TEST1_S1
+
         
         self.stateId = StateId.TEST1_ROOT
-    
     
     
     ########################################
     # event handlers for state TEST1_S1_1
     ########################################
     
-    def _TEST1_S1_1_enter(self):    
+    def _TEST1_S1_1_enter(self):
         self.stateId = StateId.TEST1_S1_1
         
         # TEST1_S1_1 behavior
         # uml: enter / { trace("Enter TEST1_S1_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST1_S1_1.")`
-            MainClass.trace("Enter TEST1_S1_1.")
-         # end of behavior for TEST1_S1_1
+
         
         # TEST1_S1_1 behavior
         # uml: enter [trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output() }`.", true):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for TEST1_S1_1
+
     
-    
-    def _TEST1_S1_1_exit(self):    
+    def _TEST1_S1_1_exit(self):
         # TEST1_S1_1 behavior
         # uml: exit / { trace("Exit TEST1_S1_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST1_S1_1.")`
-            MainClass.trace("Exit TEST1_S1_1.")
-         # end of behavior for TEST1_S1_1
+
         
         self.stateId = StateId.TEST1_S1
     
-    
-    def _TEST1_S1_1_do(self):    
+    def _TEST1_S1_1_do(self):
         bool consume_event = False
         
         # TEST1_S1_1 behavior
         # uml: do [trace_guard("State TEST1_S1_1: check behavior `do`.", true)]
         if trace_guard("State TEST1_S1_1: check behavior `do`.", true):
-        
-            # `do` events are not normally consumed.
-            # Step 1: execute action ``
-         # end of behavior for TEST1_S1_1
+
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST1_ROOT_do()
-        
     
-    
-    def _TEST1_S1_1_ev1(self):    
+    def _TEST1_S1_1_ev1(self):
         # TEST1_S1_1 behavior
         # uml: EV1 [trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true)] / { trace("Transition action `` for TEST1_S1_1 to TEST1_S2.") } TransitionTo(TEST1_S2)
         if trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST1_ROOT)
             
@@ -4518,122 +3747,88 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST1_S1_1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST1_S2
     ########################################
     
-    def _TEST1_S2_enter(self):    
+    def _TEST1_S2_enter(self):
         self.stateId = StateId.TEST1_S2
         
         # TEST1_S2 behavior
         # uml: enter / { trace("Enter TEST1_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST1_S2.")`
-            MainClass.trace("Enter TEST1_S2.")
-         # end of behavior for TEST1_S2
+
     
-    
-    def _TEST1_S2_exit(self):    
+    def _TEST1_S2_exit(self):
         # TEST1_S2 behavior
         # uml: exit / { trace("Exit TEST1_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST1_S2.")`
-            MainClass.trace("Exit TEST1_S2.")
-         # end of behavior for TEST1_S2
+
         
         self.stateId = StateId.TEST1_ROOT
     
-    
-    def _TEST1_S2_do(self):    
+    def _TEST1_S2_do(self):
         bool consume_event = False
         
         # TEST1_S2 behavior
         # uml: do [trace_guard("State TEST1_S2: check behavior `do / { consume_event = true }`.", true)] / { consume_event = true }
         if trace_guard("State TEST1_S2: check behavior `do / { consume_event = true }`.", true):
-        
-            # `do` events are not normally consumed.
-            # Step 1: execute action `consume_event = true`
-            consume_event = true
-         # end of behavior for TEST1_S2
+
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST1_ROOT_do()
-        
-    
     
     
     ########################################
     # event handlers for state TEST10_CHOICE_POINT
     ########################################
     
-    def _TEST10_CHOICE_POINT_enter(self):    
+    def _TEST10_CHOICE_POINT_enter(self):
         self.stateId = StateId.TEST10_CHOICE_POINT
         
         # TEST10_CHOICE_POINT behavior
         # uml: enter / { trace("Enter TEST10_CHOICE_POINT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST10_CHOICE_POINT.")`
-            MainClass.trace("Enter TEST10_CHOICE_POINT.")
-         # end of behavior for TEST10_CHOICE_POINT
+
     
-    
-    def _TEST10_CHOICE_POINT_exit(self):    
+    def _TEST10_CHOICE_POINT_exit(self):
         # TEST10_CHOICE_POINT behavior
         # uml: exit / { trace("Exit TEST10_CHOICE_POINT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST10_CHOICE_POINT.")`
-            MainClass.trace("Exit TEST10_CHOICE_POINT.")
-         # end of behavior for TEST10_CHOICE_POINT
+
         
         self.stateId = StateId.ROOT
-    
     
     
     ########################################
     # event handlers for state TEST10_A
     ########################################
     
-    def _TEST10_A_enter(self):    
+    def _TEST10_A_enter(self):
         self.stateId = StateId.TEST10_A
         
         # TEST10_A behavior
         # uml: enter / { trace("Enter TEST10_A.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST10_A.")`
-            MainClass.trace("Enter TEST10_A.")
-         # end of behavior for TEST10_A
+
     
-    
-    def _TEST10_A_exit(self):    
+    def _TEST10_A_exit(self):
         # TEST10_A behavior
         # uml: exit / { trace("Exit TEST10_A.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST10_A.")`
-            MainClass.trace("Exit TEST10_A.")
-         # end of behavior for TEST10_A
+
         
         self.stateId = StateId.TEST10_CHOICE_POINT
     
-    
-    def _TEST10_A_ChoicePoint__transition(self):    
+    def _TEST10_A_ChoicePoint__transition(self):
         # TEST10_A.<ChoicePoint>() behavior
         # uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().") } TransitionTo(TEST10_A.<ChoicePoint>())
         if self.vars.count == 1:
-        
+
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().")`.
@@ -4645,12 +3840,11 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint__transition_kid_index3()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST10_A.<ChoicePoint>()
         
         # TEST10_A.<ChoicePoint>() behavior
         # uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().") } TransitionTo(TEST10_A.<ChoicePoint>())
         if True:
-        
+
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().")`.
@@ -4662,14 +3856,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint__transition_kid_index3()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST10_A.<ChoicePoint>()
     
-    
-    def _TEST10_A_ChoicePoint__transition_kid_index3(self):    
+    def _TEST10_A_ChoicePoint__transition_kid_index3(self):
         # TEST10_A.<ChoicePoint>() behavior
         # uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).") } TransitionTo(TEST10_A.<ChoicePoint>(a))
         if self.vars.count == 1:
-        
+
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).")`.
@@ -4681,12 +3873,11 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint_a__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST10_A.<ChoicePoint>()
         
         # TEST10_A.<ChoicePoint>() behavior
         # uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).") } TransitionTo(TEST10_A.<ChoicePoint>(a))
         if True:
-        
+
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).")`.
@@ -4698,14 +3889,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint_a__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST10_A.<ChoicePoint>()
     
-    
-    def _TEST10_A_ChoicePoint_a__transition(self):    
+    def _TEST10_A_ChoicePoint_a__transition(self):
         # TEST10_A.<ChoicePoint>(a) behavior
         # uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).") } TransitionTo(TEST10_A.<ChoicePoint>(a))
         if self.vars.count == 1:
-        
+
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).")`.
@@ -4717,12 +3906,11 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint_a__transition_kid_index5()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST10_A.<ChoicePoint>(a)
         
         # TEST10_A.<ChoicePoint>(a) behavior
         # uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).") } TransitionTo(TEST10_A.<ChoicePoint>(a))
         if True:
-        
+
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).")`.
@@ -4734,14 +3922,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint_a__transition_kid_index5()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST10_A.<ChoicePoint>(a)
     
-    
-    def _TEST10_A_ChoicePoint_a__transition_kid_index5(self):    
+    def _TEST10_A_ChoicePoint_a__transition_kid_index5(self):
         # TEST10_A.<ChoicePoint>(a) behavior
         # uml: / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1.") } TransitionTo(TEST10_A_1)
         if True:
-        
+
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1.")`.
@@ -4752,113 +3938,81 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST10_A.<ChoicePoint>(a)
-    
     
     
     ########################################
     # event handlers for state TEST10_A_1
     ########################################
     
-    def _TEST10_A_1_enter(self):    
+    def _TEST10_A_1_enter(self):
         self.stateId = StateId.TEST10_A_1
         
         # TEST10_A_1 behavior
         # uml: enter / { trace("Enter TEST10_A_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST10_A_1.")`
-            MainClass.trace("Enter TEST10_A_1.")
-         # end of behavior for TEST10_A_1
+
     
-    
-    def _TEST10_A_1_exit(self):    
+    def _TEST10_A_1_exit(self):
         # TEST10_A_1 behavior
         # uml: exit / { trace("Exit TEST10_A_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST10_A_1.")`
-            MainClass.trace("Exit TEST10_A_1.")
-         # end of behavior for TEST10_A_1
+
         
         self.stateId = StateId.TEST10_A
-    
     
     
     ########################################
     # event handlers for state TEST10_ROOT
     ########################################
     
-    def _TEST10_ROOT_enter(self):    
+    def _TEST10_ROOT_enter(self):
         self.stateId = StateId.TEST10_ROOT
         
         # TEST10_ROOT behavior
         # uml: enter / { trace("Enter TEST10_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST10_ROOT.")`
-            MainClass.trace("Enter TEST10_ROOT.")
-         # end of behavior for TEST10_ROOT
+
     
-    
-    def _TEST10_ROOT_exit(self):    
+    def _TEST10_ROOT_exit(self):
         # TEST10_ROOT behavior
         # uml: exit / { trace("Exit TEST10_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST10_ROOT.")`
-            MainClass.trace("Exit TEST10_ROOT.")
-         # end of behavior for TEST10_ROOT
+
         
         self.stateId = StateId.TEST10_CHOICE_POINT
     
-    
-    def _TEST10_ROOT_ev5(self):    
+    def _TEST10_ROOT_ev5(self):
         # TEST10_ROOT behavior
         # uml: EV5 [trace_guard("State TEST10_ROOT: check behavior `EV5 / { count += 1 }`.", true)] / { count += 1 }
         if trace_guard("State TEST10_ROOT: check behavior `EV5 / { count += 1 }`.", true):
-        
-            # Step 1: execute action `count += 1`
-            self.vars.count += 1
-         # end of behavior for TEST10_ROOT
-        
-        # No ancestor handles this event.
-    
+
     
     
     ########################################
     # event handlers for state TEST10_G
     ########################################
     
-    def _TEST10_G_enter(self):    
+    def _TEST10_G_enter(self):
         self.stateId = StateId.TEST10_G
         
         # TEST10_G behavior
         # uml: enter / { trace("Enter TEST10_G.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST10_G.")`
-            MainClass.trace("Enter TEST10_G.")
-         # end of behavior for TEST10_G
+
     
-    
-    def _TEST10_G_exit(self):    
+    def _TEST10_G_exit(self):
         # TEST10_G behavior
         # uml: exit / { trace("Exit TEST10_G.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST10_G.")`
-            MainClass.trace("Exit TEST10_G.")
-         # end of behavior for TEST10_G
+
         
         self.stateId = StateId.TEST10_ROOT
     
-    
-    def _TEST10_G_ChoicePoint__transition(self):    
+    def _TEST10_G_ChoicePoint__transition(self):
         # TEST10_G.<ChoicePoint>() behavior
         # uml: / { trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).") } TransitionTo(TEST10_G.<ChoicePoint>(1))
         if True:
-        
+
             # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).")`.
@@ -4870,7 +4024,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_G.<ChoicePoint>(1) behavior
             # uml: 1. [count <= 0] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0.") } TransitionTo(TEST10_G_S0)
             if self.vars.count <= 0:
-            
+
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0.")`.
@@ -4881,12 +4035,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST10_G.<ChoicePoint>(1)
             
             # TEST10_G.<ChoicePoint>(1) behavior
             # uml: [count <= 2] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower).") } TransitionTo(TEST10_G.<ChoicePoint>(lower))
             if self.vars.count <= 2:
-            
+
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower).")`.
@@ -4898,7 +4051,7 @@ class Spec2Sm(Spec2SmBase):
                 # TEST10_G.<ChoicePoint>(lower) behavior
                 # uml: [count <=1] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1.") } TransitionTo(TEST10_G_S1)
                 if self.vars.count <=1:
-                
+
                     # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1.")`.
@@ -4909,12 +4062,11 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for TEST10_G.<ChoicePoint>(lower)
                 
                 # TEST10_G.<ChoicePoint>(lower) behavior
                 # uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2.") } TransitionTo(TEST10_G_S2)
                 if True:
-                
+
                     # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2.")`.
@@ -4925,13 +4077,11 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for TEST10_G.<ChoicePoint>(lower)
-             # end of behavior for TEST10_G.<ChoicePoint>(1)
             
             # TEST10_G.<ChoicePoint>(1) behavior
             # uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).") } TransitionTo(TEST10_G.<ChoicePoint>(upper))
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).")`.
@@ -4943,7 +4093,7 @@ class Spec2Sm(Spec2SmBase):
                 # TEST10_G.<ChoicePoint>(upper) behavior
                 # uml: [count <= 3] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3.") } TransitionTo(TEST10_G_S3)
                 if self.vars.count <= 3:
-                
+
                     # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3.")`.
@@ -4954,12 +4104,11 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for TEST10_G.<ChoicePoint>(upper)
                 
                 # TEST10_G.<ChoicePoint>(upper) behavior
                 # uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.") } TransitionTo(TEST10_S4)
                 if True:
-                
+
                     # Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
                     self._exitUpToStateHandler(StateId.TEST10_ROOT)
                     
@@ -4971,169 +4120,122 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for TEST10_G.<ChoicePoint>(upper)
-             # end of behavior for TEST10_G.<ChoicePoint>(1)
-         # end of behavior for TEST10_G.<ChoicePoint>()
-    
     
     
     ########################################
     # event handlers for state TEST10_G_S0
     ########################################
     
-    def _TEST10_G_S0_enter(self):    
+    def _TEST10_G_S0_enter(self):
         self.stateId = StateId.TEST10_G_S0
         
         # TEST10_G_S0 behavior
         # uml: enter / { trace("Enter TEST10_G_S0.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST10_G_S0.")`
-            MainClass.trace("Enter TEST10_G_S0.")
-         # end of behavior for TEST10_G_S0
+
     
-    
-    def _TEST10_G_S0_exit(self):    
+    def _TEST10_G_S0_exit(self):
         # TEST10_G_S0 behavior
         # uml: exit / { trace("Exit TEST10_G_S0.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST10_G_S0.")`
-            MainClass.trace("Exit TEST10_G_S0.")
-         # end of behavior for TEST10_G_S0
+
         
         self.stateId = StateId.TEST10_G
-    
     
     
     ########################################
     # event handlers for state TEST10_G_S1
     ########################################
     
-    def _TEST10_G_S1_enter(self):    
+    def _TEST10_G_S1_enter(self):
         self.stateId = StateId.TEST10_G_S1
         
         # TEST10_G_S1 behavior
         # uml: enter / { trace("Enter TEST10_G_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST10_G_S1.")`
-            MainClass.trace("Enter TEST10_G_S1.")
-         # end of behavior for TEST10_G_S1
+
     
-    
-    def _TEST10_G_S1_exit(self):    
+    def _TEST10_G_S1_exit(self):
         # TEST10_G_S1 behavior
         # uml: exit / { trace("Exit TEST10_G_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST10_G_S1.")`
-            MainClass.trace("Exit TEST10_G_S1.")
-         # end of behavior for TEST10_G_S1
+
         
         self.stateId = StateId.TEST10_G
-    
     
     
     ########################################
     # event handlers for state TEST10_G_S2
     ########################################
     
-    def _TEST10_G_S2_enter(self):    
+    def _TEST10_G_S2_enter(self):
         self.stateId = StateId.TEST10_G_S2
         
         # TEST10_G_S2 behavior
         # uml: enter / { trace("Enter TEST10_G_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST10_G_S2.")`
-            MainClass.trace("Enter TEST10_G_S2.")
-         # end of behavior for TEST10_G_S2
+
     
-    
-    def _TEST10_G_S2_exit(self):    
+    def _TEST10_G_S2_exit(self):
         # TEST10_G_S2 behavior
         # uml: exit / { trace("Exit TEST10_G_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST10_G_S2.")`
-            MainClass.trace("Exit TEST10_G_S2.")
-         # end of behavior for TEST10_G_S2
+
         
         self.stateId = StateId.TEST10_G
-    
     
     
     ########################################
     # event handlers for state TEST10_G_S3
     ########################################
     
-    def _TEST10_G_S3_enter(self):    
+    def _TEST10_G_S3_enter(self):
         self.stateId = StateId.TEST10_G_S3
         
         # TEST10_G_S3 behavior
         # uml: enter / { trace("Enter TEST10_G_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST10_G_S3.")`
-            MainClass.trace("Enter TEST10_G_S3.")
-         # end of behavior for TEST10_G_S3
+
     
-    
-    def _TEST10_G_S3_exit(self):    
+    def _TEST10_G_S3_exit(self):
         # TEST10_G_S3 behavior
         # uml: exit / { trace("Exit TEST10_G_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST10_G_S3.")`
-            MainClass.trace("Exit TEST10_G_S3.")
-         # end of behavior for TEST10_G_S3
+
         
         self.stateId = StateId.TEST10_G
-    
     
     
     ########################################
     # event handlers for state TEST10_S1
     ########################################
     
-    def _TEST10_S1_enter(self):    
+    def _TEST10_S1_enter(self):
         self.stateId = StateId.TEST10_S1
         
         # TEST10_S1 behavior
         # uml: enter / { trace("Enter TEST10_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST10_S1.")`
-            MainClass.trace("Enter TEST10_S1.")
-         # end of behavior for TEST10_S1
+
         
         # TEST10_S1 behavior
         # uml: enter [trace_guard("State TEST10_S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST10_S1: check behavior `enter / { clear_output() }`.", true):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for TEST10_S1
+
     
-    
-    def _TEST10_S1_exit(self):    
+    def _TEST10_S1_exit(self):
         # TEST10_S1 behavior
         # uml: exit / { trace("Exit TEST10_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST10_S1.")`
-            MainClass.trace("Exit TEST10_S1.")
-         # end of behavior for TEST10_S1
+
         
         self.stateId = StateId.TEST10_ROOT
     
-    
-    def _TEST10_S1_ev1(self):    
+    def _TEST10_S1_ev1(self):
         # TEST10_S1 behavior
         # uml: EV1 [trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.<EntryPoint>(1))`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.<EntryPoint>(1).") } TransitionTo(TEST10_G.<EntryPoint>(1))
         if trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.<EntryPoint>(1))`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
             self._TEST10_S1_exit()
             
@@ -5147,7 +4249,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_G.<EntryPoint>(1) behavior
             # uml: / { trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().") } TransitionTo(TEST10_G.<ChoicePoint>())
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().")`.
@@ -5159,17 +4261,12 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST10_G_ChoicePoint__transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for TEST10_G.<EntryPoint>(1)
-         # end of behavior for TEST10_S1
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST10_S1_ev10(self):    
+    def _TEST10_S1_ev10(self):
         # TEST10_S1 behavior
         # uml: EV10 [trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_A.") } TransitionTo(TEST10_A)
         if trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST10_CHOICE_POINT)
             
@@ -5182,7 +4279,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_A.<InitialState> behavior
             # uml: [count == 1] / { trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().") } TransitionTo(TEST10_A.<ChoicePoint>())
             if self.vars.count == 1:
-            
+
                 # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")`.
@@ -5194,12 +4291,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST10_A_ChoicePoint__transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for TEST10_A.<InitialState>
             
             # TEST10_A.<InitialState> behavior
             # uml: [count == 0] / { trace("Transition action `count += 1` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")\ncount += 1 } TransitionTo(TEST10_A.<ChoicePoint>())
             if self.vars.count == 0:
-            
+
                 # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `count += 1` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")\ncount += 1`.
@@ -5212,12 +4308,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST10_A_ChoicePoint__transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for TEST10_A.<InitialState>
             
             # TEST10_A.<InitialState> behavior
             # uml: else / { trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().") } TransitionTo(TEST10_A.<ChoicePoint>())
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")`.
@@ -5229,17 +4324,12 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST10_A_ChoicePoint__transition_kid_index3()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for TEST10_A.<InitialState>
-         # end of behavior for TEST10_S1
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST10_S1_ev2(self):    
+    def _TEST10_S1_ev2(self):
         # TEST10_S1 behavior
         # uml: EV2 [trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.<ChoicePoint>())`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.<ChoicePoint>().") } TransitionTo(TEST10_G.<ChoicePoint>())
         if trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.<ChoicePoint>())`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
             self._TEST10_S1_exit()
             
@@ -5253,16 +4343,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_G_ChoicePoint__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST10_S1
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST10_S1_ev3(self):    
+    def _TEST10_S1_ev3(self):
         # TEST10_S1 behavior
         # uml: EV3 [trace_guard("State TEST10_S1: check behavior `EV3 TransitionTo(TEST10_G)`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.") } TransitionTo(TEST10_G)
         if trace_guard("State TEST10_S1: check behavior `EV3 TransitionTo(TEST10_G)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
             self._TEST10_S1_exit()
             
@@ -5275,7 +4361,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_G.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().") } TransitionTo(TEST10_G.<ChoicePoint>())
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().")`.
@@ -5287,212 +4373,149 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST10_G_ChoicePoint__transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for TEST10_G.<InitialState>
-         # end of behavior for TEST10_S1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST10_S4
     ########################################
     
-    def _TEST10_S4_enter(self):    
+    def _TEST10_S4_enter(self):
         self.stateId = StateId.TEST10_S4
         
         # TEST10_S4 behavior
         # uml: enter / { trace("Enter TEST10_S4.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST10_S4.")`
-            MainClass.trace("Enter TEST10_S4.")
-         # end of behavior for TEST10_S4
+
     
-    
-    def _TEST10_S4_exit(self):    
+    def _TEST10_S4_exit(self):
         # TEST10_S4 behavior
         # uml: exit / { trace("Exit TEST10_S4.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST10_S4.")`
-            MainClass.trace("Exit TEST10_S4.")
-         # end of behavior for TEST10_S4
+
         
         self.stateId = StateId.TEST10_ROOT
-    
     
     
     ########################################
     # event handlers for state TEST2_REGULAR_EVENT_TESTING
     ########################################
     
-    def _TEST2_REGULAR_EVENT_TESTING_enter(self):    
+    def _TEST2_REGULAR_EVENT_TESTING_enter(self):
         self.stateId = StateId.TEST2_REGULAR_EVENT_TESTING
         
         # TEST2_REGULAR_EVENT_TESTING behavior
         # uml: enter / { trace("Enter TEST2_REGULAR_EVENT_TESTING.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST2_REGULAR_EVENT_TESTING.")`
-            MainClass.trace("Enter TEST2_REGULAR_EVENT_TESTING.")
-         # end of behavior for TEST2_REGULAR_EVENT_TESTING
+
     
-    
-    def _TEST2_REGULAR_EVENT_TESTING_exit(self):    
+    def _TEST2_REGULAR_EVENT_TESTING_exit(self):
         # TEST2_REGULAR_EVENT_TESTING behavior
         # uml: exit / { trace("Exit TEST2_REGULAR_EVENT_TESTING.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST2_REGULAR_EVENT_TESTING.")`
-            MainClass.trace("Exit TEST2_REGULAR_EVENT_TESTING.")
-         # end of behavior for TEST2_REGULAR_EVENT_TESTING
+
         
         self.stateId = StateId.ROOT
-    
     
     
     ########################################
     # event handlers for state TEST2_ROOT
     ########################################
     
-    def _TEST2_ROOT_enter(self):    
+    def _TEST2_ROOT_enter(self):
         self.stateId = StateId.TEST2_ROOT
         
         # TEST2_ROOT behavior
         # uml: enter / { trace("Enter TEST2_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST2_ROOT.")`
-            MainClass.trace("Enter TEST2_ROOT.")
-         # end of behavior for TEST2_ROOT
+
     
-    
-    def _TEST2_ROOT_exit(self):    
+    def _TEST2_ROOT_exit(self):
         # TEST2_ROOT behavior
         # uml: exit / { trace("Exit TEST2_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST2_ROOT.")`
-            MainClass.trace("Exit TEST2_ROOT.")
-         # end of behavior for TEST2_ROOT
+
         
         self.stateId = StateId.TEST2_REGULAR_EVENT_TESTING
     
-    
-    def _TEST2_ROOT_do(self):    
+    def _TEST2_ROOT_do(self):
         bool consume_event = False
         
         # TEST2_ROOT behavior
         # uml: do [trace_guard("State TEST2_ROOT: check behavior `do`.", true)]
         if trace_guard("State TEST2_ROOT: check behavior `do`.", true):
-        
-            # `do` events are not normally consumed.
-            # Step 1: execute action ``
-         # end of behavior for TEST2_ROOT
+
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._ROOT_do()
-        
     
-    
-    def _TEST2_ROOT_ev1(self):    
+    def _TEST2_ROOT_ev1(self):
         # TEST2_ROOT behavior
         # uml: EV1 [trace_guard("State TEST2_ROOT: check behavior `EV1`.", true)]
         if trace_guard("State TEST2_ROOT: check behavior `EV1`.", true):
-        
-            # Step 1: execute action ``
-         # end of behavior for TEST2_ROOT
-        
-        # No ancestor handles this event.
+
     
-    
-    def _TEST2_ROOT_ev2(self):    
+    def _TEST2_ROOT_ev2(self):
         # TEST2_ROOT behavior
         # uml: EV2 [trace_guard("State TEST2_ROOT: check behavior `EV2`.", true)]
         if trace_guard("State TEST2_ROOT: check behavior `EV2`.", true):
-        
-            # Step 1: execute action ``
-         # end of behavior for TEST2_ROOT
-        
-        # No ancestor handles this event.
-    
+
     
     
     ########################################
     # event handlers for state TEST2_S1
     ########################################
     
-    def _TEST2_S1_enter(self):    
+    def _TEST2_S1_enter(self):
         self.stateId = StateId.TEST2_S1
         
         # TEST2_S1 behavior
         # uml: enter / { trace("Enter TEST2_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST2_S1.")`
-            MainClass.trace("Enter TEST2_S1.")
-         # end of behavior for TEST2_S1
+
     
-    
-    def _TEST2_S1_exit(self):    
+    def _TEST2_S1_exit(self):
         # TEST2_S1 behavior
         # uml: exit / { trace("Exit TEST2_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST2_S1.")`
-            MainClass.trace("Exit TEST2_S1.")
-         # end of behavior for TEST2_S1
+
         
         self.stateId = StateId.TEST2_ROOT
-    
     
     
     ########################################
     # event handlers for state TEST2_S1_1
     ########################################
     
-    def _TEST2_S1_1_enter(self):    
+    def _TEST2_S1_1_enter(self):
         self.stateId = StateId.TEST2_S1_1
         
         # TEST2_S1_1 behavior
         # uml: enter / { trace("Enter TEST2_S1_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST2_S1_1.")`
-            MainClass.trace("Enter TEST2_S1_1.")
-         # end of behavior for TEST2_S1_1
+
         
         # TEST2_S1_1 behavior
         # uml: enter [trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output() }`.", true):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for TEST2_S1_1
+
     
-    
-    def _TEST2_S1_1_exit(self):    
+    def _TEST2_S1_1_exit(self):
         # TEST2_S1_1 behavior
         # uml: exit / { trace("Exit TEST2_S1_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST2_S1_1.")`
-            MainClass.trace("Exit TEST2_S1_1.")
-         # end of behavior for TEST2_S1_1
+
         
         self.stateId = StateId.TEST2_S1
     
-    
-    def _TEST2_S1_1_do(self):    
+    def _TEST2_S1_1_do(self):
         bool consume_event = False
         
         # TEST2_S1_1 behavior
         # uml: do [trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S1_1 to TEST2_S2.") } TransitionTo(TEST2_S2)
         if trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST2_ROOT)
             
@@ -5504,97 +4527,75 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST2_S1_1
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST2_ROOT_do()
-        
     
-    
-    def _TEST2_S1_1_ev1(self):    
+    def _TEST2_S1_1_ev1(self):
         bool consume_event = False
         
         # TEST2_S1_1 behavior
         # uml: EV1 [trace_guard("State TEST2_S1_1: check behavior `EV1`.", true)]
         if trace_guard("State TEST2_S1_1: check behavior `EV1`.", true):
-        
+
             # Consume event `ev1`.
             consume_event = True
-            # Step 1: execute action ``
-         # end of behavior for TEST2_S1_1
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST2_ROOT_ev1()
-        
-    
     
     
     ########################################
     # event handlers for state TEST2_S2
     ########################################
     
-    def _TEST2_S2_enter(self):    
+    def _TEST2_S2_enter(self):
         self.stateId = StateId.TEST2_S2
         
         # TEST2_S2 behavior
         # uml: enter / { trace("Enter TEST2_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST2_S2.")`
-            MainClass.trace("Enter TEST2_S2.")
-         # end of behavior for TEST2_S2
+
         
         # TEST2_S2 behavior
         # uml: enter [trace_guard("State TEST2_S2: check behavior `en`.", true)]
         if trace_guard("State TEST2_S2: check behavior `en`.", true):
-        
-            # Step 1: execute action ``
-         # end of behavior for TEST2_S2
+
     
-    
-    def _TEST2_S2_exit(self):    
+    def _TEST2_S2_exit(self):
         # TEST2_S2 behavior
         # uml: exit / { trace("Exit TEST2_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST2_S2.")`
-            MainClass.trace("Exit TEST2_S2.")
-         # end of behavior for TEST2_S2
+
         
         self.stateId = StateId.TEST2_ROOT
     
-    
-    def _TEST2_S2_ev1(self):    
+    def _TEST2_S2_ev1(self):
         bool consume_event = False
         
         # TEST2_S2 behavior
         # uml: ev1 [trace_guard("State TEST2_S2: check behavior `ev1 / { consume_event = false }`.", true)] / { consume_event = false }
         if trace_guard("State TEST2_S2: check behavior `ev1 / { consume_event = false }`.", true):
-        
+
             # Consume event `ev1`.
             consume_event = True
-            # Step 1: execute action `consume_event = false`
-            consume_event = false
-         # end of behavior for TEST2_S2
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST2_ROOT_ev1()
-        
     
-    
-    def _TEST2_S2_ev2(self):    
+    def _TEST2_S2_ev2(self):
         bool consume_event = False
         
         # TEST2_S2 behavior
         # uml: ev2 [trace_guard("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S2 to TEST2_S2.") } TransitionTo(TEST2_S2)
         if trace_guard("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
             self._TEST2_S2_exit()
             
@@ -5606,128 +4607,93 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST2_S2
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST2_ROOT_ev2()
-        
-    
     
     
     ########################################
     # event handlers for state TEST3_BEHAVIOR_ORDERING
     ########################################
     
-    def _TEST3_BEHAVIOR_ORDERING_enter(self):    
+    def _TEST3_BEHAVIOR_ORDERING_enter(self):
         self.stateId = StateId.TEST3_BEHAVIOR_ORDERING
         
         # TEST3_BEHAVIOR_ORDERING behavior
         # uml: enter / { trace("Enter TEST3_BEHAVIOR_ORDERING.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST3_BEHAVIOR_ORDERING.")`
-            MainClass.trace("Enter TEST3_BEHAVIOR_ORDERING.")
-         # end of behavior for TEST3_BEHAVIOR_ORDERING
+
     
-    
-    def _TEST3_BEHAVIOR_ORDERING_exit(self):    
+    def _TEST3_BEHAVIOR_ORDERING_exit(self):
         # TEST3_BEHAVIOR_ORDERING behavior
         # uml: exit / { trace("Exit TEST3_BEHAVIOR_ORDERING.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST3_BEHAVIOR_ORDERING.")`
-            MainClass.trace("Exit TEST3_BEHAVIOR_ORDERING.")
-         # end of behavior for TEST3_BEHAVIOR_ORDERING
+
         
         self.stateId = StateId.ROOT
-    
     
     
     ########################################
     # event handlers for state TEST3_ROOT
     ########################################
     
-    def _TEST3_ROOT_enter(self):    
+    def _TEST3_ROOT_enter(self):
         self.stateId = StateId.TEST3_ROOT
         
         # TEST3_ROOT behavior
         # uml: enter / { trace("Enter TEST3_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST3_ROOT.")`
-            MainClass.trace("Enter TEST3_ROOT.")
-         # end of behavior for TEST3_ROOT
+
     
-    
-    def _TEST3_ROOT_exit(self):    
+    def _TEST3_ROOT_exit(self):
         # TEST3_ROOT behavior
         # uml: exit / { trace("Exit TEST3_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST3_ROOT.")`
-            MainClass.trace("Exit TEST3_ROOT.")
-         # end of behavior for TEST3_ROOT
+
         
         self.stateId = StateId.TEST3_BEHAVIOR_ORDERING
     
-    
-    def _TEST3_ROOT_ev1(self):    
+    def _TEST3_ROOT_ev1(self):
         # TEST3_ROOT behavior
         # uml: EV1 [trace_guard("State TEST3_ROOT: check behavior `EV1`.", true)]
         if trace_guard("State TEST3_ROOT: check behavior `EV1`.", true):
-        
-            # Step 1: execute action ``
-         # end of behavior for TEST3_ROOT
-        
-        # No ancestor handles this event.
-    
+
     
     
     ########################################
     # event handlers for state TEST3_S1
     ########################################
     
-    def _TEST3_S1_enter(self):    
+    def _TEST3_S1_enter(self):
         self.stateId = StateId.TEST3_S1
         
         # TEST3_S1 behavior
         # uml: enter / { trace("Enter TEST3_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST3_S1.")`
-            MainClass.trace("Enter TEST3_S1.")
-         # end of behavior for TEST3_S1
+
         
         # TEST3_S1 behavior
         # uml: enter [trace_guard("State TEST3_S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST3_S1: check behavior `enter / { clear_output() }`.", true):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for TEST3_S1
+
     
-    
-    def _TEST3_S1_exit(self):    
+    def _TEST3_S1_exit(self):
         # TEST3_S1 behavior
         # uml: exit / { trace("Exit TEST3_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST3_S1.")`
-            MainClass.trace("Exit TEST3_S1.")
-         # end of behavior for TEST3_S1
+
         
         self.stateId = StateId.TEST3_ROOT
     
-    
-    def _TEST3_S1_ev1(self):    
+    def _TEST3_S1_ev1(self):
         bool consume_event = False
         
         # TEST3_S1 behavior
         # uml: 1. EV1 [trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", true)] / { trace("Transition action `` for TEST3_S1 to TEST3_S2.") } TransitionTo(TEST3_S2)
         if trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition).
             self._TEST3_S1_exit()
             
@@ -5739,81 +4705,61 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST3_S1
         
         # TEST3_S1 behavior
         # uml: 2. EV1 [trace_guard("State TEST3_S1: check behavior `2. EV1 / { trace(\"failed\") }`.", true)] / { trace("failed") }
         if trace_guard("State TEST3_S1: check behavior `2. EV1 / { trace(\"failed\") }`.", true):
-        
+
             # Consume event `ev1`.
             consume_event = True
-            # Step 1: execute action `trace("failed")`
-            MainClass.trace("failed")
-         # end of behavior for TEST3_S1
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST3_ROOT_ev1()
-        
-    
     
     
     ########################################
     # event handlers for state TEST3_S2
     ########################################
     
-    def _TEST3_S2_enter(self):    
+    def _TEST3_S2_enter(self):
         self.stateId = StateId.TEST3_S2
         
         # TEST3_S2 behavior
         # uml: enter / { trace("Enter TEST3_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST3_S2.")`
-            MainClass.trace("Enter TEST3_S2.")
-         # end of behavior for TEST3_S2
+
     
-    
-    def _TEST3_S2_exit(self):    
+    def _TEST3_S2_exit(self):
         # TEST3_S2 behavior
         # uml: exit / { trace("Exit TEST3_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST3_S2.")`
-            MainClass.trace("Exit TEST3_S2.")
-         # end of behavior for TEST3_S2
+
         
         self.stateId = StateId.TEST3_ROOT
     
-    
-    def _TEST3_S2_ev1(self):    
+    def _TEST3_S2_ev1(self):
         bool consume_event = False
         
         # TEST3_S2 behavior
         # uml: 1. EV1 [trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\") }`.", true)] / { trace("1 woot!") }
         if trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\") }`.", true):
-        
+
             # Consume event `ev1`.
             consume_event = True
-            # Step 1: execute action `trace("1 woot!")`
-            MainClass.trace("1 woot!")
-         # end of behavior for TEST3_S2
         
         # TEST3_S2 behavior
         # uml: 1.1. EV1 [trace_guard("State TEST3_S2: check behavior `1.1. EV1 / { trace(\"2 woot!\") }`.", true)] / { trace("2 woot!") }
         if trace_guard("State TEST3_S2: check behavior `1.1. EV1 / { trace(\"2 woot!\") }`.", true):
-        
+
             # Consume event `ev1`.
             consume_event = True
-            # Step 1: execute action `trace("2 woot!")`
-            MainClass.trace("2 woot!")
-         # end of behavior for TEST3_S2
         
         # TEST3_S2 behavior
         # uml: 2. EV1 [trace_guard("State TEST3_S2: check behavior `2. EV1 / { trace(\"3 woot!\") } TransitionTo(TEST3_S3)`.", true)] / { trace("Transition action `trace(\"3 woot!\")` for TEST3_S2 to TEST3_S3.")\ntrace("3 woot!") } TransitionTo(TEST3_S3)
         if trace_guard("State TEST3_S2: check behavior `2. EV1 / { trace(\"3 woot!\") } TransitionTo(TEST3_S3)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition).
             self._TEST3_S2_exit()
             
@@ -5826,173 +4772,127 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST3_S2
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST3_ROOT_ev1()
-        
-    
     
     
     ########################################
     # event handlers for state TEST3_S3
     ########################################
     
-    def _TEST3_S3_enter(self):    
+    def _TEST3_S3_enter(self):
         self.stateId = StateId.TEST3_S3
         
         # TEST3_S3 behavior
         # uml: enter / { trace("Enter TEST3_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST3_S3.")`
-            MainClass.trace("Enter TEST3_S3.")
-         # end of behavior for TEST3_S3
+
     
-    
-    def _TEST3_S3_exit(self):    
+    def _TEST3_S3_exit(self):
         # TEST3_S3 behavior
         # uml: exit / { trace("Exit TEST3_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST3_S3.")`
-            MainClass.trace("Exit TEST3_S3.")
-         # end of behavior for TEST3_S3
+
         
         self.stateId = StateId.TEST3_ROOT
-    
     
     
     ########################################
     # event handlers for state TEST4_PARENT_CHILD_TRANSITIONS
     ########################################
     
-    def _TEST4_PARENT_CHILD_TRANSITIONS_enter(self):    
+    def _TEST4_PARENT_CHILD_TRANSITIONS_enter(self):
         self.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
         
         # TEST4_PARENT_CHILD_TRANSITIONS behavior
         # uml: enter / { trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.")`
-            MainClass.trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.")
-         # end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
+
     
-    
-    def _TEST4_PARENT_CHILD_TRANSITIONS_exit(self):    
+    def _TEST4_PARENT_CHILD_TRANSITIONS_exit(self):
         # TEST4_PARENT_CHILD_TRANSITIONS behavior
         # uml: exit / { trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")`
-            MainClass.trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")
-         # end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
+
         
         self.stateId = StateId.ROOT
-    
     
     
     ########################################
     # event handlers for state TEST4_B_AND_OTHERS
     ########################################
     
-    def _TEST4_B_AND_OTHERS_enter(self):    
+    def _TEST4_B_AND_OTHERS_enter(self):
         self.stateId = StateId.TEST4_B_AND_OTHERS
         
         # TEST4_B_AND_OTHERS behavior
         # uml: enter / { trace("Enter TEST4_B_AND_OTHERS.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4_B_AND_OTHERS.")`
-            MainClass.trace("Enter TEST4_B_AND_OTHERS.")
-         # end of behavior for TEST4_B_AND_OTHERS
+
         
         # TEST4_B_AND_OTHERS behavior
         # uml: enter [trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
         if trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output() }`.", true):
-        
-            # Step 1: execute action `clear_dispatch_output()`
-            MainClass.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
-         # end of behavior for TEST4_B_AND_OTHERS
+
     
-    
-    def _TEST4_B_AND_OTHERS_exit(self):    
+    def _TEST4_B_AND_OTHERS_exit(self):
         # TEST4_B_AND_OTHERS behavior
         # uml: exit / { trace("Exit TEST4_B_AND_OTHERS.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4_B_AND_OTHERS.")`
-            MainClass.trace("Exit TEST4_B_AND_OTHERS.")
-         # end of behavior for TEST4_B_AND_OTHERS
+
         
         self.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
-    
     
     
     ########################################
     # event handlers for state TEST4B_LOCAL
     ########################################
     
-    def _TEST4B_LOCAL_enter(self):    
+    def _TEST4B_LOCAL_enter(self):
         self.stateId = StateId.TEST4B_LOCAL
         
         # TEST4B_LOCAL behavior
         # uml: enter / { trace("Enter TEST4B_LOCAL.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4B_LOCAL.")`
-            MainClass.trace("Enter TEST4B_LOCAL.")
-         # end of behavior for TEST4B_LOCAL
+
     
-    
-    def _TEST4B_LOCAL_exit(self):    
+    def _TEST4B_LOCAL_exit(self):
         # TEST4B_LOCAL behavior
         # uml: exit / { trace("Exit TEST4B_LOCAL.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4B_LOCAL.")`
-            MainClass.trace("Exit TEST4B_LOCAL.")
-         # end of behavior for TEST4B_LOCAL
+
         
         self.stateId = StateId.TEST4_B_AND_OTHERS
-    
     
     
     ########################################
     # event handlers for state TEST4B_G
     ########################################
     
-    def _TEST4B_G_enter(self):    
+    def _TEST4B_G_enter(self):
         self.stateId = StateId.TEST4B_G
         
         # TEST4B_G behavior
         # uml: enter / { trace("Enter TEST4B_G.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4B_G.")`
-            MainClass.trace("Enter TEST4B_G.")
-         # end of behavior for TEST4B_G
+
     
-    
-    def _TEST4B_G_exit(self):    
+    def _TEST4B_G_exit(self):
         # TEST4B_G behavior
         # uml: exit / { trace("Exit TEST4B_G.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4B_G.")`
-            MainClass.trace("Exit TEST4B_G.")
-         # end of behavior for TEST4B_G
+
         
         self.stateId = StateId.TEST4B_LOCAL
     
-    
-    def _TEST4B_G_ev1(self):    
+    def _TEST4B_G_ev1(self):
         # TEST4B_G behavior
         # uml: EV1 [trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true)] / { trace("Transition action `` for TEST4B_G to TEST4B_G_1.") } TransitionTo(TEST4B_G_1)
         if trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4B_G` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST4B_G)
             
@@ -6004,45 +4904,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4B_G
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST4B_G_1
     ########################################
     
-    def _TEST4B_G_1_enter(self):    
+    def _TEST4B_G_1_enter(self):
         self.stateId = StateId.TEST4B_G_1
         
         # TEST4B_G_1 behavior
         # uml: enter / { trace("Enter TEST4B_G_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4B_G_1.")`
-            MainClass.trace("Enter TEST4B_G_1.")
-         # end of behavior for TEST4B_G_1
+
     
-    
-    def _TEST4B_G_1_exit(self):    
+    def _TEST4B_G_1_exit(self):
         # TEST4B_G_1 behavior
         # uml: exit / { trace("Exit TEST4B_G_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4B_G_1.")`
-            MainClass.trace("Exit TEST4B_G_1.")
-         # end of behavior for TEST4B_G_1
+
         
         self.stateId = StateId.TEST4B_G
     
-    
-    def _TEST4B_G_1_ev2(self):    
+    def _TEST4B_G_1_ev2(self):
         # TEST4B_G_1 behavior
         # uml: EV2 [trace_guard("State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`.", true)] / { trace("Transition action `` for TEST4B_G_1 to TEST4B_G.") } TransitionTo(TEST4B_G)
         if trace_guard("State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4B_G` state (Least Common Ancestor for transition).
             self._TEST4B_G_1_exit()
             
@@ -6053,74 +4941,54 @@ class Spec2Sm(Spec2SmBase):
             # Already in target. No entering required.
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4B_G_1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST4C_LOCAL_TO_ALIAS
     ########################################
     
-    def _TEST4C_LOCAL_TO_ALIAS_enter(self):    
+    def _TEST4C_LOCAL_TO_ALIAS_enter(self):
         self.stateId = StateId.TEST4C_LOCAL_TO_ALIAS
         
         # TEST4C_LOCAL_TO_ALIAS behavior
         # uml: enter / { trace("Enter TEST4C_LOCAL_TO_ALIAS.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4C_LOCAL_TO_ALIAS.")`
-            MainClass.trace("Enter TEST4C_LOCAL_TO_ALIAS.")
-         # end of behavior for TEST4C_LOCAL_TO_ALIAS
+
     
-    
-    def _TEST4C_LOCAL_TO_ALIAS_exit(self):    
+    def _TEST4C_LOCAL_TO_ALIAS_exit(self):
         # TEST4C_LOCAL_TO_ALIAS behavior
         # uml: exit / { trace("Exit TEST4C_LOCAL_TO_ALIAS.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4C_LOCAL_TO_ALIAS.")`
-            MainClass.trace("Exit TEST4C_LOCAL_TO_ALIAS.")
-         # end of behavior for TEST4C_LOCAL_TO_ALIAS
+
         
         self.stateId = StateId.TEST4_B_AND_OTHERS
-    
     
     
     ########################################
     # event handlers for state TEST4C_G
     ########################################
     
-    def _TEST4C_G_enter(self):    
+    def _TEST4C_G_enter(self):
         self.stateId = StateId.TEST4C_G
         
         # TEST4C_G behavior
         # uml: enter / { trace("Enter TEST4C_G.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4C_G.")`
-            MainClass.trace("Enter TEST4C_G.")
-         # end of behavior for TEST4C_G
+
     
-    
-    def _TEST4C_G_exit(self):    
+    def _TEST4C_G_exit(self):
         # TEST4C_G behavior
         # uml: exit / { trace("Exit TEST4C_G.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4C_G.")`
-            MainClass.trace("Exit TEST4C_G.")
-         # end of behavior for TEST4C_G
+
         
         self.stateId = StateId.TEST4C_LOCAL_TO_ALIAS
     
-    
-    def _TEST4C_G_ev1(self):    
+    def _TEST4C_G_ev1(self):
         # TEST4C_G behavior
         # uml: EV1 [trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true)] / { trace("Transition action `` for TEST4C_G to TEST4C_G_1.") } TransitionTo(TEST4C_G_1)
         if trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4C_G` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST4C_G)
             
@@ -6132,45 +5000,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4C_G
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST4C_G_1
     ########################################
     
-    def _TEST4C_G_1_enter(self):    
+    def _TEST4C_G_1_enter(self):
         self.stateId = StateId.TEST4C_G_1
         
         # TEST4C_G_1 behavior
         # uml: enter / { trace("Enter TEST4C_G_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4C_G_1.")`
-            MainClass.trace("Enter TEST4C_G_1.")
-         # end of behavior for TEST4C_G_1
+
     
-    
-    def _TEST4C_G_1_exit(self):    
+    def _TEST4C_G_1_exit(self):
         # TEST4C_G_1 behavior
         # uml: exit / { trace("Exit TEST4C_G_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4C_G_1.")`
-            MainClass.trace("Exit TEST4C_G_1.")
-         # end of behavior for TEST4C_G_1
+
         
         self.stateId = StateId.TEST4C_G
     
-    
-    def _TEST4C_G_1_ev2(self):    
+    def _TEST4C_G_1_ev2(self):
         # TEST4C_G_1 behavior
         # uml: EV2 [trace_guard("State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`.", true)] / { trace("Transition action `` for TEST4C_G_1 to TEST4C_G.") } TransitionTo(TEST4C_G)
         if trace_guard("State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4C_G` state (Least Common Ancestor for transition).
             self._TEST4C_G_1_exit()
             
@@ -6181,74 +5037,54 @@ class Spec2Sm(Spec2SmBase):
             # Already in target. No entering required.
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4C_G_1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST4D_EXTERNAL
     ########################################
     
-    def _TEST4D_EXTERNAL_enter(self):    
+    def _TEST4D_EXTERNAL_enter(self):
         self.stateId = StateId.TEST4D_EXTERNAL
         
         # TEST4D_EXTERNAL behavior
         # uml: enter / { trace("Enter TEST4D_EXTERNAL.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4D_EXTERNAL.")`
-            MainClass.trace("Enter TEST4D_EXTERNAL.")
-         # end of behavior for TEST4D_EXTERNAL
+
     
-    
-    def _TEST4D_EXTERNAL_exit(self):    
+    def _TEST4D_EXTERNAL_exit(self):
         # TEST4D_EXTERNAL behavior
         # uml: exit / { trace("Exit TEST4D_EXTERNAL.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4D_EXTERNAL.")`
-            MainClass.trace("Exit TEST4D_EXTERNAL.")
-         # end of behavior for TEST4D_EXTERNAL
+
         
         self.stateId = StateId.TEST4_B_AND_OTHERS
-    
     
     
     ########################################
     # event handlers for state TEST4D_G
     ########################################
     
-    def _TEST4D_G_enter(self):    
+    def _TEST4D_G_enter(self):
         self.stateId = StateId.TEST4D_G
         
         # TEST4D_G behavior
         # uml: enter / { trace("Enter TEST4D_G.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4D_G.")`
-            MainClass.trace("Enter TEST4D_G.")
-         # end of behavior for TEST4D_G
+
     
-    
-    def _TEST4D_G_exit(self):    
+    def _TEST4D_G_exit(self):
         # TEST4D_G behavior
         # uml: exit / { trace("Exit TEST4D_G.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4D_G.")`
-            MainClass.trace("Exit TEST4D_G.")
-         # end of behavior for TEST4D_G
+
         
         self.stateId = StateId.TEST4D_EXTERNAL
     
-    
-    def _TEST4D_G_ev1(self):    
+    def _TEST4D_G_ev1(self):
         # TEST4D_G behavior
         # uml: EV1 [trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true)] / { trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().") } TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())
         if trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST4D_EXTERNAL)
             
@@ -6261,7 +5097,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST4D_EXTERNAL.<ChoicePoint>() behavior
             # uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1.") } TransitionTo(TEST4D_G_1)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1.")`.
@@ -6273,46 +5109,33 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
-         # end of behavior for TEST4D_G
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST4D_G_1
     ########################################
     
-    def _TEST4D_G_1_enter(self):    
+    def _TEST4D_G_1_enter(self):
         self.stateId = StateId.TEST4D_G_1
         
         # TEST4D_G_1 behavior
         # uml: enter / { trace("Enter TEST4D_G_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4D_G_1.")`
-            MainClass.trace("Enter TEST4D_G_1.")
-         # end of behavior for TEST4D_G_1
+
     
-    
-    def _TEST4D_G_1_exit(self):    
+    def _TEST4D_G_1_exit(self):
         # TEST4D_G_1 behavior
         # uml: exit / { trace("Exit TEST4D_G_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4D_G_1.")`
-            MainClass.trace("Exit TEST4D_G_1.")
-         # end of behavior for TEST4D_G_1
+
         
         self.stateId = StateId.TEST4D_G
     
-    
-    def _TEST4D_G_1_ev2(self):    
+    def _TEST4D_G_1_ev2(self):
         # TEST4D_G_1 behavior
         # uml: EV2 [trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true)] / { trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().") } TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())
         if trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST4D_EXTERNAL)
             
@@ -6325,7 +5148,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST4D_EXTERNAL.<ChoicePoint>() behavior
             # uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G.") } TransitionTo(TEST4D_G)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G.")`.
@@ -6336,46 +5159,33 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
-         # end of behavior for TEST4D_G_1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST4_DECIDE
     ########################################
     
-    def _TEST4_DECIDE_enter(self):    
+    def _TEST4_DECIDE_enter(self):
         self.stateId = StateId.TEST4_DECIDE
         
         # TEST4_DECIDE behavior
         # uml: enter / { trace("Enter TEST4_DECIDE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4_DECIDE.")`
-            MainClass.trace("Enter TEST4_DECIDE.")
-         # end of behavior for TEST4_DECIDE
+
     
-    
-    def _TEST4_DECIDE_exit(self):    
+    def _TEST4_DECIDE_exit(self):
         # TEST4_DECIDE behavior
         # uml: exit / { trace("Exit TEST4_DECIDE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4_DECIDE.")`
-            MainClass.trace("Exit TEST4_DECIDE.")
-         # end of behavior for TEST4_DECIDE
+
         
         self.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
     
-    
-    def _TEST4_DECIDE_ev1(self):    
+    def _TEST4_DECIDE_ev1(self):
         # TEST4_DECIDE behavior
         # uml: EV1 [trace_guard("State TEST4_DECIDE: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.") } TransitionTo(TEST4_ROOT)
         if trace_guard("State TEST4_DECIDE: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
             self._TEST4_DECIDE_exit()
             
@@ -6387,16 +5197,12 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4_DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST4_DECIDE_ev2(self):    
+    def _TEST4_DECIDE_ev2(self):
         # TEST4_DECIDE behavior
         # uml: EV2 [trace_guard("State TEST4_DECIDE: check behavior `EV2 TransitionTo(TEST4B_LOCAL)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.") } TransitionTo(TEST4B_LOCAL)
         if trace_guard("State TEST4_DECIDE: check behavior `EV2 TransitionTo(TEST4B_LOCAL)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
             self._TEST4_DECIDE_exit()
             
@@ -6410,7 +5216,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST4B_LOCAL.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G.") } TransitionTo(TEST4B_G)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST4B_LOCAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G.")`.
@@ -6421,17 +5227,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST4B_LOCAL.<InitialState>
-         # end of behavior for TEST4_DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST4_DECIDE_ev3(self):    
+    def _TEST4_DECIDE_ev3(self):
         # TEST4_DECIDE behavior
         # uml: EV3 [trace_guard("State TEST4_DECIDE: check behavior `EV3 TransitionTo(TEST4C_LOCAL_TO_ALIAS)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.") } TransitionTo(TEST4C_LOCAL_TO_ALIAS)
         if trace_guard("State TEST4_DECIDE: check behavior `EV3 TransitionTo(TEST4C_LOCAL_TO_ALIAS)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
             self._TEST4_DECIDE_exit()
             
@@ -6445,7 +5246,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST4C_LOCAL_TO_ALIAS.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G.") } TransitionTo(TEST4C_G)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST4C_LOCAL_TO_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G.")`.
@@ -6456,17 +5257,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST4C_LOCAL_TO_ALIAS.<InitialState>
-         # end of behavior for TEST4_DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST4_DECIDE_ev4(self):    
+    def _TEST4_DECIDE_ev4(self):
         # TEST4_DECIDE behavior
         # uml: EV4 [trace_guard("State TEST4_DECIDE: check behavior `EV4 TransitionTo(TEST4D_EXTERNAL)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.") } TransitionTo(TEST4D_EXTERNAL)
         if trace_guard("State TEST4_DECIDE: check behavior `EV4 TransitionTo(TEST4D_EXTERNAL)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
             self._TEST4_DECIDE_exit()
             
@@ -6480,7 +5276,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST4D_EXTERNAL.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G.") } TransitionTo(TEST4D_G)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G.")`.
@@ -6491,54 +5287,38 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST4D_EXTERNAL.<InitialState>
-         # end of behavior for TEST4_DECIDE
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST4_ROOT
     ########################################
     
-    def _TEST4_ROOT_enter(self):    
+    def _TEST4_ROOT_enter(self):
         self.stateId = StateId.TEST4_ROOT
         
         # TEST4_ROOT behavior
         # uml: enter / { trace("Enter TEST4_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4_ROOT.")`
-            MainClass.trace("Enter TEST4_ROOT.")
-         # end of behavior for TEST4_ROOT
+
         
         # TEST4_ROOT behavior
         # uml: enter [trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output() }`.", true):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for TEST4_ROOT
+
     
-    
-    def _TEST4_ROOT_exit(self):    
+    def _TEST4_ROOT_exit(self):
         # TEST4_ROOT behavior
         # uml: exit / { trace("Exit TEST4_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4_ROOT.")`
-            MainClass.trace("Exit TEST4_ROOT.")
-         # end of behavior for TEST4_ROOT
+
         
         self.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
     
-    
-    def _TEST4_ROOT_ev2(self):    
+    def _TEST4_ROOT_ev2(self):
         # TEST4_ROOT behavior
         # uml: EV2 [trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S1.") } TransitionTo(TEST4_S1)
         if trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST4_ROOT)
             
@@ -6550,16 +5330,12 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4_ROOT
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST4_ROOT_ev3(self):    
+    def _TEST4_ROOT_ev3(self):
         # TEST4_ROOT behavior
         # uml: EV3 [trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.") } TransitionTo(TEST4_S10_1)
         if trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST4_ROOT)
             
@@ -6572,16 +5348,12 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4_ROOT
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST4_ROOT_ev4(self):    
+    def _TEST4_ROOT_ev4(self):
         # TEST4_ROOT behavior
         # uml: EV4 [trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S20.") } TransitionTo(TEST4_S20)
         if trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST4_ROOT)
             
@@ -6594,45 +5366,33 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST4_S20_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST4_ROOT
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST4_S1
     ########################################
     
-    def _TEST4_S1_enter(self):    
+    def _TEST4_S1_enter(self):
         self.stateId = StateId.TEST4_S1
         
         # TEST4_S1 behavior
         # uml: enter / { trace("Enter TEST4_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4_S1.")`
-            MainClass.trace("Enter TEST4_S1.")
-         # end of behavior for TEST4_S1
+
     
-    
-    def _TEST4_S1_exit(self):    
+    def _TEST4_S1_exit(self):
         # TEST4_S1 behavior
         # uml: exit / { trace("Exit TEST4_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4_S1.")`
-            MainClass.trace("Exit TEST4_S1.")
-         # end of behavior for TEST4_S1
+
         
         self.stateId = StateId.TEST4_ROOT
     
-    
-    def _TEST4_S1_ev1(self):    
+    def _TEST4_S1_ev1(self):
         # TEST4_S1 behavior
         # uml: EV1 [trace_guard("State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`.", true)] / { trace("Transition action `` for TEST4_S1 to TEST4_S2.") } TransitionTo(TEST4_S2)
         if trace_guard("State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._TEST4_S1_exit()
             
@@ -6644,47 +5404,35 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4_S1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST4_S10
     ########################################
     
-    def _TEST4_S10_enter(self):    
+    def _TEST4_S10_enter(self):
         self.stateId = StateId.TEST4_S10
         
         # TEST4_S10 behavior
         # uml: enter / { trace("Enter TEST4_S10.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4_S10.")`
-            MainClass.trace("Enter TEST4_S10.")
-         # end of behavior for TEST4_S10
+
     
-    
-    def _TEST4_S10_exit(self):    
+    def _TEST4_S10_exit(self):
         # TEST4_S10 behavior
         # uml: exit / { trace("Exit TEST4_S10.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4_S10.")`
-            MainClass.trace("Exit TEST4_S10.")
-         # end of behavior for TEST4_S10
+
         
         self.stateId = StateId.TEST4_ROOT
     
-    
-    def _TEST4_S10_ev4(self):    
+    def _TEST4_S10_ev4(self):
         bool consume_event = False
         
         # TEST4_S10 behavior
         # uml: EV4 [trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true)] / { trace("Transition action `` for TEST4_S10 to TEST4_S10.") } TransitionTo(TEST4_S10)
         if trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST4_ROOT)
             
@@ -6696,78 +5444,59 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4_S10
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST4_ROOT_ev4()
-        
-    
     
     
     ########################################
     # event handlers for state TEST4_S10_1
     ########################################
     
-    def _TEST4_S10_1_enter(self):    
+    def _TEST4_S10_1_enter(self):
         self.stateId = StateId.TEST4_S10_1
         
         # TEST4_S10_1 behavior
         # uml: enter / { trace("Enter TEST4_S10_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4_S10_1.")`
-            MainClass.trace("Enter TEST4_S10_1.")
-         # end of behavior for TEST4_S10_1
+
     
-    
-    def _TEST4_S10_1_exit(self):    
+    def _TEST4_S10_1_exit(self):
         # TEST4_S10_1 behavior
         # uml: exit / { trace("Exit TEST4_S10_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4_S10_1.")`
-            MainClass.trace("Exit TEST4_S10_1.")
-         # end of behavior for TEST4_S10_1
+
         
         self.stateId = StateId.TEST4_S10
-    
     
     
     ########################################
     # event handlers for state TEST4_S2
     ########################################
     
-    def _TEST4_S2_enter(self):    
+    def _TEST4_S2_enter(self):
         self.stateId = StateId.TEST4_S2
         
         # TEST4_S2 behavior
         # uml: enter / { trace("Enter TEST4_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4_S2.")`
-            MainClass.trace("Enter TEST4_S2.")
-         # end of behavior for TEST4_S2
+
     
-    
-    def _TEST4_S2_exit(self):    
+    def _TEST4_S2_exit(self):
         # TEST4_S2 behavior
         # uml: exit / { trace("Exit TEST4_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4_S2.")`
-            MainClass.trace("Exit TEST4_S2.")
-         # end of behavior for TEST4_S2
+
         
         self.stateId = StateId.TEST4_ROOT
     
-    
-    def _TEST4_S2_ev1(self):    
+    def _TEST4_S2_ev1(self):
         # TEST4_S2 behavior
         # uml: EV1 [trace_guard("State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`.", true)] / { trace("Transition action `` for TEST4_S2 to TEST4_S3.") } TransitionTo(TEST4_S3)
         if trace_guard("State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._TEST4_S2_exit()
             
@@ -6779,47 +5508,35 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4_S2
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST4_S20
     ########################################
     
-    def _TEST4_S20_enter(self):    
+    def _TEST4_S20_enter(self):
         self.stateId = StateId.TEST4_S20
         
         # TEST4_S20 behavior
         # uml: enter / { trace("Enter TEST4_S20.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4_S20.")`
-            MainClass.trace("Enter TEST4_S20.")
-         # end of behavior for TEST4_S20
+
     
-    
-    def _TEST4_S20_exit(self):    
+    def _TEST4_S20_exit(self):
         # TEST4_S20 behavior
         # uml: exit / { trace("Exit TEST4_S20.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4_S20.")`
-            MainClass.trace("Exit TEST4_S20.")
-         # end of behavior for TEST4_S20
+
         
         self.stateId = StateId.TEST4_ROOT
     
-    
-    def _TEST4_S20_ev4(self):    
+    def _TEST4_S20_ev4(self):
         bool consume_event = False
         
         # TEST4_S20 behavior
         # uml: EV4 [trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)] / { trace("Transition action `` for TEST4_S20 to TEST4_S20.") } TransitionTo(TEST4_S20)
         if trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST4_ROOT)
             
@@ -6832,20 +5549,17 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST4_S20_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST4_S20
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST4_ROOT_ev4()
-        
     
-    
-    def _TEST4_S20_InitialState_transition(self):    
+    def _TEST4_S20_InitialState_transition(self):
         # TEST4_S20.<InitialState> behavior
         # uml: / { trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.") } TransitionTo(TEST4_S20_1)
         if True:
-        
+
             # Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.")`.
@@ -6856,72 +5570,54 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4_S20.<InitialState>
-    
     
     
     ########################################
     # event handlers for state TEST4_S20_1
     ########################################
     
-    def _TEST4_S20_1_enter(self):    
+    def _TEST4_S20_1_enter(self):
         self.stateId = StateId.TEST4_S20_1
         
         # TEST4_S20_1 behavior
         # uml: enter / { trace("Enter TEST4_S20_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4_S20_1.")`
-            MainClass.trace("Enter TEST4_S20_1.")
-         # end of behavior for TEST4_S20_1
+
     
-    
-    def _TEST4_S20_1_exit(self):    
+    def _TEST4_S20_1_exit(self):
         # TEST4_S20_1 behavior
         # uml: exit / { trace("Exit TEST4_S20_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4_S20_1.")`
-            MainClass.trace("Exit TEST4_S20_1.")
-         # end of behavior for TEST4_S20_1
+
         
         self.stateId = StateId.TEST4_S20
-    
     
     
     ########################################
     # event handlers for state TEST4_S3
     ########################################
     
-    def _TEST4_S3_enter(self):    
+    def _TEST4_S3_enter(self):
         self.stateId = StateId.TEST4_S3
         
         # TEST4_S3 behavior
         # uml: enter / { trace("Enter TEST4_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST4_S3.")`
-            MainClass.trace("Enter TEST4_S3.")
-         # end of behavior for TEST4_S3
+
     
-    
-    def _TEST4_S3_exit(self):    
+    def _TEST4_S3_exit(self):
         # TEST4_S3 behavior
         # uml: exit / { trace("Exit TEST4_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST4_S3.")`
-            MainClass.trace("Exit TEST4_S3.")
-         # end of behavior for TEST4_S3
+
         
         self.stateId = StateId.TEST4_ROOT
     
-    
-    def _TEST4_S3_ev1(self):    
+    def _TEST4_S3_ev1(self):
         # TEST4_S3 behavior
         # uml: EV1 [trace_guard("State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true)] / { trace("Transition action `` for TEST4_S3 to TEST4_ROOT.") } TransitionTo(TEST4_ROOT)
         if trace_guard("State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._TEST4_S3_exit()
             
@@ -6932,82 +5628,59 @@ class Spec2Sm(Spec2SmBase):
             # Already in target. No entering required.
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST4_S3
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     ########################################
     
-    def _TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter(self):    
+    def _TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter(self):
         self.stateId = StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
         
         # TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
         # uml: enter / { trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`
-            MainClass.trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
-         # end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
+
     
-    
-    def _TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(self):    
+    def _TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(self):
         # TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
         # uml: exit / { trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`
-            MainClass.trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
-         # end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
+
         
         self.stateId = StateId.ROOT
-    
     
     
     ########################################
     # event handlers for state TEST5_ROOT
     ########################################
     
-    def _TEST5_ROOT_enter(self):    
+    def _TEST5_ROOT_enter(self):
         self.stateId = StateId.TEST5_ROOT
         
         # TEST5_ROOT behavior
         # uml: enter / { trace("Enter TEST5_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST5_ROOT.")`
-            MainClass.trace("Enter TEST5_ROOT.")
-         # end of behavior for TEST5_ROOT
+
         
         # TEST5_ROOT behavior
         # uml: enter [trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output() }`.", true):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for TEST5_ROOT
+
     
-    
-    def _TEST5_ROOT_exit(self):    
+    def _TEST5_ROOT_exit(self):
         # TEST5_ROOT behavior
         # uml: exit / { trace("Exit TEST5_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST5_ROOT.")`
-            MainClass.trace("Exit TEST5_ROOT.")
-         # end of behavior for TEST5_ROOT
+
         
         self.stateId = StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     
-    
-    def _TEST5_ROOT_ev2(self):    
+    def _TEST5_ROOT_ev2(self):
         # TEST5_ROOT behavior
         # uml: EV2 [trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true)] / { trace("Transition action `` for TEST5_ROOT to TEST5_S1.") } TransitionTo(TEST5_S1)
         if trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST5_ROOT)
             
@@ -7019,45 +5692,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST5_ROOT
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST5_S1
     ########################################
     
-    def _TEST5_S1_enter(self):    
+    def _TEST5_S1_enter(self):
         self.stateId = StateId.TEST5_S1
         
         # TEST5_S1 behavior
         # uml: enter / { trace("Enter TEST5_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST5_S1.")`
-            MainClass.trace("Enter TEST5_S1.")
-         # end of behavior for TEST5_S1
+
     
-    
-    def _TEST5_S1_exit(self):    
+    def _TEST5_S1_exit(self):
         # TEST5_S1 behavior
         # uml: exit / { trace("Exit TEST5_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST5_S1.")`
-            MainClass.trace("Exit TEST5_S1.")
-         # end of behavior for TEST5_S1
+
         
         self.stateId = StateId.TEST5_ROOT
     
-    
-    def _TEST5_S1_ev1(self):    
+    def _TEST5_S1_ev1(self):
         # TEST5_S1 behavior
         # uml: EV1 [trace_guard("State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`.", true)] / { trace("Transition action `` for TEST5_S1 to TEST5_S2.") } TransitionTo(TEST5_S2)
         if trace_guard("State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
             self._TEST5_S1_exit()
             
@@ -7069,45 +5730,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST5_S1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST5_S2
     ########################################
     
-    def _TEST5_S2_enter(self):    
+    def _TEST5_S2_enter(self):
         self.stateId = StateId.TEST5_S2
         
         # TEST5_S2 behavior
         # uml: enter / { trace("Enter TEST5_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST5_S2.")`
-            MainClass.trace("Enter TEST5_S2.")
-         # end of behavior for TEST5_S2
+
     
-    
-    def _TEST5_S2_exit(self):    
+    def _TEST5_S2_exit(self):
         # TEST5_S2 behavior
         # uml: exit / { trace("Exit TEST5_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST5_S2.")`
-            MainClass.trace("Exit TEST5_S2.")
-         # end of behavior for TEST5_S2
+
         
         self.stateId = StateId.TEST5_ROOT
     
-    
-    def _TEST5_S2_ev1(self):    
+    def _TEST5_S2_ev1(self):
         # TEST5_S2 behavior
         # uml: EV1 [trace_guard("State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`.", true)] / { trace("Transition action `` for TEST5_S2 to TEST5_S3.") } TransitionTo(TEST5_S3)
         if trace_guard("State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
             self._TEST5_S2_exit()
             
@@ -7119,45 +5768,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST5_S2
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST5_S3
     ########################################
     
-    def _TEST5_S3_enter(self):    
+    def _TEST5_S3_enter(self):
         self.stateId = StateId.TEST5_S3
         
         # TEST5_S3 behavior
         # uml: enter / { trace("Enter TEST5_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST5_S3.")`
-            MainClass.trace("Enter TEST5_S3.")
-         # end of behavior for TEST5_S3
+
     
-    
-    def _TEST5_S3_exit(self):    
+    def _TEST5_S3_exit(self):
         # TEST5_S3 behavior
         # uml: exit / { trace("Exit TEST5_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST5_S3.")`
-            MainClass.trace("Exit TEST5_S3.")
-         # end of behavior for TEST5_S3
+
         
         self.stateId = StateId.TEST5_ROOT
     
-    
-    def _TEST5_S3_ev1(self):    
+    def _TEST5_S3_ev1(self):
         # TEST5_S3 behavior
         # uml: EV1 [trace_guard("State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`.", true)] / { trace("Transition action `` for TEST5_S3 to TEST5_ROOT.") } TransitionTo(TEST5_ROOT)
         if trace_guard("State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
             self._TEST5_S3_exit()
             
@@ -7168,148 +5805,106 @@ class Spec2Sm(Spec2SmBase):
             # Already in target. No entering required.
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST5_S3
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST6_VARS_EXPANSIONS
     ########################################
     
-    def _TEST6_VARS_EXPANSIONS_enter(self):    
+    def _TEST6_VARS_EXPANSIONS_enter(self):
         self.stateId = StateId.TEST6_VARS_EXPANSIONS
         
         # TEST6_VARS_EXPANSIONS behavior
         # uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS.")`
-            MainClass.trace("Enter TEST6_VARS_EXPANSIONS.")
-         # end of behavior for TEST6_VARS_EXPANSIONS
+
     
-    
-    def _TEST6_VARS_EXPANSIONS_exit(self):    
+    def _TEST6_VARS_EXPANSIONS_exit(self):
         # TEST6_VARS_EXPANSIONS behavior
         # uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS.")`
-            MainClass.trace("Exit TEST6_VARS_EXPANSIONS.")
-         # end of behavior for TEST6_VARS_EXPANSIONS
+
         
         self.stateId = StateId.ROOT
-    
     
     
     ########################################
     # event handlers for state TEST6_ROOT
     ########################################
     
-    def _TEST6_ROOT_enter(self):    
+    def _TEST6_ROOT_enter(self):
         self.stateId = StateId.TEST6_ROOT
         
         # TEST6_ROOT behavior
         # uml: enter / { trace("Enter TEST6_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST6_ROOT.")`
-            MainClass.trace("Enter TEST6_ROOT.")
-         # end of behavior for TEST6_ROOT
+
     
-    
-    def _TEST6_ROOT_exit(self):    
+    def _TEST6_ROOT_exit(self):
         # TEST6_ROOT behavior
         # uml: exit / { trace("Exit TEST6_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST6_ROOT.")`
-            MainClass.trace("Exit TEST6_ROOT.")
-         # end of behavior for TEST6_ROOT
+
         
         self.stateId = StateId.TEST6_VARS_EXPANSIONS
-    
     
     
     ########################################
     # event handlers for state AUTO_VAR_TEST
     ########################################
     
-    def _AUTO_VAR_TEST_enter(self):    
+    def _AUTO_VAR_TEST_enter(self):
         self.stateId = StateId.AUTO_VAR_TEST
         
         # AUTO_VAR_TEST behavior
         # uml: enter / { trace("Enter AUTO_VAR_TEST.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter AUTO_VAR_TEST.")`
-            MainClass.trace("Enter AUTO_VAR_TEST.")
-         # end of behavior for AUTO_VAR_TEST
+
     
-    
-    def _AUTO_VAR_TEST_exit(self):    
+    def _AUTO_VAR_TEST_exit(self):
         # AUTO_VAR_TEST behavior
         # uml: exit / { trace("Exit AUTO_VAR_TEST.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit AUTO_VAR_TEST.")`
-            MainClass.trace("Exit AUTO_VAR_TEST.")
-         # end of behavior for AUTO_VAR_TEST
+
         
         self.stateId = StateId.TEST6_ROOT
-    
     
     
     ########################################
     # event handlers for state AUTO_VAR_TEST__S1
     ########################################
     
-    def _AUTO_VAR_TEST__S1_enter(self):    
+    def _AUTO_VAR_TEST__S1_enter(self):
         self.stateId = StateId.AUTO_VAR_TEST__S1
         
         # AUTO_VAR_TEST__S1 behavior
         # uml: enter / { trace("Enter AUTO_VAR_TEST__S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter AUTO_VAR_TEST__S1.")`
-            MainClass.trace("Enter AUTO_VAR_TEST__S1.")
-         # end of behavior for AUTO_VAR_TEST__S1
+
         
         # AUTO_VAR_TEST__S1 behavior
         # uml: enter [trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output() }`.", true):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for AUTO_VAR_TEST__S1
+
     
-    
-    def _AUTO_VAR_TEST__S1_exit(self):    
+    def _AUTO_VAR_TEST__S1_exit(self):
         # AUTO_VAR_TEST__S1 behavior
         # uml: exit / { trace("Exit AUTO_VAR_TEST__S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit AUTO_VAR_TEST__S1.")`
-            MainClass.trace("Exit AUTO_VAR_TEST__S1.")
-         # end of behavior for AUTO_VAR_TEST__S1
+
         
         self.stateId = StateId.AUTO_VAR_TEST
     
-    
-    def _AUTO_VAR_TEST__S1_ev1(self):    
+    def _AUTO_VAR_TEST__S1_ev1(self):
         # AUTO_VAR_TEST__S1 behavior
         # uml: 1. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1 += 1 }`.", true)] / { auto_var_1 += 1 }
         if trace_guard("State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1 += 1 }`.", true):
-        
-            # Step 1: execute action `auto_var_1 += 1`
-            auto_var_1 += 1
-         # end of behavior for AUTO_VAR_TEST__S1
+
         
         # AUTO_VAR_TEST__S1 behavior
         # uml: 2. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", auto_var_1 == 2)] / { trace("Transition action `` for AUTO_VAR_TEST__S1 to AUTO_VAR_TEST__S2.") } TransitionTo(AUTO_VAR_TEST__S2)
         if trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", auto_var_1 == 2):
-        
+
             # Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition).
             self._AUTO_VAR_TEST__S1_exit()
             
@@ -7321,74 +5916,54 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for AUTO_VAR_TEST__S1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state AUTO_VAR_TEST__S2
     ########################################
     
-    def _AUTO_VAR_TEST__S2_enter(self):    
+    def _AUTO_VAR_TEST__S2_enter(self):
         self.stateId = StateId.AUTO_VAR_TEST__S2
         
         # AUTO_VAR_TEST__S2 behavior
         # uml: enter / { trace("Enter AUTO_VAR_TEST__S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter AUTO_VAR_TEST__S2.")`
-            MainClass.trace("Enter AUTO_VAR_TEST__S2.")
-         # end of behavior for AUTO_VAR_TEST__S2
+
     
-    
-    def _AUTO_VAR_TEST__S2_exit(self):    
+    def _AUTO_VAR_TEST__S2_exit(self):
         # AUTO_VAR_TEST__S2 behavior
         # uml: exit / { trace("Exit AUTO_VAR_TEST__S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit AUTO_VAR_TEST__S2.")`
-            MainClass.trace("Exit AUTO_VAR_TEST__S2.")
-         # end of behavior for AUTO_VAR_TEST__S2
+
         
         self.stateId = StateId.AUTO_VAR_TEST
-    
     
     
     ########################################
     # event handlers for state META_EXPANSIONS
     ########################################
     
-    def _META_EXPANSIONS_enter(self):    
+    def _META_EXPANSIONS_enter(self):
         self.stateId = StateId.META_EXPANSIONS
         
         # META_EXPANSIONS behavior
         # uml: enter / { trace("Enter META_EXPANSIONS.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter META_EXPANSIONS.")`
-            MainClass.trace("Enter META_EXPANSIONS.")
-         # end of behavior for META_EXPANSIONS
+
     
-    
-    def _META_EXPANSIONS_exit(self):    
+    def _META_EXPANSIONS_exit(self):
         # META_EXPANSIONS behavior
         # uml: exit / { trace("Exit META_EXPANSIONS.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit META_EXPANSIONS.")`
-            MainClass.trace("Exit META_EXPANSIONS.")
-         # end of behavior for META_EXPANSIONS
+
         
         self.stateId = StateId.TEST6_ROOT
     
-    
-    def _META_EXPANSIONS_ChoicePoint_2__transition(self):    
+    def _META_EXPANSIONS_ChoicePoint_2__transition(self):
         # META_EXPANSIONS.<ChoicePoint>(2) behavior
         # uml: / { trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(2) to S5.")\ntrace_meta() } TransitionTo(S5)
         if True:
-        
+
             # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(2) to S5.")\ntrace_meta()`.
@@ -7400,53 +5975,38 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for META_EXPANSIONS.<ChoicePoint>(2)
-        
-        # unreachable behavior: `else / { trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(2) to S4.")\ntrace_meta() } TransitionTo(S4)` due to unconditional transition above
-    
     
     
     ########################################
     # event handlers for state META_EXPANSIONS__S1
     ########################################
     
-    def _META_EXPANSIONS__S1_enter(self):    
+    def _META_EXPANSIONS__S1_enter(self):
         self.stateId = StateId.META_EXPANSIONS__S1
         
         # META_EXPANSIONS__S1 behavior
         # uml: enter / { trace("Enter META_EXPANSIONS__S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter META_EXPANSIONS__S1.")`
-            MainClass.trace("Enter META_EXPANSIONS__S1.")
-         # end of behavior for META_EXPANSIONS__S1
+
         
         # META_EXPANSIONS__S1 behavior
         # uml: enter [trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output() }`.", true):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for META_EXPANSIONS__S1
+
     
-    
-    def _META_EXPANSIONS__S1_exit(self):    
+    def _META_EXPANSIONS__S1_exit(self):
         # META_EXPANSIONS__S1 behavior
         # uml: exit / { trace("Exit META_EXPANSIONS__S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit META_EXPANSIONS__S1.")`
-            MainClass.trace("Exit META_EXPANSIONS__S1.")
-         # end of behavior for META_EXPANSIONS__S1
+
         
         self.stateId = StateId.META_EXPANSIONS
     
-    
-    def _META_EXPANSIONS__S1_ev1(self):    
+    def _META_EXPANSIONS__S1_ev1(self):
         # META_EXPANSIONS__S1 behavior
         # uml: EV1 [trace_guard("State META_EXPANSIONS__S1: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS__S2)`.", true)] / { trace("Transition action `trace_meta()` for META_EXPANSIONS__S1 to META_EXPANSIONS__S2.")\ntrace_meta() } TransitionTo(META_EXPANSIONS__S2)
         if trace_guard("State META_EXPANSIONS__S1: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS__S2)`.", true):
-        
+
             # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
             self._META_EXPANSIONS__S1_exit()
             
@@ -7459,53 +6019,38 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for META_EXPANSIONS__S1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state META_EXPANSIONS__S2
     ########################################
     
-    def _META_EXPANSIONS__S2_enter(self):    
+    def _META_EXPANSIONS__S2_enter(self):
         self.stateId = StateId.META_EXPANSIONS__S2
         
         # META_EXPANSIONS__S2 behavior
         # uml: enter / { trace("Enter META_EXPANSIONS__S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter META_EXPANSIONS__S2.")`
-            MainClass.trace("Enter META_EXPANSIONS__S2.")
-         # end of behavior for META_EXPANSIONS__S2
+
         
         # META_EXPANSIONS__S2 behavior
         # uml: enter [trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta() }`.", true)] / { trace_meta() }
         if trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta() }`.", true):
-        
-            # Step 1: execute action `trace_meta()`
-            MainClass.trace("META: State: META_EXPANSIONS__S2, trigger: enter, behavior vertex: META_EXPANSIONS__S2")
-         # end of behavior for META_EXPANSIONS__S2
+
     
-    
-    def _META_EXPANSIONS__S2_exit(self):    
+    def _META_EXPANSIONS__S2_exit(self):
         # META_EXPANSIONS__S2 behavior
         # uml: exit / { trace("Exit META_EXPANSIONS__S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit META_EXPANSIONS__S2.")`
-            MainClass.trace("Exit META_EXPANSIONS__S2.")
-         # end of behavior for META_EXPANSIONS__S2
+
         
         self.stateId = StateId.META_EXPANSIONS
     
-    
-    def _META_EXPANSIONS__S2_ev1(self):    
+    def _META_EXPANSIONS__S2_ev1(self):
         # META_EXPANSIONS__S2 behavior
         # uml: EV1 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))`.", true)] / { trace("Transition action `trace_meta()` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(1).")\ntrace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))
         if trace_guard("State META_EXPANSIONS__S2: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))`.", true):
-        
+
             # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
             self._META_EXPANSIONS__S2_exit()
             
@@ -7519,7 +6064,7 @@ class Spec2Sm(Spec2SmBase):
             # META_EXPANSIONS.<ChoicePoint>(1) behavior
             # uml: / { trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(1) to S3.")\ntrace_meta() } TransitionTo(S3)
             if True:
-            
+
                 # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(1) to S3.")\ntrace_meta()`.
@@ -7531,19 +6076,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for META_EXPANSIONS.<ChoicePoint>(1)
-            
-            # unreachable behavior: `else / { trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(1) to S4.")\ntrace_meta() } TransitionTo(S4)` due to unconditional transition above
-         # end of behavior for META_EXPANSIONS__S2
-        
-        # No ancestor handles this event.
     
-    
-    def _META_EXPANSIONS__S2_ev2(self):    
+    def _META_EXPANSIONS__S2_ev2(self):
         # META_EXPANSIONS__S2 behavior
         # uml: EV2 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV2 TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", true)] / { trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(2).") } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))
         if trace_guard("State META_EXPANSIONS__S2: check behavior `EV2 TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", true):
-        
+
             # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
             self._META_EXPANSIONS__S2_exit()
             
@@ -7556,45 +6094,33 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._META_EXPANSIONS_ChoicePoint_2__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for META_EXPANSIONS__S2
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state S3
     ########################################
     
-    def _S3_enter(self):    
+    def _S3_enter(self):
         self.stateId = StateId.S3
         
         # S3 behavior
         # uml: enter / { trace("Enter S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter S3.")`
-            MainClass.trace("Enter S3.")
-         # end of behavior for S3
+
     
-    
-    def _S3_exit(self):    
+    def _S3_exit(self):
         # S3 behavior
         # uml: exit / { trace("Exit S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit S3.")`
-            MainClass.trace("Exit S3.")
-         # end of behavior for S3
+
         
         self.stateId = StateId.META_EXPANSIONS
     
-    
-    def _S3_ev1(self):    
+    def _S3_ev1(self):
         # S3 behavior
         # uml: EV1 [trace_guard("State S3: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", true)] / { trace("Transition action `trace_meta()` for S3 to META_EXPANSIONS.<ChoicePoint>(2).")\ntrace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))
         if trace_guard("State S3: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", true):
-        
+
             # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
             self._S3_exit()
             
@@ -7608,148 +6134,106 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._META_EXPANSIONS_ChoicePoint_2__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for S3
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state S4
     ########################################
     
-    def _S4_enter(self):    
+    def _S4_enter(self):
         self.stateId = StateId.S4
         
         # S4 behavior
         # uml: enter / { trace("Enter S4.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter S4.")`
-            MainClass.trace("Enter S4.")
-         # end of behavior for S4
+
     
-    
-    def _S4_exit(self):    
+    def _S4_exit(self):
         # S4 behavior
         # uml: exit / { trace("Exit S4.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit S4.")`
-            MainClass.trace("Exit S4.")
-         # end of behavior for S4
+
         
         self.stateId = StateId.META_EXPANSIONS
-    
     
     
     ########################################
     # event handlers for state S5
     ########################################
     
-    def _S5_enter(self):    
+    def _S5_enter(self):
         self.stateId = StateId.S5
         
         # S5 behavior
         # uml: enter / { trace("Enter S5.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter S5.")`
-            MainClass.trace("Enter S5.")
-         # end of behavior for S5
+
     
-    
-    def _S5_exit(self):    
+    def _S5_exit(self):
         # S5 behavior
         # uml: exit / { trace("Exit S5.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit S5.")`
-            MainClass.trace("Exit S5.")
-         # end of behavior for S5
+
         
         self.stateId = StateId.META_EXPANSIONS
-    
     
     
     ########################################
     # event handlers for state NORMAL
     ########################################
     
-    def _NORMAL_enter(self):    
+    def _NORMAL_enter(self):
         self.stateId = StateId.NORMAL
         
         # NORMAL behavior
         # uml: enter / { trace("Enter NORMAL.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter NORMAL.")`
-            MainClass.trace("Enter NORMAL.")
-         # end of behavior for NORMAL
+
     
-    
-    def _NORMAL_exit(self):    
+    def _NORMAL_exit(self):
         # NORMAL behavior
         # uml: exit / { trace("Exit NORMAL.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit NORMAL.")`
-            MainClass.trace("Exit NORMAL.")
-         # end of behavior for NORMAL
+
         
         self.stateId = StateId.TEST6_ROOT
-    
     
     
     ########################################
     # event handlers for state NORMAL__S1
     ########################################
     
-    def _NORMAL__S1_enter(self):    
+    def _NORMAL__S1_enter(self):
         self.stateId = StateId.NORMAL__S1
         
         # NORMAL__S1 behavior
         # uml: enter / { trace("Enter NORMAL__S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter NORMAL__S1.")`
-            MainClass.trace("Enter NORMAL__S1.")
-         # end of behavior for NORMAL__S1
+
         
         # NORMAL__S1 behavior
         # uml: enter [trace_guard("State NORMAL__S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State NORMAL__S1: check behavior `enter / { clear_output() }`.", true):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for NORMAL__S1
+
     
-    
-    def _NORMAL__S1_exit(self):    
+    def _NORMAL__S1_exit(self):
         # NORMAL__S1 behavior
         # uml: exit / { trace("Exit NORMAL__S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit NORMAL__S1.")`
-            MainClass.trace("Exit NORMAL__S1.")
-         # end of behavior for NORMAL__S1
+
         
         self.stateId = StateId.NORMAL
     
-    
-    def _NORMAL__S1_ev1(self):    
+    def _NORMAL__S1_ev1(self):
         # NORMAL__S1 behavior
         # uml: 1. EV1 [trace_guard("State NORMAL__S1: check behavior `1. EV1 / { count += 1 }`.", true)] / { count += 1 }
         if trace_guard("State NORMAL__S1: check behavior `1. EV1 / { count += 1 }`.", true):
-        
-            # Step 1: execute action `count += 1`
-            self.vars.count += 1
-         # end of behavior for NORMAL__S1
+
         
         # NORMAL__S1 behavior
         # uml: 2. EV1 [trace_guard("State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.", count >= 2)] / { trace("Transition action `` for NORMAL__S1 to NORMAL__S2.") } TransitionTo(NORMAL__S2)
         if trace_guard("State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.", self.vars.count >= 2):
-        
+
             # Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
             self._NORMAL__S1_exit()
             
@@ -7761,74 +6245,54 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for NORMAL__S1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state NORMAL__S2
     ########################################
     
-    def _NORMAL__S2_enter(self):    
+    def _NORMAL__S2_enter(self):
         self.stateId = StateId.NORMAL__S2
         
         # NORMAL__S2 behavior
         # uml: enter / { trace("Enter NORMAL__S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter NORMAL__S2.")`
-            MainClass.trace("Enter NORMAL__S2.")
-         # end of behavior for NORMAL__S2
+
     
-    
-    def _NORMAL__S2_exit(self):    
+    def _NORMAL__S2_exit(self):
         # NORMAL__S2 behavior
         # uml: exit / { trace("Exit NORMAL__S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit NORMAL__S2.")`
-            MainClass.trace("Exit NORMAL__S2.")
-         # end of behavior for NORMAL__S2
+
         
         self.stateId = StateId.NORMAL
-    
     
     
     ########################################
     # event handlers for state TEST6_VARS_EXPANSIONS__DECIDE
     ########################################
     
-    def _TEST6_VARS_EXPANSIONS__DECIDE_enter(self):    
+    def _TEST6_VARS_EXPANSIONS__DECIDE_enter(self):
         self.stateId = StateId.TEST6_VARS_EXPANSIONS__DECIDE
         
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.")`
-            MainClass.trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.")
-         # end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
+
     
-    
-    def _TEST6_VARS_EXPANSIONS__DECIDE_exit(self):    
+    def _TEST6_VARS_EXPANSIONS__DECIDE_exit(self):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")`
-            MainClass.trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")
-         # end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
+
         
         self.stateId = StateId.TEST6_ROOT
     
-    
-    def _TEST6_VARS_EXPANSIONS__DECIDE_ev1(self):    
+    def _TEST6_VARS_EXPANSIONS__DECIDE_ev1(self):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: EV1 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV1 TransitionTo(NORMAL)`.", true)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to NORMAL.") } TransitionTo(NORMAL)
         if trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV1 TransitionTo(NORMAL)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition).
             self._TEST6_VARS_EXPANSIONS__DECIDE_exit()
             
@@ -7841,7 +6305,7 @@ class Spec2Sm(Spec2SmBase):
             # NORMAL.<InitialState> behavior
             # uml: / { trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1.") } TransitionTo(NORMAL__S1)
             if True:
-            
+
                 # Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1.")`.
@@ -7852,17 +6316,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for NORMAL.<InitialState>
-         # end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST6_VARS_EXPANSIONS__DECIDE_ev2(self):    
+    def _TEST6_VARS_EXPANSIONS__DECIDE_ev2(self):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: EV2 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV2 TransitionTo(AUTO_VAR_TEST)`.", true)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to AUTO_VAR_TEST.") } TransitionTo(AUTO_VAR_TEST)
         if trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV2 TransitionTo(AUTO_VAR_TEST)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition).
             self._TEST6_VARS_EXPANSIONS__DECIDE_exit()
             
@@ -7875,7 +6334,7 @@ class Spec2Sm(Spec2SmBase):
             # AUTO_VAR_TEST.<InitialState> behavior
             # uml: / { trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1.") } TransitionTo(AUTO_VAR_TEST__S1)
             if True:
-            
+
                 # Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1.")`.
@@ -7886,17 +6345,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for AUTO_VAR_TEST.<InitialState>
-         # end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST6_VARS_EXPANSIONS__DECIDE_ev3(self):    
+    def _TEST6_VARS_EXPANSIONS__DECIDE_ev3(self):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: EV3 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV3 TransitionTo(META_EXPANSIONS)`.", true)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to META_EXPANSIONS.") } TransitionTo(META_EXPANSIONS)
         if trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV3 TransitionTo(META_EXPANSIONS)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition).
             self._TEST6_VARS_EXPANSIONS__DECIDE_exit()
             
@@ -7909,7 +6363,7 @@ class Spec2Sm(Spec2SmBase):
             # META_EXPANSIONS.<InitialState> behavior
             # uml: / { trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1.") } TransitionTo(META_EXPANSIONS__S1)
             if True:
-            
+
                 # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1.")`.
@@ -7920,170 +6374,122 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for META_EXPANSIONS.<InitialState>
-         # end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST7_INITIAL_OR_HISTORY
     ########################################
     
-    def _TEST7_INITIAL_OR_HISTORY_enter(self):    
+    def _TEST7_INITIAL_OR_HISTORY_enter(self):
         self.stateId = StateId.TEST7_INITIAL_OR_HISTORY
         
         # TEST7_INITIAL_OR_HISTORY behavior
         # uml: enter / { trace("Enter TEST7_INITIAL_OR_HISTORY.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST7_INITIAL_OR_HISTORY.")`
-            MainClass.trace("Enter TEST7_INITIAL_OR_HISTORY.")
-         # end of behavior for TEST7_INITIAL_OR_HISTORY
+
     
-    
-    def _TEST7_INITIAL_OR_HISTORY_exit(self):    
+    def _TEST7_INITIAL_OR_HISTORY_exit(self):
         # TEST7_INITIAL_OR_HISTORY behavior
         # uml: exit / { trace("Exit TEST7_INITIAL_OR_HISTORY.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST7_INITIAL_OR_HISTORY.")`
-            MainClass.trace("Exit TEST7_INITIAL_OR_HISTORY.")
-         # end of behavior for TEST7_INITIAL_OR_HISTORY
+
         
         self.stateId = StateId.ROOT
-    
     
     
     ########################################
     # event handlers for state TEST7
     ########################################
     
-    def _TEST7_enter(self):    
+    def _TEST7_enter(self):
         self.stateId = StateId.TEST7
         
         # TEST7 behavior
         # uml: enter / { trace("Enter TEST7.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST7.")`
-            MainClass.trace("Enter TEST7.")
-         # end of behavior for TEST7
+
         
         # TEST7 behavior
         # uml: enter [trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
         if trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output() }`.", true):
-        
-            # Step 1: execute action `clear_dispatch_output()`
-            MainClass.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
-         # end of behavior for TEST7
+
     
-    
-    def _TEST7_exit(self):    
+    def _TEST7_exit(self):
         # TEST7 behavior
         # uml: exit / { trace("Exit TEST7.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST7.")`
-            MainClass.trace("Exit TEST7.")
-         # end of behavior for TEST7
+
         
         self.stateId = StateId.TEST7_INITIAL_OR_HISTORY
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY1
     ########################################
     
-    def _T7__DEEP_HISTORY1_enter(self):    
+    def _T7__DEEP_HISTORY1_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY1
         
         # T7__DEEP_HISTORY1 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY1.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY1.")
-         # end of behavior for T7__DEEP_HISTORY1
+
     
-    
-    def _T7__DEEP_HISTORY1_exit(self):    
+    def _T7__DEEP_HISTORY1_exit(self):
         # T7__DEEP_HISTORY1 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY1.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY1.")
-         # end of behavior for T7__DEEP_HISTORY1
+
         
         self.stateId = StateId.TEST7
-    
     
     
     ########################################
     # event handlers for state T7__DH1__SANTAS_WORKSHOP
     ########################################
     
-    def _T7__DH1__SANTAS_WORKSHOP_enter(self):    
+    def _T7__DH1__SANTAS_WORKSHOP_enter(self):
         self.stateId = StateId.T7__DH1__SANTAS_WORKSHOP
         
         # T7__DH1__SANTAS_WORKSHOP behavior
         # uml: enter / { trace("Enter T7__DH1__SANTAS_WORKSHOP.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__SANTAS_WORKSHOP.")`
-            MainClass.trace("Enter T7__DH1__SANTAS_WORKSHOP.")
-         # end of behavior for T7__DH1__SANTAS_WORKSHOP
+
     
-    
-    def _T7__DH1__SANTAS_WORKSHOP_exit(self):    
+    def _T7__DH1__SANTAS_WORKSHOP_exit(self):
         # T7__DH1__SANTAS_WORKSHOP behavior
         # uml: exit / { trace("Exit T7__DH1__SANTAS_WORKSHOP.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__SANTAS_WORKSHOP.")`
-            MainClass.trace("Exit T7__DH1__SANTAS_WORKSHOP.")
-         # end of behavior for T7__DH1__SANTAS_WORKSHOP
+
         
         self.stateId = StateId.T7__DEEP_HISTORY1
-    
     
     
     ########################################
     # event handlers for state T7__DH1__ALIENS_DETECTED
     ########################################
     
-    def _T7__DH1__ALIENS_DETECTED_enter(self):    
+    def _T7__DH1__ALIENS_DETECTED_enter(self):
         self.stateId = StateId.T7__DH1__ALIENS_DETECTED
         
         # T7__DH1__ALIENS_DETECTED behavior
         # uml: enter / { trace("Enter T7__DH1__ALIENS_DETECTED.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__ALIENS_DETECTED.")`
-            MainClass.trace("Enter T7__DH1__ALIENS_DETECTED.")
-         # end of behavior for T7__DH1__ALIENS_DETECTED
+
     
-    
-    def _T7__DH1__ALIENS_DETECTED_exit(self):    
+    def _T7__DH1__ALIENS_DETECTED_exit(self):
         # T7__DH1__ALIENS_DETECTED behavior
         # uml: exit / { trace("Exit T7__DH1__ALIENS_DETECTED.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__ALIENS_DETECTED.")`
-            MainClass.trace("Exit T7__DH1__ALIENS_DETECTED.")
-         # end of behavior for T7__DH1__ALIENS_DETECTED
+
         
         self.stateId = StateId.T7__DH1__SANTAS_WORKSHOP
     
-    
-    def _T7__DH1__ALIENS_DETECTED_ev8(self):    
+    def _T7__DH1__ALIENS_DETECTED_ev8(self):
         # T7__DH1__ALIENS_DETECTED behavior
         # uml: EV8 [trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", true)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.") } TransitionTo(T7__DH1__BUILD)
         if trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__DH1__SANTAS_WORKSHOP)
             
@@ -8096,90 +6502,68 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DH1__BUILD_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__DH1__ALIENS_DETECTED
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DH1__GET_BACKUP
     ########################################
     
-    def _T7__DH1__GET_BACKUP_enter(self):    
+    def _T7__DH1__GET_BACKUP_enter(self):
         self.stateId = StateId.T7__DH1__GET_BACKUP
         
         # T7__DH1__GET_BACKUP behavior
         # uml: enter / { trace("Enter T7__DH1__GET_BACKUP.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__GET_BACKUP.")`
-            MainClass.trace("Enter T7__DH1__GET_BACKUP.")
-         # end of behavior for T7__DH1__GET_BACKUP
+
     
-    
-    def _T7__DH1__GET_BACKUP_exit(self):    
+    def _T7__DH1__GET_BACKUP_exit(self):
         # T7__DH1__GET_BACKUP behavior
         # uml: exit / { trace("Exit T7__DH1__GET_BACKUP.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__GET_BACKUP.")`
-            MainClass.trace("Exit T7__DH1__GET_BACKUP.")
-         # end of behavior for T7__DH1__GET_BACKUP
+
         
         self.stateId = StateId.T7__DH1__ALIENS_DETECTED
-    
     
     
     ########################################
     # event handlers for state T7__DH1__HERO
     ########################################
     
-    def _T7__DH1__HERO_enter(self):    
+    def _T7__DH1__HERO_enter(self):
         self.stateId = StateId.T7__DH1__HERO
         
         # T7__DH1__HERO behavior
         # uml: enter / { trace("Enter T7__DH1__HERO.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__HERO.")`
-            MainClass.trace("Enter T7__DH1__HERO.")
-         # end of behavior for T7__DH1__HERO
+
         
         # T7__DH1__HERO behavior
         # uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }
         if trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO
-         # end of behavior for T7__DH1__HERO
         
         # T7__DH1__HERO behavior
         # uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }`.", true)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }
         if trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;)`
             self.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO
-         # end of behavior for T7__DH1__HERO
     
-    
-    def _T7__DH1__HERO_exit(self):    
+    def _T7__DH1__HERO_exit(self):
         # T7__DH1__HERO behavior
         # uml: exit / { trace("Exit T7__DH1__HERO.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__HERO.")`
-            MainClass.trace("Exit T7__DH1__HERO.")
-         # end of behavior for T7__DH1__HERO
+
         
         self.stateId = StateId.T7__DH1__GET_BACKUP
     
-    
-    def _T7__DH1__HERO_InitialState_transition(self):    
+    def _T7__DH1__HERO_InitialState_transition(self):
         # T7__DH1__HERO.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR.") } TransitionTo(T7__DH1__CALL_THOR)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__DH1__HERO` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR.")`.
@@ -8190,43 +6574,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__HERO.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__DH1__CALL_BATMAN
     ########################################
     
-    def _T7__DH1__CALL_BATMAN_enter(self):    
+    def _T7__DH1__CALL_BATMAN_enter(self):
         self.stateId = StateId.T7__DH1__CALL_BATMAN
         
         # T7__DH1__CALL_BATMAN behavior
         # uml: enter / { trace("Enter T7__DH1__CALL_BATMAN.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__CALL_BATMAN.")`
-            MainClass.trace("Enter T7__DH1__CALL_BATMAN.")
-         # end of behavior for T7__DH1__CALL_BATMAN
+
     
-    
-    def _T7__DH1__CALL_BATMAN_exit(self):    
+    def _T7__DH1__CALL_BATMAN_exit(self):
         # T7__DH1__CALL_BATMAN behavior
         # uml: exit / { trace("Exit T7__DH1__CALL_BATMAN.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__CALL_BATMAN.")`
-            MainClass.trace("Exit T7__DH1__CALL_BATMAN.")
-         # end of behavior for T7__DH1__CALL_BATMAN
+
         
         self.stateId = StateId.T7__DH1__HERO
     
-    
-    def _T7__DH1__CALL_BATMAN_ev1(self):    
+    def _T7__DH1__CALL_BATMAN_ev1(self):
         # T7__DH1__CALL_BATMAN behavior
         # uml: EV1 [trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", true)] / { trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.") } TransitionTo(T7__DH1__BUDDY_ELF)
         if trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__DH1__GET_BACKUP)
             
@@ -8239,45 +6613,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__CALL_BATMAN
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DH1__CALL_THOR
     ########################################
     
-    def _T7__DH1__CALL_THOR_enter(self):    
+    def _T7__DH1__CALL_THOR_enter(self):
         self.stateId = StateId.T7__DH1__CALL_THOR
         
         # T7__DH1__CALL_THOR behavior
         # uml: enter / { trace("Enter T7__DH1__CALL_THOR.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__CALL_THOR.")`
-            MainClass.trace("Enter T7__DH1__CALL_THOR.")
-         # end of behavior for T7__DH1__CALL_THOR
+
     
-    
-    def _T7__DH1__CALL_THOR_exit(self):    
+    def _T7__DH1__CALL_THOR_exit(self):
         # T7__DH1__CALL_THOR behavior
         # uml: exit / { trace("Exit T7__DH1__CALL_THOR.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__CALL_THOR.")`
-            MainClass.trace("Exit T7__DH1__CALL_THOR.")
-         # end of behavior for T7__DH1__CALL_THOR
+
         
         self.stateId = StateId.T7__DH1__HERO
     
-    
-    def _T7__DH1__CALL_THOR_ev1(self):    
+    def _T7__DH1__CALL_THOR_ev1(self):
         # T7__DH1__CALL_THOR behavior
         # uml: EV1 [trace_guard("State T7__DH1__CALL_THOR: check behavior `EV1 TransitionTo(T7__DH1__CALL_BATMAN)`.", true)] / { trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN.") } TransitionTo(T7__DH1__CALL_BATMAN)
         if trace_guard("State T7__DH1__CALL_THOR: check behavior `EV1 TransitionTo(T7__DH1__CALL_BATMAN)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__HERO` state (Least Common Ancestor for transition).
             self._T7__DH1__CALL_THOR_exit()
             
@@ -8289,90 +6651,68 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__CALL_THOR
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DH1__LOCAL_HELP
     ########################################
     
-    def _T7__DH1__LOCAL_HELP_enter(self):    
+    def _T7__DH1__LOCAL_HELP_enter(self):
         self.stateId = StateId.T7__DH1__LOCAL_HELP
         
         # T7__DH1__LOCAL_HELP behavior
         # uml: enter / { trace("Enter T7__DH1__LOCAL_HELP.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__LOCAL_HELP.")`
-            MainClass.trace("Enter T7__DH1__LOCAL_HELP.")
-         # end of behavior for T7__DH1__LOCAL_HELP
+
     
-    
-    def _T7__DH1__LOCAL_HELP_exit(self):    
+    def _T7__DH1__LOCAL_HELP_exit(self):
         # T7__DH1__LOCAL_HELP behavior
         # uml: exit / { trace("Exit T7__DH1__LOCAL_HELP.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__LOCAL_HELP.")`
-            MainClass.trace("Exit T7__DH1__LOCAL_HELP.")
-         # end of behavior for T7__DH1__LOCAL_HELP
+
         
         self.stateId = StateId.T7__DH1__GET_BACKUP
-    
     
     
     ########################################
     # event handlers for state T7__DH1__BUDDY_ELF
     ########################################
     
-    def _T7__DH1__BUDDY_ELF_enter(self):    
+    def _T7__DH1__BUDDY_ELF_enter(self):
         self.stateId = StateId.T7__DH1__BUDDY_ELF
         
         # T7__DH1__BUDDY_ELF behavior
         # uml: enter / { trace("Enter T7__DH1__BUDDY_ELF.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__BUDDY_ELF.")`
-            MainClass.trace("Enter T7__DH1__BUDDY_ELF.")
-         # end of behavior for T7__DH1__BUDDY_ELF
+
         
         # T7__DH1__BUDDY_ELF behavior
         # uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }
         if trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF
-         # end of behavior for T7__DH1__BUDDY_ELF
         
         # T7__DH1__BUDDY_ELF behavior
         # uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }`.", true)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }
         if trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;)`
             self.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF
-         # end of behavior for T7__DH1__BUDDY_ELF
     
-    
-    def _T7__DH1__BUDDY_ELF_exit(self):    
+    def _T7__DH1__BUDDY_ELF_exit(self):
         # T7__DH1__BUDDY_ELF behavior
         # uml: exit / { trace("Exit T7__DH1__BUDDY_ELF.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__BUDDY_ELF.")`
-            MainClass.trace("Exit T7__DH1__BUDDY_ELF.")
-         # end of behavior for T7__DH1__BUDDY_ELF
+
         
         self.stateId = StateId.T7__DH1__LOCAL_HELP
     
-    
-    def _T7__DH1__BUDDY_ELF_ev1(self):    
+    def _T7__DH1__BUDDY_ELF_ev1(self):
         # T7__DH1__BUDDY_ELF behavior
         # uml: EV1 [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `EV1 TransitionTo(T7__DH1__POLAR_BEARS)`.", true)] / { trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS.") } TransitionTo(T7__DH1__POLAR_BEARS)
         if trace_guard("State T7__DH1__BUDDY_ELF: check behavior `EV1 TransitionTo(T7__DH1__POLAR_BEARS)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__LOCAL_HELP` state (Least Common Ancestor for transition).
             self._T7__DH1__BUDDY_ELF_exit()
             
@@ -8384,98 +6724,75 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__BUDDY_ELF
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DH1__POLAR_BEARS
     ########################################
     
-    def _T7__DH1__POLAR_BEARS_enter(self):    
+    def _T7__DH1__POLAR_BEARS_enter(self):
         self.stateId = StateId.T7__DH1__POLAR_BEARS
         
         # T7__DH1__POLAR_BEARS behavior
         # uml: enter / { trace("Enter T7__DH1__POLAR_BEARS.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__POLAR_BEARS.")`
-            MainClass.trace("Enter T7__DH1__POLAR_BEARS.")
-         # end of behavior for T7__DH1__POLAR_BEARS
+
         
         # T7__DH1__POLAR_BEARS behavior
         # uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }
         if trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS
-         # end of behavior for T7__DH1__POLAR_BEARS
         
         # T7__DH1__POLAR_BEARS behavior
         # uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }`.", true)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }
         if trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;)`
             self.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS
-         # end of behavior for T7__DH1__POLAR_BEARS
     
-    
-    def _T7__DH1__POLAR_BEARS_exit(self):    
+    def _T7__DH1__POLAR_BEARS_exit(self):
         # T7__DH1__POLAR_BEARS behavior
         # uml: exit / { trace("Exit T7__DH1__POLAR_BEARS.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__POLAR_BEARS.")`
-            MainClass.trace("Exit T7__DH1__POLAR_BEARS.")
-         # end of behavior for T7__DH1__POLAR_BEARS
+
         
         self.stateId = StateId.T7__DH1__LOCAL_HELP
-    
     
     
     ########################################
     # event handlers for state T7__DH1__GIVE_COOKIES
     ########################################
     
-    def _T7__DH1__GIVE_COOKIES_enter(self):    
+    def _T7__DH1__GIVE_COOKIES_enter(self):
         self.stateId = StateId.T7__DH1__GIVE_COOKIES
         
         # T7__DH1__GIVE_COOKIES behavior
         # uml: enter / { trace("Enter T7__DH1__GIVE_COOKIES.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__GIVE_COOKIES.")`
-            MainClass.trace("Enter T7__DH1__GIVE_COOKIES.")
-         # end of behavior for T7__DH1__GIVE_COOKIES
+
         
         # T7__DH1__GIVE_COOKIES behavior
         # uml: enter [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }
         if trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES
-         # end of behavior for T7__DH1__GIVE_COOKIES
     
-    
-    def _T7__DH1__GIVE_COOKIES_exit(self):    
+    def _T7__DH1__GIVE_COOKIES_exit(self):
         # T7__DH1__GIVE_COOKIES behavior
         # uml: exit / { trace("Exit T7__DH1__GIVE_COOKIES.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__GIVE_COOKIES.")`
-            MainClass.trace("Exit T7__DH1__GIVE_COOKIES.")
-         # end of behavior for T7__DH1__GIVE_COOKIES
+
         
         self.stateId = StateId.T7__DH1__ALIENS_DETECTED
     
-    
-    def _T7__DH1__GIVE_COOKIES_ev1(self):    
+    def _T7__DH1__GIVE_COOKIES_ev1(self):
         # T7__DH1__GIVE_COOKIES behavior
         # uml: EV1 [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `EV1 TransitionTo(T7__DH1__CALL_THOR)`.", true)] / { trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR.") } TransitionTo(T7__DH1__CALL_THOR)
         if trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `EV1 TransitionTo(T7__DH1__CALL_THOR)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition).
             self._T7__DH1__GIVE_COOKIES_exit()
             
@@ -8489,53 +6806,40 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__GIVE_COOKIES
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DH1__SNOWBALL_FIGHT
     ########################################
     
-    def _T7__DH1__SNOWBALL_FIGHT_enter(self):    
+    def _T7__DH1__SNOWBALL_FIGHT_enter(self):
         self.stateId = StateId.T7__DH1__SNOWBALL_FIGHT
         
         # T7__DH1__SNOWBALL_FIGHT behavior
         # uml: enter / { trace("Enter T7__DH1__SNOWBALL_FIGHT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__SNOWBALL_FIGHT.")`
-            MainClass.trace("Enter T7__DH1__SNOWBALL_FIGHT.")
-         # end of behavior for T7__DH1__SNOWBALL_FIGHT
+
         
         # T7__DH1__SNOWBALL_FIGHT behavior
         # uml: enter [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }
         if trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT
-         # end of behavior for T7__DH1__SNOWBALL_FIGHT
     
-    
-    def _T7__DH1__SNOWBALL_FIGHT_exit(self):    
+    def _T7__DH1__SNOWBALL_FIGHT_exit(self):
         # T7__DH1__SNOWBALL_FIGHT behavior
         # uml: exit / { trace("Exit T7__DH1__SNOWBALL_FIGHT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__SNOWBALL_FIGHT.")`
-            MainClass.trace("Exit T7__DH1__SNOWBALL_FIGHT.")
-         # end of behavior for T7__DH1__SNOWBALL_FIGHT
+
         
         self.stateId = StateId.T7__DH1__ALIENS_DETECTED
     
-    
-    def _T7__DH1__SNOWBALL_FIGHT_ev1(self):    
+    def _T7__DH1__SNOWBALL_FIGHT_ev1(self):
         # T7__DH1__SNOWBALL_FIGHT behavior
         # uml: EV1 [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `EV1 TransitionTo(T7__DH1__GIVE_COOKIES)`.", true)] / { trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES.") } TransitionTo(T7__DH1__GIVE_COOKIES)
         if trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `EV1 TransitionTo(T7__DH1__GIVE_COOKIES)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition).
             self._T7__DH1__SNOWBALL_FIGHT_exit()
             
@@ -8547,45 +6851,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__SNOWBALL_FIGHT
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DH1__BUILD
     ########################################
     
-    def _T7__DH1__BUILD_enter(self):    
+    def _T7__DH1__BUILD_enter(self):
         self.stateId = StateId.T7__DH1__BUILD
         
         # T7__DH1__BUILD behavior
         # uml: enter / { trace("Enter T7__DH1__BUILD.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__BUILD.")`
-            MainClass.trace("Enter T7__DH1__BUILD.")
-         # end of behavior for T7__DH1__BUILD
+
     
-    
-    def _T7__DH1__BUILD_exit(self):    
+    def _T7__DH1__BUILD_exit(self):
         # T7__DH1__BUILD behavior
         # uml: exit / { trace("Exit T7__DH1__BUILD.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__BUILD.")`
-            MainClass.trace("Exit T7__DH1__BUILD.")
-         # end of behavior for T7__DH1__BUILD
+
         
         self.stateId = StateId.T7__DH1__SANTAS_WORKSHOP
     
-    
-    def _T7__DH1__BUILD_ev6(self):    
+    def _T7__DH1__BUILD_ev6(self):
         # T7__DH1__BUILD behavior
         # uml: EV6 [trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", true)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.") } TransitionTo(T7__DH1__ALIENS_DETECTED)
         if trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__DH1__SANTAS_WORKSHOP)
             
@@ -8598,7 +6890,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__ALIENS_DETECTED.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>.") } TransitionTo(T7__DH1__ALIENS_DETECTED.<History>)
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>.")`.
@@ -8610,7 +6902,7 @@ class Spec2Sm(Spec2SmBase):
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES.") } TransitionTo(T7__DH1__GIVE_COOKIES)
                 if self.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES:
-                
+
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES.")`.
@@ -8621,12 +6913,11 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for T7__DH1__ALIENS_DETECTED.<History>
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO.") } TransitionTo(T7__DH1__HERO)
                 if self.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO:
-                
+
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO.")`.
@@ -8639,12 +6930,11 @@ class Spec2Sm(Spec2SmBase):
                     # Finish transition by calling pseudo state transition function.
                     self._T7__DH1__HERO_InitialState_transition()
                     return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                 # end of behavior for T7__DH1__ALIENS_DETECTED.<History>
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF.") } TransitionTo(T7__DH1__BUDDY_ELF)
                 if self.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF:
-                
+
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF.")`.
@@ -8657,12 +6947,11 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for T7__DH1__ALIENS_DETECTED.<History>
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS.") } TransitionTo(T7__DH1__POLAR_BEARS)
                 if self.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS:
-                
+
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS.")`.
@@ -8675,12 +6964,11 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for T7__DH1__ALIENS_DETECTED.<History>
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: else / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT.") } TransitionTo(T7__DH1__SNOWBALL_FIGHT)
                 if True:
-                
+
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT.")`.
@@ -8691,18 +6979,12 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for T7__DH1__ALIENS_DETECTED.<History>
-             # end of behavior for T7__DH1__ALIENS_DETECTED.<InitialState>
-         # end of behavior for T7__DH1__BUILD
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__DH1__BUILD_ev7(self):    
+    def _T7__DH1__BUILD_ev7(self):
         # T7__DH1__BUILD behavior
         # uml: EV7 [trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.<History>)`.", true)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>.") } TransitionTo(T7__DH1__GET_BACKUP.<History>)
         if trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.<History>)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__DH1__SANTAS_WORKSHOP)
             
@@ -8717,7 +6999,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO.") } TransitionTo(T7__DH1__HERO)
             if self.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO.")`.
@@ -8729,12 +7011,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DH1__HERO_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for T7__DH1__GET_BACKUP.<History>
             
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF.") } TransitionTo(T7__DH1__BUDDY_ELF)
             if self.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF.")`.
@@ -8746,12 +7027,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DH1__GET_BACKUP.<History>
             
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS.") } TransitionTo(T7__DH1__POLAR_BEARS)
             if self.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS.")`.
@@ -8763,12 +7043,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DH1__GET_BACKUP.<History>
             
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>().") } TransitionTo(T7__DH1__GET_BACKUP.<ChoicePoint>())
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>().")`.
@@ -8780,7 +7059,7 @@ class Spec2Sm(Spec2SmBase):
                 # T7__DH1__GET_BACKUP.<ChoicePoint>() behavior
                 # uml: / { trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO.") } TransitionTo(T7__DH1__HERO)
                 if True:
-                
+
                     # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO.")`.
@@ -8792,18 +7071,12 @@ class Spec2Sm(Spec2SmBase):
                     # Finish transition by calling pseudo state transition function.
                     self._T7__DH1__HERO_InitialState_transition()
                     return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                 # end of behavior for T7__DH1__GET_BACKUP.<ChoicePoint>()
-             # end of behavior for T7__DH1__GET_BACKUP.<History>
-         # end of behavior for T7__DH1__BUILD
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__DH1__BUILD_InitialState_transition(self):    
+    def _T7__DH1__BUILD_InitialState_transition(self):
         # T7__DH1__BUILD.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>.") } TransitionTo(T7__DH1__BUILD.<History>)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>.")`.
@@ -8815,7 +7088,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TOOL)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL.") } TransitionTo(T7__DH1__TOOL)
             if self.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TOOL:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL.")`.
@@ -8827,12 +7100,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DH1__TOOL_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR.") } TransitionTo(T7__DH1__RACE_CAR)
             if self.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR.")`.
@@ -8844,12 +7116,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR.") } TransitionTo(T7__DH1__TEDDY_BEAR)
             if self.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR.")`.
@@ -8861,12 +7132,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM.") } TransitionTo(T7__DH1__GLOW_WORM)
             if self.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM.")`.
@@ -8878,12 +7148,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT.") } TransitionTo(T7__DH1__ROBOT)
             if self.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT.")`.
@@ -8896,12 +7165,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DH1__ROBOT_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT.") } TransitionTo(T7__DH1__BATTLEBOT)
             if self.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT.")`.
@@ -8914,12 +7182,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E.") } TransitionTo(T7__DH1__WALL_E)
             if self.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E.")`.
@@ -8932,12 +7199,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL.") } TransitionTo(T7__DH1__IMPACT_DRILL)
             if self.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL.")`.
@@ -8949,12 +7215,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW.") } TransitionTo(T7__DH1__CIRCULAR_SAW)
             if self.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW.")`.
@@ -8966,12 +7231,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY.") } TransitionTo(T7__DH1__TOY)
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY.")`.
@@ -8983,52 +7247,40 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DH1__TOY_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for T7__DH1__BUILD.<History>
-         # end of behavior for T7__DH1__BUILD.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__DH1__TOOL
     ########################################
     
-    def _T7__DH1__TOOL_enter(self):    
+    def _T7__DH1__TOOL_enter(self):
         self.stateId = StateId.T7__DH1__TOOL
         
         # T7__DH1__TOOL behavior
         # uml: enter / { trace("Enter T7__DH1__TOOL.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__TOOL.")`
-            MainClass.trace("Enter T7__DH1__TOOL.")
-         # end of behavior for T7__DH1__TOOL
+
         
         # T7__DH1__TOOL behavior
         # uml: enter [trace_guard("State T7__DH1__TOOL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }
         if trace_guard("State T7__DH1__TOOL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;)`
             self.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL
-         # end of behavior for T7__DH1__TOOL
     
-    
-    def _T7__DH1__TOOL_exit(self):    
+    def _T7__DH1__TOOL_exit(self):
         # T7__DH1__TOOL behavior
         # uml: exit / { trace("Exit T7__DH1__TOOL.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__TOOL.")`
-            MainClass.trace("Exit T7__DH1__TOOL.")
-         # end of behavior for T7__DH1__TOOL
+
         
         self.stateId = StateId.T7__DH1__BUILD
     
-    
-    def _T7__DH1__TOOL_ev2(self):    
+    def _T7__DH1__TOOL_ev2(self):
         # T7__DH1__TOOL behavior
         # uml: EV2 [trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", true)] / { trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.") } TransitionTo(T7__DH1__TOY)
         if trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__DH1__BUILD)
             
@@ -9041,16 +7293,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DH1__TOY_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__DH1__TOOL
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__DH1__TOOL_InitialState_transition(self):    
+    def _T7__DH1__TOOL_InitialState_transition(self):
         # T7__DH1__TOOL.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL.") } TransitionTo(T7__DH1__IMPACT_DRILL)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__DH1__TOOL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL.")`.
@@ -9061,88 +7309,68 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__TOOL.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__DH1__CIRCULAR_SAW
     ########################################
     
-    def _T7__DH1__CIRCULAR_SAW_enter(self):    
+    def _T7__DH1__CIRCULAR_SAW_enter(self):
         self.stateId = StateId.T7__DH1__CIRCULAR_SAW
         
         # T7__DH1__CIRCULAR_SAW behavior
         # uml: enter / { trace("Enter T7__DH1__CIRCULAR_SAW.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__CIRCULAR_SAW.")`
-            MainClass.trace("Enter T7__DH1__CIRCULAR_SAW.")
-         # end of behavior for T7__DH1__CIRCULAR_SAW
+
         
         # T7__DH1__CIRCULAR_SAW behavior
         # uml: enter [trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }
         if trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;)`
             self.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW
-         # end of behavior for T7__DH1__CIRCULAR_SAW
     
-    
-    def _T7__DH1__CIRCULAR_SAW_exit(self):    
+    def _T7__DH1__CIRCULAR_SAW_exit(self):
         # T7__DH1__CIRCULAR_SAW behavior
         # uml: exit / { trace("Exit T7__DH1__CIRCULAR_SAW.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__CIRCULAR_SAW.")`
-            MainClass.trace("Exit T7__DH1__CIRCULAR_SAW.")
-         # end of behavior for T7__DH1__CIRCULAR_SAW
+
         
         self.stateId = StateId.T7__DH1__TOOL
-    
     
     
     ########################################
     # event handlers for state T7__DH1__IMPACT_DRILL
     ########################################
     
-    def _T7__DH1__IMPACT_DRILL_enter(self):    
+    def _T7__DH1__IMPACT_DRILL_enter(self):
         self.stateId = StateId.T7__DH1__IMPACT_DRILL
         
         # T7__DH1__IMPACT_DRILL behavior
         # uml: enter / { trace("Enter T7__DH1__IMPACT_DRILL.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__IMPACT_DRILL.")`
-            MainClass.trace("Enter T7__DH1__IMPACT_DRILL.")
-         # end of behavior for T7__DH1__IMPACT_DRILL
+
         
         # T7__DH1__IMPACT_DRILL behavior
         # uml: enter [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }
         if trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;)`
             self.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL
-         # end of behavior for T7__DH1__IMPACT_DRILL
     
-    
-    def _T7__DH1__IMPACT_DRILL_exit(self):    
+    def _T7__DH1__IMPACT_DRILL_exit(self):
         # T7__DH1__IMPACT_DRILL behavior
         # uml: exit / { trace("Exit T7__DH1__IMPACT_DRILL.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__IMPACT_DRILL.")`
-            MainClass.trace("Exit T7__DH1__IMPACT_DRILL.")
-         # end of behavior for T7__DH1__IMPACT_DRILL
+
         
         self.stateId = StateId.T7__DH1__TOOL
     
-    
-    def _T7__DH1__IMPACT_DRILL_ev1(self):    
+    def _T7__DH1__IMPACT_DRILL_ev1(self):
         # T7__DH1__IMPACT_DRILL behavior
         # uml: EV1 [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `EV1 TransitionTo(T7__DH1__CIRCULAR_SAW)`.", true)] / { trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW.") } TransitionTo(T7__DH1__CIRCULAR_SAW)
         if trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `EV1 TransitionTo(T7__DH1__CIRCULAR_SAW)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__TOOL` state (Least Common Ancestor for transition).
             self._T7__DH1__IMPACT_DRILL_exit()
             
@@ -9154,53 +7382,40 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__IMPACT_DRILL
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DH1__TOY
     ########################################
     
-    def _T7__DH1__TOY_enter(self):    
+    def _T7__DH1__TOY_enter(self):
         self.stateId = StateId.T7__DH1__TOY
         
         # T7__DH1__TOY behavior
         # uml: enter / { trace("Enter T7__DH1__TOY.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__TOY.")`
-            MainClass.trace("Enter T7__DH1__TOY.")
-         # end of behavior for T7__DH1__TOY
+
         
         # T7__DH1__TOY behavior
         # uml: enter [trace_guard("State T7__DH1__TOY: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }
         if trace_guard("State T7__DH1__TOY: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;)`
             self.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY
-         # end of behavior for T7__DH1__TOY
     
-    
-    def _T7__DH1__TOY_exit(self):    
+    def _T7__DH1__TOY_exit(self):
         # T7__DH1__TOY behavior
         # uml: exit / { trace("Exit T7__DH1__TOY.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__TOY.")`
-            MainClass.trace("Exit T7__DH1__TOY.")
-         # end of behavior for T7__DH1__TOY
+
         
         self.stateId = StateId.T7__DH1__BUILD
     
-    
-    def _T7__DH1__TOY_ev1(self):    
+    def _T7__DH1__TOY_ev1(self):
         # T7__DH1__TOY behavior
         # uml: EV1 [trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", true)] / { trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.") } TransitionTo(T7__DH1__TOOL)
         if trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__DH1__BUILD)
             
@@ -9213,16 +7428,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DH1__TOOL_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__DH1__TOY
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__DH1__TOY_InitialState_transition(self):    
+    def _T7__DH1__TOY_InitialState_transition(self):
         # T7__DH1__TOY.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR.") } TransitionTo(T7__DH1__RACE_CAR)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR.")`.
@@ -9233,53 +7444,42 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__TOY.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__DH1__GLOW_WORM
     ########################################
     
-    def _T7__DH1__GLOW_WORM_enter(self):    
+    def _T7__DH1__GLOW_WORM_enter(self):
         self.stateId = StateId.T7__DH1__GLOW_WORM
         
         # T7__DH1__GLOW_WORM behavior
         # uml: enter / { trace("Enter T7__DH1__GLOW_WORM.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__GLOW_WORM.")`
-            MainClass.trace("Enter T7__DH1__GLOW_WORM.")
-         # end of behavior for T7__DH1__GLOW_WORM
+
         
         # T7__DH1__GLOW_WORM behavior
         # uml: enter [trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }
         if trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;)`
             self.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM
-         # end of behavior for T7__DH1__GLOW_WORM
     
-    
-    def _T7__DH1__GLOW_WORM_exit(self):    
+    def _T7__DH1__GLOW_WORM_exit(self):
         # T7__DH1__GLOW_WORM behavior
         # uml: exit / { trace("Exit T7__DH1__GLOW_WORM.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__GLOW_WORM.")`
-            MainClass.trace("Exit T7__DH1__GLOW_WORM.")
-         # end of behavior for T7__DH1__GLOW_WORM
+
         
         self.stateId = StateId.T7__DH1__TOY
     
-    
-    def _T7__DH1__GLOW_WORM_ev1(self):    
+    def _T7__DH1__GLOW_WORM_ev1(self):
         bool consume_event = False
         
         # T7__DH1__GLOW_WORM behavior
         # uml: EV1 [trace_guard("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", true)] / { trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.") } TransitionTo(T7__DH1__ROBOT)
         if trace_guard("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition).
             self._T7__DH1__GLOW_WORM_exit()
             
@@ -9292,59 +7492,47 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DH1__ROBOT_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__DH1__GLOW_WORM
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._T7__DH1__TOY_ev1()
-        
-    
     
     
     ########################################
     # event handlers for state T7__DH1__RACE_CAR
     ########################################
     
-    def _T7__DH1__RACE_CAR_enter(self):    
+    def _T7__DH1__RACE_CAR_enter(self):
         self.stateId = StateId.T7__DH1__RACE_CAR
         
         # T7__DH1__RACE_CAR behavior
         # uml: enter / { trace("Enter T7__DH1__RACE_CAR.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__RACE_CAR.")`
-            MainClass.trace("Enter T7__DH1__RACE_CAR.")
-         # end of behavior for T7__DH1__RACE_CAR
+
         
         # T7__DH1__RACE_CAR behavior
         # uml: enter [trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }
         if trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;)`
             self.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR
-         # end of behavior for T7__DH1__RACE_CAR
     
-    
-    def _T7__DH1__RACE_CAR_exit(self):    
+    def _T7__DH1__RACE_CAR_exit(self):
         # T7__DH1__RACE_CAR behavior
         # uml: exit / { trace("Exit T7__DH1__RACE_CAR.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__RACE_CAR.")`
-            MainClass.trace("Exit T7__DH1__RACE_CAR.")
-         # end of behavior for T7__DH1__RACE_CAR
+
         
         self.stateId = StateId.T7__DH1__TOY
     
-    
-    def _T7__DH1__RACE_CAR_ev1(self):    
+    def _T7__DH1__RACE_CAR_ev1(self):
         bool consume_event = False
         
         # T7__DH1__RACE_CAR behavior
         # uml: EV1 [trace_guard("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", true)] / { trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.") } TransitionTo(T7__DH1__TEDDY_BEAR)
         if trace_guard("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition).
             self._T7__DH1__RACE_CAR_exit()
             
@@ -9356,57 +7544,45 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__RACE_CAR
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._T7__DH1__TOY_ev1()
-        
-    
     
     
     ########################################
     # event handlers for state T7__DH1__ROBOT
     ########################################
     
-    def _T7__DH1__ROBOT_enter(self):    
+    def _T7__DH1__ROBOT_enter(self):
         self.stateId = StateId.T7__DH1__ROBOT
         
         # T7__DH1__ROBOT behavior
         # uml: enter / { trace("Enter T7__DH1__ROBOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__ROBOT.")`
-            MainClass.trace("Enter T7__DH1__ROBOT.")
-         # end of behavior for T7__DH1__ROBOT
+
         
         # T7__DH1__ROBOT behavior
         # uml: enter [trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }
         if trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;)`
             self.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT
-         # end of behavior for T7__DH1__ROBOT
     
-    
-    def _T7__DH1__ROBOT_exit(self):    
+    def _T7__DH1__ROBOT_exit(self):
         # T7__DH1__ROBOT behavior
         # uml: exit / { trace("Exit T7__DH1__ROBOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__ROBOT.")`
-            MainClass.trace("Exit T7__DH1__ROBOT.")
-         # end of behavior for T7__DH1__ROBOT
+
         
         self.stateId = StateId.T7__DH1__TOY
     
-    
-    def _T7__DH1__ROBOT_InitialState_transition(self):    
+    def _T7__DH1__ROBOT_InitialState_transition(self):
         # T7__DH1__ROBOT.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT.") } TransitionTo(T7__DH1__BATTLEBOT)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__DH1__ROBOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT.")`.
@@ -9417,53 +7593,42 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__ROBOT.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__DH1__BATTLEBOT
     ########################################
     
-    def _T7__DH1__BATTLEBOT_enter(self):    
+    def _T7__DH1__BATTLEBOT_enter(self):
         self.stateId = StateId.T7__DH1__BATTLEBOT
         
         # T7__DH1__BATTLEBOT behavior
         # uml: enter / { trace("Enter T7__DH1__BATTLEBOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__BATTLEBOT.")`
-            MainClass.trace("Enter T7__DH1__BATTLEBOT.")
-         # end of behavior for T7__DH1__BATTLEBOT
+
         
         # T7__DH1__BATTLEBOT behavior
         # uml: enter [trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }
         if trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;)`
             self.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT
-         # end of behavior for T7__DH1__BATTLEBOT
     
-    
-    def _T7__DH1__BATTLEBOT_exit(self):    
+    def _T7__DH1__BATTLEBOT_exit(self):
         # T7__DH1__BATTLEBOT behavior
         # uml: exit / { trace("Exit T7__DH1__BATTLEBOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__BATTLEBOT.")`
-            MainClass.trace("Exit T7__DH1__BATTLEBOT.")
-         # end of behavior for T7__DH1__BATTLEBOT
+
         
         self.stateId = StateId.T7__DH1__ROBOT
     
-    
-    def _T7__DH1__BATTLEBOT_ev1(self):    
+    def _T7__DH1__BATTLEBOT_ev1(self):
         bool consume_event = False
         
         # T7__DH1__BATTLEBOT behavior
         # uml: EV1 [trace_guard("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", true)] / { trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.") } TransitionTo(T7__DH1__WALL_E)
         if trace_guard("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__ROBOT` state (Least Common Ancestor for transition).
             self._T7__DH1__BATTLEBOT_exit()
             
@@ -9475,96 +7640,75 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__BATTLEBOT
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._T7__DH1__TOY_ev1()
-        
-    
     
     
     ########################################
     # event handlers for state T7__DH1__WALL_E
     ########################################
     
-    def _T7__DH1__WALL_E_enter(self):    
+    def _T7__DH1__WALL_E_enter(self):
         self.stateId = StateId.T7__DH1__WALL_E
         
         # T7__DH1__WALL_E behavior
         # uml: enter / { trace("Enter T7__DH1__WALL_E.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__WALL_E.")`
-            MainClass.trace("Enter T7__DH1__WALL_E.")
-         # end of behavior for T7__DH1__WALL_E
+
         
         # T7__DH1__WALL_E behavior
         # uml: enter [trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }
         if trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;)`
             self.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E
-         # end of behavior for T7__DH1__WALL_E
     
-    
-    def _T7__DH1__WALL_E_exit(self):    
+    def _T7__DH1__WALL_E_exit(self):
         # T7__DH1__WALL_E behavior
         # uml: exit / { trace("Exit T7__DH1__WALL_E.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__WALL_E.")`
-            MainClass.trace("Exit T7__DH1__WALL_E.")
-         # end of behavior for T7__DH1__WALL_E
+
         
         self.stateId = StateId.T7__DH1__ROBOT
-    
     
     
     ########################################
     # event handlers for state T7__DH1__TEDDY_BEAR
     ########################################
     
-    def _T7__DH1__TEDDY_BEAR_enter(self):    
+    def _T7__DH1__TEDDY_BEAR_enter(self):
         self.stateId = StateId.T7__DH1__TEDDY_BEAR
         
         # T7__DH1__TEDDY_BEAR behavior
         # uml: enter / { trace("Enter T7__DH1__TEDDY_BEAR.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DH1__TEDDY_BEAR.")`
-            MainClass.trace("Enter T7__DH1__TEDDY_BEAR.")
-         # end of behavior for T7__DH1__TEDDY_BEAR
+
         
         # T7__DH1__TEDDY_BEAR behavior
         # uml: enter [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }
         if trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;)`
             self.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR
-         # end of behavior for T7__DH1__TEDDY_BEAR
     
-    
-    def _T7__DH1__TEDDY_BEAR_exit(self):    
+    def _T7__DH1__TEDDY_BEAR_exit(self):
         # T7__DH1__TEDDY_BEAR behavior
         # uml: exit / { trace("Exit T7__DH1__TEDDY_BEAR.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DH1__TEDDY_BEAR.")`
-            MainClass.trace("Exit T7__DH1__TEDDY_BEAR.")
-         # end of behavior for T7__DH1__TEDDY_BEAR
+
         
         self.stateId = StateId.T7__DH1__TOY
     
-    
-    def _T7__DH1__TEDDY_BEAR_ev1(self):    
+    def _T7__DH1__TEDDY_BEAR_ev1(self):
         bool consume_event = False
         
         # T7__DH1__TEDDY_BEAR behavior
         # uml: EV1 [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", true)] / { trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.") } TransitionTo(T7__DH1__GLOW_WORM)
         if trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition).
             self._T7__DH1__TEDDY_BEAR_exit()
             
@@ -9576,78 +7720,59 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DH1__TEDDY_BEAR
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._T7__DH1__TOY_ev1()
-        
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY2
     ########################################
     
-    def _T7__DEEP_HISTORY2_enter(self):    
+    def _T7__DEEP_HISTORY2_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY2
         
         # T7__DEEP_HISTORY2 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY2.")
-         # end of behavior for T7__DEEP_HISTORY2
+
     
-    
-    def _T7__DEEP_HISTORY2_exit(self):    
+    def _T7__DEEP_HISTORY2_exit(self):
         # T7__DEEP_HISTORY2 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY2.")
-         # end of behavior for T7__DEEP_HISTORY2
+
         
         self.stateId = StateId.TEST7
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY2__T7__STATE_0
     ########################################
     
-    def _T7__DEEP_HISTORY2__T7__STATE_0_enter(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_0_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0
         
         # T7__DEEP_HISTORY2__T7__state_0 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_0.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_0.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_0.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_0
+
     
-    
-    def _T7__DEEP_HISTORY2__T7__STATE_0_exit(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_0_exit(self):
         # T7__DEEP_HISTORY2__T7__state_0 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_0.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_0.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_0.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_0
+
         
         self.stateId = StateId.T7__DEEP_HISTORY2
     
-    
-    def _T7__DEEP_HISTORY2__T7__STATE_0_evopen(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_0_evopen(self):
         # T7__DEEP_HISTORY2__T7__state_0 behavior
         # uml: evOpen [trace_guard("State T7__DEEP_HISTORY2__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY2__T7__state_3)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_3)
         if trace_guard("State T7__DEEP_HISTORY2__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY2__T7__state_3)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__DEEP_HISTORY2)
             
@@ -9659,16 +7784,12 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_0
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__DEEP_HISTORY2__T7__state_0_InitialState_transition(self):    
+    def _T7__DEEP_HISTORY2__T7__state_0_InitialState_transition(self):
         # T7__DEEP_HISTORY2__T7__state_0.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_0.<History>)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>.")`.
@@ -9680,7 +7801,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_2)
             if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2:
-            
+
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2.")`.
@@ -9692,12 +7813,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DEEP_HISTORY2__T7__state_2_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
             
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
             if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6:
-            
+
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6.")`.
@@ -9709,12 +7829,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
             
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
             if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9:
-            
+
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9.")`.
@@ -9726,12 +7845,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
             
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_1)
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1.")`.
@@ -9742,52 +7860,40 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_0.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY2__T7__STATE_1
     ########################################
     
-    def _T7__DEEP_HISTORY2__T7__STATE_1_enter(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_1_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_1
         
         # T7__DEEP_HISTORY2__T7__state_1 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_1.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_1.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_1
+
         
         # T7__DEEP_HISTORY2__T7__state_1 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }
         if trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_1
     
-    
-    def _T7__DEEP_HISTORY2__T7__STATE_1_exit(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_1_exit(self):
         # T7__DEEP_HISTORY2__T7__state_1 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_1.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_1.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_1
+
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0
     
-    
-    def _T7__DEEP_HISTORY2__T7__STATE_1_evstep(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_1_evstep(self):
         # T7__DEEP_HISTORY2__T7__state_1 behavior
         # uml: evStep [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_2)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_1 to T7__DEEP_HISTORY2__T7__state_2.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_2)
         if trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_2)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY2__T7__STATE_1_exit()
             
@@ -9800,53 +7906,40 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DEEP_HISTORY2__T7__state_2_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY2__T7__STATE_2
     ########################################
     
-    def _T7__DEEP_HISTORY2__T7__STATE_2_enter(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_2_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2
         
         # T7__DEEP_HISTORY2__T7__state_2 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_2.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_2.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_2
+
         
         # T7__DEEP_HISTORY2__T7__state_2 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }
         if trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_2
     
-    
-    def _T7__DEEP_HISTORY2__T7__STATE_2_exit(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_2_exit(self):
         # T7__DEEP_HISTORY2__T7__state_2 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_2.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_2.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_2
+
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0
     
-    
-    def _T7__DEEP_HISTORY2__T7__STATE_2_evback(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_2_evback(self):
         # T7__DEEP_HISTORY2__T7__state_2 behavior
         # uml: evBack [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY2__T7__state_1)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_1)
         if trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY2__T7__state_1)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__DEEP_HISTORY2__T7__STATE_0)
             
@@ -9858,16 +7951,12 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_2
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__DEEP_HISTORY2__T7__state_2_InitialState_transition(self):    
+    def _T7__DEEP_HISTORY2__T7__state_2_InitialState_transition(self):
         # T7__DEEP_HISTORY2__T7__state_2.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6.")`.
@@ -9878,51 +7967,40 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_2.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY2__T7__STATE_6
     ########################################
     
-    def _T7__DEEP_HISTORY2__T7__STATE_6_enter(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_6_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_6
         
         # T7__DEEP_HISTORY2__T7__state_6 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_6.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_6.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_6.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_6
+
         
         # T7__DEEP_HISTORY2__T7__state_6 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }
         if trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_6
     
-    
-    def _T7__DEEP_HISTORY2__T7__STATE_6_exit(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_6_exit(self):
         # T7__DEEP_HISTORY2__T7__state_6 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_6.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_6.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_6.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_6
+
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2
     
-    
-    def _T7__DEEP_HISTORY2__T7__STATE_6_evstep(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_6_evstep(self):
         # T7__DEEP_HISTORY2__T7__state_6 behavior
         # uml: evStep [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_9)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_6 to T7__DEEP_HISTORY2__T7__state_9.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
         if trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_9)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_2` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY2__T7__STATE_6_exit()
             
@@ -9934,82 +8012,61 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_6
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY2__T7__STATE_9
     ########################################
     
-    def _T7__DEEP_HISTORY2__T7__STATE_9_enter(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_9_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_9
         
         # T7__DEEP_HISTORY2__T7__state_9 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_9.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_9.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_9.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_9
+
         
         # T7__DEEP_HISTORY2__T7__state_9 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }
         if trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_9
     
-    
-    def _T7__DEEP_HISTORY2__T7__STATE_9_exit(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_9_exit(self):
         # T7__DEEP_HISTORY2__T7__state_9 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_9.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_9.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_9.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_9
+
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY2__T7__STATE_3
     ########################################
     
-    def _T7__DEEP_HISTORY2__T7__STATE_3_enter(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_3_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_3
         
         # T7__DEEP_HISTORY2__T7__state_3 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_3.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_3.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_3
+
     
-    
-    def _T7__DEEP_HISTORY2__T7__STATE_3_exit(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_3_exit(self):
         # T7__DEEP_HISTORY2__T7__state_3 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_3.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_3.")
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_3
+
         
         self.stateId = StateId.T7__DEEP_HISTORY2
     
-    
-    def _T7__DEEP_HISTORY2__T7__STATE_3_evclose(self):    
+    def _T7__DEEP_HISTORY2__T7__STATE_3_evclose(self):
         # T7__DEEP_HISTORY2__T7__state_3 behavior
         # uml: evClose [trace_guard("State T7__DEEP_HISTORY2__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY2__T7__state_0)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_3 to T7__DEEP_HISTORY2__T7__state_0.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_0)
         if trace_guard("State T7__DEEP_HISTORY2__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY2__T7__state_0)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY2__T7__STATE_3_exit()
             
@@ -10022,74 +8079,54 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__DEEP_HISTORY2__T7__state_3
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY3
     ########################################
     
-    def _T7__DEEP_HISTORY3_enter(self):    
+    def _T7__DEEP_HISTORY3_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY3
         
         # T7__DEEP_HISTORY3 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY3.")
-         # end of behavior for T7__DEEP_HISTORY3
+
     
-    
-    def _T7__DEEP_HISTORY3_exit(self):    
+    def _T7__DEEP_HISTORY3_exit(self):
         # T7__DEEP_HISTORY3 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY3.")
-         # end of behavior for T7__DEEP_HISTORY3
+
         
         self.stateId = StateId.TEST7
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY3__T7__STATE_0
     ########################################
     
-    def _T7__DEEP_HISTORY3__T7__STATE_0_enter(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_0_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0
         
         # T7__DEEP_HISTORY3__T7__state_0 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_0.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_0.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_0.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_0
+
     
-    
-    def _T7__DEEP_HISTORY3__T7__STATE_0_exit(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_0_exit(self):
         # T7__DEEP_HISTORY3__T7__state_0 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_0.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_0.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_0.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_0
+
         
         self.stateId = StateId.T7__DEEP_HISTORY3
     
-    
-    def _T7__DEEP_HISTORY3__T7__STATE_0_evopen(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_0_evopen(self):
         # T7__DEEP_HISTORY3__T7__state_0 behavior
         # uml: evOpen [trace_guard("State T7__DEEP_HISTORY3__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY3__T7__state_3)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_3)
         if trace_guard("State T7__DEEP_HISTORY3__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY3__T7__state_3)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__DEEP_HISTORY3)
             
@@ -10101,16 +8138,12 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_0
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__DEEP_HISTORY3__T7__state_0_InitialState_transition(self):    
+    def _T7__DEEP_HISTORY3__T7__state_0_InitialState_transition(self):
         # T7__DEEP_HISTORY3__T7__state_0.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_0.<History>)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>.")`.
@@ -10122,7 +8155,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY3__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_2)
             if self.vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2:
-            
+
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2.")`.
@@ -10134,12 +8167,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DEEP_HISTORY3__T7__state_2_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for T7__DEEP_HISTORY3__T7__state_0.<History>
             
             # T7__DEEP_HISTORY3__T7__state_0.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_1)
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1.")`.
@@ -10150,52 +8182,40 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__DEEP_HISTORY3__T7__state_0.<History>
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_0.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY3__T7__STATE_1
     ########################################
     
-    def _T7__DEEP_HISTORY3__T7__STATE_1_enter(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_1_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_1
         
         # T7__DEEP_HISTORY3__T7__state_1 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_1.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_1.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_1
+
         
         # T7__DEEP_HISTORY3__T7__state_1 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }
         if trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;)`
             self.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_1
     
-    
-    def _T7__DEEP_HISTORY3__T7__STATE_1_exit(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_1_exit(self):
         # T7__DEEP_HISTORY3__T7__state_1 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_1.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_1.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_1
+
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0
     
-    
-    def _T7__DEEP_HISTORY3__T7__STATE_1_evstep(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_1_evstep(self):
         # T7__DEEP_HISTORY3__T7__state_1 behavior
         # uml: evStep [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_2)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_1 to T7__DEEP_HISTORY3__T7__state_2.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_2)
         if trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_2)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY3__T7__STATE_1_exit()
             
@@ -10208,53 +8228,40 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DEEP_HISTORY3__T7__state_2_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY3__T7__STATE_2
     ########################################
     
-    def _T7__DEEP_HISTORY3__T7__STATE_2_enter(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_2_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2
         
         # T7__DEEP_HISTORY3__T7__state_2 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_2.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_2.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_2
+
         
         # T7__DEEP_HISTORY3__T7__state_2 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }
         if trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;)`
             self.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_2
     
-    
-    def _T7__DEEP_HISTORY3__T7__STATE_2_exit(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_2_exit(self):
         # T7__DEEP_HISTORY3__T7__state_2 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_2.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_2.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_2
+
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0
     
-    
-    def _T7__DEEP_HISTORY3__T7__STATE_2_evback(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_2_evback(self):
         # T7__DEEP_HISTORY3__T7__state_2 behavior
         # uml: evBack [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY3__T7__state_1)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_1)
         if trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY3__T7__state_1)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__DEEP_HISTORY3__T7__STATE_0)
             
@@ -10266,16 +8273,12 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_2
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__DEEP_HISTORY3__T7__state_2_InitialState_transition(self):    
+    def _T7__DEEP_HISTORY3__T7__state_2_InitialState_transition(self):
         # T7__DEEP_HISTORY3__T7__state_2.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_6)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6.")`.
@@ -10286,43 +8289,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_2.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY3__T7__STATE_6
     ########################################
     
-    def _T7__DEEP_HISTORY3__T7__STATE_6_enter(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_6_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_6
         
         # T7__DEEP_HISTORY3__T7__state_6 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_6.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_6.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_6.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_6
+
     
-    
-    def _T7__DEEP_HISTORY3__T7__STATE_6_exit(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_6_exit(self):
         # T7__DEEP_HISTORY3__T7__state_6 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_6.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_6.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_6.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_6
+
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2
     
-    
-    def _T7__DEEP_HISTORY3__T7__STATE_6_evstep(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_6_evstep(self):
         # T7__DEEP_HISTORY3__T7__state_6 behavior
         # uml: evStep [trace_guard("State T7__DEEP_HISTORY3__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_9)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_6 to T7__DEEP_HISTORY3__T7__state_9.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_9)
         if trace_guard("State T7__DEEP_HISTORY3__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_9)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_2` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY3__T7__STATE_6_exit()
             
@@ -10334,74 +8327,54 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_6
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY3__T7__STATE_9
     ########################################
     
-    def _T7__DEEP_HISTORY3__T7__STATE_9_enter(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_9_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_9
         
         # T7__DEEP_HISTORY3__T7__state_9 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_9.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_9.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_9.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_9
+
     
-    
-    def _T7__DEEP_HISTORY3__T7__STATE_9_exit(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_9_exit(self):
         # T7__DEEP_HISTORY3__T7__state_9 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_9.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_9.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_9.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_9
+
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2
-    
     
     
     ########################################
     # event handlers for state T7__DEEP_HISTORY3__T7__STATE_3
     ########################################
     
-    def _T7__DEEP_HISTORY3__T7__STATE_3_enter(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_3_enter(self):
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_3
         
         # T7__DEEP_HISTORY3__T7__state_3 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_3.")`
-            MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_3.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_3
+
     
-    
-    def _T7__DEEP_HISTORY3__T7__STATE_3_exit(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_3_exit(self):
         # T7__DEEP_HISTORY3__T7__state_3 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_3.")`
-            MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_3.")
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_3
+
         
         self.stateId = StateId.T7__DEEP_HISTORY3
     
-    
-    def _T7__DEEP_HISTORY3__T7__STATE_3_evclose(self):    
+    def _T7__DEEP_HISTORY3__T7__STATE_3_evclose(self):
         # T7__DEEP_HISTORY3__T7__state_3 behavior
         # uml: evClose [trace_guard("State T7__DEEP_HISTORY3__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY3__T7__state_0)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_3 to T7__DEEP_HISTORY3__T7__state_0.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_0)
         if trace_guard("State T7__DEEP_HISTORY3__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY3__T7__state_0)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY3__T7__STATE_3_exit()
             
@@ -10414,74 +8387,54 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__DEEP_HISTORY3__T7__state_3
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__HISTORY1
     ########################################
     
-    def _T7__HISTORY1_enter(self):    
+    def _T7__HISTORY1_enter(self):
         self.stateId = StateId.T7__HISTORY1
         
         # T7__HISTORY1 behavior
         # uml: enter / { trace("Enter T7__HISTORY1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__HISTORY1.")`
-            MainClass.trace("Enter T7__HISTORY1.")
-         # end of behavior for T7__HISTORY1
+
     
-    
-    def _T7__HISTORY1_exit(self):    
+    def _T7__HISTORY1_exit(self):
         # T7__HISTORY1 behavior
         # uml: exit / { trace("Exit T7__HISTORY1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__HISTORY1.")`
-            MainClass.trace("Exit T7__HISTORY1.")
-         # end of behavior for T7__HISTORY1
+
         
         self.stateId = StateId.TEST7
-    
     
     
     ########################################
     # event handlers for state T7__H1__OFF
     ########################################
     
-    def _T7__H1__OFF_enter(self):    
+    def _T7__H1__OFF_enter(self):
         self.stateId = StateId.T7__H1__OFF
         
         # T7__H1__OFF behavior
         # uml: enter / { trace("Enter T7__H1__OFF.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__H1__OFF.")`
-            MainClass.trace("Enter T7__H1__OFF.")
-         # end of behavior for T7__H1__OFF
+
     
-    
-    def _T7__H1__OFF_exit(self):    
+    def _T7__H1__OFF_exit(self):
         # T7__H1__OFF behavior
         # uml: exit / { trace("Exit T7__H1__OFF.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__H1__OFF.")`
-            MainClass.trace("Exit T7__H1__OFF.")
-         # end of behavior for T7__H1__OFF
+
         
         self.stateId = StateId.T7__HISTORY1
     
-    
-    def _T7__H1__OFF_ev3(self):    
+    def _T7__H1__OFF_ev3(self):
         # T7__H1__OFF behavior
         # uml: EV3 [trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.") } TransitionTo(T7__H1__OFF3)
         if trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__H1__OFF)
             
@@ -10493,16 +8446,12 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__H1__OFF
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__H1__OFF_ev4(self):    
+    def _T7__H1__OFF_ev4(self):
         # T7__H1__OFF behavior
         # uml: EV4 [trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.") } TransitionTo(T7__H1__OFF)
         if trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__HISTORY1)
             
@@ -10515,16 +8464,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__H1__OFF_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__H1__OFF
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__H1__OFF_ev7(self):    
+    def _T7__H1__OFF_ev7(self):
         # T7__H1__OFF behavior
         # uml: EV7 [trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__ON.") } TransitionTo(T7__H1__ON)
         if trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__HISTORY1)
             
@@ -10537,16 +8482,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__H1__ON_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__H1__OFF
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__H1__OFF_InitialState_transition(self):    
+    def _T7__H1__OFF_InitialState_transition(self):
         # T7__H1__OFF.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>.") } TransitionTo(T7__H1__OFF.<History>)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>.")`.
@@ -10558,7 +8499,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__H1__OFF.<History> behavior
             # uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF2)] / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2.") } TransitionTo(T7__H1__OFF2)
             if self.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF2:
-            
+
                 # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2.")`.
@@ -10569,12 +8510,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__H1__OFF.<History>
             
             # T7__H1__OFF.<History> behavior
             # uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3)] / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3.") } TransitionTo(T7__H1__OFF3)
             if self.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3:
-            
+
                 # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3.")`.
@@ -10585,12 +8525,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__H1__OFF.<History>
             
             # T7__H1__OFF.<History> behavior
             # uml: else / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1.") } TransitionTo(T7__H1__OFF1)
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1.")`.
@@ -10601,52 +8540,40 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__H1__OFF.<History>
-         # end of behavior for T7__H1__OFF.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__H1__OFF1
     ########################################
     
-    def _T7__H1__OFF1_enter(self):    
+    def _T7__H1__OFF1_enter(self):
         self.stateId = StateId.T7__H1__OFF1
         
         # T7__H1__OFF1 behavior
         # uml: enter / { trace("Enter T7__H1__OFF1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__H1__OFF1.")`
-            MainClass.trace("Enter T7__H1__OFF1.")
-         # end of behavior for T7__H1__OFF1
+
         
         # T7__H1__OFF1 behavior
         # uml: enter [trace_guard("State T7__H1__OFF1: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }
         if trace_guard("State T7__H1__OFF1: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;)`
             self.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1
-         # end of behavior for T7__H1__OFF1
     
-    
-    def _T7__H1__OFF1_exit(self):    
+    def _T7__H1__OFF1_exit(self):
         # T7__H1__OFF1 behavior
         # uml: exit / { trace("Exit T7__H1__OFF1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__H1__OFF1.")`
-            MainClass.trace("Exit T7__H1__OFF1.")
-         # end of behavior for T7__H1__OFF1
+
         
         self.stateId = StateId.T7__H1__OFF
     
-    
-    def _T7__H1__OFF1_ev1(self):    
+    def _T7__H1__OFF1_ev1(self):
         # T7__H1__OFF1 behavior
         # uml: EV1 [trace_guard("State T7__H1__OFF1: check behavior `EV1 TransitionTo(T7__H1__OFF2)`.", true)] / { trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2.") } TransitionTo(T7__H1__OFF2)
         if trace_guard("State T7__H1__OFF1: check behavior `EV1 TransitionTo(T7__H1__OFF2)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
             self._T7__H1__OFF1_exit()
             
@@ -10658,53 +8585,40 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__H1__OFF1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__H1__OFF2
     ########################################
     
-    def _T7__H1__OFF2_enter(self):    
+    def _T7__H1__OFF2_enter(self):
         self.stateId = StateId.T7__H1__OFF2
         
         # T7__H1__OFF2 behavior
         # uml: enter / { trace("Enter T7__H1__OFF2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__H1__OFF2.")`
-            MainClass.trace("Enter T7__H1__OFF2.")
-         # end of behavior for T7__H1__OFF2
+
         
         # T7__H1__OFF2 behavior
         # uml: enter [trace_guard("State T7__H1__OFF2: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }
         if trace_guard("State T7__H1__OFF2: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;)`
             self.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2
-         # end of behavior for T7__H1__OFF2
     
-    
-    def _T7__H1__OFF2_exit(self):    
+    def _T7__H1__OFF2_exit(self):
         # T7__H1__OFF2 behavior
         # uml: exit / { trace("Exit T7__H1__OFF2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__H1__OFF2.")`
-            MainClass.trace("Exit T7__H1__OFF2.")
-         # end of behavior for T7__H1__OFF2
+
         
         self.stateId = StateId.T7__H1__OFF
     
-    
-    def _T7__H1__OFF2_ev1(self):    
+    def _T7__H1__OFF2_ev1(self):
         # T7__H1__OFF2 behavior
         # uml: EV1 [trace_guard("State T7__H1__OFF2: check behavior `EV1 TransitionTo(T7__H1__OFF3)`.", true)] / { trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3.") } TransitionTo(T7__H1__OFF3)
         if trace_guard("State T7__H1__OFF2: check behavior `EV1 TransitionTo(T7__H1__OFF3)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
             self._T7__H1__OFF2_exit()
             
@@ -10716,82 +8630,61 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__H1__OFF2
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__H1__OFF3
     ########################################
     
-    def _T7__H1__OFF3_enter(self):    
+    def _T7__H1__OFF3_enter(self):
         self.stateId = StateId.T7__H1__OFF3
         
         # T7__H1__OFF3 behavior
         # uml: enter / { trace("Enter T7__H1__OFF3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__H1__OFF3.")`
-            MainClass.trace("Enter T7__H1__OFF3.")
-         # end of behavior for T7__H1__OFF3
+
         
         # T7__H1__OFF3 behavior
         # uml: enter [trace_guard("State T7__H1__OFF3: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }
         if trace_guard("State T7__H1__OFF3: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;)`
             self.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3
-         # end of behavior for T7__H1__OFF3
     
-    
-    def _T7__H1__OFF3_exit(self):    
+    def _T7__H1__OFF3_exit(self):
         # T7__H1__OFF3 behavior
         # uml: exit / { trace("Exit T7__H1__OFF3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__H1__OFF3.")`
-            MainClass.trace("Exit T7__H1__OFF3.")
-         # end of behavior for T7__H1__OFF3
+
         
         self.stateId = StateId.T7__H1__OFF
-    
     
     
     ########################################
     # event handlers for state T7__H1__ON
     ########################################
     
-    def _T7__H1__ON_enter(self):    
+    def _T7__H1__ON_enter(self):
         self.stateId = StateId.T7__H1__ON
         
         # T7__H1__ON behavior
         # uml: enter / { trace("Enter T7__H1__ON.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__H1__ON.")`
-            MainClass.trace("Enter T7__H1__ON.")
-         # end of behavior for T7__H1__ON
+
     
-    
-    def _T7__H1__ON_exit(self):    
+    def _T7__H1__ON_exit(self):
         # T7__H1__ON behavior
         # uml: exit / { trace("Exit T7__H1__ON.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__H1__ON.")`
-            MainClass.trace("Exit T7__H1__ON.")
-         # end of behavior for T7__H1__ON
+
         
         self.stateId = StateId.T7__HISTORY1
     
-    
-    def _T7__H1__ON_ev6(self):    
+    def _T7__H1__ON_ev6(self):
         # T7__H1__ON behavior
         # uml: EV6 [trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", true)] / { trace("Transition action `` for T7__H1__ON to T7__H1__OFF.") } TransitionTo(T7__H1__OFF)
         if trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__HISTORY1)
             
@@ -10804,16 +8697,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__H1__OFF_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__H1__ON
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__H1__ON_InitialState_transition(self):    
+    def _T7__H1__ON_InitialState_transition(self):
         # T7__H1__ON.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>.") } TransitionTo(T7__H1__ON.<History>)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>.")`.
@@ -10825,7 +8714,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__H1__ON.<History> behavior
             # uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON2)] / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2.") } TransitionTo(T7__H1__ON2)
             if self.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON2:
-            
+
                 # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2.")`.
@@ -10836,12 +8725,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__H1__ON.<History>
             
             # T7__H1__ON.<History> behavior
             # uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3)] / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3.") } TransitionTo(T7__H1__ON3)
             if self.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3:
-            
+
                 # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3.")`.
@@ -10852,12 +8740,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__H1__ON.<History>
             
             # T7__H1__ON.<History> behavior
             # uml: else / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1.") } TransitionTo(T7__H1__ON1)
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1.")`.
@@ -10868,52 +8755,40 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for T7__H1__ON.<History>
-         # end of behavior for T7__H1__ON.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__H1__ON1
     ########################################
     
-    def _T7__H1__ON1_enter(self):    
+    def _T7__H1__ON1_enter(self):
         self.stateId = StateId.T7__H1__ON1
         
         # T7__H1__ON1 behavior
         # uml: enter / { trace("Enter T7__H1__ON1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__H1__ON1.")`
-            MainClass.trace("Enter T7__H1__ON1.")
-         # end of behavior for T7__H1__ON1
+
         
         # T7__H1__ON1 behavior
         # uml: enter [trace_guard("State T7__H1__ON1: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }
         if trace_guard("State T7__H1__ON1: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;)`
             self.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1
-         # end of behavior for T7__H1__ON1
     
-    
-    def _T7__H1__ON1_exit(self):    
+    def _T7__H1__ON1_exit(self):
         # T7__H1__ON1 behavior
         # uml: exit / { trace("Exit T7__H1__ON1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__H1__ON1.")`
-            MainClass.trace("Exit T7__H1__ON1.")
-         # end of behavior for T7__H1__ON1
+
         
         self.stateId = StateId.T7__H1__ON
     
-    
-    def _T7__H1__ON1_ev1(self):    
+    def _T7__H1__ON1_ev1(self):
         # T7__H1__ON1 behavior
         # uml: EV1 [trace_guard("State T7__H1__ON1: check behavior `EV1 TransitionTo(T7__H1__ON2)`.", true)] / { trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2.") } TransitionTo(T7__H1__ON2)
         if trace_guard("State T7__H1__ON1: check behavior `EV1 TransitionTo(T7__H1__ON2)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition).
             self._T7__H1__ON1_exit()
             
@@ -10925,53 +8800,40 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__H1__ON1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__H1__ON2
     ########################################
     
-    def _T7__H1__ON2_enter(self):    
+    def _T7__H1__ON2_enter(self):
         self.stateId = StateId.T7__H1__ON2
         
         # T7__H1__ON2 behavior
         # uml: enter / { trace("Enter T7__H1__ON2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__H1__ON2.")`
-            MainClass.trace("Enter T7__H1__ON2.")
-         # end of behavior for T7__H1__ON2
+
         
         # T7__H1__ON2 behavior
         # uml: enter [trace_guard("State T7__H1__ON2: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }
         if trace_guard("State T7__H1__ON2: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;)`
             self.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2
-         # end of behavior for T7__H1__ON2
     
-    
-    def _T7__H1__ON2_exit(self):    
+    def _T7__H1__ON2_exit(self):
         # T7__H1__ON2 behavior
         # uml: exit / { trace("Exit T7__H1__ON2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__H1__ON2.")`
-            MainClass.trace("Exit T7__H1__ON2.")
-         # end of behavior for T7__H1__ON2
+
         
         self.stateId = StateId.T7__H1__ON
     
-    
-    def _T7__H1__ON2_ev1(self):    
+    def _T7__H1__ON2_ev1(self):
         # T7__H1__ON2 behavior
         # uml: EV1 [trace_guard("State T7__H1__ON2: check behavior `EV1 TransitionTo(T7__H1__ON3)`.", true)] / { trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3.") } TransitionTo(T7__H1__ON3)
         if trace_guard("State T7__H1__ON2: check behavior `EV1 TransitionTo(T7__H1__ON3)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition).
             self._T7__H1__ON2_exit()
             
@@ -10983,53 +8845,40 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__H1__ON2
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__H1__ON3
     ########################################
     
-    def _T7__H1__ON3_enter(self):    
+    def _T7__H1__ON3_enter(self):
         self.stateId = StateId.T7__H1__ON3
         
         # T7__H1__ON3 behavior
         # uml: enter / { trace("Enter T7__H1__ON3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__H1__ON3.")`
-            MainClass.trace("Enter T7__H1__ON3.")
-         # end of behavior for T7__H1__ON3
+
         
         # T7__H1__ON3 behavior
         # uml: enter [trace_guard("State T7__H1__ON3: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }
         if trace_guard("State T7__H1__ON3: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }`.", true):
-        
+
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;)`
             self.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3
-         # end of behavior for T7__H1__ON3
     
-    
-    def _T7__H1__ON3_exit(self):    
+    def _T7__H1__ON3_exit(self):
         # T7__H1__ON3 behavior
         # uml: exit / { trace("Exit T7__H1__ON3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__H1__ON3.")`
-            MainClass.trace("Exit T7__H1__ON3.")
-         # end of behavior for T7__H1__ON3
+
         
         self.stateId = StateId.T7__H1__ON
     
-    
-    def _T7__H1__ON3_ev1(self):    
+    def _T7__H1__ON3_ev1(self):
         # T7__H1__ON3 behavior
         # uml: EV1 [trace_guard("State T7__H1__ON3: check behavior `EV1 TransitionTo(T7__H1__ON1)`.", true)] / { trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1.") } TransitionTo(T7__H1__ON1)
         if trace_guard("State T7__H1__ON3: check behavior `EV1 TransitionTo(T7__H1__ON1)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition).
             self._T7__H1__ON3_exit()
             
@@ -11041,86 +8890,60 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__H1__ON3
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state T7__INITIAL1
     ########################################
     
-    def _T7__INITIAL1_enter(self):    
+    def _T7__INITIAL1_enter(self):
         self.stateId = StateId.T7__INITIAL1
         
         # T7__INITIAL1 behavior
         # uml: enter / { trace("Enter T7__INITIAL1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__INITIAL1.")`
-            MainClass.trace("Enter T7__INITIAL1.")
-         # end of behavior for T7__INITIAL1
+
     
-    
-    def _T7__INITIAL1_exit(self):    
+    def _T7__INITIAL1_exit(self):
         # T7__INITIAL1 behavior
         # uml: exit / { trace("Exit T7__INITIAL1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__INITIAL1.")`
-            MainClass.trace("Exit T7__INITIAL1.")
-         # end of behavior for T7__INITIAL1
+
         
         self.stateId = StateId.TEST7
-    
     
     
     ########################################
     # event handlers for state T7__INITIAL1__PARENT
     ########################################
     
-    def _T7__INITIAL1__PARENT_enter(self):    
+    def _T7__INITIAL1__PARENT_enter(self):
         self.stateId = StateId.T7__INITIAL1__PARENT
         
         # T7__INITIAL1__PARENT behavior
         # uml: enter / { trace("Enter T7__INITIAL1__PARENT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__INITIAL1__PARENT.")`
-            MainClass.trace("Enter T7__INITIAL1__PARENT.")
-         # end of behavior for T7__INITIAL1__PARENT
+
     
-    
-    def _T7__INITIAL1__PARENT_exit(self):    
+    def _T7__INITIAL1__PARENT_exit(self):
         # T7__INITIAL1__PARENT behavior
         # uml: exit / { trace("Exit T7__INITIAL1__PARENT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__INITIAL1__PARENT.")`
-            MainClass.trace("Exit T7__INITIAL1__PARENT.")
-         # end of behavior for T7__INITIAL1__PARENT
+
         
         self.stateId = StateId.T7__INITIAL1
     
-    
-    def _T7__INITIAL1__PARENT_ev5(self):    
+    def _T7__INITIAL1__PARENT_ev5(self):
         # T7__INITIAL1__PARENT behavior
         # uml: EV5 [trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count += 1 }`.", true)] / { count += 1 }
         if trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count += 1 }`.", true):
-        
-            # Step 1: execute action `count += 1`
-            self.vars.count += 1
-         # end of behavior for T7__INITIAL1__PARENT
-        
-        # No ancestor handles this event.
+
     
-    
-    def _T7__INITIAL1__PARENT_InitialState_transition(self):    
+    def _T7__INITIAL1__PARENT_InitialState_transition(self):
         # T7__INITIAL1__PARENT.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1.") } TransitionTo(T7__INITIAL1__S1)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1.")`.
@@ -11131,43 +8954,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__INITIAL1__PARENT.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__INITIAL1__G
     ########################################
     
-    def _T7__INITIAL1__G_enter(self):    
+    def _T7__INITIAL1__G_enter(self):
         self.stateId = StateId.T7__INITIAL1__G
         
         # T7__INITIAL1__G behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__INITIAL1__G.")`
-            MainClass.trace("Enter T7__INITIAL1__G.")
-         # end of behavior for T7__INITIAL1__G
+
     
-    
-    def _T7__INITIAL1__G_exit(self):    
+    def _T7__INITIAL1__G_exit(self):
         # T7__INITIAL1__G behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__INITIAL1__G.")`
-            MainClass.trace("Exit T7__INITIAL1__G.")
-         # end of behavior for T7__INITIAL1__G
+
         
         self.stateId = StateId.T7__INITIAL1__PARENT
     
-    
-    def _T7__INITIAL1__G_ev2(self):    
+    def _T7__INITIAL1__G_ev2(self):
         # T7__INITIAL1__G behavior
         # uml: EV2 [trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.<InitialState>)`.", true)] / { trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>.") } TransitionTo(T7__INITIAL1__PARENT.<InitialState>)
         if trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.<InitialState>)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.T7__INITIAL1__PARENT)
             
@@ -11180,16 +8993,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__INITIAL1__PARENT_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__INITIAL1__G
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__INITIAL1__G_InitialState_transition(self):    
+    def _T7__INITIAL1__G_InitialState_transition(self):
         # T7__INITIAL1__G.<InitialState> behavior
         # uml: [count == 1] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1.") } TransitionTo(T7__INITIAL1__G_S1)
         if self.vars.count == 1:
-        
+
             # Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1.")`.
@@ -11200,12 +9009,11 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__INITIAL1__G.<InitialState>
         
         # T7__INITIAL1__G.<InitialState> behavior
         # uml: [count == 2] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2.") } TransitionTo(T7__INITIAL1__G_S2)
         if self.vars.count == 2:
-        
+
             # Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2.")`.
@@ -11216,12 +9024,11 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__INITIAL1__G.<InitialState>
         
         # T7__INITIAL1__G.<InitialState> behavior
         # uml: else / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3.") } TransitionTo(T7__INITIAL1__G_S3)
         if True:
-        
+
             # Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3.")`.
@@ -11232,130 +9039,96 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for T7__INITIAL1__G.<InitialState>
-    
     
     
     ########################################
     # event handlers for state T7__INITIAL1__G_S1
     ########################################
     
-    def _T7__INITIAL1__G_S1_enter(self):    
+    def _T7__INITIAL1__G_S1_enter(self):
         self.stateId = StateId.T7__INITIAL1__G_S1
         
         # T7__INITIAL1__G_S1 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__INITIAL1__G_S1.")`
-            MainClass.trace("Enter T7__INITIAL1__G_S1.")
-         # end of behavior for T7__INITIAL1__G_S1
+
     
-    
-    def _T7__INITIAL1__G_S1_exit(self):    
+    def _T7__INITIAL1__G_S1_exit(self):
         # T7__INITIAL1__G_S1 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__INITIAL1__G_S1.")`
-            MainClass.trace("Exit T7__INITIAL1__G_S1.")
-         # end of behavior for T7__INITIAL1__G_S1
+
         
         self.stateId = StateId.T7__INITIAL1__G
-    
     
     
     ########################################
     # event handlers for state T7__INITIAL1__G_S2
     ########################################
     
-    def _T7__INITIAL1__G_S2_enter(self):    
+    def _T7__INITIAL1__G_S2_enter(self):
         self.stateId = StateId.T7__INITIAL1__G_S2
         
         # T7__INITIAL1__G_S2 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__INITIAL1__G_S2.")`
-            MainClass.trace("Enter T7__INITIAL1__G_S2.")
-         # end of behavior for T7__INITIAL1__G_S2
+
     
-    
-    def _T7__INITIAL1__G_S2_exit(self):    
+    def _T7__INITIAL1__G_S2_exit(self):
         # T7__INITIAL1__G_S2 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__INITIAL1__G_S2.")`
-            MainClass.trace("Exit T7__INITIAL1__G_S2.")
-         # end of behavior for T7__INITIAL1__G_S2
+
         
         self.stateId = StateId.T7__INITIAL1__G
-    
     
     
     ########################################
     # event handlers for state T7__INITIAL1__G_S3
     ########################################
     
-    def _T7__INITIAL1__G_S3_enter(self):    
+    def _T7__INITIAL1__G_S3_enter(self):
         self.stateId = StateId.T7__INITIAL1__G_S3
         
         # T7__INITIAL1__G_S3 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__INITIAL1__G_S3.")`
-            MainClass.trace("Enter T7__INITIAL1__G_S3.")
-         # end of behavior for T7__INITIAL1__G_S3
+
     
-    
-    def _T7__INITIAL1__G_S3_exit(self):    
+    def _T7__INITIAL1__G_S3_exit(self):
         # T7__INITIAL1__G_S3 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__INITIAL1__G_S3.")`
-            MainClass.trace("Exit T7__INITIAL1__G_S3.")
-         # end of behavior for T7__INITIAL1__G_S3
+
         
         self.stateId = StateId.T7__INITIAL1__G
-    
     
     
     ########################################
     # event handlers for state T7__INITIAL1__S1
     ########################################
     
-    def _T7__INITIAL1__S1_enter(self):    
+    def _T7__INITIAL1__S1_enter(self):
         self.stateId = StateId.T7__INITIAL1__S1
         
         # T7__INITIAL1__S1 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter T7__INITIAL1__S1.")`
-            MainClass.trace("Enter T7__INITIAL1__S1.")
-         # end of behavior for T7__INITIAL1__S1
+
     
-    
-    def _T7__INITIAL1__S1_exit(self):    
+    def _T7__INITIAL1__S1_exit(self):
         # T7__INITIAL1__S1 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit T7__INITIAL1__S1.")`
-            MainClass.trace("Exit T7__INITIAL1__S1.")
-         # end of behavior for T7__INITIAL1__S1
+
         
         self.stateId = StateId.T7__INITIAL1__PARENT
     
-    
-    def _T7__INITIAL1__S1_ev1(self):    
+    def _T7__INITIAL1__S1_ev1(self):
         # T7__INITIAL1__S1 behavior
         # uml: EV1 [trace_guard("State T7__INITIAL1__S1: check behavior `EV1 TransitionTo(T7__INITIAL1__G)`.", true)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.") } TransitionTo(T7__INITIAL1__G)
         if trace_guard("State T7__INITIAL1__S1: check behavior `EV1 TransitionTo(T7__INITIAL1__G)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
             self._T7__INITIAL1__S1_exit()
             
@@ -11368,16 +9141,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__INITIAL1__G_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__INITIAL1__S1
-        
-        # No ancestor handles this event.
     
-    
-    def _T7__INITIAL1__S1_ev3(self):    
+    def _T7__INITIAL1__S1_ev3(self):
         # T7__INITIAL1__S1 behavior
         # uml: EV3 [trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.<InitialState>)`.", true)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.<InitialState>.") } TransitionTo(T7__INITIAL1__G.<InitialState>)
         if trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.<InitialState>)`.", true):
-        
+
             # Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
             self._T7__INITIAL1__S1_exit()
             
@@ -11391,53 +9160,38 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__INITIAL1__G_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for T7__INITIAL1__S1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST7_DECIDE
     ########################################
     
-    def _TEST7_DECIDE_enter(self):    
+    def _TEST7_DECIDE_enter(self):
         self.stateId = StateId.TEST7_DECIDE
         
         # TEST7_DECIDE behavior
         # uml: enter / { trace("Enter TEST7_DECIDE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST7_DECIDE.")`
-            MainClass.trace("Enter TEST7_DECIDE.")
-         # end of behavior for TEST7_DECIDE
+
     
-    
-    def _TEST7_DECIDE_exit(self):    
+    def _TEST7_DECIDE_exit(self):
         # TEST7_DECIDE behavior
         # uml: exit / { trace("Exit TEST7_DECIDE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST7_DECIDE.")`
-            MainClass.trace("Exit TEST7_DECIDE.")
-         # end of behavior for TEST7_DECIDE
+
         
         # TEST7_DECIDE behavior
         # uml: exit [trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
         if trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output() }`.", true):
-        
-            # Step 1: execute action `clear_dispatch_output()`
-            MainClass.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
-         # end of behavior for TEST7_DECIDE
+
         
         self.stateId = StateId.TEST7_INITIAL_OR_HISTORY
     
-    
-    def _TEST7_DECIDE_ev1(self):    
+    def _TEST7_DECIDE_ev1(self):
         # TEST7_DECIDE behavior
         # uml: EV1 [trace_guard("State TEST7_DECIDE: check behavior `EV1 TransitionTo(T7__INITIAL1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1.") } TransitionTo(T7__INITIAL1)
         if trace_guard("State TEST7_DECIDE: check behavior `EV1 TransitionTo(T7__INITIAL1)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
             self._TEST7_DECIDE_exit()
             
@@ -11451,7 +9205,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__INITIAL1.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT.") } TransitionTo(T7__INITIAL1__PARENT)
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__INITIAL1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT.")`.
@@ -11463,17 +9217,12 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__INITIAL1__PARENT_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for T7__INITIAL1.<InitialState>
-         # end of behavior for TEST7_DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST7_DECIDE_ev2(self):    
+    def _TEST7_DECIDE_ev2(self):
         # TEST7_DECIDE behavior
         # uml: EV2 [trace_guard("State TEST7_DECIDE: check behavior `EV2 TransitionTo(T7__HISTORY1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1.") } TransitionTo(T7__HISTORY1)
         if trace_guard("State TEST7_DECIDE: check behavior `EV2 TransitionTo(T7__HISTORY1)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
             self._TEST7_DECIDE_exit()
             
@@ -11487,7 +9236,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__HISTORY1.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON.") } TransitionTo(T7__H1__ON)
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON.")`.
@@ -11499,17 +9248,12 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__H1__ON_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for T7__HISTORY1.<InitialState>
-         # end of behavior for TEST7_DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST7_DECIDE_ev3(self):    
+    def _TEST7_DECIDE_ev3(self):
         # TEST7_DECIDE behavior
         # uml: EV3 [trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(T7__DEEP_HISTORY1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1.") } TransitionTo(T7__DEEP_HISTORY1)
         if trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(T7__DEEP_HISTORY1)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
             self._TEST7_DECIDE_exit()
             
@@ -11523,7 +9267,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY1.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD.") } TransitionTo(T7__DH1__BUILD)
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD.")`.
@@ -11536,17 +9280,12 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DH1__BUILD_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for T7__DEEP_HISTORY1.<InitialState>
-         # end of behavior for TEST7_DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST7_DECIDE_ev4(self):    
+    def _TEST7_DECIDE_ev4(self):
         # TEST7_DECIDE behavior
         # uml: EV4 [trace_guard("State TEST7_DECIDE: check behavior `EV4 TransitionTo(T7__DEEP_HISTORY2)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2.") } TransitionTo(T7__DEEP_HISTORY2)
         if trace_guard("State TEST7_DECIDE: check behavior `EV4 TransitionTo(T7__DEEP_HISTORY2)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
             self._TEST7_DECIDE_exit()
             
@@ -11560,7 +9299,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY2.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_0)
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.")`.
@@ -11572,17 +9311,12 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for T7__DEEP_HISTORY2.<InitialState>
-         # end of behavior for TEST7_DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST7_DECIDE_ev5(self):    
+    def _TEST7_DECIDE_ev5(self):
         # TEST7_DECIDE behavior
         # uml: EV5 [trace_guard("State TEST7_DECIDE: check behavior `EV5 TransitionTo(T7__DEEP_HISTORY3)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3.") } TransitionTo(T7__DEEP_HISTORY3)
         if trace_guard("State TEST7_DECIDE: check behavior `EV5 TransitionTo(T7__DEEP_HISTORY3)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
             self._TEST7_DECIDE_exit()
             
@@ -11596,7 +9330,7 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY3.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_0)
             if True:
-            
+
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.")`.
@@ -11608,106 +9342,71 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for T7__DEEP_HISTORY3.<InitialState>
-         # end of behavior for TEST7_DECIDE
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST8_ENTRY_CHOICE
     ########################################
     
-    def _TEST8_ENTRY_CHOICE_enter(self):    
+    def _TEST8_ENTRY_CHOICE_enter(self):
         self.stateId = StateId.TEST8_ENTRY_CHOICE
         
         # TEST8_ENTRY_CHOICE behavior
         # uml: enter / { trace("Enter TEST8_ENTRY_CHOICE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST8_ENTRY_CHOICE.")`
-            MainClass.trace("Enter TEST8_ENTRY_CHOICE.")
-         # end of behavior for TEST8_ENTRY_CHOICE
+
     
-    
-    def _TEST8_ENTRY_CHOICE_exit(self):    
+    def _TEST8_ENTRY_CHOICE_exit(self):
         # TEST8_ENTRY_CHOICE behavior
         # uml: exit / { trace("Exit TEST8_ENTRY_CHOICE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST8_ENTRY_CHOICE.")`
-            MainClass.trace("Exit TEST8_ENTRY_CHOICE.")
-         # end of behavior for TEST8_ENTRY_CHOICE
+
         
         self.stateId = StateId.ROOT
-    
     
     
     ########################################
     # event handlers for state TEST8_ROOT
     ########################################
     
-    def _TEST8_ROOT_enter(self):    
+    def _TEST8_ROOT_enter(self):
         self.stateId = StateId.TEST8_ROOT
         
         # TEST8_ROOT behavior
         # uml: enter / { trace("Enter TEST8_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST8_ROOT.")`
-            MainClass.trace("Enter TEST8_ROOT.")
-         # end of behavior for TEST8_ROOT
+
         
         # TEST8_ROOT behavior
         # uml: enter [trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
         if trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output() }`.", true):
-        
-            # Step 1: execute action `clear_dispatch_output()`
-            MainClass.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
-         # end of behavior for TEST8_ROOT
+
     
-    
-    def _TEST8_ROOT_exit(self):    
+    def _TEST8_ROOT_exit(self):
         # TEST8_ROOT behavior
         # uml: exit / { trace("Exit TEST8_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST8_ROOT.")`
-            MainClass.trace("Exit TEST8_ROOT.")
-         # end of behavior for TEST8_ROOT
+
         
         self.stateId = StateId.TEST8_ENTRY_CHOICE
     
-    
-    def _TEST8_ROOT_ev3(self):    
+    def _TEST8_ROOT_ev3(self):
         # TEST8_ROOT behavior
         # uml: EV3 [trace_guard("State TEST8_ROOT: check behavior `EV3`.", true)]
         if trace_guard("State TEST8_ROOT: check behavior `EV3`.", true):
-        
-            # Step 1: execute action ``
-         # end of behavior for TEST8_ROOT
-        
-        # No ancestor handles this event.
+
     
-    
-    def _TEST8_ROOT_ev5(self):    
+    def _TEST8_ROOT_ev5(self):
         # TEST8_ROOT behavior
         # uml: EV5 [trace_guard("State TEST8_ROOT: check behavior `EV5 / { count += 1 }`.", true)] / { count += 1 }
         if trace_guard("State TEST8_ROOT: check behavior `EV5 / { count += 1 }`.", true):
-        
-            # Step 1: execute action `count += 1`
-            self.vars.count += 1
-         # end of behavior for TEST8_ROOT
-        
-        # No ancestor handles this event.
+
     
-    
-    def _TEST8_ROOT_EntryPoint_1__transition(self):    
+    def _TEST8_ROOT_EntryPoint_1__transition(self):
         # TEST8_ROOT.<EntryPoint>(1) behavior
         # uml: / { trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.") } TransitionTo(TEST8_S1)
         if True:
-        
+
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.")`.
@@ -11718,43 +9417,33 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST8_ROOT.<EntryPoint>(1)
-    
     
     
     ########################################
     # event handlers for state TEST8_G
     ########################################
     
-    def _TEST8_G_enter(self):    
+    def _TEST8_G_enter(self):
         self.stateId = StateId.TEST8_G
         
         # TEST8_G behavior
         # uml: enter / { trace("Enter TEST8_G.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST8_G.")`
-            MainClass.trace("Enter TEST8_G.")
-         # end of behavior for TEST8_G
+
     
-    
-    def _TEST8_G_exit(self):    
+    def _TEST8_G_exit(self):
         # TEST8_G behavior
         # uml: exit / { trace("Exit TEST8_G.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST8_G.")`
-            MainClass.trace("Exit TEST8_G.")
-         # end of behavior for TEST8_G
+
         
         self.stateId = StateId.TEST8_ROOT
     
-    
-    def _TEST8_G_ev2(self):    
+    def _TEST8_G_ev2(self):
         # TEST8_G behavior
         # uml: EV2 [trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.<EntryPoint>(1))`.", true)] / { trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).") } TransitionTo(TEST8_ROOT.<EntryPoint>(1))
         if trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.<EntryPoint>(1))`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST8_ROOT)
             
@@ -11767,16 +9456,12 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST8_ROOT_EntryPoint_1__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST8_G
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST8_G_EntryPoint_1__transition(self):    
+    def _TEST8_G_EntryPoint_1__transition(self):
         # TEST8_G.<EntryPoint>(1) behavior
         # uml: [count == 1] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1.") } TransitionTo(TEST8_G_S1)
         if self.vars.count == 1:
-        
+
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1.")`.
@@ -11787,12 +9472,11 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST8_G.<EntryPoint>(1)
         
         # TEST8_G.<EntryPoint>(1) behavior
         # uml: [count == 2] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2.") } TransitionTo(TEST8_G_S2)
         if self.vars.count == 2:
-        
+
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2.")`.
@@ -11803,12 +9487,11 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST8_G.<EntryPoint>(1)
         
         # TEST8_G.<EntryPoint>(1) behavior
         # uml: else / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3.") } TransitionTo(TEST8_G_S3)
         if True:
-        
+
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3.")`.
@@ -11819,14 +9502,12 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST8_G.<EntryPoint>(1)
     
-    
-    def _TEST8_G_EntryPoint_3__transition(self):    
+    def _TEST8_G_EntryPoint_3__transition(self):
         # TEST8_G.<EntryPoint>(3) behavior
         # uml: / { trace("Transition action `count += 0` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).")\ncount += 0 } TransitionTo(TEST8_G.<EntryPoint>(1))
         if True:
-        
+
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `count += 0` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).")\ncount += 0`.
@@ -11839,130 +9520,96 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST8_G_EntryPoint_1__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST8_G.<EntryPoint>(3)
-    
     
     
     ########################################
     # event handlers for state TEST8_G_S1
     ########################################
     
-    def _TEST8_G_S1_enter(self):    
+    def _TEST8_G_S1_enter(self):
         self.stateId = StateId.TEST8_G_S1
         
         # TEST8_G_S1 behavior
         # uml: enter / { trace("Enter TEST8_G_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST8_G_S1.")`
-            MainClass.trace("Enter TEST8_G_S1.")
-         # end of behavior for TEST8_G_S1
+
     
-    
-    def _TEST8_G_S1_exit(self):    
+    def _TEST8_G_S1_exit(self):
         # TEST8_G_S1 behavior
         # uml: exit / { trace("Exit TEST8_G_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST8_G_S1.")`
-            MainClass.trace("Exit TEST8_G_S1.")
-         # end of behavior for TEST8_G_S1
+
         
         self.stateId = StateId.TEST8_G
-    
     
     
     ########################################
     # event handlers for state TEST8_G_S2
     ########################################
     
-    def _TEST8_G_S2_enter(self):    
+    def _TEST8_G_S2_enter(self):
         self.stateId = StateId.TEST8_G_S2
         
         # TEST8_G_S2 behavior
         # uml: enter / { trace("Enter TEST8_G_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST8_G_S2.")`
-            MainClass.trace("Enter TEST8_G_S2.")
-         # end of behavior for TEST8_G_S2
+
     
-    
-    def _TEST8_G_S2_exit(self):    
+    def _TEST8_G_S2_exit(self):
         # TEST8_G_S2 behavior
         # uml: exit / { trace("Exit TEST8_G_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST8_G_S2.")`
-            MainClass.trace("Exit TEST8_G_S2.")
-         # end of behavior for TEST8_G_S2
+
         
         self.stateId = StateId.TEST8_G
-    
     
     
     ########################################
     # event handlers for state TEST8_G_S3
     ########################################
     
-    def _TEST8_G_S3_enter(self):    
+    def _TEST8_G_S3_enter(self):
         self.stateId = StateId.TEST8_G_S3
         
         # TEST8_G_S3 behavior
         # uml: enter / { trace("Enter TEST8_G_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST8_G_S3.")`
-            MainClass.trace("Enter TEST8_G_S3.")
-         # end of behavior for TEST8_G_S3
+
     
-    
-    def _TEST8_G_S3_exit(self):    
+    def _TEST8_G_S3_exit(self):
         # TEST8_G_S3 behavior
         # uml: exit / { trace("Exit TEST8_G_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST8_G_S3.")`
-            MainClass.trace("Exit TEST8_G_S3.")
-         # end of behavior for TEST8_G_S3
+
         
         self.stateId = StateId.TEST8_G
-    
     
     
     ########################################
     # event handlers for state TEST8_S1
     ########################################
     
-    def _TEST8_S1_enter(self):    
+    def _TEST8_S1_enter(self):
         self.stateId = StateId.TEST8_S1
         
         # TEST8_S1 behavior
         # uml: enter / { trace("Enter TEST8_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST8_S1.")`
-            MainClass.trace("Enter TEST8_S1.")
-         # end of behavior for TEST8_S1
+
     
-    
-    def _TEST8_S1_exit(self):    
+    def _TEST8_S1_exit(self):
         # TEST8_S1 behavior
         # uml: exit / { trace("Exit TEST8_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST8_S1.")`
-            MainClass.trace("Exit TEST8_S1.")
-         # end of behavior for TEST8_S1
+
         
         self.stateId = StateId.TEST8_ROOT
     
-    
-    def _TEST8_S1_ev1(self):    
+    def _TEST8_S1_ev1(self):
         # TEST8_S1 behavior
         # uml: 1. EV1 [trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.<EntryPoint>(1))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(1).") } TransitionTo(TEST8_G.<EntryPoint>(1))
         if trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.<EntryPoint>(1))`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
             self._TEST8_S1_exit()
             
@@ -11976,26 +9623,19 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST8_G_EntryPoint_1__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST8_S1
         
         # TEST8_S1 behavior
         # uml: 2. EV1 [trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", true)] / { count += 1 # shouldn't run */ }
         if trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", true):
-        
-            # Step 1: execute action `count += 1 # shouldn't run */`
-            self.vars.count += 1 
-         # end of behavior for TEST8_S1
-        
-        # No ancestor handles this event.
+
     
-    
-    def _TEST8_S1_ev3(self):    
+    def _TEST8_S1_ev3(self):
         bool consume_event = False
         
         # TEST8_S1 behavior
         # uml: EV3 [trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).") } TransitionTo(TEST8_G.<EntryPoint>(3))
         if trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
             self._TEST8_S1_exit()
             
@@ -12009,20 +9649,17 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST8_G_EntryPoint_3__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST8_S1
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST8_ROOT_ev3()
-        
     
-    
-    def _TEST8_S1_ev6(self):    
+    def _TEST8_S1_ev6(self):
         # TEST8_S1 behavior
         # uml: EV6 [trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).") } TransitionTo(TEST8_G.<EntryPoint>(3))
         if trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
             self._TEST8_S1_exit()
             
@@ -12036,74 +9673,54 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST8_G_EntryPoint_3__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-         # end of behavior for TEST8_S1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST9_EXIT_CHOICE
     ########################################
     
-    def _TEST9_EXIT_CHOICE_enter(self):    
+    def _TEST9_EXIT_CHOICE_enter(self):
         self.stateId = StateId.TEST9_EXIT_CHOICE
         
         # TEST9_EXIT_CHOICE behavior
         # uml: enter / { trace("Enter TEST9_EXIT_CHOICE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9_EXIT_CHOICE.")`
-            MainClass.trace("Enter TEST9_EXIT_CHOICE.")
-         # end of behavior for TEST9_EXIT_CHOICE
+
     
-    
-    def _TEST9_EXIT_CHOICE_exit(self):    
+    def _TEST9_EXIT_CHOICE_exit(self):
         # TEST9_EXIT_CHOICE behavior
         # uml: exit / { trace("Exit TEST9_EXIT_CHOICE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9_EXIT_CHOICE.")`
-            MainClass.trace("Exit TEST9_EXIT_CHOICE.")
-         # end of behavior for TEST9_EXIT_CHOICE
+
         
         self.stateId = StateId.ROOT
-    
     
     
     ########################################
     # event handlers for state TEST9_DECIDE
     ########################################
     
-    def _TEST9_DECIDE_enter(self):    
+    def _TEST9_DECIDE_enter(self):
         self.stateId = StateId.TEST9_DECIDE
         
         # TEST9_DECIDE behavior
         # uml: enter / { trace("Enter TEST9_DECIDE.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9_DECIDE.")`
-            MainClass.trace("Enter TEST9_DECIDE.")
-         # end of behavior for TEST9_DECIDE
+
     
-    
-    def _TEST9_DECIDE_exit(self):    
+    def _TEST9_DECIDE_exit(self):
         # TEST9_DECIDE behavior
         # uml: exit / { trace("Exit TEST9_DECIDE.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9_DECIDE.")`
-            MainClass.trace("Exit TEST9_DECIDE.")
-         # end of behavior for TEST9_DECIDE
+
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
     
-    
-    def _TEST9_DECIDE_ev1(self):    
+    def _TEST9_DECIDE_ev1(self):
         # TEST9_DECIDE behavior
         # uml: EV1 [trace_guard("State TEST9_DECIDE: check behavior `EV1 TransitionTo(TEST9_ROOT)`.", true)] / { trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT.") } TransitionTo(TEST9_ROOT)
         if trace_guard("State TEST9_DECIDE: check behavior `EV1 TransitionTo(TEST9_ROOT)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition).
             self._TEST9_DECIDE_exit()
             
@@ -12116,7 +9733,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST9_ROOT.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1.") } TransitionTo(TEST9_S1)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1.")`.
@@ -12128,7 +9745,7 @@ class Spec2Sm(Spec2SmBase):
                 # TEST9_S1.<InitialState> behavior
                 # uml: / { trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1.") } TransitionTo(TEST9_S1_1)
                 if True:
-                
+
                     # Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1.")`.
@@ -12139,18 +9756,12 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                 # end of behavior for TEST9_S1.<InitialState>
-             # end of behavior for TEST9_ROOT.<InitialState>
-         # end of behavior for TEST9_DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST9_DECIDE_ev2(self):    
+    def _TEST9_DECIDE_ev2(self):
         # TEST9_DECIDE behavior
         # uml: EV2 [trace_guard("State TEST9_DECIDE: check behavior `EV2 TransitionTo(TEST9A_ROOT)`.", true)] / { trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT.") } TransitionTo(TEST9A_ROOT)
         if trace_guard("State TEST9_DECIDE: check behavior `EV2 TransitionTo(TEST9A_ROOT)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition).
             self._TEST9_DECIDE_exit()
             
@@ -12163,7 +9774,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST9A_ROOT.<InitialState> behavior
             # uml: / { trace("Transition action `count = 0` for TEST9A_ROOT.<InitialState> to TEST9A_S1.")\ncount = 0 } TransitionTo(TEST9A_S1)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST9A_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `count = 0` for TEST9A_ROOT.<InitialState> to TEST9A_S1.")\ncount = 0`.
@@ -12176,17 +9787,12 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST9A_S1_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for TEST9A_ROOT.<InitialState>
-         # end of behavior for TEST9_DECIDE
-        
-        # No ancestor handles this event.
     
-    
-    def _TEST9_DECIDE_ev3(self):    
+    def _TEST9_DECIDE_ev3(self):
         # TEST9_DECIDE behavior
         # uml: EV3 [trace_guard("State TEST9_DECIDE: check behavior `EV3 TransitionTo(TEST9B_ROOT)`.", true)] / { trace("Transition action `` for TEST9_DECIDE to TEST9B_ROOT.") } TransitionTo(TEST9B_ROOT)
         if trace_guard("State TEST9_DECIDE: check behavior `EV3 TransitionTo(TEST9B_ROOT)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition).
             self._TEST9_DECIDE_exit()
             
@@ -12198,239 +9804,170 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST9_DECIDE
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST9_ROOT
     ########################################
     
-    def _TEST9_ROOT_enter(self):    
+    def _TEST9_ROOT_enter(self):
         self.stateId = StateId.TEST9_ROOT
         
         # TEST9_ROOT behavior
         # uml: enter / { trace("Enter TEST9_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9_ROOT.")`
-            MainClass.trace("Enter TEST9_ROOT.")
-         # end of behavior for TEST9_ROOT
+
     
-    
-    def _TEST9_ROOT_exit(self):    
+    def _TEST9_ROOT_exit(self):
         # TEST9_ROOT behavior
         # uml: exit / { trace("Exit TEST9_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9_ROOT.")`
-            MainClass.trace("Exit TEST9_ROOT.")
-         # end of behavior for TEST9_ROOT
+
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
     
-    
-    def _TEST9_ROOT_ev5(self):    
+    def _TEST9_ROOT_ev5(self):
         # TEST9_ROOT behavior
         # uml: EV5 [trace_guard("State TEST9_ROOT: check behavior `EV5 / { count += 1 }`.", true)] / { count += 1 }
         if trace_guard("State TEST9_ROOT: check behavior `EV5 / { count += 1 }`.", true):
-        
-            # Step 1: execute action `count += 1`
-            self.vars.count += 1
-         # end of behavior for TEST9_ROOT
-        
-        # No ancestor handles this event.
-    
+
     
     
     ########################################
     # event handlers for state TEST9_G_S1
     ########################################
     
-    def _TEST9_G_S1_enter(self):    
+    def _TEST9_G_S1_enter(self):
         self.stateId = StateId.TEST9_G_S1
         
         # TEST9_G_S1 behavior
         # uml: enter / { trace("Enter TEST9_G_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9_G_S1.")`
-            MainClass.trace("Enter TEST9_G_S1.")
-         # end of behavior for TEST9_G_S1
+
     
-    
-    def _TEST9_G_S1_exit(self):    
+    def _TEST9_G_S1_exit(self):
         # TEST9_G_S1 behavior
         # uml: exit / { trace("Exit TEST9_G_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9_G_S1.")`
-            MainClass.trace("Exit TEST9_G_S1.")
-         # end of behavior for TEST9_G_S1
+
         
         self.stateId = StateId.TEST9_ROOT
-    
     
     
     ########################################
     # event handlers for state TEST9_G_S2
     ########################################
     
-    def _TEST9_G_S2_enter(self):    
+    def _TEST9_G_S2_enter(self):
         self.stateId = StateId.TEST9_G_S2
         
         # TEST9_G_S2 behavior
         # uml: enter / { trace("Enter TEST9_G_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9_G_S2.")`
-            MainClass.trace("Enter TEST9_G_S2.")
-         # end of behavior for TEST9_G_S2
+
     
-    
-    def _TEST9_G_S2_exit(self):    
+    def _TEST9_G_S2_exit(self):
         # TEST9_G_S2 behavior
         # uml: exit / { trace("Exit TEST9_G_S2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9_G_S2.")`
-            MainClass.trace("Exit TEST9_G_S2.")
-         # end of behavior for TEST9_G_S2
+
         
         self.stateId = StateId.TEST9_ROOT
-    
     
     
     ########################################
     # event handlers for state TEST9_G_S3
     ########################################
     
-    def _TEST9_G_S3_enter(self):    
+    def _TEST9_G_S3_enter(self):
         self.stateId = StateId.TEST9_G_S3
         
         # TEST9_G_S3 behavior
         # uml: enter / { trace("Enter TEST9_G_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9_G_S3.")`
-            MainClass.trace("Enter TEST9_G_S3.")
-         # end of behavior for TEST9_G_S3
+
     
-    
-    def _TEST9_G_S3_exit(self):    
+    def _TEST9_G_S3_exit(self):
         # TEST9_G_S3 behavior
         # uml: exit / { trace("Exit TEST9_G_S3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9_G_S3.")`
-            MainClass.trace("Exit TEST9_G_S3.")
-         # end of behavior for TEST9_G_S3
+
         
         self.stateId = StateId.TEST9_ROOT
-    
     
     
     ########################################
     # event handlers for state TEST9_G_S4
     ########################################
     
-    def _TEST9_G_S4_enter(self):    
+    def _TEST9_G_S4_enter(self):
         self.stateId = StateId.TEST9_G_S4
         
         # TEST9_G_S4 behavior
         # uml: enter / { trace("Enter TEST9_G_S4.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9_G_S4.")`
-            MainClass.trace("Enter TEST9_G_S4.")
-         # end of behavior for TEST9_G_S4
+
     
-    
-    def _TEST9_G_S4_exit(self):    
+    def _TEST9_G_S4_exit(self):
         # TEST9_G_S4 behavior
         # uml: exit / { trace("Exit TEST9_G_S4.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9_G_S4.")`
-            MainClass.trace("Exit TEST9_G_S4.")
-         # end of behavior for TEST9_G_S4
+
         
         self.stateId = StateId.TEST9_ROOT
-    
     
     
     ########################################
     # event handlers for state TEST9_S1
     ########################################
     
-    def _TEST9_S1_enter(self):    
+    def _TEST9_S1_enter(self):
         self.stateId = StateId.TEST9_S1
         
         # TEST9_S1 behavior
         # uml: enter / { trace("Enter TEST9_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9_S1.")`
-            MainClass.trace("Enter TEST9_S1.")
-         # end of behavior for TEST9_S1
+
     
-    
-    def _TEST9_S1_exit(self):    
+    def _TEST9_S1_exit(self):
         # TEST9_S1 behavior
         # uml: exit / { trace("Exit TEST9_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9_S1.")`
-            MainClass.trace("Exit TEST9_S1.")
-         # end of behavior for TEST9_S1
+
         
         self.stateId = StateId.TEST9_ROOT
-    
     
     
     ########################################
     # event handlers for state TEST9_S1_1
     ########################################
     
-    def _TEST9_S1_1_enter(self):    
+    def _TEST9_S1_1_enter(self):
         self.stateId = StateId.TEST9_S1_1
         
         # TEST9_S1_1 behavior
         # uml: enter / { trace("Enter TEST9_S1_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9_S1_1.")`
-            MainClass.trace("Enter TEST9_S1_1.")
-         # end of behavior for TEST9_S1_1
+
         
         # TEST9_S1_1 behavior
         # uml: enter [trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output() }`.", true):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for TEST9_S1_1
+
     
-    
-    def _TEST9_S1_1_exit(self):    
+    def _TEST9_S1_1_exit(self):
         # TEST9_S1_1 behavior
         # uml: exit / { trace("Exit TEST9_S1_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9_S1_1.")`
-            MainClass.trace("Exit TEST9_S1_1.")
-         # end of behavior for TEST9_S1_1
+
         
         self.stateId = StateId.TEST9_S1
     
-    
-    def _TEST9_S1_1_ev1(self):    
+    def _TEST9_S1_1_ev1(self):
         # TEST9_S1_1 behavior
         # uml: EV1 [trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.<ExitPoint>(1))`.", true)] / { trace("Transition action `` for TEST9_S1_1 to TEST9_S1.<ExitPoint>(1).") } TransitionTo(TEST9_S1.<ExitPoint>(1))
         if trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.<ExitPoint>(1))`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition).
             self._TEST9_S1_1_exit()
             
@@ -12443,7 +9980,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST9_S1.<ExitPoint>(1) behavior
             # uml: [count == 4] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S4.") } TransitionTo(TEST9_G_S4)
             if self.vars.count == 4:
-            
+
                 # Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 self._TEST9_S1_exit()
                 
@@ -12455,12 +9992,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST9_S1.<ExitPoint>(1)
             
             # TEST9_S1.<ExitPoint>(1) behavior
             # uml: [count == 1] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S1.") } TransitionTo(TEST9_G_S1)
             if self.vars.count == 1:
-            
+
                 # Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 self._TEST9_S1_exit()
                 
@@ -12472,12 +10008,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST9_S1.<ExitPoint>(1)
             
             # TEST9_S1.<ExitPoint>(1) behavior
             # uml: [count == 2] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S2.") } TransitionTo(TEST9_G_S2)
             if self.vars.count == 2:
-            
+
                 # Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 self._TEST9_S1_exit()
                 
@@ -12489,12 +10024,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST9_S1.<ExitPoint>(1)
             
             # TEST9_S1.<ExitPoint>(1) behavior
             # uml: else / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S3.") } TransitionTo(TEST9_G_S3)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 self._TEST9_S1_exit()
                 
@@ -12506,75 +10040,54 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST9_S1.<ExitPoint>(1)
-         # end of behavior for TEST9_S1_1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST9A_ROOT
     ########################################
     
-    def _TEST9A_ROOT_enter(self):    
+    def _TEST9A_ROOT_enter(self):
         self.stateId = StateId.TEST9A_ROOT
         
         # TEST9A_ROOT behavior
         # uml: enter / { trace("Enter TEST9A_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9A_ROOT.")`
-            MainClass.trace("Enter TEST9A_ROOT.")
-         # end of behavior for TEST9A_ROOT
+
     
-    
-    def _TEST9A_ROOT_exit(self):    
+    def _TEST9A_ROOT_exit(self):
         # TEST9A_ROOT behavior
         # uml: exit / { trace("Exit TEST9A_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9A_ROOT.")`
-            MainClass.trace("Exit TEST9A_ROOT.")
-         # end of behavior for TEST9A_ROOT
+
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
-    
     
     
     ########################################
     # event handlers for state TEST9A_S1
     ########################################
     
-    def _TEST9A_S1_enter(self):    
+    def _TEST9A_S1_enter(self):
         self.stateId = StateId.TEST9A_S1
         
         # TEST9A_S1 behavior
         # uml: enter / { trace("Enter TEST9A_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9A_S1.")`
-            MainClass.trace("Enter TEST9A_S1.")
-         # end of behavior for TEST9A_S1
+
     
-    
-    def _TEST9A_S1_exit(self):    
+    def _TEST9A_S1_exit(self):
         # TEST9A_S1 behavior
         # uml: exit / { trace("Exit TEST9A_S1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9A_S1.")`
-            MainClass.trace("Exit TEST9A_S1.")
-         # end of behavior for TEST9A_S1
+
         
         self.stateId = StateId.TEST9A_ROOT
     
-    
-    def _TEST9A_S1_InitialState_transition(self):    
+    def _TEST9A_S1_InitialState_transition(self):
         # TEST9A_S1.<InitialState> behavior
         # uml: / { trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.") } TransitionTo(TEST9A_S1_1)
         if True:
-        
+
             # Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.")`.
@@ -12585,59 +10098,43 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST9A_S1.<InitialState>
-    
     
     
     ########################################
     # event handlers for state TEST9A_S1_1
     ########################################
     
-    def _TEST9A_S1_1_enter(self):    
+    def _TEST9A_S1_1_enter(self):
         self.stateId = StateId.TEST9A_S1_1
         
         # TEST9A_S1_1 behavior
         # uml: enter / { trace("Enter TEST9A_S1_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9A_S1_1.")`
-            MainClass.trace("Enter TEST9A_S1_1.")
-         # end of behavior for TEST9A_S1_1
+
         
         # TEST9A_S1_1 behavior
         # uml: enter [trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output() }`.", count == 0)] / { clear_output() }
         if trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output() }`.", self.vars.count == 0):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for TEST9A_S1_1
+
     
-    
-    def _TEST9A_S1_1_exit(self):    
+    def _TEST9A_S1_1_exit(self):
         # TEST9A_S1_1 behavior
         # uml: exit / { trace("Exit TEST9A_S1_1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9A_S1_1.")`
-            MainClass.trace("Exit TEST9A_S1_1.")
-         # end of behavior for TEST9A_S1_1
+
         
         # TEST9A_S1_1 behavior
         # uml: exit [trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100 }`.", true)] / { count = 100 }
         if trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100 }`.", true):
-        
-            # Step 1: execute action `count = 100`
-            self.vars.count = 100
-         # end of behavior for TEST9A_S1_1
+
         
         self.stateId = StateId.TEST9A_S1
     
-    
-    def _TEST9A_S1_1_ev1(self):    
+    def _TEST9A_S1_1_ev1(self):
         # TEST9A_S1_1 behavior
         # uml: EV1 [trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.<ExitPoint>(1))`.", true)] / { trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.<ExitPoint>(1).") } TransitionTo(TEST9A_S1.<ExitPoint>(1))
         if trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.<ExitPoint>(1))`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition).
             self._TEST9A_S1_1_exit()
             
@@ -12650,7 +10147,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST9A_S1.<ExitPoint>(1) behavior
             # uml: [true] / { trace("Transition action `count += 1` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.")\ncount += 1 } TransitionTo(TEST9A_S1)
             if true:
-            
+
                 # Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition).
                 self._TEST9A_S1_exit()
                 
@@ -12663,54 +10160,38 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST9A_S1_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-             # end of behavior for TEST9A_S1.<ExitPoint>(1)
-         # end of behavior for TEST9A_S1_1
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST9B_ROOT
     ########################################
     
-    def _TEST9B_ROOT_enter(self):    
+    def _TEST9B_ROOT_enter(self):
         self.stateId = StateId.TEST9B_ROOT
         
         # TEST9B_ROOT behavior
         # uml: enter / { trace("Enter TEST9B_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9B_ROOT.")`
-            MainClass.trace("Enter TEST9B_ROOT.")
-         # end of behavior for TEST9B_ROOT
+
         
         # TEST9B_ROOT behavior
         # uml: enter [trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output() }`.", true):
-        
-            # Step 1: execute action `clear_output()`
-            MainClass.trace("IGNORE_OUTPUT_BEFORE_THIS")
-         # end of behavior for TEST9B_ROOT
+
     
-    
-    def _TEST9B_ROOT_exit(self):    
+    def _TEST9B_ROOT_exit(self):
         # TEST9B_ROOT behavior
         # uml: exit / { trace("Exit TEST9B_ROOT.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9B_ROOT.")`
-            MainClass.trace("Exit TEST9B_ROOT.")
-         # end of behavior for TEST9B_ROOT
+
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
     
-    
-    def _TEST9B_ROOT_ev1(self):    
+    def _TEST9B_ROOT_ev1(self):
         # TEST9B_ROOT behavior
         # uml: EV1 [trace_guard("State TEST9B_ROOT: check behavior `EV1 TransitionTo(TEST9B_ROOT__A4)`.", true)] / { trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.") } TransitionTo(TEST9B_ROOT__A4)
         if trace_guard("State TEST9B_ROOT: check behavior `EV1 TransitionTo(TEST9B_ROOT__A4)`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(StateId.TEST9B_ROOT)
             
@@ -12725,134 +10206,98 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-         # end of behavior for TEST9B_ROOT
-        
-        # No ancestor handles this event.
-    
     
     
     ########################################
     # event handlers for state TEST9B_ROOT__A1
     ########################################
     
-    def _TEST9B_ROOT__A1_enter(self):    
+    def _TEST9B_ROOT__A1_enter(self):
         self.stateId = StateId.TEST9B_ROOT__A1
         
         # TEST9B_ROOT__A1 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9B_ROOT__A1.")`
-            MainClass.trace("Enter TEST9B_ROOT__A1.")
-         # end of behavior for TEST9B_ROOT__A1
+
     
-    
-    def _TEST9B_ROOT__A1_exit(self):    
+    def _TEST9B_ROOT__A1_exit(self):
         # TEST9B_ROOT__A1 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9B_ROOT__A1.")`
-            MainClass.trace("Exit TEST9B_ROOT__A1.")
-         # end of behavior for TEST9B_ROOT__A1
+
         
         self.stateId = StateId.TEST9B_ROOT
-    
     
     
     ########################################
     # event handlers for state TEST9B_ROOT__A2
     ########################################
     
-    def _TEST9B_ROOT__A2_enter(self):    
+    def _TEST9B_ROOT__A2_enter(self):
         self.stateId = StateId.TEST9B_ROOT__A2
         
         # TEST9B_ROOT__A2 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9B_ROOT__A2.")`
-            MainClass.trace("Enter TEST9B_ROOT__A2.")
-         # end of behavior for TEST9B_ROOT__A2
+
     
-    
-    def _TEST9B_ROOT__A2_exit(self):    
+    def _TEST9B_ROOT__A2_exit(self):
         # TEST9B_ROOT__A2 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9B_ROOT__A2.")`
-            MainClass.trace("Exit TEST9B_ROOT__A2.")
-         # end of behavior for TEST9B_ROOT__A2
+
         
         self.stateId = StateId.TEST9B_ROOT__A1
-    
     
     
     ########################################
     # event handlers for state TEST9B_ROOT__A3
     ########################################
     
-    def _TEST9B_ROOT__A3_enter(self):    
+    def _TEST9B_ROOT__A3_enter(self):
         self.stateId = StateId.TEST9B_ROOT__A3
         
         # TEST9B_ROOT__A3 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9B_ROOT__A3.")`
-            MainClass.trace("Enter TEST9B_ROOT__A3.")
-         # end of behavior for TEST9B_ROOT__A3
+
     
-    
-    def _TEST9B_ROOT__A3_exit(self):    
+    def _TEST9B_ROOT__A3_exit(self):
         # TEST9B_ROOT__A3 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9B_ROOT__A3.")`
-            MainClass.trace("Exit TEST9B_ROOT__A3.")
-         # end of behavior for TEST9B_ROOT__A3
+
         
         self.stateId = StateId.TEST9B_ROOT__A2
-    
     
     
     ########################################
     # event handlers for state TEST9B_ROOT__A4
     ########################################
     
-    def _TEST9B_ROOT__A4_enter(self):    
+    def _TEST9B_ROOT__A4_enter(self):
         self.stateId = StateId.TEST9B_ROOT__A4
         
         # TEST9B_ROOT__A4 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A4.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9B_ROOT__A4.")`
-            MainClass.trace("Enter TEST9B_ROOT__A4.")
-         # end of behavior for TEST9B_ROOT__A4
+
     
-    
-    def _TEST9B_ROOT__A4_exit(self):    
+    def _TEST9B_ROOT__A4_exit(self):
         # TEST9B_ROOT__A4 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A4.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9B_ROOT__A4.")`
-            MainClass.trace("Exit TEST9B_ROOT__A4.")
-         # end of behavior for TEST9B_ROOT__A4
+
         
         self.stateId = StateId.TEST9B_ROOT__A3
     
-    
-    def _TEST9B_ROOT__A4_ev1(self):    
+    def _TEST9B_ROOT__A4_ev1(self):
         bool consume_event = False
         
         # TEST9B_ROOT__A4 behavior
         # uml: EV1 [trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))`.", true)] / { trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1).") } TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))
         if trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))`.", true):
-        
+
             # Step 1: Exit states until we reach `TEST9B_ROOT__A3` state (Least Common Ancestor for transition).
             self._TEST9B_ROOT__A4_exit()
             
@@ -12865,7 +10310,7 @@ class Spec2Sm(Spec2SmBase):
             # TEST9B_ROOT__A3.<ExitPoint>(1) behavior
             # uml: / { trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4.") } TransitionTo(TEST9B_ROOT__B4)
             if True:
-            
+
                 # Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
                 self._exitUpToStateHandler(StateId.TEST9B_ROOT)
                 
@@ -12880,135 +10325,99 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-             # end of behavior for TEST9B_ROOT__A3.<ExitPoint>(1)
-         # end of behavior for TEST9B_ROOT__A4
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
-        
+
             self._TEST9B_ROOT_ev1()
-        
-    
     
     
     ########################################
     # event handlers for state TEST9B_ROOT__B1
     ########################################
     
-    def _TEST9B_ROOT__B1_enter(self):    
+    def _TEST9B_ROOT__B1_enter(self):
         self.stateId = StateId.TEST9B_ROOT__B1
         
         # TEST9B_ROOT__B1 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B1.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9B_ROOT__B1.")`
-            MainClass.trace("Enter TEST9B_ROOT__B1.")
-         # end of behavior for TEST9B_ROOT__B1
+
     
-    
-    def _TEST9B_ROOT__B1_exit(self):    
+    def _TEST9B_ROOT__B1_exit(self):
         # TEST9B_ROOT__B1 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B1.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9B_ROOT__B1.")`
-            MainClass.trace("Exit TEST9B_ROOT__B1.")
-         # end of behavior for TEST9B_ROOT__B1
+
         
         self.stateId = StateId.TEST9B_ROOT
-    
     
     
     ########################################
     # event handlers for state TEST9B_ROOT__B2
     ########################################
     
-    def _TEST9B_ROOT__B2_enter(self):    
+    def _TEST9B_ROOT__B2_enter(self):
         self.stateId = StateId.TEST9B_ROOT__B2
         
         # TEST9B_ROOT__B2 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B2.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9B_ROOT__B2.")`
-            MainClass.trace("Enter TEST9B_ROOT__B2.")
-         # end of behavior for TEST9B_ROOT__B2
+
     
-    
-    def _TEST9B_ROOT__B2_exit(self):    
+    def _TEST9B_ROOT__B2_exit(self):
         # TEST9B_ROOT__B2 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B2.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9B_ROOT__B2.")`
-            MainClass.trace("Exit TEST9B_ROOT__B2.")
-         # end of behavior for TEST9B_ROOT__B2
+
         
         self.stateId = StateId.TEST9B_ROOT__B1
-    
     
     
     ########################################
     # event handlers for state TEST9B_ROOT__B3
     ########################################
     
-    def _TEST9B_ROOT__B3_enter(self):    
+    def _TEST9B_ROOT__B3_enter(self):
         self.stateId = StateId.TEST9B_ROOT__B3
         
         # TEST9B_ROOT__B3 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B3.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9B_ROOT__B3.")`
-            MainClass.trace("Enter TEST9B_ROOT__B3.")
-         # end of behavior for TEST9B_ROOT__B3
+
     
-    
-    def _TEST9B_ROOT__B3_exit(self):    
+    def _TEST9B_ROOT__B3_exit(self):
         # TEST9B_ROOT__B3 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B3.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9B_ROOT__B3.")`
-            MainClass.trace("Exit TEST9B_ROOT__B3.")
-         # end of behavior for TEST9B_ROOT__B3
+
         
         self.stateId = StateId.TEST9B_ROOT__B2
-    
     
     
     ########################################
     # event handlers for state TEST9B_ROOT__B4
     ########################################
     
-    def _TEST9B_ROOT__B4_enter(self):    
+    def _TEST9B_ROOT__B4_enter(self):
         self.stateId = StateId.TEST9B_ROOT__B4
         
         # TEST9B_ROOT__B4 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B4.") }
         if True:
-        
-            # Step 1: execute action `trace("Enter TEST9B_ROOT__B4.")`
-            MainClass.trace("Enter TEST9B_ROOT__B4.")
-         # end of behavior for TEST9B_ROOT__B4
+
     
-    
-    def _TEST9B_ROOT__B4_exit(self):    
+    def _TEST9B_ROOT__B4_exit(self):
         # TEST9B_ROOT__B4 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B4.") }
         if True:
-        
-            # Step 1: execute action `trace("Exit TEST9B_ROOT__B4.")`
-            MainClass.trace("Exit TEST9B_ROOT__B4.")
-         # end of behavior for TEST9B_ROOT__B4
+
         
         self.stateId = StateId.TEST9B_ROOT__B3
-    
 @staticmethod
     
     # Thread safe.
-    def stateIdToString(id):    
+    def stateIdToString(id):
         match id:
             case self.StateId.ROOT: return "ROOT"
             case self.StateId.PREFIXING: return "PREFIXING"
@@ -13183,11 +10592,10 @@ class Spec2Sm(Spec2SmBase):
             case self.StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3"
             case self.StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4"
             default: return "?"
-    
 @staticmethod
     
     # Thread safe.
-    def eventIdToString(id):    
+    def eventIdToString(id):
         match id:
             case self.EventId.DO: return "DO"
             case self.EventId.EV1: return "EV1"
@@ -13205,4 +10613,3 @@ class Spec2Sm(Spec2SmBase):
             case self.EventId.EVOPEN: return "EVOPEN"
             case self.EventId.EVSTEP: return "EVSTEP"
             default: return "?"
-    

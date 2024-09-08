@@ -36,7 +36,7 @@ public class AlgoBalanced1Settings
     /// <summary>
     /// set to false for python
     /// </summary>
-    internal bool singleLineEventCase = true;
+    internal bool allowSingleLineSwitchCase = true;
 
     /// <summary>
     /// set to false for python

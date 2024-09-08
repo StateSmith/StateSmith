@@ -77,11 +77,24 @@ public class AlgoBalanced2 : AlgoBalanced1
                     }
                     else
                     {
-                        file.Append($"case {mangler.SmQualifiedStateEnumValue(namedVertex)}: ");
+                        bool shouldIndent = !settings.allowSingleLineSwitchCase;
+
+                        file.AppendMaybeIndentLine($"case {mangler.SmQualifiedStateEnumValue(namedVertex)}: ", shouldIndent);
+
+                        if (shouldIndent) {
+                            file.IncreaseIndentLevel();
+                        }
+
                         string exitFunctionName = mangler.SmTriggerHandlerFuncName(namedVertex, TriggerHelper.TRIGGER_EXIT);
-                        file.AppendWithoutIndent($"this.{exitFunctionName}(); ");
-                        file.AppendWithoutIndent("break;\n");
+                        file.AppendMaybeIndentLine($"this.{exitFunctionName}(); ", shouldIndent);
+                        file.AppendMaybeIndentLine("break;", shouldIndent);
                         file.AppendLine();
+
+                        if (shouldIndent)
+                        {
+                            file.DecreaseIndentLevel();
+                        }
+
                         verticesThatNeedExitStateIdAdjustment.Add(namedVertex);
                     }
                 }
@@ -230,7 +243,7 @@ public class AlgoBalanced2 : AlgoBalanced1
     private void MaybeOutputEventHandler(NamedVertex? namedVertex, string evt, string comment = "")
     {
         file.Append($"case {mangler.SmEventEnumType}.{mangler.SmEventEnumValue(evt)}: ");
-        if (!settings.singleLineEventCase)
+        if (!settings.allowSingleLineSwitchCase)
         {
             file.FinishLine();
             file.IncreaseIndentLevel();
@@ -242,7 +255,7 @@ public class AlgoBalanced2 : AlgoBalanced1
             OutputEventHandlerCall(namedVertex, evt);
         }
 
-        if (!settings.singleLineEventCase)
+        if (!settings.allowSingleLineSwitchCase)
         {
             AddCommentLine(comment);
             file.Append(""); // triggers indent
@@ -250,12 +263,12 @@ public class AlgoBalanced2 : AlgoBalanced1
 
         file.AppendWithoutIndent("break;");
 
-        if (settings.singleLineEventCase)
+        if (settings.allowSingleLineSwitchCase)
         {
             AddCommentLine(comment);
         }
 
-        if (!settings.singleLineEventCase)
+        if (!settings.allowSingleLineSwitchCase)
         {
             file.FinishLine();
             file.DecreaseIndentLevel();

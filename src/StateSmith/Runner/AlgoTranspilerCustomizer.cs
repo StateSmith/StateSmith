@@ -18,7 +18,7 @@ namespace StateSmith.Runner;
 /// </summary>
 public class AlgoTranspilerCustomizer
 {
-    public void Customize(DiServiceProvider sp, AlgorithmId algorithmId, TranspilerId transpilerId, AlgoBalanced1Settings algoBalanced1Settings)
+    public void Customize(DiServiceProvider sp, AlgorithmId algorithmId, TranspilerId transpilerId, AlgoBalanced1Settings algoBalanced1Settings, CodeStyleSettings style)
     {
         if (algorithmId == AlgorithmId.Default)
         {
@@ -91,8 +91,13 @@ public class AlgoTranspilerCustomizer
                     algoBalanced1Settings.outputEnumMemberCount = false;
                     algoBalanced1Settings.varsStructAsClass = true;
                     algoBalanced1Settings.useIfTrueIfNoGuard = true;
-                    algoBalanced1Settings.singleLineEventCase = false;
+                    algoBalanced1Settings.allowSingleLineSwitchCase = false;
                     algoBalanced1Settings.omitBlankEventCase = true;
+
+                    if (!style.BracesOnNewLines)
+                    {
+                        throw new Exception("Python transpiler currently only supports `style.BracesOnNewLines = true`.");
+                    }
 
                     // https://github.com/StateSmith/StateSmith/issues/395
                     if (algorithmId != AlgorithmId.Balanced2)
