@@ -90,6 +90,7 @@ public class SharedCompilationFixture
         public class Expansions : Spec2GenericVarExpansions
         {
             public override string trace(string message) => $"Printer.trace({message})"; // this isn't actually needed, but helps ensure expansions are working
+            public override string trace_guard(string message, string guardCode) => $"self.trace_guard({message}, {guardCode})";
         }
     }
 }
