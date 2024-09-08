@@ -1,12 +1,19 @@
 #nullable enable
 
 using Microsoft.CodeAnalysis.CSharp;
+using System;
 
 namespace StateSmith.Output.Gil;
 
 public class GilCreationHelper
 {
-    private static AtomicInt _fieldCounter = new();
+    /// <summary>
+    /// This is a thread static field so that we can have unique field names for each thread.
+    /// It also allows us to have multiple instances of the transpiler running in parallel without having random numbers here.
+    /// Tests running in parallel now have unique and consistent field names.
+    /// </summary>
+    [ThreadStatic]
+    private static int _fieldCounter = 0;
 
     /// <summary>
     /// Helps prevent clashing with code to transpile.
@@ -131,7 +138,7 @@ public class GilCreationHelper
 
     private static string CreateGilFieldName_EchoString()
     {
-        return $"{GilFieldName_EchoString}{_fieldCounter.IncrementAndGet()}";
+        return $"{GilFieldName_EchoString}{_fieldCounter++}";
     }
 
     private static string EscapeAndQuote(string codeToWrap)

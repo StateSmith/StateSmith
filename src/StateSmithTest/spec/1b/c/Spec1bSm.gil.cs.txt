@@ -30,7 +30,7 @@ public const int StateIdCount = 6;
 // State machine variables. Can be used for inputs, outputs, user variables...
 public struct Vars
 {
-    public string ____GilData_FieldEchoStringVoid5;//"uint8_t count;"
+    public string ____GilData_FieldEchoStringVoid0;//"uint8_t count;"
 }
     
     // Variables. Can be used for inputs, outputs, user variables...
