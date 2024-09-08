@@ -11,10 +11,12 @@ namespace StateSmith.Runner;
 public class TracingModder : NamedVisitor
 {
     protected string semiColon;
+    private readonly string trueString;
 
-    public TracingModder(string semiColon = ";")
+    public TracingModder(string semiColon = ";", string trueString = "true")
     {
         this.semiColon = semiColon;
+        this.trueString = trueString;
     }
 
     public void AddTracingBehaviors(StateMachine stateMachine)
@@ -52,7 +54,7 @@ public class TracingModder : NamedVisitor
 
             if (originalGuard.Length == 0)
             {
-                originalGuard = "true";
+                originalGuard = trueString;
             }
 
             string escapedUml = StringUtils.EscapeCharsForString(uml);

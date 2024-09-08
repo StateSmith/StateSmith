@@ -15,9 +15,10 @@ namespace Spec;
 
 public class SpecFixture
 {
+    public const string TracingModderId = nameof(SpecFixture) + "_" + nameof(TracingModder);
     public static string SpecInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../spec/";
 
-    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null, string semiColon = ";")
+    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null, string semiColon = ";", string trueString = "true")
     {
         RunnerSettings settings = new(diagramFile: diagramFile, outputDirectory: srcDirectory);
         settings.outputStateSmithVersionInfo = false; // too much noise in repo
@@ -41,7 +42,7 @@ public class SpecFixture
         if (useTracingModder)
         {
             runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1,
-                new TransformationStep(id: nameof(TracingModder), action: (sm) => new TracingModder(semiColon).AddTracingBehaviors(sm)));
+                new TransformationStep(id: TracingModderId, action: (sm) => new TracingModder(semiColon: semiColon, trueString: trueString).AddTracingBehaviors(sm)));
         }
         runner.Run();
     }

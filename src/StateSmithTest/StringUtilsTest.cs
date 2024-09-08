@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 using FluentAssertions;
 using StateSmith.Output;
+using System.Text;
 
 namespace StateSmithTest;
 
@@ -54,5 +52,45 @@ public class StringUtilsTest
     {
         StringUtils.SnakeCaseToPascalCase("state_id").Should().Be("StateId");
         StringUtils.SnakeCaseToPascalCase("   state__id").Should().Be("State_Id");  // not sure if this is desired. Just showing how it works.
+    }
+
+    [Fact]
+    public void FindLastIndent()
+    {
+        StringBuilder sb = new();
+
+        // no input
+        sb.Clear();
+        sb.Append("");
+        StringUtils.FindLastIndent(sb).Should().Be("");
+
+        // only spaces
+        sb.Clear();
+        sb.Append("     ");
+        StringUtils.FindLastIndent(sb).Should().Be("     ");
+
+        // no indent
+        sb.Clear();
+        sb.Append("//blah blah ");
+        StringUtils.FindLastIndent(sb).Should().Be("");
+
+        // indent at start
+        sb.Clear();
+        sb.Append("\t \t//blah blah ");
+        StringUtils.FindLastIndent(sb).Should().Be("\t \t");
+
+        // indent at end
+        sb.Clear();
+        sb.Append("    //blah blah       \n  \t");
+        StringUtils.FindLastIndent(sb).Should().Be("  \t");
+
+        // indent at end
+        sb.Clear();
+        sb.Append("    //blah blah       \n  \t  ");
+        StringUtils.FindLastIndent(sb).Should().Be("  \t  ");
+
+        sb.Clear();
+        sb.Append("    //blah blah       \n   blah  \t  ");
+        StringUtils.FindLastIndent(sb).Should().Be("   ");
     }
 }

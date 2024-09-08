@@ -1,6 +1,9 @@
+#nullable enable
+
 using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace StateSmith.Output;
@@ -81,6 +84,53 @@ public class StringUtils
         output = TrimTrailingNewLineAndHs(output);
 
         return output;
+    }
+
+    public static string FindIndent(string str)
+    {
+        var regex = new Regex(@"(?m)^([ \t]+)\z"); // \z is end of string
+        string indent = regex.Match(str).Groups[1].Value;
+
+        return indent;
+    }
+
+    /// <summary>
+    /// See unit tests for examples. If no indent is found, returns empty string.
+    /// </summary>
+    /// <param name="sb"></param>
+    /// <returns></returns>
+    public static string FindLastIndent(StringBuilder sb)
+    {
+        int endExclusive = sb.Length;
+        int start = sb.Length - 1;
+
+        // walk backwards from end of string
+        while (start >= 0)
+        {
+            char c = sb[start];
+            if (c == ' ' || c == '\t')
+            {
+                start--;
+            }
+            else if (c == '\n' || c == '\r')
+            {
+                break;
+            }
+            else
+            {
+                endExclusive = start;
+                start--;
+            }
+        }
+
+        start++;
+
+        if (start == endExclusive)
+        {
+            return "";
+        }
+
+        return sb.ToString(start, endExclusive - start);
     }
 
     /// <summary>

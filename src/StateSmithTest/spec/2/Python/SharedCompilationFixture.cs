@@ -23,8 +23,9 @@ public class SharedCompilationFixture
             runner.AlgoOrTranspilerUpdated();
             runner.Settings.outputGilCodeAlways = true;
 
+            // NOTE!!! This runs before any other transformations so we can be confident that the code we are modifying is in the original form
+            // from the diagram and not something that was added by a transformation (like history vertices).
             runner.SmTransformer.transformationPipeline.Insert(0, new TransformationStep(action: (sm) => {
-                // remove semi-colons from diagram actions
                 sm.VisitRecursively((node) =>
                 {
                     foreach (var behavior in node.Behaviors)
@@ -33,12 +34,26 @@ public class SharedCompilationFixture
                         behavior.actionCode = behavior.actionCode.Replace("++", " += 1");
                         behavior.actionCode = behavior.actionCode.Replace("/*", "#");
                         behavior.actionCode = behavior.actionCode.Replace("MainClass.", "Printer.");
+                        behavior.actionCode = behavior.actionCode.Replace("true", "True");
+                        behavior.actionCode = behavior.actionCode.Replace("false", "False");
                     }
                 });
             }));
+
+            //// 
+            //runner.SmTransformer.InsertAfterFirstMatch(SpecFixture.TracingModderId,
+            //    new TransformationStep(action: (sm) => {
+            //        sm.VisitRecursively((node) =>
+            //        {
+            //            foreach (var behavior in node.Behaviors)
+            //            {
+            //                behavior.guardCode = behavior.guardCode.Replace("\", true", "\", True");
+            //            }
+            //        });
+            //    }));
         };
 
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, semiColon: "");
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, semiColon: "", trueString: "True");
 
         SimpleProcess process;
 

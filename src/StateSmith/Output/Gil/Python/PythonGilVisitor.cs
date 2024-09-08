@@ -25,7 +25,7 @@ public class PythonGilVisitor : CSharpSyntaxWalker
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
     private readonly CodeStyleSettings codeStyleSettings;
-    private Stack<string> classIndentStack = new();
+    private Stack<string> classIndentStack = new(); // todolow - remove?
     private bool prependSelf = false;
 
     private SemanticModel model;
@@ -103,9 +103,7 @@ public class PythonGilVisitor : CSharpSyntaxWalker
     {
         string code = node.GetFirstToken().LeadingTrivia.ToFullString();
 
-        var regex = new Regex(@"(?m)^([ \t]+)\z"); // \z is end of string
-
-        var indent = regex.Match(code).Groups[1].Value.ThrowIfNull();
+        var indent = StringUtils.FindIndent(code);
         classIndentStack.Push(indent);
     }
 
@@ -126,11 +124,27 @@ public class PythonGilVisitor : CSharpSyntaxWalker
     public override void VisitIfStatement(IfStatementSyntax node)
     {
         VisitLeadingTrivia(node.GetFirstToken());
+        string indent = FindLastIndent();
+
         // no open brace
         sb.Append("if ");
         Visit(node.Condition);
         sb.AppendLine(":");
         Visit(node.Statement);
+
+        bool isEmpty = node.Statement.DescendantNodes().Where(descendant => descendant is not BlockSyntax).Any() == false;
+
+        if (isEmpty)
+        {
+            sb.Append(indent);
+            AddIndent(1);
+            sb.AppendLine("pass");
+        }
+    }
+
+    private string FindLastIndent()
+    {
+        return StringUtils.FindLastIndent(sb);
     }
 
     public override void VisitWhileStatement(WhileStatementSyntax node)
