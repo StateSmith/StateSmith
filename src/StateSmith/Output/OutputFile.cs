@@ -128,8 +128,10 @@ public class OutputFile
     //    }
     //}
 
-    public void AppendDetectNewlines(string code = "")
+    public void AppendIndentNewlines(string code = "")
     {
+        // code is done this way to so that lineIncomplete is set correctly
+
         var lines = StringUtils.SplitIntoLinesOrEmpty(code);
         bool needsIndent = false;
 

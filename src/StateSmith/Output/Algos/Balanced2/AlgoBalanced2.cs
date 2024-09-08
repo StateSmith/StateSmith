@@ -79,11 +79,11 @@ public class AlgoBalanced2 : AlgoBalanced1
                     else
                     {
                         file.AppendIndented();
-                        file.AppendDetectNewlines($"case {mangler.SmQualifiedStateEnumValue(namedVertex)}:{SEP}");
+                        file.AppendIndentNewlines($"case {mangler.SmQualifiedStateEnumValue(namedVertex)}:{SEP}");
 
                         string exitFunctionName = mangler.SmTriggerHandlerFuncName(namedVertex, TriggerHelper.TRIGGER_EXIT);
-                        file.AppendDetectNewlines($"this.{exitFunctionName}();{SEP}");
-                        file.AppendDetectNewlines($"break;\n");
+                        file.AppendIndentNewlines($"this.{exitFunctionName}();{SEP}");
+                        file.AppendIndentNewlines($"break;\n");
                         file.AppendWithoutIndent("\n");
 
                         verticesThatNeedExitStateIdAdjustment.Add(namedVertex);
@@ -91,7 +91,7 @@ public class AlgoBalanced2 : AlgoBalanced1
                 }
 
                 file.AppendIndented();
-                file.AppendDetectNewlines($"default:{SEP}return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.");
+                file.AppendIndentNewlines($"default:{SEP}return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.");
                 file.AppendWithoutIndent("\n");
             }
             file.FinishCodeBlock(forceNewLine: true);
@@ -235,17 +235,14 @@ public class AlgoBalanced2 : AlgoBalanced1
 
     private void MaybeOutputEventHandler(NamedVertex? namedVertex, string evt, string comment = "")
     {
-        file.AppendIndented($"case {mangler.SmEventEnumType}.{mangler.SmEventEnumValue(evt)}: ");
-        if (!settings.allowSingleLineSwitchCase)
-        {
-            file.FinishLine();
-            file.IncreaseIndentLevel();
-            file.AppendIndented(""); // triggers indent
-        }
+        string SEP = settings.allowSingleLineSwitchCase ? " " : "\n" + file.GetIndent();
+
+        file.AppendIndented();
+        file.AppendIndentNewlines($"case {mangler.SmEventEnumType}.{mangler.SmEventEnumValue(evt)}:{SEP}");
 
         if (namedVertex != null)
         {
-            OutputEventHandlerCall(namedVertex, evt);
+            OutputEventHandlerCall(namedVertex, evt, sep: SEP);
         }
 
         if (!settings.allowSingleLineSwitchCase)
@@ -254,17 +251,15 @@ public class AlgoBalanced2 : AlgoBalanced1
             file.AppendIndented(""); // triggers indent
         }
 
-        file.AppendWithoutIndent("break;");
+        file.AppendIndentNewlines($"break;");
 
         if (settings.allowSingleLineSwitchCase)
         {
             AddCommentLine(comment);
         }
-
-        if (!settings.allowSingleLineSwitchCase)
+        else
         {
-            file.FinishLine();
-            file.DecreaseIndentLevel();
+            file.AppendWithoutIndent("\n");
         }
     }
 
@@ -282,10 +277,10 @@ public class AlgoBalanced2 : AlgoBalanced1
         file.FinishLine();
     }
 
-    private void OutputEventHandlerCall(NamedVertex namedVertex, string evt)
+    private void OutputEventHandlerCall(NamedVertex namedVertex, string evt, string sep = " ")
     {
         string eventHandlerFuncName = mangler.SmTriggerHandlerFuncName(namedVertex, evt);
-        file.AppendWithoutIndent($"this.{eventHandlerFuncName}(); ");
+        file.AppendIndentNewlines($"this.{eventHandlerFuncName}();{sep}");
     }
 
     protected override void OutputEventHandlerDelegate()
