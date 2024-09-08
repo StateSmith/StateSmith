@@ -347,21 +347,6 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.DO: ROOT_do(); break;
-                        // Events not handled by this state:
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -369,22 +354,7 @@ namespace Csharp.Spec2smTests
                 case StateId.PREFIXING:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -392,22 +362,7 @@ namespace Csharp.Spec2smTests
                 case StateId.PREFIXING__ORDER_MENU:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -416,21 +371,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -439,21 +380,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: PREFIXING__OM__BEV__NONE_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -461,22 +389,8 @@ namespace Csharp.Spec2smTests
                 case StateId.PREFIXING__OM__BEV__TEA:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -485,21 +399,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: PREFIXING__OM__BEV__WATER_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -508,21 +409,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV2: PREFIXING__OM__VEG_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -531,21 +418,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: PREFIXING__OM__VEG__NONE_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -554,21 +428,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: PREFIXING__OM__VEG__POTATO_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -576,22 +437,8 @@ namespace Csharp.Spec2smTests
                 case StateId.PREFIXING__OM__VEG__YAM:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -599,22 +446,7 @@ namespace Csharp.Spec2smTests
                 case StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -622,22 +454,7 @@ namespace Csharp.Spec2smTests
                 case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -646,21 +463,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -669,21 +472,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -691,22 +481,8 @@ namespace Csharp.Spec2smTests
                 case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -715,21 +491,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -738,21 +501,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -761,21 +510,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -784,21 +520,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -806,22 +529,8 @@ namespace Csharp.Spec2smTests
                 case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -840,11 +549,6 @@ namespace Csharp.Spec2smTests
                         case EventId.EV9: SPEC2SM__DECIDE_ev9(); break;
                         case EventId.EV10: SPEC2SM__DECIDE_ev10(); break;
                         case EventId.DO: SPEC2SM__DECIDE_do(); break;
-                        // Events not handled by this state:
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -852,22 +556,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST1_DO_EVENT_TESTING:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -876,21 +565,6 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.DO: TEST1_ROOT_do(); break;
-                        // Events not handled by this state:
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -898,22 +572,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST1_S1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: TEST1_ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -923,20 +582,6 @@ namespace Csharp.Spec2smTests
                     {
                         case EventId.DO: TEST1_S1_1_do(); break;
                         case EventId.EV1: TEST1_S1_1_ev1(); break;
-                        // Events not handled by this state:
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -945,21 +590,6 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.DO: TEST1_S2_do(); break;
-                        // Events not handled by this state:
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -967,22 +597,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST10_CHOICE_POINT:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -990,22 +605,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST10_A:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1013,22 +613,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST10_A_1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1037,21 +622,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV5: TEST10_ROOT_ev5(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1059,22 +630,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST10_G:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1082,22 +639,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST10_G_S0:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1105,22 +648,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST10_G_S1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1128,22 +657,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST10_G_S2:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1151,22 +666,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST10_G_S3:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1178,18 +679,8 @@ namespace Csharp.Spec2smTests
                         case EventId.EV3: TEST10_S1_ev3(); break;
                         case EventId.EV1: TEST10_S1_ev1(); break;
                         case EventId.EV10: TEST10_S1_ev10(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1197,22 +688,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST10_S4:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1220,22 +697,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST2_REGULAR_EVENT_TESTING:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1246,19 +708,6 @@ namespace Csharp.Spec2smTests
                         case EventId.EV1: TEST2_ROOT_ev1(); break;
                         case EventId.EV2: TEST2_ROOT_ev2(); break;
                         case EventId.DO: TEST2_ROOT_do(); break;
-                        // Events not handled by this state:
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1266,22 +715,9 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST2_S1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: TEST2_ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST2_ROOT_ev1(); break; // First ancestor handler for this event
                         case EventId.EV2: TEST2_ROOT_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1291,20 +727,7 @@ namespace Csharp.Spec2smTests
                     {
                         case EventId.EV1: TEST2_S1_1_ev1(); break;
                         case EventId.DO: TEST2_S1_1_do(); break;
-                        // Events not handled by this state:
                         case EventId.EV2: TEST2_ROOT_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1314,20 +737,7 @@ namespace Csharp.Spec2smTests
                     {
                         case EventId.EV1: TEST2_S2_ev1(); break;
                         case EventId.EV2: TEST2_S2_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: TEST2_ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1335,22 +745,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST3_BEHAVIOR_ORDERING:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1359,21 +754,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST3_ROOT_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1382,21 +763,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST3_S1_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1405,21 +772,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST3_S2_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1427,22 +780,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST3_S3:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST3_ROOT_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1450,22 +789,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST4_PARENT_CHILD_TRANSITIONS:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1473,22 +797,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST4_B_AND_OTHERS:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1496,22 +805,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST4B_LOCAL:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1520,21 +814,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST4B_G_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1543,21 +823,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV2: TEST4B_G_1_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST4B_G_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1565,22 +832,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST4C_LOCAL_TO_ALIAS:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1589,21 +841,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST4C_G_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1612,21 +850,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV2: TEST4C_G_1_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST4C_G_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1634,22 +859,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST4D_EXTERNAL:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1658,21 +868,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST4D_G_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1681,21 +877,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV2: TEST4D_G_1_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST4D_G_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1707,18 +890,7 @@ namespace Csharp.Spec2smTests
                         case EventId.EV2: TEST4_DECIDE_ev2(); break;
                         case EventId.EV3: TEST4_DECIDE_ev3(); break;
                         case EventId.EV4: TEST4_DECIDE_ev4(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1729,19 +901,7 @@ namespace Csharp.Spec2smTests
                         case EventId.EV2: TEST4_ROOT_ev2(); break;
                         case EventId.EV3: TEST4_ROOT_ev3(); break;
                         case EventId.EV4: TEST4_ROOT_ev4(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1750,21 +910,10 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST4_S1_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                         case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                         case EventId.EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1773,21 +922,9 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV4: TEST4_S10_ev4(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                         case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1795,22 +932,10 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST4_S10_1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                         case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                         case EventId.EV4: TEST4_S10_ev4(); break; // First ancestor handler for this event
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1819,21 +944,10 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST4_S2_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                         case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                         case EventId.EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1842,21 +956,9 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV4: TEST4_S20_ev4(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                         case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1864,22 +966,10 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST4_S20_1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                         case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                         case EventId.EV4: TEST4_S20_ev4(); break; // First ancestor handler for this event
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1888,21 +978,10 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST4_S3_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                         case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                         case EventId.EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1910,22 +989,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1934,21 +998,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV2: TEST5_ROOT_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1957,21 +1007,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST5_S1_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -1980,21 +1017,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST5_S2_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2003,21 +1027,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST5_S3_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2025,22 +1036,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST6_VARS_EXPANSIONS:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2048,22 +1044,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST6_ROOT:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2071,22 +1052,7 @@ namespace Csharp.Spec2smTests
                 case StateId.AUTO_VAR_TEST:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2095,21 +1061,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: AUTO_VAR_TEST__S1_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2117,22 +1069,7 @@ namespace Csharp.Spec2smTests
                 case StateId.AUTO_VAR_TEST__S2:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2140,22 +1077,7 @@ namespace Csharp.Spec2smTests
                 case StateId.META_EXPANSIONS:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2164,21 +1086,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: META_EXPANSIONS__S1_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2188,20 +1096,7 @@ namespace Csharp.Spec2smTests
                     {
                         case EventId.EV1: META_EXPANSIONS__S2_ev1(); break;
                         case EventId.EV2: META_EXPANSIONS__S2_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2210,21 +1105,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: S3_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2232,22 +1113,7 @@ namespace Csharp.Spec2smTests
                 case StateId.S4:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2255,22 +1121,7 @@ namespace Csharp.Spec2smTests
                 case StateId.S5:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2278,22 +1129,7 @@ namespace Csharp.Spec2smTests
                 case StateId.NORMAL:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2302,21 +1138,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: NORMAL__S1_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2324,22 +1146,7 @@ namespace Csharp.Spec2smTests
                 case StateId.NORMAL__S2:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2350,19 +1157,7 @@ namespace Csharp.Spec2smTests
                         case EventId.EV1: TEST6_VARS_EXPANSIONS__DECIDE_ev1(); break;
                         case EventId.EV2: TEST6_VARS_EXPANSIONS__DECIDE_ev2(); break;
                         case EventId.EV3: TEST6_VARS_EXPANSIONS__DECIDE_ev3(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2370,22 +1165,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST7_INITIAL_OR_HISTORY:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2393,22 +1173,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST7:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2416,22 +1181,7 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DEEP_HISTORY1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2439,22 +1189,7 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DH1__SANTAS_WORKSHOP:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2463,21 +1198,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2485,22 +1206,8 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DH1__GET_BACKUP:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
                         case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2508,22 +1215,8 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DH1__HERO:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
                         case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2532,21 +1225,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__DH1__CALL_BATMAN_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
                         case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2555,21 +1235,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__DH1__CALL_THOR_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
                         case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2577,22 +1244,8 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DH1__LOCAL_HELP:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
                         case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2601,21 +1254,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__DH1__BUDDY_ELF_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
                         case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2623,22 +1263,8 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DH1__POLAR_BEARS:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
                         case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2647,21 +1273,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__DH1__GIVE_COOKIES_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
                         case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2670,21 +1283,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__DH1__SNOWBALL_FIGHT_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
                         case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2694,20 +1294,7 @@ namespace Csharp.Spec2smTests
                     {
                         case EventId.EV6: T7__DH1__BUILD_ev6(); break;
                         case EventId.EV7: T7__DH1__BUILD_ev7(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2716,21 +1303,9 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV2: T7__DH1__TOOL_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                         case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2738,22 +1313,10 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DH1__CIRCULAR_SAW:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                         case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2762,21 +1325,10 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__DH1__IMPACT_DRILL_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV2: T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                         case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2785,21 +1337,9 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__DH1__TOY_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                         case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2808,21 +1348,9 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__DH1__GLOW_WORM_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                         case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2831,21 +1359,9 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__DH1__RACE_CAR_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                         case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2853,22 +1369,10 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DH1__ROBOT:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                         case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2877,21 +1381,9 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__DH1__BATTLEBOT_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                         case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2899,22 +1391,10 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DH1__WALL_E:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                         case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2923,21 +1403,9 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__DH1__TEDDY_BEAR_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                         case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2945,22 +1413,7 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DEEP_HISTORY2:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2969,21 +1422,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -2992,21 +1431,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EVSTEP: T7__DEEP_HISTORY2__T7__STATE_1_evstep(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
                         case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3015,21 +1441,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
                         case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                        case EventId.EVSTEP: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3038,21 +1451,9 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EVSTEP: T7__DEEP_HISTORY2__T7__STATE_6_evstep(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
                         case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
                         case EventId.EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3060,22 +1461,9 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DEEP_HISTORY2__T7__STATE_9:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
                         case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                        case EventId.EVSTEP: break;
                         case EventId.EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3084,21 +1472,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EVCLOSE: T7__DEEP_HISTORY2__T7__STATE_3_evclose(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
                     }
                     break;
 
@@ -3106,22 +1480,7 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DEEP_HISTORY3:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3130,21 +1489,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3153,21 +1498,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EVSTEP: T7__DEEP_HISTORY3__T7__STATE_1_evstep(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
                         case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3176,21 +1508,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
                         case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                        case EventId.EVSTEP: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3199,21 +1518,9 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EVSTEP: T7__DEEP_HISTORY3__T7__STATE_6_evstep(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
                         case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
                         case EventId.EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3221,22 +1528,9 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__DEEP_HISTORY3__T7__STATE_9:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
                         case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                        case EventId.EVSTEP: break;
                         case EventId.EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3245,21 +1539,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EVCLOSE: T7__DEEP_HISTORY3__T7__STATE_3_evclose(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
                     }
                     break;
 
@@ -3267,22 +1547,7 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__HISTORY1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3293,19 +1558,7 @@ namespace Csharp.Spec2smTests
                         case EventId.EV3: T7__H1__OFF_ev3(); break;
                         case EventId.EV4: T7__H1__OFF_ev4(); break;
                         case EventId.EV7: T7__H1__OFF_ev7(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3314,21 +1567,10 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__H1__OFF1_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
                         case EventId.EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                         case EventId.EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
                         case EventId.EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3337,21 +1579,10 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__H1__OFF2_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
                         case EventId.EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                         case EventId.EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
                         case EventId.EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3359,22 +1590,10 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__H1__OFF3:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
                         case EventId.EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                         case EventId.EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
                         case EventId.EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3383,21 +1602,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV6: T7__H1__ON_ev6(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3406,21 +1611,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__H1__ON1_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3429,21 +1621,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__H1__ON2_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3452,21 +1631,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: T7__H1__ON3_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
                         case EventId.EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3474,22 +1640,7 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__INITIAL1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3498,21 +1649,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3521,21 +1658,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV2: T7__INITIAL1__G_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3543,22 +1667,9 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__INITIAL1__G_S1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3566,22 +1677,9 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__INITIAL1__G_S2:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3589,22 +1687,9 @@ namespace Csharp.Spec2smTests
                 case StateId.T7__INITIAL1__G_S3:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3614,20 +1699,8 @@ namespace Csharp.Spec2smTests
                     {
                         case EventId.EV1: T7__INITIAL1__S1_ev1(); break;
                         case EventId.EV3: T7__INITIAL1__S1_ev3(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3640,17 +1713,7 @@ namespace Csharp.Spec2smTests
                         case EventId.EV3: TEST7_DECIDE_ev3(); break;
                         case EventId.EV4: TEST7_DECIDE_ev4(); break;
                         case EventId.EV5: TEST7_DECIDE_ev5(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3658,22 +1721,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST8_ENTRY_CHOICE:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3683,20 +1731,7 @@ namespace Csharp.Spec2smTests
                     {
                         case EventId.EV5: TEST8_ROOT_ev5(); break;
                         case EventId.EV3: TEST8_ROOT_ev3(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV4: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3705,21 +1740,9 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV2: TEST8_G_ev2(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3727,22 +1750,10 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST8_G_S1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
                         case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3750,22 +1761,10 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST8_G_S2:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
                         case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3773,22 +1772,10 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST8_G_S3:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
                         case EventId.EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
                         case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3799,19 +1786,8 @@ namespace Csharp.Spec2smTests
                         case EventId.EV1: TEST8_S1_ev1(); break;
                         case EventId.EV3: TEST8_S1_ev3(); break;
                         case EventId.EV6: TEST8_S1_ev6(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3819,22 +1795,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9_EXIT_CHOICE:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3845,19 +1806,7 @@ namespace Csharp.Spec2smTests
                         case EventId.EV1: TEST9_DECIDE_ev1(); break;
                         case EventId.EV2: TEST9_DECIDE_ev2(); break;
                         case EventId.EV3: TEST9_DECIDE_ev3(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3866,21 +1815,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV5: TEST9_ROOT_ev5(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3888,22 +1823,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9_G_S1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3911,22 +1832,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9_G_S2:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3934,22 +1841,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9_G_S3:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3957,22 +1850,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9_G_S4:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -3980,22 +1859,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9_S1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4004,21 +1869,8 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST9_S1_1_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
                         case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4026,22 +1878,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9A_ROOT:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4049,22 +1886,7 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9A_S1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4073,21 +1895,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST9A_S1_1_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4096,21 +1904,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST9B_ROOT_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4118,22 +1912,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9B_ROOT__A1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4141,22 +1921,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9B_ROOT__A2:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4164,22 +1930,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9B_ROOT__A3:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4188,21 +1940,7 @@ namespace Csharp.Spec2smTests
                     switch (eventId)
                     {
                         case EventId.EV1: TEST9B_ROOT__A4_ev1(); break;
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4210,22 +1948,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9B_ROOT__B1:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4233,22 +1957,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9B_ROOT__B2:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4256,22 +1966,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9B_ROOT__B3:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4279,22 +1975,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9B_ROOT__B4:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4302,22 +1984,7 @@ namespace Csharp.Spec2smTests
                 case StateId.UNREACHABLE:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
 
@@ -4325,22 +1992,7 @@ namespace Csharp.Spec2smTests
                 case StateId.USELESS:
                     switch (eventId)
                     {
-                        // Events not handled by this state:
                         case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                        case EventId.EV1: break;
-                        case EventId.EV2: break;
-                        case EventId.EV3: break;
-                        case EventId.EV4: break;
-                        case EventId.EV5: break;
-                        case EventId.EV6: break;
-                        case EventId.EV7: break;
-                        case EventId.EV8: break;
-                        case EventId.EV9: break;
-                        case EventId.EV10: break;
-                        case EventId.EVOPEN: break;
-                        case EventId.EVSTEP: break;
-                        case EventId.EVBACK: break;
-                        case EventId.EVCLOSE: break;
                     }
                     break;
             }

@@ -172,14 +172,17 @@ public class AlgoBalanced2 : AlgoBalanced1
 
                 if (otherEvents.Any())
                 {
-                    file.AppendIndentedLine($"// Events not handled by this state:");
+                    if (!settings.omitEmptySwitchAndCases)
+                    {
+                        file.AppendIndentedLine($"// Events not handled by this state:");
+                    }
 
                     foreach (string evt in otherEvents)
                     {
                         NamedVertex? ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
                         var comment = (ancestor == null) ? string.Empty : FirstAncestorHandlerComment;
 
-                        if (settings.omitBlankEventCase && string.IsNullOrWhiteSpace(comment))
+                        if (settings.omitEmptySwitchAndCases && string.IsNullOrWhiteSpace(comment))
                         {
                             // do nothing
                         }

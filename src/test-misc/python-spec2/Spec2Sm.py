@@ -316,14 +316,12 @@ class Spec2Sm(Spec2SmBase):
             # STATE: PREFIXING
             case Spec2Sm.StateId.PREFIXING:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: PREFIXING__ORDER_MENU
             case Spec2Sm.StateId.PREFIXING__ORDER_MENU:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -332,7 +330,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV2:
                         self._PREFIXING__OM__BEVERAGE_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -341,7 +338,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._PREFIXING__OM__BEV__NONE_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -350,7 +346,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: PREFIXING__OM__BEV__TEA
             case Spec2Sm.StateId.PREFIXING__OM__BEV__TEA:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -361,7 +356,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._PREFIXING__OM__BEV__WATER_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -372,7 +366,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV2:
                         self._PREFIXING__OM__VEG_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -381,7 +374,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._PREFIXING__OM__VEG__NONE_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -392,7 +384,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._PREFIXING__OM__VEG__POTATO_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -401,7 +392,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: PREFIXING__OM__VEG__YAM
             case Spec2Sm.StateId.PREFIXING__OM__VEG__YAM:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -410,14 +400,12 @@ class Spec2Sm(Spec2SmBase):
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX
             case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
             case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -426,7 +414,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV2:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -435,7 +422,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -444,7 +430,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
             case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -455,7 +440,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -466,7 +450,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV2:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -475,7 +458,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -486,7 +468,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -495,7 +476,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
             case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -530,7 +510,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST1_DO_EVENT_TESTING
             case Spec2Sm.StateId.TEST1_DO_EVENT_TESTING:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -543,7 +522,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST1_S1
             case Spec2Sm.StateId.TEST1_S1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._TEST1_ROOT_do()
             
@@ -564,21 +542,18 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST10_CHOICE_POINT
             case Spec2Sm.StateId.TEST10_CHOICE_POINT:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST10_A
             case Spec2Sm.StateId.TEST10_A:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST10_A_1
             case Spec2Sm.StateId.TEST10_A_1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -587,14 +562,12 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV5:
                         self._TEST10_ROOT_ev5()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST10_G
             case Spec2Sm.StateId.TEST10_G:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -603,7 +576,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST10_G_S0
             case Spec2Sm.StateId.TEST10_G_S0:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -612,7 +584,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST10_G_S1
             case Spec2Sm.StateId.TEST10_G_S1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -621,7 +592,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST10_G_S2
             case Spec2Sm.StateId.TEST10_G_S2:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -630,7 +600,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST10_G_S3
             case Spec2Sm.StateId.TEST10_G_S3:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -647,7 +616,6 @@ class Spec2Sm(Spec2SmBase):
                         self._TEST10_S1_ev1()
                     case Spec2Sm.EventId.EV10:
                         self._TEST10_S1_ev10()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -656,7 +624,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST10_S4
             case Spec2Sm.StateId.TEST10_S4:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -665,7 +632,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST2_REGULAR_EVENT_TESTING
             case Spec2Sm.StateId.TEST2_REGULAR_EVENT_TESTING:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -682,7 +648,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST2_S1
             case Spec2Sm.StateId.TEST2_S1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._TEST2_ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -697,7 +662,6 @@ class Spec2Sm(Spec2SmBase):
                         self._TEST2_S1_1_ev1()
                     case Spec2Sm.EventId.DO:
                         self._TEST2_S1_1_do()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.EV2:
                         self._TEST2_ROOT_ev2()
             
@@ -708,14 +672,12 @@ class Spec2Sm(Spec2SmBase):
                         self._TEST2_S2_ev1()
                     case Spec2Sm.EventId.EV2:
                         self._TEST2_S2_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._TEST2_ROOT_do()
             
             # STATE: TEST3_BEHAVIOR_ORDERING
             case Spec2Sm.StateId.TEST3_BEHAVIOR_ORDERING:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -724,7 +686,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST3_ROOT_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -733,7 +694,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST3_S1_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -742,14 +702,12 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST3_S2_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST3_S3
             case Spec2Sm.StateId.TEST3_S3:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -758,21 +716,18 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST4_PARENT_CHILD_TRANSITIONS
             case Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4_B_AND_OTHERS
             case Spec2Sm.StateId.TEST4_B_AND_OTHERS:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4B_LOCAL
             case Spec2Sm.StateId.TEST4B_LOCAL:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -781,7 +736,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST4B_G_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -790,7 +744,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV2:
                         self._TEST4B_G_1_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -799,7 +752,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST4C_LOCAL_TO_ALIAS
             case Spec2Sm.StateId.TEST4C_LOCAL_TO_ALIAS:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -808,7 +760,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST4C_G_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -817,7 +768,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV2:
                         self._TEST4C_G_1_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -826,7 +776,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST4D_EXTERNAL
             case Spec2Sm.StateId.TEST4D_EXTERNAL:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -835,7 +784,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST4D_G_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -844,7 +792,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV2:
                         self._TEST4D_G_1_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -861,7 +808,6 @@ class Spec2Sm(Spec2SmBase):
                         self._TEST4_DECIDE_ev3()
                     case Spec2Sm.EventId.EV4:
                         self._TEST4_DECIDE_ev4()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -874,7 +820,6 @@ class Spec2Sm(Spec2SmBase):
                         self._TEST4_ROOT_ev3()
                     case Spec2Sm.EventId.EV4:
                         self._TEST4_ROOT_ev4()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -883,7 +828,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST4_S1_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -898,7 +842,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV4:
                         self._TEST4_S10_ev4()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -909,7 +852,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST4_S10_1
             case Spec2Sm.StateId.TEST4_S10_1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -924,7 +866,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST4_S2_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -939,7 +880,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV4:
                         self._TEST4_S20_ev4()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -950,7 +890,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST4_S20_1
             case Spec2Sm.StateId.TEST4_S20_1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -965,7 +904,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST4_S3_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -978,7 +916,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
             case Spec2Sm.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -987,7 +924,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV2:
                         self._TEST5_ROOT_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -996,7 +932,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST5_S1_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -1007,7 +942,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST5_S2_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -1018,7 +952,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST5_S3_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -1027,21 +960,18 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST6_VARS_EXPANSIONS
             case Spec2Sm.StateId.TEST6_VARS_EXPANSIONS:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST6_ROOT
             case Spec2Sm.StateId.TEST6_ROOT:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: AUTO_VAR_TEST
             case Spec2Sm.StateId.AUTO_VAR_TEST:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1050,21 +980,18 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._AUTO_VAR_TEST__S1_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: AUTO_VAR_TEST__S2
             case Spec2Sm.StateId.AUTO_VAR_TEST__S2:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: META_EXPANSIONS
             case Spec2Sm.StateId.META_EXPANSIONS:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1073,7 +1000,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._META_EXPANSIONS__S1_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1084,7 +1010,6 @@ class Spec2Sm(Spec2SmBase):
                         self._META_EXPANSIONS__S2_ev1()
                     case Spec2Sm.EventId.EV2:
                         self._META_EXPANSIONS__S2_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1093,28 +1018,24 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._S3_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: S4
             case Spec2Sm.StateId.S4:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: S5
             case Spec2Sm.StateId.S5:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: NORMAL
             case Spec2Sm.StateId.NORMAL:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1123,14 +1044,12 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._NORMAL__S1_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: NORMAL__S2
             case Spec2Sm.StateId.NORMAL__S2:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1143,35 +1062,30 @@ class Spec2Sm(Spec2SmBase):
                         self._TEST6_VARS_EXPANSIONS__DECIDE_ev2()
                     case Spec2Sm.EventId.EV3:
                         self._TEST6_VARS_EXPANSIONS__DECIDE_ev3()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST7_INITIAL_OR_HISTORY
             case Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST7
             case Spec2Sm.StateId.TEST7:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DEEP_HISTORY1
             case Spec2Sm.StateId.T7__DEEP_HISTORY1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DH1__SANTAS_WORKSHOP
             case Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1180,14 +1094,12 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV8:
                         self._T7__DH1__ALIENS_DETECTED_ev8()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DH1__GET_BACKUP
             case Spec2Sm.StateId.T7__DH1__GET_BACKUP:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV8:
@@ -1196,7 +1108,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__DH1__HERO
             case Spec2Sm.StateId.T7__DH1__HERO:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV8:
@@ -1207,7 +1118,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__DH1__CALL_BATMAN_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV8:
@@ -1218,7 +1128,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__DH1__CALL_THOR_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV8:
@@ -1227,7 +1136,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__DH1__LOCAL_HELP
             case Spec2Sm.StateId.T7__DH1__LOCAL_HELP:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV8:
@@ -1238,7 +1146,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__DH1__BUDDY_ELF_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV8:
@@ -1247,7 +1154,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__DH1__POLAR_BEARS
             case Spec2Sm.StateId.T7__DH1__POLAR_BEARS:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV8:
@@ -1258,7 +1164,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__DH1__GIVE_COOKIES_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV8:
@@ -1269,7 +1174,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__DH1__SNOWBALL_FIGHT_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV8:
@@ -1282,7 +1186,6 @@ class Spec2Sm(Spec2SmBase):
                         self._T7__DH1__BUILD_ev6()
                     case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1291,7 +1194,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV2:
                         self._T7__DH1__TOOL_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV6:
@@ -1302,7 +1204,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__DH1__CIRCULAR_SAW
             case Spec2Sm.StateId.T7__DH1__CIRCULAR_SAW:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -1317,7 +1218,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__DH1__IMPACT_DRILL_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -1332,7 +1232,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__DH1__TOY_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV6:
@@ -1345,7 +1244,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__DH1__GLOW_WORM_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV6:
@@ -1358,7 +1256,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__DH1__RACE_CAR_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV6:
@@ -1369,7 +1266,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__DH1__ROBOT
             case Spec2Sm.StateId.T7__DH1__ROBOT:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -1384,7 +1280,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__DH1__BATTLEBOT_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV6:
@@ -1395,7 +1290,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__DH1__WALL_E
             case Spec2Sm.StateId.T7__DH1__WALL_E:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -1410,7 +1304,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__DH1__TEDDY_BEAR_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV6:
@@ -1421,7 +1314,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__DEEP_HISTORY2
             case Spec2Sm.StateId.T7__DEEP_HISTORY2:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1430,7 +1322,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1439,7 +1330,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EVSTEP:
                         self._T7__DEEP_HISTORY2__T7__STATE_1_evstep()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EVOPEN:
@@ -1450,7 +1340,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EVBACK:
                         self._T7__DEEP_HISTORY2__T7__STATE_2_evback()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EVOPEN:
@@ -1461,7 +1350,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EVSTEP:
                         self._T7__DEEP_HISTORY2__T7__STATE_6_evstep()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EVOPEN:
@@ -1472,7 +1360,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__DEEP_HISTORY2__T7__state_9
             case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_9:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EVOPEN:
@@ -1485,14 +1372,12 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EVCLOSE:
                         self._T7__DEEP_HISTORY2__T7__STATE_3_evclose()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DEEP_HISTORY3
             case Spec2Sm.StateId.T7__DEEP_HISTORY3:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1501,7 +1386,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1510,7 +1394,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EVSTEP:
                         self._T7__DEEP_HISTORY3__T7__STATE_1_evstep()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EVOPEN:
@@ -1521,7 +1404,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EVBACK:
                         self._T7__DEEP_HISTORY3__T7__STATE_2_evback()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EVOPEN:
@@ -1532,7 +1414,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EVSTEP:
                         self._T7__DEEP_HISTORY3__T7__STATE_6_evstep()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EVOPEN:
@@ -1543,7 +1424,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__DEEP_HISTORY3__T7__state_9
             case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_9:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EVOPEN:
@@ -1556,14 +1436,12 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EVCLOSE:
                         self._T7__DEEP_HISTORY3__T7__STATE_3_evclose()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__HISTORY1
             case Spec2Sm.StateId.T7__HISTORY1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1576,7 +1454,6 @@ class Spec2Sm(Spec2SmBase):
                         self._T7__H1__OFF_ev4()
                     case Spec2Sm.EventId.EV7:
                         self._T7__H1__OFF_ev7()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1585,7 +1462,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__H1__OFF1_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV3:
@@ -1600,7 +1476,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__H1__OFF2_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV3:
@@ -1613,7 +1488,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__H1__OFF3
             case Spec2Sm.StateId.T7__H1__OFF3:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV3:
@@ -1628,7 +1502,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV6:
                         self._T7__H1__ON_ev6()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1637,7 +1510,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__H1__ON1_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV6:
@@ -1648,7 +1520,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__H1__ON2_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV6:
@@ -1659,7 +1530,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._T7__H1__ON3_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV6:
@@ -1668,7 +1538,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__INITIAL1
             case Spec2Sm.StateId.T7__INITIAL1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1677,7 +1546,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV5:
                         self._T7__INITIAL1__PARENT_ev5()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1686,7 +1554,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV2:
                         self._T7__INITIAL1__G_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -1695,7 +1562,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__INITIAL1__G_S1
             case Spec2Sm.StateId.T7__INITIAL1__G_S1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -1706,7 +1572,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__INITIAL1__G_S2
             case Spec2Sm.StateId.T7__INITIAL1__G_S2:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -1717,7 +1582,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: T7__INITIAL1__G_S3
             case Spec2Sm.StateId.T7__INITIAL1__G_S3:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -1732,7 +1596,6 @@ class Spec2Sm(Spec2SmBase):
                         self._T7__INITIAL1__S1_ev1()
                     case Spec2Sm.EventId.EV3:
                         self._T7__INITIAL1__S1_ev3()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -1751,14 +1614,12 @@ class Spec2Sm(Spec2SmBase):
                         self._TEST7_DECIDE_ev4()
                     case Spec2Sm.EventId.EV5:
                         self._TEST7_DECIDE_ev5()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST8_ENTRY_CHOICE
             case Spec2Sm.StateId.TEST8_ENTRY_CHOICE:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1769,7 +1630,6 @@ class Spec2Sm(Spec2SmBase):
                         self._TEST8_ROOT_ev5()
                     case Spec2Sm.EventId.EV3:
                         self._TEST8_ROOT_ev3()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1778,7 +1638,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV2:
                         self._TEST8_G_ev2()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV3:
@@ -1789,7 +1648,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST8_G_S1
             case Spec2Sm.StateId.TEST8_G_S1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -1802,7 +1660,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST8_G_S2
             case Spec2Sm.StateId.TEST8_G_S2:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -1815,7 +1672,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST8_G_S3
             case Spec2Sm.StateId.TEST8_G_S3:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV2:
@@ -1834,7 +1690,6 @@ class Spec2Sm(Spec2SmBase):
                         self._TEST8_S1_ev3()
                     case Spec2Sm.EventId.EV6:
                         self._TEST8_S1_ev6()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -1843,7 +1698,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST9_EXIT_CHOICE
             case Spec2Sm.StateId.TEST9_EXIT_CHOICE:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1856,7 +1710,6 @@ class Spec2Sm(Spec2SmBase):
                         self._TEST9_DECIDE_ev2()
                     case Spec2Sm.EventId.EV3:
                         self._TEST9_DECIDE_ev3()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1865,14 +1718,12 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV5:
                         self._TEST9_ROOT_ev5()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9_G_S1
             case Spec2Sm.StateId.TEST9_G_S1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -1881,7 +1732,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST9_G_S2
             case Spec2Sm.StateId.TEST9_G_S2:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -1890,7 +1740,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST9_G_S3
             case Spec2Sm.StateId.TEST9_G_S3:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -1899,7 +1748,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST9_G_S4
             case Spec2Sm.StateId.TEST9_G_S4:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -1908,7 +1756,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST9_S1
             case Spec2Sm.StateId.TEST9_S1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -1919,7 +1766,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST9_S1_1_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV5:
@@ -1928,14 +1774,12 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST9A_ROOT
             case Spec2Sm.StateId.TEST9A_ROOT:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9A_S1
             case Spec2Sm.StateId.TEST9A_S1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1944,7 +1788,6 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST9A_S1_1_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
@@ -1953,14 +1796,12 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9B_ROOT__A1
             case Spec2Sm.StateId.TEST9B_ROOT__A1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -1969,7 +1810,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST9B_ROOT__A2
             case Spec2Sm.StateId.TEST9B_ROOT__A2:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -1978,7 +1818,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST9B_ROOT__A3
             case Spec2Sm.StateId.TEST9B_ROOT__A3:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -1989,14 +1828,12 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT__A4_ev1()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9B_ROOT__B1
             case Spec2Sm.StateId.TEST9B_ROOT__B1:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -2005,7 +1842,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST9B_ROOT__B2
             case Spec2Sm.StateId.TEST9B_ROOT__B2:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -2014,7 +1850,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST9B_ROOT__B3
             case Spec2Sm.StateId.TEST9B_ROOT__B3:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -2023,7 +1858,6 @@ class Spec2Sm(Spec2SmBase):
             # STATE: TEST9B_ROOT__B4
             case Spec2Sm.StateId.TEST9B_ROOT__B4:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
@@ -2032,14 +1866,12 @@ class Spec2Sm(Spec2SmBase):
             # STATE: UNREACHABLE
             case Spec2Sm.StateId.UNREACHABLE:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: USELESS
             case Spec2Sm.StateId.USELESS:
                 match eventId:
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
     

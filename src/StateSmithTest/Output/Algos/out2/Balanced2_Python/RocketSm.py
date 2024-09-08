@@ -82,7 +82,6 @@ class RocketSm():
                 match eventId:
                     case RocketSm.EventId.EV2:
                         self._G2_ev2()
-                    # Events not handled by this state:
                     case RocketSm.EventId.EV1:
                         self._GROUP_ev1()
             

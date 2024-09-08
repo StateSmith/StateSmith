@@ -34,6 +34,9 @@ Test/interim releases are not documented here.
 - Add `Python` transpiler (only supports algorithm `Balanced2` right now)
   - Uses Python 3.10 match case for event dispatching.
   - https://github.com/StateSmith/StateSmith/issues/397
+- Add option to omit empty switch/case statements in generated code.
+  - defaults to true for all languages except C/C++ which often warn on unused enum values in switch statements.
+  - setting: `SmRunnerSettings.algoBalanced1.omitEmptySwitchAndCases`
 
 ---
 
