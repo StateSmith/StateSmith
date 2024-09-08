@@ -9,6 +9,7 @@ using System.Text;
 using System;
 using Antlr4.Runtime.Misc;
 using System.Net;
+using StateSmith.Common;
 
 namespace StateSmith.Output.Gil;
 
@@ -41,14 +42,14 @@ public class GilTranspilerHelper
         }
     }
 
-    public bool IsGilNoEmit(string identifierName)
+    public bool IsGilData(string identifierName)
     {
         return identifierName.StartsWith(GilCreationHelper.GilDataPrefix);
     }
 
-    public bool IsGilNoEmit(MethodDeclarationSyntax node)
+    public bool IsGilData(MethodDeclarationSyntax node)
     {
-        return IsGilNoEmit(node.Identifier.ValueText);
+        return IsGilData(node.Identifier.ValueText);
     }
 
     public bool HandleSpecialGilEmitClasses(ClassDeclarationSyntax classDeclarationSyntax)
@@ -64,6 +65,30 @@ public class GilTranspilerHelper
     public static bool IsGilFileTopClass(ClassDeclarationSyntax classDeclarationSyntax)
     {
         return classDeclarationSyntax.Identifier.Text == GilCreationHelper.GilClassName_FileTop;
+    }
+
+    public bool HandleGilSpecialFieldDeclarations(FieldDeclarationSyntax fieldDeclarationSyntax, StringBuilder sb, string indent = "")
+    {
+        bool handled = false;
+
+        if (fieldDeclarationSyntax.Declaration.Variables.Count == 1)
+        {
+            var variable = fieldDeclarationSyntax.Declaration.Variables.Single();
+            string fieldName = variable.Identifier.Text;
+            if (IsGilData(fieldName))
+            {
+                handled = true;
+
+                this.transpilerWalker.VisitLeadingTrivia(fieldDeclarationSyntax.GetFirstToken());
+
+                if (fieldName.StartsWith(GilCreationHelper.GilFieldName_EchoString))
+                {
+                    sb.AppendLine(indent + UnescapeQuotedString(variable.Initializer.ThrowIfNull().Value.ToFullString()));
+                }
+            }
+        }
+
+        return handled;
     }
 
     /// <summary>
@@ -125,9 +150,17 @@ public class GilTranspilerHelper
     private static void ProcessGilEchoInvocations(StringBuilder sb, InvocationExpressionSyntax ies)
     {
         ArgumentSyntax argumentSyntax = ies.ArgumentList.Arguments.Single();
-        var unescaped = System.Text.RegularExpressions.Regex.Unescape(argumentSyntax.ToFullString());
+        string escapedString = argumentSyntax.ToFullString();
+        string unescaped = UnescapeQuotedString(escapedString);
+        sb.Append(unescaped);
+    }
+
+    private static string UnescapeQuotedString(string escapedString)
+    {
+        // FIXME: this may not do everything we need. We need inverse of https://stackoverflow.com/a/58825732/7331858 
+        var unescaped = System.Text.RegularExpressions.Regex.Unescape(escapedString);
         unescaped = unescaped[1..^1]; // remove surrounding quotes present because of gil wrapping
-        sb.Append(unescaped); // FIXME: this may not do everything we need. We need inverse of https://stackoverflow.com/a/58825732/7331858 
+        return unescaped;
     }
 
     public bool HandleGilUnusedVarSpecialInvocation(InvocationExpressionSyntax node, Action<ArgumentSyntax> codeBuilder)

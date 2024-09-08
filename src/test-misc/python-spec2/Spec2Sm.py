@@ -262,6 +262,8 @@ class Spec2Sm(Spec2SmBase):
             self.T7__DH1__BUILD_history = None
             self.T7__DEEP_HISTORY2__T7__state_0_history = None
             self.T7__DEEP_HISTORY3__T7__state_0_history = None
+            self.count = 0
+            self.auto_var_1 = 0
             pass
     
     # State machine constructor. Must be called before start or dispatch event functions. Not thread safe.

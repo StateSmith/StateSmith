@@ -6,6 +6,8 @@ namespace StateSmith.Output.Gil;
 
 public class GilCreationHelper
 {
+    private static AtomicInt _fieldCounter = new();
+
     /// <summary>
     /// Helps prevent clashing with code to transpile.
     /// </summary>
@@ -22,6 +24,12 @@ public class GilCreationHelper
     /// This is useful for outputting user code that isn't valid GIL/C# code that the transpiler would otherwise error on.
     /// </summary>
     public const string GilFuncName_EchoStringStatement = GilDataPrefix + "EchoStringVoid";
+
+    /// <summary>
+    /// The string assigned to this field will be unescaped and then emitted without the transpiler getting to see it.
+    /// This is useful for outputting user code that isn't valid GIL/C# code that the transpiler would otherwise error on.
+    /// </summary>
+    public const string GilFieldName_EchoString = GilDataPrefix + "FieldEchoStringVoid";
 
     /// <summary>
     /// Causes transpiler to visit a variable number of arguments passed to this function. Has a fake bool return so
@@ -72,7 +80,7 @@ public class GilCreationHelper
     /// </summary>
     public static string WrapRawCodeWithBoolReturn(string codeToWrap)
     {
-        var escapedQuoted = SymbolDisplay.FormatLiteral(codeToWrap, quote: true);
+        var escapedQuoted = EscapeAndQuote(codeToWrap);
         return $"{GilFuncName_EchoStringBool}({escapedQuoted})";
     }
 
@@ -90,12 +98,44 @@ public class GilCreationHelper
         foreach (var line in lines)
         {
             result += joiner;
-            var escapedQuoted = SymbolDisplay.FormatLiteral(line, quote: true);
+            var escapedQuoted = EscapeAndQuote(line);
             result += $"{GilFuncName_EchoStringStatement}({escapedQuoted});";
             joiner = "\n";
         }
         
         return result;
+    }
+
+    /// <summary>
+    /// This is useful for outputting user code that isn't valid GIL/C# code that the transpiler would otherwise error on.
+    /// </summary>
+    public static string WrapRawCodeAsField(string codeToWrap)
+    {
+        string result = "";
+        string joiner = "";
+
+        // split code into multiple lines
+        string[] lines = StringUtils.SplitIntoLinesOrEmpty(codeToWrap);
+
+        foreach (var line in lines)
+        {
+            result += joiner;
+            var escapedQuoted = EscapeAndQuote(line);
+            result += $"public string {CreateGilFieldName_EchoString()} = {escapedQuoted};";
+            joiner = "\n";
+        }
+
+        return result;
+    }
+
+    private static string CreateGilFieldName_EchoString()
+    {
+        return $"{GilFieldName_EchoString}{_fieldCounter.IncrementAndGet()}";
+    }
+
+    private static string EscapeAndQuote(string codeToWrap)
+    {
+        return SymbolDisplay.FormatLiteral(codeToWrap, quote: true);
     }
 
     public static string MarkAsGilExpansionCode(string code)

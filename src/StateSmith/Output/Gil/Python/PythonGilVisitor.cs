@@ -169,6 +169,9 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
+        if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb, Indent))
+            return;
+
         VisitLeadingTrivia(node.GetFirstToken());
         sb.Append(Indent);
         sb.Append("self.");
@@ -296,7 +299,7 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
-        if (transpilerHelper.IsGilNoEmit(node))
+        if (transpilerHelper.IsGilData(node))
             return;
 
         bool isStatic = node.Modifiers.Any(SyntaxKind.StaticKeyword);

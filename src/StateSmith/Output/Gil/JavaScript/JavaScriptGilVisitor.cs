@@ -51,7 +51,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
-        if (transpilerHelper.IsGilNoEmit(node))
+        if (transpilerHelper.IsGilData(node))
             return;
 
         VisitLeadingTrivia(node.GetFirstToken());

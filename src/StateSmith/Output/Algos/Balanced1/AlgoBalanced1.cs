@@ -189,7 +189,7 @@ public class AlgoBalanced1 : IGilAlgo
 
                     foreach (var line in StringUtils.SplitIntoLinesOrEmpty(renderConfig.VariableDeclarations.Trim()))
                     {
-                        file.AppendIndentedLine(PostProcessor.echoLineMarker + line);
+                        file.AppendIndentedLine(GilCreationHelper.WrapRawCodeAsField(line));
                     }
                 }
                 file.FinishCodeBlock();

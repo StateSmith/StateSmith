@@ -11,7 +11,6 @@ namespace StateSmith.Output.Gil;
 /// </summary>
 public class PostProcessor
 {
-    public const string echoLineMarker = "//>>>>>ECHO:";
     public const string trimBlankLinesMarker = ">>>>>>>>trimBlankLinesMarker<<<<<<<<<<<<<<";
     public const string trimHorizontalWhiteSpaceMarker = ">>>>>>>>trimHorizontalWhiteSpaceMarker<<<<<<<<<<<<<<";
     public const string rmLeft2Marker = "<<<<<rm2<<<<<";
@@ -59,7 +58,6 @@ public class PostProcessor
         str = rmLeft2Regex.Replace(str, "");
         str = rmRight2Regex.Replace(str, "");
         str = rmIdentifierStartRegex.Replace(str, "$1");
-        str = str.Replace(echoLineMarker, "");
         str = str.Replace(dummy, "");
 
         return str;
