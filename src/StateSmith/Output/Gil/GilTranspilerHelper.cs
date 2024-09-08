@@ -84,10 +84,7 @@ public class GilTranspilerHelper
                 {
                     this.transpilerWalker.VisitLeadingTrivia(ies.GetFirstToken());
                     gilEmitMethodFoundAndHandled = true;
-                    ArgumentSyntax argumentSyntax = ies.ArgumentList.Arguments.Single();
-                    var unescaped = System.Text.RegularExpressions.Regex.Unescape(argumentSyntax.ToFullString());
-                    unescaped = unescaped[1..^1]; // remove surrounding quotes present because of gil wrapping
-                    sb.Append(unescaped); // FIXME: this may not do everything we need. We need inverse of https://stackoverflow.com/a/58825732/7331858 
+                    ProcessGilEchoInvocations(sb, ies);
                     this.transpilerWalker.VisitTrailingTrivia(expressionNode.GetLastToken());
                 }
             }
@@ -105,10 +102,7 @@ public class GilTranspilerHelper
             if (ins.Identifier.Text == GilCreationHelper.GilEchoStringBoolReturnFuncName)
             {
                 gilEmitMethodFoundAndHandled = true;
-                ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();
-                var unescaped = System.Text.RegularExpressions.Regex.Unescape(argumentSyntax.ToFullString());
-                unescaped = unescaped[1..^1]; // remove surrounding quotes present because of gil wrapping
-                sb.Append(unescaped); // FIXME: this may not do everything we need. We need inverse of https://stackoverflow.com/a/58825732/7331858 
+                ProcessGilEchoInvocations(sb, node);
             }
             else if (ins.Identifier.Text == GilCreationHelper.GilVisitVarArgsBoolReturnFuncName)
             {
@@ -121,6 +115,19 @@ public class GilTranspilerHelper
         }
 
         return gilEmitMethodFoundAndHandled;
+    }
+
+    /// <summary>
+    /// The code to echo is wrapped in quotes (to make it a string) and then passed to this function.
+    /// </summary>
+    /// <param name="sb"></param>
+    /// <param name="ies"></param>
+    private static void ProcessGilEchoInvocations(StringBuilder sb, InvocationExpressionSyntax ies)
+    {
+        ArgumentSyntax argumentSyntax = ies.ArgumentList.Arguments.Single();
+        var unescaped = System.Text.RegularExpressions.Regex.Unescape(argumentSyntax.ToFullString());
+        unescaped = unescaped[1..^1]; // remove surrounding quotes present because of gil wrapping
+        sb.Append(unescaped); // FIXME: this may not do everything we need. We need inverse of https://stackoverflow.com/a/58825732/7331858 
     }
 
     public bool HandleGilUnusedVarSpecialInvocation(InvocationExpressionSyntax node, Action<ArgumentSyntax> codeBuilder)
