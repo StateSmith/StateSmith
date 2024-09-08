@@ -11171,9 +11171,9 @@ class Spec2Sm(Spec2SmBase):
             Printer.trace("Exit TEST9B_ROOT__B4.")
         
         self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B3
-@staticmethod
     
     # Thread safe.
+    @staticmethod
     def stateIdToString(id):
         match id:
             case Spec2Sm.StateId.ROOT: return "ROOT"
@@ -11349,9 +11349,9 @@ class Spec2Sm(Spec2SmBase):
             case Spec2Sm.StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3"
             case Spec2Sm.StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4"
             case _: return "?"
-@staticmethod
     
     # Thread safe.
+    @staticmethod
     def eventIdToString(id):
         match id:
             case Spec2Sm.EventId.DO: return "DO"

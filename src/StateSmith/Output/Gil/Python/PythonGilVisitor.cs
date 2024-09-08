@@ -301,12 +301,15 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
         bool isStatic = node.Modifiers.Any(SyntaxKind.StaticKeyword);
 
+        VisitLeadingTrivia(node.GetFirstToken());
+        
         if (isStatic)
         {
+            string lastIndent = StringUtils.FindLastIndent(sb);
             sb.AppendLine("@staticmethod");
+            sb.Append(lastIndent);
         }
 
-        VisitLeadingTrivia(node.GetFirstToken());
         sb.Append("def ");
 
         //if private, add a leading underscore
