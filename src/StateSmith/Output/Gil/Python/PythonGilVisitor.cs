@@ -230,6 +230,13 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
     private string GetPythonName(ISymbol symbol)
     {
+        // special case for enum types. Need to access like `self.StateId.ROOT`
+
+        if (symbol is INamedTypeSymbol namedTypeSymbol && namedTypeSymbol.TypeKind == TypeKind.Enum)
+        {
+            return $"self.{symbol.Name}";
+        }
+
         if (symbol is IFieldSymbol fieldSymbol)
         {
             if (!fieldSymbol.IsStatic && !fieldSymbol.IsConst)
@@ -241,16 +248,6 @@ public class PythonGilVisitor : CSharpSyntaxWalker
                 result += fieldSymbol.Name;
                 return result;
             }
-
-            if (fieldSymbol.IsEnumMember())
-            {
-                return fieldSymbol.Name;
-            }
-        }
-
-        if (symbol.Kind == SymbolKind.Parameter || symbol.Kind == SymbolKind.Local)
-        {
-            return symbol.Name;
         }
 
         if (symbol is IMethodSymbol methodSymbol)
@@ -262,9 +259,6 @@ public class PythonGilVisitor : CSharpSyntaxWalker
             result += methodSymbol.Name;
             return result;
         }
-
-        //var fqn = transpilerHelper.GetFQN(symbol);
-        //return fqn;
 
         return symbol.Name;
     }
@@ -405,7 +399,7 @@ public class PythonGilVisitor : CSharpSyntaxWalker
     public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
     {
         VisitToken(node.Keyword);
-        sb.Append("self.");
+        //sb.Append("self.");
         Visit(node.Value);
         VisitToken(node.ColonToken);
     }
