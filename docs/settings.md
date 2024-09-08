@@ -82,6 +82,10 @@ AutoExpandedVars  = "stuff..."
   - [RenderConfig.Java.Extends](#renderconfigjavaextends)
   - [RenderConfig.Java.Implements](#renderconfigjavaimplements)
   - [RenderConfig.Java.ClassCode](#renderconfigjavaclasscode)
+- [RenderConfig.Python](#renderconfigpython)
+  - [RenderConfig.Python.Imports](#renderconfigpythonimports)
+  - [RenderConfig.Python.Extends](#renderconfigpythonextends)
+  - [RenderConfig.Python.ClassCode](#renderconfigpythonclasscode)
 - [SmRunnerSettings](#smrunnersettings)
   - [SmRunnerSettings.transpilerId](#smrunnersettingstranspilerid)
   - [SmRunnerSettings.algorithmId](#smrunnersettingsalgorithmid)
@@ -323,6 +327,7 @@ TriggerMap = """
 Maps to [IRenderConfigC](../src/StateSmith/Output/UserConfig/IRenderConfigC.cs) interface.
 
 ```toml
+[RenderConfig.C]
 HFileTop = ""
 HFileIncludes = ""
 CFileTop = ""
@@ -537,6 +542,7 @@ UseStdBool = false
 Maps to the [IRenderConfigCSharp](../src/StateSmith/Output/UserConfig/IRenderConfigCSharp.cs) interface.
 
 ```toml
+[RenderConfig.CSharp]
 NameSpace = ""
 Usings = ""
 ClassCode = ""
@@ -624,6 +630,7 @@ UsePartialClass = false
 Maps to the [IRenderConfigJavaScript](../src/StateSmith/Output/UserConfig/IRenderConfigJavaScript.cs) interface.
 
 ```toml
+[RenderConfig.JavaScript]
 ClassCode = ""
 ExtendsSuperClass = "MyUserBaseClass"
 UseExportOnClass = true
@@ -684,6 +691,7 @@ PrivatePrefix = "_"
 Maps to the [IRenderConfigJava](../src/StateSmith/Output/UserConfig/IRenderConfigJava.cs) interface.
 
 ```toml
+[RenderConfig.Java]
 Package = "my.package.for.statemachine"
 Imports = """
     import java.util.*; // or whatever you need
@@ -749,6 +757,64 @@ ClassCode = """
     // Add custom code here...
     """
 ```
+
+
+
+
+<br>
+<br>
+
+# RenderConfig.Python
+Maps to the [IRenderConfigPython](../src/StateSmith/Output/UserConfig/IRenderConfigPython.cs) interface.
+
+```toml
+[RenderConfig.Python]
+Imports = """
+    # from some_module import some_function
+    """
+Extends = "MyUserBaseClass"
+ClassCode = """
+    # Add custom code here to inject into the generated class.
+    # Inheritance or composition might be a better choice.
+    """
+```
+
+## RenderConfig.Python.Imports
+Type: `string`
+
+Use to add import statements to the generated class. Can span multiple lines.
+
+```toml
+[RenderConfig.Python]
+Imports = """
+    # from some_module import some_function
+    """
+```
+
+## RenderConfig.Python.Extends
+Type: `string`
+
+Use to have generated state machine class extend a user defined base class.
+
+```toml
+[RenderConfig.Python]
+Extends = "MyUserBaseClass"
+```
+
+## RenderConfig.Python.ClassCode
+Type: `string`
+
+Use to add custom code to generated state machine class. Inheritance or composition is often a better choice.
+
+```toml
+[RenderConfig.Python]
+ClassCode = """
+    # Add custom code here...
+    """
+```
+
+
+
 
 <br>
 <br>
