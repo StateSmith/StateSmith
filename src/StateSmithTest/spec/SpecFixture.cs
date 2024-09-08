@@ -42,7 +42,7 @@ public class SpecFixture
 
         settings.propagateExceptions = true;
         settings.dumpGilCodeOnError = true;
-        settings.outputGilCodeAlways = true; // FIXME - remove this
+        settings.outputGilCodeAlways = true; // this is actually pretty handy while we are working on transpilers
 
         if (useTracingModder)
         {
