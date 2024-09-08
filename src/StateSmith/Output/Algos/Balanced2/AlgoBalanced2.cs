@@ -146,6 +146,25 @@ public class AlgoBalanced2 : AlgoBalanced1
         file.AppendIndentedLine();
     }
 
+    private bool IsStateEventHandlerEmpty(NamedVertex namedVertex, HashSet<string> stateEvents, IEnumerable<string> otherEvents)
+    {
+        if (stateEvents.Count > 0)
+        {
+            return false;
+        }
+
+        foreach (string evt in otherEvents)
+        {
+            NamedVertex? ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
+            if (ancestor != null)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private void OutputStateEventHandlerCode(NamedVertex namedVertex, string eventIdParameterName)
     {
         var allEvents = Sm.GetEventSet();
@@ -160,40 +179,49 @@ public class AlgoBalanced2 : AlgoBalanced1
         }
         else
         {
-            file.AppendIndented($"switch ({eventIdParameterName})");
-            file.StartCodeBlock();
+            // events that are not handled by this state
+            var otherEvents = allEvents.Except(stateEvents);
+
+            // determine if this switch statement is needed
+            if (settings.omitEmptySwitchAndCases && IsStateEventHandlerEmpty(namedVertex, stateEvents, otherEvents))
             {
-                foreach (string evt in stateEvents)
-                {
-                    MaybeOutputEventHandler(namedVertex, evt);
-                }
-
-                var otherEvents = allEvents.Except(stateEvents);
-
-                if (otherEvents.Any())
-                {
-                    if (!settings.omitEmptySwitchAndCases)
-                    {
-                        file.AppendIndentedLine($"// Events not handled by this state:");
-                    }
-
-                    foreach (string evt in otherEvents)
-                    {
-                        NamedVertex? ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
-                        var comment = (ancestor == null) ? string.Empty : FirstAncestorHandlerComment;
-
-                        if (settings.omitEmptySwitchAndCases && string.IsNullOrWhiteSpace(comment))
-                        {
-                            // do nothing
-                        }
-                        else
-                        {
-                            MaybeOutputEventHandler(ancestor, evt, comment: comment);
-                        }
-                    }
-                }
+                file.AppendIndentedLine($"// No events handled by this state (or its ancestors).");
             }
-            file.FinishCodeBlock(forceNewLine: true);
+            else
+            {
+                file.AppendIndented($"switch ({eventIdParameterName})");
+                file.StartCodeBlock();
+                {
+                    foreach (string evt in stateEvents)
+                    {
+                        MaybeOutputEventHandler(namedVertex, evt);
+                    }
+
+                    if (otherEvents.Any())
+                    {
+                        if (!settings.omitEmptySwitchAndCases)
+                        {
+                            file.AppendIndentedLine($"// Events not handled by this state:");
+                        }
+
+                        foreach (string evt in otherEvents)
+                        {
+                            NamedVertex? ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
+                            var comment = (ancestor == null) ? string.Empty : FirstAncestorHandlerComment;
+
+                            if (settings.omitEmptySwitchAndCases && string.IsNullOrWhiteSpace(comment))
+                            {
+                                // do nothing
+                            }
+                            else
+                            {
+                                MaybeOutputEventHandler(ancestor, evt, comment: comment);
+                            }
+                        }
+                    }
+                }
+                file.FinishCodeBlock(forceNewLine: true);
+            }
         }
     }
 

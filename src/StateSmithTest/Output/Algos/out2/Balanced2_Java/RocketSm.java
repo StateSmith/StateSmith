@@ -80,9 +80,7 @@ public class RocketSm
         {
             // STATE: RocketSm
             case ROOT:
-                switch (eventId)
-                {
-                }
+                // No events handled by this state (or its ancestors).
                 break;
             
             // STATE: group
@@ -112,9 +110,7 @@ public class RocketSm
             
             // STATE: s1
             case S1:
-                switch (eventId)
-                {
-                }
+                // No events handled by this state (or its ancestors).
                 break;
         }
         

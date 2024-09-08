@@ -82,9 +82,7 @@ public partial class RocketSm
         {
             // STATE: RocketSm
             case StateId.ROOT:
-                switch (eventId)
-                {
-                }
+                // No events handled by this state (or its ancestors).
                 break;
 
             // STATE: group
@@ -114,9 +112,7 @@ public partial class RocketSm
 
             // STATE: s1
             case StateId.S1:
-                switch (eventId)
-                {
-                }
+                // No events handled by this state (or its ancestors).
                 break;
         }
 
