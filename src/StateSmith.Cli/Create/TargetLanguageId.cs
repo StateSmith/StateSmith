@@ -10,4 +10,5 @@ public enum TargetLanguageId
     CSharp,
     JavaScript,
     Java,
+    Python,
 }

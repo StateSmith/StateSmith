@@ -14,12 +14,12 @@ state State2
 [*] -> State1
 
 ' State1
-State1: enter / count++;
+State1: enter / count += 1{{SC}}
 State1: exit  / 
 State1 --> State2 : event1
 
 ' State2
-State2: enter / count += 10;
+State2: enter / count += 10{{SC}}
 State2: exit  / 
 State2 --> State1 : event2
 

@@ -58,6 +58,11 @@ public class Generator
         var filterEngine = new TemplateFilterEngine();
         var result = filterEngine.ProcessAllFilters(tomlConfigTemplate, filterTag: targetLanguageId.ToString());
         
+        if (targetLanguageId == TargetLanguageId.Python)
+        {
+            result = result.Replace("//", "#");
+        }
+
         return result;
     }
 
@@ -72,6 +77,16 @@ public class Generator
         var diagramTemplateStr = TemplateLoader.LoadDiagram(settings.GetTemplateId(), isDrawIoSelected: settings.IsDrawIoSelected());
         diagramTemplateStr = diagramTemplateStr.Replace("{{smName}}", settings.smName);
         diagramTemplateStr = SupportDefaultTomlConfig(diagramTemplateStr);
+
+        // update semicolon tag based on target language
+        if (settings.TargetLanguageId == TargetLanguageId.Python)
+        {
+            diagramTemplateStr = diagramTemplateStr.Replace("{{SC}}", "");
+        }
+        else
+        {
+            diagramTemplateStr = diagramTemplateStr.Replace("{{SC}}", ";");
+        }
 
         var filterEngine = new TemplateFilterEngine();
         diagramTemplateStr = filterEngine.ProcessAllFilters(diagramTemplateStr, filterTag: settings.TargetLanguageId.ToString());

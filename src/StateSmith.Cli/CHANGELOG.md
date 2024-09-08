@@ -6,6 +6,17 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
+## [0.14.?]
+### Added
+- `create` command - add support for `Python` language
+  - minor change to templates to support Python (`count++` became `count += 1`...)
+  - https://github.com/StateSmith/StateSmith/issues/397
+
+### Upgrade StateSmith library version to [0.14.?]
+TODO
+
+---
+
 ## [0.13.0]
 ### Added
 - `create` command - add support for `java` language

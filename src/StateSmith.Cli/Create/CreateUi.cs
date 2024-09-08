@@ -390,6 +390,7 @@ public class CreateUi
             new UiItem<TargetLanguageId>(id: TargetLanguageId.CSharp,      display: "C#"),
             new UiItem<TargetLanguageId>(id: TargetLanguageId.JavaScript,  display: "JavaScript"),
             new UiItem<TargetLanguageId>(id: TargetLanguageId.Java,        display: "Java"),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.Python,      display: "Python"),
         };
 
         AddRememberedToChoices(choices, id: _settings.TargetLanguageId);
