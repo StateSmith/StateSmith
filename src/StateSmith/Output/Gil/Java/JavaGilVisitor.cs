@@ -70,6 +70,14 @@ public class JavaGilVisitor : CSharpSyntaxWalker
         this.Visit(transpilerHelper.root);
     }
 
+    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+    {
+        if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
+            return;
+
+        base.VisitFieldDeclaration(node);
+    }
+
     public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
     {
         // older versions of Java don't like `case StateId.ROOT:` they want `case ROOT:`.

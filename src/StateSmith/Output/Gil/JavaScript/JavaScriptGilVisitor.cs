@@ -157,6 +157,9 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
+        if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
+            return;
+
         VisitLeadingTrivia(node.GetFirstToken());
 
         if (node.IsConst())
@@ -186,9 +189,20 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
             var fields = symbol.GetMembers().OfType<IFieldSymbol>();
 
+            const string Indentation = "        ";
+
             foreach (var field in fields)
             {
-                sb.AppendLine("        " + field.Name + ": undefined,");
+                if (field.Name.StartsWith(GilCreationHelper.GilFieldName_EchoString))
+                {
+                    // tidy up with https://github.com/StateSmith/StateSmith/issues/400
+                    var originalCode = GilTranspilerHelper.GetOriginalCodeFromGilFieldEcho(field.DeclaringSyntaxReferences.Single().GetSyntax().AncestorsAndSelf().OfType<FieldDeclarationSyntax>().Single());
+                    sb.AppendLine(Indentation + originalCode);
+                }
+                else
+                {
+                    sb.AppendLine(Indentation + field.Name + ": undefined,");
+                }
             }
 
             var structDeclarationSyntax = (StructDeclarationSyntax)(symbol.DeclaringSyntaxReferences.Single().GetSyntax());

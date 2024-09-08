@@ -83,12 +83,23 @@ public class GilTranspilerHelper
 
                 if (fieldName.StartsWith(GilCreationHelper.GilFieldName_EchoString))
                 {
-                    sb.AppendLine(indent + UnescapeQuotedString(variable.Initializer.ThrowIfNull().Value.ToFullString()));
+                    string originalCode = GetOriginalCodeFromGilFieldEcho(fieldDeclarationSyntax);
+                    sb.AppendLine(indent + originalCode);
                 }
             }
         }
 
         return handled;
+    }
+
+    public static string GetOriginalCodeFromGilFieldEcho(FieldDeclarationSyntax fieldDeclarationSyntax)
+    {
+        //string escapedString = variable.Initializer.ThrowIfNull().Value.ToFullString();  // preferred when we have https://github.com/StateSmith/StateSmith/issues/400
+        // we can't use above right now because GIL variable object is a struct and we get a transpiler error because the struct then needs a constructor
+
+        string escapedString = fieldDeclarationSyntax.GetTrailingTrivia().First().ToFullString()[2..]; // remove leading `//` from comment
+        string originalCode = UnescapeQuotedString(escapedString);
+        return originalCode;
     }
 
     /// <summary>

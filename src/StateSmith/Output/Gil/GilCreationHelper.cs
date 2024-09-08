@@ -121,7 +121,8 @@ public class GilCreationHelper
         {
             result += joiner;
             var escapedQuoted = EscapeAndQuote(line);
-            result += $"public string {CreateGilFieldName_EchoString()} = {escapedQuoted};";
+            //result += $"public string {CreateGilFieldName_EchoString()} = {escapedQuoted};"; // preferred when we have https://github.com/StateSmith/StateSmith/issues/400
+            result += $"public string {CreateGilFieldName_EchoString()};//{escapedQuoted}";
             joiner = "\n";
         }
 

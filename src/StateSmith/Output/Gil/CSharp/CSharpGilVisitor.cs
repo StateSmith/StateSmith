@@ -5,6 +5,7 @@ using System.Text;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using Microsoft.CodeAnalysis.Formatting;
+using System;
 
 #nullable enable
 
@@ -92,6 +93,14 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         // note: we don't use the regular `NormalizeWhitespace()` as it tightens all code up, and actually messes up some indentation.
         outputCode = Formatter.Format(CSharpSyntaxTree.ParseText(outputCode).GetRoot(), new AdhocWorkspace()).ToFullString();
         sb.Append(outputCode);
+    }
+
+    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+    {
+        if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
+            return;
+
+        base.VisitFieldDeclaration(node);
     }
 
     // delegates are assumed to be method pointers
