@@ -30,27 +30,11 @@ public class SharedCompilationFixture
                 {
                     foreach (var behavior in node.Behaviors)
                     {
-                        behavior.actionCode = behavior.actionCode.Replace(";", "");
-                        behavior.actionCode = behavior.actionCode.Replace("++", " += 1");
-                        behavior.actionCode = behavior.actionCode.Replace("/*", "#");
-                        behavior.actionCode = behavior.actionCode.Replace("MainClass.", "Printer.");
-                        behavior.actionCode = behavior.actionCode.Replace("true", "True");
-                        behavior.actionCode = behavior.actionCode.Replace("false", "False");
+                        behavior.actionCode = PythonifyDiagramCode(behavior.actionCode);
+                        behavior.guardCode = PythonifyDiagramCode(behavior.guardCode);
                     }
                 });
             }));
-
-            //// 
-            //runner.SmTransformer.InsertAfterFirstMatch(SpecFixture.TracingModderId,
-            //    new TransformationStep(action: (sm) => {
-            //        sm.VisitRecursively((node) =>
-            //        {
-            //            foreach (var behavior in node.Behaviors)
-            //            {
-            //                behavior.guardCode = behavior.guardCode.Replace("\", true", "\", True");
-            //            }
-            //        });
-            //    }));
         };
 
         Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, semiColon: "", trueString: "True");
@@ -64,6 +48,17 @@ public class SharedCompilationFixture
             Args = " -m compileall ."   // https://stackoverflow.com/questions/5607283/how-can-i-manually-generate-a-pyc-file-from-a-py-file
         };
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+    }
+
+    private static string PythonifyDiagramCode(string str)
+    {
+        str = str.Replace(";", "");
+        str = str.Replace("++", " += 1");
+        str = str.Replace("/*", "#");
+        str = str.Replace("MainClass.", "Printer.");
+        str = str.Replace("true", "True");
+        str = str.Replace("false", "False");
+        return str;
     }
 
     public class MyGlueFile : IRenderConfigPython

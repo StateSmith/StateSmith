@@ -10864,8 +10864,8 @@ class Spec2Sm(Spec2SmBase):
             # TEST9A_S1.<ExitPoint>(1) is a pseudo state and cannot have an `enter` trigger.
             
             # TEST9A_S1.<ExitPoint>(1) behavior
-            # uml: [true] / { trace("Transition action `count += 1` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.")\ncount += 1 } TransitionTo(TEST9A_S1)
-            if true:
+            # uml: [True] / { trace("Transition action `count += 1` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.")\ncount += 1 } TransitionTo(TEST9A_S1)
+            if True:
 
                 # Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition).
                 self._TEST9A_S1_exit()

@@ -14,7 +14,7 @@ public class Spec2TestsPython : Spec2Tests, IClassFixture<SharedCompilationFixtu
         {
             WorkingDirectory = SharedCompilationFixture.OutputDirectory,
             ProgramPath = "python",
-            Args = $" MainClass.pyc {testEvents}"
+            Args = $" MainClass.py {testEvents}"
         };
         process.Run(SimpleProcess.DefaultLongTimeoutMs);
 

@@ -17,7 +17,7 @@ class MainClass:
             try:
                 event_id = Spec2Sm.EventId[arg.upper()]
                 Printer.print_dispatch_event_name(arg)
-                sm.dispatch_event(event_id)
+                sm.dispatchEvent(event_id)
                 print()
             except KeyError:
                 raise ValueError(f"bad i:{i} arg: `{arg}`")
