@@ -93,4 +93,33 @@ public class StringUtilsTest
         sb.Append("    //blah blah       \n   blah  \t  ");
         StringUtils.FindLastIndent(sb).Should().Be("   ");
     }
+
+    [Fact]
+    public void RemovePythonStringsAndComments()
+    {
+        var result = StringUtils.RemovePythonStringsAndComments(""""
+            a
+            """
+            not
+            """
+            b
+            #not
+            c # not
+            #"""
+            d
+            #"
+            e
+            """");
+        result.ShouldBeShowDiff("""
+            a
+
+            b
+
+            c 
+
+            d
+
+            e
+            """);
+    }
 }

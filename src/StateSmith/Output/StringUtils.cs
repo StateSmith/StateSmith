@@ -206,7 +206,34 @@ public class StringUtils
 
         return result;
     }
-    
+
+    internal static string RemovePythonStringsAndComments(string code)
+    {
+        // have to match all elements that can affect each other at the same time.
+        // For example, a string literal can contain a comment, and a comment can contain a string literal.
+        var regex = new Regex(@"(?x)
+                # string literal
+                ""
+                (?:
+                    \\. # escape
+                    |
+                    [\s\S] *? # anything, lazy
+                )
+                ""
+                |
+                """""" # triple double quotes
+                [\s\S] *? # anything, lazy
+                """"""
+                |
+                \# [^\r\n]*
+            ");
+
+        var result = regex.Replace(code, "");
+        return result;
+    }
+
+
+
     internal static string AppendWithNewlineIfNeeded(string str, string toAppend)
     {
         AppendInPlaceWithNewlineIfNeeded(ref str, toAppend);

@@ -8682,12 +8682,12 @@ public class Spec2Sm
         if (____GilData_VarArgsToBool(____GilData_EchoStringBool("self.trace_guard(\"State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1 += 1 }`.\", True)")))
         {
             // Step 1: execute action `auto_var_1 += 1`
-            ____GilData_EchoStringVoid("auto_var_1 += 1");
+            ____GilData_EchoStringVoid("self.vars.auto_var_1 += 1");
         } // end of behavior for AUTO_VAR_TEST__S1
         
         // AUTO_VAR_TEST__S1 behavior
         // uml: 2. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", auto_var_1 == 2)] / { trace("Transition action `` for AUTO_VAR_TEST__S1 to AUTO_VAR_TEST__S2.") } TransitionTo(AUTO_VAR_TEST__S2)
-        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("self.trace_guard(\"State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.\", auto_var_1 == 2)")))
+        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("self.trace_guard(\"State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.\", self.vars.auto_var_1 == 2)")))
         {
             // Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition).
             this.AUTO_VAR_TEST__S1_exit();

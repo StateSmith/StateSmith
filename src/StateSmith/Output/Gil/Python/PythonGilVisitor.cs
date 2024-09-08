@@ -172,11 +172,35 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb, Indent))
             return;
 
-        VisitLeadingTrivia(node.GetFirstToken());
+        VisitLeadingTrivia(node.GetFirstToken());   // FIXME - this needs to be indented correctly
         sb.Append(Indent);
         sb.Append("self.");
-        sb.Append(node.Declaration.Variables.First().Identifier.Text);
-        sb.AppendLine(" = None");
+        Visit(node.Declaration.Variables.Single());
+        sb.AppendLine();
+    }
+
+    public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
+    {
+        if (node.Initializer == null)
+        {
+            sb.Append(node.Identifier.Text);
+            sb.Append(" = None");
+        }
+        else
+        {
+            base.VisitVariableDeclarator(node);
+        }
+    }
+
+    // handle object creation like `new MyClass()`
+    public override void VisitObjectCreationExpression(ObjectCreationExpressionSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+        sb.Append("self.");
+        Visit(node.Type);
+        //Visit(node.ArgumentList);  // we need to update how `VisitArgumentList()` works
+        sb.Append("()");
+        VisitTrailingTrivia(node.GetLastToken());
     }
 
     private void AddIndent(int amount)
@@ -363,11 +387,6 @@ public class PythonGilVisitor : CSharpSyntaxWalker
     public override void VisitAttributeList(AttributeListSyntax node)
     {
         VisitLeadingTrivia(node.GetFirstToken());
-    }
-
-    public override void VisitObjectCreationExpression(ObjectCreationExpressionSyntax node)
-    {
-        sb.Append(node.ToFullString()); // otherwise we need to update how `VisitArgumentList()` works
     }
 
     public override void VisitSwitchStatement(SwitchStatementSyntax node)

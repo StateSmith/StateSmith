@@ -54,9 +54,9 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit TEST1_S1.
             Transition action `` for TEST1_S1_1 to TEST1_S2.
             Enter TEST1_S2.
-        ")); tester.AddEventHandling("DO", t => t(@"
-            State TEST1_S2: check behavior `do / { consume_event = true; }`. Behavior running.
-        "));
+        ")); tester.AddEventHandling("DO", t => t($$"""
+            State TEST1_S2: check behavior `do / { consume_event = {{True}}{{SemiColon}} }`. Behavior running.
+        """));
     }
 
 
@@ -77,10 +77,10 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for TEST2_S1_1 to TEST2_S2.
             Enter TEST2_S2.
             State TEST2_S2: check behavior `en`. Behavior running.
-        ")); tester.AddEventHandling("EV1", t => t(@"
-            State TEST2_S2: check behavior `ev1 / { consume_event = false; }`. Behavior running.
+        ")); tester.AddEventHandling("EV1", t => t($$"""
+            State TEST2_S2: check behavior `ev1 / { consume_event = {{False}}{{SemiColon}} }`. Behavior running.
             State TEST2_ROOT: check behavior `EV1`. Behavior running.
-        ")); tester.AddEventHandling("EV2", t => t(@"
+        """)); tester.AddEventHandling("EV2", t => t(@"
             State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`. Behavior running.
             Exit TEST2_S2.
             Transition action `` for TEST2_S2 to TEST2_S2.
@@ -99,17 +99,17 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit TEST3_S1.
             Transition action `` for TEST3_S1 to TEST3_S2.
             Enter TEST3_S2.
-        ")); tester.AddEventHandling("EV1", t => t(@"
-            State TEST3_S2: check behavior `1. EV1 / { trace(""1 woot!""); }`. Behavior running.
+        ")); tester.AddEventHandling("EV1", t => t($$"""
+            State TEST3_S2: check behavior `1. EV1 / { trace("1 woot!"){{SemiColon}} }`. Behavior running.
             1 woot!
-            State TEST3_S2: check behavior `1.1. EV1 / { trace(""2 woot!""); }`. Behavior running.
+            State TEST3_S2: check behavior `1.1. EV1 / { trace("2 woot!"){{SemiColon}} }`. Behavior running.
             2 woot!
-            State TEST3_S2: check behavior `2. EV1 / { trace(""3 woot!""); } TransitionTo(TEST3_S3)`. Behavior running.
+            State TEST3_S2: check behavior `2. EV1 / { trace("3 woot!"){{SemiColon}} } TransitionTo(TEST3_S3)`. Behavior running.
             Exit TEST3_S2.
-            Transition action `trace(""3 woot!"");` for TEST3_S2 to TEST3_S3.
+            Transition action `trace("3 woot!"){{SemiColon}}` for TEST3_S2 to TEST3_S3.
             3 woot!
             Enter TEST3_S3.
-        "));
+        """));
     }
 
     //-------------------------------------------------------------------------------------
@@ -357,19 +357,19 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         tester.PreEvents = "EV6 EV1";
 
         // 
-        tester.AddEventHandling("EV1", t => t(@"
-            State S1: check behavior `1. EV1 / { count++; }`. Behavior running.
+        tester.AddEventHandling("EV1", t => t($$"""
+            State S1: check behavior `1. EV1 / { count{{PostInc}}{{SemiColon}} }`. Behavior running.
             State S1: check behavior `2. EV1 [count >= 2] TransitionTo(S2)`. Behavior skipped.
-        "));
+        """));
 
         // 
-        tester.AddEventHandling("EV1", t => t(@"
-            State S1: check behavior `1. EV1 / { count++; }`. Behavior running.
+        tester.AddEventHandling("EV1", t => t($$"""
+            State S1: check behavior `1. EV1 / { count{{PostInc}}{{SemiColon}} }`. Behavior running.
             State S1: check behavior `2. EV1 [count >= 2] TransitionTo(S2)`. Behavior running.
             Exit S1.
             Transition action `` for S1 to S2.
             Enter S2.
-        "));
+        """));
     }
 
     [Fact]
@@ -378,19 +378,19 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         tester.PreEvents = "EV6 EV2";
 
         // 
-        tester.AddEventHandling("EV1", t => t(@"
-            State S1: check behavior `1. EV1 / { auto_var_1++; }`. Behavior running.
+        tester.AddEventHandling("EV1", t => t($$"""
+            State S1: check behavior `1. EV1 / { auto_var_1{{PostInc}}{{SemiColon}} }`. Behavior running.
             State S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(S2)`. Behavior skipped.
-        "));
+        """));
 
         // 
-        tester.AddEventHandling("EV1", t => t(@"
-            State S1: check behavior `1. EV1 / { auto_var_1++; }`. Behavior running.
+        tester.AddEventHandling("EV1", t => t($$"""
+            State S1: check behavior `1. EV1 / { auto_var_1{{PostInc}}{{SemiColon}} }`. Behavior running.
             State S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(S2)`. Behavior running.
             Exit S1.
             Transition action `` for S1 to S2.
             Enter S2.
-        "));
+        """));
     }
 
     /// <summary>
@@ -402,37 +402,37 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         tester.PreEvents = "EV6 EV3";
 
         // 
-        tester.AddEventHandling("EV1", t => t(@"
-            State S1: check behavior `EV1 / { trace_meta(); } TransitionTo(S2)`. Behavior running.
+        tester.AddEventHandling("EV1", t => t($$"""
+            State S1: check behavior `EV1 / { trace_meta(){{SemiColon}} } TransitionTo(S2)`. Behavior running.
             Exit S1.
-            Transition action `trace_meta();` for S1 to S2.
+            Transition action `trace_meta(){{SemiColon}}` for S1 to S2.
             META: State: S1, trigger: ev1, behavior vertex: S1
             Enter S2.
-            State S2: check behavior `enter / { trace_meta(); }`. Behavior running.
+            State S2: check behavior `enter / { trace_meta(){{SemiColon}} }`. Behavior running.
             META: State: S2, trigger: enter, behavior vertex: S2
-        "));
+        """));
 
         // 
-        tester.AddEventHandling("EV1", t => t(@"
-            State S2: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))`. Behavior running.
+        tester.AddEventHandling("EV1", t => t($$"""
+            State S2: check behavior `EV1 / { trace_meta(){{SemiColon}} } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))`. Behavior running.
             Exit S2.
-            Transition action `trace_meta();` for S2 to META_EXPANSIONS.<ChoicePoint>(1).
+            Transition action `trace_meta(){{SemiColon}}` for S2 to META_EXPANSIONS.<ChoicePoint>(1).
             META: State: S2, trigger: ev1, behavior vertex: S2
-            Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S3.
+            Transition action `trace_meta(){{SemiColon}}` for META_EXPANSIONS.<ChoicePoint>(1) to S3.
             META: State: S2, trigger: ev1, behavior vertex: META_EXPANSIONS.<ChoicePoint>(1)
             Enter S3.
-        "));
+        """));
 
         // 
-        tester.AddEventHandling("EV1", t => t(@"
-            State S3: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`. Behavior running.
+        tester.AddEventHandling("EV1", t => t($$"""
+            State S3: check behavior `EV1 / { trace_meta(){{SemiColon}} } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`. Behavior running.
             Exit S3.
-            Transition action `trace_meta();` for S3 to META_EXPANSIONS.<ChoicePoint>(2).
+            Transition action `trace_meta(){{SemiColon}}` for S3 to META_EXPANSIONS.<ChoicePoint>(2).
             META: State: S3, trigger: ev1, behavior vertex: S3
-            Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S5.
+            Transition action `trace_meta(){{SemiColon}}` for META_EXPANSIONS.<ChoicePoint>(2) to S5.
             META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.<ChoicePoint>(2)
             Enter S5.
-        "));
+        """));
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -484,9 +484,9 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         for (int i = 0; i < incCount; i++)
         {
             // 
-            tester.AddEventHandling("EV5", t => t(@"
-                State PARENT: check behavior `EV5 / { count++; }`. Behavior running.
-            "));
+            tester.AddEventHandling("EV5", t => t($$"""
+                State PARENT: check behavior `EV5 / { count{{PostInc}}{{SemiColon}} }`. Behavior running.
+            """));
         }
 
         if (directToInitialState)
@@ -973,48 +973,48 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         for (int i = 0; i < incCount; i++)
         {
             // 
-            tester.AddEventHandling("EV5", t => t(@"
-                State TEST8_ROOT: check behavior `EV5 / { count++; }`. Behavior running.
-            "));
+            tester.AddEventHandling("EV5", t => t($$"""
+                State TEST8_ROOT: check behavior `EV5 / { count{{PostInc}}{{SemiColon}} }`. Behavior running.
+            """));
         }
 
         if (variation == 0)
         {
             // 
-            tester.AddEventHandling("EV1", t => t(@$"
+            tester.AddEventHandling("EV1", t => t($$"""
                 State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.<EntryPoint>(1))`. Behavior running.
                 Exit TEST8_S1.
                 Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(1).
                 Enter TEST8_G.
-                Transition action `` for TEST8_G.<EntryPoint>(1) to {expectedState}.
-                Enter {expectedState}.
-            "));
+                Transition action `` for TEST8_G.<EntryPoint>(1) to {{expectedState}}.
+                Enter {{expectedState}}.
+            """));
         }
         else if (variation == 1)
         {
             // 
-            tester.AddEventHandling("EV6", t => t(@$"
+            tester.AddEventHandling("EV6", t => t($$"""
                 State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.<EntryPoint>(3))`. Behavior running.
                 Exit TEST8_S1.
                 Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).
                 Enter TEST8_G.
-                Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).
-                Transition action `` for TEST8_G.<EntryPoint>(1) to {expectedState}.
-                Enter {expectedState}.
-            "));
+                Transition action `count += 0{{SemiColon}}` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).
+                Transition action `` for TEST8_G.<EntryPoint>(1) to {{expectedState}}.
+                Enter {{expectedState}}.
+            """));
         }
         else if (variation == 2)
         {
             // 
-            tester.AddEventHandling("EV3", t => t(@$"
+            tester.AddEventHandling("EV3", t => t($$"""
                 State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`. Behavior running.
                 Exit TEST8_S1.
                 Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).
                 Enter TEST8_G.
-                Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).
-                Transition action `` for TEST8_G.<EntryPoint>(1) to {expectedState}.
-                Enter {expectedState}.
-            "));
+                Transition action `count += 0{{SemiColon}}` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).
+                Transition action `` for TEST8_G.<EntryPoint>(1) to {{expectedState}}.
+                Enter {{expectedState}}.
+            """));
         }
         else
         {
@@ -1022,14 +1022,14 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         }
 
         // 
-        tester.AddEventHandling("EV2", t => t(@$"
+        tester.AddEventHandling("EV2", t => t($$"""
             State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.<EntryPoint>(1))`. Behavior running.
-            Exit {expectedState}.
+            Exit {{expectedState}}.
             Exit TEST8_G.
             Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).
             Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.
             Enter TEST8_S1.
-        "));
+        """));
     }
 
     //---------------------------------------------------------------------------------------------------
@@ -1081,20 +1081,20 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         for (int i = 0; i < incCount; i++)
         {
             // 
-            tester.AddEventHandling("EV5", t => t(@"
-                State TEST9_ROOT: check behavior `EV5 / { count++; }`. Behavior running.
-            "));
+            tester.AddEventHandling("EV5", t => t($$"""
+                State TEST9_ROOT: check behavior `EV5 / { count{{PostInc}}{{SemiColon}} }`. Behavior running.
+            """));
         }
 
         // 
-        tester.AddEventHandling("EV1", t => t(@$"
+        tester.AddEventHandling("EV1", t => t($$"""
             State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.<ExitPoint>(1))`. Behavior running.
             Exit TEST9_S1_1.
             Transition action `` for TEST9_S1_1 to TEST9_S1.<ExitPoint>(1).
             Exit TEST9_S1.
-            Transition action `` for TEST9_S1.<ExitPoint>(1) to {expectedState}.
-            Enter {expectedState}.
-        "));
+            Transition action `` for TEST9_S1.<ExitPoint>(1) to {{expectedState}}.
+            Enter {{expectedState}}.
+        """));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -1104,17 +1104,17 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
     {
         tester.PreEvents = "EV9 EV2";
 
-        tester.AddEventHandling("EV1", t => t(@"
+        tester.AddEventHandling("EV1", t => t($$"""
             State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.<ExitPoint>(1))`. Behavior running.
             Exit TEST9A_S1_1.
-            State TEST9A_S1_1: check behavior `exit / { count = 100; }`. Behavior running.
+            State TEST9A_S1_1: check behavior `exit / { count = 100{{SemiColon}} }`. Behavior running.
             Transition action `` for TEST9A_S1_1 to TEST9A_S1.<ExitPoint>(1).
             Exit TEST9A_S1.
-            Transition action `count++;` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.
+            Transition action `count{{PostInc}}{{SemiColon}}` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.
             Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.
             Enter TEST9A_S1_1.
-            State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`. Behavior skipped.
-        "));
+            State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(){{SemiColon}} }`. Behavior skipped.
+        """));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -1125,16 +1125,16 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
     {
         tester.PreEvents = "EV9 EV3";
 
-        tester.AddEventHandling("EV1", t => t(@"
+        tester.AddEventHandling("EV1", t => t($$"""
             State TEST9B_ROOT: check behavior `EV1 TransitionTo(A4)`. Behavior running.
             Transition action `` for TEST9B_ROOT to A4.
             Enter A1.
             Enter A2.
             Enter A3.
             Enter A4.
-        "));
+        """));
 
-        tester.AddEventHandling("EV1", t => t(@"
+        tester.AddEventHandling("EV1", t => t($$"""
             State A4: check behavior `EV1 TransitionTo(A3.<ExitPoint>(1))`. Behavior running.
             Exit A4.
             Transition action `` for A4 to A3.<ExitPoint>(1).
@@ -1146,7 +1146,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Enter B2.
             Enter B3.
             Enter B4.
-        "));
+        """));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -1205,9 +1205,9 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
         for (int i = 0; i < incCount; i++)
         {
-            tester.AddEventHandling("EV5", t => t(@"
-                State TEST10_ROOT: check behavior `EV5 / { count++; }`. Behavior running.
-            "));
+            tester.AddEventHandling("EV5", t => t($$"""
+                State TEST10_ROOT: check behavior `EV5 / { count{{PostInc}}{{SemiColon}} }`. Behavior running.
+            """));
         }
 
         var end = "";
@@ -1254,40 +1254,40 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         if (variation == 1)
         {
             // 
-            tester.AddEventHandling("EV1", t => t(@$"
+            tester.AddEventHandling("EV1", t => t($$"""
                 State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.<EntryPoint>(1))`. Behavior running.
                 Exit TEST10_S1.
                 Transition action `` for TEST10_S1 to TEST10_G.<EntryPoint>(1).
                 Enter TEST10_G.
                 Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().
                 Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).
-                {end}
-            "));
+                {{end}}
+            """));
         }
         else if (variation == 2)
         {
             // 
-            tester.AddEventHandling("EV2", t => t(@$"
+            tester.AddEventHandling("EV2", t => t($$"""
                 State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.<ChoicePoint>())`. Behavior running.
                 Exit TEST10_S1.
                 Transition action `` for TEST10_S1 to TEST10_G.<ChoicePoint>().
                 Enter TEST10_G.
                 Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).
-                {end}
-            "));
+                {{end}}
+            """));
         }
         else if (variation == 3)
         {
             // 
-            tester.AddEventHandling("EV3", t => t(@$"
+            tester.AddEventHandling("EV3", t => t($$"""
                 State TEST10_S1: check behavior `EV3 TransitionTo(TEST10_G)`. Behavior running.
                 Exit TEST10_S1.
                 Transition action `` for TEST10_S1 to TEST10_G.
                 Enter TEST10_G.
                 Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().
                 Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).
-                {end}
-            "));
+                {{end}}
+            """));
         }
         else
         {

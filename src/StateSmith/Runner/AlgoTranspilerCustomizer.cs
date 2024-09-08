@@ -87,6 +87,8 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IGilTranspiler, GilToPython>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, PythonExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
+                    sp.AddSingletonT<IAutoVarsParser, PythonAutoVarsParser>();
+
                     algoBalanced1Settings.skipClassIndentation = false;
                     algoBalanced1Settings.outputEnumMemberCount = false;
                     algoBalanced1Settings.varsStructAsClass = true;

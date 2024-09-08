@@ -8,6 +8,11 @@ namespace Spec.Spec2.Python;
 
 public class Spec2TestsPython : Spec2Tests, IClassFixture<SharedCompilationFixture>
 {
+    override public string True => "True";
+    override public string False => "False";
+    override public string PostInc => " += 1";
+    override public string SemiColon => "";
+
     public override string RunProcess(string testEvents)
     {
         SimpleProcess process = new()

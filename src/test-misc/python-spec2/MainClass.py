@@ -11,7 +11,7 @@ class MainClass:
         sm.start()
         print()
 
-        # args = ["INC", "INC", "OFF"] # when debugging, uncomment this line
+        # args = ["EV1", "DO", "EV1", "DO"] # when debugging, uncomment this line
 
         for i, arg in enumerate(args):
             try:
@@ -21,7 +21,7 @@ class MainClass:
                 print()
             except KeyError:
                 raise ValueError(f"bad i:{i} arg: `{arg}`")
-
+            
     @staticmethod
     def main(args):
         MainClass.actual_main(args)

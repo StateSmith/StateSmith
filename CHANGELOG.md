@@ -29,6 +29,14 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## [0.15.0]
+### Added
+- Add `Python` transpiler (only supports algorithm `Balanced2` right now)
+  - Uses Python 3.10 match case for event dispatching.
+  - https://github.com/StateSmith/StateSmith/issues/397
+
+---
+
 ## [0.14.0]
 ### Added
 - Add `Java` transpiler (only supports algorithm `Balanced2` right now)

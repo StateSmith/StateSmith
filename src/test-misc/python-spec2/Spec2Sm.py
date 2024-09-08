@@ -274,7 +274,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = None
     
     # Variables. Can be used for inputs, outputs, user variables...
-        self.vars = None
+        self.vars = self.Vars()
     
     # Starts the state machine. Must be called before dispatching events. Not thread safe.
     def start(self):
@@ -6247,11 +6247,11 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1 += 1 }`.", True):
 
             # Step 1: execute action `auto_var_1 += 1`
-            auto_var_1 += 1
+            self.vars.auto_var_1 += 1
         
         # AUTO_VAR_TEST__S1 behavior
         # uml: 2. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", auto_var_1 == 2)] / { trace("Transition action `` for AUTO_VAR_TEST__S1 to AUTO_VAR_TEST__S2.") } TransitionTo(AUTO_VAR_TEST__S2)
-        if self.trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", auto_var_1 == 2):
+        if self.trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", self.vars.auto_var_1 == 2):
 
             # Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition).
             self._AUTO_VAR_TEST__S1_exit()

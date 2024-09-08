@@ -2,7 +2,7 @@ class Printer:
     @staticmethod
     def trace(msg: str):
         print(msg)
-        print(flush=True)  # Ensures output is flushed immediately
+        # print(flush=True)  # Ensures output is flushed immediately
 
     @staticmethod
     def trace_guard(msg: str, guard: bool) -> bool:

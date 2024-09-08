@@ -18,6 +18,11 @@ public class SpecFixture
     public const string TracingModderId = nameof(SpecFixture) + "_" + nameof(TracingModder);
     public static string SpecInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../spec/";
 
+    virtual public string True => "true";
+    virtual public string False => "false";
+    virtual public string PostInc => "++";
+    virtual public string SemiColon => ";";
+
     public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null, string semiColon = ";", string trueString = "true")
     {
         RunnerSettings settings = new(diagramFile: diagramFile, outputDirectory: srcDirectory);
