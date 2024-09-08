@@ -43,7 +43,7 @@ public class GilTranspilerHelper
 
     public bool IsGilNoEmit(string identifierName)
     {
-        return identifierName.StartsWith(GilCreationHelper.GilPrefix);
+        return identifierName.StartsWith(GilCreationHelper.GilDataPrefix);
     }
 
     public bool IsGilNoEmit(MethodDeclarationSyntax node)
