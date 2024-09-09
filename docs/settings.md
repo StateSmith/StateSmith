@@ -976,12 +976,13 @@ afterTransformations  = true
 # SmRunnerSettings.algoBalanced1
 Info: https://github.com/StateSmith/StateSmith/issues/181
 
-You can tell StateSmith that you don't want it to generate an event ID or state ID to string function with the below settings.
+You can customize the output of the `Balanced1` and `Balanced2` algorithms with the below settings. `Balanced2` is a variant of `Balanced1`.
 
 ```toml
 [SmRunnerSettings.algoBalanced1]
 outputEventIdToStringFunction = false
 outputStateIdToStringFunction = false
+omitEmptySwitchAndCases = true  # only used for Balanced2
 ```
 
 # SmRunnerSettings.simulation
