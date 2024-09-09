@@ -31,7 +31,7 @@ Test/interim releases are not documented here.
 
 ## [0.15.0]
 ### Added
-- Add `Python` transpiler (only supports algorithm `Balanced2` right now)
+- Add `Python` transpiler (only supports algorithm `Balanced2` right now).
   - Uses Python 3.10 match case for event dispatching.
   - https://github.com/StateSmith/StateSmith/issues/397
 - Add option to omit empty switch/case statements in generated code.
