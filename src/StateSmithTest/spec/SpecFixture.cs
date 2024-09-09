@@ -15,9 +15,15 @@ namespace Spec;
 
 public class SpecFixture
 {
+    public const string TracingModderId = nameof(SpecFixture) + "_" + nameof(TracingModder);
     public static string SpecInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../spec/";
 
-    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null)
+    virtual public string True => "true";
+    virtual public string False => "false";
+    virtual public string PostInc => "++";
+    virtual public string SemiColon => ";";
+
+    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null, string semiColon = ";", string trueString = "true")
     {
         RunnerSettings settings = new(diagramFile: diagramFile, outputDirectory: srcDirectory);
         settings.outputStateSmithVersionInfo = false; // too much noise in repo
@@ -36,11 +42,12 @@ public class SpecFixture
 
         settings.propagateExceptions = true;
         settings.dumpGilCodeOnError = true;
+        settings.outputGilCodeAlways = true; // this is actually pretty handy while we are working on transpilers
 
         if (useTracingModder)
         {
             runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1,
-                new TransformationStep(id: nameof(TracingModder), action: (sm) => new TracingModder().AddTracingBehaviors(sm)));
+                new TransformationStep(id: TracingModderId, action: (sm) => new TracingModder(semiColon: semiColon, trueString: trueString).AddTracingBehaviors(sm)));
         }
         runner.Run();
     }
@@ -52,8 +59,8 @@ public class SpecGenericVarExpansions : UserExpansionScriptBase
     public virtual string trace(string message) => $"trace({message})";
     public virtual string trace_guard(string message, string guardCode) => $"trace_guard({message}, {guardCode})";
 
-    public string clear_output() => $"{trace("\"IGNORE_OUTPUT_BEFORE_THIS\"")};";
-    public string clear_dispatch_output() => $"{trace("\"CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\"")};"; // TODO - remove extra comma
+    public string clear_output() => $"{trace("\"IGNORE_OUTPUT_BEFORE_THIS\"")}";
+    public string clear_dispatch_output() => $"{trace("\"CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\"")}"; // TODO - remove extra comma
 #pragma warning restore IDE1006 // Naming Styles
 }
 

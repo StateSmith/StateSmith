@@ -132,10 +132,10 @@ public class GilHelperTests
           sm.current_state_exit_handler = ROOT_exit;
         }
 
-        [____GilNoEmit_GilAddessableFunction<blinky1_printf_sm_func>]
+        [____GilData_GilAddessableFunction<blinky1_printf_sm_func>]
         private static void ROOT_exit(blinky1_printf_sm sm) {
           // State machine root is a special case. It cannot be exited. Mark as unused.
-          ____GilNoEmit_GilUnusedVar(sm);
+          ____GilData_GilUnusedVar(sm);
         }
 
 
@@ -163,20 +163,20 @@ public class GilHelperTests
           } // end of behavior for LED_OFF
         }
 
-        [____GilNoEmit_GilAddessableFunction<blinky1_printf_sm_func>]
+        [____GilData_GilAddessableFunction<blinky1_printf_sm_func>]
         private static void LED_OFF_exit(blinky1_printf_sm sm) {
           // adjust function pointers for this state's exit
           sm.current_state_exit_handler = ROOT_exit;
           sm.current_event_handlers[(int)event_id.EVENT_ID_DO] = null;  // no ancestor listens to this event
         }
 
-        [____GilNoEmit_GilAddessableFunction<blinky1_printf_sm_func>]
+        [____GilData_GilAddessableFunction<blinky1_printf_sm_func>]
         private static void LED_OFF_do(blinky1_printf_sm sm) {
           // No ancestor state handles `do` event.
 
           // LED_OFF behavior
           // uml: do [after_ms(500)] TransitionTo(LED_ON)
-          if (____GilNoEmit_echoStringBool("( (app_timer_get_ms() - sm->vars.timer_started_at_ms) >= 500 )")) {
+          if (____GilData_echoStringBool("( (app_timer_get_ms() - sm->vars.timer_started_at_ms) >= 500 )")) {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             LED_OFF_exit(sm);
 
@@ -210,20 +210,20 @@ public class GilHelperTests
           } // end of behavior for LED_ON
         }
 
-        [____GilNoEmit_GilAddessableFunction<blinky1_printf_sm_func>]
+        [____GilData_GilAddessableFunction<blinky1_printf_sm_func>]
         private static void LED_ON_exit(blinky1_printf_sm sm) {
           // adjust function pointers for this state's exit
           sm.current_state_exit_handler = ROOT_exit;
           sm.current_event_handlers[(int)event_id.EVENT_ID_DO] = null;  // no ancestor listens to this event
         }
 
-        [____GilNoEmit_GilAddessableFunction<blinky1_printf_sm_func>]
+        [____GilData_GilAddessableFunction<blinky1_printf_sm_func>]
         private static void LED_ON_do(blinky1_printf_sm sm) {
           // No ancestor state handles `do` event.
 
           // LED_ON behavior
           // uml: do [elapsed_ms > 1000] TransitionTo(LED_OFF)
-          if (____GilNoEmit_echoStringBool("(app_timer_get_ms() - sm->vars.timer_started_at_ms) > 1000")) {
+          if (____GilData_echoStringBool("(app_timer_get_ms() - sm->vars.timer_started_at_ms) > 1000")) {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             LED_ON_exit(sm);
 
@@ -256,9 +256,9 @@ public class GilHelperTests
           }
         }
 
-          public static bool ____GilNoEmit_echoStringBool(string toEcho) { return true; }
-          public static void ____GilNoEmit_GilUnusedVar(object unusedVar) { }
-          public class ____GilNoEmit_GilAddessableFunction<T> : System.Attribute where T : System.Delegate {}
+          public static bool ____GilData_echoStringBool(string toEcho) { return true; }
+          public static void ____GilData_GilUnusedVar(object unusedVar) { }
+          public class ____GilData_GilAddessableFunction<T> : System.Attribute where T : System.Delegate {}
         }
         
         """;

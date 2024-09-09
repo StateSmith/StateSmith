@@ -22,17 +22,19 @@ public class EventHandlerBuilder
     protected readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
     protected readonly WrappingExpander wrappingExpander;
     protected readonly UserExpansionScriptBases userExpansionScriptBases;
+    protected readonly AlgoBalanced1Settings settings;
 
     protected OutputFile? _file;
 
     protected OutputFile File => _file.ThrowIfNull("You forgot to set file before using.");
 
-    public EventHandlerBuilder(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases)
+    public EventHandlerBuilder(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases, AlgoBalanced1Settings settings)
     {
         this.pseudoStateHandlerBuilder = pseudoStateHandlerBuilder;
         this.mangler = mangler;
         this.wrappingExpander = new(expander, userExpansionScriptBases);
         this.userExpansionScriptBases = userExpansionScriptBases;
+        this.settings = settings;
     }
 
     public void SetFile(OutputFile file)
@@ -80,7 +82,7 @@ public class EventHandlerBuilder
         {
             if (unreachableBehaviors != null)
             {
-                File.AppendLine($"// unreachable behavior: `{b.DescribeAsUml(singleLineFormat: true)}` due to unconditional transition above");
+                File.AppendIndentedLine($"// unreachable behavior: `{b.DescribeAsUml(singleLineFormat: true)}` due to unconditional transition above");
             }
             else
             {
@@ -109,12 +111,16 @@ public class EventHandlerBuilder
             string expandedGuardCode = wrappingExpander.ExpandWrapGuardCode(b);
             File.AppendLines($"if ({expandedGuardCode})");
         }
+        else if (settings.useIfTrueIfNoGuard)
+        {
+            File.AppendIndented("if (true)");
+        }
     }
 
     private void DescribeBehaviorWithUmlComment(Behavior b)
     {
         string uml = b.DescribeAsUml();
-        File.AppendLine($"// uml: {uml}");
+        File.AppendIndentedLine($"// uml: {uml}");
     }
 
     public void OutputTransitionCode(Behavior behavior, bool noAncestorHandlesEvent, bool checkForExiting = true)
@@ -132,7 +138,7 @@ public class EventHandlerBuilder
         {
             var transitionPath = source.FindTransitionPathTo(target);
 
-            File.Append($"// Step 1: Exit states until we reach `{Vertex.Describe(transitionPath.leastCommonAncestor)}` state (Least Common Ancestor for transition).");
+            File.AppendIndented($"// Step 1: Exit states until we reach `{Vertex.Describe(transitionPath.leastCommonAncestor)}` state (Least Common Ancestor for transition).");
             if (checkForExiting && IsExitingRequired(source, target, transitionPath))
             {
                 File.FinishLine();
@@ -144,11 +150,11 @@ public class EventHandlerBuilder
             }
             File.RequestNewLineBeforeMoreCode();
 
-            File.AppendLine($"// Step 2: Transition action: `{behavior.GetSingleLineActionCode()}`.");
+            File.AppendIndentedLine($"// Step 2: Transition action: `{behavior.GetSingleLineActionCode()}`.");
             OutputAnyActionCode(behavior, isForTransition: true);
             File.RequestNewLineBeforeMoreCode();
 
-            File.AppendLine($"// Step 3: Enter/move towards transition target `{Vertex.Describe(target)}`.");
+            File.AppendIndentedLine($"// Step 3: Enter/move towards transition target `{Vertex.Describe(target)}`.");
             EnterTowardsTarget(transitionPath);
 
             FinishTransitionOrContinuePseudo(behavior, target, noAncestorHandlesEvent);
@@ -173,7 +179,7 @@ public class EventHandlerBuilder
             else
             {
                 // no initial state, this is the final state.
-                File.AppendLine("// Step 4: complete transition. Ends event dispatch. No other behaviors are checked.");
+                File.AppendIndentedLine("// Step 4: complete transition. Ends event dispatch. No other behaviors are checked.");
                 OutputCompleteTransition(noAncestorHandlesEvent, namedVertexTarget);
             }
         }
@@ -181,20 +187,20 @@ public class EventHandlerBuilder
 
     virtual protected void OutputCompleteTransition(bool noAncestorHandlesEvent, NamedVertex namedVertexTarget)
     {
-        File.AppendLine($"{smAccess}.{mangler.SmStateIdVarName} = {mangler.SmQualifiedStateEnumValue(namedVertexTarget)};");
+        File.AppendIndentedLine($"{smAccess}.{mangler.SmStateIdVarName} = {mangler.SmQualifiedStateEnumValue(namedVertexTarget)};");
         NullAncestorEventHandlerVar(noAncestorHandlesEvent);
-        File.AppendLine($"return;");
+        File.AppendIndentedLine($"return;");
     }
 
     private void NullAncestorEventHandlerVar(bool noAncestorHandlesEvent)
     {
         if (noAncestorHandlesEvent)
         {
-            File.AppendLine($"// No ancestor handles event. Can skip nulling `{mangler.SmAncestorEventHandlerVarName}`.");
+            File.AppendIndentedLine($"// No ancestor handles event. Can skip nulling `{mangler.SmAncestorEventHandlerVarName}`.");
         }
         else
         {
-            File.AppendLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = null;");
+            File.AppendIndentedLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = null;");
         }
     }
 
@@ -202,7 +208,7 @@ public class EventHandlerBuilder
     {
         if (transitionPath.toEnter.Count == 0)
         {
-            File.AppendLine($"// Already in target. No entering required.");
+            File.AppendIndentedLine($"// Already in target. No entering required.");
             return;
         }
 
@@ -211,11 +217,11 @@ public class EventHandlerBuilder
             if (stateToEnter is NamedVertex namedVertexToEnter)
             {
                 var enterHandler = mangler.SmTriggerHandlerFuncName(namedVertexToEnter, TriggerHelper.TRIGGER_ENTER);
-                File.AppendLine($"this.{enterHandler}();");
+                File.AppendIndentedLine($"this.{enterHandler}();");
             }
             else if (stateToEnter is PseudoStateVertex pv)
             {
-                File.AppendLine($"// {Vertex.Describe(pv)} is a pseudo state and cannot have an `enter` trigger.");
+                File.AppendIndentedLine($"// {Vertex.Describe(pv)} is a pseudo state and cannot have an `enter` trigger.");
             }
             else
             {
@@ -227,7 +233,7 @@ public class EventHandlerBuilder
 
     private void OutputStartOfBehaviorCode(Behavior behavior)
     {
-        File.AppendLine($"// {Vertex.Describe(behavior.OwningVertex)} behavior");
+        File.AppendIndentedLine($"// {Vertex.Describe(behavior.OwningVertex)} behavior");
         DescribeBehaviorWithUmlComment(behavior);
         OutputGuardStart(behavior);
     }
@@ -283,9 +289,9 @@ public class EventHandlerBuilder
 
         if (transitionFunction != null)
         {
-            File.AppendLine($"// Finish transition by calling pseudo state transition function.");
-            File.AppendLine($"this.{transitionFunction}();");
-            File.AppendLine($"return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.");
+            File.AppendIndentedLine($"// Finish transition by calling pseudo state transition function.");
+            File.AppendIndentedLine($"this.{transitionFunction}();");
+            File.AppendIndentedLine($"return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.");
         }
         else
         {
@@ -338,7 +344,7 @@ public class EventHandlerBuilder
         {
             NamedVertex leafActiveState = (NamedVertex)source;
             string sourceExitHandler = mangler.SmTriggerHandlerFuncName(leafActiveState, TriggerHelper.TRIGGER_EXIT);
-            File.AppendLine($"this.{sourceExitHandler}();");
+            File.AppendIndentedLine($"this.{sourceExitHandler}();");
         }
         else
         {
@@ -350,7 +356,7 @@ public class EventHandlerBuilder
     virtual protected void OutputExitUpToCall(NamedVertex leastCommonAncestor)
     {
         string ancestorExitHandler = mangler.SmTriggerHandlerFuncName(leastCommonAncestor, TriggerHelper.TRIGGER_EXIT);
-        File.AppendLine($"this.{mangler.SmExitUpToFuncName}(this.{ancestorExitHandler});");
+        File.AppendIndentedLine($"this.{mangler.SmExitUpToFuncName}(this.{ancestorExitHandler});");
     }
 
     private static bool CanUseSingleDirectExit(ref Vertex source, TransitionPath transitionPath)
@@ -387,12 +393,12 @@ public class EventHandlerBuilder
     {
         if (nextAncestorHandlingState == null)
         {
-            File.AppendLine($"// No ancestor state handles `{triggerName}` event.");
+            File.AppendIndentedLine($"// No ancestor state handles `{triggerName}` event.");
         }
         else
         {
-            File.AppendLine($"// Setup handler for next ancestor that listens to `{triggerName}` event.");
-            File.AppendLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = this.{mangler.SmTriggerHandlerFuncName(nextAncestorHandlingState, triggerName)};");
+            File.AppendIndentedLine($"// Setup handler for next ancestor that listens to `{triggerName}` event.");
+            File.AppendIndentedLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = this.{mangler.SmTriggerHandlerFuncName(nextAncestorHandlingState, triggerName)};");
         }
 
         File.RequestNewLineBeforeMoreCode();
@@ -408,7 +414,7 @@ public class EventHandlerBuilder
         {
             PreActionCode(b, triggerName, noAncestorHandlesEvent, hasConsumeEventVar);
 
-            File.AppendLine($"// Step 1: execute action `{b.GetSingleLineActionCode()}`");
+            File.AppendIndentedLine($"// Step 1: execute action `{b.GetSingleLineActionCode()}`");
             OutputAnyActionCode(b, isForTransition: false);
 
             PostActionCode(b, triggerName, noAncestorHandlesEvent, hasConsumeEventVar);
@@ -429,20 +435,20 @@ public class EventHandlerBuilder
             return;
         }
 
-        File.AppendLine($"// Step 2: determine if ancestor gets to handle event next.");
+        File.AppendIndentedLine($"// Step 2: determine if ancestor gets to handle event next.");
 
         if (hasConsumeEventVar)
         {
             if (noAncestorHandlesEvent)
             {
-                File.AppendLine($"// No ancestor handles event. Ignore `{consumeEventVarName}` flag.");
+                File.AppendIndentedLine($"// No ancestor handles event. Ignore `{consumeEventVarName}` flag.");
             }
             else
             {
-                File.Append($"if ({consumeEventVarName})");
+                File.AppendIndented($"if ({consumeEventVarName})");
                 File.StartCodeBlock();
                 {
-                    File.AppendLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = null;  // consume event");
+                    File.AppendIndentedLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = null;  // consume event");
                 }
                 File.FinishCodeBlock();
             }
@@ -453,17 +459,17 @@ public class EventHandlerBuilder
 
             if (TriggerHelper.IsDoEvent(triggerName))
             {
-                File.AppendLine("// Don't consume special `do` event.");
+                File.AppendIndentedLine("// Don't consume special `do` event.");
             }
             else
             {
                 if (noAncestorHandlesEvent)
                 {
-                    File.AppendLine($"// No ancestor handles event. Can skip nulling `{mangler.SmAncestorEventHandlerVarName}`.");
+                    File.AppendIndentedLine($"// No ancestor handles event. Can skip nulling `{mangler.SmAncestorEventHandlerVarName}`.");
                 }
                 else
                 {
-                    File.AppendLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = null;  // consume event");
+                    File.AppendIndentedLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = null;  // consume event");
                 }
             }
         }
@@ -498,10 +504,10 @@ public class EventHandlerBuilder
     {
         if (noAncestorHandlesEvent)
         {
-            File.AppendLine($"// note: no ancestor consumes this event, but we output `bool {consumeEventVarName}` anyway because a user's design might rely on it.");
+            File.AppendIndentedLine($"// note: no ancestor consumes this event, but we output `bool {consumeEventVarName}` anyway because a user's design might rely on it.");
         }
 
-        File.Append($"bool {consumeEventVarName} = ");
+        File.AppendIndented($"bool {consumeEventVarName} = ");
         if (TriggerHelper.IsDoEvent(triggerName))
         {
             File.FinishLine("false; // the `do` event is special in that it normally is not consumed.");
@@ -510,16 +516,16 @@ public class EventHandlerBuilder
         {
             File.FinishLine("true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.");
         }
-        File.AppendLine();
+        File.AppendIndentedLine();
     }
 
     public void OutputNamedStateHandlers(NamedVertex state)
     {
-        File.AppendLine();
-        File.AppendLine("////////////////////////////////////////////////////////////////////////////////");
-        File.AppendLine($"// event handlers for state {mangler.SmStateName(state)}");
-        File.AppendLine("////////////////////////////////////////////////////////////////////////////////");
-        File.AppendLine();
+        File.AppendIndentedLine();
+        File.AppendIndentedLine("////////////////////////////////////////////////////////////////////////////////");
+        File.AppendIndentedLine($"// event handlers for state {mangler.SmStateName(state)}");
+        File.AppendIndentedLine("////////////////////////////////////////////////////////////////////////////////");
+        File.AppendIndentedLine();
 
         OutputFuncStateEnter(state);
         OutputFuncStateExit(state);
@@ -575,7 +581,7 @@ public class EventHandlerBuilder
             OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_ENTER);
         }
         File.FinishCodeBlock(forceNewLine: true);
-        File.AppendLine();
+        File.AppendIndentedLine();
     }
 
     virtual protected void OutputFuncStateEnter_PreBehaviors(NamedVertex state)
@@ -585,9 +591,9 @@ public class EventHandlerBuilder
 
     private void OutputStateEnterFunctionPointerAdjustments(NamedVertex state)
     {
-        File.AppendLine($"// setup trigger/event handlers");
+        File.AppendIndentedLine($"// setup trigger/event handlers");
         string stateExitHandlerName = mangler.SmTriggerHandlerFuncName(state, TriggerHelper.TRIGGER_EXIT);
-        File.AppendLine($"{smAccess}.{mangler.SmCurrentStateExitHandlerVarName} = this.{stateExitHandlerName};");
+        File.AppendIndentedLine($"{smAccess}.{mangler.SmCurrentStateExitHandlerVarName} = this.{stateExitHandlerName};");
 
         string[] eventNames = GetEvents(state).ToArray();
         Array.Sort(eventNames);
@@ -596,7 +602,7 @@ public class EventHandlerBuilder
         {
             string handlerName = mangler.SmTriggerHandlerFuncName(state, eventName);
             string eventEnumValueName = mangler.SmEventEnumValue(eventName);
-            File.AppendLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[(int){mangler.SmEventEnumType}.{eventEnumValueName}] = this.{handlerName};");
+            File.AppendIndentedLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[(int){mangler.SmEventEnumType}.{eventEnumValueName}] = this.{handlerName};");
         }
 
         File.RequestNewLineBeforeMoreCode();
@@ -612,8 +618,8 @@ public class EventHandlerBuilder
 
             if (state.Parent == null)
             {
-                File.AppendLine($"// State machine root is a special case. It cannot be exited. Mark as unused.");
-                File.AppendLine(GilCreationHelper.MarkVarAsUnused("this"));
+                File.AppendIndentedLine($"// State machine root is a special case. It cannot be exited. Mark as unused.");
+                File.AppendIndentedLine(GilCreationHelper.MarkVarAsUnused("this"));
             }
             else
             {
@@ -624,7 +630,7 @@ public class EventHandlerBuilder
         }
 
         FinishAddressableFunction(forceNewLine: true);
-        File.AppendLine();
+        File.AppendIndentedLine();
     }
 
     virtual protected void OutputExitFunctionEndCode(NamedVertex state)
@@ -634,9 +640,9 @@ public class EventHandlerBuilder
 
     virtual protected void OutputStateExitFunctionPointerAdjustments(NamedVertex state, NamedVertex parentState)
     {
-        File.AppendLine($"// adjust function pointers for this state's exit");
+        File.AppendIndentedLine($"// adjust function pointers for this state's exit");
         string parentExitHandler = mangler.SmTriggerHandlerFuncName(parentState, TriggerHelper.TRIGGER_EXIT);
-        File.AppendLine($"{smAccess}.{mangler.SmCurrentStateExitHandlerVarName} = this.{parentExitHandler};");
+        File.AppendIndentedLine($"{smAccess}.{mangler.SmCurrentStateExitHandlerVarName} = this.{parentExitHandler};");
 
         string[] eventNames = GetEvents(state).ToArray();
         Array.Sort(eventNames);
@@ -648,11 +654,11 @@ public class EventHandlerBuilder
             if (ancestor != null)
             {
                 string handlerName = mangler.SmTriggerHandlerFuncName(ancestor, eventName);
-                File.AppendLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[{eventEnumValueIndex}] = this.{handlerName};  // the next ancestor that handles this event is {mangler.SmStateName(ancestor)}");
+                File.AppendIndentedLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[{eventEnumValueIndex}] = this.{handlerName};  // the next ancestor that handles this event is {mangler.SmStateName(ancestor)}");
             }
             else
             {
-                File.AppendLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[{eventEnumValueIndex}] = null;  // no ancestor listens to this event");
+                File.AppendIndentedLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[{eventEnumValueIndex}] = null;  // no ancestor listens to this event");
             }
         }
     }
@@ -668,7 +674,7 @@ public class EventHandlerBuilder
     {
         // enter functions don't need to be static delegates because we don't take their address
         string funcName = mangler.SmTriggerHandlerFuncName(state, eventName);
-        File.Append($"private void {funcName}()");
+        File.AppendIndented($"private void {funcName}()");
     }
 
     /// <summary>

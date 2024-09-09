@@ -396,28 +396,12 @@ evaluateGuard = null;
         {
             // STATE: PlantEx2
             case PlantEx2.StateId.ROOT:
-                switch (eventId)
-                {
-                    // Events not handled by this state:
-                    case PlantEx2.EventId.EVCONFIG: break;
-                    case PlantEx2.EventId.EVNEWVALUE: break;
-                    case PlantEx2.EventId.EVNEWVALUEREJECTED: break;
-                    case PlantEx2.EventId.EVNEWVALUESAVED: break;
-                    case PlantEx2.EventId.EV2: break;
-                }
+                // No events handled by this state (or its ancestors).
                 break;
             
             // STATE: NotShooting
             case PlantEx2.StateId.NOTSHOOTING:
-                switch (eventId)
-                {
-                    // Events not handled by this state:
-                    case PlantEx2.EventId.EVCONFIG: break;
-                    case PlantEx2.EventId.EVNEWVALUE: break;
-                    case PlantEx2.EventId.EVNEWVALUEREJECTED: break;
-                    case PlantEx2.EventId.EVNEWVALUESAVED: break;
-                    case PlantEx2.EventId.EV2: break;
-                }
+                // No events handled by this state (or its ancestors).
                 break;
             
             // STATE: Configuring
@@ -425,11 +409,6 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break;
-                    // Events not handled by this state:
-                    case PlantEx2.EventId.EVNEWVALUE: break;
-                    case PlantEx2.EventId.EVNEWVALUEREJECTED: break;
-                    case PlantEx2.EventId.EVNEWVALUESAVED: break;
-                    case PlantEx2.EventId.EV2: break;
                 }
                 break;
             
@@ -439,10 +418,7 @@ evaluateGuard = null;
                 {
                     case PlantEx2.EventId.EVNEWVALUEREJECTED: this.#NEWVALUEPREVIEW_evnewvaluerejected(); break;
                     case PlantEx2.EventId.EVNEWVALUESAVED: this.#NEWVALUEPREVIEW_evnewvaluesaved(); break;
-                    // Events not handled by this state:
                     case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
-                    case PlantEx2.EventId.EVNEWVALUE: break;
-                    case PlantEx2.EventId.EV2: break;
                 }
                 break;
             
@@ -451,9 +427,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case PlantEx2.EventId.EV2: this.#STATE1_ev2(); break;
-                    // Events not handled by this state:
                     case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
-                    case PlantEx2.EventId.EVNEWVALUE: break;
                     case PlantEx2.EventId.EVNEWVALUEREJECTED: this.#NEWVALUEPREVIEW_evnewvaluerejected(); break; // First ancestor handler for this event
                     case PlantEx2.EventId.EVNEWVALUESAVED: this.#NEWVALUEPREVIEW_evnewvaluesaved(); break; // First ancestor handler for this event
                 }
@@ -463,12 +437,9 @@ evaluateGuard = null;
             case PlantEx2.StateId.STATE2:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
-                    case PlantEx2.EventId.EVNEWVALUE: break;
                     case PlantEx2.EventId.EVNEWVALUEREJECTED: this.#NEWVALUEPREVIEW_evnewvaluerejected(); break; // First ancestor handler for this event
                     case PlantEx2.EventId.EVNEWVALUESAVED: this.#NEWVALUEPREVIEW_evnewvaluesaved(); break; // First ancestor handler for this event
-                    case PlantEx2.EventId.EV2: break;
                 }
                 break;
             
@@ -477,11 +448,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case PlantEx2.EventId.EVNEWVALUE: this.#NEWVALUESELECTION_evnewvalue(); break;
-                    // Events not handled by this state:
                     case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
-                    case PlantEx2.EventId.EVNEWVALUEREJECTED: break;
-                    case PlantEx2.EventId.EVNEWVALUESAVED: break;
-                    case PlantEx2.EventId.EV2: break;
                 }
                 break;
             
@@ -490,11 +457,6 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case PlantEx2.EventId.EVCONFIG: this.#IDLE_evconfig(); break;
-                    // Events not handled by this state:
-                    case PlantEx2.EventId.EVNEWVALUE: break;
-                    case PlantEx2.EventId.EVNEWVALUEREJECTED: break;
-                    case PlantEx2.EventId.EVNEWVALUESAVED: break;
-                    case PlantEx2.EventId.EV2: break;
                 }
                 break;
         }

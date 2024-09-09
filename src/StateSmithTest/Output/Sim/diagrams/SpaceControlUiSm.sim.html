@@ -582,34 +582,12 @@ evaluateGuard = null;
         {
             // STATE: SpaceControlUiSm
             case SpaceControlUiSm.StateId.ROOT:
-                switch (eventId)
-                {
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
-                    case SpaceControlUiSm.EventId.ESC: break;
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
-                    case SpaceControlUiSm.EventId.LEFT: break;
-                    case SpaceControlUiSm.EventId.DO: break;
-                }
+                // No events handled by this state (or its ancestors).
                 break;
             
             // STATE: DONE
             case SpaceControlUiSm.StateId.DONE:
-                switch (eventId)
-                {
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
-                    case SpaceControlUiSm.EventId.ESC: break;
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
-                    case SpaceControlUiSm.EventId.LEFT: break;
-                    case SpaceControlUiSm.EventId.DO: break;
-                }
+                // No events handled by this state (or its ancestors).
                 break;
             
             // STATE: MENU
@@ -617,14 +595,6 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case SpaceControlUiSm.EventId.ESC: this.#MENU_esc(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
-                    case SpaceControlUiSm.EventId.LEFT: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -633,14 +603,6 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
-                    case SpaceControlUiSm.EventId.LEFT: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -650,13 +612,7 @@ evaluateGuard = null;
                 {
                     case SpaceControlUiSm.EventId.LEFT: this.#DRINK_MENU_left(); break;
                     case SpaceControlUiSm.EventId.RIGHT: this.#DRINK_MENU_right(); break;
-                    // Events not handled by this state:
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -665,14 +621,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case SpaceControlUiSm.EventId.LEFT: this.#FOOD_MENU_left(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -682,13 +631,8 @@ evaluateGuard = null;
                 {
                     case SpaceControlUiSm.EventId.DOWN: this.#EAT_BURRITO_down(); break;
                     case SpaceControlUiSm.EventId.RIGHT: this.#EAT_BURRITO_right(); break;
-                    // Events not handled by this state:
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.UP: break;
                     case SpaceControlUiSm.EventId.LEFT: this.#FOOD_MENU_left(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -698,13 +642,8 @@ evaluateGuard = null;
                 {
                     case SpaceControlUiSm.EventId.UP: this.#EAT_MRE_up(); break;
                     case SpaceControlUiSm.EventId.RIGHT: this.#EAT_MRE_right(); break;
-                    // Events not handled by this state:
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.DOWN: break;
                     case SpaceControlUiSm.EventId.LEFT: this.#FOOD_MENU_left(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -715,12 +654,8 @@ evaluateGuard = null;
                     case SpaceControlUiSm.EventId.DOWN: this.#EAT_SLUDGE_down(); break;
                     case SpaceControlUiSm.EventId.UP: this.#EAT_SLUDGE_up(); break;
                     case SpaceControlUiSm.EventId.RIGHT: this.#EAT_SLUDGE_right(); break;
-                    // Events not handled by this state:
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
                     case SpaceControlUiSm.EventId.LEFT: this.#FOOD_MENU_left(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -730,13 +665,6 @@ evaluateGuard = null;
                 {
                     case SpaceControlUiSm.EventId.LEFT: this.#EVENT_EATER_2_left(); break;
                     case SpaceControlUiSm.EventId.ESC: this.#EVENT_EATER_2_esc(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -745,13 +673,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case SpaceControlUiSm.EventId.DO: this.#COOKING_FOOD_do(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
                     case SpaceControlUiSm.EventId.ESC: this.#EVENT_EATER_2_esc(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
                     case SpaceControlUiSm.EventId.LEFT: this.#EVENT_EATER_2_left(); break; // First ancestor handler for this event
                 }
                 break;
@@ -761,13 +683,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case SpaceControlUiSm.EventId.DO: this.#COOKING_FOOD1_do(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
                     case SpaceControlUiSm.EventId.ESC: this.#EVENT_EATER_2_esc(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
                     case SpaceControlUiSm.EventId.LEFT: this.#EVENT_EATER_2_left(); break; // First ancestor handler for this event
                 }
                 break;
@@ -779,12 +695,7 @@ evaluateGuard = null;
                     case SpaceControlUiSm.EventId.LEFT: this.#SYSTEM_INFO_MENU_left(); break;
                     case SpaceControlUiSm.EventId.PG_DOWN: this.#SYSTEM_INFO_MENU_pg_down(); break;
                     case SpaceControlUiSm.EventId.PG_UP: this.#SYSTEM_INFO_MENU_pg_up(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -794,13 +705,10 @@ evaluateGuard = null;
                 {
                     case SpaceControlUiSm.EventId.DOWN: this.#BURRITO_COUNT_down(); break;
                     case SpaceControlUiSm.EventId.UP: this.#BURRITO_COUNT_up(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_DOWN: this.#SYSTEM_INFO_MENU_pg_down(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_UP: this.#SYSTEM_INFO_MENU_pg_up(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.LEFT: this.#SYSTEM_INFO_MENU_left(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -811,12 +719,9 @@ evaluateGuard = null;
                     case SpaceControlUiSm.EventId.UP: this.#DISTANCE_up(); break;
                     case SpaceControlUiSm.EventId.PG_UP: this.#DISTANCE_pg_up(); break;
                     case SpaceControlUiSm.EventId.DOWN: this.#DISTANCE_down(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_DOWN: this.#SYSTEM_INFO_MENU_pg_down(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.LEFT: this.#SYSTEM_INFO_MENU_left(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -825,14 +730,9 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case SpaceControlUiSm.EventId.LEFT: this.#SELF_DESTRUCT_left(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_DOWN: this.#SYSTEM_INFO_MENU_pg_down(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_UP: this.#SYSTEM_INFO_MENU_pg_up(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -841,13 +741,9 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case SpaceControlUiSm.EventId.DO: this.#SD_1_do(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_DOWN: this.#SYSTEM_INFO_MENU_pg_down(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_UP: this.#SYSTEM_INFO_MENU_pg_up(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
                     case SpaceControlUiSm.EventId.LEFT: this.#SELF_DESTRUCT_left(); break; // First ancestor handler for this event
                 }
                 break;
@@ -860,11 +756,9 @@ evaluateGuard = null;
                     case SpaceControlUiSm.EventId.DOWN: this.#SELF_DESTRUCT_OPTION_down(); break;
                     case SpaceControlUiSm.EventId.PG_DOWN: this.#SELF_DESTRUCT_OPTION_pg_down(); break;
                     case SpaceControlUiSm.EventId.UP: this.#SELF_DESTRUCT_OPTION_up(); break;
-                    // Events not handled by this state:
                     case SpaceControlUiSm.EventId.ESC: this.#ESC_CATCHER_1_esc(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_UP: this.#SYSTEM_INFO_MENU_pg_up(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.LEFT: this.#SYSTEM_INFO_MENU_left(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -874,13 +768,7 @@ evaluateGuard = null;
                 {
                     case SpaceControlUiSm.EventId.PG_DOWN: this.#MAIN_MENU_INNER_pg_down(); break;
                     case SpaceControlUiSm.EventId.PG_UP: this.#MAIN_MENU_INNER_pg_up(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.RIGHT: break;
                     case SpaceControlUiSm.EventId.ESC: this.#MENU_esc(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
-                    case SpaceControlUiSm.EventId.LEFT: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -891,12 +779,9 @@ evaluateGuard = null;
                     case SpaceControlUiSm.EventId.DOWN: this.#DRINK_down(); break;
                     case SpaceControlUiSm.EventId.UP: this.#DRINK_up(); break;
                     case SpaceControlUiSm.EventId.RIGHT: this.#DRINK_right(); break;
-                    // Events not handled by this state:
                     case SpaceControlUiSm.EventId.ESC: this.#MENU_esc(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_DOWN: this.#MAIN_MENU_INNER_pg_down(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_UP: this.#MAIN_MENU_INNER_pg_up(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.LEFT: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -908,11 +793,8 @@ evaluateGuard = null;
                     case SpaceControlUiSm.EventId.PG_UP: this.#FOOD_pg_up(); break;
                     case SpaceControlUiSm.EventId.RIGHT: this.#FOOD_right(); break;
                     case SpaceControlUiSm.EventId.DOWN: this.#FOOD_down(); break;
-                    // Events not handled by this state:
                     case SpaceControlUiSm.EventId.ESC: this.#MENU_esc(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_DOWN: this.#MAIN_MENU_INNER_pg_down(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.LEFT: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -924,11 +806,8 @@ evaluateGuard = null;
                     case SpaceControlUiSm.EventId.PG_DOWN: this.#SYSTEM_INFO_pg_down(); break;
                     case SpaceControlUiSm.EventId.RIGHT: this.#SYSTEM_INFO_right(); break;
                     case SpaceControlUiSm.EventId.UP: this.#SYSTEM_INFO_up(); break;
-                    // Events not handled by this state:
                     case SpaceControlUiSm.EventId.ESC: this.#MENU_esc(); break; // First ancestor handler for this event
                     case SpaceControlUiSm.EventId.PG_UP: this.#MAIN_MENU_INNER_pg_up(); break; // First ancestor handler for this event
-                    case SpaceControlUiSm.EventId.LEFT: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
             
@@ -937,14 +816,6 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case SpaceControlUiSm.EventId.RIGHT: this.#SPLASH_SCREEN_right(); break;
-                    // Events not handled by this state:
-                    case SpaceControlUiSm.EventId.ESC: break;
-                    case SpaceControlUiSm.EventId.PG_DOWN: break;
-                    case SpaceControlUiSm.EventId.PG_UP: break;
-                    case SpaceControlUiSm.EventId.DOWN: break;
-                    case SpaceControlUiSm.EventId.UP: break;
-                    case SpaceControlUiSm.EventId.LEFT: break;
-                    case SpaceControlUiSm.EventId.DO: break;
                 }
                 break;
         }

@@ -54,46 +54,52 @@ public class AlgoBalanced2 : AlgoBalanced1
 
     override protected void OutputExitUpToFunction()
     {
-        file.AppendLine("// This function is used when StateSmith doesn't know what the active leaf state is at");
-        file.AppendLine("// compile time due to sub states or when multiple states need to be exited.");
+        file.AppendIndentedLine("// This function is used when StateSmith doesn't know what the active leaf state is at");
+        file.AppendIndentedLine("// compile time due to sub states or when multiple states need to be exited.");
 
         string desired_state = mangler.MangleVarName("desired_state");
 
-        file.Append($"private void {mangler.SmExitUpToFuncName}({ConstMarker}{mangler.SmStateEnumType} {desired_state})");
+        file.AppendIndented($"private void {mangler.SmExitUpToFuncName}({ConstMarker}{mangler.SmStateEnumType} {desired_state})");
         file.StartCodeBlock();
 
-        file.Append($"while (this.{mangler.SmStateIdVarName} != {desired_state})");
+        file.AppendIndented($"while (this.{mangler.SmStateIdVarName} != {desired_state})");
         file.StartCodeBlock();
         {
-            file.Append($"switch (this.{mangler.SmStateIdVarName})");
+            file.AppendIndented($"switch (this.{mangler.SmStateIdVarName})");
             file.StartCodeBlock();
             {
+                string SEP = settings.allowSingleLineSwitchCase ? " " : "\n" + file.GetIndent();
+
                 foreach (var namedVertex in Sm.GetNamedVerticesCopy())
                 {
-
                     if (namedVertex is StateMachine)
                     {
                         // do nothing. let default case handle this.
                     }
                     else
                     {
-                        file.Append($"case {mangler.SmQualifiedStateEnumValue(namedVertex)}: ");
+                        file.AppendIndented();
+                        file.AppendIndentNewlines($"case {mangler.SmQualifiedStateEnumValue(namedVertex)}:{SEP}");
+
                         string exitFunctionName = mangler.SmTriggerHandlerFuncName(namedVertex, TriggerHelper.TRIGGER_EXIT);
-                        file.AppendWithoutIndent($"this.{exitFunctionName}(); ");
-                        file.AppendWithoutIndent("break;\n");
-                        file.AppendLine();
+                        file.AppendIndentNewlines($"this.{exitFunctionName}();{SEP}");
+                        file.AppendIndentNewlines($"break;\n");
+                        file.AppendWithoutIndent("\n");
+
                         verticesThatNeedExitStateIdAdjustment.Add(namedVertex);
                     }
                 }
 
-                file.AppendLine($"default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.");
+                file.AppendIndented();
+                file.AppendIndentNewlines($"default:{SEP}return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.");
+                file.AppendWithoutIndent("\n");
             }
             file.FinishCodeBlock(forceNewLine: true);
         }
         file.FinishCodeBlock(forceNewLine: true);
 
         file.FinishCodeBlock(forceNewLine: true);
-        file.AppendLine();
+        file.AppendIndentedLine();
     }
 
     override protected void OutputFuncDispatchEvent()
@@ -106,13 +112,13 @@ public class AlgoBalanced2 : AlgoBalanced1
             // https://github.com/StateSmith/StateSmith/issues/388
             if (Sm.GetEventSet().Count == 1)
             {
-                file.AppendLine("// This state machine design only has a single event type so we can safely assume");
-                file.AppendLine($"// that the dispatched event is `{Sm.GetEventSet().Single()}` without checking the `{eventIdParameterName}` parameter.");
-                file.AppendLine(GilCreationHelper.MarkVarAsUnused(eventIdParameterName) + " // This line prevents an 'unused variable' compiler warning"); // Note! transpilers that don't need this will skip this line and trailing comments/trivia.
-                file.AppendLine();
+                file.AppendIndentedLine("// This state machine design only has a single event type so we can safely assume");
+                file.AppendIndentedLine($"// that the dispatched event is `{Sm.GetEventSet().Single()}` without checking the `{eventIdParameterName}` parameter.");
+                file.AppendIndentedLine(GilCreationHelper.MarkVarAsUnused(eventIdParameterName) + " // This line prevents an 'unused variable' compiler warning"); // Note! transpilers that don't need this will skip this line and trailing comments/trivia.
+                file.AppendIndentedLine();
             }
 
-            file.Append($"switch (this.{mangler.SmStateIdVarName})");
+            file.AppendIndented($"switch (this.{mangler.SmStateIdVarName})");
             file.StartCodeBlock();
             {
                 bool needsLineSpacer = false;
@@ -120,24 +126,43 @@ public class AlgoBalanced2 : AlgoBalanced1
                 {
                     if (needsLineSpacer)
                     {
-                        file.AppendLine();
+                        file.AppendIndentedLine();
                     }
                     needsLineSpacer = true;
 
-                    file.AppendLine($"// STATE: {namedVertex.Name}");
-                    file.AppendLine($"case {mangler.SmQualifiedStateEnumValue(namedVertex)}:");
+                    file.AppendIndentedLine($"// STATE: {namedVertex.Name}");
+                    file.AppendIndentedLine($"case {mangler.SmQualifiedStateEnumValue(namedVertex)}:");
 
                     file.IncreaseIndentLevel();
                     OutputStateEventHandlerCode(namedVertex, eventIdParameterName);
-                    file.AppendLine("break;");
+                    file.AppendIndentedLine("break;");
                     file.DecreaseIndentLevel();
                 }
             }
             file.FinishCodeBlock(forceNewLine: true);
-            file.AppendLine();
+            file.AppendIndentedLine();
         }
         file.FinishCodeBlock(forceNewLine: true);
-        file.AppendLine();
+        file.AppendIndentedLine();
+    }
+
+    private bool IsStateEventHandlerEmpty(NamedVertex namedVertex, HashSet<string> stateEvents, IEnumerable<string> otherEvents)
+    {
+        if (stateEvents.Count > 0)
+        {
+            return false;
+        }
+
+        foreach (string evt in otherEvents)
+        {
+            NamedVertex? ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
+            if (ancestor != null)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void OutputStateEventHandlerCode(NamedVertex namedVertex, string eventIdParameterName)
@@ -154,29 +179,49 @@ public class AlgoBalanced2 : AlgoBalanced1
         }
         else
         {
-            file.Append($"switch ({eventIdParameterName})");
-            file.StartCodeBlock();
+            // events that are not handled by this state
+            var otherEvents = allEvents.Except(stateEvents);
+
+            // determine if this switch statement is needed
+            if (settings.omitEmptySwitchAndCases && IsStateEventHandlerEmpty(namedVertex, stateEvents, otherEvents))
             {
-                foreach (string evt in stateEvents)
+                file.AppendIndentedLine($"// No events handled by this state (or its ancestors).");
+            }
+            else
+            {
+                file.AppendIndented($"switch ({eventIdParameterName})");
+                file.StartCodeBlock();
                 {
-                    MaybeOutputEventHandler(namedVertex, evt);
-                }
-
-                var otherEvents = allEvents.Except(stateEvents);
-
-                if (otherEvents.Any())
-                {
-                    file.AppendLine($"// Events not handled by this state:");
-
-                    foreach (string evt in otherEvents)
+                    foreach (string evt in stateEvents)
                     {
-                        NamedVertex? ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
-                        var comment = (ancestor == null) ? string.Empty : FirstAncestorHandlerComment;
-                        MaybeOutputEventHandler(ancestor, evt, comment: comment);
+                        MaybeOutputEventHandler(namedVertex, evt);
+                    }
+
+                    if (otherEvents.Any())
+                    {
+                        if (!settings.omitEmptySwitchAndCases)
+                        {
+                            file.AppendIndentedLine($"// Events not handled by this state:");
+                        }
+
+                        foreach (string evt in otherEvents)
+                        {
+                            NamedVertex? ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
+                            var comment = (ancestor == null) ? string.Empty : FirstAncestorHandlerComment;
+
+                            if (settings.omitEmptySwitchAndCases && string.IsNullOrWhiteSpace(comment))
+                            {
+                                // do nothing
+                            }
+                            else
+                            {
+                                MaybeOutputEventHandler(ancestor, evt, comment: comment);
+                            }
+                        }
                     }
                 }
+                file.FinishCodeBlock(forceNewLine: true);
             }
-            file.FinishCodeBlock(forceNewLine: true);
         }
     }
 
@@ -193,7 +238,7 @@ public class AlgoBalanced2 : AlgoBalanced1
             throw new Exception($"Unexpected number of events: {stateEvents.Count}. Only expected: `{onlyEvent}`.");
         }
 
-        file.Append();
+        file.AppendIndented();
         bool outputHandler = false;
         if (stateEvents.Any())
         {
@@ -221,19 +266,32 @@ public class AlgoBalanced2 : AlgoBalanced1
 
     private void MaybeOutputEventHandler(NamedVertex? namedVertex, string evt, string comment = "")
     {
-        file.Append($"case {mangler.SmEventEnumType}.{mangler.SmEventEnumValue(evt)}: ");
-        //file.IncreaseIndentLevel();
+        string SEP = settings.allowSingleLineSwitchCase ? " " : "\n" + file.GetIndent();
+
+        file.AppendIndented();
+        file.AppendIndentNewlines($"case {mangler.SmEventEnumType}.{mangler.SmEventEnumValue(evt)}:{SEP}");
 
         if (namedVertex != null)
         {
-            OutputEventHandlerCall(namedVertex, evt);
+            OutputEventHandlerCall(namedVertex, evt, sep: SEP);
         }
 
-        file.AppendWithoutIndent("break;");
+        if (!settings.allowSingleLineSwitchCase)
+        {
+            AddCommentLine(comment);
+            file.AppendIndented(""); // triggers indent
+        }
 
-        AddCommentLine(comment);
+        file.AppendIndentNewlines($"break;");
 
-        //file.DecreaseIndentLevel();
+        if (settings.allowSingleLineSwitchCase)
+        {
+            AddCommentLine(comment);
+        }
+        else
+        {
+            file.AppendWithoutIndent("\n");
+        }
     }
 
     private void AddFirstAncestorHandlerComment()
@@ -247,13 +305,13 @@ public class AlgoBalanced2 : AlgoBalanced1
         {
             file.AppendWithoutIndent(" // " + comment);
         }
-        file.AppendWithoutIndent("\n");
+        file.FinishLine();
     }
 
-    private void OutputEventHandlerCall(NamedVertex namedVertex, string evt)
+    private void OutputEventHandlerCall(NamedVertex namedVertex, string evt, string sep = " ")
     {
         string eventHandlerFuncName = mangler.SmTriggerHandlerFuncName(namedVertex, evt);
-        file.AppendWithoutIndent($"this.{eventHandlerFuncName}(); ");
+        file.AppendIndentNewlines($"this.{eventHandlerFuncName}();{sep}");
     }
 
     protected override void OutputEventHandlerDelegate()

@@ -39,7 +39,7 @@ public class SharedCompilationFixture
     public class MyGlueFile : IRenderConfigJava
     {
         string IRenderConfig.FileTop => @"
-            // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
+            // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated file
             ";
 
         string IRenderConfig.VariableDeclarations => @"

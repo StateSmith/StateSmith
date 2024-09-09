@@ -5,6 +5,7 @@ using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Gil.CSharp;
 using StateSmith.Output.Gil.Java;
 using StateSmith.Output.Gil.JavaScript;
+using StateSmith.Output.Gil.Python;
 using StateSmith.Output.UserConfig;
 using System;
 
@@ -17,7 +18,7 @@ namespace StateSmith.Runner;
 /// </summary>
 public class AlgoTranspilerCustomizer
 {
-    public void Customize(DiServiceProvider sp, AlgorithmId algorithmId, TranspilerId transpilerId, AlgoBalanced1Settings algoBalanced1Settings)
+    public void Customize(DiServiceProvider sp, AlgorithmId algorithmId, TranspilerId transpilerId, AlgoBalanced1Settings algoBalanced1Settings, CodeStyleSettings style)
     {
         if (algorithmId == AlgorithmId.Default)
         {
@@ -44,6 +45,7 @@ public class AlgoTranspilerCustomizer
                 {
                     sp.AddSingletonT<IGilTranspiler, GilToC99>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
+                    algoBalanced1Settings.omitEmptySwitchAndCases = false;  // we keep it to avoid C warnings about unused case labels
                 }
                 break;
 
@@ -53,6 +55,7 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
+                    algoBalanced1Settings.omitEmptySwitchAndCases = true;
                 }
                 break;
 
@@ -63,6 +66,7 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     sp.AddSingletonT<IAutoVarsParser, JsAutoVarsParser>();
                     algoBalanced1Settings.skipClassIndentation = false;
+                    algoBalanced1Settings.omitEmptySwitchAndCases = true;
                 }
                 break;
 
@@ -72,11 +76,39 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
+                    algoBalanced1Settings.omitEmptySwitchAndCases = true;
 
                     // https://github.com/StateSmith/StateSmith/issues/395
                     if (algorithmId != AlgorithmId.Balanced2)
                     {
                         throw new Exception("Java transpiler currently only supports `AlgorithmId.Balanced2`. Please reply to https://github.com/StateSmith/StateSmith/issues/395 .");
+                    }
+                }
+                break;
+
+            case TranspilerId.Python:
+                {
+                    sp.AddSingletonT<IGilTranspiler, GilToPython>();
+                    sp.AddSingletonT<IExpansionVarsPathProvider, PythonExpansionVarsPathProvider>();
+                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
+                    sp.AddSingletonT<IAutoVarsParser, PythonAutoVarsParser>();
+
+                    algoBalanced1Settings.skipClassIndentation = false;
+                    algoBalanced1Settings.outputEnumMemberCount = false;
+                    algoBalanced1Settings.varsStructAsClass = true;
+                    algoBalanced1Settings.useIfTrueIfNoGuard = true;
+                    algoBalanced1Settings.allowSingleLineSwitchCase = false;
+                    algoBalanced1Settings.omitEmptySwitchAndCases = true;
+
+                    if (!style.BracesOnNewLines)
+                    {
+                        throw new Exception("Python transpiler currently only supports `style.BracesOnNewLines = true`.");
+                    }
+
+                    // https://github.com/StateSmith/StateSmith/issues/395
+                    if (algorithmId != AlgorithmId.Balanced2)
+                    {
+                        throw new Exception("Python transpiler currently only supports `AlgorithmId.Balanced2`. Please reply to https://github.com/StateSmith/StateSmith/issues/398 .");
                     }
                 }
                 break;

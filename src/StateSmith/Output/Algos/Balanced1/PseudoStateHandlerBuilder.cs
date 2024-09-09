@@ -87,7 +87,7 @@ public class PseudoStateHandlerBuilder
     public void OutputFunctionSignature(PseudoStateVertex pseudoStateVertex)
     {
         var functionName = GetFunctionName(pseudoStateVertex);
-        output.ThrowIfNull().Append($"private void {functionName}()");
+        output.ThrowIfNull().AppendIndented($"private void {functionName}()");
     }
 
     public void OutputAllPrototypes()
@@ -97,7 +97,7 @@ public class PseudoStateHandlerBuilder
         foreach (var vertex in functionNameMap.Keys)
         {
             OutputFunctionSignature(vertex);
-            output.AppendLine(";");
+            output.AppendIndentedLine(";");
             output.RequestNewLineBeforeMoreCode();
         }
     }

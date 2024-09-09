@@ -34,7 +34,7 @@ public class CurrentExpansionsTests
     }
 
     [Fact]
-    public void ActionCodeBesideGil()
+    public void TestCurrentNamedVertext_CurrentTrigger()
     {
         var state = new State("S1");
         var behavior = state.AddBehavior(new Behavior(trigger:"enter", actionCode: "log();"));
@@ -42,7 +42,7 @@ public class CurrentExpansionsTests
         userExpansionScriptBases.UpdateNamedVertex(state);
         userExpansionScriptBases.UpdateCurrentTrigger("enter");
 
-        var code = PostProcessor.PostProcess(wrappingExpander.ExpandWrapActionCode(behavior));
-        code.Should().Be("""log("State: S1, trigger: enter");""");
+        var code = wrappingExpander.ExpandWrapActionCode(behavior);
+        code.Should().Be($"""{GilCreationHelper.GilFuncName_EchoStringStatement}("log(\"State: S1, trigger: enter\");");""");
     }
 }

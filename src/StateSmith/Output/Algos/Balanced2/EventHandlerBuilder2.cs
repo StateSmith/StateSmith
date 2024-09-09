@@ -17,13 +17,13 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
     /// </summary>
     public HashSet<NamedVertex> verticesWithExitStateIdAdjustment = new();
 
-    public EventHandlerBuilder2(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases) : base(expander, pseudoStateHandlerBuilder, mangler, userExpansionScriptBases)
+    public EventHandlerBuilder2(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases, AlgoBalanced1Settings algoBalanced1Settings) : base(expander, pseudoStateHandlerBuilder, mangler, userExpansionScriptBases, algoBalanced1Settings)
     {
     }
 
     override protected void OutputExitUpToCall(NamedVertex leastCommonAncestor)
     {
-        File.AppendLine($"this.{mangler.SmExitUpToFuncName}({mangler.SmQualifiedStateEnumValue(leastCommonAncestor)});");
+        File.AppendIndentedLine($"this.{mangler.SmExitUpToFuncName}({mangler.SmQualifiedStateEnumValue(leastCommonAncestor)});");
     }
 
     // todolow - rename to something generic
@@ -51,7 +51,7 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
         var parent = (NamedVertex?)state.Parent;
         if (parent != null)
         {
-            File.AppendLine($"this.{mangler.SmStateIdVarName} = {mangler.SmQualifiedStateEnumValue(parent)};");
+            File.AppendIndentedLine($"this.{mangler.SmStateIdVarName} = {mangler.SmQualifiedStateEnumValue(parent)};");
             verticesWithExitStateIdAdjustment.Add(state);
         }
     }
@@ -61,7 +61,7 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
         // NOTE! We need to track state as we enter it, so we can exit up to it later.
         // Some specified behaviors allow you to pass through a state (enter and exit immediately) towards another state.
         // This requires us to track the state we are entering.
-        File.AppendLine($"this.{mangler.SmStateIdVarName} = {mangler.SmQualifiedStateEnumValue(state)};");
+        File.AppendIndentedLine($"this.{mangler.SmStateIdVarName} = {mangler.SmQualifiedStateEnumValue(state)};");
         File.RequestNewLineBeforeMoreCode();
     }
 
@@ -83,13 +83,13 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
 
         if (TriggerHelper.IsDoEvent(triggerName))
         {
-            File.AppendLine($"// `do` events are not normally consumed.");
+            File.AppendIndentedLine($"// `do` events are not normally consumed.");
             return;
         }
         else
         {
-            File.AppendLine($"// Consume event `{triggerName}`.");
-            File.AppendLine($"{consumeEventVarName} = true;");
+            File.AppendIndentedLine($"// Consume event `{triggerName}`.");
+            File.AppendIndentedLine($"{consumeEventVarName} = true;");
         }
     }
 
@@ -109,11 +109,11 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
         {
             if (noAncestorHandlesEvent)
             {
-                File.AppendLine($"// note: no ancestor consumes this event, but we output `bool {consumeEventVarName}` anyway because a user's design might rely on it.");
+                File.AppendIndentedLine($"// note: no ancestor consumes this event, but we output `bool {consumeEventVarName}` anyway because a user's design might rely on it.");
             }
 
-            File.AppendLine($"bool {consumeEventVarName} = false;");
-            File.AppendLine();
+            File.AppendIndentedLine($"bool {consumeEventVarName} = false;");
+            File.AppendIndentedLine();
         }
         else
         {
@@ -127,15 +127,15 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
 
         if (nextHandlingState == null)
         {
-            File.AppendLine($"// No ancestor handles this event.");
+            File.AppendIndentedLine($"// No ancestor handles this event.");
         }
         else
         {
-            File.AppendLine($"// Check if event has been consumed before calling ancestor handler.");
-            File.Append($"if (!{consumeEventVarName})");
+            File.AppendIndentedLine($"// Check if event has been consumed before calling ancestor handler.");
+            File.AppendIndented($"if (!{consumeEventVarName})");
             File.StartCodeBlock();
             {
-                File.AppendLine($"this.{mangler.SmTriggerHandlerFuncName(nextHandlingState, eventName)}();");
+                File.AppendIndentedLine($"this.{mangler.SmTriggerHandlerFuncName(nextHandlingState, eventName)}();");
             }
             File.FinishCodeBlock();
         }
@@ -143,7 +143,7 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
 
     override protected void OutputCompleteTransition(bool noAncestorHandlesEvent, NamedVertex namedVertexTarget)
     {
-        File.AppendLine($"return;");
+        File.AppendIndentedLine($"return;");
     }
 
     override protected void OutputNextAncestorHandler(NamedVertex? nextAncestorHandlingState, string triggerName)

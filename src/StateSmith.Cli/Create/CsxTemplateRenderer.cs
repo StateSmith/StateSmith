@@ -45,6 +45,7 @@ public class CsxTemplateRenderer
             TargetLanguageId.CSharp => TranspilerId.CSharp,
             TargetLanguageId.JavaScript => TranspilerId.JavaScript,
             TargetLanguageId.Java => TranspilerId.Java,
+            TargetLanguageId.Python => TranspilerId.Python,
             _ => throw new System.NotImplementedException(),
         };
         str = str.Replace("{{transpilerId}}", transpilerId.ToString());
@@ -56,6 +57,7 @@ public class CsxTemplateRenderer
             TargetLanguageId.CSharp => nameof(IRenderConfigCSharp),
             TargetLanguageId.JavaScript => nameof(IRenderConfigJavaScript),
             TargetLanguageId.Java => nameof(IRenderConfigJava),
+            TargetLanguageId.Python => nameof(IRenderConfigPython),
             _ => throw new System.NotImplementedException(),
         };
         str = str.Replace("{{renderConfigBase}}", renderConfigBase);
@@ -67,6 +69,7 @@ public class CsxTemplateRenderer
             TargetLanguageId.CSharp => "CSharp",
             TargetLanguageId.JavaScript => "JavaScript",
             TargetLanguageId.Java => "Java",
+            TargetLanguageId.Python => "Python",
             _ => throw new System.NotImplementedException(),
         };
 

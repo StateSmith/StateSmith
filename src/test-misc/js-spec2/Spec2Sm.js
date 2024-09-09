@@ -4,7 +4,6 @@
 "use strict";    
 // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
 import { trace, trace_guard } from "./printer.js";
-// inside sm - diagram embedded FileTop
 
 // Generated state machine
 export class Spec2Sm
@@ -207,10 +206,12 @@ export class Spec2Sm
         TEST9B_ROOT__B2 : 169,
         TEST9B_ROOT__B3 : 170,
         TEST9B_ROOT__B4 : 171,
+        UNREACHABLE : 172,
+        USELESS : 173,
     }
     static { Object.freeze(this.StateId); }
     
-    static StateIdCount = 172;
+    static StateIdCount = 174;
     static { Object.freeze(this.StateIdCount); }
     
     static T7__H1__ON_HistoryId = 
@@ -344,21 +345,6 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break;
-                    // Events not handled by this state:
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -366,22 +352,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.PREFIXING:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -389,22 +360,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.PREFIXING__ORDER_MENU:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -413,21 +369,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV2: this._PREFIXING__OM__BEVERAGE_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -436,21 +378,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._PREFIXING__OM__BEV__NONE_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -458,22 +387,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.PREFIXING__OM__BEV__TEA:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -482,21 +397,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._PREFIXING__OM__BEV__WATER_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -505,21 +407,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV2: this._PREFIXING__OM__VEG_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -528,21 +416,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._PREFIXING__OM__VEG__NONE_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -551,21 +426,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._PREFIXING__OM__VEG__POTATO_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -573,22 +435,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.PREFIXING__OM__VEG__YAM:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -596,22 +444,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -619,22 +452,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -643,21 +461,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV2: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -666,21 +470,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -688,22 +479,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -712,21 +489,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -735,21 +499,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV2: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -758,21 +508,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -781,21 +518,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -803,22 +527,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -836,12 +546,7 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EV8: this._SPEC2SM__DECIDE_ev8(); break;
                     case Spec2Sm.EventId.EV9: this._SPEC2SM__DECIDE_ev9(); break;
                     case Spec2Sm.EventId.EV10: this._SPEC2SM__DECIDE_ev10(); break;
-                    // Events not handled by this state:
-                    case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
+                    case Spec2Sm.EventId.DO: this._SPEC2SM__DECIDE_do(); break;
                 }
                 break;
             
@@ -849,22 +554,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST1_DO_EVENT_TESTING:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -873,21 +563,6 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.DO: this._TEST1_ROOT_do(); break;
-                    // Events not handled by this state:
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -895,22 +570,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST1_S1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._TEST1_ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -920,20 +580,6 @@ export class Spec2Sm
                 {
                     case Spec2Sm.EventId.DO: this._TEST1_S1_1_do(); break;
                     case Spec2Sm.EventId.EV1: this._TEST1_S1_1_ev1(); break;
-                    // Events not handled by this state:
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -942,21 +588,6 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.DO: this._TEST1_S2_do(); break;
-                    // Events not handled by this state:
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -964,22 +595,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST10_CHOICE_POINT:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -987,22 +603,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST10_A:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1010,22 +611,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST10_A_1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1034,21 +620,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV5: this._TEST10_ROOT_ev5(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1056,22 +628,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST10_G:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1079,22 +637,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST10_G_S0:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1102,22 +646,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST10_G_S1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1125,22 +655,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST10_G_S2:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1148,22 +664,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST10_G_S3:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1175,18 +677,8 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EV3: this._TEST10_S1_ev3(); break;
                     case Spec2Sm.EventId.EV1: this._TEST10_S1_ev1(); break;
                     case Spec2Sm.EventId.EV10: this._TEST10_S1_ev10(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1194,22 +686,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST10_S4:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1217,22 +695,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST2_REGULAR_EVENT_TESTING:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1243,19 +706,6 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EV1: this._TEST2_ROOT_ev1(); break;
                     case Spec2Sm.EventId.EV2: this._TEST2_ROOT_ev2(); break;
                     case Spec2Sm.EventId.DO: this._TEST2_ROOT_do(); break;
-                    // Events not handled by this state:
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1263,22 +713,9 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST2_S1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._TEST2_ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST2_ROOT_ev1(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._TEST2_ROOT_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1288,20 +725,7 @@ export class Spec2Sm
                 {
                     case Spec2Sm.EventId.EV1: this._TEST2_S1_1_ev1(); break;
                     case Spec2Sm.EventId.DO: this._TEST2_S1_1_do(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.EV2: this._TEST2_ROOT_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1311,20 +735,7 @@ export class Spec2Sm
                 {
                     case Spec2Sm.EventId.EV1: this._TEST2_S2_ev1(); break;
                     case Spec2Sm.EventId.EV2: this._TEST2_S2_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._TEST2_ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1332,22 +743,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST3_BEHAVIOR_ORDERING:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1356,21 +752,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST3_ROOT_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1379,21 +761,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST3_S1_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1402,21 +770,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST3_S2_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1424,22 +778,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST3_S3:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST3_ROOT_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1447,22 +787,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1470,22 +795,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST4_B_AND_OTHERS:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1493,22 +803,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST4B_LOCAL:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1517,21 +812,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST4B_G_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1540,21 +821,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV2: this._TEST4B_G_1_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST4B_G_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1562,22 +830,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST4C_LOCAL_TO_ALIAS:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1586,21 +839,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST4C_G_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1609,21 +848,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV2: this._TEST4C_G_1_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST4C_G_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1631,22 +857,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST4D_EXTERNAL:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1655,21 +866,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST4D_G_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1678,21 +875,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV2: this._TEST4D_G_1_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST4D_G_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1704,18 +888,7 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EV2: this._TEST4_DECIDE_ev2(); break;
                     case Spec2Sm.EventId.EV3: this._TEST4_DECIDE_ev3(); break;
                     case Spec2Sm.EventId.EV4: this._TEST4_DECIDE_ev4(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1726,19 +899,7 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EV2: this._TEST4_ROOT_ev2(); break;
                     case Spec2Sm.EventId.EV3: this._TEST4_ROOT_ev3(); break;
                     case Spec2Sm.EventId.EV4: this._TEST4_ROOT_ev4(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1747,21 +908,10 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST4_S1_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV3: this._TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV4: this._TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1770,21 +920,9 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV4: this._TEST4_S10_ev4(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV3: this._TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1792,22 +930,10 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST4_S10_1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV3: this._TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV4: this._TEST4_S10_ev4(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1816,21 +942,10 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST4_S2_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV3: this._TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV4: this._TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1839,21 +954,9 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV4: this._TEST4_S20_ev4(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV3: this._TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1861,22 +964,10 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST4_S20_1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV3: this._TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV4: this._TEST4_S20_ev4(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1885,21 +976,10 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST4_S3_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV3: this._TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV4: this._TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1907,22 +987,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1931,21 +996,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV2: this._TEST5_ROOT_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1954,21 +1005,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST5_S1_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -1977,21 +1015,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST5_S2_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2000,21 +1025,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST5_S3_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2022,22 +1034,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST6_VARS_EXPANSIONS:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2045,22 +1042,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST6_ROOT:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2068,22 +1050,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.AUTO_VAR_TEST:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2092,21 +1059,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._AUTO_VAR_TEST__S1_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2114,22 +1067,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.AUTO_VAR_TEST__S2:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2137,22 +1075,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.META_EXPANSIONS:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2161,21 +1084,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._META_EXPANSIONS__S1_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2185,20 +1094,7 @@ export class Spec2Sm
                 {
                     case Spec2Sm.EventId.EV1: this._META_EXPANSIONS__S2_ev1(); break;
                     case Spec2Sm.EventId.EV2: this._META_EXPANSIONS__S2_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2207,21 +1103,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._S3_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2229,22 +1111,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.S4:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2252,22 +1119,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.S5:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2275,22 +1127,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.NORMAL:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2299,21 +1136,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._NORMAL__S1_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2321,22 +1144,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.NORMAL__S2:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2347,19 +1155,7 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EV1: this._TEST6_VARS_EXPANSIONS__DECIDE_ev1(); break;
                     case Spec2Sm.EventId.EV2: this._TEST6_VARS_EXPANSIONS__DECIDE_ev2(); break;
                     case Spec2Sm.EventId.EV3: this._TEST6_VARS_EXPANSIONS__DECIDE_ev3(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2367,22 +1163,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2390,22 +1171,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST7:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2413,22 +1179,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DEEP_HISTORY1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2436,22 +1187,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2460,21 +1196,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV8: this._T7__DH1__ALIENS_DETECTED_ev8(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2482,22 +1204,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DH1__GET_BACKUP:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
                     case Spec2Sm.EventId.EV8: this._T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2505,22 +1213,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DH1__HERO:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
                     case Spec2Sm.EventId.EV8: this._T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2529,21 +1223,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__DH1__CALL_BATMAN_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
                     case Spec2Sm.EventId.EV8: this._T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2552,21 +1233,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__DH1__CALL_THOR_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
                     case Spec2Sm.EventId.EV8: this._T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2574,22 +1242,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DH1__LOCAL_HELP:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
                     case Spec2Sm.EventId.EV8: this._T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2598,21 +1252,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__DH1__BUDDY_ELF_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
                     case Spec2Sm.EventId.EV8: this._T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2620,22 +1261,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DH1__POLAR_BEARS:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
                     case Spec2Sm.EventId.EV8: this._T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2644,21 +1271,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__DH1__GIVE_COOKIES_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
                     case Spec2Sm.EventId.EV8: this._T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2667,21 +1281,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__DH1__SNOWBALL_FIGHT_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
                     case Spec2Sm.EventId.EV8: this._T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2691,20 +1292,7 @@ export class Spec2Sm
                 {
                     case Spec2Sm.EventId.EV6: this._T7__DH1__BUILD_ev6(); break;
                     case Spec2Sm.EventId.EV7: this._T7__DH1__BUILD_ev7(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2713,21 +1301,9 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV2: this._T7__DH1__TOOL_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV7: this._T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2735,22 +1311,10 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DH1__CIRCULAR_SAW:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV7: this._T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2759,21 +1323,10 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__DH1__IMPACT_DRILL_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV2: this._T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV7: this._T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2782,21 +1335,9 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__DH1__TOY_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV7: this._T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2805,21 +1346,9 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__DH1__GLOW_WORM_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV7: this._T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2828,21 +1357,9 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__DH1__RACE_CAR_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV7: this._T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2850,22 +1367,10 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DH1__ROBOT:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV7: this._T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2874,21 +1379,9 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__DH1__BATTLEBOT_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV7: this._T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2896,22 +1389,10 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DH1__WALL_E:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV7: this._T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2920,21 +1401,9 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__DH1__TEDDY_BEAR_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV7: this._T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2942,22 +1411,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DEEP_HISTORY2:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2966,21 +1420,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EVOPEN: this._T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -2989,21 +1429,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EVSTEP: this._T7__DEEP_HISTORY2__T7__STATE_1_evstep(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
                     case Spec2Sm.EventId.EVOPEN: this._T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3012,21 +1439,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EVBACK: this._T7__DEEP_HISTORY2__T7__STATE_2_evback(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
                     case Spec2Sm.EventId.EVOPEN: this._T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3035,21 +1449,9 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EVSTEP: this._T7__DEEP_HISTORY2__T7__STATE_6_evstep(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
                     case Spec2Sm.EventId.EVOPEN: this._T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EVBACK: this._T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3057,22 +1459,9 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_9:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
                     case Spec2Sm.EventId.EVOPEN: this._T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EVSTEP: break;
                     case Spec2Sm.EventId.EVBACK: this._T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3081,21 +1470,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EVCLOSE: this._T7__DEEP_HISTORY2__T7__STATE_3_evclose(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
                 }
                 break;
             
@@ -3103,22 +1478,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DEEP_HISTORY3:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3127,21 +1487,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EVOPEN: this._T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3150,21 +1496,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EVSTEP: this._T7__DEEP_HISTORY3__T7__STATE_1_evstep(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
                     case Spec2Sm.EventId.EVOPEN: this._T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3173,21 +1506,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EVBACK: this._T7__DEEP_HISTORY3__T7__STATE_2_evback(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
                     case Spec2Sm.EventId.EVOPEN: this._T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3196,21 +1516,9 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EVSTEP: this._T7__DEEP_HISTORY3__T7__STATE_6_evstep(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
                     case Spec2Sm.EventId.EVOPEN: this._T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EVBACK: this._T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3218,22 +1526,9 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_9:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
                     case Spec2Sm.EventId.EVOPEN: this._T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EVSTEP: break;
                     case Spec2Sm.EventId.EVBACK: this._T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3242,21 +1537,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EVCLOSE: this._T7__DEEP_HISTORY3__T7__STATE_3_evclose(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
                 }
                 break;
             
@@ -3264,22 +1545,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__HISTORY1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3290,19 +1556,7 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EV3: this._T7__H1__OFF_ev3(); break;
                     case Spec2Sm.EventId.EV4: this._T7__H1__OFF_ev4(); break;
                     case Spec2Sm.EventId.EV7: this._T7__H1__OFF_ev7(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3311,21 +1565,10 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__H1__OFF1_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
                     case Spec2Sm.EventId.EV3: this._T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV4: this._T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
                     case Spec2Sm.EventId.EV7: this._T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3334,21 +1577,10 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__H1__OFF2_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
                     case Spec2Sm.EventId.EV3: this._T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV4: this._T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
                     case Spec2Sm.EventId.EV7: this._T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3356,22 +1588,10 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__H1__OFF3:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
                     case Spec2Sm.EventId.EV3: this._T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV4: this._T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
                     case Spec2Sm.EventId.EV7: this._T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3380,21 +1600,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV6: this._T7__H1__ON_ev6(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3403,21 +1609,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__H1__ON1_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3426,21 +1619,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__H1__ON2_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3449,21 +1629,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._T7__H1__ON3_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
                     case Spec2Sm.EventId.EV6: this._T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3471,22 +1638,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__INITIAL1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3495,21 +1647,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV5: this._T7__INITIAL1__PARENT_ev5(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3518,21 +1656,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV2: this._T7__INITIAL1__G_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3540,22 +1665,9 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__INITIAL1__G_S1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3563,22 +1675,9 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__INITIAL1__G_S2:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3586,22 +1685,9 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__INITIAL1__G_S3:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3611,20 +1697,8 @@ export class Spec2Sm
                 {
                     case Spec2Sm.EventId.EV1: this._T7__INITIAL1__S1_ev1(); break;
                     case Spec2Sm.EventId.EV3: this._T7__INITIAL1__S1_ev3(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3637,17 +1711,7 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EV3: this._TEST7_DECIDE_ev3(); break;
                     case Spec2Sm.EventId.EV4: this._TEST7_DECIDE_ev4(); break;
                     case Spec2Sm.EventId.EV5: this._TEST7_DECIDE_ev5(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3655,22 +1719,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST8_ENTRY_CHOICE:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3680,20 +1729,7 @@ export class Spec2Sm
                 {
                     case Spec2Sm.EventId.EV5: this._TEST8_ROOT_ev5(); break;
                     case Spec2Sm.EventId.EV3: this._TEST8_ROOT_ev3(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3702,21 +1738,9 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV2: this._TEST8_G_ev2(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV3: this._TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3724,22 +1748,10 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST8_G_S1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._TEST8_G_ev2(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV3: this._TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3747,22 +1759,10 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST8_G_S2:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._TEST8_G_ev2(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV3: this._TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3770,22 +1770,10 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST8_G_S3:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
                     case Spec2Sm.EventId.EV2: this._TEST8_G_ev2(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV3: this._TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3796,19 +1784,8 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EV1: this._TEST8_S1_ev1(); break;
                     case Spec2Sm.EventId.EV3: this._TEST8_S1_ev3(); break;
                     case Spec2Sm.EventId.EV6: this._TEST8_S1_ev6(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3816,22 +1793,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9_EXIT_CHOICE:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3842,19 +1804,7 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EV1: this._TEST9_DECIDE_ev1(); break;
                     case Spec2Sm.EventId.EV2: this._TEST9_DECIDE_ev2(); break;
                     case Spec2Sm.EventId.EV3: this._TEST9_DECIDE_ev3(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3863,21 +1813,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV5: this._TEST9_ROOT_ev5(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3885,22 +1821,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9_G_S1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3908,22 +1830,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9_G_S2:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3931,22 +1839,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9_G_S3:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3954,22 +1848,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9_G_S4:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -3977,22 +1857,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9_S1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4001,21 +1867,8 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST9_S1_1_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
                     case Spec2Sm.EventId.EV5: this._TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4023,22 +1876,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9A_ROOT:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4046,22 +1884,7 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9A_S1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV1: break;
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4070,21 +1893,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST9A_S1_1_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4093,21 +1902,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST9B_ROOT_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4115,22 +1910,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9B_ROOT__A1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4138,22 +1919,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9B_ROOT__A2:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4161,22 +1928,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9B_ROOT__A3:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4185,21 +1938,7 @@ export class Spec2Sm
                 switch (eventId)
                 {
                     case Spec2Sm.EventId.EV1: this._TEST9B_ROOT__A4_ev1(); break;
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4207,22 +1946,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9B_ROOT__B1:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4230,22 +1955,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9B_ROOT__B2:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4253,22 +1964,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9B_ROOT__B3:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
             
@@ -4276,22 +1973,24 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9B_ROOT__B4:
                 switch (eventId)
                 {
-                    // Events not handled by this state:
                     case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EV1: this._TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case Spec2Sm.EventId.EV2: break;
-                    case Spec2Sm.EventId.EV3: break;
-                    case Spec2Sm.EventId.EV4: break;
-                    case Spec2Sm.EventId.EV5: break;
-                    case Spec2Sm.EventId.EV6: break;
-                    case Spec2Sm.EventId.EV7: break;
-                    case Spec2Sm.EventId.EV8: break;
-                    case Spec2Sm.EventId.EV9: break;
-                    case Spec2Sm.EventId.EV10: break;
-                    case Spec2Sm.EventId.EVOPEN: break;
-                    case Spec2Sm.EventId.EVSTEP: break;
-                    case Spec2Sm.EventId.EVBACK: break;
-                    case Spec2Sm.EventId.EVCLOSE: break;
+                }
+                break;
+            
+            // STATE: UNREACHABLE
+            case Spec2Sm.StateId.UNREACHABLE:
+                switch (eventId)
+                {
+                    case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
+                }
+                break;
+            
+            // STATE: USELESS
+            case Spec2Sm.StateId.USELESS:
+                switch (eventId)
+                {
+                    case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                 }
                 break;
         }
@@ -4647,6 +2346,10 @@ export class Spec2Sm
                 case Spec2Sm.StateId.TEST9B_ROOT__B3: this._TEST9B_ROOT__B3_exit(); break;
                 
                 case Spec2Sm.StateId.TEST9B_ROOT__B4: this._TEST9B_ROOT__B4_exit(); break;
+                
+                case Spec2Sm.StateId.UNREACHABLE: this._UNREACHABLE_exit(); break;
+                
+                case Spec2Sm.StateId.USELESS: this._USELESS_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -5617,11 +3320,39 @@ export class Spec2Sm
         this.stateId = Spec2Sm.StateId.ROOT;
     }
     
+    _SPEC2SM__DECIDE_do()
+    {
+        let consume_event = false;
+        
+        // Spec2Sm__DECIDE behavior
+        // uml: do [trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to USELESS."); } TransitionTo(USELESS)
+        if (trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true))
+        {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            this._SPEC2SM__DECIDE_exit();
+            
+            // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to USELESS.");`.
+            console.log("Transition action `` for Spec2Sm__DECIDE to USELESS.");
+            
+            // Step 3: Enter/move towards transition target `USELESS`.
+            this._USELESS_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for Spec2Sm__DECIDE
+        
+        // Check if event has been consumed before calling ancestor handler.
+        if (!consume_event)
+        {
+            this._ROOT_do();
+        }
+    }
+    
     _SPEC2SM__DECIDE_ev1()
     {
         // Spec2Sm__DECIDE behavior
-        // uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
-        if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
+        // uml: 1. EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
+        if (trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this._SPEC2SM__DECIDE_exit();
@@ -5659,6 +3390,23 @@ export class Spec2Sm
                     return;
                 } // end of behavior for TEST1_ROOT.<InitialState>
             } // end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
+        } // end of behavior for Spec2Sm__DECIDE
+        
+        // Spec2Sm__DECIDE behavior
+        // uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE."); } TransitionTo(UNREACHABLE)
+        if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", true))
+        {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            this._SPEC2SM__DECIDE_exit();
+            
+            // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.");`.
+            console.log("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.");
+            
+            // Step 3: Enter/move towards transition target `UNREACHABLE`.
+            this._UNREACHABLE_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
         } // end of behavior for Spec2Sm__DECIDE
         
         // No ancestor handles this event.
@@ -6137,7 +3885,7 @@ export class Spec2Sm
         if (trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output(); }`.", true))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST1_S1_1
     }
     
@@ -6783,7 +4531,7 @@ export class Spec2Sm
         if (trace_guard("State TEST10_S1: check behavior `enter / { clear_output(); }`.", true))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST10_S1
     }
     
@@ -7144,7 +4892,7 @@ export class Spec2Sm
         if (trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output(); }`.", true))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST2_S1_1
     }
     
@@ -7384,7 +5132,7 @@ export class Spec2Sm
         if (trace_guard("State TEST3_S1: check behavior `enter / { clear_output(); }`.", true))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST3_S1
     }
     
@@ -7595,7 +5343,7 @@ export class Spec2Sm
         if (trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output(); }`.", true))
         {
             // Step 1: execute action `clear_dispatch_output();`
-            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
         } // end of behavior for TEST4_B_AND_OTHERS
     }
     
@@ -8204,7 +5952,7 @@ export class Spec2Sm
         if (trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output(); }`.", true))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST4_ROOT
     }
     
@@ -8681,7 +6429,7 @@ export class Spec2Sm
         if (trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output(); }`.", true))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST5_ROOT
     }
     
@@ -8979,7 +6727,7 @@ export class Spec2Sm
         if (trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output(); }`.", true))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for AUTO_VAR_TEST__S1
     }
     
@@ -9125,7 +6873,7 @@ export class Spec2Sm
         if (trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output(); }`.", true))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for META_EXPANSIONS__S1
     }
     
@@ -9423,7 +7171,7 @@ export class Spec2Sm
         if (trace_guard("State NORMAL__S1: check behavior `enter / { clear_output(); }`.", true))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for NORMAL__S1
     }
     
@@ -9679,7 +7427,7 @@ export class Spec2Sm
         if (trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output(); }`.", true))
         {
             // Step 1: execute action `clear_dispatch_output();`
-            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
         } // end of behavior for TEST7
     }
     
@@ -13159,7 +10907,7 @@ export class Spec2Sm
         if (trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output(); }`.", true))
         {
             // Step 1: execute action `clear_dispatch_output();`
-            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
         } // end of behavior for TEST7_DECIDE
         
         this.stateId = Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY;
@@ -13396,7 +11144,7 @@ export class Spec2Sm
         if (trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output(); }`.", true))
         {
             // Step 1: execute action `clear_dispatch_output();`
-            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
         } // end of behavior for TEST8_ROOT
     }
     
@@ -14149,7 +11897,7 @@ export class Spec2Sm
         if (trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output(); }`.", true))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST9_S1_1
     }
     
@@ -14348,7 +12096,7 @@ export class Spec2Sm
         if (trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.", this.vars.count == 0))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST9A_S1_1
     }
     
@@ -14430,7 +12178,7 @@ export class Spec2Sm
         if (trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output(); }`.", true))
         {
             // Step 1: execute action `clear_output();`
-            console.log("IGNORE_OUTPUT_BEFORE_THIS");;
+            console.log("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST9B_ROOT
     }
     
@@ -14747,6 +12495,64 @@ export class Spec2Sm
         this.stateId = Spec2Sm.StateId.TEST9B_ROOT__B3;
     }
     
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state UNREACHABLE
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    _UNREACHABLE_enter()
+    {
+        this.stateId = Spec2Sm.StateId.UNREACHABLE;
+        
+        // UNREACHABLE behavior
+        // uml: enter / { trace("Enter UNREACHABLE."); }
+        {
+            // Step 1: execute action `trace("Enter UNREACHABLE.");`
+            console.log("Enter UNREACHABLE.");
+        } // end of behavior for UNREACHABLE
+    }
+    
+    _UNREACHABLE_exit()
+    {
+        // UNREACHABLE behavior
+        // uml: exit / { trace("Exit UNREACHABLE."); }
+        {
+            // Step 1: execute action `trace("Exit UNREACHABLE.");`
+            console.log("Exit UNREACHABLE.");
+        } // end of behavior for UNREACHABLE
+        
+        this.stateId = Spec2Sm.StateId.ROOT;
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state USELESS
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    _USELESS_enter()
+    {
+        this.stateId = Spec2Sm.StateId.USELESS;
+        
+        // USELESS behavior
+        // uml: enter / { trace("Enter USELESS."); }
+        {
+            // Step 1: execute action `trace("Enter USELESS.");`
+            console.log("Enter USELESS.");
+        } // end of behavior for USELESS
+    }
+    
+    _USELESS_exit()
+    {
+        // USELESS behavior
+        // uml: exit / { trace("Exit USELESS."); }
+        {
+            // Step 1: execute action `trace("Exit USELESS.");`
+            console.log("Exit USELESS.");
+        } // end of behavior for USELESS
+        
+        this.stateId = Spec2Sm.StateId.ROOT;
+    }
+    
     // Thread safe.
     static stateIdToString(id)
     {
@@ -14924,6 +12730,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9B_ROOT__B2: return "TEST9B_ROOT__B2";
             case Spec2Sm.StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3";
             case Spec2Sm.StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4";
+            case Spec2Sm.StateId.UNREACHABLE: return "UNREACHABLE";
+            case Spec2Sm.StateId.USELESS: return "USELESS";
             default: return "?";
         }
     }

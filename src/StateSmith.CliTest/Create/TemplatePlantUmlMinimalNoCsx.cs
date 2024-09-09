@@ -36,7 +36,7 @@ public class TemplatePlantUmlMinimalNoCsx
         [*] -> State1
 
         ' State1
-        State1: enter / count++;
+        State1: enter / count += 1;
         State1: exit  / 
         State1 --> State2 : event1
 
@@ -215,6 +215,100 @@ public class TemplatePlantUmlMinimalNoCsx
 
             [SmRunnerSettings]
             transpilerId = "JavaScript"
+            '/
+            @enduml
+            """", outputCleanActual: true);
+        });
+
+        generator.GenerateFiles();
+
+        // make sure the calls were made
+        mockFileWriter.Received().Write("RocketSm.plantuml", Arg.Any<string>());
+    }
+
+    [Fact]
+    public void LangJava()
+    {
+        settings.TargetLanguageId = TargetLanguageId.Java;
+        Generator generator = new(settings);
+        generator.tomlConfigType = TemplateLoader.TomlConfigType.Minimal;
+        generator.SetFileWriter(mockFileWriter);
+
+        // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
+        mockFileWriter.When(x => x.Write("RocketSm.plantuml", Arg.Any<string>())).Do(x => {
+            x.ArgAt<string>(1).ShouldBeShowDiff($""""
+            {Top}
+
+            [RenderConfig]
+            FileTop = """
+                // Whatever you put in this `FileTop` section will end up 
+                // being printed at the top of every generated code file.
+                """
+            AutoExpandedVars = """
+                int count = 0; // this var can be referenced in diagram
+                """
+
+            [RenderConfig.Java]
+            # Package = "my.package.for.statemachine"
+            Imports = """
+                // whatever you need to import here
+                """
+            # Extends = "MyUserBaseClass"
+            # Implements = "SomeUserInterface"
+
+            [SmRunnerSettings]
+            transpilerId = "Java"
+            '/
+            @enduml
+            """", outputCleanActual: true);
+        });
+
+        generator.GenerateFiles();
+
+        // make sure the calls were made
+        mockFileWriter.Received().Write("RocketSm.plantuml", Arg.Any<string>());
+    }
+
+
+    [Fact]
+    public void LangPython()
+    {
+        settings.TargetLanguageId = TargetLanguageId.Python;
+        Generator generator = new(settings);
+        generator.tomlConfigType = TemplateLoader.TomlConfigType.Minimal;
+        generator.SetFileWriter(mockFileWriter);
+
+        var pythonTop = Top;
+        pythonTop = pythonTop.Replace(";", "");
+        pythonTop = pythonTop.Replace("++", " += 1");
+
+        // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
+        mockFileWriter.When(x => x.Write("RocketSm.plantuml", Arg.Any<string>())).Do(x => {
+            x.ArgAt<string>(1).ShouldBeShowDiff($""""
+            {pythonTop}
+
+            [RenderConfig]
+            FileTop = """
+                # Whatever you put in this `FileTop` section will end up 
+                # being printed at the top of every generated code file.
+                """
+            AutoExpandedVars = """
+                self.count = 0  # this var can be referenced in diagram
+                """
+            
+            [RenderConfig.Python]
+            Imports = """
+                # whatever you need to import
+                # from some_module import some_function
+                """
+            Extends = "MyUserBaseClass"
+            ClassCode = """
+                # Add custom code here to inject into the generated class.
+                # Inheritance or composition might be a better choice.
+                """
+
+            [SmRunnerSettings]
+            transpilerId = "Python"
             '/
             @enduml
             """", outputCleanActual: true);

@@ -45,7 +45,7 @@ public class OutputFile
         if (styler.BracesOnNewLines || forceNewLine)
         {
             MaybeFinishPartialLine();
-            Append("{");
+            AppendIndented("{");
         }
         else
         {
@@ -61,7 +61,7 @@ public class OutputFile
     /// </summary>
     public void StartCodeBlockHere()
     {
-        Append("{");
+        AppendIndented("{");
         FinishLine();
         indentLevel++;
     }
@@ -82,7 +82,7 @@ public class OutputFile
 
         lineBreakBeforeMoreCode = false;
 
-        Append("}");
+        AppendIndented("}");
         AppendWithoutIndent(codeAfterBrace); // this part shouldn't be indented
 
         if (styler.BracesOnNewLines || forceNewLine)
@@ -96,7 +96,7 @@ public class OutputFile
         var lines = StringUtils.SplitIntoLinesOrEmpty(codeLines);
         foreach (var line in lines)
         {
-            AppendLine(prefix + line);
+            AppendIndentedLine(prefix + line);
         }
     }
 
@@ -109,22 +109,54 @@ public class OutputFile
         AppendLines(code);
     }
 
-    public void AppendLine(string codeLine = "")
+    public void AppendIndentedLine(string codeLine = "")
     {
-        Append(codeLine);
+        AppendIndented(codeLine);
         FinishLine();
     }
 
-    public void AppendDetectNewlines(string code = "")
+    //public void AppendDetectNewlines(string code = "")
+    //{
+    //    var lines = StringUtils.SplitIntoLinesOrEmpty(code);
+    //    foreach (var line in lines)
+    //    {
+    //        AppendIndented(line);
+    //        if (lines.Length > 1)   // TODO - this seems wrong. Shouldn't add extra trailing newline
+    //        {
+    //            FinishLine();
+    //        }
+    //    }
+    //}
+
+    public void AppendIndentNewlines(string code = "")
     {
+        // code is done this way to so that lineIncomplete is set correctly
+
         var lines = StringUtils.SplitIntoLinesOrEmpty(code);
-        foreach (var line in lines)
+        bool needsIndent = false;
+
+        for (int i = 0; i < lines.Length; i++)
         {
-            Append(line);
-            if (lines.Length > 1)
+            string line = lines[i];
+
+            AppendMaybeIndentLine(line, needsIndent);
+            if (i < lines.Length - 1)
             {
                 FinishLine();
+                needsIndent = true;
             }
+        }
+    }
+
+    public void AppendMaybeIndentLine(string code, bool indent)
+    {
+        if (indent)
+        {
+            AppendIndented(code);
+        }
+        else
+        {
+            AppendWithoutIndent(code);
         }
     }
 
@@ -139,12 +171,12 @@ public class OutputFile
         sb.Append(code);
     }
 
-    public void Append(string code = "")
+    public void AppendIndented(string code = "")
     {
         if (lineBreakBeforeMoreCode)
         {
             lineBreakBeforeMoreCode = false;
-            AppendLine();
+            AppendIndentedLine();
         }
 
         styler.Indent(sb, indentLevel);
@@ -177,5 +209,10 @@ public class OutputFile
     public int GetStringBufferLength()
     {
         return sb.Length;
+    }
+
+    public string GetIndent()
+    {
+        return styler.Indent1;
     }
 }

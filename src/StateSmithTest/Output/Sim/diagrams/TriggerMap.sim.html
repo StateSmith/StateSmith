@@ -398,7 +398,6 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case TriggerMap.EventId.ERR: this.#NORMAL_err(); break;
-                    // Events not handled by this state:
                     case TriggerMap.EventId.INC1: this.#ROOT_inc1(); break; // First ancestor handler for this event
                     case TriggerMap.EventId.INC2: this.#ROOT_inc2(); break; // First ancestor handler for this event
                     case TriggerMap.EventId.DIM1: this.#ROOT_dim1(); break; // First ancestor handler for this event
@@ -415,7 +414,6 @@ evaluateGuard = null;
                     case TriggerMap.EventId.DIM2: this.#BLUE_dim2(); break;
                     case TriggerMap.EventId.INC1: this.#BLUE_inc1(); break;
                     case TriggerMap.EventId.INC2: this.#BLUE_inc2(); break;
-                    // Events not handled by this state:
                     case TriggerMap.EventId.ERR: this.#NORMAL_err(); break; // First ancestor handler for this event
                     case TriggerMap.EventId.INCITE_RESET: this.#ROOT_incite_reset(); break; // First ancestor handler for this event
                 }
@@ -427,7 +425,6 @@ evaluateGuard = null;
                 {
                     case TriggerMap.EventId.INC1: this.#OFF_inc1(); break;
                     case TriggerMap.EventId.INC2: this.#OFF_inc2(); break;
-                    // Events not handled by this state:
                     case TriggerMap.EventId.ERR: this.#NORMAL_err(); break; // First ancestor handler for this event
                     case TriggerMap.EventId.DIM1: this.#ROOT_dim1(); break; // First ancestor handler for this event
                     case TriggerMap.EventId.DIM2: this.#ROOT_dim2(); break; // First ancestor handler for this event
@@ -441,7 +438,6 @@ evaluateGuard = null;
                 {
                     case TriggerMap.EventId.DIM1: this.#YELLOW_dim1(); break;
                     case TriggerMap.EventId.DIM2: this.#YELLOW_dim2(); break;
-                    // Events not handled by this state:
                     case TriggerMap.EventId.ERR: this.#NORMAL_err(); break; // First ancestor handler for this event
                     case TriggerMap.EventId.INC1: this.#ROOT_inc1(); break; // First ancestor handler for this event
                     case TriggerMap.EventId.INC2: this.#ROOT_inc2(); break; // First ancestor handler for this event
@@ -458,7 +454,6 @@ evaluateGuard = null;
                     case TriggerMap.EventId.DIM2: this.#RED_dim2(); break;
                     case TriggerMap.EventId.INC2: this.#RED_inc2(); break;
                     case TriggerMap.EventId.INCITE_RESET: this.#RED_incite_reset(); break;
-                    // Events not handled by this state:
                     case TriggerMap.EventId.ERR: this.#ROOT_err(); break; // First ancestor handler for this event
                 }
                 break;

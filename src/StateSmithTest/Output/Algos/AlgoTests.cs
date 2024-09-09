@@ -27,7 +27,7 @@ public class AlgoTests
     }
 
     [Fact]
-    public void IntegrationTests_SingleEvent()
+    public void IntegrationTests_SingleEvent_C99_CSharp_Javascript_Java_Python()
     {
         const string basicSingleEventPlantUml = """
             @startuml RocketSm
@@ -44,7 +44,7 @@ public class AlgoTests
     }
 
     [Fact]
-    public void IntegrationTests_MultipleEvent()
+    public void IntegrationTests_MultipleEvent_C99_CSharp_Javascript_Java_Python()
     {
         const string basicSingleEventPlantUml = """
             @startuml RocketSm
@@ -81,6 +81,10 @@ public class AlgoTests
 
                 // Java only supports Balanced2 right now. See https://github.com/StateSmith/StateSmith/issues/395
                 if (transpilerId == TranspilerId.Java && algoId != AlgorithmId.Balanced2)
+                    continue;
+
+                // Python only supports Balanced2 right now. See https://github.com/StateSmith/StateSmith/issues/398
+                if (transpilerId == TranspilerId.Python && algoId != AlgorithmId.Balanced2)
                     continue;
 
                 var dirName = $"{outDir}/{algoId}_{transpilerId}";

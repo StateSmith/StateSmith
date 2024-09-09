@@ -5,6 +5,7 @@ using System.Text;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using Microsoft.CodeAnalysis.Formatting;
+using System;
 
 #nullable enable
 
@@ -94,6 +95,14 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         sb.Append(outputCode);
     }
 
+    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+    {
+        if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
+            return;
+
+        base.VisitFieldDeclaration(node);
+    }
+
     // delegates are assumed to be method pointers
     public override void VisitDelegateDeclaration(DelegateDeclarationSyntax node)
     {
@@ -170,7 +179,7 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
-        if (transpilerHelper.IsGilNoEmit(node))
+        if (transpilerHelper.IsGilData(node))
             return;
 
         MaybeOutputStaticDelegate(node);
@@ -257,6 +266,14 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         {
             base.VisitArgumentList(node);
         }
+    }
+
+    public override void VisitExpressionStatement(ExpressionStatementSyntax node)
+    {
+        if (transpilerHelper.HandleGilSpecialExpressionStatements(node, sb))
+            return;
+
+        base.VisitExpressionStatement(node);
     }
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)

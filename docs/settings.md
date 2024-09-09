@@ -29,56 +29,71 @@ AutoExpandedVars  = "stuff..."
 <br>
 
 # Table of Contents
-<!-- TOC start (generated with https://derlin.github.io/bitdowntoc/) -->
+<!-- TOC start (auto generated with https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) -->
 
+- [StateSmith Settings](#statesmith-settings)
+  - [Quick TOML Note](#quick-toml-note)
+    - [TOML Dotted Keys](#toml-dotted-keys)
+    - [TOML Table](#toml-table)
+- [Table of Contents](#table-of-contents)
 - [RenderConfig](#renderconfig)
-   * [RenderConfig.FileTop](#renderconfigfiletop)
-   * [RenderConfig.AutoExpandedVars](#renderconfigautoexpandedvars)
-      + [C99/C++ Toml Example](#c99c-toml-example)
-      + [CSharp Toml Example](#csharp-toml-example)
-      + [JavaSript Toml Example](#javasript-toml-example)
-   * [RenderConfig.VariableDeclarations](#renderconfigvariabledeclarations)
-   * [RenderConfig.DefaultVarExpTemplate](#renderconfigdefaultvarexptemplate)
-   * [RenderConfig.DefaultFuncExpTemplate](#renderconfigdefaultfuncexptemplate)
-   * [RenderConfig.DefaultAnyExpTemplate](#renderconfigdefaultanyexptemplate)
-   * [RenderConfig.TriggerMap](#renderconfigtriggermap)
+  - [RenderConfig.FileTop](#renderconfigfiletop)
+  - [RenderConfig.AutoExpandedVars](#renderconfigautoexpandedvars)
+    - [C99/C++ Toml Example](#c99c-toml-example)
+    - [CSharp Toml Example](#csharp-toml-example)
+    - [JavaSript Toml Example](#javasript-toml-example)
+  - [RenderConfig.VariableDeclarations](#renderconfigvariabledeclarations)
+  - [RenderConfig.DefaultVarExpTemplate](#renderconfigdefaultvarexptemplate)
+  - [RenderConfig.DefaultFuncExpTemplate](#renderconfigdefaultfuncexptemplate)
+  - [RenderConfig.DefaultAnyExpTemplate](#renderconfigdefaultanyexptemplate)
+    - [JavaScript Inheritance Example](#javascript-inheritance-example)
+    - [JavaScript Interface/Composition Example](#javascript-interfacecomposition-example)
+  - [RenderConfig.TriggerMap](#renderconfigtriggermap)
 - [RenderConfig.C](#renderconfigc)
-   * [RenderConfig.C.HFileTop](#renderconfigchfiletop)
-   * [RenderConfig.C.IncludeGuardLabel](#renderconfigcincludeguardlabel)
-   * [RenderConfig.C.HFileTopPostIncludeGuard](#renderconfigchfiletoppostincludeguard)
-   * [RenderConfig.C.HFileIncludes](#renderconfigchfileincludes)
-   * [RenderConfig.C.HFileBottomPreIncludeGuard](#renderconfigchfilebottompreincludeguard)
-   * [RenderConfig.C.HFileBottom](#renderconfigchfilebottom)
-   * [RenderConfig.C.CFileTop](#renderconfigccfiletop)
-   * [RenderConfig.C.CFileIncludes](#renderconfigccfileincludes)
-   * [RenderConfig.C.CFileBottom](#renderconfigccfilebottom)
-   * [RenderConfig.C.CFileExtension](#renderconfigccfileextension)
-   * [RenderConfig.C.HFileExtension](#renderconfigchfileextension)
-   * [RenderConfig.C.CEnumDeclarer](#renderconfigccenumdeclarer)
-   * [RenderConfig.C.UseStdBool](#renderconfigcusestdbool)
+  - [RenderConfig.C.HFileTop](#renderconfigchfiletop)
+  - [RenderConfig.C.IncludeGuardLabel](#renderconfigcincludeguardlabel)
+    - [Supports `{FILENAME}` and `{fileName}` replacements](#supports-filename-and-filename-replacements)
+  - [RenderConfig.C.HFileTopPostIncludeGuard](#renderconfigchfiletoppostincludeguard)
+  - [RenderConfig.C.HFileIncludes](#renderconfigchfileincludes)
+  - [RenderConfig.C.HFileBottomPreIncludeGuard](#renderconfigchfilebottompreincludeguard)
+  - [RenderConfig.C.HFileBottom](#renderconfigchfilebottom)
+  - [RenderConfig.C.CFileTop](#renderconfigccfiletop)
+  - [RenderConfig.C.CFileIncludes](#renderconfigccfileincludes)
+  - [RenderConfig.C.CFileBottom](#renderconfigccfilebottom)
+  - [RenderConfig.C.CFileExtension](#renderconfigccfileextension)
+  - [RenderConfig.C.HFileExtension](#renderconfigchfileextension)
+  - [RenderConfig.C.CEnumDeclarer](#renderconfigccenumdeclarer)
+  - [RenderConfig.C.UseStdBool](#renderconfigcusestdbool)
 - [RenderConfig.CSharp](#renderconfigcsharp)
-   * [RenderConfig.CSharp.NameSpace](#renderconfigcsharpnamespace)
-   * [RenderConfig.CSharp.Usings](#renderconfigcsharpusings)
-   * [RenderConfig.CSharp.ClassCode](#renderconfigcsharpclasscode)
-   * [RenderConfig.CSharp.BaseList](#renderconfigcsharpbaselist)
-   * [RenderConfig.CSharp.UseNullable](#renderconfigcsharpusenullable)
-   * [RenderConfig.CSharp.UsePartialClass](#renderconfigcsharpusepartialclass)
+  - [RenderConfig.CSharp.NameSpace](#renderconfigcsharpnamespace)
+  - [RenderConfig.CSharp.Usings](#renderconfigcsharpusings)
+  - [RenderConfig.CSharp.ClassCode](#renderconfigcsharpclasscode)
+  - [RenderConfig.CSharp.BaseList](#renderconfigcsharpbaselist)
+  - [RenderConfig.CSharp.UseNullable](#renderconfigcsharpusenullable)
+  - [RenderConfig.CSharp.UsePartialClass](#renderconfigcsharpusepartialclass)
 - [RenderConfig.JavaScript](#renderconfigjavascript)
-   * [RenderConfig.JavaScript.ClassCode](#renderconfigjavascriptclasscode)
-   * [RenderConfig.JavaScript.ExtendsSuperClass](#renderconfigjavascriptextendssuperclass)
-   * [RenderConfig.JavaScript.UseExportOnClass](#renderconfigjavascriptuseexportonclass)
-   * [RenderConfig.JavaScript.PrivatePrefix](#renderconfigjavascriptprivateprefix)
+  - [RenderConfig.JavaScript.ClassCode](#renderconfigjavascriptclasscode)
+  - [RenderConfig.JavaScript.ExtendsSuperClass](#renderconfigjavascriptextendssuperclass)
+  - [RenderConfig.JavaScript.UseExportOnClass](#renderconfigjavascriptuseexportonclass)
+  - [RenderConfig.JavaScript.PrivatePrefix](#renderconfigjavascriptprivateprefix)
 - [RenderConfig.Java](#renderconfigjava)
-   * [RenderConfig.Java.Package](#renderconfigjavapackage)
-    * [RenderConfig.Java.Imports](#renderconfigjavaimports)
-    * [RenderConfig.Java.Extends](#renderconfigjavaextends)
-    * [RenderConfig.Java.Implements](#renderconfigjavaimplements)
+  - [RenderConfig.Java.Package](#renderconfigjavapackage)
+  - [RenderConfig.Java.Imports](#renderconfigjavaimports)
+  - [RenderConfig.Java.Extends](#renderconfigjavaextends)
+  - [RenderConfig.Java.Implements](#renderconfigjavaimplements)
+  - [RenderConfig.Java.ClassCode](#renderconfigjavaclasscode)
+- [RenderConfig.Python](#renderconfigpython)
+  - [RenderConfig.Python.Imports](#renderconfigpythonimports)
+  - [RenderConfig.Python.Extends](#renderconfigpythonextends)
+  - [RenderConfig.Python.ClassCode](#renderconfigpythonclasscode)
 - [SmRunnerSettings](#smrunnersettings)
-   * [SmRunnerSettings.outputDirectory](#smrunnersettingsoutputdirectory)
-   * [SmRunnerSettings.outputCodeGenTimestamp](#smrunnersettingsoutputcodegentimestamp)
-   * [SmRunnerSettings.outputStateSmithVersionInfo](#smrunnersettingsoutputstatesmithversioninfo)
-   * [SmRunnerSettings.propagateExceptions](#smrunnersettingspropagateexceptions)
-   * [SmRunnerSettings.dumpErrorsToFile](#smrunnersettingsdumperrorstofile)
+  - [SmRunnerSettings.transpilerId](#smrunnersettingstranspilerid)
+  - [SmRunnerSettings.algorithmId](#smrunnersettingsalgorithmid)
+  - [SmRunnerSettings.outputDirectory](#smrunnersettingsoutputdirectory)
+  - [SmRunnerSettings.outputCodeGenTimestamp](#smrunnersettingsoutputcodegentimestamp)
+  - [SmRunnerSettings.outputStateSmithVersionInfo](#smrunnersettingsoutputstatesmithversioninfo)
+  - [SmRunnerSettings.propagateExceptions](#smrunnersettingspropagateexceptions)
+  - [SmRunnerSettings.dumpErrorsToFile](#smrunnersettingsdumperrorstofile)
 - [SmRunnerSettings.smDesignDescriber](#smrunnersettingssmdesigndescriber)
 - [SmRunnerSettings.algoBalanced1](#smrunnersettingsalgobalanced1)
 - [SmRunnerSettings.simulation](#smrunnersettingssimulation)
@@ -312,6 +327,7 @@ TriggerMap = """
 Maps to [IRenderConfigC](../src/StateSmith/Output/UserConfig/IRenderConfigC.cs) interface.
 
 ```toml
+[RenderConfig.C]
 HFileTop = ""
 HFileIncludes = ""
 CFileTop = ""
@@ -526,6 +542,7 @@ UseStdBool = false
 Maps to the [IRenderConfigCSharp](../src/StateSmith/Output/UserConfig/IRenderConfigCSharp.cs) interface.
 
 ```toml
+[RenderConfig.CSharp]
 NameSpace = ""
 Usings = ""
 ClassCode = ""
@@ -613,6 +630,7 @@ UsePartialClass = false
 Maps to the [IRenderConfigJavaScript](../src/StateSmith/Output/UserConfig/IRenderConfigJavaScript.cs) interface.
 
 ```toml
+[RenderConfig.JavaScript]
 ClassCode = ""
 ExtendsSuperClass = "MyUserBaseClass"
 UseExportOnClass = true
@@ -673,6 +691,7 @@ PrivatePrefix = "_"
 Maps to the [IRenderConfigJava](../src/StateSmith/Output/UserConfig/IRenderConfigJava.cs) interface.
 
 ```toml
+[RenderConfig.Java]
 Package = "my.package.for.statemachine"
 Imports = """
     import java.util.*; // or whatever you need
@@ -738,6 +757,64 @@ ClassCode = """
     // Add custom code here...
     """
 ```
+
+
+
+
+<br>
+<br>
+
+# RenderConfig.Python
+Maps to the [IRenderConfigPython](../src/StateSmith/Output/UserConfig/IRenderConfigPython.cs) interface.
+
+```toml
+[RenderConfig.Python]
+Imports = """
+    # from some_module import some_function
+    """
+Extends = "MyUserBaseClass"
+ClassCode = """
+    # Add custom code here to inject into the generated class.
+    # Inheritance or composition might be a better choice.
+    """
+```
+
+## RenderConfig.Python.Imports
+Type: `string`
+
+Use to add import statements to the generated class. Can span multiple lines.
+
+```toml
+[RenderConfig.Python]
+Imports = """
+    # from some_module import some_function
+    """
+```
+
+## RenderConfig.Python.Extends
+Type: `string`
+
+Use to have generated state machine class extend a user defined base class.
+
+```toml
+[RenderConfig.Python]
+Extends = "MyUserBaseClass"
+```
+
+## RenderConfig.Python.ClassCode
+Type: `string`
+
+Use to add custom code to generated state machine class. Inheritance or composition is often a better choice.
+
+```toml
+[RenderConfig.Python]
+ClassCode = """
+    # Add custom code here...
+    """
+```
+
+
+
 
 <br>
 <br>
@@ -899,12 +976,13 @@ afterTransformations  = true
 # SmRunnerSettings.algoBalanced1
 Info: https://github.com/StateSmith/StateSmith/issues/181
 
-You can tell StateSmith that you don't want it to generate an event ID or state ID to string function with the below settings.
+You can customize the output of the `Balanced1` and `Balanced2` algorithms with the below settings. `Balanced2` is a variant of `Balanced1`.
 
 ```toml
 [SmRunnerSettings.algoBalanced1]
 outputEventIdToStringFunction = false
 outputStateIdToStringFunction = false
+omitEmptySwitchAndCases = true  # only used for Balanced2
 ```
 
 # SmRunnerSettings.simulation

@@ -98,6 +98,14 @@ public class C99GenVisitor : CSharpSyntaxWalker
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileBottom);
     }
 
+    public override void VisitExpressionStatement(ExpressionStatementSyntax node)
+    {
+        if (transpilerHelper.HandleGilSpecialExpressionStatements(node, sb))
+            return;
+
+        base.VisitExpressionStatement(node);
+    }
+
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {
         bool done = false;
@@ -236,7 +244,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
     {
         List<SyntaxNode> kids = new();
         kids.AddRange(node.ChildNodes().OfType<ConstructorDeclarationSyntax>());
-        kids.AddRange(node.ChildNodes().OfType<MethodDeclarationSyntax>().Where(mds => !transpilerHelper.IsGilNoEmit(mds)));
+        kids.AddRange(node.ChildNodes().OfType<MethodDeclarationSyntax>().Where(mds => !transpilerHelper.IsGilData(mds)));
         return kids;
     }
 
@@ -323,7 +331,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
     {
         sb = node.IsPublic() ? publicSb : privateSb;
 
-        if (transpilerHelper.IsGilNoEmit(node))
+        if (transpilerHelper.IsGilData(node))
         {
             return;
         }
@@ -649,6 +657,9 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
+        if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
+            return;
+
         bool done = false;
         bool useDefine = false;
         bool useEnum = true;

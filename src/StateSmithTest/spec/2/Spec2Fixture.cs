@@ -32,10 +32,10 @@ public class Spec2Fixture : SpecFixture
 {
     public static string Spec2Directory => SpecInputDirectoryPath + "2/";
 
-    public static void CompileAndRun(IRenderConfig renderConfig, string outputDir, Action<SmRunner>? action = null)
+    public static void CompileAndRun(IRenderConfig renderConfig, string outputDir, Action<SmRunner>? action = null, string semiColon = ";", string trueString = "true")
     {
         var diagramFile = Spec2Directory + "Spec2Sm.graphml";
-        CompileAndRun(renderConfig, diagramFile, outputDir, smRunnerAction: action);
+        CompileAndRun(renderConfig, diagramFile, outputDir, smRunnerAction: action, semiColon: semiColon, trueString: trueString);
     }
 }
 

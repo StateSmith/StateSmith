@@ -14,6 +14,7 @@ public enum TranspilerId
     CSharp,
     JavaScript,
     Java,
+    Python,
 }
 
 

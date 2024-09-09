@@ -67,8 +67,28 @@ Imports = """
 //!!</filter>
 
 
+//!!<filter:Python>
+AutoExpandedVars = """
+    self.count = 0  # this var can be referenced in diagram
+    """
+
+[RenderConfig.Python]
+Imports = """
+    # whatever you need to import
+    # from some_module import some_function
+    """
+Extends = "MyUserBaseClass"
+ClassCode = """
+    # Add custom code here to inject into the generated class.
+    # Inheritance or composition might be a better choice.
+    """
+
+//!!</filter>
+
+
 [SmRunnerSettings]
 transpilerId = "C99"  //!!<line-filter:C,CppC>
 transpilerId = "CSharp"  //!!<line-filter:CSharp>
 transpilerId = "JavaScript"  //!!<line-filter:JavaScript>
 transpilerId = "Java"  //!!<line-filter:Java>
+transpilerId = "Python"  //!!<line-filter:Python>

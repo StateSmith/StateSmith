@@ -70,6 +70,14 @@ public class JavaGilVisitor : CSharpSyntaxWalker
         this.Visit(transpilerHelper.root);
     }
 
+    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+    {
+        if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
+            return;
+
+        base.VisitFieldDeclaration(node);
+    }
+
     public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
     {
         // older versions of Java don't like `case StateId.ROOT:` they want `case ROOT:`.
@@ -132,7 +140,7 @@ public class JavaGilVisitor : CSharpSyntaxWalker
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
-        if (transpilerHelper.IsGilNoEmit(node))
+        if (transpilerHelper.IsGilData(node))
             return;
 
         MaybeOutputStaticDelegate(node);
@@ -210,6 +218,14 @@ public class JavaGilVisitor : CSharpSyntaxWalker
         {
             base.VisitArgumentList(node);
         }
+    }
+
+    public override void VisitExpressionStatement(ExpressionStatementSyntax node)
+    {
+        if (transpilerHelper.HandleGilSpecialExpressionStatements(node, sb))
+            return;
+
+        base.VisitExpressionStatement(node);
     }
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)

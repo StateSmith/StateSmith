@@ -95,7 +95,7 @@ public class WrappingExpander
             return partResult;
         });
 
-        var result = GilCreationHelper.GilVisitVarArgsBoolReturnFuncName + "(" + wrappedArgs + ")";
+        var result = GilCreationHelper.GilFuncName_VarArgsToBool + "(" + wrappedArgs + ")";
         return result;
     }
 
@@ -111,7 +111,7 @@ public class WrappingExpander
             string partResult = "";
 
             if (codeType == XML_FINAL_CODE_TAG_NAME)
-                partResult += PostProcessor.RmCommentOut(value);
+                partResult += GilCreationHelper.WrapRawCodeWithVoidReturn(value);
             else if (codeType == XML_GIL_CODE_TAG_NAME)
                 partResult += value;
             else

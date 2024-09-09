@@ -51,7 +51,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
-        if (transpilerHelper.IsGilNoEmit(node))
+        if (transpilerHelper.IsGilData(node))
             return;
 
         VisitLeadingTrivia(node.GetFirstToken());
@@ -157,6 +157,9 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
+        if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
+            return;
+
         VisitLeadingTrivia(node.GetFirstToken());
 
         if (node.IsConst())
@@ -186,9 +189,20 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
             var fields = symbol.GetMembers().OfType<IFieldSymbol>();
 
+            const string Indentation = "        ";
+
             foreach (var field in fields)
             {
-                sb.AppendLine("        " + field.Name + ": undefined,");
+                if (field.Name.StartsWith(GilCreationHelper.GilFieldName_EchoString))
+                {
+                    // tidy up with https://github.com/StateSmith/StateSmith/issues/400
+                    var originalCode = GilTranspilerHelper.GetOriginalCodeFromGilFieldEcho(field.DeclaringSyntaxReferences.Single().GetSyntax().AncestorsAndSelf().OfType<FieldDeclarationSyntax>().Single());
+                    sb.AppendLine(Indentation + originalCode);
+                }
+                else
+                {
+                    sb.AppendLine(Indentation + field.Name + ": undefined,");
+                }
             }
 
             var structDeclarationSyntax = (StructDeclarationSyntax)(symbol.DeclaringSyntaxReferences.Single().GetSyntax());
@@ -247,6 +261,14 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
     public override void VisitAttributeList(AttributeListSyntax node)
     {
         VisitLeadingTrivia(node.GetFirstToken());
+    }
+
+    public override void VisitExpressionStatement(ExpressionStatementSyntax node)
+    {
+        if (transpilerHelper.HandleGilSpecialExpressionStatements(node, sb))
+            return;
+
+        base.VisitExpressionStatement(node);
     }
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)

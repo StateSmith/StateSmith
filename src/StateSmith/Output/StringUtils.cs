@@ -1,6 +1,9 @@
+#nullable enable
+
 using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace StateSmith.Output;
@@ -83,6 +86,53 @@ public class StringUtils
         return output;
     }
 
+    public static string FindIndent(string str)
+    {
+        var regex = new Regex(@"(?m)^([ \t]+)\z"); // \z is end of string
+        string indent = regex.Match(str).Groups[1].Value;
+
+        return indent;
+    }
+
+    /// <summary>
+    /// See unit tests for examples. If no indent is found, returns empty string.
+    /// </summary>
+    /// <param name="sb"></param>
+    /// <returns></returns>
+    public static string FindLastIndent(StringBuilder sb)
+    {
+        int endExclusive = sb.Length;
+        int start = sb.Length - 1;
+
+        // walk backwards from end of string
+        while (start >= 0)
+        {
+            char c = sb[start];
+            if (c == ' ' || c == '\t')
+            {
+                start--;
+            }
+            else if (c == '\n' || c == '\r')
+            {
+                break;
+            }
+            else
+            {
+                endExclusive = start;
+                start--;
+            }
+        }
+
+        start++;
+
+        if (start == endExclusive)
+        {
+            return "";
+        }
+
+        return sb.ToString(start, endExclusive - start);
+    }
+
     /// <summary>
     /// Trims trailing new line and horizontal white space
     /// </summary>
@@ -156,7 +206,34 @@ public class StringUtils
 
         return result;
     }
-    
+
+    internal static string RemovePythonStringsAndComments(string code)
+    {
+        // have to match all elements that can affect each other at the same time.
+        // For example, a string literal can contain a comment, and a comment can contain a string literal.
+        var regex = new Regex(@"(?x)
+                # string literal
+                ""
+                (?:
+                    \\. # escape
+                    |
+                    [\s\S] *? # anything, lazy
+                )
+                ""
+                |
+                """""" # triple double quotes
+                [\s\S] *? # anything, lazy
+                """"""
+                |
+                \# [^\r\n]*
+            ");
+
+        var result = regex.Replace(code, "");
+        return result;
+    }
+
+
+
     internal static string AppendWithNewlineIfNeeded(string str, string toAppend)
     {
         AppendInPlaceWithNewlineIfNeeded(ref str, toAppend);

@@ -37,7 +37,7 @@ state ON_GROUP {
 [*] -> OFF
 
 'OFF
-OFF: enter / print("---");
+OFF: enter / print("---"){{SC}}
 OFF --> ON1 : inc
 OFF --> ON_GROUP: toggle
 
@@ -45,18 +45,18 @@ OFF --> ON_GROUP: toggle
 ON_GROUP --> OFF: toggle
 
 'ON1
-ON1: enter / print("$--");
+ON1: enter / print("$--"){{SC}}
 ON1 --> ON2 : inc
 ON1 --> OFF : dim
 
 'ON2
-ON2: enter / print("$$-");
+ON2: enter / print("$$-"){{SC}}
 ON2 --> ON3 : inc
 ON2 --> ON1 : dim
 
 'ON3
-ON3: enter / print("$$$");
-ON3: enter / count++;
+ON3: enter / print("$$$"){{SC}}
+ON3: enter / count += 1{{SC}}
 ON3 --> ON2 : dim
 
 

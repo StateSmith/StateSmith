@@ -1,4 +1,4 @@
-﻿namespace StateSmith.Output.UserConfig;
+namespace StateSmith.Output.UserConfig;
 
 public interface IRenderConfigJava : IRenderConfig
 {
@@ -11,5 +11,4 @@ public interface IRenderConfigJava : IRenderConfig
     /// Use to add custom code to generated state machine class.
     /// </summary>
     string ClassCode => "";
-
 }

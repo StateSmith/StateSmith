@@ -6,6 +6,24 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
+
+## [0.14.0]
+### Added
+- `create` command - add support for `Python` language
+  - minor change to templates to support Python (`count++` became `count += 1`...)
+  - https://github.com/StateSmith/StateSmith/issues/397
+
+### Upgrade StateSmith library version to [0.15.0]
+#### Added
+- Add `Python` transpiler (only supports algorithm `Balanced2` right now).
+  - Uses Python 3.10 match case for event dispatching.
+  - https://github.com/StateSmith/StateSmith/issues/397
+- Add option to omit empty switch/case statements in generated code.
+  - defaults to true for all languages except C/C++ which often warn on unused enum values in switch statements.
+  - setting: `SmRunnerSettings.algoBalanced1.omitEmptySwitchAndCases`
+
+---
+
 ## [0.13.0]
 ### Added
 - `create` command - add support for `java` language

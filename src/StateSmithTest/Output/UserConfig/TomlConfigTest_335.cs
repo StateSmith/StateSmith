@@ -224,6 +224,16 @@ public class TomlConfigTest_335
             enableGeneration = true
             outputDirectory = ".."
             outputFileNamePostfix = ".sim.html"
+
+            [RenderConfig.Python]
+            Imports = """
+                # from some_module import some_function
+                """
+            Extends = "MyUserBaseClass"
+            ClassCode = """
+                # Add custom code here to inject into the generated class.
+                # Inheritance or composition might be a better choice.
+                """
             """";
 
         reader.Read(toml);

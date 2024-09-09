@@ -26,6 +26,11 @@ public class RenderConfigAllVars
     /// </summary>
     public readonly RenderConfigJavaVars Java;
 
+    /// <summary>
+    /// NOTE! Field name used with reflection for toml parsing.
+    /// </summary>
+    public readonly RenderConfigPythonVars Python;
+
     public RenderConfigAllVars()
     {
         Base = new RenderConfigBaseVars();
@@ -33,5 +38,6 @@ public class RenderConfigAllVars
         CSharp = new RenderConfigCSharpVars();
         JavaScript = new RenderConfigJavaScriptVars();
         Java = new RenderConfigJavaVars();
+        Python = new RenderConfigPythonVars();
     }
 }

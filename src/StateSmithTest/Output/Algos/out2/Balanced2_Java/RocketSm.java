@@ -80,12 +80,7 @@ public class RocketSm
         {
             // STATE: RocketSm
             case ROOT:
-                switch (eventId)
-                {
-                    // Events not handled by this state:
-                    case EV1: break;
-                    case EV2: break;
-                }
+                // No events handled by this state (or its ancestors).
                 break;
             
             // STATE: group
@@ -93,8 +88,6 @@ public class RocketSm
                 switch (eventId)
                 {
                     case EV1: GROUP_ev1(); break;
-                    // Events not handled by this state:
-                    case EV2: break;
                 }
                 break;
             
@@ -103,8 +96,6 @@ public class RocketSm
                 switch (eventId)
                 {
                     case EV1: G1_ev1(); break;
-                    // Events not handled by this state:
-                    case EV2: break;
                 }
                 break;
             
@@ -113,19 +104,13 @@ public class RocketSm
                 switch (eventId)
                 {
                     case EV2: G2_ev2(); break;
-                    // Events not handled by this state:
                     case EV1: GROUP_ev1(); break; // First ancestor handler for this event
                 }
                 break;
             
             // STATE: s1
             case S1:
-                switch (eventId)
-                {
-                    // Events not handled by this state:
-                    case EV1: break;
-                    case EV2: break;
-                }
+                // No events handled by this state (or its ancestors).
                 break;
         }
         
