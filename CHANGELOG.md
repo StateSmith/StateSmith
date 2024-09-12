@@ -29,7 +29,7 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
-## [0.15.?]
+## [0.15.1]
 ### Changed (minor)
 - C/C++ - `Balanced2` algorithm - remove empty switch/case statements.
     - Remove pointless `SmRunnerSettings.algoBalanced1.omitEmptySwitchAndCases` setting & simplify logic.
