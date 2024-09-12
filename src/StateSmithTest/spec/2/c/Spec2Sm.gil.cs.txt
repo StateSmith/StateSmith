@@ -339,21 +339,8 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.DO: this.ROOT_do(); break;
-                // Events not handled by this state:
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -361,22 +348,9 @@ public void dispatch_event(EventId event_id)
         case StateId.PREFIXING:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -384,22 +358,9 @@ public void dispatch_event(EventId event_id)
         case StateId.PREFIXING__ORDER_MENU:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -408,21 +369,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.PREFIXING__OM__BEVERAGE_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -431,21 +380,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.PREFIXING__OM__BEV__NONE_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -453,22 +391,10 @@ public void dispatch_event(EventId event_id)
         case StateId.PREFIXING__OM__BEV__TEA:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -477,21 +403,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.PREFIXING__OM__BEV__WATER_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -500,21 +415,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.PREFIXING__OM__VEG_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -523,21 +426,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.PREFIXING__OM__VEG__NONE_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -546,21 +438,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.PREFIXING__OM__VEG__POTATO_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -568,22 +449,10 @@ public void dispatch_event(EventId event_id)
         case StateId.PREFIXING__OM__VEG__YAM:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -591,22 +460,9 @@ public void dispatch_event(EventId event_id)
         case StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -614,22 +470,9 @@ public void dispatch_event(EventId event_id)
         case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -638,21 +481,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -661,21 +492,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -683,22 +503,10 @@ public void dispatch_event(EventId event_id)
         case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -707,21 +515,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -730,21 +527,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -753,21 +538,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -776,21 +550,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -798,22 +561,10 @@ public void dispatch_event(EventId event_id)
         case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -832,11 +583,8 @@ public void dispatch_event(EventId event_id)
                 case EventId.EV9: this.SPEC2SM__DECIDE_ev9(); break;
                 case EventId.EV10: this.SPEC2SM__DECIDE_ev10(); break;
                 case EventId.DO: this.SPEC2SM__DECIDE_do(); break;
-                // Events not handled by this state:
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -844,22 +592,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST1_DO_EVENT_TESTING:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -868,21 +603,8 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.DO: this.TEST1_ROOT_do(); break;
-                // Events not handled by this state:
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -890,22 +612,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST1_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.TEST1_ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -915,20 +624,8 @@ public void dispatch_event(EventId event_id)
             {
                 case EventId.DO: this.TEST1_S1_1_do(); break;
                 case EventId.EV1: this.TEST1_S1_1_ev1(); break;
-                // Events not handled by this state:
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -937,21 +634,8 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.DO: this.TEST1_S2_do(); break;
-                // Events not handled by this state:
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -959,22 +643,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST10_CHOICE_POINT:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -982,22 +653,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST10_A:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1005,22 +663,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST10_A_1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1029,21 +674,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV5: this.TEST10_ROOT_ev5(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1051,22 +684,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST10_G:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1074,22 +695,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST10_G_S0:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1097,22 +706,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST10_G_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1120,22 +717,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST10_G_S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1143,22 +728,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST10_G_S3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1170,18 +743,10 @@ public void dispatch_event(EventId event_id)
                 case EventId.EV3: this.TEST10_S1_ev3(); break;
                 case EventId.EV1: this.TEST10_S1_ev1(); break;
                 case EventId.EV10: this.TEST10_S1_ev10(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1189,22 +754,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST10_S4:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1212,22 +765,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST2_REGULAR_EVENT_TESTING:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1238,19 +778,8 @@ public void dispatch_event(EventId event_id)
                 case EventId.EV1: this.TEST2_ROOT_ev1(); break;
                 case EventId.EV2: this.TEST2_ROOT_ev2(); break;
                 case EventId.DO: this.TEST2_ROOT_do(); break;
-                // Events not handled by this state:
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1258,22 +787,11 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST2_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.TEST2_ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST2_ROOT_ev1(); break; // First ancestor handler for this event
                 case EventId.EV2: this.TEST2_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1283,20 +801,9 @@ public void dispatch_event(EventId event_id)
             {
                 case EventId.EV1: this.TEST2_S1_1_ev1(); break;
                 case EventId.DO: this.TEST2_S1_1_do(); break;
-                // Events not handled by this state:
                 case EventId.EV2: this.TEST2_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1306,20 +813,9 @@ public void dispatch_event(EventId event_id)
             {
                 case EventId.EV1: this.TEST2_S2_ev1(); break;
                 case EventId.EV2: this.TEST2_S2_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.TEST2_ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1327,22 +823,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST3_BEHAVIOR_ORDERING:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1351,21 +834,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST3_ROOT_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1374,21 +845,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST3_S1_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1397,21 +856,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST3_S2_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1419,22 +866,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST3_S3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST3_ROOT_ev1(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1442,22 +877,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST4_PARENT_CHILD_TRANSITIONS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1465,22 +887,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST4_B_AND_OTHERS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1488,22 +897,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST4B_LOCAL:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1512,21 +908,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST4B_G_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1535,21 +919,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.TEST4B_G_1_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST4B_G_ev1(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1557,22 +930,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST4C_LOCAL_TO_ALIAS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1581,21 +941,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST4C_G_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1604,21 +952,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.TEST4C_G_1_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST4C_G_ev1(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1626,22 +963,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST4D_EXTERNAL:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1650,21 +974,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST4D_G_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1673,21 +985,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.TEST4D_G_1_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST4D_G_ev1(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1699,18 +1000,9 @@ public void dispatch_event(EventId event_id)
                 case EventId.EV2: this.TEST4_DECIDE_ev2(); break;
                 case EventId.EV3: this.TEST4_DECIDE_ev3(); break;
                 case EventId.EV4: this.TEST4_DECIDE_ev4(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1721,19 +1013,9 @@ public void dispatch_event(EventId event_id)
                 case EventId.EV2: this.TEST4_ROOT_ev2(); break;
                 case EventId.EV3: this.TEST4_ROOT_ev3(); break;
                 case EventId.EV4: this.TEST4_ROOT_ev4(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1742,21 +1024,12 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST4_S1_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                 case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                 case EventId.EV4: this.TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1765,21 +1038,11 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV4: this.TEST4_S10_ev4(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                 case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1787,22 +1050,12 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST4_S10_1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                 case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                 case EventId.EV4: this.TEST4_S10_ev4(); break; // First ancestor handler for this event
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1811,21 +1064,12 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST4_S2_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                 case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                 case EventId.EV4: this.TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1834,21 +1078,11 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV4: this.TEST4_S20_ev4(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                 case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1856,22 +1090,12 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST4_S20_1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                 case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                 case EventId.EV4: this.TEST4_S20_ev4(); break; // First ancestor handler for this event
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1880,21 +1104,12 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST4_S3_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                 case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                 case EventId.EV4: this.TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1902,22 +1117,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1926,21 +1128,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.TEST5_ROOT_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1949,21 +1139,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST5_S1_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1972,21 +1151,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST5_S2_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1995,21 +1163,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST5_S3_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2017,22 +1174,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST6_VARS_EXPANSIONS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2040,22 +1184,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST6_ROOT:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2063,22 +1194,9 @@ public void dispatch_event(EventId event_id)
         case StateId.AUTO_VAR_TEST:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2087,21 +1205,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.AUTO_VAR_TEST__S1_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2109,22 +1215,9 @@ public void dispatch_event(EventId event_id)
         case StateId.AUTO_VAR_TEST__S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2132,22 +1225,9 @@ public void dispatch_event(EventId event_id)
         case StateId.META_EXPANSIONS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2156,21 +1236,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.META_EXPANSIONS__S1_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2180,20 +1248,9 @@ public void dispatch_event(EventId event_id)
             {
                 case EventId.EV1: this.META_EXPANSIONS__S2_ev1(); break;
                 case EventId.EV2: this.META_EXPANSIONS__S2_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2202,21 +1259,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.S3_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2224,22 +1269,9 @@ public void dispatch_event(EventId event_id)
         case StateId.S4:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2247,22 +1279,9 @@ public void dispatch_event(EventId event_id)
         case StateId.S5:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2270,22 +1289,9 @@ public void dispatch_event(EventId event_id)
         case StateId.NORMAL:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2294,21 +1300,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.NORMAL__S1_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2316,22 +1310,9 @@ public void dispatch_event(EventId event_id)
         case StateId.NORMAL__S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2342,19 +1323,9 @@ public void dispatch_event(EventId event_id)
                 case EventId.EV1: this.TEST6_VARS_EXPANSIONS__DECIDE_ev1(); break;
                 case EventId.EV2: this.TEST6_VARS_EXPANSIONS__DECIDE_ev2(); break;
                 case EventId.EV3: this.TEST6_VARS_EXPANSIONS__DECIDE_ev3(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2362,22 +1333,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST7_INITIAL_OR_HISTORY:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2385,22 +1343,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST7:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2408,22 +1353,9 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DEEP_HISTORY1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2431,22 +1363,9 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DH1__SANTAS_WORKSHOP:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2455,21 +1374,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2477,22 +1384,10 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DH1__GET_BACKUP:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
                 case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2500,22 +1395,10 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DH1__HERO:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
                 case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2524,21 +1407,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__DH1__CALL_BATMAN_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
                 case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2547,21 +1419,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__DH1__CALL_THOR_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
                 case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2569,22 +1430,10 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DH1__LOCAL_HELP:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
                 case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2593,21 +1442,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__DH1__BUDDY_ELF_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
                 case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2615,22 +1453,10 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DH1__POLAR_BEARS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
                 case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2639,21 +1465,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__DH1__GIVE_COOKIES_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
                 case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2662,21 +1477,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__DH1__SNOWBALL_FIGHT_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
                 case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2686,20 +1490,9 @@ public void dispatch_event(EventId event_id)
             {
                 case EventId.EV6: this.T7__DH1__BUILD_ev6(); break;
                 case EventId.EV7: this.T7__DH1__BUILD_ev7(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2708,21 +1501,11 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.T7__DH1__TOOL_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                 case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2730,22 +1513,12 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DH1__CIRCULAR_SAW:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                 case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2754,21 +1527,12 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__DH1__IMPACT_DRILL_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV2: this.T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                 case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2777,21 +1541,11 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__DH1__TOY_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                 case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2800,21 +1554,11 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__DH1__GLOW_WORM_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                 case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2823,21 +1567,11 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__DH1__RACE_CAR_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                 case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2845,22 +1579,12 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DH1__ROBOT:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                 case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2869,21 +1593,11 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__DH1__BATTLEBOT_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                 case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2891,22 +1605,12 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DH1__WALL_E:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                 case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2915,21 +1619,11 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__DH1__TEDDY_BEAR_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                 case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2937,22 +1631,9 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DEEP_HISTORY2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2961,21 +1642,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EVOPEN: this.T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2984,21 +1653,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EVSTEP: this.T7__DEEP_HISTORY2__T7__STATE_1_evstep(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
                 case EventId.EVOPEN: this.T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3007,21 +1665,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EVBACK: this.T7__DEEP_HISTORY2__T7__STATE_2_evback(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
                 case EventId.EVOPEN: this.T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                case EventId.EVSTEP: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3030,21 +1677,11 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EVSTEP: this.T7__DEEP_HISTORY2__T7__STATE_6_evstep(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
                 case EventId.EVOPEN: this.T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
                 case EventId.EVBACK: this.T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3052,22 +1689,11 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DEEP_HISTORY2__T7__STATE_9:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
                 case EventId.EVOPEN: this.T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                case EventId.EVSTEP: break;
                 case EventId.EVBACK: this.T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3076,21 +1702,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EVCLOSE: this.T7__DEEP_HISTORY2__T7__STATE_3_evclose(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3098,22 +1712,9 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DEEP_HISTORY3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3122,21 +1723,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EVOPEN: this.T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3145,21 +1734,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EVSTEP: this.T7__DEEP_HISTORY3__T7__STATE_1_evstep(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
                 case EventId.EVOPEN: this.T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3168,21 +1746,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EVBACK: this.T7__DEEP_HISTORY3__T7__STATE_2_evback(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
                 case EventId.EVOPEN: this.T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                case EventId.EVSTEP: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3191,21 +1758,11 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EVSTEP: this.T7__DEEP_HISTORY3__T7__STATE_6_evstep(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
                 case EventId.EVOPEN: this.T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
                 case EventId.EVBACK: this.T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3213,22 +1770,11 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__DEEP_HISTORY3__T7__STATE_9:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
                 case EventId.EVOPEN: this.T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                case EventId.EVSTEP: break;
                 case EventId.EVBACK: this.T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3237,21 +1783,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EVCLOSE: this.T7__DEEP_HISTORY3__T7__STATE_3_evclose(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3259,22 +1793,9 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__HISTORY1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3285,19 +1806,9 @@ public void dispatch_event(EventId event_id)
                 case EventId.EV3: this.T7__H1__OFF_ev3(); break;
                 case EventId.EV4: this.T7__H1__OFF_ev4(); break;
                 case EventId.EV7: this.T7__H1__OFF_ev7(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3306,21 +1817,12 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__H1__OFF1_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
                 case EventId.EV3: this.T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                 case EventId.EV4: this.T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                case EventId.EV5: break;
-                case EventId.EV6: break;
                 case EventId.EV7: this.T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3329,21 +1831,12 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__H1__OFF2_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
                 case EventId.EV3: this.T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                 case EventId.EV4: this.T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                case EventId.EV5: break;
-                case EventId.EV6: break;
                 case EventId.EV7: this.T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3351,22 +1844,12 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__H1__OFF3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
                 case EventId.EV3: this.T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                 case EventId.EV4: this.T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                case EventId.EV5: break;
-                case EventId.EV6: break;
                 case EventId.EV7: this.T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3375,21 +1858,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV6: this.T7__H1__ON_ev6(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3398,21 +1869,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__H1__ON1_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3421,21 +1881,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__H1__ON2_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3444,21 +1893,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.T7__H1__ON3_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
                 case EventId.EV6: this.T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3466,22 +1904,9 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__INITIAL1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3490,21 +1915,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3513,21 +1926,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.T7__INITIAL1__G_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3535,22 +1937,11 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__INITIAL1__G_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3558,22 +1949,11 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__INITIAL1__G_S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3581,22 +1961,11 @@ public void dispatch_event(EventId event_id)
         case StateId.T7__INITIAL1__G_S3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3606,20 +1975,10 @@ public void dispatch_event(EventId event_id)
             {
                 case EventId.EV1: this.T7__INITIAL1__S1_ev1(); break;
                 case EventId.EV3: this.T7__INITIAL1__S1_ev3(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3632,17 +1991,9 @@ public void dispatch_event(EventId event_id)
                 case EventId.EV3: this.TEST7_DECIDE_ev3(); break;
                 case EventId.EV4: this.TEST7_DECIDE_ev4(); break;
                 case EventId.EV5: this.TEST7_DECIDE_ev5(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3650,22 +2001,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST8_ENTRY_CHOICE:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3675,20 +2013,9 @@ public void dispatch_event(EventId event_id)
             {
                 case EventId.EV5: this.TEST8_ROOT_ev5(); break;
                 case EventId.EV3: this.TEST8_ROOT_ev3(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV4: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3697,21 +2024,11 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.TEST8_G_ev2(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV3: this.TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3719,22 +2036,12 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST8_G_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.TEST8_G_ev2(); break; // First ancestor handler for this event
                 case EventId.EV3: this.TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3742,22 +2049,12 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST8_G_S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.TEST8_G_ev2(); break; // First ancestor handler for this event
                 case EventId.EV3: this.TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3765,22 +2062,12 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST8_G_S3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
                 case EventId.EV2: this.TEST8_G_ev2(); break; // First ancestor handler for this event
                 case EventId.EV3: this.TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3791,19 +2078,10 @@ public void dispatch_event(EventId event_id)
                 case EventId.EV1: this.TEST8_S1_ev1(); break;
                 case EventId.EV3: this.TEST8_S1_ev3(); break;
                 case EventId.EV6: this.TEST8_S1_ev6(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3811,22 +2089,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9_EXIT_CHOICE:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3837,19 +2102,9 @@ public void dispatch_event(EventId event_id)
                 case EventId.EV1: this.TEST9_DECIDE_ev1(); break;
                 case EventId.EV2: this.TEST9_DECIDE_ev2(); break;
                 case EventId.EV3: this.TEST9_DECIDE_ev3(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3858,21 +2113,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV5: this.TEST9_ROOT_ev5(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3880,22 +2123,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9_G_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3903,22 +2134,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9_G_S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3926,22 +2145,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9_G_S3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3949,22 +2156,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9_G_S4:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3972,22 +2167,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3996,21 +2179,10 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST9_S1_1_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
                 case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4018,22 +2190,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9A_ROOT:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4041,22 +2200,9 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9A_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4065,21 +2211,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST9A_S1_1_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4088,21 +2222,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST9B_ROOT_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4110,22 +2232,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9B_ROOT__A1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4133,22 +2243,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9B_ROOT__A2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4156,22 +2254,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9B_ROOT__A3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4180,21 +2266,9 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.TEST9B_ROOT__A4_ev1(); break;
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4202,22 +2276,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9B_ROOT__B1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4225,22 +2287,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9B_ROOT__B2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4248,22 +2298,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9B_ROOT__B3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4271,22 +2309,10 @@ public void dispatch_event(EventId event_id)
         case StateId.TEST9B_ROOT__B4:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                 case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4294,22 +2320,9 @@ public void dispatch_event(EventId event_id)
         case StateId.UNREACHABLE:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4317,22 +2330,9 @@ public void dispatch_event(EventId event_id)
         case StateId.USELESS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-                case EventId.EV3: break;
-                case EventId.EV4: break;
-                case EventId.EV5: break;
-                case EventId.EV6: break;
-                case EventId.EV7: break;
-                case EventId.EV8: break;
-                case EventId.EV9: break;
-                case EventId.EV10: break;
-                case EventId.EVOPEN: break;
-                case EventId.EVSTEP: break;
-                case EventId.EVBACK: break;
-                case EventId.EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
     }

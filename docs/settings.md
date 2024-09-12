@@ -982,7 +982,6 @@ You can customize the output of the `Balanced1` and `Balanced2` algorithms with 
 [SmRunnerSettings.algoBalanced1]
 outputEventIdToStringFunction = false
 outputStateIdToStringFunction = false
-omitEmptySwitchAndCases = true  # only used for Balanced2
 ```
 
 # SmRunnerSettings.simulation

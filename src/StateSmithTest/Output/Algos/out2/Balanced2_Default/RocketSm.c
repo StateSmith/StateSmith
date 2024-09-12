@@ -89,12 +89,7 @@ void RocketSm_dispatch_event(RocketSm* sm, RocketSm_EventId event_id)
     {
         // STATE: RocketSm
         case RocketSm_StateId_ROOT:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case RocketSm_EventId_EV1: break;
-                case RocketSm_EventId_EV2: break;
-            }
+            // No events handled by this state (or its ancestors).
             break;
         
         // STATE: group
@@ -102,8 +97,8 @@ void RocketSm_dispatch_event(RocketSm* sm, RocketSm_EventId event_id)
             switch (event_id)
             {
                 case RocketSm_EventId_EV1: GROUP_ev1(sm); break;
-                // Events not handled by this state:
-                case RocketSm_EventId_EV2: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -112,8 +107,8 @@ void RocketSm_dispatch_event(RocketSm* sm, RocketSm_EventId event_id)
             switch (event_id)
             {
                 case RocketSm_EventId_EV1: G1_ev1(sm); break;
-                // Events not handled by this state:
-                case RocketSm_EventId_EV2: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -122,19 +117,15 @@ void RocketSm_dispatch_event(RocketSm* sm, RocketSm_EventId event_id)
             switch (event_id)
             {
                 case RocketSm_EventId_EV2: G2_ev2(sm); break;
-                // Events not handled by this state:
                 case RocketSm_EventId_EV1: GROUP_ev1(sm); break; // First ancestor handler for this event
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
         // STATE: s1
         case RocketSm_StateId_S1:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case RocketSm_EventId_EV1: break;
-                case RocketSm_EventId_EV2: break;
-            }
+            // No events handled by this state (or its ancestors).
             break;
     }
     

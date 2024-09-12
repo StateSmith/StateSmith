@@ -101,32 +101,17 @@ void Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id)
     {
         // STATE: Spec1Sm
         case Spec1Sm_StateId_ROOT:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Spec1Sm_EventId_EV1: break;
-                case Spec1Sm_EventId_EV2: break;
-            }
+            // No events handled by this state (or its ancestors).
             break;
         
         // STATE: S
         case Spec1Sm_StateId_S:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Spec1Sm_EventId_EV1: break;
-                case Spec1Sm_EventId_EV2: break;
-            }
+            // No events handled by this state (or its ancestors).
             break;
         
         // STATE: S1
         case Spec1Sm_StateId_S1:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Spec1Sm_EventId_EV1: break;
-                case Spec1Sm_EventId_EV2: break;
-            }
+            // No events handled by this state (or its ancestors).
             break;
         
         // STATE: S11
@@ -134,19 +119,14 @@ void Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec1Sm_EventId_EV1: S11_ev1(sm); break;
-                // Events not handled by this state:
-                case Spec1Sm_EventId_EV2: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
         // STATE: T1
         case Spec1Sm_StateId_T1:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Spec1Sm_EventId_EV1: break;
-                case Spec1Sm_EventId_EV2: break;
-            }
+            // No events handled by this state (or its ancestors).
             break;
         
         // STATE: T11
@@ -154,8 +134,8 @@ void Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec1Sm_EventId_EV2: T11_ev2(sm); break;
-                // Events not handled by this state:
-                case Spec1Sm_EventId_EV1: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -163,9 +143,9 @@ void Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id)
         case Spec1Sm_StateId_T111:
             switch (event_id)
             {
-                // Events not handled by this state:
-                case Spec1Sm_EventId_EV1: break;
                 case Spec1Sm_EventId_EV2: T11_ev2(sm); break; // First ancestor handler for this event
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
     }

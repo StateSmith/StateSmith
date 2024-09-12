@@ -1,3 +1,5 @@
+#nullable enable
+
 using StateSmith.Output;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output.Algos.Balanced2;
@@ -8,8 +10,6 @@ using StateSmith.Output.Gil.JavaScript;
 using StateSmith.Output.Gil.Python;
 using StateSmith.Output.UserConfig;
 using System;
-
-#nullable enable
 
 namespace StateSmith.Runner;
 
@@ -35,8 +35,10 @@ public class AlgoTranspilerCustomizer
                 sp.AddSingletonT<IGilAlgo, AlgoBalanced2>();
                 break;
 
-            default: throw new System.ArgumentException("Unknown algorithmId: " + algorithmId);
+            default: throw new ArgumentException("Unknown algorithmId: " + algorithmId);
         }
+
+        algoBalanced1Settings.outputSwitchDefault = false;  // default to false. Needed because of default case below.
 
         switch (transpilerId)
         {
@@ -45,7 +47,7 @@ public class AlgoTranspilerCustomizer
                 {
                     sp.AddSingletonT<IGilTranspiler, GilToC99>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
-                    algoBalanced1Settings.omitEmptySwitchAndCases = false;  // we keep it to avoid C warnings about unused case labels
+                    algoBalanced1Settings.outputSwitchDefault = true;
                 }
                 break;
 
@@ -55,7 +57,6 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
-                    algoBalanced1Settings.omitEmptySwitchAndCases = true;
                 }
                 break;
 
@@ -66,7 +67,6 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     sp.AddSingletonT<IAutoVarsParser, JsAutoVarsParser>();
                     algoBalanced1Settings.skipClassIndentation = false;
-                    algoBalanced1Settings.omitEmptySwitchAndCases = true;
                 }
                 break;
 
@@ -76,7 +76,6 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
-                    algoBalanced1Settings.omitEmptySwitchAndCases = true;
 
                     // https://github.com/StateSmith/StateSmith/issues/395
                     if (algorithmId != AlgorithmId.Balanced2)
@@ -98,7 +97,6 @@ public class AlgoTranspilerCustomizer
                     algoBalanced1Settings.varsStructAsClass = true;
                     algoBalanced1Settings.useIfTrueIfNoGuard = true;
                     algoBalanced1Settings.allowSingleLineSwitchCase = false;
-                    algoBalanced1Settings.omitEmptySwitchAndCases = true;
 
                     if (!style.BracesOnNewLines)
                     {

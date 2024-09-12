@@ -1,5 +1,6 @@
-using StateSmith.SmGraph;
 #nullable enable
+
+using StateSmith.SmGraph;
 
 namespace StateSmith.Output;
 

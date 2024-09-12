@@ -1071,21 +1071,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                // Events not handled by this state:
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1093,22 +1080,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_PREFIXING:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1116,22 +1090,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_PREFIXING__ORDER_MENU:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1140,21 +1101,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV2: PREFIXING__OM__BEVERAGE_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1163,21 +1112,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__OM__BEV__NONE_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: PREFIXING__OM__BEVERAGE_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1185,22 +1123,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_PREFIXING__OM__BEV__TEA:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: PREFIXING__OM__BEVERAGE_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1209,21 +1135,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__OM__BEV__WATER_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: PREFIXING__OM__BEVERAGE_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1232,21 +1147,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV2: PREFIXING__OM__VEG_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1255,21 +1158,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__OM__VEG__NONE_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: PREFIXING__OM__VEG_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1278,21 +1170,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__OM__VEG__POTATO_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: PREFIXING__OM__VEG_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1300,22 +1181,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_PREFIXING__OM__VEG__YAM:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: PREFIXING__OM__VEG_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1323,22 +1192,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1346,22 +1202,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1370,21 +1213,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1393,21 +1224,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1415,22 +1235,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1439,21 +1247,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1462,21 +1259,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1485,21 +1270,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1508,21 +1282,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1530,22 +1293,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1564,11 +1315,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV9: SPEC2SM__DECIDE_ev9(sm); break;
                 case Spec2Sm_EventId_EV10: SPEC2SM__DECIDE_ev10(sm); break;
                 case Spec2Sm_EventId_DO: SPEC2SM__DECIDE_do(sm); break;
-                // Events not handled by this state:
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1576,22 +1324,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST1_DO_EVENT_TESTING:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1600,21 +1335,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_DO: TEST1_ROOT_do(sm); break;
-                // Events not handled by this state:
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1622,22 +1344,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST1_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: TEST1_ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1647,20 +1356,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_DO: TEST1_S1_1_do(sm); break;
                 case Spec2Sm_EventId_EV1: TEST1_S1_1_ev1(sm); break;
-                // Events not handled by this state:
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1669,21 +1366,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_DO: TEST1_S2_do(sm); break;
-                // Events not handled by this state:
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1691,22 +1375,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST10_CHOICE_POINT:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1714,22 +1385,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST10_A:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1737,22 +1395,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST10_A_1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1761,21 +1406,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1783,22 +1416,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST10_G:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1806,22 +1427,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST10_G_S0:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1829,22 +1438,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST10_G_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1852,22 +1449,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST10_G_S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1875,22 +1460,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST10_G_S3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1902,18 +1475,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV3: TEST10_S1_ev3(sm); break;
                 case Spec2Sm_EventId_EV1: TEST10_S1_ev1(sm); break;
                 case Spec2Sm_EventId_EV10: TEST10_S1_ev10(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1921,22 +1486,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST10_S4:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1944,22 +1497,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST2_REGULAR_EVENT_TESTING:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1970,19 +1510,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV1: TEST2_ROOT_ev1(sm); break;
                 case Spec2Sm_EventId_EV2: TEST2_ROOT_ev2(sm); break;
                 case Spec2Sm_EventId_DO: TEST2_ROOT_do(sm); break;
-                // Events not handled by this state:
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -1990,22 +1519,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST2_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: TEST2_ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST2_ROOT_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: TEST2_ROOT_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2015,20 +1533,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST2_S1_1_ev1(sm); break;
                 case Spec2Sm_EventId_DO: TEST2_S1_1_do(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_EV2: TEST2_ROOT_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2038,20 +1545,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST2_S2_ev1(sm); break;
                 case Spec2Sm_EventId_EV2: TEST2_S2_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: TEST2_ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2059,22 +1555,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST3_BEHAVIOR_ORDERING:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2083,21 +1566,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST3_ROOT_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2106,21 +1577,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST3_S1_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2129,21 +1588,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST3_S2_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2151,22 +1598,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST3_S3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST3_ROOT_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2174,22 +1609,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST4_PARENT_CHILD_TRANSITIONS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2197,22 +1619,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST4_B_AND_OTHERS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2220,22 +1629,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST4B_LOCAL:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2244,21 +1640,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4B_G_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2267,21 +1651,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV2: TEST4B_G_1_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST4B_G_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2289,22 +1662,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST4C_LOCAL_TO_ALIAS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2313,21 +1673,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4C_G_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2336,21 +1684,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV2: TEST4C_G_1_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST4C_G_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2358,22 +1695,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST4D_EXTERNAL:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2382,21 +1706,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4D_G_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2405,21 +1717,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV2: TEST4D_G_1_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST4D_G_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2431,18 +1732,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV2: TEST4_DECIDE_ev2(sm); break;
                 case Spec2Sm_EventId_EV3: TEST4_DECIDE_ev3(sm); break;
                 case Spec2Sm_EventId_EV4: TEST4_DECIDE_ev4(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2453,19 +1745,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break;
                 case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break;
                 case Spec2Sm_EventId_EV4: TEST4_ROOT_ev4(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2474,21 +1756,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4_S1_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: TEST4_ROOT_ev4(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2497,21 +1770,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV4: TEST4_S10_ev4(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2519,22 +1782,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST4_S10_1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: TEST4_S10_ev4(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2543,21 +1796,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4_S2_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: TEST4_ROOT_ev4(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2566,21 +1810,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV4: TEST4_S20_ev4(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2588,22 +1822,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST4_S20_1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: TEST4_S20_ev4(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2612,21 +1836,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4_S3_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: TEST4_ROOT_ev4(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2634,22 +1849,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2658,21 +1860,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV2: TEST5_ROOT_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2681,21 +1871,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST5_S1_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: TEST5_ROOT_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2704,21 +1883,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST5_S2_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: TEST5_ROOT_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2727,21 +1895,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST5_S3_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: TEST5_ROOT_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2749,22 +1906,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST6_VARS_EXPANSIONS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2772,22 +1916,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST6_ROOT:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2795,22 +1926,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_AUTO_VAR_TEST:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2819,21 +1937,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: AUTO_VAR_TEST__S1_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2841,22 +1947,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_AUTO_VAR_TEST__S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2864,22 +1957,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_META_EXPANSIONS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2888,21 +1968,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: META_EXPANSIONS__S1_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2912,20 +1980,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: META_EXPANSIONS__S2_ev1(sm); break;
                 case Spec2Sm_EventId_EV2: META_EXPANSIONS__S2_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2934,21 +1991,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: S3_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2956,22 +2001,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_S4:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -2979,22 +2011,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_S5:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3002,22 +2021,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_NORMAL:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3026,21 +2032,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: NORMAL__S1_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3048,22 +2042,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_NORMAL__S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3074,19 +2055,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV1: TEST6_VARS_EXPANSIONS__DECIDE_ev1(sm); break;
                 case Spec2Sm_EventId_EV2: TEST6_VARS_EXPANSIONS__DECIDE_ev2(sm); break;
                 case Spec2Sm_EventId_EV3: TEST6_VARS_EXPANSIONS__DECIDE_ev3(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3094,22 +2065,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST7_INITIAL_OR_HISTORY:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3117,22 +2075,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST7:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3140,22 +2085,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DEEP_HISTORY1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3163,22 +2095,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DH1__SANTAS_WORKSHOP:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3187,21 +2106,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3209,22 +2116,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DH1__GET_BACKUP:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3232,22 +2127,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DH1__HERO:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3256,21 +2139,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__CALL_BATMAN_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3279,21 +2151,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__CALL_THOR_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3301,22 +2162,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DH1__LOCAL_HELP:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3325,21 +2174,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__BUDDY_ELF_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3347,22 +2185,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DH1__POLAR_BEARS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3371,21 +2197,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__GIVE_COOKIES_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3394,21 +2209,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__SNOWBALL_FIGHT_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3418,20 +2222,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3440,21 +2233,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV2: T7__DH1__TOOL_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3462,22 +2245,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DH1__CIRCULAR_SAW:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: T7__DH1__TOOL_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3486,21 +2259,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__IMPACT_DRILL_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: T7__DH1__TOOL_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3509,21 +2273,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__TOY_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3532,21 +2286,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__GLOW_WORM_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3555,21 +2299,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__RACE_CAR_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3577,22 +2311,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DH1__ROBOT:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: T7__DH1__TOY_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3601,21 +2325,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__BATTLEBOT_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3623,22 +2337,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DH1__WALL_E:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: T7__DH1__TOY_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3647,21 +2351,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__TEDDY_BEAR_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3669,22 +2363,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DEEP_HISTORY2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3693,21 +2374,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3716,21 +2385,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EVSTEP: T7__DEEP_HISTORY2__T7__STATE_1_evstep(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3739,21 +2397,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3762,21 +2409,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EVSTEP: T7__DEEP_HISTORY2__T7__STATE_6_evstep(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3784,22 +2421,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DEEP_HISTORY2__T7__STATE_9:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EVSTEP: break;
                 case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3808,21 +2434,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EVCLOSE: T7__DEEP_HISTORY2__T7__STATE_3_evclose(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3830,22 +2444,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DEEP_HISTORY3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3854,21 +2455,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3877,21 +2466,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EVSTEP: T7__DEEP_HISTORY3__T7__STATE_1_evstep(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3900,21 +2478,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3923,21 +2490,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EVSTEP: T7__DEEP_HISTORY3__T7__STATE_6_evstep(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3945,22 +2502,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__DEEP_HISTORY3__T7__STATE_9:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EVSTEP: break;
                 case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3969,21 +2515,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EVCLOSE: T7__DEEP_HISTORY3__T7__STATE_3_evclose(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -3991,22 +2525,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__HISTORY1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4017,19 +2538,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV3: T7__H1__OFF_ev3(sm); break;
                 case Spec2Sm_EventId_EV4: T7__H1__OFF_ev4(sm); break;
                 case Spec2Sm_EventId_EV7: T7__H1__OFF_ev7(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4038,21 +2549,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__H1__OFF1_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: T7__H1__OFF_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: T7__H1__OFF_ev4(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: T7__H1__OFF_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4061,21 +2563,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__H1__OFF2_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: T7__H1__OFF_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: T7__H1__OFF_ev4(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: T7__H1__OFF_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4083,22 +2576,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__H1__OFF3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: T7__H1__OFF_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: T7__H1__OFF_ev4(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: T7__H1__OFF_ev7(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4107,21 +2590,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV6: T7__H1__ON_ev6(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4130,21 +2601,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__H1__ON1_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__H1__ON_ev6(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4153,21 +2613,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__H1__ON2_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__H1__ON_ev6(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4176,21 +2625,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__H1__ON3_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: T7__H1__ON_ev6(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4198,22 +2636,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__INITIAL1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4222,21 +2647,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4245,21 +2658,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV2: T7__INITIAL1__G_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4267,22 +2669,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__INITIAL1__G_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: T7__INITIAL1__G_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4290,22 +2681,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__INITIAL1__G_S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: T7__INITIAL1__G_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4313,22 +2693,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_T7__INITIAL1__G_S3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: T7__INITIAL1__G_ev2(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4338,20 +2707,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__INITIAL1__S1_ev1(sm); break;
                 case Spec2Sm_EventId_EV3: T7__INITIAL1__S1_ev3(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4364,17 +2723,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV3: TEST7_DECIDE_ev3(sm); break;
                 case Spec2Sm_EventId_EV4: TEST7_DECIDE_ev4(sm); break;
                 case Spec2Sm_EventId_EV5: TEST7_DECIDE_ev5(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4382,22 +2733,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST8_ENTRY_CHOICE:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4407,20 +2745,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break;
                 case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4429,21 +2756,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV2: TEST8_G_ev2(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4451,22 +2768,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST8_G_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: TEST8_G_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4474,22 +2781,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST8_G_S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: TEST8_G_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4497,22 +2794,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST8_G_S3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: TEST8_G_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4523,19 +2810,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV1: TEST8_S1_ev1(sm); break;
                 case Spec2Sm_EventId_EV3: TEST8_S1_ev3(sm); break;
                 case Spec2Sm_EventId_EV6: TEST8_S1_ev6(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4543,22 +2821,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9_EXIT_CHOICE:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4569,19 +2834,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV1: TEST9_DECIDE_ev1(sm); break;
                 case Spec2Sm_EventId_EV2: TEST9_DECIDE_ev2(sm); break;
                 case Spec2Sm_EventId_EV3: TEST9_DECIDE_ev3(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4590,21 +2845,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4612,22 +2855,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9_G_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4635,22 +2866,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9_G_S2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4658,22 +2877,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9_G_S3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4681,22 +2888,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9_G_S4:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4704,22 +2899,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4728,21 +2911,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST9_S1_1_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4750,22 +2922,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9A_ROOT:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4773,22 +2932,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9A_S1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4797,21 +2943,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST9A_S1_1_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4820,21 +2954,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4842,22 +2964,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9B_ROOT__A1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4865,22 +2975,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9B_ROOT__A2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4888,22 +2986,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9B_ROOT__A3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4912,21 +2998,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST9B_ROOT__A4_ev1(sm); break;
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4934,22 +3008,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9B_ROOT__B1:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4957,22 +3019,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9B_ROOT__B2:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -4980,22 +3030,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9B_ROOT__B3:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -5003,22 +3041,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_TEST9B_ROOT__B4:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -5026,22 +3052,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_UNREACHABLE:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -5049,22 +3062,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         case Spec2Sm_StateId_USELESS:
             switch (event_id)
             {
-                // Events not handled by this state:
                 case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
-                case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: break;
-                case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: break;
-                case Spec2Sm_EventId_EV9: break;
-                case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: break;
-                case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: break;
-                case Spec2Sm_EventId_EVCLOSE: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
     }

@@ -95,32 +95,17 @@ public void dispatch_event(EventId event_id)
     {
         // STATE: Spec1Sm
         case StateId.ROOT:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-            }
+            // No events handled by this state (or its ancestors).
             break;
         
         // STATE: S
         case StateId.S:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-            }
+            // No events handled by this state (or its ancestors).
             break;
         
         // STATE: S1
         case StateId.S1:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-            }
+            // No events handled by this state (or its ancestors).
             break;
         
         // STATE: S11
@@ -128,19 +113,14 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV1: this.S11_ev1(); break;
-                // Events not handled by this state:
-                case EventId.EV2: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
         // STATE: T1
         case StateId.T1:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case EventId.EV1: break;
-                case EventId.EV2: break;
-            }
+            // No events handled by this state (or its ancestors).
             break;
         
         // STATE: T11
@@ -148,8 +128,8 @@ public void dispatch_event(EventId event_id)
             switch (event_id)
             {
                 case EventId.EV2: this.T11_ev2(); break;
-                // Events not handled by this state:
-                case EventId.EV1: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -157,9 +137,9 @@ public void dispatch_event(EventId event_id)
         case StateId.T111:
             switch (event_id)
             {
-                // Events not handled by this state:
-                case EventId.EV1: break;
                 case EventId.EV2: this.T11_ev2(); break; // First ancestor handler for this event
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
     }

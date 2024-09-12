@@ -183,7 +183,7 @@ public class AlgoBalanced2 : AlgoBalanced1
             var otherEvents = allEvents.Except(stateEvents);
 
             // determine if this switch statement is needed
-            if (settings.omitEmptySwitchAndCases && IsStateEventHandlerEmpty(namedVertex, stateEvents, otherEvents))
+            if (IsStateEventHandlerEmpty(namedVertex, stateEvents, otherEvents))
             {
                 file.AppendIndentedLine($"// No events handled by this state (or its ancestors).");
             }
@@ -199,17 +199,12 @@ public class AlgoBalanced2 : AlgoBalanced1
 
                     if (otherEvents.Any())
                     {
-                        if (!settings.omitEmptySwitchAndCases)
-                        {
-                            file.AppendIndentedLine($"// Events not handled by this state:");
-                        }
-
                         foreach (string evt in otherEvents)
                         {
                             NamedVertex? ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
                             var comment = (ancestor == null) ? string.Empty : FirstAncestorHandlerComment;
 
-                            if (settings.omitEmptySwitchAndCases && string.IsNullOrWhiteSpace(comment))
+                            if (string.IsNullOrWhiteSpace(comment))
                             {
                                 // do nothing
                             }
@@ -218,6 +213,12 @@ public class AlgoBalanced2 : AlgoBalanced1
                                 MaybeOutputEventHandler(ancestor, evt, comment: comment);
                             }
                         }
+                    }
+
+                    if (settings.outputSwitchDefault)
+                    {
+                        file.AppendIndentedLine();
+                        file.AppendIndentedLine($"default: break; // to avoid \"unused enumeration value in switch\" warning");
                     }
                 }
                 file.FinishCodeBlock(forceNewLine: true);

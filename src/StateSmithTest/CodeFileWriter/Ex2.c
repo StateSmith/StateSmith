@@ -70,13 +70,7 @@ void Ex2_dispatch_event(Ex2* sm, Ex2_EventId event_id)
     {
         // STATE: Ex2
         case Ex2_StateId_ROOT:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Ex2_EventId_DO: break;
-                case Ex2_EventId_MYEV1: break;
-                case Ex2_EventId_EV2: break;
-            }
+            // No events handled by this state (or its ancestors).
             break;
         
         // STATE: STATE_1
@@ -84,9 +78,8 @@ void Ex2_dispatch_event(Ex2* sm, Ex2_EventId event_id)
             switch (event_id)
             {
                 case Ex2_EventId_DO: STATE_1_do(sm); break;
-                // Events not handled by this state:
-                case Ex2_EventId_MYEV1: break;
-                case Ex2_EventId_EV2: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
         
@@ -96,8 +89,8 @@ void Ex2_dispatch_event(Ex2* sm, Ex2_EventId event_id)
             {
                 case Ex2_EventId_MYEV1: STATE_2_myev1(sm); break;
                 case Ex2_EventId_EV2: STATE_2_ev2(sm); break;
-                // Events not handled by this state:
-                case Ex2_EventId_DO: break;
+                
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
     }

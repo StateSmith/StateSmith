@@ -39,9 +39,9 @@ public class AlgoBalanced1Settings
     internal bool allowSingleLineSwitchCase = true;
 
     /// <summary>
-    /// Required to be true for python.
+    /// used by c to prevent GCC warning about unused enumeration values in a switch statement.
     /// </summary>
-    public bool omitEmptySwitchAndCases = false;
+    internal bool outputSwitchDefault = false;
 
     /// <summary>
     /// Set to false if don't want the event ID to string function to be generated and output.
