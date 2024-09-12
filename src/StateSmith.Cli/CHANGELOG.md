@@ -7,6 +7,15 @@ They have different version numbers.
 Test/interim releases are not documented here.
 
 
+## [0.14.1]
+### Upgrade StateSmith library version to [0.15.1]
+#### Changed (minor)
+- C/C++ - `Balanced2` algorithm - remove empty switch/case statements.
+  - Remove pointless `SmRunnerSettings.algoBalanced1.omitEmptySwitchAndCases` setting & simplify logic.
+  - Add `default: break;` to prevent GCC warning about unused enumeration values in a switch statement.
+
+---
+
 ## [0.14.0]
 ### Added
 - `create` command - add support for `Python` language
