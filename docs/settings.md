@@ -247,6 +247,8 @@ VariableDeclarations = """
 Type: `string`
 Info: https://github.com/StateSmith/StateSmith/issues/284
 
+⚠️ Has some [limitations/quirks to be aware of](https://github.com/StateSmith/StateSmith/issues/363).
+
 Default variable expansions template. This expansion template is used when a variable appears in some diagram action code but no matching expansion is found. The default template is used to create the expansion. The default template can be any code that you want.
 
 You can use special values inside the template to create the expansion. The special values are:
@@ -265,6 +267,8 @@ Then if you have action code like `enter / count++` and there isn't an existing 
 Type: `string`
 Info: https://github.com/StateSmith/StateSmith/issues/284
 
+⚠️ Has some [limitations/quirks to be aware of](https://github.com/StateSmith/StateSmith/issues/363).
+
 Default function expansions template. This expansion template is used when a function call appears in some diagram action code but no matching expansion is found. The default template is used to create the expansion. The default template can be any code that you want.
 
 You can use special values inside the template to create the expansion. The special values are:
@@ -282,9 +286,11 @@ Then if you have action code like `exit / some_function()` and there isn't an ex
 Type: `string`
 Info: https://github.com/StateSmith/StateSmith/issues/284
 
+⚠️ Has some [limitations/quirks to be aware of](https://github.com/StateSmith/StateSmith/issues/363).
+
 Default any expansions template. This expansion template is used when a variable or function call appears in some diagram action code but no matching expansion is found. The default template is used to create the expansion. The default template can be any code that you want.
 
-See `DefaultVarExpTemplate` and `DefaultFuncExpTemplate` for more information.
+See `DefaultVarExpTemplate` and `DefaultFuncExpTemplate` above for more information.
 
 ### JavaScript Inheritance Example
 If your state machine extends a base class with functionality that you want to access naturally in your diagram action code, you can use the below template.
