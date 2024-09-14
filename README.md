@@ -21,9 +21,11 @@ The [fundamentals-1](https://statesmith.github.io/fundamentals-1/) webpage has s
 # Quick Start (all supported languages) 🚀
 Want to jump right in and just try it!?
 
-🔥 [Tutorial-3 (recommended)](https://github.com/StateSmith/tutorial-3) uses new StateSmith features that are easier to use. It is a good starting point for most.<br>`PlantUML` `CLI` `no install required`<br>
+The below tutorials use new StateSmith features that are more user friendly. They use different diagram tools, but mirror each other fairly closely otherwise.
 
-[Tutorial-2](https://github.com/StateSmith/tutorial-2) uses the older method of C# script (.csx) files which are still actively supported. The .csx approach is more complicated, but also enables advanced features and deep customization for power users. Tutorial 2 also uses **draw.io** which gives you maximum control, but currently has a few more "gotchas" compared to PlantUML (improvements are coming). <br>`draw.io` `.csx` `requires dotnet install` <br>
+- [Tutorial-3](https://github.com/StateSmith/tutorial-3) - `PlantUML` `CLI` `text`
+- [Tutorial-4](https://github.com/StateSmith/tutorial-4) - `draw.io` `CLI` `text & 🎥 video series`
+- [older...](https://github.com/StateSmith/StateSmith/wiki/Learning-Resources)
 
 
 
