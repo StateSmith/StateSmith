@@ -334,13 +334,25 @@ Maps to [IRenderConfigC](../src/StateSmith/Output/UserConfig/IRenderConfigC.cs) 
 
 ```toml
 [RenderConfig.C]
-HFileTop = ""
-HFileIncludes = ""
-CFileTop = ""
-CFileIncludes = ""
-CFileExtension = ""
-HFileExtension = ""
-CEnumDeclarer = ""
+HFileTop = "// code at top of header file"
+IncludeGuardLabel = "{FILENAME}_H"
+HFileTopPostIncludeGuard = "// code after include guard"
+HFileIncludes = """
+    #include "some_type.h"
+    #include "some_other_type.h"
+    """
+HFileBottomPreIncludeGuard = "// code before include guard bottom"
+HFileBottom = "// code at bottom of header file"
+CFileTop = "// code at top of source file"
+CFileIncludes = """
+    #include "some_header.h"
+    #include "some_other_header.h"
+    """
+CFileBottom = "// code at bottom of source file"
+CFileExtension = ".c"
+HFileExtension = ".h"
+CEnumDeclarer = "typedef enum __attribute__((packed)) {enumName}" # for gcc
+UseStdBool = true
 ```
 
 ## RenderConfig.C.HFileTop
@@ -549,11 +561,19 @@ Maps to the [IRenderConfigCSharp](../src/StateSmith/Output/UserConfig/IRenderCon
 
 ```toml
 [RenderConfig.CSharp]
-NameSpace = ""
-Usings = ""
-ClassCode = ""
-BaseList = ""
-UseNullable = false
+NameSpace = "MyNamespace;" # if ends with `;`, no braces are added
+Usings = """
+    using System;
+    using System.Collections.Generic;
+    """
+ClassCode = """
+    public void MyCustomFunction()
+    {
+        // Do something custom...
+    }
+    """
+BaseList = "MyUserBaseClass, IMyOtherUserInterface"
+UseNullable = true
 UsePartialClass = false
 ```
 
@@ -564,7 +584,7 @@ Namespace for the generated class. If empty, no namespace is generated. If it en
 
 ```toml
 [RenderConfig.CSharp]
-NameSpace = "MyNamespace"
+NameSpace = "MyNamespace;"
 ```
 
 ## RenderConfig.CSharp.Usings
@@ -637,10 +657,12 @@ Maps to the [IRenderConfigJavaScript](../src/StateSmith/Output/UserConfig/IRende
 
 ```toml
 [RenderConfig.JavaScript]
-ClassCode = ""
+ClassCode = """
+    // Add custom code here...
+    """
 ExtendsSuperClass = "MyUserBaseClass"
 UseExportOnClass = true
-PrivatePrefix = "_"
+PrivatePrefix = "#"
 ```
 
 ## RenderConfig.JavaScript.ClassCode
