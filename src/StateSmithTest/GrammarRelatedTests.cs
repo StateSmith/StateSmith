@@ -1,3 +1,5 @@
+using FluentAssertions;
+using StateSmith.Input.Antlr4;
 using System;
 using Xunit;
 
@@ -119,5 +121,49 @@ public class GrammarRelatedTests
             @enduml
             """;
         Assert.Throws<FormatException>(() => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText));
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/282
+    /// </summary>
+    [Fact]
+    public void MultipleSingleQuoteStrings_282()
+    {
+        const string actionCode = "print('some message'); logger(format('another message'));";
+
+        // below is problematic because StateSmith essentially sees this: `print('string-content'));` and it has unbalanced parentheses
+        var plantUmlText = $$"""
+            @startuml {fileName}
+            [*] --> c1
+            c1: enter / {{actionCode}}
+            @enduml
+            """;
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText); // shouldn't throw an exception
+
+        ActionCodeInspector actionCodeInspector = new();
+        actionCodeInspector.Parse(actionCode);
+        actionCodeInspector.functionsCalled.Should().BeEquivalentTo(["print", "logger", "format"]);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/282
+    /// </summary>
+    [Fact]
+    public void MultipleBackTickStrings_282()
+    {
+        const string actionCode = "print(`some message`); logger(format(`another message`));";
+
+        // below is problematic because StateSmith essentially sees this: <code>print(`string-content`));</code> and it has unbalanced parentheses
+        var plantUmlText = $$"""
+            @startuml {fileName}
+            [*] --> c1
+            c1: enter / {{actionCode}}
+            @enduml
+            """;
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText); // shouldn't throw an exception
+
+        ActionCodeInspector actionCodeInspector = new();
+        actionCodeInspector.Parse(actionCode);
+        actionCodeInspector.functionsCalled.Should().BeEquivalentTo(["print", "logger", "format"]);
     }
 }

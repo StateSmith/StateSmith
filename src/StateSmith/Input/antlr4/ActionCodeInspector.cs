@@ -1,5 +1,6 @@
+#nullable enable
+
 using Antlr4.Runtime.Misc;
-using StateSmith.Input.Expansions;
 using System.Collections.Generic;
 
 namespace StateSmith.Input.Antlr4;
