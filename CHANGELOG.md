@@ -30,9 +30,11 @@ Release Template
 Test/interim releases are not documented here.
 
 ## [0.???]
-### Fixed
+### Fixed (minor)
 - fix grammar - allow multiple single quote and backtick strings in guard and action code
   - https://github.com/StateSmith/StateSmith/issues/282
+- fix simulator - improve initial state transition edges to remove occasional wide gap between circle and edge
+  - https://github.com/StateSmith/StateSmith/issues/404
 
 ### Added
 - grammar - support advanced strings

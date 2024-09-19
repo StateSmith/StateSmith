@@ -276,10 +276,11 @@ public class HtmlRenderer
             marker.setAttribute('markerUnits', 'userSpaceOnUse');
         });
 
+        // https://github.com/StateSmith/StateSmith/issues/404
         // https://github.com/StateSmith/StateSmith/issues/294
         // rewrite $initial_state to a black circle
         document.querySelectorAll('g[data-id*=""(InitialState)""]').forEach(g=> {
-          g.innerHTML = '<circle transform=""translate(0,10)"" height=""14"" width=""14"" r=""7"" class=""state - start""></circle>';
+          g.innerHTML = '<circle transform=""translate(0,3)"" height=""14"" width=""14"" r=""14"" class=""state - start""></circle>';
         })
 
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {

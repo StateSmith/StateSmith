@@ -98,7 +98,9 @@ class MermaidGenerator : IVertexVisitor
             mermaidEdgeTracker.AdvanceId();  // we skip this "work around" edge for now. We can improve this later.
         }
 
-        AppendIndentedLine($"state \"$initial_state\" as {initialStateId}");
+        AppendIndentedLine($"%% Initial state name as \".\" so that it fits in black circle shape.", extraLine: false);
+        AppendIndentedLine($"%% See https://github.com/StateSmith/StateSmith/issues/404", extraLine: false);
+        AppendIndentedLine($"state \".\" as {initialStateId}");
     }
 
     public void Visit(ChoicePoint v)
@@ -190,20 +192,23 @@ class MermaidGenerator : IVertexVisitor
         sb.Append(message);
     }
 
-    private void AppendLine(string message = "")
+    private void AppendLine(string message = "", bool extraLine = true)
     {
         sb.AppendLine(message);
 
-        // add an extra blank line so that git diffs work on individual lines instead of giant text blocks
-        sb.AppendLine();
+        if (extraLine)
+        {
+            // add an extra blank line so that git diffs work on individual lines instead of giant text blocks
+            sb.AppendLine();
+        }
     }
 
-    private void AppendIndentedLine(string message)
+    private void AppendIndentedLine(string message, bool extraLine = true)
     {
         for (int i = 0; i < indentLevel; i++)
             sb.Append("        ");
 
-        AppendLine(message);
+        AppendLine(message, extraLine);
     }
 
     private void VisitChildren(Vertex v)
