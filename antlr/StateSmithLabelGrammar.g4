@@ -485,7 +485,16 @@ number :
     )?
     ;
 
-string_literal: STRING | TICK_STRING | BACKTICK_STRING; // don't name as `string` because then antlr generated code has warnings in it
+// don't name rule as `string` because then antlr generated code has warnings in it
+string_literal:
+    CPP_RAW_STRING |
+    CPP_RAW_STRING2 |
+    TRIPLE_DOUBLE_QUOTE_STRING |
+    TRIPLE_SINGLE_QUOTE_STRING |
+    CSHARP_VERBATIM_STRING |
+    DOUBLE_QUOTE_STRING |
+    SINGLE_QUOTE_STRING |
+    BACKTICK_STRING;
 
 code_symbol:
     PERIOD |
@@ -521,17 +530,36 @@ fragment NOT_NL_CR: ~[\n\r];
 LINE_COMMENT: '//' NOT_NL_CR*;
 STAR_COMMENT: '/*' .*? '*/' ;
 
-// CHAR_LITERAL: [']
-//       ( ESCAPED_CHAR | ~['] )*
-//       ['] ;
 
 
+///////////////////////////////////////////////////////// STRING STUFF /////////////////////////////////////////////////////////
+// https://github.com/StateSmith/StateSmith/issues/282
+// https://github.com/StateSmith/StateSmith/issues/402
+
+/////////////////////////////////// SPECIAL STRINGS //////////////////////////////////////////////////////
+// The below special strings must be defined before the general string rules to have precedence.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+fragment CSHARP_VERBATIM_QUOTE_ESCAPE: DOUBLE_QUOTE DOUBLE_QUOTE ;
+// ex: @"blah ""blah"" blah".
+CSHARP_VERBATIM_STRING: '@'
+                         DOUBLE_QUOTE 
+                         ( CSHARP_VERBATIM_QUOTE_ESCAPE | .)*?
+                         DOUBLE_QUOTE ;
+
+// https://en.cppreference.com/w/cpp/language/string_literal
+// ANTLR can't support the full C++ raw string syntax because it doesn't support arbitrary delimiters so we provide two options
+CPP_RAW_STRING:  'R"(' .*? ')"' ;     // ex: R"( ... )".
+CPP_RAW_STRING2: 'R"""(' .*? ')"""' ; // ex: R"""( ... )""". We technically don't need this here because it would be picked up by triple quote string below.
+TRIPLE_DOUBLE_QUOTE_STRING: DOUBLE_QUOTE DOUBLE_QUOTE DOUBLE_QUOTE .*? DOUBLE_QUOTE DOUBLE_QUOTE DOUBLE_QUOTE ; //ex: """blah blah""".  No escape sequences to be compatible with most languages.
+TRIPLE_SINGLE_QUOTE_STRING: SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE .*? SINGLE_QUOTE SINGLE_QUOTE SINGLE_QUOTE ; //ex: '''blah blah'''.  No escape sequences to be compatible with most languages.
+/////////////////////////////////// GENERAL STRINGS ///////////////////////////////////
 fragment ESCAPED_CHAR: '\\' . ;
-fragment NON_QUOTE_CHAR: ~["] ;
-fragment STRING_CHAR: ESCAPED_CHAR | NON_QUOTE_CHAR ;
-STRING: DOUBLE_QUOTE STRING_CHAR* DOUBLE_QUOTE ;
-TICK_STRING: SINGLE_QUOTE STRING_CHAR* SINGLE_QUOTE ;
-BACKTICK_STRING: BACKTICK STRING_CHAR* BACKTICK ;
+fragment STRING_CHAR_OR_ESCAPE: ESCAPED_CHAR | . ;
+DOUBLE_QUOTE_STRING: DOUBLE_QUOTE STRING_CHAR_OR_ESCAPE*? DOUBLE_QUOTE ;  //ex: "blah blah". Supports simple backslash escape sequences.
+SINGLE_QUOTE_STRING: SINGLE_QUOTE STRING_CHAR_OR_ESCAPE*? SINGLE_QUOTE ;  //ex: 'blah blah'. Supports simple backslash escape sequences.
+BACKTICK_STRING:     BACKTICK     STRING_CHAR_OR_ESCAPE*? BACKTICK ;      //ex: `blah blah`. Supports simple backslash escape sequences.
+/////// end of string stuff
+
 
 DIGIT :   [0-9];
 

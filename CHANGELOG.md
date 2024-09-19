@@ -29,6 +29,17 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## [0.???]
+### Fixed
+- fix grammar - allow multiple single quote and backtick strings in guard and action code
+  - https://github.com/StateSmith/StateSmith/issues/282
+
+### Added
+- grammar - support advanced strings
+  - https://github.com/StateSmith/StateSmith/issues/402
+
+---
+
 ## [0.15.1]
 ### Changed (minor)
 - C/C++ - `Balanced2` algorithm - remove empty switch/case statements.
