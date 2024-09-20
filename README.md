@@ -31,14 +31,6 @@ The below tutorials use new StateSmith features that are more user friendly. The
 
 <br>
 
-# Stay in the Know 📰
-Our announcements [discord](https://discord.com/invite/rNxNGQXWsU) channel is updated when new tutorials and features are added.
-
-YouTube channel: https://www.youtube.com/@statesmith
-
-
-<br>
-
 # Why State Machines and StateSmith? 🤔
 If you are new to state machines, then prepare to level up your toolbox! They are incredibly helpful for [certain applications](https://github.com/StateSmith/StateSmith/wiki/App-Notes).
 
@@ -63,30 +55,13 @@ The [StateSmith-examples](https://github.com/StateSmith/StateSmith-examples) rep
 
 
 
-
-<br>
-
-# Please Consider Advising/Contributing 📈
-If you like StateSmith and want to help improve it, your help would be very much appreciated! StateSmith is a pretty decent tool right now, but it is going to take a team to elevate it to the next level.
-
-* You can help without writing code. StateSmith needs more [user feedback/guidance](https://github.com/StateSmith/StateSmith/wiki/User-Feedback) before it can hit version 1.0.
-* If you are up for coding, check out [Contributing](https://github.com/StateSmith/StateSmith/wiki/Contributing).
-
-Thanks!
-
-
-
-
 <br>
 
 # Is StateSmith ready for use? 🧪
-> We use StateSmith in a fair number of production projects at my work. It's been super helpful.
+> We use StateSmith in a fair number of production projects at my work. It's been super helpful.<br>
+> Other companies are using StateSmith in production as well (consumer electroncics, autonomous vehicles, ...).
 
-StateSmith is generating working code, and has good test (598+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
-
-![picture 1](images/test-coverage-2022-12.png)  
-
-Breaking changes and migration steps will be documented in [./CHANGELOG.md](./CHANGELOG.md) and should be pretty minimal.
+StateSmith has a strong suite of tests (730+) and behavior specification coverage. The specification integration tests read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. The same suite of integration tests run for each supported programming language. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
 
 
 
@@ -96,7 +71,7 @@ Breaking changes and migration steps will be documented in [./CHANGELOG.md](./CH
 # More Info 📖
 The StateSmith [GitHub wiki](https://github.com/StateSmith/StateSmith/wiki) has a good amount of documentation right now, but always feel free to ask a question.
 
-
+YouTube channel: https://www.youtube.com/@statesmith
 
 
 <br>
