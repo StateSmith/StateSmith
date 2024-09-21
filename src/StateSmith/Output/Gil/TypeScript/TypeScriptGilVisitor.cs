@@ -10,20 +10,20 @@ using StateSmith.Common;
 namespace StateSmith.Output.Gil.TypeScript;
 
 /// <summary>
-/// NOTE! This is mostly a copy of CSharp transpiler with some Java specific changes.
-/// It still needs some updating: https://github.com/StateSmith/StateSmith/issues/395
+/// NOTE! This is mostly a copy of CSharp transpiler with some TypeScript specific changes.
+/// It still needs some updating: https://github.com/StateSmith/StateSmith/issues/407
 /// </summary>
 public class TypeScriptGilVisitor : CSharpSyntaxWalker
 {
     public readonly StringBuilder sb;
-    private readonly RenderConfigJavaVars renderConfigJava;
+    private readonly RenderConfigTypeScriptVars renderConfigTypeScript;
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
 
     private SemanticModel model;
 
 
-    // Balanced1 stuff that is not yet supported https://github.com/StateSmith/StateSmith/issues/395
+    // Balanced1 stuff that is not yet supported https://github.com/StateSmith/StateSmith/issues/407
     #region Not Yet Supported
     private bool useStaticDelegates = true;    // could make this a user accessible setting
 
@@ -37,11 +37,11 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
 
     private SyntaxToken? tokenToSkip;
 
-    public TypeScriptGilVisitor(string gilCode, StringBuilder sb, RenderConfigJavaVars renderConfigJava, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public TypeScriptGilVisitor(string gilCode, StringBuilder sb, RenderConfigTypeScriptVars renderConfigTypeScript, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = sb;
         this.renderConfig = renderConfig;
-        this.renderConfigJava = renderConfigJava;
+        this.renderConfigTypeScript = renderConfigTypeScript;
         transpilerHelper = GilTranspilerHelper.Create(this, gilCode, roslynCompiler);
         model = transpilerHelper.model;
     }
@@ -58,15 +58,6 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
 
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
 
-        var package = renderConfigJava.Package.Trim();
-        if (package.Length > 0)
-        {
-            sb.AppendLine("package " + renderConfigJava.Package + ";");
-            sb.AppendLine();
-        }
-
-        sb.AppendLineIfNotBlank(renderConfigJava.Imports, optionalTrailer: "\n");
-
         this.Visit(transpilerHelper.root);
     }
 
@@ -78,15 +69,15 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         base.VisitFieldDeclaration(node);
     }
 
-    public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
-    {
-        // older versions of Java don't like `case StateId.ROOT:` they want `case ROOT:`.
-        // I got errors like: `error: constant expression required` and `error: case expressions must be constant expressions`
-        VisitToken(node.Keyword);
-        MemberAccessExpressionSyntax memberAccessExpressionSyntax = (MemberAccessExpressionSyntax)node.Value; // we know it's a member access expression
-        Visit(memberAccessExpressionSyntax.Name);
-        VisitToken(node.ColonToken);
-    }
+    //public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
+    //{
+    //    // older versions of TypeScript don't like `case StateId.ROOT:` they want `case ROOT:`.
+    //    // I got errors like: `error: constant expression required` and `error: case expressions must be constant expressions`
+    //    VisitToken(node.Keyword);
+    //    MemberAccessExpressionSyntax memberAccessExpressionSyntax = (MemberAccessExpressionSyntax)node.Value; // we know it's a member access expression
+    //    Visit(memberAccessExpressionSyntax.Name);
+    //    VisitToken(node.ColonToken);
+    //}
 
     public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
     {
@@ -165,20 +156,20 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         VisitTrailingTrivia(node.Identifier);
 
         iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
-        sb.AppendLineIfNotBlank(renderConfigJava.ClassCode);  // append class code after open brace token
+        sb.AppendLineIfNotBlank(renderConfigTypeScript.ClassCode);  // append class code after open brace token
 
         iterableChildSyntaxList.VisitRest();
     }
 
     private void MaybeOutputBaseList()
     {
-        var extends = renderConfigJava.Extends.Trim();
+        var extends = renderConfigTypeScript.Extends.Trim();
         if (extends.Length > 0)
         {
             sb.Append(" extends " + extends);
         }
 
-        var implements = renderConfigJava.Implements.Trim();
+        var implements = renderConfigTypeScript.Implements.Trim();
         if (implements.Length > 0)
         {
             sb.Append(" implements " + implements);
@@ -240,7 +231,7 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
             tokenToSkip = expressionParent.SemicolonToken;
         });
 
-        // TODO - support in Java.
+        // TODO - support in TypeScript.
         //if (!done)
         //{
         //    var symbol = Model.GetSymbolInfo(node).Symbol;
@@ -278,6 +269,7 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
             case SyntaxKind.ConstKeyword: tokenText = "final"; break;
             case SyntaxKind.StringKeyword: tokenText = "String"; break;
             case SyntaxKind.BoolKeyword: tokenText = "boolean"; break;
+            case SyntaxKind.PublicKeyword: tokenText = "export"; break;
         }
 
         if (token.IsKind(SyntaxKind.ExclamationToken) && token.Parent.IsKind(SyntaxKind.SuppressNullableWarningExpression))
@@ -305,7 +297,7 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
 
 
     //--------------------------------------------------------------------------------
-    // Balanced1 stuff that is not yet supported https://github.com/StateSmith/StateSmith/issues/395
+    // Balanced1 stuff that is not yet supported https://github.com/StateSmith/StateSmith/issues/407
     //--------------------------------------------------------------------------------
     #region Not Yet Supported
 

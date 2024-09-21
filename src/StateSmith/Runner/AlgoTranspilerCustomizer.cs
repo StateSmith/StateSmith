@@ -119,6 +119,12 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     sp.AddSingletonT<IAutoVarsParser, TypeScriptAutoVarsParser>();
                     algoBalanced1Settings.skipClassIndentation = false;
+
+                    // https://github.com/StateSmith/StateSmith/issues/407
+                    if (algorithmId != AlgorithmId.Balanced2)
+                    {
+                        throw new Exception("TypeScript transpiler currently only supports `AlgorithmId.Balanced2`. Please reply to https://github.com/StateSmith/StateSmith/issues/407 .");
+                    }
                 }
                 break;
         }

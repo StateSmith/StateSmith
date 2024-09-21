@@ -87,6 +87,10 @@ public class AlgoTests
                 if (transpilerId == TranspilerId.Python && algoId != AlgorithmId.Balanced2)
                     continue;
 
+                // TypeScript only supports Balanced2 right now. See https://github.com/StateSmith/StateSmith/issues/407
+                if (transpilerId == TranspilerId.TypeScript && algoId != AlgorithmId.Balanced2)
+                    continue;
+
                 var dirName = $"{outDir}/{algoId}_{transpilerId}";
                 Directory.CreateDirectory(dirName);
                 TestHelper.RunSmRunnerForPlantUmlString(plantUmlText: MinimalPlantUmlFsm, outputDir: dirName, algorithmId: algoId, transpilerId: transpilerId);
