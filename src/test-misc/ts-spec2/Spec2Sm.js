@@ -261,9 +261,13 @@ var Vars = /** @class */ (function () {
     return Vars;
 }());
 exports.Vars = Vars;
+exports.EventIdCount = 15;
+exports.StateIdCount = 174;
 // Generated state machine
 var Spec2Sm = /** @class */ (function () {
     function Spec2Sm() {
+        // Variables. Can be used for inputs, outputs, user variables...
+        this.vars = new Vars();
     }
     // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
     Spec2Sm.prototype.Spec2Sm = function () {
@@ -293,7 +297,7 @@ var Spec2Sm = /** @class */ (function () {
     };
     // Dispatches an event to the state machine. Not thread safe.
     // Note! This function assumes that the `eventId` parameter is valid.
-    Spec2Sm.prototype.dispatchEvent = function (EventId, eventId) {
+    Spec2Sm.prototype.dispatchEvent = function (eventId) {
         switch (this.stateId) {
             // STATE: Spec2Sm
             case StateId.ROOT:
@@ -2477,7 +2481,7 @@ var Spec2Sm = /** @class */ (function () {
     };
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    Spec2Sm.prototype.exitUpToStateHandler = function (StateId, desiredState) {
+    Spec2Sm.prototype.exitUpToStateHandler = function (desiredState) {
         while (this.stateId != desiredState) {
             switch (this.stateId) {
                 case StateId.PREFIXING:
@@ -3691,7 +3695,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.ROOT;
     };
     Spec2Sm.prototype.SPEC2SM__DECIDE_do = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // Spec2Sm__DECIDE behavior
         // uml: do [trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to USELESS."); } TransitionTo(USELESS)
         if ((0, printer_1.trace_guard)("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true)) {
@@ -4045,7 +4049,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.TEST1_DO_EVENT_TESTING;
     };
     Spec2Sm.prototype.TEST1_ROOT_do = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST1_ROOT behavior
         // uml: do [trace_guard("State TEST1_ROOT: check behavior `do`.", true)]
         if ((0, printer_1.trace_guard)("State TEST1_ROOT: check behavior `do`.", true)) {
@@ -4106,7 +4110,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.TEST1_S1;
     };
     Spec2Sm.prototype.TEST1_S1_1_do = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST1_S1_1 behavior
         // uml: do [trace_guard("State TEST1_S1_1: check behavior `do`.", true)]
         if ((0, printer_1.trace_guard)("State TEST1_S1_1: check behavior `do`.", true)) {
@@ -4155,7 +4159,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.TEST1_ROOT;
     };
     Spec2Sm.prototype.TEST1_S2_do = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST1_S2 behavior
         // uml: do [trace_guard("State TEST1_S2: check behavior `do / { consume_event = true; }`.", true)] / { consume_event = true; }
         if ((0, printer_1.trace_guard)("State TEST1_S2: check behavior `do / { consume_event = true; }`.", true)) {
@@ -4751,7 +4755,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.TEST2_REGULAR_EVENT_TESTING;
     };
     Spec2Sm.prototype.TEST2_ROOT_do = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST2_ROOT behavior
         // uml: do [trace_guard("State TEST2_ROOT: check behavior `do`.", true)]
         if ((0, printer_1.trace_guard)("State TEST2_ROOT: check behavior `do`.", true)) {
@@ -4828,7 +4832,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.TEST2_S1;
     };
     Spec2Sm.prototype.TEST2_S1_1_do = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST2_S1_1 behavior
         // uml: do [trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S1_1 to TEST2_S2."); } TransitionTo(TEST2_S2)
         if ((0, printer_1.trace_guard)("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true)) {
@@ -4847,7 +4851,7 @@ var Spec2Sm = /** @class */ (function () {
         }
     };
     Spec2Sm.prototype.TEST2_S1_1_ev1 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST2_S1_1 behavior
         // uml: EV1 [trace_guard("State TEST2_S1_1: check behavior `EV1`.", true)]
         if ((0, printer_1.trace_guard)("State TEST2_S1_1: check behavior `EV1`.", true)) {
@@ -4887,7 +4891,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.TEST2_ROOT;
     };
     Spec2Sm.prototype.TEST2_S2_ev1 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST2_S2 behavior
         // uml: ev1 [trace_guard("State TEST2_S2: check behavior `ev1 / { consume_event = false; }`.", true)] / { consume_event = false; }
         if ((0, printer_1.trace_guard)("State TEST2_S2: check behavior `ev1 / { consume_event = false; }`.", true)) {
@@ -4902,7 +4906,7 @@ var Spec2Sm = /** @class */ (function () {
         }
     };
     Spec2Sm.prototype.TEST2_S2_ev2 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST2_S2 behavior
         // uml: ev2 [trace_guard("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S2 to TEST2_S2."); } TransitionTo(TEST2_S2)
         if ((0, printer_1.trace_guard)("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", true)) {
@@ -4998,7 +5002,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.TEST3_ROOT;
     };
     Spec2Sm.prototype.TEST3_S1_ev1 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST3_S1 behavior
         // uml: 1. EV1 [trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", true)] / { trace("Transition action `` for TEST3_S1 to TEST3_S2."); } TransitionTo(TEST3_S2)
         if ((0, printer_1.trace_guard)("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", true)) {
@@ -5046,7 +5050,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.TEST3_ROOT;
     };
     Spec2Sm.prototype.TEST3_S2_ev1 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST3_S2 behavior
         // uml: 1. EV1 [trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\"); }`.", true)] / { trace("1 woot!"); }
         if ((0, printer_1.trace_guard)("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\"); }`.", true)) {
@@ -5691,7 +5695,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.TEST4_ROOT;
     };
     Spec2Sm.prototype.TEST4_S10_ev4 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST4_S10 behavior
         // uml: EV4 [trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true)] / { trace("Transition action `` for TEST4_S10 to TEST4_S10."); } TransitionTo(TEST4_S10)
         if ((0, printer_1.trace_guard)("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true)) {
@@ -5788,7 +5792,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.TEST4_ROOT;
     };
     Spec2Sm.prototype.TEST4_S20_ev4 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST4_S20 behavior
         // uml: EV4 [trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)] / { trace("Transition action `` for TEST4_S20 to TEST4_S20."); } TransitionTo(TEST4_S20)
         if ((0, printer_1.trace_guard)("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)) {
@@ -7566,7 +7570,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.T7__DH1__TOY;
     };
     Spec2Sm.prototype.T7__DH1__GLOW_WORM_ev1 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // T7__DH1__GLOW_WORM behavior
         // uml: EV1 [trace_guard("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", true)] / { trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT."); } TransitionTo(T7__DH1__ROBOT)
         if ((0, printer_1.trace_guard)("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", true)) {
@@ -7613,7 +7617,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.T7__DH1__TOY;
     };
     Spec2Sm.prototype.T7__DH1__RACE_CAR_ev1 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // T7__DH1__RACE_CAR behavior
         // uml: EV1 [trace_guard("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", true)] / { trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR."); } TransitionTo(T7__DH1__TEDDY_BEAR)
         if ((0, printer_1.trace_guard)("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", true)) {
@@ -7699,7 +7703,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.T7__DH1__ROBOT;
     };
     Spec2Sm.prototype.T7__DH1__BATTLEBOT_ev1 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // T7__DH1__BATTLEBOT behavior
         // uml: EV1 [trace_guard("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", true)] / { trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E."); } TransitionTo(T7__DH1__WALL_E)
         if ((0, printer_1.trace_guard)("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", true)) {
@@ -7772,7 +7776,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.T7__DH1__TOY;
     };
     Spec2Sm.prototype.T7__DH1__TEDDY_BEAR_ev1 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // T7__DH1__TEDDY_BEAR behavior
         // uml: EV1 [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", true)] / { trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM."); } TransitionTo(T7__DH1__GLOW_WORM)
         if ((0, printer_1.trace_guard)("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", true)) {
@@ -9527,7 +9531,7 @@ var Spec2Sm = /** @class */ (function () {
         // No ancestor handles this event.
     };
     Spec2Sm.prototype.TEST8_S1_ev3 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST8_S1 behavior
         // uml: EV3 [trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3)."); } TransitionTo(TEST8_G.<EntryPoint>(3))
         if ((0, printer_1.trace_guard)("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true)) {
@@ -10148,7 +10152,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.TEST9B_ROOT__A3;
     };
     Spec2Sm.prototype.TEST9B_ROOT__A4_ev1 = function () {
-        consume_event: boolean;
+        var consume_event = false;
         // TEST9B_ROOT__A4 behavior
         // uml: EV1 [trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))`.", true)] / { trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1)."); } TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))
         if ((0, printer_1.trace_guard)("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))`.", true)) {
@@ -10306,7 +10310,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.ROOT;
     };
     // Thread safe.
-    Spec2Sm.stateIdToString = function (StateId, id) {
+    Spec2Sm.stateIdToString = function (id) {
         switch (id) {
             case StateId.ROOT: return "ROOT";
             case StateId.PREFIXING: return "PREFIXING";
@@ -10486,7 +10490,7 @@ var Spec2Sm = /** @class */ (function () {
         }
     };
     // Thread safe.
-    Spec2Sm.eventIdToString = function (EventId, id) {
+    Spec2Sm.eventIdToString = function (id) {
         switch (id) {
             case EventId.DO: return "DO";
             case EventId.EV1: return "EV1";

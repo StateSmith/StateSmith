@@ -279,9 +279,9 @@ import { trace, trace_guard } from "./printer";
         public auto_var_1: number = 0;
     }
     
-    export const EventIdCount: number;
+    export const EventIdCount: number = 15;
     
-    export const StateIdCount: number;
+    export const StateIdCount: number = 174;
 // Generated state machine
 export class Spec2Sm
 {
@@ -291,7 +291,7 @@ export class Spec2Sm
     public stateId: StateId;
     
     // Variables. Can be used for inputs, outputs, user variables...
-    public vars: Vars;
+    public vars: Vars = new Vars();
     
     // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
     public Spec2Sm()
@@ -331,7 +331,7 @@ export class Spec2Sm
     
     // Dispatches an event to the state machine. Not thread safe.
     // Note! This function assumes that the `eventId` parameter is valid.
-    public dispatchEvent(EventId eventId): void 
+    public dispatchEvent(eventId: EventId ): void 
     {
         switch (this.stateId)
         {
@@ -1994,7 +1994,7 @@ export class Spec2Sm
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    private exitUpToStateHandler(StateId desiredState): void 
+    private exitUpToStateHandler(desiredState: StateId ): void 
     {
         while (this.stateId != desiredState)
         {
@@ -3317,7 +3317,7 @@ export class Spec2Sm
     
     private SPEC2SM__DECIDE_do(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // Spec2Sm__DECIDE behavior
         // uml: do [trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to USELESS."); } TransitionTo(USELESS)
@@ -3813,7 +3813,7 @@ consume_event:         boolean;
     
     private TEST1_ROOT_do(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST1_ROOT behavior
         // uml: do [trace_guard("State TEST1_ROOT: check behavior `do`.", true)]
@@ -3898,7 +3898,7 @@ consume_event:         boolean;
     
     private TEST1_S1_1_do(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST1_S1_1 behavior
         // uml: do [trace_guard("State TEST1_S1_1: check behavior `do`.", true)]
@@ -3968,7 +3968,7 @@ consume_event:         boolean;
     
     private TEST1_S2_do(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST1_S2 behavior
         // uml: do [trace_guard("State TEST1_S2: check behavior `do / { consume_event = true; }`.", true)] / { consume_event = true; }
@@ -4796,7 +4796,7 @@ consume_event:         boolean;
     
     private TEST2_ROOT_do(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST2_ROOT behavior
         // uml: do [trace_guard("State TEST2_ROOT: check behavior `do`.", true)]
@@ -4905,7 +4905,7 @@ consume_event:         boolean;
     
     private TEST2_S1_1_do(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST2_S1_1 behavior
         // uml: do [trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S1_1 to TEST2_S2."); } TransitionTo(TEST2_S2)
@@ -4933,7 +4933,7 @@ consume_event:         boolean;
     
     private TEST2_S1_1_ev1(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST2_S1_1 behavior
         // uml: EV1 [trace_guard("State TEST2_S1_1: check behavior `EV1`.", true)]
@@ -4989,7 +4989,7 @@ consume_event:         boolean;
     
     private TEST2_S2_ev1(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST2_S2 behavior
         // uml: ev1 [trace_guard("State TEST2_S2: check behavior `ev1 / { consume_event = false; }`.", true)] / { consume_event = false; }
@@ -5010,7 +5010,7 @@ consume_event:         boolean;
     
     private TEST2_S2_ev2(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST2_S2 behavior
         // uml: ev2 [trace_guard("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S2 to TEST2_S2."); } TransitionTo(TEST2_S2)
@@ -5145,7 +5145,7 @@ consume_event:         boolean;
     
     private TEST3_S1_ev1(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST3_S1 behavior
         // uml: 1. EV1 [trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", true)] / { trace("Transition action `` for TEST3_S1 to TEST3_S2."); } TransitionTo(TEST3_S2)
@@ -5212,7 +5212,7 @@ consume_event:         boolean;
     
     private TEST3_S2_ev1(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST3_S2 behavior
         // uml: 1. EV1 [trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\"); }`.", true)] / { trace("1 woot!"); }
@@ -6113,7 +6113,7 @@ consume_event:         boolean;
     
     private TEST4_S10_ev4(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST4_S10 behavior
         // uml: EV4 [trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true)] / { trace("Transition action `` for TEST4_S10 to TEST4_S10."); } TransitionTo(TEST4_S10)
@@ -6250,7 +6250,7 @@ consume_event:         boolean;
     
     private TEST4_S20_ev4(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST4_S20 behavior
         // uml: EV4 [trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)] / { trace("Transition action `` for TEST4_S20 to TEST4_S20."); } TransitionTo(TEST4_S20)
@@ -8727,7 +8727,7 @@ consume_event:         boolean;
     
     private T7__DH1__GLOW_WORM_ev1(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // T7__DH1__GLOW_WORM behavior
         // uml: EV1 [trace_guard("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", true)] / { trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT."); } TransitionTo(T7__DH1__ROBOT)
@@ -8793,7 +8793,7 @@ consume_event:         boolean;
     
     private T7__DH1__RACE_CAR_ev1(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // T7__DH1__RACE_CAR behavior
         // uml: EV1 [trace_guard("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", true)] / { trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR."); } TransitionTo(T7__DH1__TEDDY_BEAR)
@@ -8913,7 +8913,7 @@ consume_event:         boolean;
     
     private T7__DH1__BATTLEBOT_ev1(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // T7__DH1__BATTLEBOT behavior
         // uml: EV1 [trace_guard("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", true)] / { trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E."); } TransitionTo(T7__DH1__WALL_E)
@@ -9015,7 +9015,7 @@ consume_event:         boolean;
     
     private T7__DH1__TEDDY_BEAR_ev1(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // T7__DH1__TEDDY_BEAR behavior
         // uml: EV1 [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", true)] / { trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM."); } TransitionTo(T7__DH1__GLOW_WORM)
@@ -11470,7 +11470,7 @@ consume_event:         boolean;
     
     private TEST8_S1_ev3(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST8_S1 behavior
         // uml: EV3 [trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3)."); } TransitionTo(TEST8_G.<EntryPoint>(3))
@@ -12332,7 +12332,7 @@ consume_event:         boolean;
     
     private TEST9B_ROOT__A4_ev1(): void 
     {
-consume_event:         boolean;
+        let consume_event: boolean = false;
         
         // TEST9B_ROOT__A4 behavior
         // uml: EV1 [trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))`.", true)] / { trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1)."); } TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))
@@ -12549,7 +12549,7 @@ consume_event:         boolean;
     }
     
     // Thread safe.
-    public static stateIdToString(StateId id): string 
+    public static stateIdToString(id: StateId ): string 
     {
         switch (id)
         {
@@ -12732,7 +12732,7 @@ consume_event:         boolean;
     }
     
     // Thread safe.
-    public static eventIdToString(EventId id): string 
+    public static eventIdToString(id: EventId ): string 
     {
         switch (id)
         {

@@ -22,6 +22,7 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
 
+    private bool skipLeadingTrivia = false;
     private bool publicAsExport = false;
 
     private SemanticModel model;
@@ -126,13 +127,27 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         base.VisitFieldDeclaration(node);
     }
 
+    public override void VisitLocalDeclarationStatement(LocalDeclarationStatementSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+        sb.Append("let ");
+        base.VisitLocalDeclarationStatement(node);
+    }
+
     public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
     {
         VariableDeclaratorSyntax variableDeclaratorSyntax = node.Variables.Single();
         sb.Append($"{variableDeclaratorSyntax.Identifier}:");
         sb.Append(node.Type.GetTrailingTrivia());
+        skipLeadingTrivia = true;
         Visit(node.Type);
         StringUtils.EraseTrailingWhitespace(sb);
+
+        if (variableDeclaratorSyntax.Initializer != null)
+        {
+            VisitTrailingTrivia(variableDeclaratorSyntax.Identifier);
+            Visit(variableDeclaratorSyntax.Initializer);
+        }
     }
 
     //public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
@@ -228,28 +243,11 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         sb.Append(node.ToFullString()); // otherwise we need to update how `VisitArgumentList()` works
     }
 
-    public override void VisitArgumentList(ArgumentListSyntax node)
+    public override void VisitParameter(ParameterSyntax node)
     {
-        var invocation = (InvocationExpressionSyntax)node.Parent.ThrowIfNull();
-        var iMethodSymbol = (IMethodSymbol)model.GetSymbolInfo(invocation).ThrowIfNull().Symbol.ThrowIfNull();
-
-        if (useStaticDelegates && !iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.DelegateInvoke)
-        {
-            var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
-            list.VisitUpTo(node.OpenParenToken, including: true);
-
-            sb.Append("this");
-            if (node.Arguments.Count > 0)
-            {
-                sb.Append(", ");
-            }
-
-            list.VisitRest();
-        }
-        else
-        {
-            base.VisitArgumentList(node);
-        }
+        sb.Append(node.Identifier);
+        sb.Append(": ");
+        Visit(node.Type);
     }
 
     public override void VisitExpressionStatement(ExpressionStatementSyntax node)
@@ -287,7 +285,14 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
             return;
         }
 
-        token.LeadingTrivia.VisitWith(this);
+        if (skipLeadingTrivia)
+        {
+            skipLeadingTrivia = false;
+        }
+        else
+        {
+            token.LeadingTrivia.VisitWith(this);
+        }
 
         string tokenText = token.Text;
 
