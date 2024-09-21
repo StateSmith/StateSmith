@@ -23,8 +23,8 @@ Want to jump right in and just try it!?
 
 The below tutorials use new StateSmith features that are more user friendly. They use different diagram tools, but mirror each other fairly closely otherwise.
 
-- [Tutorial-3](https://github.com/StateSmith/tutorial-3) - `PlantUML` `CLI` `text`
-- [Tutorial-4](https://github.com/StateSmith/tutorial-4) - `draw.io` `CLI` `text & 🎥 video series`
+- [Tutorial-3](https://github.com/StateSmith/tutorial-3) - `PlantUML` `CLI` `text lessons`
+- [Tutorial-4](https://github.com/StateSmith/tutorial-4) - `draw.io` `CLI` `text lessons & 🎥 video series`
 - [older...](https://github.com/StateSmith/StateSmith/wiki/Learning-Resources)
 
 
