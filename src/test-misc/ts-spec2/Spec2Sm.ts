@@ -3,285 +3,285 @@
 
 // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
 import { trace, trace_guard } from "./printer";
-    export enum EventId
-    {
-        DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
-        EV1 = 1,
-        EV10 = 2,
-        EV2 = 3,
-        EV3 = 4,
-        EV4 = 5,
-        EV5 = 6,
-        EV6 = 7,
-        EV7 = 8,
-        EV8 = 9,
-        EV9 = 10,
-        EVBACK = 11,
-        EVCLOSE = 12,
-        EVOPEN = 13,
-        EVSTEP = 14,
-    }
-    
-    export enum StateId
-    {
-        ROOT = 0,
-        PREFIXING = 1,
-        PREFIXING__ORDER_MENU = 2,
-        PREFIXING__OM__BEVERAGE = 3,
-        PREFIXING__OM__BEV__NONE = 4,
-        PREFIXING__OM__BEV__TEA = 5,
-        PREFIXING__OM__BEV__WATER = 6,
-        PREFIXING__OM__VEG = 7,
-        PREFIXING__OM__VEG__NONE = 8,
-        PREFIXING__OM__VEG__POTATO = 9,
-        PREFIXING__OM__VEG__YAM = 10,
-        PREFIXING__SHOWS_MANUAL_PREFIX = 11,
-        PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU = 12,
-        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE = 13,
-        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE = 14,
-        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA = 15,
-        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER = 16,
-        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG = 17,
-        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE = 18,
-        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO = 19,
-        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM = 20,
-        SPEC2SM__DECIDE = 21,
-        TEST1_DO_EVENT_TESTING = 22,
-        TEST1_ROOT = 23,
-        TEST1_S1 = 24,
-        TEST1_S1_1 = 25,
-        TEST1_S2 = 26,
-        TEST10_CHOICE_POINT = 27,
-        TEST10_A = 28,
-        TEST10_A_1 = 29,
-        TEST10_ROOT = 30,
-        TEST10_G = 31,
-        TEST10_G_S0 = 32,
-        TEST10_G_S1 = 33,
-        TEST10_G_S2 = 34,
-        TEST10_G_S3 = 35,
-        TEST10_S1 = 36,
-        TEST10_S4 = 37,
-        TEST2_REGULAR_EVENT_TESTING = 38,
-        TEST2_ROOT = 39,
-        TEST2_S1 = 40,
-        TEST2_S1_1 = 41,
-        TEST2_S2 = 42,
-        TEST3_BEHAVIOR_ORDERING = 43,
-        TEST3_ROOT = 44,
-        TEST3_S1 = 45,
-        TEST3_S2 = 46,
-        TEST3_S3 = 47,
-        TEST4_PARENT_CHILD_TRANSITIONS = 48,
-        TEST4_B_AND_OTHERS = 49,
-        TEST4B_LOCAL = 50,
-        TEST4B_G = 51,
-        TEST4B_G_1 = 52,
-        TEST4C_LOCAL_TO_ALIAS = 53,
-        TEST4C_G = 54,
-        TEST4C_G_1 = 55,
-        TEST4D_EXTERNAL = 56,
-        TEST4D_G = 57,
-        TEST4D_G_1 = 58,
-        TEST4_DECIDE = 59,
-        TEST4_ROOT = 60,
-        TEST4_S1 = 61,
-        TEST4_S10 = 62,
-        TEST4_S10_1 = 63,
-        TEST4_S2 = 64,
-        TEST4_S20 = 65,
-        TEST4_S20_1 = 66,
-        TEST4_S3 = 67,
-        TEST5_PARENT_CHILD_TRANSITIONS_ALIAS = 68,
-        TEST5_ROOT = 69,
-        TEST5_S1 = 70,
-        TEST5_S2 = 71,
-        TEST5_S3 = 72,
-        TEST6_VARS_EXPANSIONS = 73,
-        TEST6_ROOT = 74,
-        AUTO_VAR_TEST = 75,
-        AUTO_VAR_TEST__S1 = 76,
-        AUTO_VAR_TEST__S2 = 77,
-        META_EXPANSIONS = 78,
-        META_EXPANSIONS__S1 = 79,
-        META_EXPANSIONS__S2 = 80,
-        S3 = 81,
-        S4 = 82,
-        S5 = 83,
-        NORMAL = 84,
-        NORMAL__S1 = 85,
-        NORMAL__S2 = 86,
-        TEST6_VARS_EXPANSIONS__DECIDE = 87,
-        TEST7_INITIAL_OR_HISTORY = 88,
-        TEST7 = 89,
-        T7__DEEP_HISTORY1 = 90,
-        T7__DH1__SANTAS_WORKSHOP = 91,
-        T7__DH1__ALIENS_DETECTED = 92,
-        T7__DH1__GET_BACKUP = 93,
-        T7__DH1__HERO = 94,
-        T7__DH1__CALL_BATMAN = 95,
-        T7__DH1__CALL_THOR = 96,
-        T7__DH1__LOCAL_HELP = 97,
-        T7__DH1__BUDDY_ELF = 98,
-        T7__DH1__POLAR_BEARS = 99,
-        T7__DH1__GIVE_COOKIES = 100,
-        T7__DH1__SNOWBALL_FIGHT = 101,
-        T7__DH1__BUILD = 102,
-        T7__DH1__TOOL = 103,
-        T7__DH1__CIRCULAR_SAW = 104,
-        T7__DH1__IMPACT_DRILL = 105,
-        T7__DH1__TOY = 106,
-        T7__DH1__GLOW_WORM = 107,
-        T7__DH1__RACE_CAR = 108,
-        T7__DH1__ROBOT = 109,
-        T7__DH1__BATTLEBOT = 110,
-        T7__DH1__WALL_E = 111,
-        T7__DH1__TEDDY_BEAR = 112,
-        T7__DEEP_HISTORY2 = 113,
-        T7__DEEP_HISTORY2__T7__STATE_0 = 114,
-        T7__DEEP_HISTORY2__T7__STATE_1 = 115,
-        T7__DEEP_HISTORY2__T7__STATE_2 = 116,
-        T7__DEEP_HISTORY2__T7__STATE_6 = 117,
-        T7__DEEP_HISTORY2__T7__STATE_9 = 118,
-        T7__DEEP_HISTORY2__T7__STATE_3 = 119,
-        T7__DEEP_HISTORY3 = 120,
-        T7__DEEP_HISTORY3__T7__STATE_0 = 121,
-        T7__DEEP_HISTORY3__T7__STATE_1 = 122,
-        T7__DEEP_HISTORY3__T7__STATE_2 = 123,
-        T7__DEEP_HISTORY3__T7__STATE_6 = 124,
-        T7__DEEP_HISTORY3__T7__STATE_9 = 125,
-        T7__DEEP_HISTORY3__T7__STATE_3 = 126,
-        T7__HISTORY1 = 127,
-        T7__H1__OFF = 128,
-        T7__H1__OFF1 = 129,
-        T7__H1__OFF2 = 130,
-        T7__H1__OFF3 = 131,
-        T7__H1__ON = 132,
-        T7__H1__ON1 = 133,
-        T7__H1__ON2 = 134,
-        T7__H1__ON3 = 135,
-        T7__INITIAL1 = 136,
-        T7__INITIAL1__PARENT = 137,
-        T7__INITIAL1__G = 138,
-        T7__INITIAL1__G_S1 = 139,
-        T7__INITIAL1__G_S2 = 140,
-        T7__INITIAL1__G_S3 = 141,
-        T7__INITIAL1__S1 = 142,
-        TEST7_DECIDE = 143,
-        TEST8_ENTRY_CHOICE = 144,
-        TEST8_ROOT = 145,
-        TEST8_G = 146,
-        TEST8_G_S1 = 147,
-        TEST8_G_S2 = 148,
-        TEST8_G_S3 = 149,
-        TEST8_S1 = 150,
-        TEST9_EXIT_CHOICE = 151,
-        TEST9_DECIDE = 152,
-        TEST9_ROOT = 153,
-        TEST9_G_S1 = 154,
-        TEST9_G_S2 = 155,
-        TEST9_G_S3 = 156,
-        TEST9_G_S4 = 157,
-        TEST9_S1 = 158,
-        TEST9_S1_1 = 159,
-        TEST9A_ROOT = 160,
-        TEST9A_S1 = 161,
-        TEST9A_S1_1 = 162,
-        TEST9B_ROOT = 163,
-        TEST9B_ROOT__A1 = 164,
-        TEST9B_ROOT__A2 = 165,
-        TEST9B_ROOT__A3 = 166,
-        TEST9B_ROOT__A4 = 167,
-        TEST9B_ROOT__B1 = 168,
-        TEST9B_ROOT__B2 = 169,
-        TEST9B_ROOT__B3 = 170,
-        TEST9B_ROOT__B4 = 171,
-        UNREACHABLE = 172,
-        USELESS = 173,
-    }
-    
-    export enum T7__H1__ON_HistoryId
-    {
-        T7__H1__ON1 = 0, // default transition
-        T7__H1__ON2 = 1,
-        T7__H1__ON3 = 2,
-    }
+export enum EventId
+{
+    DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
+    EV1 = 1,
+    EV10 = 2,
+    EV2 = 3,
+    EV3 = 4,
+    EV4 = 5,
+    EV5 = 6,
+    EV6 = 7,
+    EV7 = 8,
+    EV8 = 9,
+    EV9 = 10,
+    EVBACK = 11,
+    EVCLOSE = 12,
+    EVOPEN = 13,
+    EVSTEP = 14,
+}
 
-    
-    export enum T7__H1__OFF_HistoryId
-    {
-        T7__H1__OFF1 = 0, // default transition
-        T7__H1__OFF2 = 1,
-        T7__H1__OFF3 = 2,
-    }
+export const EventIdCount: number = 15;
 
-    
-    export enum T7__DH1__ALIENS_DETECTED_HistoryId
-    {
-        T7__DH1__SNOWBALL_FIGHT = 0, // default transition
-        T7__DH1__GIVE_COOKIES = 1,
-        T7__DH1__HERO = 2,
-        T7__DH1__BUDDY_ELF = 3,
-        T7__DH1__POLAR_BEARS = 4,
-    }
+export enum StateId
+{
+    ROOT = 0,
+    PREFIXING = 1,
+    PREFIXING__ORDER_MENU = 2,
+    PREFIXING__OM__BEVERAGE = 3,
+    PREFIXING__OM__BEV__NONE = 4,
+    PREFIXING__OM__BEV__TEA = 5,
+    PREFIXING__OM__BEV__WATER = 6,
+    PREFIXING__OM__VEG = 7,
+    PREFIXING__OM__VEG__NONE = 8,
+    PREFIXING__OM__VEG__POTATO = 9,
+    PREFIXING__OM__VEG__YAM = 10,
+    PREFIXING__SHOWS_MANUAL_PREFIX = 11,
+    PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU = 12,
+    PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE = 13,
+    PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE = 14,
+    PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA = 15,
+    PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER = 16,
+    PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG = 17,
+    PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE = 18,
+    PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO = 19,
+    PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM = 20,
+    SPEC2SM__DECIDE = 21,
+    TEST1_DO_EVENT_TESTING = 22,
+    TEST1_ROOT = 23,
+    TEST1_S1 = 24,
+    TEST1_S1_1 = 25,
+    TEST1_S2 = 26,
+    TEST10_CHOICE_POINT = 27,
+    TEST10_A = 28,
+    TEST10_A_1 = 29,
+    TEST10_ROOT = 30,
+    TEST10_G = 31,
+    TEST10_G_S0 = 32,
+    TEST10_G_S1 = 33,
+    TEST10_G_S2 = 34,
+    TEST10_G_S3 = 35,
+    TEST10_S1 = 36,
+    TEST10_S4 = 37,
+    TEST2_REGULAR_EVENT_TESTING = 38,
+    TEST2_ROOT = 39,
+    TEST2_S1 = 40,
+    TEST2_S1_1 = 41,
+    TEST2_S2 = 42,
+    TEST3_BEHAVIOR_ORDERING = 43,
+    TEST3_ROOT = 44,
+    TEST3_S1 = 45,
+    TEST3_S2 = 46,
+    TEST3_S3 = 47,
+    TEST4_PARENT_CHILD_TRANSITIONS = 48,
+    TEST4_B_AND_OTHERS = 49,
+    TEST4B_LOCAL = 50,
+    TEST4B_G = 51,
+    TEST4B_G_1 = 52,
+    TEST4C_LOCAL_TO_ALIAS = 53,
+    TEST4C_G = 54,
+    TEST4C_G_1 = 55,
+    TEST4D_EXTERNAL = 56,
+    TEST4D_G = 57,
+    TEST4D_G_1 = 58,
+    TEST4_DECIDE = 59,
+    TEST4_ROOT = 60,
+    TEST4_S1 = 61,
+    TEST4_S10 = 62,
+    TEST4_S10_1 = 63,
+    TEST4_S2 = 64,
+    TEST4_S20 = 65,
+    TEST4_S20_1 = 66,
+    TEST4_S3 = 67,
+    TEST5_PARENT_CHILD_TRANSITIONS_ALIAS = 68,
+    TEST5_ROOT = 69,
+    TEST5_S1 = 70,
+    TEST5_S2 = 71,
+    TEST5_S3 = 72,
+    TEST6_VARS_EXPANSIONS = 73,
+    TEST6_ROOT = 74,
+    AUTO_VAR_TEST = 75,
+    AUTO_VAR_TEST__S1 = 76,
+    AUTO_VAR_TEST__S2 = 77,
+    META_EXPANSIONS = 78,
+    META_EXPANSIONS__S1 = 79,
+    META_EXPANSIONS__S2 = 80,
+    S3 = 81,
+    S4 = 82,
+    S5 = 83,
+    NORMAL = 84,
+    NORMAL__S1 = 85,
+    NORMAL__S2 = 86,
+    TEST6_VARS_EXPANSIONS__DECIDE = 87,
+    TEST7_INITIAL_OR_HISTORY = 88,
+    TEST7 = 89,
+    T7__DEEP_HISTORY1 = 90,
+    T7__DH1__SANTAS_WORKSHOP = 91,
+    T7__DH1__ALIENS_DETECTED = 92,
+    T7__DH1__GET_BACKUP = 93,
+    T7__DH1__HERO = 94,
+    T7__DH1__CALL_BATMAN = 95,
+    T7__DH1__CALL_THOR = 96,
+    T7__DH1__LOCAL_HELP = 97,
+    T7__DH1__BUDDY_ELF = 98,
+    T7__DH1__POLAR_BEARS = 99,
+    T7__DH1__GIVE_COOKIES = 100,
+    T7__DH1__SNOWBALL_FIGHT = 101,
+    T7__DH1__BUILD = 102,
+    T7__DH1__TOOL = 103,
+    T7__DH1__CIRCULAR_SAW = 104,
+    T7__DH1__IMPACT_DRILL = 105,
+    T7__DH1__TOY = 106,
+    T7__DH1__GLOW_WORM = 107,
+    T7__DH1__RACE_CAR = 108,
+    T7__DH1__ROBOT = 109,
+    T7__DH1__BATTLEBOT = 110,
+    T7__DH1__WALL_E = 111,
+    T7__DH1__TEDDY_BEAR = 112,
+    T7__DEEP_HISTORY2 = 113,
+    T7__DEEP_HISTORY2__T7__STATE_0 = 114,
+    T7__DEEP_HISTORY2__T7__STATE_1 = 115,
+    T7__DEEP_HISTORY2__T7__STATE_2 = 116,
+    T7__DEEP_HISTORY2__T7__STATE_6 = 117,
+    T7__DEEP_HISTORY2__T7__STATE_9 = 118,
+    T7__DEEP_HISTORY2__T7__STATE_3 = 119,
+    T7__DEEP_HISTORY3 = 120,
+    T7__DEEP_HISTORY3__T7__STATE_0 = 121,
+    T7__DEEP_HISTORY3__T7__STATE_1 = 122,
+    T7__DEEP_HISTORY3__T7__STATE_2 = 123,
+    T7__DEEP_HISTORY3__T7__STATE_6 = 124,
+    T7__DEEP_HISTORY3__T7__STATE_9 = 125,
+    T7__DEEP_HISTORY3__T7__STATE_3 = 126,
+    T7__HISTORY1 = 127,
+    T7__H1__OFF = 128,
+    T7__H1__OFF1 = 129,
+    T7__H1__OFF2 = 130,
+    T7__H1__OFF3 = 131,
+    T7__H1__ON = 132,
+    T7__H1__ON1 = 133,
+    T7__H1__ON2 = 134,
+    T7__H1__ON3 = 135,
+    T7__INITIAL1 = 136,
+    T7__INITIAL1__PARENT = 137,
+    T7__INITIAL1__G = 138,
+    T7__INITIAL1__G_S1 = 139,
+    T7__INITIAL1__G_S2 = 140,
+    T7__INITIAL1__G_S3 = 141,
+    T7__INITIAL1__S1 = 142,
+    TEST7_DECIDE = 143,
+    TEST8_ENTRY_CHOICE = 144,
+    TEST8_ROOT = 145,
+    TEST8_G = 146,
+    TEST8_G_S1 = 147,
+    TEST8_G_S2 = 148,
+    TEST8_G_S3 = 149,
+    TEST8_S1 = 150,
+    TEST9_EXIT_CHOICE = 151,
+    TEST9_DECIDE = 152,
+    TEST9_ROOT = 153,
+    TEST9_G_S1 = 154,
+    TEST9_G_S2 = 155,
+    TEST9_G_S3 = 156,
+    TEST9_G_S4 = 157,
+    TEST9_S1 = 158,
+    TEST9_S1_1 = 159,
+    TEST9A_ROOT = 160,
+    TEST9A_S1 = 161,
+    TEST9A_S1_1 = 162,
+    TEST9B_ROOT = 163,
+    TEST9B_ROOT__A1 = 164,
+    TEST9B_ROOT__A2 = 165,
+    TEST9B_ROOT__A3 = 166,
+    TEST9B_ROOT__A4 = 167,
+    TEST9B_ROOT__B1 = 168,
+    TEST9B_ROOT__B2 = 169,
+    TEST9B_ROOT__B3 = 170,
+    TEST9B_ROOT__B4 = 171,
+    UNREACHABLE = 172,
+    USELESS = 173,
+}
 
-    
-    export enum T7__DH1__GET_BACKUP_HistoryId
-    {
-        T7__DH1__GET_BACKUP_CHOICEPOINT = 0, // default transition
-        T7__DH1__HERO = 1,
-        T7__DH1__BUDDY_ELF = 2,
-        T7__DH1__POLAR_BEARS = 3,
-    }
+export const StateIdCount: number = 174;
 
-    
-    export enum T7__DH1__BUILD_HistoryId
-    {
-        T7__DH1__TOY = 0, // default transition
-        T7__DH1__TOOL = 1,
-        T7__DH1__RACE_CAR = 2,
-        T7__DH1__TEDDY_BEAR = 3,
-        T7__DH1__GLOW_WORM = 4,
-        T7__DH1__ROBOT = 5,
-        T7__DH1__BATTLEBOT = 6,
-        T7__DH1__WALL_E = 7,
-        T7__DH1__IMPACT_DRILL = 8,
-        T7__DH1__CIRCULAR_SAW = 9,
-    }
+export enum T7__H1__ON_HistoryId
+{
+    T7__H1__ON1 = 0, // default transition
+    T7__H1__ON2 = 1,
+    T7__H1__ON3 = 2,
+}
 
-    
-    export enum T7__DEEP_HISTORY2__T7__state_0_HistoryId
-    {
-        T7__DEEP_HISTORY2__T7__STATE_1 = 0, // default transition
-        T7__DEEP_HISTORY2__T7__STATE_2 = 1,
-        T7__DEEP_HISTORY2__T7__STATE_6 = 2,
-        T7__DEEP_HISTORY2__T7__STATE_9 = 3,
-    }
 
-    
-    export enum T7__DEEP_HISTORY3__T7__state_0_HistoryId
-    {
-        T7__DEEP_HISTORY3__T7__STATE_1 = 0, // default transition
-        T7__DEEP_HISTORY3__T7__STATE_2 = 1,
-    }
-    
-    // State machine variables. Can be used for inputs, outputs, user variables...
-    export class Vars
-    {
-        public T7__H1__ON_history: T7__H1__ON_HistoryId;
-        public T7__H1__OFF_history: T7__H1__OFF_HistoryId;
-        public T7__DH1__ALIENS_DETECTED_history: T7__DH1__ALIENS_DETECTED_HistoryId;
-        public T7__DH1__GET_BACKUP_history: T7__DH1__GET_BACKUP_HistoryId;
-        public T7__DH1__BUILD_history: T7__DH1__BUILD_HistoryId;
-        public T7__DEEP_HISTORY2__T7__state_0_history: T7__DEEP_HISTORY2__T7__state_0_HistoryId;
-        public T7__DEEP_HISTORY3__T7__state_0_history: T7__DEEP_HISTORY3__T7__state_0_HistoryId;
-        public count = 0;
-        public auto_var_1: number = 0;
-    }
-    
-    export const EventIdCount: number = 15;
-    
-    export const StateIdCount: number = 174;
+export enum T7__H1__OFF_HistoryId
+{
+    T7__H1__OFF1 = 0, // default transition
+    T7__H1__OFF2 = 1,
+    T7__H1__OFF3 = 2,
+}
+
+
+export enum T7__DH1__ALIENS_DETECTED_HistoryId
+{
+    T7__DH1__SNOWBALL_FIGHT = 0, // default transition
+    T7__DH1__GIVE_COOKIES = 1,
+    T7__DH1__HERO = 2,
+    T7__DH1__BUDDY_ELF = 3,
+    T7__DH1__POLAR_BEARS = 4,
+}
+
+
+export enum T7__DH1__GET_BACKUP_HistoryId
+{
+    T7__DH1__GET_BACKUP_CHOICEPOINT = 0, // default transition
+    T7__DH1__HERO = 1,
+    T7__DH1__BUDDY_ELF = 2,
+    T7__DH1__POLAR_BEARS = 3,
+}
+
+
+export enum T7__DH1__BUILD_HistoryId
+{
+    T7__DH1__TOY = 0, // default transition
+    T7__DH1__TOOL = 1,
+    T7__DH1__RACE_CAR = 2,
+    T7__DH1__TEDDY_BEAR = 3,
+    T7__DH1__GLOW_WORM = 4,
+    T7__DH1__ROBOT = 5,
+    T7__DH1__BATTLEBOT = 6,
+    T7__DH1__WALL_E = 7,
+    T7__DH1__IMPACT_DRILL = 8,
+    T7__DH1__CIRCULAR_SAW = 9,
+}
+
+
+export enum T7__DEEP_HISTORY2__T7__state_0_HistoryId
+{
+    T7__DEEP_HISTORY2__T7__STATE_1 = 0, // default transition
+    T7__DEEP_HISTORY2__T7__STATE_2 = 1,
+    T7__DEEP_HISTORY2__T7__STATE_6 = 2,
+    T7__DEEP_HISTORY2__T7__STATE_9 = 3,
+}
+
+
+export enum T7__DEEP_HISTORY3__T7__state_0_HistoryId
+{
+    T7__DEEP_HISTORY3__T7__STATE_1 = 0, // default transition
+    T7__DEEP_HISTORY3__T7__STATE_2 = 1,
+}
+
+// State machine variables. Can be used for inputs, outputs, user variables...
+export class Vars
+{
+    public T7__H1__ON_history: T7__H1__ON_HistoryId;
+    public T7__H1__OFF_history: T7__H1__OFF_HistoryId;
+    public T7__DH1__ALIENS_DETECTED_history: T7__DH1__ALIENS_DETECTED_HistoryId;
+    public T7__DH1__GET_BACKUP_history: T7__DH1__GET_BACKUP_HistoryId;
+    public T7__DH1__BUILD_history: T7__DH1__BUILD_HistoryId;
+    public T7__DEEP_HISTORY2__T7__state_0_history: T7__DEEP_HISTORY2__T7__state_0_HistoryId;
+    public T7__DEEP_HISTORY3__T7__state_0_history: T7__DEEP_HISTORY3__T7__state_0_HistoryId;
+    public count = 0;
+    public auto_var_1: number = 0;
+}
 // Generated state machine
 export class Spec2Sm
 {

@@ -17,7 +17,7 @@ namespace StateSmith.Output.Gil.TypeScript;
 /// </summary>
 public class TypeScriptGilVisitor : CSharpSyntaxWalker
 {
-    public readonly StringBuilder sb;
+    public StringBuilder sb;
     private readonly RenderConfigTypeScriptVars renderConfigTypeScript;
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
@@ -69,22 +69,7 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
         if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
-
-        foreach (var kid in node.ChildNodes().OfType<EnumDeclarationSyntax>())
-        {
-            Visit(kid);
-        }
-
-        foreach (var kid in node.ChildNodes().OfType<ClassDeclarationSyntax>())
-        {
-            Visit(kid);
-        }
-
-        foreach (var kid in node.ChildNodes().OfType<FieldDeclarationSyntax>())
-        {
-            if (kid is FieldDeclarationSyntax field && field.IsConst())
-                Visit(kid);
-        }
+        HoistTopLevelMembersOutOfClass(node);
 
         var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
         publicAsExport = true;
@@ -115,6 +100,36 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         }
 
         VisitToken(node.CloseBraceToken);
+    }
+
+    /// <summary>
+    /// TypeScript doesn't support nested classes, or enums declared in classes.
+    /// </summary>
+    /// <param name="node"></param>
+    private void HoistTopLevelMembersOutOfClass(ClassDeclarationSyntax node)
+    {
+        var old = sb;
+        sb = new StringBuilder();
+
+        foreach (var kid in node.ChildNodes().Where(n => n is EnumDeclarationSyntax || n is ClassDeclarationSyntax || n is FieldDeclarationSyntax))
+        {
+            if (kid is FieldDeclarationSyntax field)
+            {
+                if (field.IsConst())
+                {
+                    Visit(kid);
+                }
+            }
+            else
+            {
+                Visit(kid);
+            }
+        }
+
+        string code = sb.ToString();
+        code = StringUtils.DeIndent(code);
+        sb = old;
+        sb.Append(code);
     }
 
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
