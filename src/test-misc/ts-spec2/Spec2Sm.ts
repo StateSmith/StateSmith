@@ -282,6 +282,7 @@ export class Vars
     public count = 0;
     public auto_var_1: number = 0;
 }
+
 // Generated state machine
 export class Spec2Sm
 {
@@ -331,7 +332,7 @@ export class Spec2Sm
     
     // Dispatches an event to the state machine. Not thread safe.
     // Note! This function assumes that the `eventId` parameter is valid.
-    public dispatchEvent(eventId: EventId ): void 
+    public dispatchEvent(eventId: EventId): void 
     {
         switch (this.stateId)
         {
@@ -1994,7 +1995,7 @@ export class Spec2Sm
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    private exitUpToStateHandler(desiredState: StateId ): void 
+    private exitUpToStateHandler(desiredState: StateId): void 
     {
         while (this.stateId != desiredState)
         {
@@ -12549,7 +12550,7 @@ export class Spec2Sm
     }
     
     // Thread safe.
-    public static stateIdToString(id: StateId ): string 
+    public static stateIdToString(id: StateId): string 
     {
         switch (id)
         {
@@ -12732,7 +12733,7 @@ export class Spec2Sm
     }
     
     // Thread safe.
-    public static eventIdToString(id: EventId ): string 
+    public static eventIdToString(id: EventId): string 
     {
         switch (id)
         {

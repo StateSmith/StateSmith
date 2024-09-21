@@ -24,6 +24,7 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
 
     private bool skipLeadingTrivia = false;
     private bool publicAsExport = false;
+    private int nestedCount = 0;
 
     private SemanticModel model;
 
@@ -74,6 +75,11 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
         publicAsExport = true;
 
+        if (nestedCount == 0)
+        {
+            sb.AppendLine();
+        }
+
         iterableChildSyntaxList.VisitUpTo(SyntaxKind.ClassKeyword);
 
         iterableChildSyntaxList.VisitUpTo(node.Identifier);
@@ -108,28 +114,33 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
     /// <param name="node"></param>
     private void HoistTopLevelMembersOutOfClass(ClassDeclarationSyntax node)
     {
-        var old = sb;
-        sb = new StringBuilder();
-
-        foreach (var kid in node.ChildNodes().Where(n => n is EnumDeclarationSyntax || n is ClassDeclarationSyntax || n is FieldDeclarationSyntax))
+        nestedCount++;
         {
-            if (kid is FieldDeclarationSyntax field)
+            var old = sb;
+            sb = new StringBuilder();
+
+            foreach (var kid in node.ChildNodes().Where(n => n is EnumDeclarationSyntax || n is ClassDeclarationSyntax || n is FieldDeclarationSyntax))
             {
-                if (field.IsConst())
+                if (kid is FieldDeclarationSyntax field)
+                {
+                    if (field.IsConst())
+                    {
+                        Visit(kid);
+                    }
+                }
+                else
                 {
                     Visit(kid);
                 }
             }
-            else
-            {
-                Visit(kid);
-            }
+
+            string code = sb.ToString();
+            code = StringUtils.DeIndent(code);
+            sb = old;
+            sb.Append(code);
         }
 
-        string code = sb.ToString();
-        code = StringUtils.DeIndent(code);
-        sb = old;
-        sb.Append(code);
+        nestedCount--;
     }
 
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
@@ -263,6 +274,7 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         sb.Append(node.Identifier);
         sb.Append(": ");
         Visit(node.Type);
+        StringUtils.EraseTrailingWhitespace(sb);
     }
 
     public override void VisitExpressionStatement(ExpressionStatementSyntax node)

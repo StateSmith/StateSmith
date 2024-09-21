@@ -17,6 +17,7 @@ export enum StateId
 }
 
 export const StateIdCount: number = 4;
+
 // Generated state machine
 export class RocketSm
 {
@@ -72,7 +73,7 @@ export class RocketSm
     
     // Dispatches an event to the state machine. Not thread safe.
     // Note! This function assumes that the `eventId` parameter is valid.
-    public dispatchEvent(eventId: EventId ): void 
+    public dispatchEvent(eventId: EventId): void 
     {
         
         switch (this.stateId)
@@ -102,7 +103,7 @@ export class RocketSm
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    private exitUpToStateHandler(desiredState: StateId ): void 
+    private exitUpToStateHandler(desiredState: StateId): void 
     {
         while (this.stateId != desiredState)
         {
@@ -216,7 +217,7 @@ export class RocketSm
     }
     
     // Thread safe.
-    public static stateIdToString(id: StateId ): string 
+    public static stateIdToString(id: StateId): string 
     {
         switch (id)
         {
@@ -229,7 +230,7 @@ export class RocketSm
     }
     
     // Thread safe.
-    public static eventIdToString(id: EventId ): string 
+    public static eventIdToString(id: EventId): string 
     {
         switch (id)
         {
