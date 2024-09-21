@@ -151,14 +151,6 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         base.VisitEnumDeclaration(node);
     }
 
-    public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
-    {
-        // we don't want to output identifier trailing space so we do this manually
-        // we want to output `ROOT,` instead of `ROOT ,`. The comma is handled by the parent node.
-        VisitLeadingTrivia(node.Identifier);
-        sb.Append(node.Identifier.Text);
-    }
-
     public override void VisitIdentifierName(IdentifierNameSyntax node)
     {
         if (useStaticDelegates && MethodPtrFinder.identifiers.Contains(node))
@@ -190,17 +182,6 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         }
     }
 
-    public override void VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
-    {
-        bool done = false;
-
-        if (transpilerHelper.HandleThisMethodAccess(node))
-            done = true;
-
-        if (!done)
-            base.VisitMemberAccessExpression(node);
-    }
-
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
         if (transpilerHelper.IsGilData(node))
@@ -208,7 +189,17 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
 
         MaybeOutputStaticDelegate(node);
 
-        base.VisitMethodDeclaration(node);
+        publicAsExport = false;
+
+        var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+        list.VisitUpTo(node.ReturnType);
+        list.SkipNext(); // skip return type
+        list.VisitUpTo(node.Body.ThrowIfNull());
+        StringUtils.EraseTrailingWhitespace(sb);
+        sb.Append(": ");
+        Visit(node.ReturnType);
+        sb.AppendLine();
+        list.VisitRest();
     }
 
     private void MaybeOutputBaseList()
@@ -281,19 +272,6 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
             tokenToSkip = expressionParent.SemicolonToken;
         });
 
-        // TODO - support in TypeScript.
-        //if (!done)
-        //{
-        //    var symbol = Model.GetSymbolInfo(node).Symbol;
-        //    if (symbol is INamedTypeSymbol namedTypeSymbol)
-        //    {
-        //        if (namedTypeSymbol.DelegateInvokeMethod != null)
-        //        {
-        //            done = true;
-        //        }
-        //    }
-        //}
-
         if (!done)
         {
             base.VisitInvocationExpression(node);
@@ -315,8 +293,8 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
 
         switch ((SyntaxKind)token.RawKind)
         {
-            case SyntaxKind.StructKeyword: tokenText = "class"; break;
             case SyntaxKind.BoolKeyword: tokenText = "boolean"; break;
+            case SyntaxKind.IntKeyword: tokenText = "number"; break;
             case SyntaxKind.PublicKeyword:
                 if (publicAsExport)
                 {

@@ -120,6 +120,7 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IAutoVarsParser, TypeScriptAutoVarsParser>();
                     algoBalanced1Settings.varsStructAsClass = true;
                     algoBalanced1Settings.skipClassIndentation = false;
+                    //style.BracesOnNewLines = false; // todolow - it would be nice to support this
 
                     // https://github.com/StateSmith/StateSmith/issues/407
                     if (algorithmId != AlgorithmId.Balanced2)
