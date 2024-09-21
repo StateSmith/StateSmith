@@ -278,6 +278,10 @@ import { trace, trace_guard } from "./printer";
         public count = 0;
         public auto_var_1: number = 0;
     }
+    
+    export const EventIdCount: int;
+    
+    export const StateIdCount: int;
 // Generated state machine
 export class Spec2Sm
 {

@@ -22,6 +22,8 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
 
+    private bool publicAsExport = false;
+
     private SemanticModel model;
 
 
@@ -84,9 +86,7 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         }
 
         var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
-
-        // like "public"
-        HandleAccessModifiers(iterableChildSyntaxList, node.Modifiers);
+        publicAsExport = true;
 
         iterableChildSyntaxList.VisitUpTo(SyntaxKind.ClassKeyword);
 
@@ -116,34 +116,12 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         VisitToken(node.CloseBraceToken);
     }
 
-    private void HandleAccessModifiers(WalkableChildSyntaxList iterableChildSyntaxList, SyntaxTokenList modifiers)
-    {
-        if (modifiers.Any())
-        {
-            SyntaxToken modifier = modifiers.Single();
-            iterableChildSyntaxList.VisitUpTo(modifier, including: false);
-            VisitLeadingTrivia(modifier);
-            iterableChildSyntaxList.SkipNext(); // skip the modifier
-
-            if (modifier.IsKind(SyntaxKind.PublicKeyword))
-            {
-                sb.Append("export ");
-            }
-        }
-    }
-
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
         if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
             return;
 
-        if (node.IsConst())
-        {
-            var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
-            HandleAccessModifiers(list, node.Modifiers);
-            list.VisitRest();
-            return;
-        }
+        publicAsExport = node.IsConst();
 
         base.VisitFieldDeclaration(node);
     }
@@ -169,12 +147,8 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
     {
-        var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
-
-        // like "public"
-        HandleAccessModifiers(list, node.Modifiers);
-
-        list.VisitRest();
+        publicAsExport = true;
+        base.VisitEnumDeclaration(node);
     }
 
     public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
@@ -343,6 +317,13 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         {
             case SyntaxKind.StructKeyword: tokenText = "class"; break;
             case SyntaxKind.BoolKeyword: tokenText = "boolean"; break;
+            case SyntaxKind.PublicKeyword:
+                if (publicAsExport)
+                {
+                    tokenText = "export";
+                    //publicAsExport = false;
+                }
+                break;
         }
 
         if (token.IsKind(SyntaxKind.ExclamationToken) && token.Parent.IsKind(SyntaxKind.SuppressNullableWarningExpression))
