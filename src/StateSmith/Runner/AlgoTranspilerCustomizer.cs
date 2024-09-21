@@ -118,6 +118,7 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     sp.AddSingletonT<IAutoVarsParser, TypeScriptAutoVarsParser>();
+                    algoBalanced1Settings.varsStructAsClass = true;
                     algoBalanced1Settings.skipClassIndentation = false;
 
                     // https://github.com/StateSmith/StateSmith/issues/407

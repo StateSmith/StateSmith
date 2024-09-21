@@ -316,4 +316,10 @@ public class StringUtils
 
         return str;
     }
+
+    public static void EraseTrailingWhitespace(StringBuilder sb)
+    {
+        while (char.IsWhiteSpace(sb[^1]))
+            sb.Length--;
+    }
 }

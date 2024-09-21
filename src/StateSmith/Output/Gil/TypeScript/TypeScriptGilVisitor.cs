@@ -6,6 +6,8 @@ using Microsoft.CodeAnalysis.CSharp;
 using System.Text;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace StateSmith.Output.Gil.TypeScript;
 
@@ -61,12 +63,98 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         this.Visit(transpilerHelper.root);
     }
 
+    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+    {
+        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
+
+        foreach (var kid in node.ChildNodes().OfType<EnumDeclarationSyntax>())
+        {
+            Visit(kid);
+        }
+
+        foreach (var kid in node.ChildNodes().OfType<ClassDeclarationSyntax>())
+        {
+            Visit(kid);
+        }
+
+        foreach (var kid in node.ChildNodes().OfType<FieldDeclarationSyntax>())
+        {
+            if (kid is FieldDeclarationSyntax field && field.IsConst())
+                Visit(kid);
+        }
+
+        var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+
+        // like "public"
+        HandleAccessModifiers(iterableChildSyntaxList, node.Modifiers);
+
+        iterableChildSyntaxList.VisitUpTo(SyntaxKind.ClassKeyword);
+
+        iterableChildSyntaxList.VisitUpTo(node.Identifier);
+
+        // handle identifier specially so that it doesn't put base list on newline
+        iterableChildSyntaxList.Remove(node.Identifier);
+        sb.Append(node.Identifier.Text);
+        MaybeOutputBaseList();
+        VisitTrailingTrivia(node.Identifier);
+
+        iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
+        sb.AppendLineIfNotBlank(renderConfigTypeScript.ClassCode);  // append class code after open brace token
+
+        foreach (var kid in node.ChildNodes().OfType<FieldDeclarationSyntax>())
+        {
+            if (kid is FieldDeclarationSyntax field && !field.IsConst())
+                Visit(kid);
+        }
+
+        var methods = node.ChildNodes().Where(n => n is MethodDeclarationSyntax || n is ConstructorDeclarationSyntax);
+        foreach (var method in methods)
+        {
+            Visit(method);
+        }
+
+        VisitToken(node.CloseBraceToken);
+    }
+
+    private void HandleAccessModifiers(WalkableChildSyntaxList iterableChildSyntaxList, SyntaxTokenList modifiers)
+    {
+        if (modifiers.Any())
+        {
+            SyntaxToken modifier = modifiers.Single();
+            iterableChildSyntaxList.VisitUpTo(modifier, including: false);
+            VisitLeadingTrivia(modifier);
+            iterableChildSyntaxList.SkipNext(); // skip the modifier
+
+            if (modifier.IsKind(SyntaxKind.PublicKeyword))
+            {
+                sb.Append("export ");
+            }
+        }
+    }
+
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
         if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
             return;
 
+        if (node.IsConst())
+        {
+            var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+            HandleAccessModifiers(list, node.Modifiers);
+            list.VisitRest();
+            return;
+        }
+
         base.VisitFieldDeclaration(node);
+    }
+
+    public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
+    {
+        VariableDeclaratorSyntax variableDeclaratorSyntax = node.Variables.Single();
+        sb.Append($"{variableDeclaratorSyntax.Identifier}:");
+        sb.Append(node.Type.GetTrailingTrivia());
+        Visit(node.Type);
+        StringUtils.EraseTrailingWhitespace(sb);
     }
 
     //public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
@@ -78,6 +166,16 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
     //    Visit(memberAccessExpressionSyntax.Name);
     //    VisitToken(node.ColonToken);
     //}
+
+    public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
+    {
+        var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+
+        // like "public"
+        HandleAccessModifiers(list, node.Modifiers);
+
+        list.VisitRest();
+    }
 
     public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
     {
@@ -137,28 +235,6 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         MaybeOutputStaticDelegate(node);
 
         base.VisitMethodDeclaration(node);
-    }
-
-    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
-    {
-        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
-
-        var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
-
-        iterableChildSyntaxList.VisitUpTo(SyntaxKind.ClassKeyword);
-
-        iterableChildSyntaxList.VisitUpTo(node.Identifier);
-
-        // handle identifier specially so that it doesn't put base list on newline
-        iterableChildSyntaxList.Remove(node.Identifier);
-        sb.Append(node.Identifier.Text);
-        MaybeOutputBaseList();
-        VisitTrailingTrivia(node.Identifier);
-
-        iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
-        sb.AppendLineIfNotBlank(renderConfigTypeScript.ClassCode);  // append class code after open brace token
-
-        iterableChildSyntaxList.VisitRest();
     }
 
     private void MaybeOutputBaseList()
@@ -266,10 +342,7 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         switch ((SyntaxKind)token.RawKind)
         {
             case SyntaxKind.StructKeyword: tokenText = "class"; break;
-            case SyntaxKind.ConstKeyword: tokenText = "final"; break;
-            case SyntaxKind.StringKeyword: tokenText = "String"; break;
             case SyntaxKind.BoolKeyword: tokenText = "boolean"; break;
-            case SyntaxKind.PublicKeyword: tokenText = "export"; break;
         }
 
         if (token.IsKind(SyntaxKind.ExclamationToken) && token.Parent.IsKind(SyntaxKind.SuppressNullableWarningExpression))

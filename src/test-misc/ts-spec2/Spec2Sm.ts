@@ -3,9 +3,6 @@
 
 // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
 import { trace, trace_guard } from "./printer";
-// Generated state machine
-export class Spec2Sm
-{
     export enum EventId
     {
         DO, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
@@ -24,8 +21,6 @@ export class Spec2Sm
         EVOPEN,
         EVSTEP,
     }
-    
-    export final int EventIdCount = 15;
     
     export enum StateId
     {
@@ -205,8 +200,6 @@ export class Spec2Sm
         USELESS,
     }
     
-    export final int StateIdCount = 174;
-    
     export enum T7__H1__ON_HistoryId
     {
         T7__H1__ON1, // default transition
@@ -271,35 +264,38 @@ export class Spec2Sm
         T7__DEEP_HISTORY3__T7__STATE_1, // default transition
         T7__DEEP_HISTORY3__T7__STATE_2,
     }
-
-    
-    // Used internally by state machine. Feel free to inspect, but don't modify.
-    export StateId stateId;
     
     // State machine variables. Can be used for inputs, outputs, user variables...
     export class Vars
     {
-        export T7__H1__ON_HistoryId T7__H1__ON_history;
-        export T7__H1__OFF_HistoryId T7__H1__OFF_history;
-        export T7__DH1__ALIENS_DETECTED_HistoryId T7__DH1__ALIENS_DETECTED_history;
-        export T7__DH1__GET_BACKUP_HistoryId T7__DH1__GET_BACKUP_history;
-        export T7__DH1__BUILD_HistoryId T7__DH1__BUILD_history;
-        export T7__DEEP_HISTORY2__T7__state_0_HistoryId T7__DEEP_HISTORY2__T7__state_0_history;
-        export T7__DEEP_HISTORY3__T7__state_0_HistoryId T7__DEEP_HISTORY3__T7__state_0_history;
+        public T7__H1__ON_history: T7__H1__ON_HistoryId;
+        public T7__H1__OFF_history: T7__H1__OFF_HistoryId;
+        public T7__DH1__ALIENS_DETECTED_history: T7__DH1__ALIENS_DETECTED_HistoryId;
+        public T7__DH1__GET_BACKUP_history: T7__DH1__GET_BACKUP_HistoryId;
+        public T7__DH1__BUILD_history: T7__DH1__BUILD_HistoryId;
+        public T7__DEEP_HISTORY2__T7__state_0_history: T7__DEEP_HISTORY2__T7__state_0_HistoryId;
+        public T7__DEEP_HISTORY3__T7__state_0_history: T7__DEEP_HISTORY3__T7__state_0_HistoryId;
         public count = 0;
         public auto_var_1: number = 0;
     }
+// Generated state machine
+export class Spec2Sm
+{
+
+    
+    // Used internally by state machine. Feel free to inspect, but don't modify.
+    public stateId: StateId;
     
     // Variables. Can be used for inputs, outputs, user variables...
-    export Vars vars = new Vars();
+    public vars: Vars;
     
     // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
-    export Spec2Sm()
+    public Spec2Sm()
     {
     }
     
     // Starts the state machine. Must be called before dispatching events. Not thread safe.
-    export void start()
+    public void start()
     {
         ROOT_enter();
         // ROOT behavior
@@ -331,7 +327,7 @@ export class Spec2Sm
     
     // Dispatches an event to the state machine. Not thread safe.
     // Note! This function assumes that the `eventId` parameter is valid.
-    export void dispatchEvent(EventId eventId)
+    public void dispatchEvent(EventId eventId)
     {
         switch (this.stateId)
         {
@@ -3317,7 +3313,7 @@ export class Spec2Sm
     
     private void SPEC2SM__DECIDE_do()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // Spec2Sm__DECIDE behavior
         // uml: do [trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to USELESS."); } TransitionTo(USELESS)
@@ -3813,7 +3809,7 @@ export class Spec2Sm
     
     private void TEST1_ROOT_do()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST1_ROOT behavior
         // uml: do [trace_guard("State TEST1_ROOT: check behavior `do`.", true)]
@@ -3898,7 +3894,7 @@ export class Spec2Sm
     
     private void TEST1_S1_1_do()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST1_S1_1 behavior
         // uml: do [trace_guard("State TEST1_S1_1: check behavior `do`.", true)]
@@ -3968,7 +3964,7 @@ export class Spec2Sm
     
     private void TEST1_S2_do()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST1_S2 behavior
         // uml: do [trace_guard("State TEST1_S2: check behavior `do / { consume_event = true; }`.", true)] / { consume_event = true; }
@@ -4796,7 +4792,7 @@ export class Spec2Sm
     
     private void TEST2_ROOT_do()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST2_ROOT behavior
         // uml: do [trace_guard("State TEST2_ROOT: check behavior `do`.", true)]
@@ -4905,7 +4901,7 @@ export class Spec2Sm
     
     private void TEST2_S1_1_do()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST2_S1_1 behavior
         // uml: do [trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S1_1 to TEST2_S2."); } TransitionTo(TEST2_S2)
@@ -4933,7 +4929,7 @@ export class Spec2Sm
     
     private void TEST2_S1_1_ev1()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST2_S1_1 behavior
         // uml: EV1 [trace_guard("State TEST2_S1_1: check behavior `EV1`.", true)]
@@ -4989,7 +4985,7 @@ export class Spec2Sm
     
     private void TEST2_S2_ev1()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST2_S2 behavior
         // uml: ev1 [trace_guard("State TEST2_S2: check behavior `ev1 / { consume_event = false; }`.", true)] / { consume_event = false; }
@@ -5010,7 +5006,7 @@ export class Spec2Sm
     
     private void TEST2_S2_ev2()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST2_S2 behavior
         // uml: ev2 [trace_guard("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S2 to TEST2_S2."); } TransitionTo(TEST2_S2)
@@ -5145,7 +5141,7 @@ export class Spec2Sm
     
     private void TEST3_S1_ev1()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST3_S1 behavior
         // uml: 1. EV1 [trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", true)] / { trace("Transition action `` for TEST3_S1 to TEST3_S2."); } TransitionTo(TEST3_S2)
@@ -5212,7 +5208,7 @@ export class Spec2Sm
     
     private void TEST3_S2_ev1()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST3_S2 behavior
         // uml: 1. EV1 [trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\"); }`.", true)] / { trace("1 woot!"); }
@@ -6113,7 +6109,7 @@ export class Spec2Sm
     
     private void TEST4_S10_ev4()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST4_S10 behavior
         // uml: EV4 [trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true)] / { trace("Transition action `` for TEST4_S10 to TEST4_S10."); } TransitionTo(TEST4_S10)
@@ -6250,7 +6246,7 @@ export class Spec2Sm
     
     private void TEST4_S20_ev4()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST4_S20 behavior
         // uml: EV4 [trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)] / { trace("Transition action `` for TEST4_S20 to TEST4_S20."); } TransitionTo(TEST4_S20)
@@ -8727,7 +8723,7 @@ export class Spec2Sm
     
     private void T7__DH1__GLOW_WORM_ev1()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // T7__DH1__GLOW_WORM behavior
         // uml: EV1 [trace_guard("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", true)] / { trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT."); } TransitionTo(T7__DH1__ROBOT)
@@ -8793,7 +8789,7 @@ export class Spec2Sm
     
     private void T7__DH1__RACE_CAR_ev1()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // T7__DH1__RACE_CAR behavior
         // uml: EV1 [trace_guard("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", true)] / { trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR."); } TransitionTo(T7__DH1__TEDDY_BEAR)
@@ -8913,7 +8909,7 @@ export class Spec2Sm
     
     private void T7__DH1__BATTLEBOT_ev1()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // T7__DH1__BATTLEBOT behavior
         // uml: EV1 [trace_guard("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", true)] / { trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E."); } TransitionTo(T7__DH1__WALL_E)
@@ -9015,7 +9011,7 @@ export class Spec2Sm
     
     private void T7__DH1__TEDDY_BEAR_ev1()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // T7__DH1__TEDDY_BEAR behavior
         // uml: EV1 [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", true)] / { trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM."); } TransitionTo(T7__DH1__GLOW_WORM)
@@ -11470,7 +11466,7 @@ export class Spec2Sm
     
     private void TEST8_S1_ev3()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST8_S1 behavior
         // uml: EV3 [trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3)."); } TransitionTo(TEST8_G.<EntryPoint>(3))
@@ -12332,7 +12328,7 @@ export class Spec2Sm
     
     private void TEST9B_ROOT__A4_ev1()
     {
-        boolean consume_event = false;
+consume_event:         boolean;
         
         // TEST9B_ROOT__A4 behavior
         // uml: EV1 [trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))`.", true)] / { trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1)."); } TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))
@@ -12549,7 +12545,7 @@ export class Spec2Sm
     }
     
     // Thread safe.
-    export static String stateIdToString(StateId id)
+    public static string stateIdToString(StateId id)
     {
         switch (id)
         {
@@ -12732,7 +12728,7 @@ export class Spec2Sm
     }
     
     // Thread safe.
-    export static String eventIdToString(EventId id)
+    public static string eventIdToString(EventId id)
     {
         switch (id)
         {

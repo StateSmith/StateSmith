@@ -29,7 +29,7 @@ public class SharedCompilationFixture
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            ProgramPath = "tsc.cmd",
+            ProgramPath = "tsc.cmd",    // FIXME - this is windows specific
         };
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
     }

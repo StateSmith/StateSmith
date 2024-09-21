@@ -276,7 +276,7 @@ public class Spec2Sm
     public StateId stateId;
     
     // State machine variables. Can be used for inputs, outputs, user variables...
-    public struct Vars
+    public class Vars
     {
         public T7__H1__ON_HistoryId T7__H1__ON_history;
         public T7__H1__OFF_HistoryId T7__H1__OFF_history;
