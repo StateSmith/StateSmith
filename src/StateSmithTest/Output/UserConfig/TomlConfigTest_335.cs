@@ -3,6 +3,7 @@
 using FluentAssertions;
 using StateSmith.Input.Settings;
 using StateSmith.Output.UserConfig;
+using StateSmith.Output.UserConfig.AutoVars;
 using StateSmith.Runner;
 using System.Linq;
 using Tomlyn;

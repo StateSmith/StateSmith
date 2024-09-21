@@ -2,7 +2,7 @@
 
 using StateSmith.Input.Expansions;
 
-namespace StateSmith.Output.UserConfig;
+namespace StateSmith.Output.UserConfig.AutoVars;
 
 public class AutoExpandedVarsProcessor
 {

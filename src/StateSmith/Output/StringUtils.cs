@@ -207,6 +207,23 @@ public class StringUtils
         return result;
     }
 
+    internal static string RemoveJsStrings(string code)
+    {
+        var regex = new Regex(@"(?x)
+                # double quoted string
+                "" (?: \\. | [^""] )* ""
+                |
+                # single quoted string
+                ' (?: \\. | [^'] )* '
+                |
+                # template string
+                ` (?: \\. | [^`] )* `
+            ");
+
+        var result = regex.Replace(code, "");
+        return result;
+    }
+
     internal static string RemovePythonStringsAndComments(string code)
     {
         // have to match all elements that can affect each other at the same time.

@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 using System.Text.RegularExpressions;
 
-namespace StateSmith.Output.UserConfig;
+namespace StateSmith.Output.UserConfig.AutoVars;
 
 public class JsAutoVarsParser : IAutoVarsParser
 {
@@ -25,7 +25,7 @@ public class JsAutoVarsParser : IAutoVarsParser
         var regex = new Regex(@"(?x)
             (?:
                 \s*
-                (?<identifier>  [_a-zA-Z]  \w* )
+                (?<identifier>  [_a-zA-Z] \w* )  # must start with a letter or underscore
                 \s*
                 [:]
                 [^,]+

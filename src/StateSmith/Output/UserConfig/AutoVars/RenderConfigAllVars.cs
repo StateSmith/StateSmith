@@ -1,6 +1,8 @@
 #nullable enable
 
-namespace StateSmith.Output.UserConfig;
+using StateSmith;
+
+namespace StateSmith.Output.UserConfig.AutoVars;
 
 public class RenderConfigAllVars
 {
@@ -24,6 +26,11 @@ public class RenderConfigAllVars
     /// <summary>
     /// NOTE! Field name used with reflection for toml parsing.
     /// </summary>
+    public readonly RenderConfigTypeScriptVars TypeScript;
+
+    /// <summary>
+    /// NOTE! Field name used with reflection for toml parsing.
+    /// </summary>
     public readonly RenderConfigJavaVars Java;
 
     /// <summary>
@@ -37,6 +44,7 @@ public class RenderConfigAllVars
         C = new RenderConfigCVars();
         CSharp = new RenderConfigCSharpVars();
         JavaScript = new RenderConfigJavaScriptVars();
+        TypeScript = new RenderConfigTypeScriptVars();
         Java = new RenderConfigJavaVars();
         Python = new RenderConfigPythonVars();
     }

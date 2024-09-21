@@ -8,6 +8,7 @@ using StateSmith.SmGraph;
 using System;
 using System.Runtime.ExceptionServices;
 using System.Threading;
+using StateSmith.Output.UserConfig.AutoVars;
 
 namespace StateSmith.Runner;
 
@@ -210,6 +211,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         if (iRenderConfig is IRenderConfigJavaScript rcjs)
             renderConfigAllVars.JavaScript.SetFrom(rcjs, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigTypeScript ts)
+            renderConfigAllVars.TypeScript.SetFrom(ts, autoDeIndentAndTrimRenderConfigItems);
 
         if (iRenderConfig is IRenderConfigJava rcj)
             renderConfigAllVars.Java.SetFrom(rcj, autoDeIndentAndTrimRenderConfigItems);

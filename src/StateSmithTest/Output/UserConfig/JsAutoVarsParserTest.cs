@@ -1,7 +1,7 @@
 #nullable enable
 
 using FluentAssertions;
-using StateSmith.Output.UserConfig;
+using StateSmith.Output.UserConfig.AutoVars;
 using System.Collections.Generic;
 using Xunit;
 

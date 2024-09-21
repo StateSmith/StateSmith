@@ -15,6 +15,7 @@ using StateSmith.SmGraph.TriggerMap;
 using StateSmith.Output.Sim;
 using StateSmith.Output.Gil;
 using StateSmith.Output.Algos.Balanced2;
+using StateSmith.Output.UserConfig.AutoVars;
 
 namespace StateSmith.Runner;
 

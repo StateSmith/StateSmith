@@ -1,6 +1,7 @@
 #nullable enable
 
 using StateSmith.Output.UserConfig;
+using StateSmith.Output.UserConfig.AutoVars;
 
 namespace StateSmith.Output;
 

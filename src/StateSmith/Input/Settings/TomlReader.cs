@@ -2,7 +2,7 @@
 
 using StateSmith.Common;
 using StateSmith.Output;
-using StateSmith.Output.UserConfig;
+using StateSmith.Output.UserConfig.AutoVars;
 using StateSmith.Runner;
 using System;
 using System.Reflection;

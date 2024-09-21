@@ -8,7 +8,8 @@ using StateSmith.Output.Gil.CSharp;
 using StateSmith.Output.Gil.Java;
 using StateSmith.Output.Gil.JavaScript;
 using StateSmith.Output.Gil.Python;
-using StateSmith.Output.UserConfig;
+using StateSmith.Output.Gil.TypeScript;
+using StateSmith.Output.UserConfig.AutoVars;
 using System;
 
 namespace StateSmith.Runner;
@@ -108,6 +109,16 @@ public class AlgoTranspilerCustomizer
                     {
                         throw new Exception("Python transpiler currently only supports `AlgorithmId.Balanced2`. Please reply to https://github.com/StateSmith/StateSmith/issues/398 .");
                     }
+                }
+                break;
+
+            case TranspilerId.TypeScript:
+                {
+                    sp.AddSingletonT<IGilTranspiler, GilToTypeScript>();
+                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
+                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
+                    sp.AddSingletonT<IAutoVarsParser, TypeScriptAutoVarsParser>();
+                    algoBalanced1Settings.skipClassIndentation = false;
                 }
                 break;
         }
