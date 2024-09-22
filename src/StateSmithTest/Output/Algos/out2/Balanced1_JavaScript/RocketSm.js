@@ -4,6 +4,10 @@
 // Generated state machine
 class RocketSm
 {
+function userCodeMethod() {
+    console.log('userCodeMethod');
+}
+
     static EventId = 
     {
         EV1 : 0,
