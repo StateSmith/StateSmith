@@ -389,6 +389,7 @@ public class CreateUi
             new UiItem<TargetLanguageId>(id: TargetLanguageId.CppC,        display: "C++ [grey](c style, improvements coming)[/]"),
             new UiItem<TargetLanguageId>(id: TargetLanguageId.CSharp,      display: "C#"),
             new UiItem<TargetLanguageId>(id: TargetLanguageId.JavaScript,  display: "JavaScript"),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.TypeScript,  display: "TypeScript"),
             new UiItem<TargetLanguageId>(id: TargetLanguageId.Java,        display: "Java"),
             new UiItem<TargetLanguageId>(id: TargetLanguageId.Python,      display: "Python"),
         };
