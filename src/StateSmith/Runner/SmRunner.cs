@@ -8,6 +8,7 @@ using StateSmith.SmGraph;
 using System;
 using System.Runtime.ExceptionServices;
 using System.Threading;
+using StateSmith.Output.UserConfig.AutoVars;
 
 namespace StateSmith.Runner;
 
@@ -188,6 +189,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(renderConfigAllVars.C);
             services.AddSingleton(renderConfigAllVars.CSharp);
             services.AddSingleton(renderConfigAllVars.JavaScript);
+            services.AddSingleton(renderConfigAllVars.TypeScript);
             services.AddSingleton(renderConfigAllVars.Java);
             services.AddSingleton(renderConfigAllVars.Python);
             services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
@@ -210,6 +212,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         if (iRenderConfig is IRenderConfigJavaScript rcjs)
             renderConfigAllVars.JavaScript.SetFrom(rcjs, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigTypeScript ts)
+            renderConfigAllVars.TypeScript.SetFrom(ts, autoDeIndentAndTrimRenderConfigItems);
 
         if (iRenderConfig is IRenderConfigJava rcj)
             renderConfigAllVars.Java.SetFrom(rcj, autoDeIndentAndTrimRenderConfigItems);

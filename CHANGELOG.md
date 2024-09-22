@@ -37,6 +37,8 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/404
 
 ### Added
+- Add support for `TypeScript` transpiler
+  - https://github.com/StateSmith/StateSmith/issues/406
 - grammar - support advanced strings
   - https://github.com/StateSmith/StateSmith/issues/402
 

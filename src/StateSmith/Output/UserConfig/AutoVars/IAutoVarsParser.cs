@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace StateSmith.Output.UserConfig;
+namespace StateSmith.Output.UserConfig.AutoVars;
 
 public interface IAutoVarsParser
 {

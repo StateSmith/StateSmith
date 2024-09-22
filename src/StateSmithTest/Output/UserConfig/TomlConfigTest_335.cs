@@ -3,7 +3,9 @@
 using FluentAssertions;
 using StateSmith.Input.Settings;
 using StateSmith.Output.UserConfig;
+using StateSmith.Output.UserConfig.AutoVars;
 using StateSmith.Runner;
+using System;
 using System.Linq;
 using Tomlyn;
 using Tomlyn.Model;
@@ -146,6 +148,10 @@ public class TomlConfigTest_335
         TestHelper.ExpectPropertyCount<IRenderConfigCSharp>(6, because: "test need updating");
         TestHelper.ExpectPropertyCount<IRenderConfigJavaScript>(4, because: "test need updating");
 
+        // assert only 6 transpiler IDs
+        Enum.GetValues(typeof(TranspilerId)).Length.Should().Be(6 + 2, because: "Needs to be updated for new language"); // +2 for NotYetSet and Default
+
+
         var toml = """"
             ############Render Config Settings ##############
 
@@ -190,6 +196,11 @@ public class TomlConfigTest_335
             ExtendsSuperClass = "MyUserBaseClass"
             UseExportOnClass = true
             PrivatePrefix = "_"
+
+            [RenderConfig.TypeScript]
+            ClassCode = "// some class code"
+            Implements = "IRocketSm"
+            Extends = "RocketSmBase"
 
             [RenderConfig.Java]
             Package = ""

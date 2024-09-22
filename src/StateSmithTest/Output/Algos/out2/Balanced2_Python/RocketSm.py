@@ -4,6 +4,10 @@
 import enum
 # Generated state machine
 class RocketSm():
+    def userCodeMethod(self):
+        print('userCodeMethod')
+    
+
     class EventId(enum.Enum):
         EV1 = 0
         EV2 = 1

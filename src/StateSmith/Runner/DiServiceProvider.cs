@@ -15,6 +15,7 @@ using StateSmith.SmGraph.TriggerMap;
 using StateSmith.Output.Sim;
 using StateSmith.Output.Gil;
 using StateSmith.Output.Algos.Balanced2;
+using StateSmith.Output.UserConfig.AutoVars;
 
 namespace StateSmith.Runner;
 
@@ -42,7 +43,7 @@ public class DiServiceProvider : IDisposable
     {
         hostBuilder.ConfigureServices((services) =>
         {
-            AddDefaultsForTesting(services);
+            AddDefaults(services);
 
             services.AddSingleton<DiServiceProvider>(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
             services.AddSingleton<SmRunnerInternal>();
@@ -160,7 +161,7 @@ public class DiServiceProvider : IDisposable
         return host != null;
     }
 
-    private static void AddDefaultsForTesting(IServiceCollection services)
+    private static void AddDefaults(IServiceCollection services)
     {
         var renderConfigAllVars = new RenderConfigAllVars();
         services.AddSingleton(new DrawIoSettings());
@@ -172,6 +173,7 @@ public class DiServiceProvider : IDisposable
         services.AddSingleton(renderConfigAllVars.JavaScript);
         services.AddSingleton(renderConfigAllVars.Java);
         services.AddSingleton(renderConfigAllVars.Python);
+        services.AddSingleton(renderConfigAllVars.TypeScript);
         services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
         services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
         services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));

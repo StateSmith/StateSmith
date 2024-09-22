@@ -29,7 +29,7 @@ public class AlgoBalanced1Settings
     internal bool useIfTrueIfNoGuard = false;
 
     /// <summary>
-    /// set to true for python
+    /// set to true for python and TypeScript
     /// </summary>
     internal bool varsStructAsClass = false;
 

@@ -6,6 +6,11 @@
 // Generated state machine
 public partial class RocketSm
 {
+    public void UserCodeMethod()
+    {
+        Console.WriteLine('userCodeMethod');
+    }
+
     public enum EventId
     {
         EV1 = 0,

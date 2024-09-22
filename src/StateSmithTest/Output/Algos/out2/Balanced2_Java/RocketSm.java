@@ -4,6 +4,10 @@
 // Generated state machine
 public class RocketSm
 {
+public void userCodeMethod() {
+    System.out.println('userCodeMethod');
+}
+
     public enum EventId
     {
         EV1,

@@ -32,6 +32,34 @@ public class JsonSettingsTest
         settings.TargetLanguageId.Should().Be(TargetLanguageId.JavaScript);
     }
 
+    /// <summary>
+    /// This ensure that we can restore all the TargetLanguageId values
+    /// and that none of enum member names have been changed.
+    /// </summary>
+    [Fact]
+    public void TestAllTargetLanguageIds()
+    {
+        Test("C", TargetLanguageId.C);
+        Test("CppC", TargetLanguageId.CppC);
+        Test("CSharp", TargetLanguageId.CSharp);
+        Test("JavaScript", TargetLanguageId.JavaScript);
+        Test("TypeScript", TargetLanguageId.TypeScript);
+        Test("Java", TargetLanguageId.Java);
+        Test("Python", TargetLanguageId.Python);
+
+        void Test(string languageIdName, TargetLanguageId targetLanguageId)
+        {
+            var json = $$"""
+            {
+              "TargetLanguageId": "{{languageIdName}}",
+            }
+            """;
+
+            var settings = _persistence.RestoreFromString<Settings>(json);
+            settings.TargetLanguageId.Should().Be(targetLanguageId);
+        }
+    }
+
     [Fact]
     public void EnumToString()
     {

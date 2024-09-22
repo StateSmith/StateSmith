@@ -6,6 +6,15 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
+## WIP
+### Added
+- Add support for creating `TypeScript` projects
+  - https://github.com/StateSmith/StateSmith/issues/406
+
+### Upgrade StateSmith library version to ???
+
+
+---
 
 ## [0.14.1]
 ### Upgrade StateSmith library version to [0.15.1]

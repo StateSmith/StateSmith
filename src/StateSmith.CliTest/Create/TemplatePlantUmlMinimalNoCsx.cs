@@ -197,13 +197,15 @@ public class TemplatePlantUmlMinimalNoCsx
 
         // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
         mockFileWriter.When(x => x.Write("RocketSm.plantuml", Arg.Any<string>())).Do(x => {
-            x.ArgAt<string>(1).ShouldBeShowDiff($""""
-            {Top}
+            x.ArgAt<string>(1).ShouldBeShowDiff($$""""
+            {{Top}}
 
             [RenderConfig]
             FileTop = """
                 // Whatever you put in this `FileTop` section will end up 
                 // being printed at the top of every generated code file.
+                // You can use this section for imports:
+                // import { SomeUserThing } from "./SomeUserThing.js";
                 """
             AutoExpandedVars = """
                 count: 0, // this var can be referenced in diagram
@@ -215,6 +217,48 @@ public class TemplatePlantUmlMinimalNoCsx
 
             [SmRunnerSettings]
             transpilerId = "JavaScript"
+            '/
+            @enduml
+            """", outputCleanActual: true);
+        });
+
+        generator.GenerateFiles();
+
+        // make sure the calls were made
+        mockFileWriter.Received().Write("RocketSm.plantuml", Arg.Any<string>());
+    }
+
+    [Fact]
+    public void LangTypeScript()
+    {
+        settings.TargetLanguageId = TargetLanguageId.TypeScript;
+        Generator generator = new(settings);
+        generator.tomlConfigType = TemplateLoader.TomlConfigType.Minimal;
+        generator.SetFileWriter(mockFileWriter);
+
+        // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
+        mockFileWriter.When(x => x.Write("RocketSm.plantuml", Arg.Any<string>())).Do(x => {
+            x.ArgAt<string>(1).ShouldBeShowDiff($$""""
+            {{Top}}
+
+            [RenderConfig]
+            FileTop = """
+                // Whatever you put in this `FileTop` section will end up 
+                // being printed at the top of every generated code file.
+                // You can use this section for imports:
+                // import { SomeUserThing } from "./SomeUserThing";
+                """
+            # TypeScript auto expanded var fields must end with a semicolon
+            AutoExpandedVars = """
+                public count: number = 0; // this var can be referenced in diagram
+                """
+
+            [RenderConfig.TypeScript]
+            # Extends = "SomeUserBaseClass"
+            # Implements = "SomeUserDefinedInterface"
+
+            [SmRunnerSettings]
+            transpilerId = "TypeScript"
             '/
             @enduml
             """", outputCleanActual: true);

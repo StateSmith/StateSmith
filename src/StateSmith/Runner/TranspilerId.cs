@@ -15,6 +15,7 @@ public enum TranspilerId
     JavaScript,
     Java,
     Python,
+    TypeScript,
 }
 
 

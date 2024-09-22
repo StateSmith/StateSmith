@@ -54,6 +54,16 @@ public class SimpleProcess
         Args = newArgs;
     }
 
+    public void IfWindowsWrapWithCmd()
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            string newArgs = $"/c \"{ProgramPath} {Args}\"";
+            ProgramPath = "cmd.exe";
+            Args = newArgs;
+        }
+    }
+
     public void RunWithExtraAttemptForWsl(int timeoutMs = DefaultLongTimeoutMs)
     {
         try
