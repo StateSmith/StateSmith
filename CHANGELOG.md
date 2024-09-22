@@ -2,9 +2,9 @@
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 # Breaking Changes Are Rare 🌱
-We do our best to avoid and minimize breaking changes.
+It's been a long time since we've had a breaking change. We do our best to avoid and minimize breaking changes.
 
-That said, we will may occasionally have to make changes to StateSmith that may affect your projects. Help us get to `v1.0` faster!
+That said, we will may occasionally have to make changes to StateSmith that may affect your projects.
 
 You can easily find changes by searching for `"### Changed"` or `BREAKING-CHANGES` in the [changelog markdown file](https://github.com/StateSmith/StateSmith/blob/main/CHANGELOG.md?plain=1). I do my best to detail any required migration steps. Ask if you need help.
 
@@ -13,8 +13,7 @@ The above might sound a bit scary, but the situation isn't that bad. I just want
 
 We have a slew of state machine behavior specification tests to help ensure we don't accidentally break state machine behavior or make them lightly.
 
-The majority of our breaking changes have been to code generation scripts (.csx files) as major features are implemented and require rework. Updating the .csx file scripts usually only takes a few minutes. Feel free to ask for help if you have any problems.
-
+<!-- 
 Release Template
 
 ```
@@ -25,21 +24,22 @@ Release Template
 ### Changed
 ### Changed (BREAKING-CHANGES, minor, ...)
 ```
+-->
 
 # Releases
 Test/interim releases are not documented here.
 
-## [0.???]
+## [0.16.0]
 ### Fixed (minor)
-- fix grammar - allow multiple single quote and backtick strings in guard and action code
+- fix grammar - allow multiple single quote and backtick strings in guard and action code.
   - https://github.com/StateSmith/StateSmith/issues/282
-- fix simulator - improve initial state transition edges to remove occasional wide gap between circle and edge
+- fix simulator - improve initial state transition edges to remove occasional wide gap between circle and edge.
   - https://github.com/StateSmith/StateSmith/issues/404
 
 ### Added
-- Add support for `TypeScript` transpiler
+- Add support for `TypeScript` transpiler (only supports algorithm `Balanced2` right now).
   - https://github.com/StateSmith/StateSmith/issues/406
-- grammar - support advanced strings
+- grammar - support advanced strings.
   - https://github.com/StateSmith/StateSmith/issues/402
 
 ---
