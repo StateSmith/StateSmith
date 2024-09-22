@@ -6,18 +6,28 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
-## WIP
+## [0.15.0]
 ### Added
 - Add support for creating `TypeScript` projects
   - https://github.com/StateSmith/StateSmith/issues/406
 
-### Upgrade StateSmith library version to ???
+### Upgrade StateSmith library version to `0.16.0`
+### Fixed (minor)
+- fix grammar - allow multiple single quote and backtick strings in guard and action code.
+  - https://github.com/StateSmith/StateSmith/issues/282
+- fix simulator - improve initial state transition edges to remove occasional wide gap between circle and edge.
+  - https://github.com/StateSmith/StateSmith/issues/404
 
+### Added
+- Add support for `TypeScript` transpiler (only supports algorithm `Balanced2` right now).
+  - https://github.com/StateSmith/StateSmith/issues/406
+- grammar - support advanced strings.
+  - https://github.com/StateSmith/StateSmith/issues/402
 
 ---
 
 ## [0.14.1]
-### Upgrade StateSmith library version to [0.15.1]
+### Upgrade StateSmith library version to `0.15.1`
 #### Changed (minor)
 - C/C++ - `Balanced2` algorithm - remove empty switch/case statements.
   - Remove pointless `SmRunnerSettings.algoBalanced1.omitEmptySwitchAndCases` setting & simplify logic.
