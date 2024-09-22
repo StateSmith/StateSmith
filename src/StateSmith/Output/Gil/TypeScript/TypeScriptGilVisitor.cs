@@ -31,16 +31,6 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
 
 
     // Balanced1 stuff that is not yet supported https://github.com/StateSmith/StateSmith/issues/407
-    #region Not Yet Supported
-    private bool useStaticDelegates = true;    // could make this a user accessible setting
-
-    /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
-    private MethodPtrFinder? _methodPtrFinder;
-
-    /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
-    private MethodPtrFinder MethodPtrFinder => _methodPtrFinder.ThrowIfNull();
-    #endregion Not Yet Supported
-
 
     private SyntaxToken? tokenToSkip;
 
@@ -56,12 +46,6 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
 
     public void Process()
     {
-        if (useStaticDelegates)
-        {
-            _methodPtrFinder = new(transpilerHelper.root, transpilerHelper.model);
-            MethodPtrFinder.Find();
-        }
-
         transpilerHelper.PreProcess();
 
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
@@ -189,32 +173,10 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         }
     }
 
-    //public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
-    //{
-    //    // older versions of TypeScript don't like `case StateId.ROOT:` they want `case ROOT:`.
-    //    // I got errors like: `error: constant expression required` and `error: case expressions must be constant expressions`
-    //    VisitToken(node.Keyword);
-    //    MemberAccessExpressionSyntax memberAccessExpressionSyntax = (MemberAccessExpressionSyntax)node.Value; // we know it's a member access expression
-    //    Visit(memberAccessExpressionSyntax.Name);
-    //    VisitToken(node.ColonToken);
-    //}
-
     public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
     {
         publicAsExport = true;
         base.VisitEnumDeclaration(node);
-    }
-
-    public override void VisitIdentifierName(IdentifierNameSyntax node)
-    {
-        if (useStaticDelegates && MethodPtrFinder.identifiers.Contains(node))
-        {
-            sb.Append("ptr_" + node.Identifier.Text);
-        }
-        else
-        {
-            base.VisitIdentifierName(node);
-        }
     }
 
     public override void VisitNullableType(NullableTypeSyntax node)
@@ -240,8 +202,6 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
     {
         if (transpilerHelper.IsGilData(node))
             return;
-
-        MaybeOutputStaticDelegate(node);
 
         publicAsExport = false;
 
@@ -371,44 +331,4 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         //    this.Visit(trivia.GetStructure());
         //}
     }
-
-
-    //--------------------------------------------------------------------------------
-    // Balanced1 stuff that is not yet supported https://github.com/StateSmith/StateSmith/issues/407
-    //--------------------------------------------------------------------------------
-    #region Not Yet Supported
-
-    /// <summary>
-    /// Why do this? See https://github.com/StateSmith/StateSmith/wiki/GIL----Generic-Intermediate-Language
-    /// </summary>
-    private void MaybeOutputStaticDelegate(MethodDeclarationSyntax node)
-    {
-        if (!useStaticDelegates || !MethodPtrFinder.methods.Contains(node))
-            return;
-
-        var symbol = MethodPtrFinder.delegateSymbol.ThrowIfNull();
-        sb.AppendLine();
-        sb.AppendLine("// static delegate to avoid implicit conversion and garbage collection");
-        sb.Append($"private static readonly {symbol.Name} ptr_{node.Identifier} = ({symbol.ContainingType.Name} sm) => sm.{node.Identifier}();");
-    }
-
-    // delegates are assumed to be method pointers
-    public override void VisitDelegateDeclaration(DelegateDeclarationSyntax node)
-    {
-        if (!useStaticDelegates)
-        {
-            base.VisitDelegateDeclaration(node);
-            return;
-        }
-
-        var symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
-
-        WalkableChildSyntaxList walkableChildSyntaxList = new(this, node.ChildNodesAndTokens());
-        walkableChildSyntaxList.VisitUpTo(node.ParameterList);
-
-        sb.Append("(" + symbol.ContainingType.Name + " sm)");
-        VisitToken(node.SemicolonToken);
-    }
-
-    #endregion Not Yet Supported
 }
