@@ -76,6 +76,10 @@ AutoExpandedVars  = "stuff..."
   - [RenderConfig.JavaScript.ExtendsSuperClass](#renderconfigjavascriptextendssuperclass)
   - [RenderConfig.JavaScript.UseExportOnClass](#renderconfigjavascriptuseexportonclass)
   - [RenderConfig.JavaScript.PrivatePrefix](#renderconfigjavascriptprivateprefix)
+- [RenderConfig.TypeScript](#renderconfigtypescript)
+  - [RenderConfig.TypeScript.Extends](#renderconfigtypescriptextends)
+  - [RenderConfig.TypeScript.Implements](#renderconfigtypescriptimplements)
+  - [RenderConfig.TypeScript.ClassCode](#renderconfigtypescriptclasscode)
 - [RenderConfig.Java](#renderconfigjava)
   - [RenderConfig.Java.Package](#renderconfigjavapackage)
   - [RenderConfig.Java.Imports](#renderconfigjavaimports)
@@ -710,6 +714,59 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Privat
 [RenderConfig.JavaScript]
 PrivatePrefix = "_"
 ```
+
+
+
+
+
+<br>
+<br>
+
+# RenderConfig.TypeScript
+Maps to the [IRenderConfigTypeScript](../src/StateSmith/Output/UserConfig/IRenderConfigTypeScript.cs) interface.
+
+```toml
+[RenderConfig.TypeScript]
+Extends = "SomeUserBaseClass"
+Implements = "SomeUserDefinedInterface"
+ClassCode = """
+    // Add custom code here...
+    """
+```
+
+## RenderConfig.TypeScript.Extends
+Type: `string`
+
+Use to have generated state machine class extend a user defined base class.
+
+```toml
+[RenderConfig.TypeScript]
+Extends = "SomeUserBaseClass"
+```
+
+## RenderConfig.TypeScript.Implements
+Type: `string`
+
+Use to have generated state machine class implement a user defined interface.
+
+```toml
+[RenderConfig.TypeScript]
+Implements = "SomeUserDefinedInterface"
+```
+
+## RenderConfig.TypeScript.ClassCode
+Type: `string`
+
+Use to add custom code to generated state machine class. Inheritance or composition is often a better choice.
+
+```toml
+[RenderConfig.TypeScript]
+ClassCode = """
+    // Add custom code here...
+    """
+```
+
+
 
 
 <br>
