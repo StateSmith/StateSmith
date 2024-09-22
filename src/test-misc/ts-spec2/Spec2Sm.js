@@ -266,6 +266,7 @@ exports.Vars = Vars;
 // Generated state machine
 var Spec2Sm = /** @class */ (function () {
     function Spec2Sm() {
+        // some user class code
         // Variables. Can be used for inputs, outputs, user variables...
         this.vars = new Vars();
     }

@@ -286,6 +286,7 @@ export class Vars
 // Generated state machine
 export class Spec2Sm
 {
+    // some user class code
 
     
     // Used internally by state machine. Feel free to inspect, but don't modify.

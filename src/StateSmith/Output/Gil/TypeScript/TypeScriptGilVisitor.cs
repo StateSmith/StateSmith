@@ -21,6 +21,7 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
     private readonly RenderConfigTypeScriptVars renderConfigTypeScript;
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
+    private readonly CodeStyleSettings codeStyleSettings;
 
     private bool skipLeadingTrivia = false;
     private bool publicAsExport = false;
@@ -43,13 +44,14 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
 
     private SyntaxToken? tokenToSkip;
 
-    public TypeScriptGilVisitor(string gilCode, StringBuilder sb, RenderConfigTypeScriptVars renderConfigTypeScript, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public TypeScriptGilVisitor(string gilCode, StringBuilder sb, RenderConfigTypeScriptVars renderConfigTypeScript, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler, CodeStyleSettings codeStyleSettings) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = sb;
         this.renderConfig = renderConfig;
         this.renderConfigTypeScript = renderConfigTypeScript;
         transpilerHelper = GilTranspilerHelper.Create(this, gilCode, roslynCompiler);
         model = transpilerHelper.model;
+        this.codeStyleSettings = codeStyleSettings;
     }
 
     public void Process()
@@ -69,15 +71,17 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
+        bool thisIsFsmClass = nestedCount == 0;
+
         if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
         HoistTopLevelMembersOutOfClass(node);
 
         var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
         publicAsExport = true;
 
-        if (nestedCount == 0)
+        if (thisIsFsmClass)
         {
-            sb.AppendLine();
+            sb.AppendLine(); // needs a bit of space from hoisted members
         }
 
         iterableChildSyntaxList.VisitUpTo(SyntaxKind.ClassKeyword);
@@ -87,11 +91,20 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
         // handle identifier specially so that it doesn't put base list on newline
         iterableChildSyntaxList.Remove(node.Identifier);
         sb.Append(node.Identifier.Text);
-        MaybeOutputBaseList();
+
+        if (thisIsFsmClass)
+        {
+            MaybeOutputBaseList();
+        }
         VisitTrailingTrivia(node.Identifier);
 
         iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
-        sb.AppendLineIfNotBlank(renderConfigTypeScript.ClassCode);  // append class code after open brace token
+
+        if (thisIsFsmClass && !string.IsNullOrWhiteSpace(renderConfigTypeScript.ClassCode))
+        {
+            var code = StringUtils.Indent(renderConfigTypeScript.ClassCode, codeStyleSettings.Indent1);
+            sb.AppendLine(code);
+        }
 
         foreach (var kid in node.ChildNodes().OfType<FieldDeclarationSyntax>())
         {

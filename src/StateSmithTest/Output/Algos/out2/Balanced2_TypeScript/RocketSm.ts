@@ -23,10 +23,10 @@ export const StateIdCount: number = 5;
 // Generated state machine
 export class RocketSm extends RocketSmBase implements IRocketSm
 {
-public userCodeMethod() {
-    console.log('userCodeMethod');
-}
-
+    public userCodeMethod() {
+        console.log('userCodeMethod');
+    }
+    
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
     public stateId: StateId;
