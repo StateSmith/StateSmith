@@ -26,11 +26,23 @@ public class SharedCompilationFixture
 
         SimpleProcess process;
 
+        // run `npm install` to get dependencies
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            ProgramPath = "tsc.cmd",    // FIXME - this is windows specific
+            ProgramPath = "npm",
+            Args = "install"
         };
+        process.IfWindowsWrapWithCmd();
+        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+
+        // run `tsc` to compile TypeScript to JavaScript
+        process = new()
+        {
+            WorkingDirectory = OutputDirectory,
+            ProgramPath = "tsc",
+        };
+        process.IfWindowsWrapWithCmd();
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
     }
 
