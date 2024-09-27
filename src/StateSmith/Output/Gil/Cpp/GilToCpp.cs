@@ -5,9 +5,9 @@ using StateSmith.Runner;
 
 #nullable enable
 
-namespace StateSmith.Output.Gil.CSharp;
+namespace StateSmith.Output.Gil.Cpp;
 
-public class GilToCpp : IGilTranspiler
+public class GilToCpp: IGilTranspiler
 {
     private readonly StringBuilder fileSb = new();
 
@@ -30,7 +30,7 @@ public class GilToCpp : IGilTranspiler
     {
         //File.WriteAllText($"{outputInfo.outputDirectory}{nameMangler.SmName}.gil.cs", programText);
 
-        CSharpGilVisitor cSharpGilVisitor = new(gilCode, fileSb, renderConfigCSharp, renderConfig, roslynCompiler);
+        CppGilVisitor cSharpGilVisitor = new(gilCode, fileSb, renderConfigCSharp, renderConfig, roslynCompiler);
         cSharpGilVisitor.Process();
 
         PostProcessor.PostProcess(fileSb);

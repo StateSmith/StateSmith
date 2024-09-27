@@ -54,7 +54,7 @@ public class AlgoTranspilerCustomizer
 
             case TranspilerId.CSharp:
                 {
-                    sp.AddSingletonT<IGilTranspiler, GilToCSharp>();
+                    sp.AddSingletonT<IGilTranspiler, GilToCpp>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
