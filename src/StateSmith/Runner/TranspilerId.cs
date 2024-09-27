@@ -2,6 +2,9 @@
 
 namespace StateSmith.Runner;
 
+/// <summary>
+/// The order of these values may change. Do not rely on the numeric value.
+/// </summary>
 public enum TranspilerId
 {
     /// <summary>
@@ -11,11 +14,10 @@ public enum TranspilerId
     Default,
 
     C99,
+    Cpp,
     CSharp,
     JavaScript,
     Java,
     Python,
     TypeScript,
 }
-
-

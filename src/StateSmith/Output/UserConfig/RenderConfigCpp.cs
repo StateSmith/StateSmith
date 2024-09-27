@@ -10,22 +10,22 @@ public class RenderConfigCppVars
     /// <summary>
     /// Whatever this property returns will be placed at the top of the rendered .h file.
     /// </summary>
-    string HFileTop = "";
+    public string HFileTop = "";
 
     /// <summary>
     /// If blank (default), `#pragma once` will be used. Otherwise, this will be used as the include guard.<br/>
     /// Supports `{FILENAME}` and `{fileName}`.<br/>
     /// https://github.com/StateSmith/StateSmith/issues/112
     /// </summary>
-    string IncludeGuardLabel = "";
+    public string IncludeGuardLabel = "";
 
-    string HFileTopPostIncludeGuard = "";
+    public string HFileTopPostIncludeGuard = "";
 
-    string HFileIncludes = "";
+    public string HFileIncludes = "";
 
-    string HFileBottomPreIncludeGuard = "";
+    public string HFileBottomPreIncludeGuard = "";
 
-    string HFileBottom = "";
+    public string HFileBottom = "";
 
     ///// <summary>
     ///// Whatever this property returns will be placed at the top of the rendered .c file.
@@ -42,17 +42,24 @@ public class RenderConfigCppVars
     //string CFileExtension = ".c";
 
     /// <summary>
-    /// Can be changed to ".hpp" (or whatever) if you like.
+    /// Can be changed to ".hh" (or whatever) if you like.
     /// </summary>
-    string HFileExtension = ".h";
+    public string HFileExtension = ".hpp";
 
     // to declare a namespace, use file top and bottom instead (for now)
-    //string NameSpace = "";
+    public string NameSpace = "";
+
+    /// <summary>
+    /// Use to specify base class(es) for generated state machine class.
+    /// Ex: `public MyBaseClass, public MyOtherBaseClass`.
+    /// This syntax will be come the "base-clause" https://en.cppreference.com/w/cpp/language/derived_class
+    /// </summary>
+    public string BaseClassCode = "";
 
     /// <summary>
     /// Use to add custom code to generated state machine class.
     /// </summary>
-    string ClassCode = "";
+    public string ClassCode = "";
 
     /// <summary>
     /// Will replace `{enumName}` with name of enumeration. Use like this:
@@ -61,7 +68,7 @@ public class RenderConfigCppVars
     /// </code>
     /// https://github.com/StateSmith/StateSmith/issues/185
     /// </summary>
-    string EnumDeclarer = "";
+    public string EnumDeclarer = "";
 
     public void SetFrom(IRenderConfigCpp config, bool autoDeIndentAndTrim)
     {
@@ -81,6 +88,8 @@ public class RenderConfigCppVars
         HFileIncludes = Process(config.HFileIncludes);
         HFileBottomPreIncludeGuard = Process(config.HFileBottomPreIncludeGuard);
         HFileBottom = Process(config.HFileBottom);
+
+        NameSpace = Process(config.NameSpace);
 
         ClassCode = Process(config.ClassCode);
         EnumDeclarer = Process(config.EnumDeclarer);

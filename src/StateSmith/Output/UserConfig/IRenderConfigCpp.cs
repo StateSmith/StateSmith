@@ -43,8 +43,14 @@ public interface IRenderConfigCpp : IRenderConfig
     /// </summary>
     string HFileExtension => ".h";
 
-    // to declare a namespace, use file top and bottom instead (for now)
-    //string NameSpace => "";
+    string NameSpace => "";
+
+    /// <summary>
+    /// Use to specify base class(es) for generated state machine class.
+    /// Ex: `public MyBaseClass, public MyOtherBaseClass`.
+    /// This syntax will be come the "base-clause" https://en.cppreference.com/w/cpp/language/derived_class
+    /// </summary>
+    string BaseClassCode => "";
 
     /// <summary>
     /// Use to add custom code to generated state machine class.

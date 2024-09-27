@@ -1,3 +1,5 @@
+#nullable enable
+
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
@@ -5,16 +7,13 @@ using System.Text;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using Microsoft.CodeAnalysis.Formatting;
-using System;
-
-#nullable enable
 
 namespace StateSmith.Output.Gil.Cpp;
 
 public class CppGilVisitor : CSharpSyntaxWalker
 {
     public readonly StringBuilder sb;
-    private readonly RenderConfigCSharpVars renderConfigCSharp;
+    private readonly RenderConfigCppVars renderConfigCpp;
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
 
@@ -29,11 +28,11 @@ public class CppGilVisitor : CSharpSyntaxWalker
     /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
     private MethodPtrFinder MethodPtrFinder => _methodPtrFinder.ThrowIfNull();
 
-    public CppGilVisitor(string gilCode, StringBuilder sb, RenderConfigCSharpVars renderConfigCSharp, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public CppGilVisitor(string gilCode, StringBuilder sb, RenderConfigCppVars renderConfigCpp, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = sb;
         this.renderConfig = renderConfig;
-        this.renderConfigCSharp = renderConfigCSharp;
+        this.renderConfigCpp = renderConfigCpp;
         transpilerHelper = GilTranspilerHelper.Create(this, gilCode, roslynCompiler);
         model = transpilerHelper.model;
     }
@@ -50,16 +49,11 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
 
-        if (renderConfigCSharp.UseNullable)
-            sb.AppendLine($"#nullable enable\n");
-
-        sb.AppendLineIfNotBlank(renderConfigCSharp.Usings, optionalTrailer: "\n");
-
-        var nameSpace = renderConfigCSharp.NameSpace.Trim();
+        var nameSpace = renderConfigCpp.NameSpace.Trim();
 
         if (nameSpace.Length > 0)
         {
-            sb.AppendLine("namespace " + renderConfigCSharp.NameSpace);
+            sb.AppendLine("namespace " + renderConfigCpp.NameSpace);
             if (NameSpaceNeedsBraces(nameSpace))
             {
                 sb.AppendLine("{");
@@ -135,15 +129,8 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
     public override void VisitNullableType(NullableTypeSyntax node)
     {
-        if (renderConfigCSharp.UseNullable)
-        {
-            base.VisitNullableType(node);
-        }
-        else
-        {
-            Visit(node.ElementType); // this avoids outputting the `?` for a nullable type
-            sb.Append(' ');
-        }
+        Visit(node.ElementType); // this avoids outputting the `?` for a nullable type
+        sb.Append(' ');
     }
 
     public override void VisitPostfixUnaryExpression(PostfixUnaryExpressionSyntax node)
@@ -151,14 +138,7 @@ public class CppGilVisitor : CSharpSyntaxWalker
         // Fix for https://github.com/StateSmith/StateSmith/issues/231
         if (node.IsKind(SyntaxKind.SuppressNullableWarningExpression))
         {
-            if (renderConfigCSharp.UseNullable)
-            {
-                base.VisitPostfixUnaryExpression(node);
-            }
-            else
-            {
-                Visit(node.Operand);
-            }
+            Visit(node.Operand);
         }
         else
         {
@@ -209,9 +189,6 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
         iterableChildSyntaxList.VisitUpTo(SyntaxKind.ClassKeyword);
 
-        if (renderConfigCSharp.UsePartialClass)
-            sb.Append("partial ");
-
         iterableChildSyntaxList.VisitUpTo(node.Identifier);
 
         // handle identifier specially so that it doesn't put base list on newline
@@ -221,14 +198,14 @@ public class CppGilVisitor : CSharpSyntaxWalker
         VisitTrailingTrivia(node.Identifier);
 
         iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
-        sb.AppendLineIfNotBlank(renderConfigCSharp.ClassCode);  // append class code after open brace token
+        sb.AppendLineIfNotBlank(renderConfigCpp.ClassCode);  // append class code after open brace token
 
         iterableChildSyntaxList.VisitRest();
     }
 
     private void MaybeOutputBaseList()
     {
-        var baseList = renderConfigCSharp.BaseList.Trim();
+        var baseList = renderConfigCpp.BaseClassCode.Trim();
         if (baseList.Length > 0)
             sb.Append(" : " + baseList);
     }

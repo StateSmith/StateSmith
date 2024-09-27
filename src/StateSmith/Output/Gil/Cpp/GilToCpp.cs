@@ -1,9 +1,7 @@
+#nullable enable
+
 using System.Text;
 using StateSmith.Output.UserConfig;
-using StateSmith.Output.Algos.Balanced1;    // todo need a generic way of getting file name. RenderConfig?
-using StateSmith.Runner;
-
-#nullable enable
 
 namespace StateSmith.Output.Gil.Cpp;
 
@@ -12,15 +10,15 @@ public class GilToCpp: IGilTranspiler
     private readonly StringBuilder fileSb = new();
 
     private readonly ICodeFileWriter codeFileWriter;
-    private readonly RenderConfigCSharpVars renderConfigCSharp;
+    private readonly RenderConfigCppVars renderConfigCpp;
     private readonly RenderConfigBaseVars renderConfig;
     private readonly IOutputInfo outputInfo;
     private readonly RoslynCompiler roslynCompiler;
 
-    public GilToCpp(IOutputInfo outputInfo, RenderConfigCSharpVars renderConfigCSharp, RenderConfigBaseVars renderConfig, ICodeFileWriter codeFileWriter, RoslynCompiler roslynCompiler)
+    public GilToCpp(IOutputInfo outputInfo, RenderConfigCppVars renderConfigCpp, RenderConfigBaseVars renderConfig, ICodeFileWriter codeFileWriter, RoslynCompiler roslynCompiler)
     {
         this.outputInfo = outputInfo;
-        this.renderConfigCSharp = renderConfigCSharp;
+        this.renderConfigCpp = renderConfigCpp;
         this.renderConfig = renderConfig;
         this.codeFileWriter = codeFileWriter;
         this.roslynCompiler = roslynCompiler;
@@ -30,8 +28,8 @@ public class GilToCpp: IGilTranspiler
     {
         //File.WriteAllText($"{outputInfo.outputDirectory}{nameMangler.SmName}.gil.cs", programText);
 
-        CppGilVisitor cSharpGilVisitor = new(gilCode, fileSb, renderConfigCSharp, renderConfig, roslynCompiler);
-        cSharpGilVisitor.Process();
+        CppGilVisitor visitor = new(gilCode, fileSb, renderConfigCpp, renderConfig, roslynCompiler);
+        visitor.Process();
 
         PostProcessor.PostProcess(fileSb);
 

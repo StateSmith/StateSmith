@@ -169,6 +169,7 @@ public class DiServiceProvider : IDisposable
         services.AddSingleton(renderConfigAllVars);
         services.AddSingleton(renderConfigAllVars.Base);
         services.AddSingleton(renderConfigAllVars.C);
+        services.AddSingleton(renderConfigAllVars.Cpp);
         services.AddSingleton(renderConfigAllVars.CSharp);
         services.AddSingleton(renderConfigAllVars.JavaScript);
         services.AddSingleton(renderConfigAllVars.Java);

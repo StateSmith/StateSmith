@@ -4,6 +4,7 @@ using StateSmith.Output;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output.Algos.Balanced2;
 using StateSmith.Output.Gil.C99;
+using StateSmith.Output.Gil.Cpp;
 using StateSmith.Output.Gil.CSharp;
 using StateSmith.Output.Gil.Java;
 using StateSmith.Output.Gil.JavaScript;
@@ -52,9 +53,18 @@ public class AlgoTranspilerCustomizer
                 }
                 break;
 
-            case TranspilerId.CSharp:
+            case TranspilerId.Cpp:
                 {
                     sp.AddSingletonT<IGilTranspiler, GilToCpp>();
+                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
+                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
+                    algoBalanced1Settings.skipClassIndentation = false;
+                }
+                break;
+
+            case TranspilerId.CSharp:
+                {
+                    sp.AddSingletonT<IGilTranspiler, GilToCSharp>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;

@@ -1,13 +1,11 @@
 using System.Text;
 using StateSmith.Output.UserConfig;
-using StateSmith.Output.Algos.Balanced1;    // todo need a generic way of getting file name. RenderConfig?
-using StateSmith.Runner;
 
 #nullable enable
 
 namespace StateSmith.Output.Gil.CSharp;
 
-public class GilToCpp : IGilTranspiler
+public class GilToCSharp : IGilTranspiler
 {
     private readonly StringBuilder fileSb = new();
 
@@ -17,7 +15,7 @@ public class GilToCpp : IGilTranspiler
     private readonly IOutputInfo outputInfo;
     private readonly RoslynCompiler roslynCompiler;
 
-    public GilToCpp(IOutputInfo outputInfo, RenderConfigCSharpVars renderConfigCSharp, RenderConfigBaseVars renderConfig, ICodeFileWriter codeFileWriter, RoslynCompiler roslynCompiler)
+    public GilToCSharp(IOutputInfo outputInfo, RenderConfigCSharpVars renderConfigCSharp, RenderConfigBaseVars renderConfig, ICodeFileWriter codeFileWriter, RoslynCompiler roslynCompiler)
     {
         this.outputInfo = outputInfo;
         this.renderConfigCSharp = renderConfigCSharp;
