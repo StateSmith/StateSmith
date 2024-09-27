@@ -33,6 +33,6 @@ public class GilToCpp: IGilTranspiler
 
         PostProcessor.PostProcess(fileSb);
 
-        codeFileWriter.WriteFile($"{outputInfo.OutputDirectory}{outputInfo.BaseFileName}.cs", code: fileSb.ToString());
+        codeFileWriter.WriteFile($"{outputInfo.OutputDirectory}{outputInfo.BaseFileName}.cpp", code: fileSb.ToString());
     }
 }
