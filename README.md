@@ -60,7 +60,7 @@ The [StateSmith-examples](https://github.com/StateSmith/StateSmith-examples) rep
 
 # Is StateSmith ready for use? 🧪
 > We use StateSmith in a fair number of production projects at my work. It's been super helpful.<br>
-> Other companies are using StateSmith in production as well (consumer electroncics, autonomous vehicles, ...).
+> Other companies are using StateSmith in production as well (consumer electronics, autonomous vehicles, ...).
 
 StateSmith has a strong suite of tests (730+) and behavior specification coverage. The specification integration tests read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. The same suite of integration tests run for each supported programming language. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
 
