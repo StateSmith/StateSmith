@@ -54,29 +54,12 @@ public class CppGilVisitor : CSharpSyntaxWalker
         if (nameSpace.Length > 0)
         {
             sb.AppendLine("namespace " + renderConfigCpp.NameSpace);
-            if (NameSpaceNeedsBraces(nameSpace))
-            {
-                sb.AppendLine("{");
-            }
-            else
-            {
-                sb.AppendLine(); // give some space after file scope namespace
-            }
+            sb.AppendLine("{");
         }
 
         this.Visit(transpilerHelper.root);
-
-        if (NameSpaceNeedsBraces(nameSpace))
-        {
-            sb.AppendLine("}");
-        }
-
+        sb.AppendLine("}");
         FormatOutput();
-    }
-
-    private static bool NameSpaceNeedsBraces(string trimmedNameSpace)
-    {
-        return trimmedNameSpace.Length > 0 && !trimmedNameSpace.EndsWith(";");
     }
 
     private void FormatOutput()
@@ -87,6 +70,13 @@ public class CppGilVisitor : CSharpSyntaxWalker
         // note: we don't use the regular `NormalizeWhitespace()` as it tightens all code up, and actually messes up some indentation.
         outputCode = Formatter.Format(CSharpSyntaxTree.ParseText(outputCode).GetRoot(), new AdhocWorkspace()).ToFullString();
         sb.Append(outputCode);
+    }
+
+    public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
+    {
+        base.VisitEnumDeclaration(node);
+        StringUtils.EraseTrailingWhitespace(sb);
+        sb.Append(";\n");
     }
 
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
@@ -293,7 +283,18 @@ public class CppGilVisitor : CSharpSyntaxWalker
         }
 
         this.VisitLeadingTrivia(token);
-        sb.Append(token.Text);
+
+        token.LeadingTrivia.VisitWith(this);
+
+        string tokenText = token.Text;
+        //bool skipTrailing = false;
+
+        switch ((SyntaxKind)token.RawKind)
+        {
+            case SyntaxKind.PublicKeyword: tokenText = ""; break;
+        }
+
+        sb.Append(tokenText);
         this.VisitTrailingTrivia(token);
     }
 
