@@ -1,4 +1,4 @@
-#include "Spec2Sm.h"
+#include "Spec2Sm.hpp"
 
 #include <inttypes.h>
 #include <stddef.h>
@@ -15,21 +15,21 @@ extern "C" {
 #define COUNT_OF(x) ((sizeof(x) / sizeof(0 [x])) / ((size_t)(!(sizeof(x) % sizeof(0 [x])))))
 
 const char * const event_names[] = {
-    [Spec2Sm_EventId_DO] = "DO",
-    [Spec2Sm_EventId_EV1] = "EV1",
-    [Spec2Sm_EventId_EV2] = "EV2",
-    [Spec2Sm_EventId_EV3] = "EV3",
-    [Spec2Sm_EventId_EV4] = "EV4",
-    [Spec2Sm_EventId_EV5] = "EV5",
-    [Spec2Sm_EventId_EV6] = "EV6",
-    [Spec2Sm_EventId_EV7] = "EV7",
-    [Spec2Sm_EventId_EV8] = "EV8",
-    [Spec2Sm_EventId_EV9] = "EV9",
-    [Spec2Sm_EventId_EV10] = "EV10",
-    [Spec2Sm_EventId_EVBACK] = "evBack",
-    [Spec2Sm_EventId_EVCLOSE] = "evClose",
-    [Spec2Sm_EventId_EVOPEN] = "evOpen",
-    [Spec2Sm_EventId_EVSTEP] = "evStep",
+    [Spec2Sm::EventId_DO] = "DO",
+    [Spec2Sm::EventId_EV1] = "EV1",
+    [Spec2Sm::EventId_EV2] = "EV2",
+    [Spec2Sm::EventId_EV3] = "EV3",
+    [Spec2Sm::EventId_EV4] = "EV4",
+    [Spec2Sm::EventId_EV5] = "EV5",
+    [Spec2Sm::EventId_EV6] = "EV6",
+    [Spec2Sm::EventId_EV7] = "EV7",
+    [Spec2Sm::EventId_EV8] = "EV8",
+    [Spec2Sm::EventId_EV9] = "EV9",
+    [Spec2Sm::EventId_EV10] = "EV10",
+    [Spec2Sm::EventId_EVBACK] = "evBack",
+    [Spec2Sm::EventId_EVCLOSE] = "evClose",
+    [Spec2Sm::EventId_EVOPEN] = "evOpen",
+    [Spec2Sm::EventId_EVSTEP] = "evStep",
 };
 static_assert(COUNT_OF(event_names) == Spec2Sm_EventIdCount, "above mapping outdated");
 static_assert(Spec2Sm_EventIdCount == 15, "above mapping outdated");
@@ -51,7 +51,7 @@ int main(int arg_count, char** args)
             continue;
         }
 
-        enum Spec2Sm::EventId event_id = (enum Spec2Sm::EventId)find_event_id_from_name_or_exit(event_names, COUNT_OF(event_names), line, Spec2Sm_EventIdCount);
+        enum Spec2Sm::EventId event_id = (enum Spec2Sm::EventId)find_event_id_from_name_or_exit(event_names, COUNT_OF(event_names), line, Spec2Sm::EventIdCount);
         print_dispatch_event_name(line);
 
         sm.dispatch_event(event_id);

@@ -41,7 +41,7 @@ public class SharedCompilationFixture
         Spec2GenericVarExpansions spec2GenericVarExpansions = new();
 
         string IRenderConfigCpp.HFileIncludes => @"
-                // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
+                #include <stdint.h>
             ";
 
         string IRenderConfig.VariableDeclarations => @"

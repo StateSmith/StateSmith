@@ -16,6 +16,7 @@ using StateSmith.Output.Sim;
 using StateSmith.Output.Gil;
 using StateSmith.Output.Algos.Balanced2;
 using StateSmith.Output.UserConfig.AutoVars;
+using StateSmith.Output.Gil.Cpp;
 
 namespace StateSmith.Runner;
 
@@ -67,6 +68,7 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<GilToC99Customizer>();
             services.AddSingleton<IGilToC99Customizer>((s) => s.GetService<GilToC99Customizer>()!); // need to use lambda or else another `DiagramToSmConverter` is created.
             services.AddSingleton<IncludeGuardProvider>();
+            services.AddSingleton<CppGilHelpers>();
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<DefaultExpansionsProcessor>();

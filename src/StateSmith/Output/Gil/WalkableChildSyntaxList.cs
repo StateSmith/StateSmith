@@ -68,6 +68,18 @@ public class WalkableChildSyntaxList
         index++;
     }
 
+    public SyntaxNodeOrToken GetNext()
+    {
+        var next = nodeOrTokenList[index];
+
+        if (next != null)
+        {
+            index++;
+        }
+
+        return next;
+    }
+
     public void SkipNext()
     {
         index++;
@@ -76,6 +88,27 @@ public class WalkableChildSyntaxList
     public void VisitUpTo(SyntaxKind syntaxKind, bool including = false)
     {
         VisitUpTo((snot) => snot.IsKind(syntaxKind), including);
+    }
+
+    public void VisitUpToThenSkip(SyntaxToken node, bool outputLeadingTrivia = false, bool outputTrailingTrivia = false)
+    {
+        VisitUpTo(node, including: false);
+        var next = GetNext();
+
+        if (next == null)
+        {
+            return;
+        }
+
+        if (outputLeadingTrivia)
+        {
+            next.GetLeadingTrivia().VisitWith(walker);
+        }
+
+        if (outputTrailingTrivia)
+        {
+            next.GetTrailingTrivia().VisitWith(walker);
+        }
     }
 
     public void VisitUpTo(SyntaxToken syntaxToken, bool including = false)

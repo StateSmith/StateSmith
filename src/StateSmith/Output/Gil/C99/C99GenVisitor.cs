@@ -21,9 +21,9 @@ public class C99GenVisitor : CSharpSyntaxWalker
     public readonly StringBuilder hFileSb;
     public readonly StringBuilder cFileSb;
 
-    public StringBuilder privateSb = new();
-    public StringBuilder publicSb = new();
-    public StringBuilder sb;
+    private StringBuilder privateSb = new();
+    private StringBuilder publicSb = new();
+    private StringBuilder sb;
     protected readonly SemanticModel model;
     protected bool renderingPrototypes = false;
     protected readonly RenderConfigBaseVars renderConfig;

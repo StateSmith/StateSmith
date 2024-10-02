@@ -4,18 +4,25 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 using System.Text;
-using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using Microsoft.CodeAnalysis.Formatting;
+using System.Linq;
+using System;
 
 namespace StateSmith.Output.Gil.Cpp;
 
 public class CppGilVisitor : CSharpSyntaxWalker
 {
-    public readonly StringBuilder sb;
-    private readonly RenderConfigCppVars renderConfigCpp;
+    public readonly StringBuilder hFileSb = new();
+    public readonly StringBuilder cFileSb = new();
+
+    private bool renderingHeader = false;
+    private int classDepth = 0;
+    private StringBuilder privateSb = new();
+    private StringBuilder publicSb = new();
+    private StringBuilder sb;
+    private readonly CppGilHelpers cppObjs;
     private readonly GilTranspilerHelper transpilerHelper;
-    private readonly RenderConfigBaseVars renderConfig;
 
     private SemanticModel model;
     
@@ -28,12 +35,11 @@ public class CppGilVisitor : CSharpSyntaxWalker
     /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
     private MethodPtrFinder MethodPtrFinder => _methodPtrFinder.ThrowIfNull();
 
-    public CppGilVisitor(string gilCode, StringBuilder sb, RenderConfigCppVars renderConfigCpp, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public CppGilVisitor(string gilCode, CppGilHelpers cppGilHelpers) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
-        this.sb = sb;
-        this.renderConfig = renderConfig;
-        this.renderConfigCpp = renderConfigCpp;
-        transpilerHelper = GilTranspilerHelper.Create(this, gilCode, roslynCompiler);
+        this.sb = cFileSb;
+        this.cppObjs = cppGilHelpers;
+        transpilerHelper = GilTranspilerHelper.Create(this, gilCode, cppObjs.roslynCompiler);
         model = transpilerHelper.model;
     }
 
@@ -45,24 +51,120 @@ public class CppGilVisitor : CSharpSyntaxWalker
             MethodPtrFinder.Find();
         }
 
-        transpilerHelper.PreProcess();
+        OutputHFileTopSections();
+        OutputCFileTopSections();
 
-        sb.AppendLineIfNotBlank(renderConfig.FileTop);
+        // TODO support namespaces
+        //var nameSpace = cppObjs.renderConfigCpp.NameSpace.Trim();
+        //if (nameSpace.Length > 0)
+        //{
+        //    sb.AppendLine("namespace " + cppObjs.renderConfigCpp.NameSpace);
+        //    sb.AppendLine("{");
+        //}
 
-        var nameSpace = renderConfigCpp.NameSpace.Trim();
+        //this.Visit(transpilerHelper.root);
+        //sb.AppendLine("}");
 
-        if (nameSpace.Length > 0)
-        {
-            sb.AppendLine("namespace " + renderConfigCpp.NameSpace);
-            sb.AppendLine("{");
-        }
+        renderingHeader = true;
+        sb = hFileSb;
+        this.DefaultVisit(transpilerHelper.root);
+        FormatOutput(sb);
 
-        this.Visit(transpilerHelper.root);
-        sb.AppendLine("}");
-        FormatOutput();
+        renderingHeader = false;
+        sb = cFileSb;
+        this.DefaultVisit(transpilerHelper.root);
+        FormatOutput(sb);
+
+        OutputFileBottomSections();
     }
 
-    private void FormatOutput()
+    private void OutputHFileTopSections()
+    {
+        sb = hFileSb;
+        transpilerHelper.PreProcess();
+        sb.AppendLineIfNotBlank(cppObjs.renderConfig.FileTop);
+        sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.HFileTop);
+
+        cppObjs.includeGuardProvider.OutputIncludeGuardTop(sb);
+        sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.HFileTopPostIncludeGuard);
+
+        sb.AppendLine("#include <stdint.h>");
+        sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.HFileIncludes);
+        sb.AppendLine();
+    }
+
+    public string MakeHFileName()
+    {
+        return $"{cppObjs.outputInfo.BaseFileName}{cppObjs.renderConfigCpp.HFileExtension}";
+    }
+
+    public string MakeCFileName()
+    {
+        return $"{cppObjs.outputInfo.BaseFileName}{cppObjs.renderConfigCpp.CFileExtension}";
+    }
+
+    private void OutputCFileTopSections()
+    {
+        sb = cFileSb;
+        transpilerHelper.PreProcess();
+        sb.AppendLineIfNotBlank(cppObjs.renderConfig.FileTop);
+        sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.CFileTop);
+        sb.AppendLine($"#include \"{MakeHFileName()}\"");
+        sb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
+        sb.AppendLine("#include <string.h> // for memset");
+        sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.CFileIncludes);
+        sb.AppendLine();
+    }
+
+    private void OutputFileBottomSections()
+    {
+        hFileSb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.HFileBottomPreIncludeGuard);
+        cppObjs.includeGuardProvider.OutputIncludeGuardBottom(hFileSb);
+        hFileSb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.HFileBottom);
+
+        cFileSb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.CFileBottom);
+    }
+
+    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+    {
+        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
+
+        classDepth++;
+
+        if (!renderingHeader)
+        {
+            foreach (var method in node.DescendantNodes().OfType<MethodDeclarationSyntax>())
+            {
+                Visit(method);
+            }
+        }
+        else
+        {
+            var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+
+            // skip public on top level classes
+            if (classDepth == 1)
+            {
+                list.VisitUpToThenSkip(node.Modifiers.Single(), outputLeadingTrivia: true);
+            }
+            list.VisitUpTo(node.Identifier, including: true);
+            StringUtils.EraseTrailingWhitespace(sb);
+            MaybeOutputBaseList();
+            VisitTrailingTrivia(node.Identifier);
+
+            list.VisitUpTo(node.OpenBraceToken, including: true);
+            sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.ClassCode);  // append class code after open brace token
+
+            list.VisitRest();
+
+            StringUtils.EraseTrailingWhitespace(sb);
+            sb.Append(";\n");
+        }
+
+        classDepth--;
+    }
+
+    private static void FormatOutput(StringBuilder sb)
     {
         var outputCode = sb.ToString();
         sb.Clear();
@@ -84,7 +186,27 @@ public class CppGilVisitor : CSharpSyntaxWalker
         if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
             return;
 
+        if (node.IsConst())
+        {
+            VisitToken(node.GetFirstToken()); // should be 'public' or 'private'
+            sb.Append("enum\n    {\n    ");
+            Visit(node.Declaration.Variables.Single());
+            sb.Append("\n};\n");
+            return;
+        }
+
         base.VisitFieldDeclaration(node);
+    }
+
+    public override void VisitEqualsValueClause(EqualsValueClauseSyntax node)
+    {
+        if (node.Value is ObjectCreationExpressionSyntax oces)
+        {
+            sb.Append("{}");
+            return;
+        }
+
+        base.VisitEqualsValueClause(node);
     }
 
     // delegates are assumed to be method pointers
@@ -154,7 +276,22 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
         MaybeOutputStaticDelegate(node);
 
-        base.VisitMethodDeclaration(node);
+        var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+
+        if (renderingHeader)
+        {
+            list.VisitUpTo(node.Body.ThrowIfNull());
+            StringUtils.EraseTrailingWhitespace(sb);
+            sb.Append(";\n");
+        }
+        else
+        {
+            list.VisitUpTo(node.Identifier);
+            IMethodSymbol symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
+
+            sb.Append(symbol.ContainingSymbol.Name + "::");
+            list.VisitRest();
+        }
     }
 
     /// <summary>
@@ -171,31 +308,9 @@ public class CppGilVisitor : CSharpSyntaxWalker
         sb.Append($"private static readonly {symbol.Name} ptr_{node.Identifier} = ({symbol.ContainingType.Name} sm) => sm.{node.Identifier}();");
     }
 
-    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
-    {
-        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
-
-        var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
-
-        iterableChildSyntaxList.VisitUpTo(SyntaxKind.ClassKeyword);
-
-        iterableChildSyntaxList.VisitUpTo(node.Identifier);
-
-        // handle identifier specially so that it doesn't put base list on newline
-        iterableChildSyntaxList.Remove(node.Identifier);
-        sb.Append(node.Identifier.Text);
-        MaybeOutputBaseList();
-        VisitTrailingTrivia(node.Identifier);
-
-        iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
-        sb.AppendLineIfNotBlank(renderConfigCpp.ClassCode);  // append class code after open brace token
-
-        iterableChildSyntaxList.VisitRest();
-    }
-
     private void MaybeOutputBaseList()
     {
-        var baseList = renderConfigCpp.BaseClassCode.Trim();
+        var baseList = cppObjs.renderConfigCpp.BaseClassCode.Trim();
         if (baseList.Length > 0)
             sb.Append(" : " + baseList);
     }
@@ -273,6 +388,31 @@ public class CppGilVisitor : CSharpSyntaxWalker
         }
     }
 
+    public override void VisitPredefinedType(PredefinedTypeSyntax node)
+    {
+        string result = node.Keyword.Text switch
+        {
+            "void" => "void",
+            "bool" => "bool",
+            "sbyte" => "int8_t",
+            "byte" => "uint8_t",
+            "short" => "int16_t",
+            "ushort" => "uint16_t",
+            "int" => "int32_t",
+            "uint" => "uint32_t",
+            "long" => "int64_t",
+            "ulong" => "uint64_t",
+            "float" => "float",
+            "double" => "double",
+            "string" => "char const *",
+            _ => throw new NotImplementedException(node + ""),
+        };
+
+        node.VisitLeadingTriviaWith(this);
+        sb.Append(result);
+        node.VisitTrailingTriviaWith(this);
+    }
+
     // kinda like: https://sourceroslyn.io/#Microsoft.CodeAnalysis.CSharp/Syntax/InternalSyntax/SyntaxToken.cs,516c0eb61810c3ef,references
     public override void VisitToken(SyntaxToken token)
     {
@@ -284,14 +424,24 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
         this.VisitLeadingTrivia(token);
 
-        token.LeadingTrivia.VisitWith(this);
-
         string tokenText = token.Text;
         //bool skipTrailing = false;
 
-        switch ((SyntaxKind)token.RawKind)
+        if (renderingHeader)
         {
-            case SyntaxKind.PublicKeyword: tokenText = ""; break;
+            switch ((SyntaxKind)token.RawKind)
+            {
+                case SyntaxKind.PublicKeyword: tokenText += ":"; break;
+                case SyntaxKind.PrivateKeyword: tokenText += ":"; break;
+            }
+        }
+        else
+        {
+            switch ((SyntaxKind)token.RawKind)
+            {
+                case SyntaxKind.PrivateKeyword:
+                case SyntaxKind.PublicKeyword: tokenText = ""; break;
+            }
         }
 
         sb.Append(tokenText);

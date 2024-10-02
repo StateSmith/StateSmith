@@ -24,24 +24,24 @@ public interface IRenderConfigCpp : IRenderConfig
 
     string HFileBottom => "";
 
-    ///// <summary>
-    ///// Whatever this property returns will be placed at the top of the rendered .c file.
-    ///// </summary>
-    //string CFileTop => "";
+    /// <summary>
+    /// Whatever this property returns will be placed at the top of the rendered .c file.
+    /// </summary>
+    string CFileTop => "";
 
-    //string CFileIncludes => "";
+    string CFileIncludes => "";
 
-    //string CFileBottom => "";
+    string CFileBottom => "";
 
-    ///// <summary>
-    ///// Can be changed to ".cpp" (or whatever) to support C++ until idiomatic C++ support is added.
-    ///// </summary>
-    //string CFileExtension => ".c";
+    /// <summary>
+    /// Can be changed to ".cpp" (or whatever) to support C++ until idiomatic C++ support is added.
+    /// </summary>
+    string CFileExtension => ".cpp";
 
     /// <summary>
     /// Can be changed to ".hpp" (or whatever) if you like.
     /// </summary>
-    string HFileExtension => ".h";
+    string HFileExtension => ".hpp";
 
     string NameSpace => "";
 

@@ -1,38 +1,31 @@
 #nullable enable
 
-using System.Text;
-using StateSmith.Output.UserConfig;
-
 namespace StateSmith.Output.Gil.Cpp;
 
 public class GilToCpp: IGilTranspiler
 {
-    private readonly StringBuilder fileSb = new();
-
     private readonly ICodeFileWriter codeFileWriter;
-    private readonly RenderConfigCppVars renderConfigCpp;
-    private readonly RenderConfigBaseVars renderConfig;
+    private readonly CppGilHelpers cppObjs;
     private readonly IOutputInfo outputInfo;
-    private readonly RoslynCompiler roslynCompiler;
 
-    public GilToCpp(IOutputInfo outputInfo, RenderConfigCppVars renderConfigCpp, RenderConfigBaseVars renderConfig, ICodeFileWriter codeFileWriter, RoslynCompiler roslynCompiler)
+    public GilToCpp(IOutputInfo outputInfo, ICodeFileWriter codeFileWriter, CppGilHelpers cppGilHelpers)
     {
         this.outputInfo = outputInfo;
-        this.renderConfigCpp = renderConfigCpp;
-        this.renderConfig = renderConfig;
         this.codeFileWriter = codeFileWriter;
-        this.roslynCompiler = roslynCompiler;
+        this.cppObjs = cppGilHelpers;
     }
 
     public void TranspileAndOutputCode(string gilCode)
     {
         //File.WriteAllText($"{outputInfo.outputDirectory}{nameMangler.SmName}.gil.cs", programText);
 
-        CppGilVisitor visitor = new(gilCode, fileSb, renderConfigCpp, renderConfig, roslynCompiler);
+        CppGilVisitor visitor = new(gilCode, cppObjs);
         visitor.Process();
 
-        PostProcessor.PostProcess(fileSb);
+        PostProcessor.PostProcess(visitor.hFileSb);
+        PostProcessor.PostProcess(visitor.cFileSb);
 
-        codeFileWriter.WriteFile($"{outputInfo.OutputDirectory}{outputInfo.BaseFileName}.cpp", code: fileSb.ToString());
+        codeFileWriter.WriteFile($"{outputInfo.OutputDirectory}{visitor.MakeCFileName()}", code: visitor.cFileSb.ToString());
+        codeFileWriter.WriteFile($"{outputInfo.OutputDirectory}{visitor.MakeHFileName()}", code: visitor.hFileSb.ToString());
     }
 }

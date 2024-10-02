@@ -27,19 +27,19 @@ public class RenderConfigCppVars
 
     public string HFileBottom = "";
 
-    ///// <summary>
-    ///// Whatever this property returns will be placed at the top of the rendered .c file.
-    ///// </summary>
-    //string CFileTop = "";
+    /// <summary>
+    /// Whatever this property returns will be placed at the top of the rendered .c file.
+    /// </summary>
+    public string CFileTop = "";
 
-    //string CFileIncludes = "";
+    public string CFileIncludes = "";
 
-    //string CFileBottom = "";
+    public string CFileBottom = "";
 
-    ///// <summary>
-    ///// Can be changed to ".cpp" (or whatever) to support C++ until idiomatic C++ support is added.
-    ///// </summary>
-    //string CFileExtension = ".c";
+    /// <summary>
+    /// Can be changed to ".cpp" (or whatever) to support C++ until idiomatic C++ support is added.
+    /// </summary>
+    public string CFileExtension = ".cpp";
 
     /// <summary>
     /// Can be changed to ".hh" (or whatever) if you like.
