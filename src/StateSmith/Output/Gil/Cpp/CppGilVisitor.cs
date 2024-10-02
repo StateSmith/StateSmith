@@ -260,13 +260,41 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
     public override void VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
     {
-        bool done = false;
-
         if (transpilerHelper.HandleThisMethodAccess(node))
-            done = true;
+            return;
 
-        if (!done)
-            base.VisitMemberAccessExpression(node);
+        var expressionSymbolInfo = model.GetSymbolInfo(node.Expression);
+
+        Visit(node.Expression);
+
+        bool needsColonColon = false;
+
+        if (expressionSymbolInfo.Symbol is ITypeSymbol typeSymbol)
+        {
+            if (typeSymbol.TypeKind == TypeKind.Enum)
+            {
+                needsColonColon = true;
+            }
+        }
+
+        if (needsColonColon)
+        {
+            sb.Append("::");
+        }
+        else
+        {
+            if (node.Expression is ThisExpressionSyntax)
+            {
+                sb.Append("->");
+            }
+            else
+            {
+                sb.Append(".");
+            }
+        }
+
+        Visit(node.Name);
+        //base.VisitMemberAccessExpression(node);
     }
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
@@ -440,8 +468,14 @@ public class CppGilVisitor : CSharpSyntaxWalker
             switch ((SyntaxKind)token.RawKind)
             {
                 case SyntaxKind.PrivateKeyword:
+                case SyntaxKind.StaticKeyword:
                 case SyntaxKind.PublicKeyword: tokenText = ""; break;
             }
+        }
+
+        switch ((SyntaxKind)token.RawKind)
+        {
+            case SyntaxKind.EnumKeyword: tokenText += " class"; break;
         }
 
         sb.Append(tokenText);

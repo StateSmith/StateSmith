@@ -41,1659 +41,2007 @@ void Spec2Sm::start()
 // Note! This function assumes that the `eventId` parameter is valid.
 void Spec2Sm::dispatchEvent(EventId eventId)
 {
-    switch (this.stateId)
+    switch (this->stateId)
     {
         // STATE: Spec2Sm
-        case StateId.ROOT:
+        case StateId::ROOT:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break;
+                case EventId::DO: ROOT_do(); break;
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING
-        case StateId.PREFIXING:
+        case StateId::PREFIXING:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__ORDER_MENU
-        case StateId.PREFIXING__ORDER_MENU:
+        case StateId::PREFIXING__ORDER_MENU:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__OM__BEVERAGE
-        case StateId.PREFIXING__OM__BEVERAGE:
+        case StateId::PREFIXING__OM__BEVERAGE:
             switch (eventId)
             {
-                case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__OM__BEVERAGE_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__OM__BEV__NONE
-        case StateId.PREFIXING__OM__BEV__NONE:
+        case StateId::PREFIXING__OM__BEV__NONE:
             switch (eventId)
             {
-                case EventId.EV1: PREFIXING__OM__BEV__NONE_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: PREFIXING__OM__BEV__NONE_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__OM__BEV__TEA
-        case StateId.PREFIXING__OM__BEV__TEA:
+        case StateId::PREFIXING__OM__BEV__TEA:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__OM__BEV__WATER
-        case StateId.PREFIXING__OM__BEV__WATER:
+        case StateId::PREFIXING__OM__BEV__WATER:
             switch (eventId)
             {
-                case EventId.EV1: PREFIXING__OM__BEV__WATER_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: PREFIXING__OM__BEV__WATER_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__OM__VEG
-        case StateId.PREFIXING__OM__VEG:
+        case StateId::PREFIXING__OM__VEG:
             switch (eventId)
             {
-                case EventId.EV2: PREFIXING__OM__VEG_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__OM__VEG_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__OM__VEG__NONE
-        case StateId.PREFIXING__OM__VEG__NONE:
+        case StateId::PREFIXING__OM__VEG__NONE:
             switch (eventId)
             {
-                case EventId.EV1: PREFIXING__OM__VEG__NONE_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: PREFIXING__OM__VEG__NONE_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__OM__VEG__POTATO
-        case StateId.PREFIXING__OM__VEG__POTATO:
+        case StateId::PREFIXING__OM__VEG__POTATO:
             switch (eventId)
             {
-                case EventId.EV1: PREFIXING__OM__VEG__POTATO_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: PREFIXING__OM__VEG__POTATO_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__OM__VEG__YAM
-        case StateId.PREFIXING__OM__VEG__YAM:
+        case StateId::PREFIXING__OM__VEG__YAM:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__SHOWS_MANUAL_PREFIX
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
             switch (eventId)
             {
-                case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
             switch (eventId)
             {
-                case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
             switch (eventId)
             {
-                case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
             switch (eventId)
             {
-                case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
             switch (eventId)
             {
-                case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
             switch (eventId)
             {
-                case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: Spec2Sm__DECIDE
-        case StateId.SPEC2SM__DECIDE:
+        case StateId::SPEC2SM__DECIDE:
             switch (eventId)
             {
-                case EventId.EV1: SPEC2SM__DECIDE_ev1(); break;
-                case EventId.EV2: SPEC2SM__DECIDE_ev2(); break;
-                case EventId.EV3: SPEC2SM__DECIDE_ev3(); break;
-                case EventId.EV4: SPEC2SM__DECIDE_ev4(); break;
-                case EventId.EV5: SPEC2SM__DECIDE_ev5(); break;
-                case EventId.EV6: SPEC2SM__DECIDE_ev6(); break;
-                case EventId.EV7: SPEC2SM__DECIDE_ev7(); break;
-                case EventId.EV8: SPEC2SM__DECIDE_ev8(); break;
-                case EventId.EV9: SPEC2SM__DECIDE_ev9(); break;
-                case EventId.EV10: SPEC2SM__DECIDE_ev10(); break;
-                case EventId.DO: SPEC2SM__DECIDE_do(); break;
+                case EventId::EV1: SPEC2SM__DECIDE_ev1(); break;
+                case EventId::EV2: SPEC2SM__DECIDE_ev2(); break;
+                case EventId::EV3: SPEC2SM__DECIDE_ev3(); break;
+                case EventId::EV4: SPEC2SM__DECIDE_ev4(); break;
+                case EventId::EV5: SPEC2SM__DECIDE_ev5(); break;
+                case EventId::EV6: SPEC2SM__DECIDE_ev6(); break;
+                case EventId::EV7: SPEC2SM__DECIDE_ev7(); break;
+                case EventId::EV8: SPEC2SM__DECIDE_ev8(); break;
+                case EventId::EV9: SPEC2SM__DECIDE_ev9(); break;
+                case EventId::EV10: SPEC2SM__DECIDE_ev10(); break;
+                case EventId::DO: SPEC2SM__DECIDE_do(); break;
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST1_DO_EVENT_TESTING
-        case StateId.TEST1_DO_EVENT_TESTING:
+        case StateId::TEST1_DO_EVENT_TESTING:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST1_ROOT
-        case StateId.TEST1_ROOT:
+        case StateId::TEST1_ROOT:
             switch (eventId)
             {
-                case EventId.DO: TEST1_ROOT_do(); break;
+                case EventId::DO: TEST1_ROOT_do(); break;
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST1_S1
-        case StateId.TEST1_S1:
+        case StateId::TEST1_S1:
             switch (eventId)
             {
-                case EventId.DO: TEST1_ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: TEST1_ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST1_S1_1
-        case StateId.TEST1_S1_1:
+        case StateId::TEST1_S1_1:
             switch (eventId)
             {
-                case EventId.DO: TEST1_S1_1_do(); break;
-                case EventId.EV1: TEST1_S1_1_ev1(); break;
+                case EventId::DO: TEST1_S1_1_do(); break;
+                case EventId::EV1: TEST1_S1_1_ev1(); break;
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST1_S2
-        case StateId.TEST1_S2:
+        case StateId::TEST1_S2:
             switch (eventId)
             {
-                case EventId.DO: TEST1_S2_do(); break;
+                case EventId::DO: TEST1_S2_do(); break;
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST10_CHOICE_POINT
-        case StateId.TEST10_CHOICE_POINT:
+        case StateId::TEST10_CHOICE_POINT:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST10_A
-        case StateId.TEST10_A:
+        case StateId::TEST10_A:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST10_A_1
-        case StateId.TEST10_A_1:
+        case StateId::TEST10_A_1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST10_ROOT
-        case StateId.TEST10_ROOT:
+        case StateId::TEST10_ROOT:
             switch (eventId)
             {
-                case EventId.EV5: TEST10_ROOT_ev5(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST10_ROOT_ev5(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST10_G
-        case StateId.TEST10_G:
+        case StateId::TEST10_G:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST10_G_S0
-        case StateId.TEST10_G_S0:
+        case StateId::TEST10_G_S0:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST10_G_S1
-        case StateId.TEST10_G_S1:
+        case StateId::TEST10_G_S1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST10_G_S2
-        case StateId.TEST10_G_S2:
+        case StateId::TEST10_G_S2:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST10_G_S3
-        case StateId.TEST10_G_S3:
+        case StateId::TEST10_G_S3:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST10_S1
-        case StateId.TEST10_S1:
+        case StateId::TEST10_S1:
             switch (eventId)
             {
-                case EventId.EV2: TEST10_S1_ev2(); break;
-                case EventId.EV3: TEST10_S1_ev3(); break;
-                case EventId.EV1: TEST10_S1_ev1(); break;
-                case EventId.EV10: TEST10_S1_ev10(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST10_S1_ev2(); break;
+                case EventId::EV3: TEST10_S1_ev3(); break;
+                case EventId::EV1: TEST10_S1_ev1(); break;
+                case EventId::EV10: TEST10_S1_ev10(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST10_S4
-        case StateId.TEST10_S4:
+        case StateId::TEST10_S4:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST2_REGULAR_EVENT_TESTING
-        case StateId.TEST2_REGULAR_EVENT_TESTING:
+        case StateId::TEST2_REGULAR_EVENT_TESTING:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST2_ROOT
-        case StateId.TEST2_ROOT:
+        case StateId::TEST2_ROOT:
             switch (eventId)
             {
-                case EventId.EV1: TEST2_ROOT_ev1(); break;
-                case EventId.EV2: TEST2_ROOT_ev2(); break;
-                case EventId.DO: TEST2_ROOT_do(); break;
+                case EventId::EV1: TEST2_ROOT_ev1(); break;
+                case EventId::EV2: TEST2_ROOT_ev2(); break;
+                case EventId::DO: TEST2_ROOT_do(); break;
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST2_S1
-        case StateId.TEST2_S1:
+        case StateId::TEST2_S1:
             switch (eventId)
             {
-                case EventId.DO: TEST2_ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST2_ROOT_ev1(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST2_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::DO: TEST2_ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST2_ROOT_ev1(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST2_ROOT_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST2_S1_1
-        case StateId.TEST2_S1_1:
+        case StateId::TEST2_S1_1:
             switch (eventId)
             {
-                case EventId.EV1: TEST2_S1_1_ev1(); break;
-                case EventId.DO: TEST2_S1_1_do(); break;
-                case EventId.EV2: TEST2_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST2_S1_1_ev1(); break;
+                case EventId::DO: TEST2_S1_1_do(); break;
+                case EventId::EV2: TEST2_ROOT_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST2_S2
-        case StateId.TEST2_S2:
+        case StateId::TEST2_S2:
             switch (eventId)
             {
-                case EventId.EV1: TEST2_S2_ev1(); break;
-                case EventId.EV2: TEST2_S2_ev2(); break;
-                case EventId.DO: TEST2_ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST2_S2_ev1(); break;
+                case EventId::EV2: TEST2_S2_ev2(); break;
+                case EventId::DO: TEST2_ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST3_BEHAVIOR_ORDERING
-        case StateId.TEST3_BEHAVIOR_ORDERING:
+        case StateId::TEST3_BEHAVIOR_ORDERING:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST3_ROOT
-        case StateId.TEST3_ROOT:
+        case StateId::TEST3_ROOT:
             switch (eventId)
             {
-                case EventId.EV1: TEST3_ROOT_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST3_ROOT_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST3_S1
-        case StateId.TEST3_S1:
+        case StateId::TEST3_S1:
             switch (eventId)
             {
-                case EventId.EV1: TEST3_S1_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST3_S1_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST3_S2
-        case StateId.TEST3_S2:
+        case StateId::TEST3_S2:
             switch (eventId)
             {
-                case EventId.EV1: TEST3_S2_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST3_S2_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST3_S3
-        case StateId.TEST3_S3:
+        case StateId::TEST3_S3:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST3_ROOT_ev1(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST3_ROOT_ev1(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4_PARENT_CHILD_TRANSITIONS
-        case StateId.TEST4_PARENT_CHILD_TRANSITIONS:
+        case StateId::TEST4_PARENT_CHILD_TRANSITIONS:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4_B_AND_OTHERS
-        case StateId.TEST4_B_AND_OTHERS:
+        case StateId::TEST4_B_AND_OTHERS:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4B_LOCAL
-        case StateId.TEST4B_LOCAL:
+        case StateId::TEST4B_LOCAL:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4B_G
-        case StateId.TEST4B_G:
+        case StateId::TEST4B_G:
             switch (eventId)
             {
-                case EventId.EV1: TEST4B_G_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST4B_G_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4B_G_1
-        case StateId.TEST4B_G_1:
+        case StateId::TEST4B_G_1:
             switch (eventId)
             {
-                case EventId.EV2: TEST4B_G_1_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST4B_G_ev1(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST4B_G_1_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST4B_G_ev1(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4C_LOCAL_TO_ALIAS
-        case StateId.TEST4C_LOCAL_TO_ALIAS:
+        case StateId::TEST4C_LOCAL_TO_ALIAS:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4C_G
-        case StateId.TEST4C_G:
+        case StateId::TEST4C_G:
             switch (eventId)
             {
-                case EventId.EV1: TEST4C_G_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST4C_G_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4C_G_1
-        case StateId.TEST4C_G_1:
+        case StateId::TEST4C_G_1:
             switch (eventId)
             {
-                case EventId.EV2: TEST4C_G_1_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST4C_G_ev1(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST4C_G_1_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST4C_G_ev1(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4D_EXTERNAL
-        case StateId.TEST4D_EXTERNAL:
+        case StateId::TEST4D_EXTERNAL:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4D_G
-        case StateId.TEST4D_G:
+        case StateId::TEST4D_G:
             switch (eventId)
             {
-                case EventId.EV1: TEST4D_G_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST4D_G_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4D_G_1
-        case StateId.TEST4D_G_1:
+        case StateId::TEST4D_G_1:
             switch (eventId)
             {
-                case EventId.EV2: TEST4D_G_1_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST4D_G_ev1(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST4D_G_1_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST4D_G_ev1(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4_DECIDE
-        case StateId.TEST4_DECIDE:
+        case StateId::TEST4_DECIDE:
             switch (eventId)
             {
-                case EventId.EV1: TEST4_DECIDE_ev1(); break;
-                case EventId.EV2: TEST4_DECIDE_ev2(); break;
-                case EventId.EV3: TEST4_DECIDE_ev3(); break;
-                case EventId.EV4: TEST4_DECIDE_ev4(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST4_DECIDE_ev1(); break;
+                case EventId::EV2: TEST4_DECIDE_ev2(); break;
+                case EventId::EV3: TEST4_DECIDE_ev3(); break;
+                case EventId::EV4: TEST4_DECIDE_ev4(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4_ROOT
-        case StateId.TEST4_ROOT:
+        case StateId::TEST4_ROOT:
             switch (eventId)
             {
-                case EventId.EV2: TEST4_ROOT_ev2(); break;
-                case EventId.EV3: TEST4_ROOT_ev3(); break;
-                case EventId.EV4: TEST4_ROOT_ev4(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST4_ROOT_ev2(); break;
+                case EventId::EV3: TEST4_ROOT_ev3(); break;
+                case EventId::EV4: TEST4_ROOT_ev4(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4_S1
-        case StateId.TEST4_S1:
+        case StateId::TEST4_S1:
             switch (eventId)
             {
-                case EventId.EV1: TEST4_S1_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST4_S1_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                case EventId::EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4_S10
-        case StateId.TEST4_S10:
+        case StateId::TEST4_S10:
             switch (eventId)
             {
-                case EventId.EV4: TEST4_S10_ev4(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                case EventId::EV4: TEST4_S10_ev4(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4_S10_1
-        case StateId.TEST4_S10_1:
+        case StateId::TEST4_S10_1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: TEST4_S10_ev4(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                case EventId::EV4: TEST4_S10_ev4(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4_S2
-        case StateId.TEST4_S2:
+        case StateId::TEST4_S2:
             switch (eventId)
             {
-                case EventId.EV1: TEST4_S2_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST4_S2_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                case EventId::EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4_S20
-        case StateId.TEST4_S20:
+        case StateId::TEST4_S20:
             switch (eventId)
             {
-                case EventId.EV4: TEST4_S20_ev4(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                case EventId::EV4: TEST4_S20_ev4(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4_S20_1
-        case StateId.TEST4_S20_1:
+        case StateId::TEST4_S20_1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: TEST4_S20_ev4(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                case EventId::EV4: TEST4_S20_ev4(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST4_S3
-        case StateId.TEST4_S3:
+        case StateId::TEST4_S3:
             switch (eventId)
             {
-                case EventId.EV1: TEST4_S3_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST4_S3_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                case EventId::EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
-        case StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
+        case StateId::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST5_ROOT
-        case StateId.TEST5_ROOT:
+        case StateId::TEST5_ROOT:
             switch (eventId)
             {
-                case EventId.EV2: TEST5_ROOT_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST5_ROOT_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST5_S1
-        case StateId.TEST5_S1:
+        case StateId::TEST5_S1:
             switch (eventId)
             {
-                case EventId.EV1: TEST5_S1_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST5_S1_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST5_S2
-        case StateId.TEST5_S2:
+        case StateId::TEST5_S2:
             switch (eventId)
             {
-                case EventId.EV1: TEST5_S2_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST5_S2_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST5_S3
-        case StateId.TEST5_S3:
+        case StateId::TEST5_S3:
             switch (eventId)
             {
-                case EventId.EV1: TEST5_S3_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST5_S3_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST6_VARS_EXPANSIONS
-        case StateId.TEST6_VARS_EXPANSIONS:
+        case StateId::TEST6_VARS_EXPANSIONS:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST6_ROOT
-        case StateId.TEST6_ROOT:
+        case StateId::TEST6_ROOT:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: AUTO_VAR_TEST
-        case StateId.AUTO_VAR_TEST:
+        case StateId::AUTO_VAR_TEST:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: AUTO_VAR_TEST__S1
-        case StateId.AUTO_VAR_TEST__S1:
+        case StateId::AUTO_VAR_TEST__S1:
             switch (eventId)
             {
-                case EventId.EV1: AUTO_VAR_TEST__S1_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: AUTO_VAR_TEST__S1_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: AUTO_VAR_TEST__S2
-        case StateId.AUTO_VAR_TEST__S2:
+        case StateId::AUTO_VAR_TEST__S2:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: META_EXPANSIONS
-        case StateId.META_EXPANSIONS:
+        case StateId::META_EXPANSIONS:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: META_EXPANSIONS__S1
-        case StateId.META_EXPANSIONS__S1:
+        case StateId::META_EXPANSIONS__S1:
             switch (eventId)
             {
-                case EventId.EV1: META_EXPANSIONS__S1_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: META_EXPANSIONS__S1_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: META_EXPANSIONS__S2
-        case StateId.META_EXPANSIONS__S2:
+        case StateId::META_EXPANSIONS__S2:
             switch (eventId)
             {
-                case EventId.EV1: META_EXPANSIONS__S2_ev1(); break;
-                case EventId.EV2: META_EXPANSIONS__S2_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: META_EXPANSIONS__S2_ev1(); break;
+                case EventId::EV2: META_EXPANSIONS__S2_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: S3
-        case StateId.S3:
+        case StateId::S3:
             switch (eventId)
             {
-                case EventId.EV1: S3_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: S3_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: S4
-        case StateId.S4:
+        case StateId::S4:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: S5
-        case StateId.S5:
+        case StateId::S5:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: NORMAL
-        case StateId.NORMAL:
+        case StateId::NORMAL:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: NORMAL__S1
-        case StateId.NORMAL__S1:
+        case StateId::NORMAL__S1:
             switch (eventId)
             {
-                case EventId.EV1: NORMAL__S1_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: NORMAL__S1_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: NORMAL__S2
-        case StateId.NORMAL__S2:
+        case StateId::NORMAL__S2:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST6_VARS_EXPANSIONS__DECIDE
-        case StateId.TEST6_VARS_EXPANSIONS__DECIDE:
+        case StateId::TEST6_VARS_EXPANSIONS__DECIDE:
             switch (eventId)
             {
-                case EventId.EV1: TEST6_VARS_EXPANSIONS__DECIDE_ev1(); break;
-                case EventId.EV2: TEST6_VARS_EXPANSIONS__DECIDE_ev2(); break;
-                case EventId.EV3: TEST6_VARS_EXPANSIONS__DECIDE_ev3(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST6_VARS_EXPANSIONS__DECIDE_ev1(); break;
+                case EventId::EV2: TEST6_VARS_EXPANSIONS__DECIDE_ev2(); break;
+                case EventId::EV3: TEST6_VARS_EXPANSIONS__DECIDE_ev3(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST7_INITIAL_OR_HISTORY
-        case StateId.TEST7_INITIAL_OR_HISTORY:
+        case StateId::TEST7_INITIAL_OR_HISTORY:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST7
-        case StateId.TEST7:
+        case StateId::TEST7:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY1
-        case StateId.T7__DEEP_HISTORY1:
+        case StateId::T7__DEEP_HISTORY1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__SANTAS_WORKSHOP
-        case StateId.T7__DH1__SANTAS_WORKSHOP:
+        case StateId::T7__DH1__SANTAS_WORKSHOP:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__ALIENS_DETECTED
-        case StateId.T7__DH1__ALIENS_DETECTED:
+        case StateId::T7__DH1__ALIENS_DETECTED:
             switch (eventId)
             {
-                case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV8: T7__DH1__ALIENS_DETECTED_ev8(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__GET_BACKUP
-        case StateId.T7__DH1__GET_BACKUP:
+        case StateId::T7__DH1__GET_BACKUP:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__HERO
-        case StateId.T7__DH1__HERO:
+        case StateId::T7__DH1__HERO:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__CALL_BATMAN
-        case StateId.T7__DH1__CALL_BATMAN:
+        case StateId::T7__DH1__CALL_BATMAN:
             switch (eventId)
             {
-                case EventId.EV1: T7__DH1__CALL_BATMAN_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__CALL_BATMAN_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__CALL_THOR
-        case StateId.T7__DH1__CALL_THOR:
+        case StateId::T7__DH1__CALL_THOR:
             switch (eventId)
             {
-                case EventId.EV1: T7__DH1__CALL_THOR_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__CALL_THOR_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__LOCAL_HELP
-        case StateId.T7__DH1__LOCAL_HELP:
+        case StateId::T7__DH1__LOCAL_HELP:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__BUDDY_ELF
-        case StateId.T7__DH1__BUDDY_ELF:
+        case StateId::T7__DH1__BUDDY_ELF:
             switch (eventId)
             {
-                case EventId.EV1: T7__DH1__BUDDY_ELF_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__BUDDY_ELF_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__POLAR_BEARS
-        case StateId.T7__DH1__POLAR_BEARS:
+        case StateId::T7__DH1__POLAR_BEARS:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__GIVE_COOKIES
-        case StateId.T7__DH1__GIVE_COOKIES:
+        case StateId::T7__DH1__GIVE_COOKIES:
             switch (eventId)
             {
-                case EventId.EV1: T7__DH1__GIVE_COOKIES_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__GIVE_COOKIES_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__SNOWBALL_FIGHT
-        case StateId.T7__DH1__SNOWBALL_FIGHT:
+        case StateId::T7__DH1__SNOWBALL_FIGHT:
             switch (eventId)
             {
-                case EventId.EV1: T7__DH1__SNOWBALL_FIGHT_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__SNOWBALL_FIGHT_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__BUILD
-        case StateId.T7__DH1__BUILD:
+        case StateId::T7__DH1__BUILD:
             switch (eventId)
             {
-                case EventId.EV6: T7__DH1__BUILD_ev6(); break;
-                case EventId.EV7: T7__DH1__BUILD_ev7(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__DH1__BUILD_ev6(); break;
+                case EventId::EV7: T7__DH1__BUILD_ev7(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__TOOL
-        case StateId.T7__DH1__TOOL:
+        case StateId::T7__DH1__TOOL:
             switch (eventId)
             {
-                case EventId.EV2: T7__DH1__TOOL_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                case EventId::EV2: T7__DH1__TOOL_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__CIRCULAR_SAW
-        case StateId.T7__DH1__CIRCULAR_SAW:
+        case StateId::T7__DH1__CIRCULAR_SAW:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__IMPACT_DRILL
-        case StateId.T7__DH1__IMPACT_DRILL:
+        case StateId::T7__DH1__IMPACT_DRILL:
             switch (eventId)
             {
-                case EventId.EV1: T7__DH1__IMPACT_DRILL_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__IMPACT_DRILL_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__TOY
-        case StateId.T7__DH1__TOY:
+        case StateId::T7__DH1__TOY:
             switch (eventId)
             {
-                case EventId.EV1: T7__DH1__TOY_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__TOY_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__GLOW_WORM
-        case StateId.T7__DH1__GLOW_WORM:
+        case StateId::T7__DH1__GLOW_WORM:
             switch (eventId)
             {
-                case EventId.EV1: T7__DH1__GLOW_WORM_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__GLOW_WORM_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__RACE_CAR
-        case StateId.T7__DH1__RACE_CAR:
+        case StateId::T7__DH1__RACE_CAR:
             switch (eventId)
             {
-                case EventId.EV1: T7__DH1__RACE_CAR_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__RACE_CAR_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__ROBOT
-        case StateId.T7__DH1__ROBOT:
+        case StateId::T7__DH1__ROBOT:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__BATTLEBOT
-        case StateId.T7__DH1__BATTLEBOT:
+        case StateId::T7__DH1__BATTLEBOT:
             switch (eventId)
             {
-                case EventId.EV1: T7__DH1__BATTLEBOT_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__BATTLEBOT_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__WALL_E
-        case StateId.T7__DH1__WALL_E:
+        case StateId::T7__DH1__WALL_E:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DH1__TEDDY_BEAR
-        case StateId.T7__DH1__TEDDY_BEAR:
+        case StateId::T7__DH1__TEDDY_BEAR:
             switch (eventId)
             {
-                case EventId.EV1: T7__DH1__TEDDY_BEAR_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__DH1__TEDDY_BEAR_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY2
-        case StateId.T7__DEEP_HISTORY2:
+        case StateId::T7__DEEP_HISTORY2:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY2__T7__state_0
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_0:
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_0:
             switch (eventId)
             {
-                case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY2__T7__state_1
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_1:
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_1:
             switch (eventId)
             {
-                case EventId.EVSTEP: T7__DEEP_HISTORY2__T7__STATE_1_evstep(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                case EventId::EVSTEP: T7__DEEP_HISTORY2__T7__STATE_1_evstep(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY2__T7__state_2
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_2:
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_2:
             switch (eventId)
             {
-                case EventId.EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                case EventId::EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY2__T7__state_6
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_6:
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_6:
             switch (eventId)
             {
-                case EventId.EVSTEP: T7__DEEP_HISTORY2__T7__STATE_6_evstep(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                case EventId.EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                case EventId::EVSTEP: T7__DEEP_HISTORY2__T7__STATE_6_evstep(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                case EventId::EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY2__T7__state_9
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_9:
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_9:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                case EventId.EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                case EventId::EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY2__T7__state_3
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_3:
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_3:
             switch (eventId)
             {
-                case EventId.EVCLOSE: T7__DEEP_HISTORY2__T7__STATE_3_evclose(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVCLOSE: T7__DEEP_HISTORY2__T7__STATE_3_evclose(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY3
-        case StateId.T7__DEEP_HISTORY3:
+        case StateId::T7__DEEP_HISTORY3:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY3__T7__state_0
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_0:
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_0:
             switch (eventId)
             {
-                case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY3__T7__state_1
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_1:
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_1:
             switch (eventId)
             {
-                case EventId.EVSTEP: T7__DEEP_HISTORY3__T7__STATE_1_evstep(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                case EventId::EVSTEP: T7__DEEP_HISTORY3__T7__STATE_1_evstep(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY3__T7__state_2
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_2:
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_2:
             switch (eventId)
             {
-                case EventId.EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                case EventId::EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY3__T7__state_6
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_6:
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_6:
             switch (eventId)
             {
-                case EventId.EVSTEP: T7__DEEP_HISTORY3__T7__STATE_6_evstep(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                case EventId.EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                case EventId::EVSTEP: T7__DEEP_HISTORY3__T7__STATE_6_evstep(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                case EventId::EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY3__T7__state_9
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_9:
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_9:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                case EventId.EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                case EventId::EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__DEEP_HISTORY3__T7__state_3
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_3:
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_3:
             switch (eventId)
             {
-                case EventId.EVCLOSE: T7__DEEP_HISTORY3__T7__STATE_3_evclose(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EVCLOSE: T7__DEEP_HISTORY3__T7__STATE_3_evclose(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__HISTORY1
-        case StateId.T7__HISTORY1:
+        case StateId::T7__HISTORY1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__H1__OFF
-        case StateId.T7__H1__OFF:
+        case StateId::T7__H1__OFF:
             switch (eventId)
             {
-                case EventId.EV3: T7__H1__OFF_ev3(); break;
-                case EventId.EV4: T7__H1__OFF_ev4(); break;
-                case EventId.EV7: T7__H1__OFF_ev7(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV3: T7__H1__OFF_ev3(); break;
+                case EventId::EV4: T7__H1__OFF_ev4(); break;
+                case EventId::EV7: T7__H1__OFF_ev7(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__H1__OFF1
-        case StateId.T7__H1__OFF1:
+        case StateId::T7__H1__OFF1:
             switch (eventId)
             {
-                case EventId.EV1: T7__H1__OFF1_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__H1__OFF1_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
+                case EventId::EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__H1__OFF2
-        case StateId.T7__H1__OFF2:
+        case StateId::T7__H1__OFF2:
             switch (eventId)
             {
-                case EventId.EV1: T7__H1__OFF2_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__H1__OFF2_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
+                case EventId::EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__H1__OFF3
-        case StateId.T7__H1__OFF3:
+        case StateId::T7__H1__OFF3:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
-                case EventId.EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                case EventId.EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
+                case EventId::EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
+                case EventId::EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__H1__ON
-        case StateId.T7__H1__ON:
+        case StateId::T7__H1__ON:
             switch (eventId)
             {
-                case EventId.EV6: T7__H1__ON_ev6(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__H1__ON_ev6(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__H1__ON1
-        case StateId.T7__H1__ON1:
+        case StateId::T7__H1__ON1:
             switch (eventId)
             {
-                case EventId.EV1: T7__H1__ON1_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__H1__ON1_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__H1__ON2
-        case StateId.T7__H1__ON2:
+        case StateId::T7__H1__ON2:
             switch (eventId)
             {
-                case EventId.EV1: T7__H1__ON2_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__H1__ON2_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__H1__ON3
-        case StateId.T7__H1__ON3:
+        case StateId::T7__H1__ON3:
             switch (eventId)
             {
-                case EventId.EV1: T7__H1__ON3_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__H1__ON3_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__INITIAL1
-        case StateId.T7__INITIAL1:
+        case StateId::T7__INITIAL1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__INITIAL1__PARENT
-        case StateId.T7__INITIAL1__PARENT:
+        case StateId::T7__INITIAL1__PARENT:
             switch (eventId)
             {
-                case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: T7__INITIAL1__PARENT_ev5(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__INITIAL1__G
-        case StateId.T7__INITIAL1__G:
+        case StateId::T7__INITIAL1__G:
             switch (eventId)
             {
-                case EventId.EV2: T7__INITIAL1__G_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                case EventId::EV2: T7__INITIAL1__G_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__INITIAL1__G_S1
-        case StateId.T7__INITIAL1__G_S1:
+        case StateId::T7__INITIAL1__G_S1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
+                case EventId::EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__INITIAL1__G_S2
-        case StateId.T7__INITIAL1__G_S2:
+        case StateId::T7__INITIAL1__G_S2:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
+                case EventId::EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__INITIAL1__G_S3
-        case StateId.T7__INITIAL1__G_S3:
+        case StateId::T7__INITIAL1__G_S3:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
+                case EventId::EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: T7__INITIAL1__S1
-        case StateId.T7__INITIAL1__S1:
+        case StateId::T7__INITIAL1__S1:
             switch (eventId)
             {
-                case EventId.EV1: T7__INITIAL1__S1_ev1(); break;
-                case EventId.EV3: T7__INITIAL1__S1_ev3(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                case EventId::EV1: T7__INITIAL1__S1_ev1(); break;
+                case EventId::EV3: T7__INITIAL1__S1_ev3(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST7_DECIDE
-        case StateId.TEST7_DECIDE:
+        case StateId::TEST7_DECIDE:
             switch (eventId)
             {
-                case EventId.EV1: TEST7_DECIDE_ev1(); break;
-                case EventId.EV2: TEST7_DECIDE_ev2(); break;
-                case EventId.EV3: TEST7_DECIDE_ev3(); break;
-                case EventId.EV4: TEST7_DECIDE_ev4(); break;
-                case EventId.EV5: TEST7_DECIDE_ev5(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST7_DECIDE_ev1(); break;
+                case EventId::EV2: TEST7_DECIDE_ev2(); break;
+                case EventId::EV3: TEST7_DECIDE_ev3(); break;
+                case EventId::EV4: TEST7_DECIDE_ev4(); break;
+                case EventId::EV5: TEST7_DECIDE_ev5(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST8_ENTRY_CHOICE
-        case StateId.TEST8_ENTRY_CHOICE:
+        case StateId::TEST8_ENTRY_CHOICE:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST8_ROOT
-        case StateId.TEST8_ROOT:
+        case StateId::TEST8_ROOT:
             switch (eventId)
             {
-                case EventId.EV5: TEST8_ROOT_ev5(); break;
-                case EventId.EV3: TEST8_ROOT_ev3(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST8_ROOT_ev5(); break;
+                case EventId::EV3: TEST8_ROOT_ev3(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST8_G
-        case StateId.TEST8_G:
+        case StateId::TEST8_G:
             switch (eventId)
             {
-                case EventId.EV2: TEST8_G_ev2(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST8_G_ev2(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST8_G_S1
-        case StateId.TEST8_G_S1:
+        case StateId::TEST8_G_S1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
+                case EventId::EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST8_G_S2
-        case StateId.TEST8_G_S2:
+        case StateId::TEST8_G_S2:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
+                case EventId::EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST8_G_S3
-        case StateId.TEST8_G_S3:
+        case StateId::TEST8_G_S3:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
-                case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
+                case EventId::EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST8_S1
-        case StateId.TEST8_S1:
+        case StateId::TEST8_S1:
             switch (eventId)
             {
-                case EventId.EV1: TEST8_S1_ev1(); break;
-                case EventId.EV3: TEST8_S1_ev3(); break;
-                case EventId.EV6: TEST8_S1_ev6(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST8_S1_ev1(); break;
+                case EventId::EV3: TEST8_S1_ev3(); break;
+                case EventId::EV6: TEST8_S1_ev6(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9_EXIT_CHOICE
-        case StateId.TEST9_EXIT_CHOICE:
+        case StateId::TEST9_EXIT_CHOICE:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9_DECIDE
-        case StateId.TEST9_DECIDE:
+        case StateId::TEST9_DECIDE:
             switch (eventId)
             {
-                case EventId.EV1: TEST9_DECIDE_ev1(); break;
-                case EventId.EV2: TEST9_DECIDE_ev2(); break;
-                case EventId.EV3: TEST9_DECIDE_ev3(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9_DECIDE_ev1(); break;
+                case EventId::EV2: TEST9_DECIDE_ev2(); break;
+                case EventId::EV3: TEST9_DECIDE_ev3(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9_ROOT
-        case StateId.TEST9_ROOT:
+        case StateId::TEST9_ROOT:
             switch (eventId)
             {
-                case EventId.EV5: TEST9_ROOT_ev5(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST9_ROOT_ev5(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9_G_S1
-        case StateId.TEST9_G_S1:
+        case StateId::TEST9_G_S1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9_G_S2
-        case StateId.TEST9_G_S2:
+        case StateId::TEST9_G_S2:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9_G_S3
-        case StateId.TEST9_G_S3:
+        case StateId::TEST9_G_S3:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9_G_S4
-        case StateId.TEST9_G_S4:
+        case StateId::TEST9_G_S4:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9_S1
-        case StateId.TEST9_S1:
+        case StateId::TEST9_S1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9_S1_1
-        case StateId.TEST9_S1_1:
+        case StateId::TEST9_S1_1:
             switch (eventId)
             {
-                case EventId.EV1: TEST9_S1_1_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9_S1_1_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9A_ROOT
-        case StateId.TEST9A_ROOT:
+        case StateId::TEST9A_ROOT:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9A_S1
-        case StateId.TEST9A_S1:
+        case StateId::TEST9A_S1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9A_S1_1
-        case StateId.TEST9A_S1_1:
+        case StateId::TEST9A_S1_1:
             switch (eventId)
             {
-                case EventId.EV1: TEST9A_S1_1_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9A_S1_1_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9B_ROOT
-        case StateId.TEST9B_ROOT:
+        case StateId::TEST9B_ROOT:
             switch (eventId)
             {
-                case EventId.EV1: TEST9B_ROOT_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9B_ROOT_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9B_ROOT__A1
-        case StateId.TEST9B_ROOT__A1:
+        case StateId::TEST9B_ROOT__A1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9B_ROOT__A2
-        case StateId.TEST9B_ROOT__A2:
+        case StateId::TEST9B_ROOT__A2:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9B_ROOT__A3
-        case StateId.TEST9B_ROOT__A3:
+        case StateId::TEST9B_ROOT__A3:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9B_ROOT__A4
-        case StateId.TEST9B_ROOT__A4:
+        case StateId::TEST9B_ROOT__A4:
             switch (eventId)
             {
-                case EventId.EV1: TEST9B_ROOT__A4_ev1(); break;
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9B_ROOT__A4_ev1(); break;
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9B_ROOT__B1
-        case StateId.TEST9B_ROOT__B1:
+        case StateId::TEST9B_ROOT__B1:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9B_ROOT__B2
-        case StateId.TEST9B_ROOT__B2:
+        case StateId::TEST9B_ROOT__B2:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9B_ROOT__B3
-        case StateId.TEST9B_ROOT__B3:
+        case StateId::TEST9B_ROOT__B3:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: TEST9B_ROOT__B4
-        case StateId.TEST9B_ROOT__B4:
+        case StateId::TEST9B_ROOT__B4:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: UNREACHABLE
-        case StateId.UNREACHABLE:
+        case StateId::UNREACHABLE:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
 
         // STATE: USELESS
-        case StateId.USELESS:
+        case StateId::USELESS:
             switch (eventId)
             {
-                case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                case EventId::DO: ROOT_do(); break; // First ancestor handler for this event
+
+                default: break; // to avoid "unused enumeration value in switch" warning
             }
             break;
     }
@@ -1704,355 +2052,355 @@ void Spec2Sm::dispatchEvent(EventId eventId)
 // compile time due to sub states or when multiple states need to be exited.
 void Spec2Sm::exitUpToStateHandler(StateId desiredState)
 {
-    while (this.stateId != desiredState)
+    while (this->stateId != desiredState)
     {
-        switch (this.stateId)
+        switch (this->stateId)
         {
-            case StateId.PREFIXING: PREFIXING_exit(); break;
+            case StateId::PREFIXING: PREFIXING_exit(); break;
 
-            case StateId.PREFIXING__ORDER_MENU: PREFIXING__ORDER_MENU_exit(); break;
+            case StateId::PREFIXING__ORDER_MENU: PREFIXING__ORDER_MENU_exit(); break;
 
-            case StateId.PREFIXING__OM__BEVERAGE: PREFIXING__OM__BEVERAGE_exit(); break;
+            case StateId::PREFIXING__OM__BEVERAGE: PREFIXING__OM__BEVERAGE_exit(); break;
 
-            case StateId.PREFIXING__OM__BEV__NONE: PREFIXING__OM__BEV__NONE_exit(); break;
+            case StateId::PREFIXING__OM__BEV__NONE: PREFIXING__OM__BEV__NONE_exit(); break;
 
-            case StateId.PREFIXING__OM__BEV__TEA: PREFIXING__OM__BEV__TEA_exit(); break;
+            case StateId::PREFIXING__OM__BEV__TEA: PREFIXING__OM__BEV__TEA_exit(); break;
 
-            case StateId.PREFIXING__OM__BEV__WATER: PREFIXING__OM__BEV__WATER_exit(); break;
+            case StateId::PREFIXING__OM__BEV__WATER: PREFIXING__OM__BEV__WATER_exit(); break;
 
-            case StateId.PREFIXING__OM__VEG: PREFIXING__OM__VEG_exit(); break;
+            case StateId::PREFIXING__OM__VEG: PREFIXING__OM__VEG_exit(); break;
 
-            case StateId.PREFIXING__OM__VEG__NONE: PREFIXING__OM__VEG__NONE_exit(); break;
+            case StateId::PREFIXING__OM__VEG__NONE: PREFIXING__OM__VEG__NONE_exit(); break;
 
-            case StateId.PREFIXING__OM__VEG__POTATO: PREFIXING__OM__VEG__POTATO_exit(); break;
+            case StateId::PREFIXING__OM__VEG__POTATO: PREFIXING__OM__VEG__POTATO_exit(); break;
 
-            case StateId.PREFIXING__OM__VEG__YAM: PREFIXING__OM__VEG__YAM_exit(); break;
+            case StateId::PREFIXING__OM__VEG__YAM: PREFIXING__OM__VEG__YAM_exit(); break;
 
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX: PREFIXING__SHOWS_MANUAL_PREFIX_exit(); break;
+            case StateId::PREFIXING__SHOWS_MANUAL_PREFIX: PREFIXING__SHOWS_MANUAL_PREFIX_exit(); break;
 
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(); break;
+            case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(); break;
 
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(); break;
+            case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(); break;
 
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(); break;
+            case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(); break;
 
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(); break;
+            case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(); break;
 
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(); break;
+            case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(); break;
 
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(); break;
+            case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(); break;
 
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(); break;
+            case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(); break;
 
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(); break;
+            case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(); break;
 
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(); break;
+            case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(); break;
 
-            case StateId.SPEC2SM__DECIDE: SPEC2SM__DECIDE_exit(); break;
+            case StateId::SPEC2SM__DECIDE: SPEC2SM__DECIDE_exit(); break;
 
-            case StateId.TEST1_DO_EVENT_TESTING: TEST1_DO_EVENT_TESTING_exit(); break;
+            case StateId::TEST1_DO_EVENT_TESTING: TEST1_DO_EVENT_TESTING_exit(); break;
 
-            case StateId.TEST1_ROOT: TEST1_ROOT_exit(); break;
+            case StateId::TEST1_ROOT: TEST1_ROOT_exit(); break;
 
-            case StateId.TEST1_S1: TEST1_S1_exit(); break;
+            case StateId::TEST1_S1: TEST1_S1_exit(); break;
 
-            case StateId.TEST1_S1_1: TEST1_S1_1_exit(); break;
+            case StateId::TEST1_S1_1: TEST1_S1_1_exit(); break;
 
-            case StateId.TEST1_S2: TEST1_S2_exit(); break;
+            case StateId::TEST1_S2: TEST1_S2_exit(); break;
 
-            case StateId.TEST10_CHOICE_POINT: TEST10_CHOICE_POINT_exit(); break;
+            case StateId::TEST10_CHOICE_POINT: TEST10_CHOICE_POINT_exit(); break;
 
-            case StateId.TEST10_A: TEST10_A_exit(); break;
+            case StateId::TEST10_A: TEST10_A_exit(); break;
 
-            case StateId.TEST10_A_1: TEST10_A_1_exit(); break;
+            case StateId::TEST10_A_1: TEST10_A_1_exit(); break;
 
-            case StateId.TEST10_ROOT: TEST10_ROOT_exit(); break;
+            case StateId::TEST10_ROOT: TEST10_ROOT_exit(); break;
 
-            case StateId.TEST10_G: TEST10_G_exit(); break;
+            case StateId::TEST10_G: TEST10_G_exit(); break;
 
-            case StateId.TEST10_G_S0: TEST10_G_S0_exit(); break;
+            case StateId::TEST10_G_S0: TEST10_G_S0_exit(); break;
 
-            case StateId.TEST10_G_S1: TEST10_G_S1_exit(); break;
+            case StateId::TEST10_G_S1: TEST10_G_S1_exit(); break;
 
-            case StateId.TEST10_G_S2: TEST10_G_S2_exit(); break;
+            case StateId::TEST10_G_S2: TEST10_G_S2_exit(); break;
 
-            case StateId.TEST10_G_S3: TEST10_G_S3_exit(); break;
+            case StateId::TEST10_G_S3: TEST10_G_S3_exit(); break;
 
-            case StateId.TEST10_S1: TEST10_S1_exit(); break;
+            case StateId::TEST10_S1: TEST10_S1_exit(); break;
 
-            case StateId.TEST10_S4: TEST10_S4_exit(); break;
+            case StateId::TEST10_S4: TEST10_S4_exit(); break;
 
-            case StateId.TEST2_REGULAR_EVENT_TESTING: TEST2_REGULAR_EVENT_TESTING_exit(); break;
+            case StateId::TEST2_REGULAR_EVENT_TESTING: TEST2_REGULAR_EVENT_TESTING_exit(); break;
 
-            case StateId.TEST2_ROOT: TEST2_ROOT_exit(); break;
+            case StateId::TEST2_ROOT: TEST2_ROOT_exit(); break;
 
-            case StateId.TEST2_S1: TEST2_S1_exit(); break;
+            case StateId::TEST2_S1: TEST2_S1_exit(); break;
 
-            case StateId.TEST2_S1_1: TEST2_S1_1_exit(); break;
+            case StateId::TEST2_S1_1: TEST2_S1_1_exit(); break;
 
-            case StateId.TEST2_S2: TEST2_S2_exit(); break;
+            case StateId::TEST2_S2: TEST2_S2_exit(); break;
 
-            case StateId.TEST3_BEHAVIOR_ORDERING: TEST3_BEHAVIOR_ORDERING_exit(); break;
+            case StateId::TEST3_BEHAVIOR_ORDERING: TEST3_BEHAVIOR_ORDERING_exit(); break;
 
-            case StateId.TEST3_ROOT: TEST3_ROOT_exit(); break;
+            case StateId::TEST3_ROOT: TEST3_ROOT_exit(); break;
 
-            case StateId.TEST3_S1: TEST3_S1_exit(); break;
+            case StateId::TEST3_S1: TEST3_S1_exit(); break;
 
-            case StateId.TEST3_S2: TEST3_S2_exit(); break;
+            case StateId::TEST3_S2: TEST3_S2_exit(); break;
 
-            case StateId.TEST3_S3: TEST3_S3_exit(); break;
+            case StateId::TEST3_S3: TEST3_S3_exit(); break;
 
-            case StateId.TEST4_PARENT_CHILD_TRANSITIONS: TEST4_PARENT_CHILD_TRANSITIONS_exit(); break;
+            case StateId::TEST4_PARENT_CHILD_TRANSITIONS: TEST4_PARENT_CHILD_TRANSITIONS_exit(); break;
 
-            case StateId.TEST4_B_AND_OTHERS: TEST4_B_AND_OTHERS_exit(); break;
+            case StateId::TEST4_B_AND_OTHERS: TEST4_B_AND_OTHERS_exit(); break;
 
-            case StateId.TEST4B_LOCAL: TEST4B_LOCAL_exit(); break;
+            case StateId::TEST4B_LOCAL: TEST4B_LOCAL_exit(); break;
 
-            case StateId.TEST4B_G: TEST4B_G_exit(); break;
+            case StateId::TEST4B_G: TEST4B_G_exit(); break;
 
-            case StateId.TEST4B_G_1: TEST4B_G_1_exit(); break;
+            case StateId::TEST4B_G_1: TEST4B_G_1_exit(); break;
 
-            case StateId.TEST4C_LOCAL_TO_ALIAS: TEST4C_LOCAL_TO_ALIAS_exit(); break;
+            case StateId::TEST4C_LOCAL_TO_ALIAS: TEST4C_LOCAL_TO_ALIAS_exit(); break;
 
-            case StateId.TEST4C_G: TEST4C_G_exit(); break;
+            case StateId::TEST4C_G: TEST4C_G_exit(); break;
 
-            case StateId.TEST4C_G_1: TEST4C_G_1_exit(); break;
+            case StateId::TEST4C_G_1: TEST4C_G_1_exit(); break;
 
-            case StateId.TEST4D_EXTERNAL: TEST4D_EXTERNAL_exit(); break;
+            case StateId::TEST4D_EXTERNAL: TEST4D_EXTERNAL_exit(); break;
 
-            case StateId.TEST4D_G: TEST4D_G_exit(); break;
+            case StateId::TEST4D_G: TEST4D_G_exit(); break;
 
-            case StateId.TEST4D_G_1: TEST4D_G_1_exit(); break;
+            case StateId::TEST4D_G_1: TEST4D_G_1_exit(); break;
 
-            case StateId.TEST4_DECIDE: TEST4_DECIDE_exit(); break;
+            case StateId::TEST4_DECIDE: TEST4_DECIDE_exit(); break;
 
-            case StateId.TEST4_ROOT: TEST4_ROOT_exit(); break;
+            case StateId::TEST4_ROOT: TEST4_ROOT_exit(); break;
 
-            case StateId.TEST4_S1: TEST4_S1_exit(); break;
+            case StateId::TEST4_S1: TEST4_S1_exit(); break;
 
-            case StateId.TEST4_S10: TEST4_S10_exit(); break;
+            case StateId::TEST4_S10: TEST4_S10_exit(); break;
 
-            case StateId.TEST4_S10_1: TEST4_S10_1_exit(); break;
+            case StateId::TEST4_S10_1: TEST4_S10_1_exit(); break;
 
-            case StateId.TEST4_S2: TEST4_S2_exit(); break;
+            case StateId::TEST4_S2: TEST4_S2_exit(); break;
 
-            case StateId.TEST4_S20: TEST4_S20_exit(); break;
+            case StateId::TEST4_S20: TEST4_S20_exit(); break;
 
-            case StateId.TEST4_S20_1: TEST4_S20_1_exit(); break;
+            case StateId::TEST4_S20_1: TEST4_S20_1_exit(); break;
 
-            case StateId.TEST4_S3: TEST4_S3_exit(); break;
+            case StateId::TEST4_S3: TEST4_S3_exit(); break;
 
-            case StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(); break;
+            case StateId::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(); break;
 
-            case StateId.TEST5_ROOT: TEST5_ROOT_exit(); break;
+            case StateId::TEST5_ROOT: TEST5_ROOT_exit(); break;
 
-            case StateId.TEST5_S1: TEST5_S1_exit(); break;
+            case StateId::TEST5_S1: TEST5_S1_exit(); break;
 
-            case StateId.TEST5_S2: TEST5_S2_exit(); break;
+            case StateId::TEST5_S2: TEST5_S2_exit(); break;
 
-            case StateId.TEST5_S3: TEST5_S3_exit(); break;
+            case StateId::TEST5_S3: TEST5_S3_exit(); break;
 
-            case StateId.TEST6_VARS_EXPANSIONS: TEST6_VARS_EXPANSIONS_exit(); break;
+            case StateId::TEST6_VARS_EXPANSIONS: TEST6_VARS_EXPANSIONS_exit(); break;
 
-            case StateId.TEST6_ROOT: TEST6_ROOT_exit(); break;
+            case StateId::TEST6_ROOT: TEST6_ROOT_exit(); break;
 
-            case StateId.AUTO_VAR_TEST: AUTO_VAR_TEST_exit(); break;
+            case StateId::AUTO_VAR_TEST: AUTO_VAR_TEST_exit(); break;
 
-            case StateId.AUTO_VAR_TEST__S1: AUTO_VAR_TEST__S1_exit(); break;
+            case StateId::AUTO_VAR_TEST__S1: AUTO_VAR_TEST__S1_exit(); break;
 
-            case StateId.AUTO_VAR_TEST__S2: AUTO_VAR_TEST__S2_exit(); break;
+            case StateId::AUTO_VAR_TEST__S2: AUTO_VAR_TEST__S2_exit(); break;
 
-            case StateId.META_EXPANSIONS: META_EXPANSIONS_exit(); break;
+            case StateId::META_EXPANSIONS: META_EXPANSIONS_exit(); break;
 
-            case StateId.META_EXPANSIONS__S1: META_EXPANSIONS__S1_exit(); break;
+            case StateId::META_EXPANSIONS__S1: META_EXPANSIONS__S1_exit(); break;
 
-            case StateId.META_EXPANSIONS__S2: META_EXPANSIONS__S2_exit(); break;
+            case StateId::META_EXPANSIONS__S2: META_EXPANSIONS__S2_exit(); break;
 
-            case StateId.S3: S3_exit(); break;
+            case StateId::S3: S3_exit(); break;
 
-            case StateId.S4: S4_exit(); break;
+            case StateId::S4: S4_exit(); break;
 
-            case StateId.S5: S5_exit(); break;
+            case StateId::S5: S5_exit(); break;
 
-            case StateId.NORMAL: NORMAL_exit(); break;
+            case StateId::NORMAL: NORMAL_exit(); break;
 
-            case StateId.NORMAL__S1: NORMAL__S1_exit(); break;
+            case StateId::NORMAL__S1: NORMAL__S1_exit(); break;
 
-            case StateId.NORMAL__S2: NORMAL__S2_exit(); break;
+            case StateId::NORMAL__S2: NORMAL__S2_exit(); break;
 
-            case StateId.TEST6_VARS_EXPANSIONS__DECIDE: TEST6_VARS_EXPANSIONS__DECIDE_exit(); break;
+            case StateId::TEST6_VARS_EXPANSIONS__DECIDE: TEST6_VARS_EXPANSIONS__DECIDE_exit(); break;
 
-            case StateId.TEST7_INITIAL_OR_HISTORY: TEST7_INITIAL_OR_HISTORY_exit(); break;
+            case StateId::TEST7_INITIAL_OR_HISTORY: TEST7_INITIAL_OR_HISTORY_exit(); break;
 
-            case StateId.TEST7: TEST7_exit(); break;
+            case StateId::TEST7: TEST7_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY1: T7__DEEP_HISTORY1_exit(); break;
+            case StateId::T7__DEEP_HISTORY1: T7__DEEP_HISTORY1_exit(); break;
 
-            case StateId.T7__DH1__SANTAS_WORKSHOP: T7__DH1__SANTAS_WORKSHOP_exit(); break;
+            case StateId::T7__DH1__SANTAS_WORKSHOP: T7__DH1__SANTAS_WORKSHOP_exit(); break;
 
-            case StateId.T7__DH1__ALIENS_DETECTED: T7__DH1__ALIENS_DETECTED_exit(); break;
+            case StateId::T7__DH1__ALIENS_DETECTED: T7__DH1__ALIENS_DETECTED_exit(); break;
 
-            case StateId.T7__DH1__GET_BACKUP: T7__DH1__GET_BACKUP_exit(); break;
+            case StateId::T7__DH1__GET_BACKUP: T7__DH1__GET_BACKUP_exit(); break;
 
-            case StateId.T7__DH1__HERO: T7__DH1__HERO_exit(); break;
+            case StateId::T7__DH1__HERO: T7__DH1__HERO_exit(); break;
 
-            case StateId.T7__DH1__CALL_BATMAN: T7__DH1__CALL_BATMAN_exit(); break;
+            case StateId::T7__DH1__CALL_BATMAN: T7__DH1__CALL_BATMAN_exit(); break;
 
-            case StateId.T7__DH1__CALL_THOR: T7__DH1__CALL_THOR_exit(); break;
+            case StateId::T7__DH1__CALL_THOR: T7__DH1__CALL_THOR_exit(); break;
 
-            case StateId.T7__DH1__LOCAL_HELP: T7__DH1__LOCAL_HELP_exit(); break;
+            case StateId::T7__DH1__LOCAL_HELP: T7__DH1__LOCAL_HELP_exit(); break;
 
-            case StateId.T7__DH1__BUDDY_ELF: T7__DH1__BUDDY_ELF_exit(); break;
+            case StateId::T7__DH1__BUDDY_ELF: T7__DH1__BUDDY_ELF_exit(); break;
 
-            case StateId.T7__DH1__POLAR_BEARS: T7__DH1__POLAR_BEARS_exit(); break;
+            case StateId::T7__DH1__POLAR_BEARS: T7__DH1__POLAR_BEARS_exit(); break;
 
-            case StateId.T7__DH1__GIVE_COOKIES: T7__DH1__GIVE_COOKIES_exit(); break;
+            case StateId::T7__DH1__GIVE_COOKIES: T7__DH1__GIVE_COOKIES_exit(); break;
 
-            case StateId.T7__DH1__SNOWBALL_FIGHT: T7__DH1__SNOWBALL_FIGHT_exit(); break;
+            case StateId::T7__DH1__SNOWBALL_FIGHT: T7__DH1__SNOWBALL_FIGHT_exit(); break;
 
-            case StateId.T7__DH1__BUILD: T7__DH1__BUILD_exit(); break;
+            case StateId::T7__DH1__BUILD: T7__DH1__BUILD_exit(); break;
 
-            case StateId.T7__DH1__TOOL: T7__DH1__TOOL_exit(); break;
+            case StateId::T7__DH1__TOOL: T7__DH1__TOOL_exit(); break;
 
-            case StateId.T7__DH1__CIRCULAR_SAW: T7__DH1__CIRCULAR_SAW_exit(); break;
+            case StateId::T7__DH1__CIRCULAR_SAW: T7__DH1__CIRCULAR_SAW_exit(); break;
 
-            case StateId.T7__DH1__IMPACT_DRILL: T7__DH1__IMPACT_DRILL_exit(); break;
+            case StateId::T7__DH1__IMPACT_DRILL: T7__DH1__IMPACT_DRILL_exit(); break;
 
-            case StateId.T7__DH1__TOY: T7__DH1__TOY_exit(); break;
+            case StateId::T7__DH1__TOY: T7__DH1__TOY_exit(); break;
 
-            case StateId.T7__DH1__GLOW_WORM: T7__DH1__GLOW_WORM_exit(); break;
+            case StateId::T7__DH1__GLOW_WORM: T7__DH1__GLOW_WORM_exit(); break;
 
-            case StateId.T7__DH1__RACE_CAR: T7__DH1__RACE_CAR_exit(); break;
+            case StateId::T7__DH1__RACE_CAR: T7__DH1__RACE_CAR_exit(); break;
 
-            case StateId.T7__DH1__ROBOT: T7__DH1__ROBOT_exit(); break;
+            case StateId::T7__DH1__ROBOT: T7__DH1__ROBOT_exit(); break;
 
-            case StateId.T7__DH1__BATTLEBOT: T7__DH1__BATTLEBOT_exit(); break;
+            case StateId::T7__DH1__BATTLEBOT: T7__DH1__BATTLEBOT_exit(); break;
 
-            case StateId.T7__DH1__WALL_E: T7__DH1__WALL_E_exit(); break;
+            case StateId::T7__DH1__WALL_E: T7__DH1__WALL_E_exit(); break;
 
-            case StateId.T7__DH1__TEDDY_BEAR: T7__DH1__TEDDY_BEAR_exit(); break;
+            case StateId::T7__DH1__TEDDY_BEAR: T7__DH1__TEDDY_BEAR_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY2: T7__DEEP_HISTORY2_exit(); break;
+            case StateId::T7__DEEP_HISTORY2: T7__DEEP_HISTORY2_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_0: T7__DEEP_HISTORY2__T7__STATE_0_exit(); break;
+            case StateId::T7__DEEP_HISTORY2__T7__STATE_0: T7__DEEP_HISTORY2__T7__STATE_0_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_1: T7__DEEP_HISTORY2__T7__STATE_1_exit(); break;
+            case StateId::T7__DEEP_HISTORY2__T7__STATE_1: T7__DEEP_HISTORY2__T7__STATE_1_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_2: T7__DEEP_HISTORY2__T7__STATE_2_exit(); break;
+            case StateId::T7__DEEP_HISTORY2__T7__STATE_2: T7__DEEP_HISTORY2__T7__STATE_2_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_6: T7__DEEP_HISTORY2__T7__STATE_6_exit(); break;
+            case StateId::T7__DEEP_HISTORY2__T7__STATE_6: T7__DEEP_HISTORY2__T7__STATE_6_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_9: T7__DEEP_HISTORY2__T7__STATE_9_exit(); break;
+            case StateId::T7__DEEP_HISTORY2__T7__STATE_9: T7__DEEP_HISTORY2__T7__STATE_9_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_3: T7__DEEP_HISTORY2__T7__STATE_3_exit(); break;
+            case StateId::T7__DEEP_HISTORY2__T7__STATE_3: T7__DEEP_HISTORY2__T7__STATE_3_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY3: T7__DEEP_HISTORY3_exit(); break;
+            case StateId::T7__DEEP_HISTORY3: T7__DEEP_HISTORY3_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_0: T7__DEEP_HISTORY3__T7__STATE_0_exit(); break;
+            case StateId::T7__DEEP_HISTORY3__T7__STATE_0: T7__DEEP_HISTORY3__T7__STATE_0_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_1: T7__DEEP_HISTORY3__T7__STATE_1_exit(); break;
+            case StateId::T7__DEEP_HISTORY3__T7__STATE_1: T7__DEEP_HISTORY3__T7__STATE_1_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_2: T7__DEEP_HISTORY3__T7__STATE_2_exit(); break;
+            case StateId::T7__DEEP_HISTORY3__T7__STATE_2: T7__DEEP_HISTORY3__T7__STATE_2_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_6: T7__DEEP_HISTORY3__T7__STATE_6_exit(); break;
+            case StateId::T7__DEEP_HISTORY3__T7__STATE_6: T7__DEEP_HISTORY3__T7__STATE_6_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_9: T7__DEEP_HISTORY3__T7__STATE_9_exit(); break;
+            case StateId::T7__DEEP_HISTORY3__T7__STATE_9: T7__DEEP_HISTORY3__T7__STATE_9_exit(); break;
 
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_3: T7__DEEP_HISTORY3__T7__STATE_3_exit(); break;
+            case StateId::T7__DEEP_HISTORY3__T7__STATE_3: T7__DEEP_HISTORY3__T7__STATE_3_exit(); break;
 
-            case StateId.T7__HISTORY1: T7__HISTORY1_exit(); break;
+            case StateId::T7__HISTORY1: T7__HISTORY1_exit(); break;
 
-            case StateId.T7__H1__OFF: T7__H1__OFF_exit(); break;
+            case StateId::T7__H1__OFF: T7__H1__OFF_exit(); break;
 
-            case StateId.T7__H1__OFF1: T7__H1__OFF1_exit(); break;
+            case StateId::T7__H1__OFF1: T7__H1__OFF1_exit(); break;
 
-            case StateId.T7__H1__OFF2: T7__H1__OFF2_exit(); break;
+            case StateId::T7__H1__OFF2: T7__H1__OFF2_exit(); break;
 
-            case StateId.T7__H1__OFF3: T7__H1__OFF3_exit(); break;
+            case StateId::T7__H1__OFF3: T7__H1__OFF3_exit(); break;
 
-            case StateId.T7__H1__ON: T7__H1__ON_exit(); break;
+            case StateId::T7__H1__ON: T7__H1__ON_exit(); break;
 
-            case StateId.T7__H1__ON1: T7__H1__ON1_exit(); break;
+            case StateId::T7__H1__ON1: T7__H1__ON1_exit(); break;
 
-            case StateId.T7__H1__ON2: T7__H1__ON2_exit(); break;
+            case StateId::T7__H1__ON2: T7__H1__ON2_exit(); break;
 
-            case StateId.T7__H1__ON3: T7__H1__ON3_exit(); break;
+            case StateId::T7__H1__ON3: T7__H1__ON3_exit(); break;
 
-            case StateId.T7__INITIAL1: T7__INITIAL1_exit(); break;
+            case StateId::T7__INITIAL1: T7__INITIAL1_exit(); break;
 
-            case StateId.T7__INITIAL1__PARENT: T7__INITIAL1__PARENT_exit(); break;
+            case StateId::T7__INITIAL1__PARENT: T7__INITIAL1__PARENT_exit(); break;
 
-            case StateId.T7__INITIAL1__G: T7__INITIAL1__G_exit(); break;
+            case StateId::T7__INITIAL1__G: T7__INITIAL1__G_exit(); break;
 
-            case StateId.T7__INITIAL1__G_S1: T7__INITIAL1__G_S1_exit(); break;
+            case StateId::T7__INITIAL1__G_S1: T7__INITIAL1__G_S1_exit(); break;
 
-            case StateId.T7__INITIAL1__G_S2: T7__INITIAL1__G_S2_exit(); break;
+            case StateId::T7__INITIAL1__G_S2: T7__INITIAL1__G_S2_exit(); break;
 
-            case StateId.T7__INITIAL1__G_S3: T7__INITIAL1__G_S3_exit(); break;
+            case StateId::T7__INITIAL1__G_S3: T7__INITIAL1__G_S3_exit(); break;
 
-            case StateId.T7__INITIAL1__S1: T7__INITIAL1__S1_exit(); break;
+            case StateId::T7__INITIAL1__S1: T7__INITIAL1__S1_exit(); break;
 
-            case StateId.TEST7_DECIDE: TEST7_DECIDE_exit(); break;
+            case StateId::TEST7_DECIDE: TEST7_DECIDE_exit(); break;
 
-            case StateId.TEST8_ENTRY_CHOICE: TEST8_ENTRY_CHOICE_exit(); break;
+            case StateId::TEST8_ENTRY_CHOICE: TEST8_ENTRY_CHOICE_exit(); break;
 
-            case StateId.TEST8_ROOT: TEST8_ROOT_exit(); break;
+            case StateId::TEST8_ROOT: TEST8_ROOT_exit(); break;
 
-            case StateId.TEST8_G: TEST8_G_exit(); break;
+            case StateId::TEST8_G: TEST8_G_exit(); break;
 
-            case StateId.TEST8_G_S1: TEST8_G_S1_exit(); break;
+            case StateId::TEST8_G_S1: TEST8_G_S1_exit(); break;
 
-            case StateId.TEST8_G_S2: TEST8_G_S2_exit(); break;
+            case StateId::TEST8_G_S2: TEST8_G_S2_exit(); break;
 
-            case StateId.TEST8_G_S3: TEST8_G_S3_exit(); break;
+            case StateId::TEST8_G_S3: TEST8_G_S3_exit(); break;
 
-            case StateId.TEST8_S1: TEST8_S1_exit(); break;
+            case StateId::TEST8_S1: TEST8_S1_exit(); break;
 
-            case StateId.TEST9_EXIT_CHOICE: TEST9_EXIT_CHOICE_exit(); break;
+            case StateId::TEST9_EXIT_CHOICE: TEST9_EXIT_CHOICE_exit(); break;
 
-            case StateId.TEST9_DECIDE: TEST9_DECIDE_exit(); break;
+            case StateId::TEST9_DECIDE: TEST9_DECIDE_exit(); break;
 
-            case StateId.TEST9_ROOT: TEST9_ROOT_exit(); break;
+            case StateId::TEST9_ROOT: TEST9_ROOT_exit(); break;
 
-            case StateId.TEST9_G_S1: TEST9_G_S1_exit(); break;
+            case StateId::TEST9_G_S1: TEST9_G_S1_exit(); break;
 
-            case StateId.TEST9_G_S2: TEST9_G_S2_exit(); break;
+            case StateId::TEST9_G_S2: TEST9_G_S2_exit(); break;
 
-            case StateId.TEST9_G_S3: TEST9_G_S3_exit(); break;
+            case StateId::TEST9_G_S3: TEST9_G_S3_exit(); break;
 
-            case StateId.TEST9_G_S4: TEST9_G_S4_exit(); break;
+            case StateId::TEST9_G_S4: TEST9_G_S4_exit(); break;
 
-            case StateId.TEST9_S1: TEST9_S1_exit(); break;
+            case StateId::TEST9_S1: TEST9_S1_exit(); break;
 
-            case StateId.TEST9_S1_1: TEST9_S1_1_exit(); break;
+            case StateId::TEST9_S1_1: TEST9_S1_1_exit(); break;
 
-            case StateId.TEST9A_ROOT: TEST9A_ROOT_exit(); break;
+            case StateId::TEST9A_ROOT: TEST9A_ROOT_exit(); break;
 
-            case StateId.TEST9A_S1: TEST9A_S1_exit(); break;
+            case StateId::TEST9A_S1: TEST9A_S1_exit(); break;
 
-            case StateId.TEST9A_S1_1: TEST9A_S1_1_exit(); break;
+            case StateId::TEST9A_S1_1: TEST9A_S1_1_exit(); break;
 
-            case StateId.TEST9B_ROOT: TEST9B_ROOT_exit(); break;
+            case StateId::TEST9B_ROOT: TEST9B_ROOT_exit(); break;
 
-            case StateId.TEST9B_ROOT__A1: TEST9B_ROOT__A1_exit(); break;
+            case StateId::TEST9B_ROOT__A1: TEST9B_ROOT__A1_exit(); break;
 
-            case StateId.TEST9B_ROOT__A2: TEST9B_ROOT__A2_exit(); break;
+            case StateId::TEST9B_ROOT__A2: TEST9B_ROOT__A2_exit(); break;
 
-            case StateId.TEST9B_ROOT__A3: TEST9B_ROOT__A3_exit(); break;
+            case StateId::TEST9B_ROOT__A3: TEST9B_ROOT__A3_exit(); break;
 
-            case StateId.TEST9B_ROOT__A4: TEST9B_ROOT__A4_exit(); break;
+            case StateId::TEST9B_ROOT__A4: TEST9B_ROOT__A4_exit(); break;
 
-            case StateId.TEST9B_ROOT__B1: TEST9B_ROOT__B1_exit(); break;
+            case StateId::TEST9B_ROOT__B1: TEST9B_ROOT__B1_exit(); break;
 
-            case StateId.TEST9B_ROOT__B2: TEST9B_ROOT__B2_exit(); break;
+            case StateId::TEST9B_ROOT__B2: TEST9B_ROOT__B2_exit(); break;
 
-            case StateId.TEST9B_ROOT__B3: TEST9B_ROOT__B3_exit(); break;
+            case StateId::TEST9B_ROOT__B3: TEST9B_ROOT__B3_exit(); break;
 
-            case StateId.TEST9B_ROOT__B4: TEST9B_ROOT__B4_exit(); break;
+            case StateId::TEST9B_ROOT__B4: TEST9B_ROOT__B4_exit(); break;
 
-            case StateId.UNREACHABLE: UNREACHABLE_exit(); break;
+            case StateId::UNREACHABLE: UNREACHABLE_exit(); break;
 
-            case StateId.USELESS: USELESS_exit(); break;
+            case StateId::USELESS: USELESS_exit(); break;
 
             default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
         }
@@ -2066,7 +2414,7 @@ void Spec2Sm::exitUpToStateHandler(StateId desiredState)
 
 void Spec2Sm::ROOT_enter()
 {
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 
     // ROOT behavior
     // uml: enter / { trace("Enter Spec2Sm."); }
@@ -2095,7 +2443,7 @@ void Spec2Sm::ROOT_do()
 
 void Spec2Sm::PREFIXING_enter()
 {
-    this.stateId = StateId.PREFIXING;
+    this->stateId = StateId::PREFIXING;
 
     // PREFIXING behavior
     // uml: enter / { trace("Enter PREFIXING."); }
@@ -2114,7 +2462,7 @@ void Spec2Sm::PREFIXING_exit()
         trace("Exit PREFIXING.");
     } // end of behavior for PREFIXING
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -2124,7 +2472,7 @@ void Spec2Sm::PREFIXING_exit()
 
 void Spec2Sm::PREFIXING__ORDER_MENU_enter()
 {
-    this.stateId = StateId.PREFIXING__ORDER_MENU;
+    this->stateId = StateId::PREFIXING__ORDER_MENU;
 
     // PREFIXING__ORDER_MENU behavior
     // uml: enter / { trace("Enter PREFIXING__ORDER_MENU."); }
@@ -2143,7 +2491,7 @@ void Spec2Sm::PREFIXING__ORDER_MENU_exit()
         trace("Exit PREFIXING__ORDER_MENU.");
     } // end of behavior for PREFIXING__ORDER_MENU
 
-    this.stateId = StateId.PREFIXING;
+    this->stateId = StateId::PREFIXING;
 }
 
 
@@ -2153,7 +2501,7 @@ void Spec2Sm::PREFIXING__ORDER_MENU_exit()
 
 void Spec2Sm::PREFIXING__OM__BEVERAGE_enter()
 {
-    this.stateId = StateId.PREFIXING__OM__BEVERAGE;
+    this->stateId = StateId::PREFIXING__OM__BEVERAGE;
 
     // PREFIXING__OM__BEVERAGE behavior
     // uml: enter / { trace("Enter PREFIXING__OM__BEVERAGE."); }
@@ -2172,7 +2520,7 @@ void Spec2Sm::PREFIXING__OM__BEVERAGE_exit()
         trace("Exit PREFIXING__OM__BEVERAGE.");
     } // end of behavior for PREFIXING__OM__BEVERAGE
 
-    this.stateId = StateId.PREFIXING__ORDER_MENU;
+    this->stateId = StateId::PREFIXING__ORDER_MENU;
 }
 
 void Spec2Sm::PREFIXING__OM__BEVERAGE_ev2()
@@ -2182,7 +2530,7 @@ void Spec2Sm::PREFIXING__OM__BEVERAGE_ev2()
     if (trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true))
     {
         // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.PREFIXING__ORDER_MENU);
+        exitUpToStateHandler(StateId::PREFIXING__ORDER_MENU);
 
         // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");`.
         trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");
@@ -2234,7 +2582,7 @@ void Spec2Sm::PREFIXING__OM__BEVERAGE_InitialState_transition()
 
 void Spec2Sm::PREFIXING__OM__BEV__NONE_enter()
 {
-    this.stateId = StateId.PREFIXING__OM__BEV__NONE;
+    this->stateId = StateId::PREFIXING__OM__BEV__NONE;
 
     // PREFIXING__OM__BEV__NONE behavior
     // uml: enter / { trace("Enter PREFIXING__OM__BEV__NONE."); }
@@ -2253,7 +2601,7 @@ void Spec2Sm::PREFIXING__OM__BEV__NONE_exit()
         trace("Exit PREFIXING__OM__BEV__NONE.");
     } // end of behavior for PREFIXING__OM__BEV__NONE
 
-    this.stateId = StateId.PREFIXING__OM__BEVERAGE;
+    this->stateId = StateId::PREFIXING__OM__BEVERAGE;
 }
 
 void Spec2Sm::PREFIXING__OM__BEV__NONE_ev1()
@@ -2285,7 +2633,7 @@ void Spec2Sm::PREFIXING__OM__BEV__NONE_ev1()
 
 void Spec2Sm::PREFIXING__OM__BEV__TEA_enter()
 {
-    this.stateId = StateId.PREFIXING__OM__BEV__TEA;
+    this->stateId = StateId::PREFIXING__OM__BEV__TEA;
 
     // PREFIXING__OM__BEV__TEA behavior
     // uml: enter / { trace("Enter PREFIXING__OM__BEV__TEA."); }
@@ -2304,7 +2652,7 @@ void Spec2Sm::PREFIXING__OM__BEV__TEA_exit()
         trace("Exit PREFIXING__OM__BEV__TEA.");
     } // end of behavior for PREFIXING__OM__BEV__TEA
 
-    this.stateId = StateId.PREFIXING__OM__BEVERAGE;
+    this->stateId = StateId::PREFIXING__OM__BEVERAGE;
 }
 
 
@@ -2314,7 +2662,7 @@ void Spec2Sm::PREFIXING__OM__BEV__TEA_exit()
 
 void Spec2Sm::PREFIXING__OM__BEV__WATER_enter()
 {
-    this.stateId = StateId.PREFIXING__OM__BEV__WATER;
+    this->stateId = StateId::PREFIXING__OM__BEV__WATER;
 
     // PREFIXING__OM__BEV__WATER behavior
     // uml: enter / { trace("Enter PREFIXING__OM__BEV__WATER."); }
@@ -2333,7 +2681,7 @@ void Spec2Sm::PREFIXING__OM__BEV__WATER_exit()
         trace("Exit PREFIXING__OM__BEV__WATER.");
     } // end of behavior for PREFIXING__OM__BEV__WATER
 
-    this.stateId = StateId.PREFIXING__OM__BEVERAGE;
+    this->stateId = StateId::PREFIXING__OM__BEVERAGE;
 }
 
 void Spec2Sm::PREFIXING__OM__BEV__WATER_ev1()
@@ -2365,7 +2713,7 @@ void Spec2Sm::PREFIXING__OM__BEV__WATER_ev1()
 
 void Spec2Sm::PREFIXING__OM__VEG_enter()
 {
-    this.stateId = StateId.PREFIXING__OM__VEG;
+    this->stateId = StateId::PREFIXING__OM__VEG;
 
     // PREFIXING__OM__VEG behavior
     // uml: enter / { trace("Enter PREFIXING__OM__VEG."); }
@@ -2384,7 +2732,7 @@ void Spec2Sm::PREFIXING__OM__VEG_exit()
         trace("Exit PREFIXING__OM__VEG.");
     } // end of behavior for PREFIXING__OM__VEG
 
-    this.stateId = StateId.PREFIXING__ORDER_MENU;
+    this->stateId = StateId::PREFIXING__ORDER_MENU;
 }
 
 void Spec2Sm::PREFIXING__OM__VEG_ev2()
@@ -2394,7 +2742,7 @@ void Spec2Sm::PREFIXING__OM__VEG_ev2()
     if (trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true))
     {
         // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.PREFIXING__ORDER_MENU);
+        exitUpToStateHandler(StateId::PREFIXING__ORDER_MENU);
 
         // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");`.
         trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");
@@ -2417,7 +2765,7 @@ void Spec2Sm::PREFIXING__OM__VEG_ev2()
 
 void Spec2Sm::PREFIXING__OM__VEG__NONE_enter()
 {
-    this.stateId = StateId.PREFIXING__OM__VEG__NONE;
+    this->stateId = StateId::PREFIXING__OM__VEG__NONE;
 
     // PREFIXING__OM__VEG__NONE behavior
     // uml: enter / { trace("Enter PREFIXING__OM__VEG__NONE."); }
@@ -2436,7 +2784,7 @@ void Spec2Sm::PREFIXING__OM__VEG__NONE_exit()
         trace("Exit PREFIXING__OM__VEG__NONE.");
     } // end of behavior for PREFIXING__OM__VEG__NONE
 
-    this.stateId = StateId.PREFIXING__OM__VEG;
+    this->stateId = StateId::PREFIXING__OM__VEG;
 }
 
 void Spec2Sm::PREFIXING__OM__VEG__NONE_ev1()
@@ -2468,7 +2816,7 @@ void Spec2Sm::PREFIXING__OM__VEG__NONE_ev1()
 
 void Spec2Sm::PREFIXING__OM__VEG__POTATO_enter()
 {
-    this.stateId = StateId.PREFIXING__OM__VEG__POTATO;
+    this->stateId = StateId::PREFIXING__OM__VEG__POTATO;
 
     // PREFIXING__OM__VEG__POTATO behavior
     // uml: enter / { trace("Enter PREFIXING__OM__VEG__POTATO."); }
@@ -2487,7 +2835,7 @@ void Spec2Sm::PREFIXING__OM__VEG__POTATO_exit()
         trace("Exit PREFIXING__OM__VEG__POTATO.");
     } // end of behavior for PREFIXING__OM__VEG__POTATO
 
-    this.stateId = StateId.PREFIXING__OM__VEG;
+    this->stateId = StateId::PREFIXING__OM__VEG;
 }
 
 void Spec2Sm::PREFIXING__OM__VEG__POTATO_ev1()
@@ -2519,7 +2867,7 @@ void Spec2Sm::PREFIXING__OM__VEG__POTATO_ev1()
 
 void Spec2Sm::PREFIXING__OM__VEG__YAM_enter()
 {
-    this.stateId = StateId.PREFIXING__OM__VEG__YAM;
+    this->stateId = StateId::PREFIXING__OM__VEG__YAM;
 
     // PREFIXING__OM__VEG__YAM behavior
     // uml: enter / { trace("Enter PREFIXING__OM__VEG__YAM."); }
@@ -2538,7 +2886,7 @@ void Spec2Sm::PREFIXING__OM__VEG__YAM_exit()
         trace("Exit PREFIXING__OM__VEG__YAM.");
     } // end of behavior for PREFIXING__OM__VEG__YAM
 
-    this.stateId = StateId.PREFIXING__OM__VEG;
+    this->stateId = StateId::PREFIXING__OM__VEG;
 }
 
 
@@ -2548,7 +2896,7 @@ void Spec2Sm::PREFIXING__OM__VEG__YAM_exit()
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX_enter()
 {
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX;
 
     // PREFIXING__SHOWS_MANUAL_PREFIX behavior
     // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX."); }
@@ -2567,7 +2915,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX_exit()
         trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.");
     } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
 
-    this.stateId = StateId.PREFIXING;
+    this->stateId = StateId::PREFIXING;
 }
 
 
@@ -2577,7 +2925,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX_exit()
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter()
 {
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU;
 
     // PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
     // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
@@ -2596,7 +2944,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit()
         trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
     } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
 
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX;
 }
 
 
@@ -2606,7 +2954,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit()
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter()
 {
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
 
     // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
     // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
@@ -2625,7 +2973,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit()
         trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
     } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
 
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU;
 }
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()
@@ -2635,7 +2983,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()
     if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true))
     {
         // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU);
+        exitUpToStateHandler(StateId::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU);
 
         // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`.
         trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
@@ -2687,7 +3035,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transitio
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter()
 {
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE;
 
     // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
     // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
@@ -2706,7 +3054,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit()
         trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
     } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
 
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
 }
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1()
@@ -2738,7 +3086,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1()
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter()
 {
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA;
 
     // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
     // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
@@ -2757,7 +3105,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit()
         trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
     } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
 
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
 }
 
 
@@ -2767,7 +3115,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit()
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter()
 {
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER;
 
     // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
     // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
@@ -2786,7 +3134,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit()
         trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
     } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
 
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
 }
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1()
@@ -2818,7 +3166,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1()
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter()
 {
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
 
     // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
     // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
@@ -2837,7 +3185,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit()
         trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
     } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
 
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU;
 }
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()
@@ -2847,7 +3195,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()
     if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true))
     {
         // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU);
+        exitUpToStateHandler(StateId::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU);
 
         // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`.
         trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
@@ -2870,7 +3218,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter()
 {
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE;
 
     // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
     // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
@@ -2889,7 +3237,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit()
         trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
     } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
 
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
 }
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1()
@@ -2921,7 +3269,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1()
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter()
 {
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO;
 
     // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
     // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
@@ -2940,7 +3288,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit()
         trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
     } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
 
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
 }
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1()
@@ -2972,7 +3320,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1()
 
 void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter()
 {
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM;
 
     // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
     // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
@@ -2991,7 +3339,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit()
         trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
     } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
 
-    this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
+    this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
 }
 
 
@@ -3001,7 +3349,7 @@ void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit()
 
 void Spec2Sm::SPEC2SM__DECIDE_enter()
 {
-    this.stateId = StateId.SPEC2SM__DECIDE;
+    this->stateId = StateId::SPEC2SM__DECIDE;
 
     // Spec2Sm__DECIDE behavior
     // uml: enter / { trace("Enter Spec2Sm__DECIDE."); }
@@ -3020,7 +3368,7 @@ void Spec2Sm::SPEC2SM__DECIDE_exit()
         trace("Exit Spec2Sm__DECIDE.");
     } // end of behavior for Spec2Sm__DECIDE
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 void Spec2Sm::SPEC2SM__DECIDE_do()
@@ -3468,7 +3816,7 @@ void Spec2Sm::SPEC2SM__DECIDE_ev9()
 
 void Spec2Sm::TEST1_DO_EVENT_TESTING_enter()
 {
-    this.stateId = StateId.TEST1_DO_EVENT_TESTING;
+    this->stateId = StateId::TEST1_DO_EVENT_TESTING;
 
     // TEST1_DO_EVENT_TESTING behavior
     // uml: enter / { trace("Enter TEST1_DO_EVENT_TESTING."); }
@@ -3487,7 +3835,7 @@ void Spec2Sm::TEST1_DO_EVENT_TESTING_exit()
         trace("Exit TEST1_DO_EVENT_TESTING.");
     } // end of behavior for TEST1_DO_EVENT_TESTING
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -3497,7 +3845,7 @@ void Spec2Sm::TEST1_DO_EVENT_TESTING_exit()
 
 void Spec2Sm::TEST1_ROOT_enter()
 {
-    this.stateId = StateId.TEST1_ROOT;
+    this->stateId = StateId::TEST1_ROOT;
 
     // TEST1_ROOT behavior
     // uml: enter / { trace("Enter TEST1_ROOT."); }
@@ -3516,7 +3864,7 @@ void Spec2Sm::TEST1_ROOT_exit()
         trace("Exit TEST1_ROOT.");
     } // end of behavior for TEST1_ROOT
 
-    this.stateId = StateId.TEST1_DO_EVENT_TESTING;
+    this->stateId = StateId::TEST1_DO_EVENT_TESTING;
 }
 
 void Spec2Sm::TEST1_ROOT_do()
@@ -3545,7 +3893,7 @@ void Spec2Sm::TEST1_ROOT_do()
 
 void Spec2Sm::TEST1_S1_enter()
 {
-    this.stateId = StateId.TEST1_S1;
+    this->stateId = StateId::TEST1_S1;
 
     // TEST1_S1 behavior
     // uml: enter / { trace("Enter TEST1_S1."); }
@@ -3564,7 +3912,7 @@ void Spec2Sm::TEST1_S1_exit()
         trace("Exit TEST1_S1.");
     } // end of behavior for TEST1_S1
 
-    this.stateId = StateId.TEST1_ROOT;
+    this->stateId = StateId::TEST1_ROOT;
 }
 
 
@@ -3574,7 +3922,7 @@ void Spec2Sm::TEST1_S1_exit()
 
 void Spec2Sm::TEST1_S1_1_enter()
 {
-    this.stateId = StateId.TEST1_S1_1;
+    this->stateId = StateId::TEST1_S1_1;
 
     // TEST1_S1_1 behavior
     // uml: enter / { trace("Enter TEST1_S1_1."); }
@@ -3601,7 +3949,7 @@ void Spec2Sm::TEST1_S1_1_exit()
         trace("Exit TEST1_S1_1.");
     } // end of behavior for TEST1_S1_1
 
-    this.stateId = StateId.TEST1_S1;
+    this->stateId = StateId::TEST1_S1;
 }
 
 void Spec2Sm::TEST1_S1_1_do()
@@ -3630,7 +3978,7 @@ void Spec2Sm::TEST1_S1_1_ev1()
     if (trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true))
     {
         // Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST1_ROOT);
+        exitUpToStateHandler(StateId::TEST1_ROOT);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");`.
         trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");
@@ -3652,7 +4000,7 @@ void Spec2Sm::TEST1_S1_1_ev1()
 
 void Spec2Sm::TEST1_S2_enter()
 {
-    this.stateId = StateId.TEST1_S2;
+    this->stateId = StateId::TEST1_S2;
 
     // TEST1_S2 behavior
     // uml: enter / { trace("Enter TEST1_S2."); }
@@ -3671,7 +4019,7 @@ void Spec2Sm::TEST1_S2_exit()
         trace("Exit TEST1_S2.");
     } // end of behavior for TEST1_S2
 
-    this.stateId = StateId.TEST1_ROOT;
+    this->stateId = StateId::TEST1_ROOT;
 }
 
 void Spec2Sm::TEST1_S2_do()
@@ -3701,7 +4049,7 @@ void Spec2Sm::TEST1_S2_do()
 
 void Spec2Sm::TEST10_CHOICE_POINT_enter()
 {
-    this.stateId = StateId.TEST10_CHOICE_POINT;
+    this->stateId = StateId::TEST10_CHOICE_POINT;
 
     // TEST10_CHOICE_POINT behavior
     // uml: enter / { trace("Enter TEST10_CHOICE_POINT."); }
@@ -3720,7 +4068,7 @@ void Spec2Sm::TEST10_CHOICE_POINT_exit()
         trace("Exit TEST10_CHOICE_POINT.");
     } // end of behavior for TEST10_CHOICE_POINT
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -3730,7 +4078,7 @@ void Spec2Sm::TEST10_CHOICE_POINT_exit()
 
 void Spec2Sm::TEST10_A_enter()
 {
-    this.stateId = StateId.TEST10_A;
+    this->stateId = StateId::TEST10_A;
 
     // TEST10_A behavior
     // uml: enter / { trace("Enter TEST10_A."); }
@@ -3749,14 +4097,14 @@ void Spec2Sm::TEST10_A_exit()
         trace("Exit TEST10_A.");
     } // end of behavior for TEST10_A
 
-    this.stateId = StateId.TEST10_CHOICE_POINT;
+    this->stateId = StateId::TEST10_CHOICE_POINT;
 }
 
 void Spec2Sm::TEST10_A_ChoicePoint__transition()
 {
     // TEST10_A.<ChoicePoint>() behavior
     // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>()."); } TransitionTo(TEST10_A.<ChoicePoint>())
-    if (this.vars.count == 1)
+    if (this->vars.count == 1)
     {
         // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -3792,7 +4140,7 @@ void Spec2Sm::TEST10_A_ChoicePoint__transition_kid_index3()
 {
     // TEST10_A.<ChoicePoint>() behavior
     // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
-    if (this.vars.count == 1)
+    if (this->vars.count == 1)
     {
         // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -3828,7 +4176,7 @@ void Spec2Sm::TEST10_A_ChoicePoint_a__transition()
 {
     // TEST10_A.<ChoicePoint>(a) behavior
     // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
-    if (this.vars.count == 1)
+    if (this->vars.count == 1)
     {
         // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -3885,7 +4233,7 @@ void Spec2Sm::TEST10_A_ChoicePoint_a__transition_kid_index5()
 
 void Spec2Sm::TEST10_A_1_enter()
 {
-    this.stateId = StateId.TEST10_A_1;
+    this->stateId = StateId::TEST10_A_1;
 
     // TEST10_A_1 behavior
     // uml: enter / { trace("Enter TEST10_A_1."); }
@@ -3904,7 +4252,7 @@ void Spec2Sm::TEST10_A_1_exit()
         trace("Exit TEST10_A_1.");
     } // end of behavior for TEST10_A_1
 
-    this.stateId = StateId.TEST10_A;
+    this->stateId = StateId::TEST10_A;
 }
 
 
@@ -3914,7 +4262,7 @@ void Spec2Sm::TEST10_A_1_exit()
 
 void Spec2Sm::TEST10_ROOT_enter()
 {
-    this.stateId = StateId.TEST10_ROOT;
+    this->stateId = StateId::TEST10_ROOT;
 
     // TEST10_ROOT behavior
     // uml: enter / { trace("Enter TEST10_ROOT."); }
@@ -3933,7 +4281,7 @@ void Spec2Sm::TEST10_ROOT_exit()
         trace("Exit TEST10_ROOT.");
     } // end of behavior for TEST10_ROOT
 
-    this.stateId = StateId.TEST10_CHOICE_POINT;
+    this->stateId = StateId::TEST10_CHOICE_POINT;
 }
 
 void Spec2Sm::TEST10_ROOT_ev5()
@@ -3943,7 +4291,7 @@ void Spec2Sm::TEST10_ROOT_ev5()
     if (trace_guard("State TEST10_ROOT: check behavior `EV5 / { count++; }`.", true))
     {
         // Step 1: execute action `count++;`
-        this.vars.count++;
+        this->vars.count++;
     } // end of behavior for TEST10_ROOT
 
     // No ancestor handles this event.
@@ -3956,7 +4304,7 @@ void Spec2Sm::TEST10_ROOT_ev5()
 
 void Spec2Sm::TEST10_G_enter()
 {
-    this.stateId = StateId.TEST10_G;
+    this->stateId = StateId::TEST10_G;
 
     // TEST10_G behavior
     // uml: enter / { trace("Enter TEST10_G."); }
@@ -3975,7 +4323,7 @@ void Spec2Sm::TEST10_G_exit()
         trace("Exit TEST10_G.");
     } // end of behavior for TEST10_G
 
-    this.stateId = StateId.TEST10_ROOT;
+    this->stateId = StateId::TEST10_ROOT;
 }
 
 void Spec2Sm::TEST10_G_ChoicePoint__transition()
@@ -3993,7 +4341,7 @@ void Spec2Sm::TEST10_G_ChoicePoint__transition()
 
         // TEST10_G.<ChoicePoint>(1) behavior
         // uml: 1. [count <= 0] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0."); } TransitionTo(TEST10_G_S0)
-        if (this.vars.count <= 0)
+        if (this->vars.count <= 0)
         {
             // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -4009,7 +4357,7 @@ void Spec2Sm::TEST10_G_ChoicePoint__transition()
 
         // TEST10_G.<ChoicePoint>(1) behavior
         // uml: [count <= 2] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower)."); } TransitionTo(TEST10_G.<ChoicePoint>(lower))
-        if (this.vars.count <= 2)
+        if (this->vars.count <= 2)
         {
             // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -4021,7 +4369,7 @@ void Spec2Sm::TEST10_G_ChoicePoint__transition()
 
             // TEST10_G.<ChoicePoint>(lower) behavior
             // uml: [count <=1] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1."); } TransitionTo(TEST10_G_S1)
-            if (this.vars.count <= 1)
+            if (this->vars.count <= 1)
             {
                 // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -4064,7 +4412,7 @@ void Spec2Sm::TEST10_G_ChoicePoint__transition()
 
             // TEST10_G.<ChoicePoint>(upper) behavior
             // uml: [count <= 3] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3."); } TransitionTo(TEST10_G_S3)
-            if (this.vars.count <= 3)
+            if (this->vars.count <= 3)
             {
                 // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -4082,7 +4430,7 @@ void Spec2Sm::TEST10_G_ChoicePoint__transition()
             // uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4."); } TransitionTo(TEST10_S4)
             {
                 // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
-                exitUpToStateHandler(StateId.TEST10_ROOT);
+                exitUpToStateHandler(StateId::TEST10_ROOT);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.");`.
                 trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.");
@@ -4104,7 +4452,7 @@ void Spec2Sm::TEST10_G_ChoicePoint__transition()
 
 void Spec2Sm::TEST10_G_S0_enter()
 {
-    this.stateId = StateId.TEST10_G_S0;
+    this->stateId = StateId::TEST10_G_S0;
 
     // TEST10_G_S0 behavior
     // uml: enter / { trace("Enter TEST10_G_S0."); }
@@ -4123,7 +4471,7 @@ void Spec2Sm::TEST10_G_S0_exit()
         trace("Exit TEST10_G_S0.");
     } // end of behavior for TEST10_G_S0
 
-    this.stateId = StateId.TEST10_G;
+    this->stateId = StateId::TEST10_G;
 }
 
 
@@ -4133,7 +4481,7 @@ void Spec2Sm::TEST10_G_S0_exit()
 
 void Spec2Sm::TEST10_G_S1_enter()
 {
-    this.stateId = StateId.TEST10_G_S1;
+    this->stateId = StateId::TEST10_G_S1;
 
     // TEST10_G_S1 behavior
     // uml: enter / { trace("Enter TEST10_G_S1."); }
@@ -4152,7 +4500,7 @@ void Spec2Sm::TEST10_G_S1_exit()
         trace("Exit TEST10_G_S1.");
     } // end of behavior for TEST10_G_S1
 
-    this.stateId = StateId.TEST10_G;
+    this->stateId = StateId::TEST10_G;
 }
 
 
@@ -4162,7 +4510,7 @@ void Spec2Sm::TEST10_G_S1_exit()
 
 void Spec2Sm::TEST10_G_S2_enter()
 {
-    this.stateId = StateId.TEST10_G_S2;
+    this->stateId = StateId::TEST10_G_S2;
 
     // TEST10_G_S2 behavior
     // uml: enter / { trace("Enter TEST10_G_S2."); }
@@ -4181,7 +4529,7 @@ void Spec2Sm::TEST10_G_S2_exit()
         trace("Exit TEST10_G_S2.");
     } // end of behavior for TEST10_G_S2
 
-    this.stateId = StateId.TEST10_G;
+    this->stateId = StateId::TEST10_G;
 }
 
 
@@ -4191,7 +4539,7 @@ void Spec2Sm::TEST10_G_S2_exit()
 
 void Spec2Sm::TEST10_G_S3_enter()
 {
-    this.stateId = StateId.TEST10_G_S3;
+    this->stateId = StateId::TEST10_G_S3;
 
     // TEST10_G_S3 behavior
     // uml: enter / { trace("Enter TEST10_G_S3."); }
@@ -4210,7 +4558,7 @@ void Spec2Sm::TEST10_G_S3_exit()
         trace("Exit TEST10_G_S3.");
     } // end of behavior for TEST10_G_S3
 
-    this.stateId = StateId.TEST10_G;
+    this->stateId = StateId::TEST10_G;
 }
 
 
@@ -4220,7 +4568,7 @@ void Spec2Sm::TEST10_G_S3_exit()
 
 void Spec2Sm::TEST10_S1_enter()
 {
-    this.stateId = StateId.TEST10_S1;
+    this->stateId = StateId::TEST10_S1;
 
     // TEST10_S1 behavior
     // uml: enter / { trace("Enter TEST10_S1."); }
@@ -4247,7 +4595,7 @@ void Spec2Sm::TEST10_S1_exit()
         trace("Exit TEST10_S1.");
     } // end of behavior for TEST10_S1
 
-    this.stateId = StateId.TEST10_ROOT;
+    this->stateId = StateId::TEST10_ROOT;
 }
 
 void Spec2Sm::TEST10_S1_ev1()
@@ -4293,7 +4641,7 @@ void Spec2Sm::TEST10_S1_ev10()
     if (trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true))
     {
         // Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST10_CHOICE_POINT);
+        exitUpToStateHandler(StateId::TEST10_CHOICE_POINT);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_A.");`.
         trace("Transition action `` for TEST10_S1 to TEST10_A.");
@@ -4303,7 +4651,7 @@ void Spec2Sm::TEST10_S1_ev10()
 
         // TEST10_A.<InitialState> behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>()."); } TransitionTo(TEST10_A.<ChoicePoint>())
-        if (this.vars.count == 1)
+        if (this->vars.count == 1)
         {
             // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -4320,13 +4668,13 @@ void Spec2Sm::TEST10_S1_ev10()
 
         // TEST10_A.<InitialState> behavior
         // uml: [count == 0] / { trace("Transition action `count++;` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");\ncount++; } TransitionTo(TEST10_A.<ChoicePoint>())
-        if (this.vars.count == 0)
+        if (this->vars.count == 0)
         {
             // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
             // Step 2: Transition action: `trace("Transition action `count++;` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");\ncount++;`.
             trace("Transition action `count++;` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");
-            this.vars.count++;
+            this->vars.count++;
 
             // Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
             // TEST10_A.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
@@ -4422,7 +4770,7 @@ void Spec2Sm::TEST10_S1_ev3()
 
 void Spec2Sm::TEST10_S4_enter()
 {
-    this.stateId = StateId.TEST10_S4;
+    this->stateId = StateId::TEST10_S4;
 
     // TEST10_S4 behavior
     // uml: enter / { trace("Enter TEST10_S4."); }
@@ -4441,7 +4789,7 @@ void Spec2Sm::TEST10_S4_exit()
         trace("Exit TEST10_S4.");
     } // end of behavior for TEST10_S4
 
-    this.stateId = StateId.TEST10_ROOT;
+    this->stateId = StateId::TEST10_ROOT;
 }
 
 
@@ -4451,7 +4799,7 @@ void Spec2Sm::TEST10_S4_exit()
 
 void Spec2Sm::TEST2_REGULAR_EVENT_TESTING_enter()
 {
-    this.stateId = StateId.TEST2_REGULAR_EVENT_TESTING;
+    this->stateId = StateId::TEST2_REGULAR_EVENT_TESTING;
 
     // TEST2_REGULAR_EVENT_TESTING behavior
     // uml: enter / { trace("Enter TEST2_REGULAR_EVENT_TESTING."); }
@@ -4470,7 +4818,7 @@ void Spec2Sm::TEST2_REGULAR_EVENT_TESTING_exit()
         trace("Exit TEST2_REGULAR_EVENT_TESTING.");
     } // end of behavior for TEST2_REGULAR_EVENT_TESTING
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -4480,7 +4828,7 @@ void Spec2Sm::TEST2_REGULAR_EVENT_TESTING_exit()
 
 void Spec2Sm::TEST2_ROOT_enter()
 {
-    this.stateId = StateId.TEST2_ROOT;
+    this->stateId = StateId::TEST2_ROOT;
 
     // TEST2_ROOT behavior
     // uml: enter / { trace("Enter TEST2_ROOT."); }
@@ -4499,7 +4847,7 @@ void Spec2Sm::TEST2_ROOT_exit()
         trace("Exit TEST2_ROOT.");
     } // end of behavior for TEST2_ROOT
 
-    this.stateId = StateId.TEST2_REGULAR_EVENT_TESTING;
+    this->stateId = StateId::TEST2_REGULAR_EVENT_TESTING;
 }
 
 void Spec2Sm::TEST2_ROOT_do()
@@ -4552,7 +4900,7 @@ void Spec2Sm::TEST2_ROOT_ev2()
 
 void Spec2Sm::TEST2_S1_enter()
 {
-    this.stateId = StateId.TEST2_S1;
+    this->stateId = StateId::TEST2_S1;
 
     // TEST2_S1 behavior
     // uml: enter / { trace("Enter TEST2_S1."); }
@@ -4571,7 +4919,7 @@ void Spec2Sm::TEST2_S1_exit()
         trace("Exit TEST2_S1.");
     } // end of behavior for TEST2_S1
 
-    this.stateId = StateId.TEST2_ROOT;
+    this->stateId = StateId::TEST2_ROOT;
 }
 
 
@@ -4581,7 +4929,7 @@ void Spec2Sm::TEST2_S1_exit()
 
 void Spec2Sm::TEST2_S1_1_enter()
 {
-    this.stateId = StateId.TEST2_S1_1;
+    this->stateId = StateId::TEST2_S1_1;
 
     // TEST2_S1_1 behavior
     // uml: enter / { trace("Enter TEST2_S1_1."); }
@@ -4608,7 +4956,7 @@ void Spec2Sm::TEST2_S1_1_exit()
         trace("Exit TEST2_S1_1.");
     } // end of behavior for TEST2_S1_1
 
-    this.stateId = StateId.TEST2_S1;
+    this->stateId = StateId::TEST2_S1;
 }
 
 void Spec2Sm::TEST2_S1_1_do()
@@ -4620,7 +4968,7 @@ void Spec2Sm::TEST2_S1_1_do()
     if (trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true))
     {
         // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST2_ROOT);
+        exitUpToStateHandler(StateId::TEST2_ROOT);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");`.
         trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");
@@ -4666,7 +5014,7 @@ void Spec2Sm::TEST2_S1_1_ev1()
 
 void Spec2Sm::TEST2_S2_enter()
 {
-    this.stateId = StateId.TEST2_S2;
+    this->stateId = StateId::TEST2_S2;
 
     // TEST2_S2 behavior
     // uml: enter / { trace("Enter TEST2_S2."); }
@@ -4692,7 +5040,7 @@ void Spec2Sm::TEST2_S2_exit()
         trace("Exit TEST2_S2.");
     } // end of behavior for TEST2_S2
 
-    this.stateId = StateId.TEST2_ROOT;
+    this->stateId = StateId::TEST2_ROOT;
 }
 
 void Spec2Sm::TEST2_S2_ev1()
@@ -4751,7 +5099,7 @@ void Spec2Sm::TEST2_S2_ev2()
 
 void Spec2Sm::TEST3_BEHAVIOR_ORDERING_enter()
 {
-    this.stateId = StateId.TEST3_BEHAVIOR_ORDERING;
+    this->stateId = StateId::TEST3_BEHAVIOR_ORDERING;
 
     // TEST3_BEHAVIOR_ORDERING behavior
     // uml: enter / { trace("Enter TEST3_BEHAVIOR_ORDERING."); }
@@ -4770,7 +5118,7 @@ void Spec2Sm::TEST3_BEHAVIOR_ORDERING_exit()
         trace("Exit TEST3_BEHAVIOR_ORDERING.");
     } // end of behavior for TEST3_BEHAVIOR_ORDERING
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -4780,7 +5128,7 @@ void Spec2Sm::TEST3_BEHAVIOR_ORDERING_exit()
 
 void Spec2Sm::TEST3_ROOT_enter()
 {
-    this.stateId = StateId.TEST3_ROOT;
+    this->stateId = StateId::TEST3_ROOT;
 
     // TEST3_ROOT behavior
     // uml: enter / { trace("Enter TEST3_ROOT."); }
@@ -4799,7 +5147,7 @@ void Spec2Sm::TEST3_ROOT_exit()
         trace("Exit TEST3_ROOT.");
     } // end of behavior for TEST3_ROOT
 
-    this.stateId = StateId.TEST3_BEHAVIOR_ORDERING;
+    this->stateId = StateId::TEST3_BEHAVIOR_ORDERING;
 }
 
 void Spec2Sm::TEST3_ROOT_ev1()
@@ -4821,7 +5169,7 @@ void Spec2Sm::TEST3_ROOT_ev1()
 
 void Spec2Sm::TEST3_S1_enter()
 {
-    this.stateId = StateId.TEST3_S1;
+    this->stateId = StateId::TEST3_S1;
 
     // TEST3_S1 behavior
     // uml: enter / { trace("Enter TEST3_S1."); }
@@ -4848,7 +5196,7 @@ void Spec2Sm::TEST3_S1_exit()
         trace("Exit TEST3_S1.");
     } // end of behavior for TEST3_S1
 
-    this.stateId = StateId.TEST3_ROOT;
+    this->stateId = StateId::TEST3_ROOT;
 }
 
 void Spec2Sm::TEST3_S1_ev1()
@@ -4896,7 +5244,7 @@ void Spec2Sm::TEST3_S1_ev1()
 
 void Spec2Sm::TEST3_S2_enter()
 {
-    this.stateId = StateId.TEST3_S2;
+    this->stateId = StateId::TEST3_S2;
 
     // TEST3_S2 behavior
     // uml: enter / { trace("Enter TEST3_S2."); }
@@ -4915,7 +5263,7 @@ void Spec2Sm::TEST3_S2_exit()
         trace("Exit TEST3_S2.");
     } // end of behavior for TEST3_S2
 
-    this.stateId = StateId.TEST3_ROOT;
+    this->stateId = StateId::TEST3_ROOT;
 }
 
 void Spec2Sm::TEST3_S2_ev1()
@@ -4974,7 +5322,7 @@ void Spec2Sm::TEST3_S2_ev1()
 
 void Spec2Sm::TEST3_S3_enter()
 {
-    this.stateId = StateId.TEST3_S3;
+    this->stateId = StateId::TEST3_S3;
 
     // TEST3_S3 behavior
     // uml: enter / { trace("Enter TEST3_S3."); }
@@ -4993,7 +5341,7 @@ void Spec2Sm::TEST3_S3_exit()
         trace("Exit TEST3_S3.");
     } // end of behavior for TEST3_S3
 
-    this.stateId = StateId.TEST3_ROOT;
+    this->stateId = StateId::TEST3_ROOT;
 }
 
 
@@ -5003,7 +5351,7 @@ void Spec2Sm::TEST3_S3_exit()
 
 void Spec2Sm::TEST4_PARENT_CHILD_TRANSITIONS_enter()
 {
-    this.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS;
+    this->stateId = StateId::TEST4_PARENT_CHILD_TRANSITIONS;
 
     // TEST4_PARENT_CHILD_TRANSITIONS behavior
     // uml: enter / { trace("Enter TEST4_PARENT_CHILD_TRANSITIONS."); }
@@ -5022,7 +5370,7 @@ void Spec2Sm::TEST4_PARENT_CHILD_TRANSITIONS_exit()
         trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");
     } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -5032,7 +5380,7 @@ void Spec2Sm::TEST4_PARENT_CHILD_TRANSITIONS_exit()
 
 void Spec2Sm::TEST4_B_AND_OTHERS_enter()
 {
-    this.stateId = StateId.TEST4_B_AND_OTHERS;
+    this->stateId = StateId::TEST4_B_AND_OTHERS;
 
     // TEST4_B_AND_OTHERS behavior
     // uml: enter / { trace("Enter TEST4_B_AND_OTHERS."); }
@@ -5059,7 +5407,7 @@ void Spec2Sm::TEST4_B_AND_OTHERS_exit()
         trace("Exit TEST4_B_AND_OTHERS.");
     } // end of behavior for TEST4_B_AND_OTHERS
 
-    this.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS;
+    this->stateId = StateId::TEST4_PARENT_CHILD_TRANSITIONS;
 }
 
 
@@ -5069,7 +5417,7 @@ void Spec2Sm::TEST4_B_AND_OTHERS_exit()
 
 void Spec2Sm::TEST4B_LOCAL_enter()
 {
-    this.stateId = StateId.TEST4B_LOCAL;
+    this->stateId = StateId::TEST4B_LOCAL;
 
     // TEST4B_LOCAL behavior
     // uml: enter / { trace("Enter TEST4B_LOCAL."); }
@@ -5088,7 +5436,7 @@ void Spec2Sm::TEST4B_LOCAL_exit()
         trace("Exit TEST4B_LOCAL.");
     } // end of behavior for TEST4B_LOCAL
 
-    this.stateId = StateId.TEST4_B_AND_OTHERS;
+    this->stateId = StateId::TEST4_B_AND_OTHERS;
 }
 
 
@@ -5098,7 +5446,7 @@ void Spec2Sm::TEST4B_LOCAL_exit()
 
 void Spec2Sm::TEST4B_G_enter()
 {
-    this.stateId = StateId.TEST4B_G;
+    this->stateId = StateId::TEST4B_G;
 
     // TEST4B_G behavior
     // uml: enter / { trace("Enter TEST4B_G."); }
@@ -5117,7 +5465,7 @@ void Spec2Sm::TEST4B_G_exit()
         trace("Exit TEST4B_G.");
     } // end of behavior for TEST4B_G
 
-    this.stateId = StateId.TEST4B_LOCAL;
+    this->stateId = StateId::TEST4B_LOCAL;
 }
 
 void Spec2Sm::TEST4B_G_ev1()
@@ -5127,7 +5475,7 @@ void Spec2Sm::TEST4B_G_ev1()
     if (trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true))
     {
         // Step 1: Exit states until we reach `TEST4B_G` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST4B_G);
+        exitUpToStateHandler(StateId::TEST4B_G);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST4B_G to TEST4B_G_1.");`.
         trace("Transition action `` for TEST4B_G to TEST4B_G_1.");
@@ -5149,7 +5497,7 @@ void Spec2Sm::TEST4B_G_ev1()
 
 void Spec2Sm::TEST4B_G_1_enter()
 {
-    this.stateId = StateId.TEST4B_G_1;
+    this->stateId = StateId::TEST4B_G_1;
 
     // TEST4B_G_1 behavior
     // uml: enter / { trace("Enter TEST4B_G_1."); }
@@ -5168,7 +5516,7 @@ void Spec2Sm::TEST4B_G_1_exit()
         trace("Exit TEST4B_G_1.");
     } // end of behavior for TEST4B_G_1
 
-    this.stateId = StateId.TEST4B_G;
+    this->stateId = StateId::TEST4B_G;
 }
 
 void Spec2Sm::TEST4B_G_1_ev2()
@@ -5199,7 +5547,7 @@ void Spec2Sm::TEST4B_G_1_ev2()
 
 void Spec2Sm::TEST4C_LOCAL_TO_ALIAS_enter()
 {
-    this.stateId = StateId.TEST4C_LOCAL_TO_ALIAS;
+    this->stateId = StateId::TEST4C_LOCAL_TO_ALIAS;
 
     // TEST4C_LOCAL_TO_ALIAS behavior
     // uml: enter / { trace("Enter TEST4C_LOCAL_TO_ALIAS."); }
@@ -5218,7 +5566,7 @@ void Spec2Sm::TEST4C_LOCAL_TO_ALIAS_exit()
         trace("Exit TEST4C_LOCAL_TO_ALIAS.");
     } // end of behavior for TEST4C_LOCAL_TO_ALIAS
 
-    this.stateId = StateId.TEST4_B_AND_OTHERS;
+    this->stateId = StateId::TEST4_B_AND_OTHERS;
 }
 
 
@@ -5228,7 +5576,7 @@ void Spec2Sm::TEST4C_LOCAL_TO_ALIAS_exit()
 
 void Spec2Sm::TEST4C_G_enter()
 {
-    this.stateId = StateId.TEST4C_G;
+    this->stateId = StateId::TEST4C_G;
 
     // TEST4C_G behavior
     // uml: enter / { trace("Enter TEST4C_G."); }
@@ -5247,7 +5595,7 @@ void Spec2Sm::TEST4C_G_exit()
         trace("Exit TEST4C_G.");
     } // end of behavior for TEST4C_G
 
-    this.stateId = StateId.TEST4C_LOCAL_TO_ALIAS;
+    this->stateId = StateId::TEST4C_LOCAL_TO_ALIAS;
 }
 
 void Spec2Sm::TEST4C_G_ev1()
@@ -5257,7 +5605,7 @@ void Spec2Sm::TEST4C_G_ev1()
     if (trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true))
     {
         // Step 1: Exit states until we reach `TEST4C_G` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST4C_G);
+        exitUpToStateHandler(StateId::TEST4C_G);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST4C_G to TEST4C_G_1.");`.
         trace("Transition action `` for TEST4C_G to TEST4C_G_1.");
@@ -5279,7 +5627,7 @@ void Spec2Sm::TEST4C_G_ev1()
 
 void Spec2Sm::TEST4C_G_1_enter()
 {
-    this.stateId = StateId.TEST4C_G_1;
+    this->stateId = StateId::TEST4C_G_1;
 
     // TEST4C_G_1 behavior
     // uml: enter / { trace("Enter TEST4C_G_1."); }
@@ -5298,7 +5646,7 @@ void Spec2Sm::TEST4C_G_1_exit()
         trace("Exit TEST4C_G_1.");
     } // end of behavior for TEST4C_G_1
 
-    this.stateId = StateId.TEST4C_G;
+    this->stateId = StateId::TEST4C_G;
 }
 
 void Spec2Sm::TEST4C_G_1_ev2()
@@ -5329,7 +5677,7 @@ void Spec2Sm::TEST4C_G_1_ev2()
 
 void Spec2Sm::TEST4D_EXTERNAL_enter()
 {
-    this.stateId = StateId.TEST4D_EXTERNAL;
+    this->stateId = StateId::TEST4D_EXTERNAL;
 
     // TEST4D_EXTERNAL behavior
     // uml: enter / { trace("Enter TEST4D_EXTERNAL."); }
@@ -5348,7 +5696,7 @@ void Spec2Sm::TEST4D_EXTERNAL_exit()
         trace("Exit TEST4D_EXTERNAL.");
     } // end of behavior for TEST4D_EXTERNAL
 
-    this.stateId = StateId.TEST4_B_AND_OTHERS;
+    this->stateId = StateId::TEST4_B_AND_OTHERS;
 }
 
 
@@ -5358,7 +5706,7 @@ void Spec2Sm::TEST4D_EXTERNAL_exit()
 
 void Spec2Sm::TEST4D_G_enter()
 {
-    this.stateId = StateId.TEST4D_G;
+    this->stateId = StateId::TEST4D_G;
 
     // TEST4D_G behavior
     // uml: enter / { trace("Enter TEST4D_G."); }
@@ -5377,7 +5725,7 @@ void Spec2Sm::TEST4D_G_exit()
         trace("Exit TEST4D_G.");
     } // end of behavior for TEST4D_G
 
-    this.stateId = StateId.TEST4D_EXTERNAL;
+    this->stateId = StateId::TEST4D_EXTERNAL;
 }
 
 void Spec2Sm::TEST4D_G_ev1()
@@ -5387,7 +5735,7 @@ void Spec2Sm::TEST4D_G_ev1()
     if (trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true))
     {
         // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST4D_EXTERNAL);
+        exitUpToStateHandler(StateId::TEST4D_EXTERNAL);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().");`.
         trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().");
@@ -5422,7 +5770,7 @@ void Spec2Sm::TEST4D_G_ev1()
 
 void Spec2Sm::TEST4D_G_1_enter()
 {
-    this.stateId = StateId.TEST4D_G_1;
+    this->stateId = StateId::TEST4D_G_1;
 
     // TEST4D_G_1 behavior
     // uml: enter / { trace("Enter TEST4D_G_1."); }
@@ -5441,7 +5789,7 @@ void Spec2Sm::TEST4D_G_1_exit()
         trace("Exit TEST4D_G_1.");
     } // end of behavior for TEST4D_G_1
 
-    this.stateId = StateId.TEST4D_G;
+    this->stateId = StateId::TEST4D_G;
 }
 
 void Spec2Sm::TEST4D_G_1_ev2()
@@ -5451,7 +5799,7 @@ void Spec2Sm::TEST4D_G_1_ev2()
     if (trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true))
     {
         // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST4D_EXTERNAL);
+        exitUpToStateHandler(StateId::TEST4D_EXTERNAL);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().");`.
         trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().");
@@ -5485,7 +5833,7 @@ void Spec2Sm::TEST4D_G_1_ev2()
 
 void Spec2Sm::TEST4_DECIDE_enter()
 {
-    this.stateId = StateId.TEST4_DECIDE;
+    this->stateId = StateId::TEST4_DECIDE;
 
     // TEST4_DECIDE behavior
     // uml: enter / { trace("Enter TEST4_DECIDE."); }
@@ -5504,7 +5852,7 @@ void Spec2Sm::TEST4_DECIDE_exit()
         trace("Exit TEST4_DECIDE.");
     } // end of behavior for TEST4_DECIDE
 
-    this.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS;
+    this->stateId = StateId::TEST4_PARENT_CHILD_TRANSITIONS;
 }
 
 void Spec2Sm::TEST4_DECIDE_ev1()
@@ -5641,7 +5989,7 @@ void Spec2Sm::TEST4_DECIDE_ev4()
 
 void Spec2Sm::TEST4_ROOT_enter()
 {
-    this.stateId = StateId.TEST4_ROOT;
+    this->stateId = StateId::TEST4_ROOT;
 
     // TEST4_ROOT behavior
     // uml: enter / { trace("Enter TEST4_ROOT."); }
@@ -5668,7 +6016,7 @@ void Spec2Sm::TEST4_ROOT_exit()
         trace("Exit TEST4_ROOT.");
     } // end of behavior for TEST4_ROOT
 
-    this.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS;
+    this->stateId = StateId::TEST4_PARENT_CHILD_TRANSITIONS;
 }
 
 void Spec2Sm::TEST4_ROOT_ev2()
@@ -5678,7 +6026,7 @@ void Spec2Sm::TEST4_ROOT_ev2()
     if (trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true))
     {
         // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST4_ROOT);
+        exitUpToStateHandler(StateId::TEST4_ROOT);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S1.");`.
         trace("Transition action `` for TEST4_ROOT to TEST4_S1.");
@@ -5700,7 +6048,7 @@ void Spec2Sm::TEST4_ROOT_ev3()
     if (trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true))
     {
         // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST4_ROOT);
+        exitUpToStateHandler(StateId::TEST4_ROOT);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");`.
         trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");
@@ -5723,7 +6071,7 @@ void Spec2Sm::TEST4_ROOT_ev4()
     if (trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
     {
         // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST4_ROOT);
+        exitUpToStateHandler(StateId::TEST4_ROOT);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S20.");`.
         trace("Transition action `` for TEST4_ROOT to TEST4_S20.");
@@ -5746,7 +6094,7 @@ void Spec2Sm::TEST4_ROOT_ev4()
 
 void Spec2Sm::TEST4_S1_enter()
 {
-    this.stateId = StateId.TEST4_S1;
+    this->stateId = StateId::TEST4_S1;
 
     // TEST4_S1 behavior
     // uml: enter / { trace("Enter TEST4_S1."); }
@@ -5765,7 +6113,7 @@ void Spec2Sm::TEST4_S1_exit()
         trace("Exit TEST4_S1.");
     } // end of behavior for TEST4_S1
 
-    this.stateId = StateId.TEST4_ROOT;
+    this->stateId = StateId::TEST4_ROOT;
 }
 
 void Spec2Sm::TEST4_S1_ev1()
@@ -5797,7 +6145,7 @@ void Spec2Sm::TEST4_S1_ev1()
 
 void Spec2Sm::TEST4_S10_enter()
 {
-    this.stateId = StateId.TEST4_S10;
+    this->stateId = StateId::TEST4_S10;
 
     // TEST4_S10 behavior
     // uml: enter / { trace("Enter TEST4_S10."); }
@@ -5816,7 +6164,7 @@ void Spec2Sm::TEST4_S10_exit()
         trace("Exit TEST4_S10.");
     } // end of behavior for TEST4_S10
 
-    this.stateId = StateId.TEST4_ROOT;
+    this->stateId = StateId::TEST4_ROOT;
 }
 
 void Spec2Sm::TEST4_S10_ev4()
@@ -5828,7 +6176,7 @@ void Spec2Sm::TEST4_S10_ev4()
     if (trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true))
     {
         // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST4_ROOT);
+        exitUpToStateHandler(StateId::TEST4_ROOT);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST4_S10 to TEST4_S10.");`.
         trace("Transition action `` for TEST4_S10 to TEST4_S10.");
@@ -5854,7 +6202,7 @@ void Spec2Sm::TEST4_S10_ev4()
 
 void Spec2Sm::TEST4_S10_1_enter()
 {
-    this.stateId = StateId.TEST4_S10_1;
+    this->stateId = StateId::TEST4_S10_1;
 
     // TEST4_S10_1 behavior
     // uml: enter / { trace("Enter TEST4_S10_1."); }
@@ -5873,7 +6221,7 @@ void Spec2Sm::TEST4_S10_1_exit()
         trace("Exit TEST4_S10_1.");
     } // end of behavior for TEST4_S10_1
 
-    this.stateId = StateId.TEST4_S10;
+    this->stateId = StateId::TEST4_S10;
 }
 
 
@@ -5883,7 +6231,7 @@ void Spec2Sm::TEST4_S10_1_exit()
 
 void Spec2Sm::TEST4_S2_enter()
 {
-    this.stateId = StateId.TEST4_S2;
+    this->stateId = StateId::TEST4_S2;
 
     // TEST4_S2 behavior
     // uml: enter / { trace("Enter TEST4_S2."); }
@@ -5902,7 +6250,7 @@ void Spec2Sm::TEST4_S2_exit()
         trace("Exit TEST4_S2.");
     } // end of behavior for TEST4_S2
 
-    this.stateId = StateId.TEST4_ROOT;
+    this->stateId = StateId::TEST4_ROOT;
 }
 
 void Spec2Sm::TEST4_S2_ev1()
@@ -5934,7 +6282,7 @@ void Spec2Sm::TEST4_S2_ev1()
 
 void Spec2Sm::TEST4_S20_enter()
 {
-    this.stateId = StateId.TEST4_S20;
+    this->stateId = StateId::TEST4_S20;
 
     // TEST4_S20 behavior
     // uml: enter / { trace("Enter TEST4_S20."); }
@@ -5953,7 +6301,7 @@ void Spec2Sm::TEST4_S20_exit()
         trace("Exit TEST4_S20.");
     } // end of behavior for TEST4_S20
 
-    this.stateId = StateId.TEST4_ROOT;
+    this->stateId = StateId::TEST4_ROOT;
 }
 
 void Spec2Sm::TEST4_S20_ev4()
@@ -5965,7 +6313,7 @@ void Spec2Sm::TEST4_S20_ev4()
     if (trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
     {
         // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST4_ROOT);
+        exitUpToStateHandler(StateId::TEST4_ROOT);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST4_S20 to TEST4_S20.");`.
         trace("Transition action `` for TEST4_S20 to TEST4_S20.");
@@ -6010,7 +6358,7 @@ void Spec2Sm::TEST4_S20_InitialState_transition()
 
 void Spec2Sm::TEST4_S20_1_enter()
 {
-    this.stateId = StateId.TEST4_S20_1;
+    this->stateId = StateId::TEST4_S20_1;
 
     // TEST4_S20_1 behavior
     // uml: enter / { trace("Enter TEST4_S20_1."); }
@@ -6029,7 +6377,7 @@ void Spec2Sm::TEST4_S20_1_exit()
         trace("Exit TEST4_S20_1.");
     } // end of behavior for TEST4_S20_1
 
-    this.stateId = StateId.TEST4_S20;
+    this->stateId = StateId::TEST4_S20;
 }
 
 
@@ -6039,7 +6387,7 @@ void Spec2Sm::TEST4_S20_1_exit()
 
 void Spec2Sm::TEST4_S3_enter()
 {
-    this.stateId = StateId.TEST4_S3;
+    this->stateId = StateId::TEST4_S3;
 
     // TEST4_S3 behavior
     // uml: enter / { trace("Enter TEST4_S3."); }
@@ -6058,7 +6406,7 @@ void Spec2Sm::TEST4_S3_exit()
         trace("Exit TEST4_S3.");
     } // end of behavior for TEST4_S3
 
-    this.stateId = StateId.TEST4_ROOT;
+    this->stateId = StateId::TEST4_ROOT;
 }
 
 void Spec2Sm::TEST4_S3_ev1()
@@ -6089,7 +6437,7 @@ void Spec2Sm::TEST4_S3_ev1()
 
 void Spec2Sm::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter()
 {
-    this.stateId = StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS;
+    this->stateId = StateId::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS;
 
     // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
     // uml: enter / { trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
@@ -6108,7 +6456,7 @@ void Spec2Sm::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit()
         trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
     } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -6118,7 +6466,7 @@ void Spec2Sm::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit()
 
 void Spec2Sm::TEST5_ROOT_enter()
 {
-    this.stateId = StateId.TEST5_ROOT;
+    this->stateId = StateId::TEST5_ROOT;
 
     // TEST5_ROOT behavior
     // uml: enter / { trace("Enter TEST5_ROOT."); }
@@ -6145,7 +6493,7 @@ void Spec2Sm::TEST5_ROOT_exit()
         trace("Exit TEST5_ROOT.");
     } // end of behavior for TEST5_ROOT
 
-    this.stateId = StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS;
+    this->stateId = StateId::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS;
 }
 
 void Spec2Sm::TEST5_ROOT_ev2()
@@ -6155,7 +6503,7 @@ void Spec2Sm::TEST5_ROOT_ev2()
     if (trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true))
     {
         // Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST5_ROOT);
+        exitUpToStateHandler(StateId::TEST5_ROOT);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST5_ROOT to TEST5_S1.");`.
         trace("Transition action `` for TEST5_ROOT to TEST5_S1.");
@@ -6177,7 +6525,7 @@ void Spec2Sm::TEST5_ROOT_ev2()
 
 void Spec2Sm::TEST5_S1_enter()
 {
-    this.stateId = StateId.TEST5_S1;
+    this->stateId = StateId::TEST5_S1;
 
     // TEST5_S1 behavior
     // uml: enter / { trace("Enter TEST5_S1."); }
@@ -6196,7 +6544,7 @@ void Spec2Sm::TEST5_S1_exit()
         trace("Exit TEST5_S1.");
     } // end of behavior for TEST5_S1
 
-    this.stateId = StateId.TEST5_ROOT;
+    this->stateId = StateId::TEST5_ROOT;
 }
 
 void Spec2Sm::TEST5_S1_ev1()
@@ -6228,7 +6576,7 @@ void Spec2Sm::TEST5_S1_ev1()
 
 void Spec2Sm::TEST5_S2_enter()
 {
-    this.stateId = StateId.TEST5_S2;
+    this->stateId = StateId::TEST5_S2;
 
     // TEST5_S2 behavior
     // uml: enter / { trace("Enter TEST5_S2."); }
@@ -6247,7 +6595,7 @@ void Spec2Sm::TEST5_S2_exit()
         trace("Exit TEST5_S2.");
     } // end of behavior for TEST5_S2
 
-    this.stateId = StateId.TEST5_ROOT;
+    this->stateId = StateId::TEST5_ROOT;
 }
 
 void Spec2Sm::TEST5_S2_ev1()
@@ -6279,7 +6627,7 @@ void Spec2Sm::TEST5_S2_ev1()
 
 void Spec2Sm::TEST5_S3_enter()
 {
-    this.stateId = StateId.TEST5_S3;
+    this->stateId = StateId::TEST5_S3;
 
     // TEST5_S3 behavior
     // uml: enter / { trace("Enter TEST5_S3."); }
@@ -6298,7 +6646,7 @@ void Spec2Sm::TEST5_S3_exit()
         trace("Exit TEST5_S3.");
     } // end of behavior for TEST5_S3
 
-    this.stateId = StateId.TEST5_ROOT;
+    this->stateId = StateId::TEST5_ROOT;
 }
 
 void Spec2Sm::TEST5_S3_ev1()
@@ -6329,7 +6677,7 @@ void Spec2Sm::TEST5_S3_ev1()
 
 void Spec2Sm::TEST6_VARS_EXPANSIONS_enter()
 {
-    this.stateId = StateId.TEST6_VARS_EXPANSIONS;
+    this->stateId = StateId::TEST6_VARS_EXPANSIONS;
 
     // TEST6_VARS_EXPANSIONS behavior
     // uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS."); }
@@ -6348,7 +6696,7 @@ void Spec2Sm::TEST6_VARS_EXPANSIONS_exit()
         trace("Exit TEST6_VARS_EXPANSIONS.");
     } // end of behavior for TEST6_VARS_EXPANSIONS
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -6358,7 +6706,7 @@ void Spec2Sm::TEST6_VARS_EXPANSIONS_exit()
 
 void Spec2Sm::TEST6_ROOT_enter()
 {
-    this.stateId = StateId.TEST6_ROOT;
+    this->stateId = StateId::TEST6_ROOT;
 
     // TEST6_ROOT behavior
     // uml: enter / { trace("Enter TEST6_ROOT."); }
@@ -6377,7 +6725,7 @@ void Spec2Sm::TEST6_ROOT_exit()
         trace("Exit TEST6_ROOT.");
     } // end of behavior for TEST6_ROOT
 
-    this.stateId = StateId.TEST6_VARS_EXPANSIONS;
+    this->stateId = StateId::TEST6_VARS_EXPANSIONS;
 }
 
 
@@ -6387,7 +6735,7 @@ void Spec2Sm::TEST6_ROOT_exit()
 
 void Spec2Sm::AUTO_VAR_TEST_enter()
 {
-    this.stateId = StateId.AUTO_VAR_TEST;
+    this->stateId = StateId::AUTO_VAR_TEST;
 
     // AUTO_VAR_TEST behavior
     // uml: enter / { trace("Enter AUTO_VAR_TEST."); }
@@ -6406,7 +6754,7 @@ void Spec2Sm::AUTO_VAR_TEST_exit()
         trace("Exit AUTO_VAR_TEST.");
     } // end of behavior for AUTO_VAR_TEST
 
-    this.stateId = StateId.TEST6_ROOT;
+    this->stateId = StateId::TEST6_ROOT;
 }
 
 
@@ -6416,7 +6764,7 @@ void Spec2Sm::AUTO_VAR_TEST_exit()
 
 void Spec2Sm::AUTO_VAR_TEST__S1_enter()
 {
-    this.stateId = StateId.AUTO_VAR_TEST__S1;
+    this->stateId = StateId::AUTO_VAR_TEST__S1;
 
     // AUTO_VAR_TEST__S1 behavior
     // uml: enter / { trace("Enter AUTO_VAR_TEST__S1."); }
@@ -6443,7 +6791,7 @@ void Spec2Sm::AUTO_VAR_TEST__S1_exit()
         trace("Exit AUTO_VAR_TEST__S1.");
     } // end of behavior for AUTO_VAR_TEST__S1
 
-    this.stateId = StateId.AUTO_VAR_TEST;
+    this->stateId = StateId::AUTO_VAR_TEST;
 }
 
 void Spec2Sm::AUTO_VAR_TEST__S1_ev1()
@@ -6453,12 +6801,12 @@ void Spec2Sm::AUTO_VAR_TEST__S1_ev1()
     if (trace_guard("State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1++; }`.", true))
     {
         // Step 1: execute action `auto_var_1++;`
-        this.vars.auto_var_1++;
+        this->vars.auto_var_1++;
     } // end of behavior for AUTO_VAR_TEST__S1
 
     // AUTO_VAR_TEST__S1 behavior
     // uml: 2. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", auto_var_1 == 2)] / { trace("Transition action `` for AUTO_VAR_TEST__S1 to AUTO_VAR_TEST__S2."); } TransitionTo(AUTO_VAR_TEST__S2)
-    if (trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", this.vars.auto_var_1 == 2))
+    if (trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", this->vars.auto_var_1 == 2))
     {
         // Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition).
         AUTO_VAR_TEST__S1_exit();
@@ -6483,7 +6831,7 @@ void Spec2Sm::AUTO_VAR_TEST__S1_ev1()
 
 void Spec2Sm::AUTO_VAR_TEST__S2_enter()
 {
-    this.stateId = StateId.AUTO_VAR_TEST__S2;
+    this->stateId = StateId::AUTO_VAR_TEST__S2;
 
     // AUTO_VAR_TEST__S2 behavior
     // uml: enter / { trace("Enter AUTO_VAR_TEST__S2."); }
@@ -6502,7 +6850,7 @@ void Spec2Sm::AUTO_VAR_TEST__S2_exit()
         trace("Exit AUTO_VAR_TEST__S2.");
     } // end of behavior for AUTO_VAR_TEST__S2
 
-    this.stateId = StateId.AUTO_VAR_TEST;
+    this->stateId = StateId::AUTO_VAR_TEST;
 }
 
 
@@ -6512,7 +6860,7 @@ void Spec2Sm::AUTO_VAR_TEST__S2_exit()
 
 void Spec2Sm::META_EXPANSIONS_enter()
 {
-    this.stateId = StateId.META_EXPANSIONS;
+    this->stateId = StateId::META_EXPANSIONS;
 
     // META_EXPANSIONS behavior
     // uml: enter / { trace("Enter META_EXPANSIONS."); }
@@ -6531,7 +6879,7 @@ void Spec2Sm::META_EXPANSIONS_exit()
         trace("Exit META_EXPANSIONS.");
     } // end of behavior for META_EXPANSIONS
 
-    this.stateId = StateId.TEST6_ROOT;
+    this->stateId = StateId::TEST6_ROOT;
 }
 
 void Spec2Sm::META_EXPANSIONS_ChoicePoint_2__transition()
@@ -6562,7 +6910,7 @@ void Spec2Sm::META_EXPANSIONS_ChoicePoint_2__transition()
 
 void Spec2Sm::META_EXPANSIONS__S1_enter()
 {
-    this.stateId = StateId.META_EXPANSIONS__S1;
+    this->stateId = StateId::META_EXPANSIONS__S1;
 
     // META_EXPANSIONS__S1 behavior
     // uml: enter / { trace("Enter META_EXPANSIONS__S1."); }
@@ -6589,7 +6937,7 @@ void Spec2Sm::META_EXPANSIONS__S1_exit()
         trace("Exit META_EXPANSIONS__S1.");
     } // end of behavior for META_EXPANSIONS__S1
 
-    this.stateId = StateId.META_EXPANSIONS;
+    this->stateId = StateId::META_EXPANSIONS;
 }
 
 void Spec2Sm::META_EXPANSIONS__S1_ev1()
@@ -6622,7 +6970,7 @@ void Spec2Sm::META_EXPANSIONS__S1_ev1()
 
 void Spec2Sm::META_EXPANSIONS__S2_enter()
 {
-    this.stateId = StateId.META_EXPANSIONS__S2;
+    this->stateId = StateId::META_EXPANSIONS__S2;
 
     // META_EXPANSIONS__S2 behavior
     // uml: enter / { trace("Enter META_EXPANSIONS__S2."); }
@@ -6649,7 +6997,7 @@ void Spec2Sm::META_EXPANSIONS__S2_exit()
         trace("Exit META_EXPANSIONS__S2.");
     } // end of behavior for META_EXPANSIONS__S2
 
-    this.stateId = StateId.META_EXPANSIONS;
+    this->stateId = StateId::META_EXPANSIONS;
 }
 
 void Spec2Sm::META_EXPANSIONS__S2_ev1()
@@ -6720,7 +7068,7 @@ void Spec2Sm::META_EXPANSIONS__S2_ev2()
 
 void Spec2Sm::S3_enter()
 {
-    this.stateId = StateId.S3;
+    this->stateId = StateId::S3;
 
     // S3 behavior
     // uml: enter / { trace("Enter S3."); }
@@ -6739,7 +7087,7 @@ void Spec2Sm::S3_exit()
         trace("Exit S3.");
     } // end of behavior for S3
 
-    this.stateId = StateId.META_EXPANSIONS;
+    this->stateId = StateId::META_EXPANSIONS;
 }
 
 void Spec2Sm::S3_ev1()
@@ -6773,7 +7121,7 @@ void Spec2Sm::S3_ev1()
 
 void Spec2Sm::S4_enter()
 {
-    this.stateId = StateId.S4;
+    this->stateId = StateId::S4;
 
     // S4 behavior
     // uml: enter / { trace("Enter S4."); }
@@ -6792,7 +7140,7 @@ void Spec2Sm::S4_exit()
         trace("Exit S4.");
     } // end of behavior for S4
 
-    this.stateId = StateId.META_EXPANSIONS;
+    this->stateId = StateId::META_EXPANSIONS;
 }
 
 
@@ -6802,7 +7150,7 @@ void Spec2Sm::S4_exit()
 
 void Spec2Sm::S5_enter()
 {
-    this.stateId = StateId.S5;
+    this->stateId = StateId::S5;
 
     // S5 behavior
     // uml: enter / { trace("Enter S5."); }
@@ -6821,7 +7169,7 @@ void Spec2Sm::S5_exit()
         trace("Exit S5.");
     } // end of behavior for S5
 
-    this.stateId = StateId.META_EXPANSIONS;
+    this->stateId = StateId::META_EXPANSIONS;
 }
 
 
@@ -6831,7 +7179,7 @@ void Spec2Sm::S5_exit()
 
 void Spec2Sm::NORMAL_enter()
 {
-    this.stateId = StateId.NORMAL;
+    this->stateId = StateId::NORMAL;
 
     // NORMAL behavior
     // uml: enter / { trace("Enter NORMAL."); }
@@ -6850,7 +7198,7 @@ void Spec2Sm::NORMAL_exit()
         trace("Exit NORMAL.");
     } // end of behavior for NORMAL
 
-    this.stateId = StateId.TEST6_ROOT;
+    this->stateId = StateId::TEST6_ROOT;
 }
 
 
@@ -6860,7 +7208,7 @@ void Spec2Sm::NORMAL_exit()
 
 void Spec2Sm::NORMAL__S1_enter()
 {
-    this.stateId = StateId.NORMAL__S1;
+    this->stateId = StateId::NORMAL__S1;
 
     // NORMAL__S1 behavior
     // uml: enter / { trace("Enter NORMAL__S1."); }
@@ -6887,7 +7235,7 @@ void Spec2Sm::NORMAL__S1_exit()
         trace("Exit NORMAL__S1.");
     } // end of behavior for NORMAL__S1
 
-    this.stateId = StateId.NORMAL;
+    this->stateId = StateId::NORMAL;
 }
 
 void Spec2Sm::NORMAL__S1_ev1()
@@ -6897,12 +7245,12 @@ void Spec2Sm::NORMAL__S1_ev1()
     if (trace_guard("State NORMAL__S1: check behavior `1. EV1 / { count++; }`.", true))
     {
         // Step 1: execute action `count++;`
-        this.vars.count++;
+        this->vars.count++;
     } // end of behavior for NORMAL__S1
 
     // NORMAL__S1 behavior
     // uml: 2. EV1 [trace_guard("State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.", count >= 2)] / { trace("Transition action `` for NORMAL__S1 to NORMAL__S2."); } TransitionTo(NORMAL__S2)
-    if (trace_guard("State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.", this.vars.count >= 2))
+    if (trace_guard("State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.", this->vars.count >= 2))
     {
         // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
         NORMAL__S1_exit();
@@ -6927,7 +7275,7 @@ void Spec2Sm::NORMAL__S1_ev1()
 
 void Spec2Sm::NORMAL__S2_enter()
 {
-    this.stateId = StateId.NORMAL__S2;
+    this->stateId = StateId::NORMAL__S2;
 
     // NORMAL__S2 behavior
     // uml: enter / { trace("Enter NORMAL__S2."); }
@@ -6946,7 +7294,7 @@ void Spec2Sm::NORMAL__S2_exit()
         trace("Exit NORMAL__S2.");
     } // end of behavior for NORMAL__S2
 
-    this.stateId = StateId.NORMAL;
+    this->stateId = StateId::NORMAL;
 }
 
 
@@ -6956,7 +7304,7 @@ void Spec2Sm::NORMAL__S2_exit()
 
 void Spec2Sm::TEST6_VARS_EXPANSIONS__DECIDE_enter()
 {
-    this.stateId = StateId.TEST6_VARS_EXPANSIONS__DECIDE;
+    this->stateId = StateId::TEST6_VARS_EXPANSIONS__DECIDE;
 
     // TEST6_VARS_EXPANSIONS__DECIDE behavior
     // uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS__DECIDE."); }
@@ -6975,7 +7323,7 @@ void Spec2Sm::TEST6_VARS_EXPANSIONS__DECIDE_exit()
         trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.");
     } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
 
-    this.stateId = StateId.TEST6_ROOT;
+    this->stateId = StateId::TEST6_ROOT;
 }
 
 void Spec2Sm::TEST6_VARS_EXPANSIONS__DECIDE_ev1()
@@ -7087,7 +7435,7 @@ void Spec2Sm::TEST6_VARS_EXPANSIONS__DECIDE_ev3()
 
 void Spec2Sm::TEST7_INITIAL_OR_HISTORY_enter()
 {
-    this.stateId = StateId.TEST7_INITIAL_OR_HISTORY;
+    this->stateId = StateId::TEST7_INITIAL_OR_HISTORY;
 
     // TEST7_INITIAL_OR_HISTORY behavior
     // uml: enter / { trace("Enter TEST7_INITIAL_OR_HISTORY."); }
@@ -7106,7 +7454,7 @@ void Spec2Sm::TEST7_INITIAL_OR_HISTORY_exit()
         trace("Exit TEST7_INITIAL_OR_HISTORY.");
     } // end of behavior for TEST7_INITIAL_OR_HISTORY
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -7116,7 +7464,7 @@ void Spec2Sm::TEST7_INITIAL_OR_HISTORY_exit()
 
 void Spec2Sm::TEST7_enter()
 {
-    this.stateId = StateId.TEST7;
+    this->stateId = StateId::TEST7;
 
     // TEST7 behavior
     // uml: enter / { trace("Enter TEST7."); }
@@ -7143,7 +7491,7 @@ void Spec2Sm::TEST7_exit()
         trace("Exit TEST7.");
     } // end of behavior for TEST7
 
-    this.stateId = StateId.TEST7_INITIAL_OR_HISTORY;
+    this->stateId = StateId::TEST7_INITIAL_OR_HISTORY;
 }
 
 
@@ -7153,7 +7501,7 @@ void Spec2Sm::TEST7_exit()
 
 void Spec2Sm::T7__DEEP_HISTORY1_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY1;
+    this->stateId = StateId::T7__DEEP_HISTORY1;
 
     // T7__DEEP_HISTORY1 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY1."); }
@@ -7172,7 +7520,7 @@ void Spec2Sm::T7__DEEP_HISTORY1_exit()
         trace("Exit T7__DEEP_HISTORY1.");
     } // end of behavior for T7__DEEP_HISTORY1
 
-    this.stateId = StateId.TEST7;
+    this->stateId = StateId::TEST7;
 }
 
 
@@ -7182,7 +7530,7 @@ void Spec2Sm::T7__DEEP_HISTORY1_exit()
 
 void Spec2Sm::T7__DH1__SANTAS_WORKSHOP_enter()
 {
-    this.stateId = StateId.T7__DH1__SANTAS_WORKSHOP;
+    this->stateId = StateId::T7__DH1__SANTAS_WORKSHOP;
 
     // T7__DH1__SANTAS_WORKSHOP behavior
     // uml: enter / { trace("Enter T7__DH1__SANTAS_WORKSHOP."); }
@@ -7201,7 +7549,7 @@ void Spec2Sm::T7__DH1__SANTAS_WORKSHOP_exit()
         trace("Exit T7__DH1__SANTAS_WORKSHOP.");
     } // end of behavior for T7__DH1__SANTAS_WORKSHOP
 
-    this.stateId = StateId.T7__DEEP_HISTORY1;
+    this->stateId = StateId::T7__DEEP_HISTORY1;
 }
 
 
@@ -7211,7 +7559,7 @@ void Spec2Sm::T7__DH1__SANTAS_WORKSHOP_exit()
 
 void Spec2Sm::T7__DH1__ALIENS_DETECTED_enter()
 {
-    this.stateId = StateId.T7__DH1__ALIENS_DETECTED;
+    this->stateId = StateId::T7__DH1__ALIENS_DETECTED;
 
     // T7__DH1__ALIENS_DETECTED behavior
     // uml: enter / { trace("Enter T7__DH1__ALIENS_DETECTED."); }
@@ -7230,7 +7578,7 @@ void Spec2Sm::T7__DH1__ALIENS_DETECTED_exit()
         trace("Exit T7__DH1__ALIENS_DETECTED.");
     } // end of behavior for T7__DH1__ALIENS_DETECTED
 
-    this.stateId = StateId.T7__DH1__SANTAS_WORKSHOP;
+    this->stateId = StateId::T7__DH1__SANTAS_WORKSHOP;
 }
 
 void Spec2Sm::T7__DH1__ALIENS_DETECTED_ev8()
@@ -7240,7 +7588,7 @@ void Spec2Sm::T7__DH1__ALIENS_DETECTED_ev8()
     if (trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", true))
     {
         // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__DH1__SANTAS_WORKSHOP);
+        exitUpToStateHandler(StateId::T7__DH1__SANTAS_WORKSHOP);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");`.
         trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");
@@ -7263,7 +7611,7 @@ void Spec2Sm::T7__DH1__ALIENS_DETECTED_ev8()
 
 void Spec2Sm::T7__DH1__GET_BACKUP_enter()
 {
-    this.stateId = StateId.T7__DH1__GET_BACKUP;
+    this->stateId = StateId::T7__DH1__GET_BACKUP;
 
     // T7__DH1__GET_BACKUP behavior
     // uml: enter / { trace("Enter T7__DH1__GET_BACKUP."); }
@@ -7282,7 +7630,7 @@ void Spec2Sm::T7__DH1__GET_BACKUP_exit()
         trace("Exit T7__DH1__GET_BACKUP.");
     } // end of behavior for T7__DH1__GET_BACKUP
 
-    this.stateId = StateId.T7__DH1__ALIENS_DETECTED;
+    this->stateId = StateId::T7__DH1__ALIENS_DETECTED;
 }
 
 
@@ -7292,7 +7640,7 @@ void Spec2Sm::T7__DH1__GET_BACKUP_exit()
 
 void Spec2Sm::T7__DH1__HERO_enter()
 {
-    this.stateId = StateId.T7__DH1__HERO;
+    this->stateId = StateId::T7__DH1__HERO;
 
     // T7__DH1__HERO behavior
     // uml: enter / { trace("Enter T7__DH1__HERO."); }
@@ -7306,7 +7654,7 @@ void Spec2Sm::T7__DH1__HERO_enter()
     if (trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;)`
-        this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;
+        this->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId::T7__DH1__HERO;
     } // end of behavior for T7__DH1__HERO
 
     // T7__DH1__HERO behavior
@@ -7314,7 +7662,7 @@ void Spec2Sm::T7__DH1__HERO_enter()
     if (trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;)`
-        this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;
+        this->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId::T7__DH1__HERO;
     } // end of behavior for T7__DH1__HERO
 }
 
@@ -7327,7 +7675,7 @@ void Spec2Sm::T7__DH1__HERO_exit()
         trace("Exit T7__DH1__HERO.");
     } // end of behavior for T7__DH1__HERO
 
-    this.stateId = StateId.T7__DH1__GET_BACKUP;
+    this->stateId = StateId::T7__DH1__GET_BACKUP;
 }
 
 void Spec2Sm::T7__DH1__HERO_InitialState_transition()
@@ -7355,7 +7703,7 @@ void Spec2Sm::T7__DH1__HERO_InitialState_transition()
 
 void Spec2Sm::T7__DH1__CALL_BATMAN_enter()
 {
-    this.stateId = StateId.T7__DH1__CALL_BATMAN;
+    this->stateId = StateId::T7__DH1__CALL_BATMAN;
 
     // T7__DH1__CALL_BATMAN behavior
     // uml: enter / { trace("Enter T7__DH1__CALL_BATMAN."); }
@@ -7374,7 +7722,7 @@ void Spec2Sm::T7__DH1__CALL_BATMAN_exit()
         trace("Exit T7__DH1__CALL_BATMAN.");
     } // end of behavior for T7__DH1__CALL_BATMAN
 
-    this.stateId = StateId.T7__DH1__HERO;
+    this->stateId = StateId::T7__DH1__HERO;
 }
 
 void Spec2Sm::T7__DH1__CALL_BATMAN_ev1()
@@ -7384,7 +7732,7 @@ void Spec2Sm::T7__DH1__CALL_BATMAN_ev1()
     if (trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", true))
     {
         // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__DH1__GET_BACKUP);
+        exitUpToStateHandler(StateId::T7__DH1__GET_BACKUP);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");`.
         trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");
@@ -7407,7 +7755,7 @@ void Spec2Sm::T7__DH1__CALL_BATMAN_ev1()
 
 void Spec2Sm::T7__DH1__CALL_THOR_enter()
 {
-    this.stateId = StateId.T7__DH1__CALL_THOR;
+    this->stateId = StateId::T7__DH1__CALL_THOR;
 
     // T7__DH1__CALL_THOR behavior
     // uml: enter / { trace("Enter T7__DH1__CALL_THOR."); }
@@ -7426,7 +7774,7 @@ void Spec2Sm::T7__DH1__CALL_THOR_exit()
         trace("Exit T7__DH1__CALL_THOR.");
     } // end of behavior for T7__DH1__CALL_THOR
 
-    this.stateId = StateId.T7__DH1__HERO;
+    this->stateId = StateId::T7__DH1__HERO;
 }
 
 void Spec2Sm::T7__DH1__CALL_THOR_ev1()
@@ -7458,7 +7806,7 @@ void Spec2Sm::T7__DH1__CALL_THOR_ev1()
 
 void Spec2Sm::T7__DH1__LOCAL_HELP_enter()
 {
-    this.stateId = StateId.T7__DH1__LOCAL_HELP;
+    this->stateId = StateId::T7__DH1__LOCAL_HELP;
 
     // T7__DH1__LOCAL_HELP behavior
     // uml: enter / { trace("Enter T7__DH1__LOCAL_HELP."); }
@@ -7477,7 +7825,7 @@ void Spec2Sm::T7__DH1__LOCAL_HELP_exit()
         trace("Exit T7__DH1__LOCAL_HELP.");
     } // end of behavior for T7__DH1__LOCAL_HELP
 
-    this.stateId = StateId.T7__DH1__GET_BACKUP;
+    this->stateId = StateId::T7__DH1__GET_BACKUP;
 }
 
 
@@ -7487,7 +7835,7 @@ void Spec2Sm::T7__DH1__LOCAL_HELP_exit()
 
 void Spec2Sm::T7__DH1__BUDDY_ELF_enter()
 {
-    this.stateId = StateId.T7__DH1__BUDDY_ELF;
+    this->stateId = StateId::T7__DH1__BUDDY_ELF;
 
     // T7__DH1__BUDDY_ELF behavior
     // uml: enter / { trace("Enter T7__DH1__BUDDY_ELF."); }
@@ -7501,7 +7849,7 @@ void Spec2Sm::T7__DH1__BUDDY_ELF_enter()
     if (trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;)`
-        this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;
+        this->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId::T7__DH1__BUDDY_ELF;
     } // end of behavior for T7__DH1__BUDDY_ELF
 
     // T7__DH1__BUDDY_ELF behavior
@@ -7509,7 +7857,7 @@ void Spec2Sm::T7__DH1__BUDDY_ELF_enter()
     if (trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;)`
-        this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;
+        this->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId::T7__DH1__BUDDY_ELF;
     } // end of behavior for T7__DH1__BUDDY_ELF
 }
 
@@ -7522,7 +7870,7 @@ void Spec2Sm::T7__DH1__BUDDY_ELF_exit()
         trace("Exit T7__DH1__BUDDY_ELF.");
     } // end of behavior for T7__DH1__BUDDY_ELF
 
-    this.stateId = StateId.T7__DH1__LOCAL_HELP;
+    this->stateId = StateId::T7__DH1__LOCAL_HELP;
 }
 
 void Spec2Sm::T7__DH1__BUDDY_ELF_ev1()
@@ -7554,7 +7902,7 @@ void Spec2Sm::T7__DH1__BUDDY_ELF_ev1()
 
 void Spec2Sm::T7__DH1__POLAR_BEARS_enter()
 {
-    this.stateId = StateId.T7__DH1__POLAR_BEARS;
+    this->stateId = StateId::T7__DH1__POLAR_BEARS;
 
     // T7__DH1__POLAR_BEARS behavior
     // uml: enter / { trace("Enter T7__DH1__POLAR_BEARS."); }
@@ -7568,7 +7916,7 @@ void Spec2Sm::T7__DH1__POLAR_BEARS_enter()
     if (trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;)`
-        this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;
+        this->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId::T7__DH1__POLAR_BEARS;
     } // end of behavior for T7__DH1__POLAR_BEARS
 
     // T7__DH1__POLAR_BEARS behavior
@@ -7576,7 +7924,7 @@ void Spec2Sm::T7__DH1__POLAR_BEARS_enter()
     if (trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;)`
-        this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;
+        this->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId::T7__DH1__POLAR_BEARS;
     } // end of behavior for T7__DH1__POLAR_BEARS
 }
 
@@ -7589,7 +7937,7 @@ void Spec2Sm::T7__DH1__POLAR_BEARS_exit()
         trace("Exit T7__DH1__POLAR_BEARS.");
     } // end of behavior for T7__DH1__POLAR_BEARS
 
-    this.stateId = StateId.T7__DH1__LOCAL_HELP;
+    this->stateId = StateId::T7__DH1__LOCAL_HELP;
 }
 
 
@@ -7599,7 +7947,7 @@ void Spec2Sm::T7__DH1__POLAR_BEARS_exit()
 
 void Spec2Sm::T7__DH1__GIVE_COOKIES_enter()
 {
-    this.stateId = StateId.T7__DH1__GIVE_COOKIES;
+    this->stateId = StateId::T7__DH1__GIVE_COOKIES;
 
     // T7__DH1__GIVE_COOKIES behavior
     // uml: enter / { trace("Enter T7__DH1__GIVE_COOKIES."); }
@@ -7613,7 +7961,7 @@ void Spec2Sm::T7__DH1__GIVE_COOKIES_enter()
     if (trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;)`
-        this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;
+        this->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId::T7__DH1__GIVE_COOKIES;
     } // end of behavior for T7__DH1__GIVE_COOKIES
 }
 
@@ -7626,7 +7974,7 @@ void Spec2Sm::T7__DH1__GIVE_COOKIES_exit()
         trace("Exit T7__DH1__GIVE_COOKIES.");
     } // end of behavior for T7__DH1__GIVE_COOKIES
 
-    this.stateId = StateId.T7__DH1__ALIENS_DETECTED;
+    this->stateId = StateId::T7__DH1__ALIENS_DETECTED;
 }
 
 void Spec2Sm::T7__DH1__GIVE_COOKIES_ev1()
@@ -7660,7 +8008,7 @@ void Spec2Sm::T7__DH1__GIVE_COOKIES_ev1()
 
 void Spec2Sm::T7__DH1__SNOWBALL_FIGHT_enter()
 {
-    this.stateId = StateId.T7__DH1__SNOWBALL_FIGHT;
+    this->stateId = StateId::T7__DH1__SNOWBALL_FIGHT;
 
     // T7__DH1__SNOWBALL_FIGHT behavior
     // uml: enter / { trace("Enter T7__DH1__SNOWBALL_FIGHT."); }
@@ -7674,7 +8022,7 @@ void Spec2Sm::T7__DH1__SNOWBALL_FIGHT_enter()
     if (trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;)`
-        this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;
+        this->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId::T7__DH1__SNOWBALL_FIGHT;
     } // end of behavior for T7__DH1__SNOWBALL_FIGHT
 }
 
@@ -7687,7 +8035,7 @@ void Spec2Sm::T7__DH1__SNOWBALL_FIGHT_exit()
         trace("Exit T7__DH1__SNOWBALL_FIGHT.");
     } // end of behavior for T7__DH1__SNOWBALL_FIGHT
 
-    this.stateId = StateId.T7__DH1__ALIENS_DETECTED;
+    this->stateId = StateId::T7__DH1__ALIENS_DETECTED;
 }
 
 void Spec2Sm::T7__DH1__SNOWBALL_FIGHT_ev1()
@@ -7719,7 +8067,7 @@ void Spec2Sm::T7__DH1__SNOWBALL_FIGHT_ev1()
 
 void Spec2Sm::T7__DH1__BUILD_enter()
 {
-    this.stateId = StateId.T7__DH1__BUILD;
+    this->stateId = StateId::T7__DH1__BUILD;
 
     // T7__DH1__BUILD behavior
     // uml: enter / { trace("Enter T7__DH1__BUILD."); }
@@ -7738,7 +8086,7 @@ void Spec2Sm::T7__DH1__BUILD_exit()
         trace("Exit T7__DH1__BUILD.");
     } // end of behavior for T7__DH1__BUILD
 
-    this.stateId = StateId.T7__DH1__SANTAS_WORKSHOP;
+    this->stateId = StateId::T7__DH1__SANTAS_WORKSHOP;
 }
 
 void Spec2Sm::T7__DH1__BUILD_ev6()
@@ -7748,7 +8096,7 @@ void Spec2Sm::T7__DH1__BUILD_ev6()
     if (trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", true))
     {
         // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__DH1__SANTAS_WORKSHOP);
+        exitUpToStateHandler(StateId::T7__DH1__SANTAS_WORKSHOP);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");`.
         trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");
@@ -7769,7 +8117,7 @@ void Spec2Sm::T7__DH1__BUILD_ev6()
 
             // T7__DH1__ALIENS_DETECTED.<History> behavior
             // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES."); } TransitionTo(T7__DH1__GIVE_COOKIES)
-            if (this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES)
+            if (this->vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId::T7__DH1__GIVE_COOKIES)
             {
                 // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -7785,7 +8133,7 @@ void Spec2Sm::T7__DH1__BUILD_ev6()
 
             // T7__DH1__ALIENS_DETECTED.<History> behavior
             // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
-            if (this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO)
+            if (this->vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId::T7__DH1__HERO)
             {
                 // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -7803,7 +8151,7 @@ void Spec2Sm::T7__DH1__BUILD_ev6()
 
             // T7__DH1__ALIENS_DETECTED.<History> behavior
             // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
-            if (this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF)
+            if (this->vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId::T7__DH1__BUDDY_ELF)
             {
                 // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -7821,7 +8169,7 @@ void Spec2Sm::T7__DH1__BUILD_ev6()
 
             // T7__DH1__ALIENS_DETECTED.<History> behavior
             // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
-            if (this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS)
+            if (this->vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId::T7__DH1__POLAR_BEARS)
             {
                 // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -7864,7 +8212,7 @@ void Spec2Sm::T7__DH1__BUILD_ev7()
     if (trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.<History>)`.", true))
     {
         // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__DH1__SANTAS_WORKSHOP);
+        exitUpToStateHandler(StateId::T7__DH1__SANTAS_WORKSHOP);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>.");`.
         trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>.");
@@ -7876,7 +8224,7 @@ void Spec2Sm::T7__DH1__BUILD_ev7()
 
         // T7__DH1__GET_BACKUP.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
-        if (this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO)
+        if (this->vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId::T7__DH1__HERO)
         {
             // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -7893,7 +8241,7 @@ void Spec2Sm::T7__DH1__BUILD_ev7()
 
         // T7__DH1__GET_BACKUP.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
-        if (this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF)
+        if (this->vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId::T7__DH1__BUDDY_ELF)
         {
             // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -7910,7 +8258,7 @@ void Spec2Sm::T7__DH1__BUILD_ev7()
 
         // T7__DH1__GET_BACKUP.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
-        if (this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS)
+        if (this->vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId::T7__DH1__POLAR_BEARS)
         {
             // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -7972,7 +8320,7 @@ void Spec2Sm::T7__DH1__BUILD_InitialState_transition()
 
         // T7__DH1__BUILD.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TOOL)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL."); } TransitionTo(T7__DH1__TOOL)
-        if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TOOL)
+        if (this->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId::T7__DH1__TOOL)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -7989,7 +8337,7 @@ void Spec2Sm::T7__DH1__BUILD_InitialState_transition()
 
         // T7__DH1__BUILD.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR."); } TransitionTo(T7__DH1__RACE_CAR)
-        if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR)
+        if (this->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId::T7__DH1__RACE_CAR)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -8006,7 +8354,7 @@ void Spec2Sm::T7__DH1__BUILD_InitialState_transition()
 
         // T7__DH1__BUILD.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR."); } TransitionTo(T7__DH1__TEDDY_BEAR)
-        if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR)
+        if (this->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId::T7__DH1__TEDDY_BEAR)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -8023,7 +8371,7 @@ void Spec2Sm::T7__DH1__BUILD_InitialState_transition()
 
         // T7__DH1__BUILD.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM."); } TransitionTo(T7__DH1__GLOW_WORM)
-        if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM)
+        if (this->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId::T7__DH1__GLOW_WORM)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -8040,7 +8388,7 @@ void Spec2Sm::T7__DH1__BUILD_InitialState_transition()
 
         // T7__DH1__BUILD.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT."); } TransitionTo(T7__DH1__ROBOT)
-        if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT)
+        if (this->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId::T7__DH1__ROBOT)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -8058,7 +8406,7 @@ void Spec2Sm::T7__DH1__BUILD_InitialState_transition()
 
         // T7__DH1__BUILD.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT."); } TransitionTo(T7__DH1__BATTLEBOT)
-        if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT)
+        if (this->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId::T7__DH1__BATTLEBOT)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -8076,7 +8424,7 @@ void Spec2Sm::T7__DH1__BUILD_InitialState_transition()
 
         // T7__DH1__BUILD.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E."); } TransitionTo(T7__DH1__WALL_E)
-        if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E)
+        if (this->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId::T7__DH1__WALL_E)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -8094,7 +8442,7 @@ void Spec2Sm::T7__DH1__BUILD_InitialState_transition()
 
         // T7__DH1__BUILD.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL."); } TransitionTo(T7__DH1__IMPACT_DRILL)
-        if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL)
+        if (this->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId::T7__DH1__IMPACT_DRILL)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -8111,7 +8459,7 @@ void Spec2Sm::T7__DH1__BUILD_InitialState_transition()
 
         // T7__DH1__BUILD.<History> behavior
         // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW."); } TransitionTo(T7__DH1__CIRCULAR_SAW)
-        if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW)
+        if (this->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId::T7__DH1__CIRCULAR_SAW)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -8151,7 +8499,7 @@ void Spec2Sm::T7__DH1__BUILD_InitialState_transition()
 
 void Spec2Sm::T7__DH1__TOOL_enter()
 {
-    this.stateId = StateId.T7__DH1__TOOL;
+    this->stateId = StateId::T7__DH1__TOOL;
 
     // T7__DH1__TOOL behavior
     // uml: enter / { trace("Enter T7__DH1__TOOL."); }
@@ -8165,7 +8513,7 @@ void Spec2Sm::T7__DH1__TOOL_enter()
     if (trace_guard("State T7__DH1__TOOL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;)`
-        this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;
+        this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__TOOL;
     } // end of behavior for T7__DH1__TOOL
 }
 
@@ -8178,7 +8526,7 @@ void Spec2Sm::T7__DH1__TOOL_exit()
         trace("Exit T7__DH1__TOOL.");
     } // end of behavior for T7__DH1__TOOL
 
-    this.stateId = StateId.T7__DH1__BUILD;
+    this->stateId = StateId::T7__DH1__BUILD;
 }
 
 void Spec2Sm::T7__DH1__TOOL_ev2()
@@ -8188,7 +8536,7 @@ void Spec2Sm::T7__DH1__TOOL_ev2()
     if (trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", true))
     {
         // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__DH1__BUILD);
+        exitUpToStateHandler(StateId::T7__DH1__BUILD);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");`.
         trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");
@@ -8229,7 +8577,7 @@ void Spec2Sm::T7__DH1__TOOL_InitialState_transition()
 
 void Spec2Sm::T7__DH1__CIRCULAR_SAW_enter()
 {
-    this.stateId = StateId.T7__DH1__CIRCULAR_SAW;
+    this->stateId = StateId::T7__DH1__CIRCULAR_SAW;
 
     // T7__DH1__CIRCULAR_SAW behavior
     // uml: enter / { trace("Enter T7__DH1__CIRCULAR_SAW."); }
@@ -8243,7 +8591,7 @@ void Spec2Sm::T7__DH1__CIRCULAR_SAW_enter()
     if (trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;)`
-        this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;
+        this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__CIRCULAR_SAW;
     } // end of behavior for T7__DH1__CIRCULAR_SAW
 }
 
@@ -8256,7 +8604,7 @@ void Spec2Sm::T7__DH1__CIRCULAR_SAW_exit()
         trace("Exit T7__DH1__CIRCULAR_SAW.");
     } // end of behavior for T7__DH1__CIRCULAR_SAW
 
-    this.stateId = StateId.T7__DH1__TOOL;
+    this->stateId = StateId::T7__DH1__TOOL;
 }
 
 
@@ -8266,7 +8614,7 @@ void Spec2Sm::T7__DH1__CIRCULAR_SAW_exit()
 
 void Spec2Sm::T7__DH1__IMPACT_DRILL_enter()
 {
-    this.stateId = StateId.T7__DH1__IMPACT_DRILL;
+    this->stateId = StateId::T7__DH1__IMPACT_DRILL;
 
     // T7__DH1__IMPACT_DRILL behavior
     // uml: enter / { trace("Enter T7__DH1__IMPACT_DRILL."); }
@@ -8280,7 +8628,7 @@ void Spec2Sm::T7__DH1__IMPACT_DRILL_enter()
     if (trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;)`
-        this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;
+        this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__IMPACT_DRILL;
     } // end of behavior for T7__DH1__IMPACT_DRILL
 }
 
@@ -8293,7 +8641,7 @@ void Spec2Sm::T7__DH1__IMPACT_DRILL_exit()
         trace("Exit T7__DH1__IMPACT_DRILL.");
     } // end of behavior for T7__DH1__IMPACT_DRILL
 
-    this.stateId = StateId.T7__DH1__TOOL;
+    this->stateId = StateId::T7__DH1__TOOL;
 }
 
 void Spec2Sm::T7__DH1__IMPACT_DRILL_ev1()
@@ -8325,7 +8673,7 @@ void Spec2Sm::T7__DH1__IMPACT_DRILL_ev1()
 
 void Spec2Sm::T7__DH1__TOY_enter()
 {
-    this.stateId = StateId.T7__DH1__TOY;
+    this->stateId = StateId::T7__DH1__TOY;
 
     // T7__DH1__TOY behavior
     // uml: enter / { trace("Enter T7__DH1__TOY."); }
@@ -8339,7 +8687,7 @@ void Spec2Sm::T7__DH1__TOY_enter()
     if (trace_guard("State T7__DH1__TOY: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;)`
-        this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;
+        this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__TOY;
     } // end of behavior for T7__DH1__TOY
 }
 
@@ -8352,7 +8700,7 @@ void Spec2Sm::T7__DH1__TOY_exit()
         trace("Exit T7__DH1__TOY.");
     } // end of behavior for T7__DH1__TOY
 
-    this.stateId = StateId.T7__DH1__BUILD;
+    this->stateId = StateId::T7__DH1__BUILD;
 }
 
 void Spec2Sm::T7__DH1__TOY_ev1()
@@ -8362,7 +8710,7 @@ void Spec2Sm::T7__DH1__TOY_ev1()
     if (trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", true))
     {
         // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__DH1__BUILD);
+        exitUpToStateHandler(StateId::T7__DH1__BUILD);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");`.
         trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");
@@ -8403,7 +8751,7 @@ void Spec2Sm::T7__DH1__TOY_InitialState_transition()
 
 void Spec2Sm::T7__DH1__GLOW_WORM_enter()
 {
-    this.stateId = StateId.T7__DH1__GLOW_WORM;
+    this->stateId = StateId::T7__DH1__GLOW_WORM;
 
     // T7__DH1__GLOW_WORM behavior
     // uml: enter / { trace("Enter T7__DH1__GLOW_WORM."); }
@@ -8417,7 +8765,7 @@ void Spec2Sm::T7__DH1__GLOW_WORM_enter()
     if (trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;)`
-        this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;
+        this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__GLOW_WORM;
     } // end of behavior for T7__DH1__GLOW_WORM
 }
 
@@ -8430,7 +8778,7 @@ void Spec2Sm::T7__DH1__GLOW_WORM_exit()
         trace("Exit T7__DH1__GLOW_WORM.");
     } // end of behavior for T7__DH1__GLOW_WORM
 
-    this.stateId = StateId.T7__DH1__TOY;
+    this->stateId = StateId::T7__DH1__TOY;
 }
 
 void Spec2Sm::T7__DH1__GLOW_WORM_ev1()
@@ -8469,7 +8817,7 @@ void Spec2Sm::T7__DH1__GLOW_WORM_ev1()
 
 void Spec2Sm::T7__DH1__RACE_CAR_enter()
 {
-    this.stateId = StateId.T7__DH1__RACE_CAR;
+    this->stateId = StateId::T7__DH1__RACE_CAR;
 
     // T7__DH1__RACE_CAR behavior
     // uml: enter / { trace("Enter T7__DH1__RACE_CAR."); }
@@ -8483,7 +8831,7 @@ void Spec2Sm::T7__DH1__RACE_CAR_enter()
     if (trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;)`
-        this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;
+        this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__RACE_CAR;
     } // end of behavior for T7__DH1__RACE_CAR
 }
 
@@ -8496,7 +8844,7 @@ void Spec2Sm::T7__DH1__RACE_CAR_exit()
         trace("Exit T7__DH1__RACE_CAR.");
     } // end of behavior for T7__DH1__RACE_CAR
 
-    this.stateId = StateId.T7__DH1__TOY;
+    this->stateId = StateId::T7__DH1__TOY;
 }
 
 void Spec2Sm::T7__DH1__RACE_CAR_ev1()
@@ -8534,7 +8882,7 @@ void Spec2Sm::T7__DH1__RACE_CAR_ev1()
 
 void Spec2Sm::T7__DH1__ROBOT_enter()
 {
-    this.stateId = StateId.T7__DH1__ROBOT;
+    this->stateId = StateId::T7__DH1__ROBOT;
 
     // T7__DH1__ROBOT behavior
     // uml: enter / { trace("Enter T7__DH1__ROBOT."); }
@@ -8548,7 +8896,7 @@ void Spec2Sm::T7__DH1__ROBOT_enter()
     if (trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;)`
-        this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;
+        this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__ROBOT;
     } // end of behavior for T7__DH1__ROBOT
 }
 
@@ -8561,7 +8909,7 @@ void Spec2Sm::T7__DH1__ROBOT_exit()
         trace("Exit T7__DH1__ROBOT.");
     } // end of behavior for T7__DH1__ROBOT
 
-    this.stateId = StateId.T7__DH1__TOY;
+    this->stateId = StateId::T7__DH1__TOY;
 }
 
 void Spec2Sm::T7__DH1__ROBOT_InitialState_transition()
@@ -8589,7 +8937,7 @@ void Spec2Sm::T7__DH1__ROBOT_InitialState_transition()
 
 void Spec2Sm::T7__DH1__BATTLEBOT_enter()
 {
-    this.stateId = StateId.T7__DH1__BATTLEBOT;
+    this->stateId = StateId::T7__DH1__BATTLEBOT;
 
     // T7__DH1__BATTLEBOT behavior
     // uml: enter / { trace("Enter T7__DH1__BATTLEBOT."); }
@@ -8603,7 +8951,7 @@ void Spec2Sm::T7__DH1__BATTLEBOT_enter()
     if (trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;)`
-        this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;
+        this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__BATTLEBOT;
     } // end of behavior for T7__DH1__BATTLEBOT
 }
 
@@ -8616,7 +8964,7 @@ void Spec2Sm::T7__DH1__BATTLEBOT_exit()
         trace("Exit T7__DH1__BATTLEBOT.");
     } // end of behavior for T7__DH1__BATTLEBOT
 
-    this.stateId = StateId.T7__DH1__ROBOT;
+    this->stateId = StateId::T7__DH1__ROBOT;
 }
 
 void Spec2Sm::T7__DH1__BATTLEBOT_ev1()
@@ -8654,7 +9002,7 @@ void Spec2Sm::T7__DH1__BATTLEBOT_ev1()
 
 void Spec2Sm::T7__DH1__WALL_E_enter()
 {
-    this.stateId = StateId.T7__DH1__WALL_E;
+    this->stateId = StateId::T7__DH1__WALL_E;
 
     // T7__DH1__WALL_E behavior
     // uml: enter / { trace("Enter T7__DH1__WALL_E."); }
@@ -8668,7 +9016,7 @@ void Spec2Sm::T7__DH1__WALL_E_enter()
     if (trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;)`
-        this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;
+        this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__WALL_E;
     } // end of behavior for T7__DH1__WALL_E
 }
 
@@ -8681,7 +9029,7 @@ void Spec2Sm::T7__DH1__WALL_E_exit()
         trace("Exit T7__DH1__WALL_E.");
     } // end of behavior for T7__DH1__WALL_E
 
-    this.stateId = StateId.T7__DH1__ROBOT;
+    this->stateId = StateId::T7__DH1__ROBOT;
 }
 
 
@@ -8691,7 +9039,7 @@ void Spec2Sm::T7__DH1__WALL_E_exit()
 
 void Spec2Sm::T7__DH1__TEDDY_BEAR_enter()
 {
-    this.stateId = StateId.T7__DH1__TEDDY_BEAR;
+    this->stateId = StateId::T7__DH1__TEDDY_BEAR;
 
     // T7__DH1__TEDDY_BEAR behavior
     // uml: enter / { trace("Enter T7__DH1__TEDDY_BEAR."); }
@@ -8705,7 +9053,7 @@ void Spec2Sm::T7__DH1__TEDDY_BEAR_enter()
     if (trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;)`
-        this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;
+        this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__TEDDY_BEAR;
     } // end of behavior for T7__DH1__TEDDY_BEAR
 }
 
@@ -8718,7 +9066,7 @@ void Spec2Sm::T7__DH1__TEDDY_BEAR_exit()
         trace("Exit T7__DH1__TEDDY_BEAR.");
     } // end of behavior for T7__DH1__TEDDY_BEAR
 
-    this.stateId = StateId.T7__DH1__TOY;
+    this->stateId = StateId::T7__DH1__TOY;
 }
 
 void Spec2Sm::T7__DH1__TEDDY_BEAR_ev1()
@@ -8756,7 +9104,7 @@ void Spec2Sm::T7__DH1__TEDDY_BEAR_ev1()
 
 void Spec2Sm::T7__DEEP_HISTORY2_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY2;
+    this->stateId = StateId::T7__DEEP_HISTORY2;
 
     // T7__DEEP_HISTORY2 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY2."); }
@@ -8775,7 +9123,7 @@ void Spec2Sm::T7__DEEP_HISTORY2_exit()
         trace("Exit T7__DEEP_HISTORY2.");
     } // end of behavior for T7__DEEP_HISTORY2
 
-    this.stateId = StateId.TEST7;
+    this->stateId = StateId::TEST7;
 }
 
 
@@ -8785,7 +9133,7 @@ void Spec2Sm::T7__DEEP_HISTORY2_exit()
 
 void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_0_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0;
+    this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_0;
 
     // T7__DEEP_HISTORY2__T7__state_0 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_0."); }
@@ -8804,7 +9152,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_0_exit()
         trace("Exit T7__DEEP_HISTORY2__T7__state_0.");
     } // end of behavior for T7__DEEP_HISTORY2__T7__state_0
 
-    this.stateId = StateId.T7__DEEP_HISTORY2;
+    this->stateId = StateId::T7__DEEP_HISTORY2;
 }
 
 void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_0_evopen()
@@ -8814,7 +9162,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_0_evopen()
     if (trace_guard("State T7__DEEP_HISTORY2__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY2__T7__state_3)`.", true))
     {
         // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__DEEP_HISTORY2);
+        exitUpToStateHandler(StateId::T7__DEEP_HISTORY2);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3.");`.
         trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3.");
@@ -8844,7 +9192,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
 
         // T7__DEEP_HISTORY2__T7__state_0.<History> behavior
         // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_2)
-        if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2)
+        if (this->vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId::T7__DEEP_HISTORY2__T7__STATE_2)
         {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -8861,7 +9209,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
 
         // T7__DEEP_HISTORY2__T7__state_0.<History> behavior
         // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
-        if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6)
+        if (this->vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId::T7__DEEP_HISTORY2__T7__STATE_6)
         {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -8878,7 +9226,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
 
         // T7__DEEP_HISTORY2__T7__state_0.<History> behavior
         // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
-        if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9)
+        if (this->vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId::T7__DEEP_HISTORY2__T7__STATE_9)
         {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -8917,7 +9265,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
 
 void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_1_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_1;
+    this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_1;
 
     // T7__DEEP_HISTORY2__T7__state_1 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_1."); }
@@ -8931,7 +9279,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_1_enter()
     if (trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;)`
-        this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;
+        this->vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId::T7__DEEP_HISTORY2__T7__STATE_1;
     } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
 }
 
@@ -8944,7 +9292,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_1_exit()
         trace("Exit T7__DEEP_HISTORY2__T7__state_1.");
     } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
 
-    this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0;
+    this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_0;
 }
 
 void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_1_evstep()
@@ -8977,7 +9325,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_1_evstep()
 
 void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_2_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2;
+    this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_2;
 
     // T7__DEEP_HISTORY2__T7__state_2 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_2."); }
@@ -8991,7 +9339,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_2_enter()
     if (trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;)`
-        this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;
+        this->vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId::T7__DEEP_HISTORY2__T7__STATE_2;
     } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
 }
 
@@ -9004,7 +9352,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_2_exit()
         trace("Exit T7__DEEP_HISTORY2__T7__state_2.");
     } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
 
-    this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0;
+    this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_0;
 }
 
 void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_2_evback()
@@ -9014,7 +9362,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_2_evback()
     if (trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY2__T7__state_1)`.", true))
     {
         // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__DEEP_HISTORY2__T7__STATE_0);
+        exitUpToStateHandler(StateId::T7__DEEP_HISTORY2__T7__STATE_0);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1.");`.
         trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1.");
@@ -9054,7 +9402,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__state_2_InitialState_transition()
 
 void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_6_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_6;
+    this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_6;
 
     // T7__DEEP_HISTORY2__T7__state_6 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_6."); }
@@ -9068,7 +9416,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_6_enter()
     if (trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;)`
-        this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;
+        this->vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId::T7__DEEP_HISTORY2__T7__STATE_6;
     } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
 }
 
@@ -9081,7 +9429,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_6_exit()
         trace("Exit T7__DEEP_HISTORY2__T7__state_6.");
     } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
 
-    this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2;
+    this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_2;
 }
 
 void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_6_evstep()
@@ -9113,7 +9461,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_6_evstep()
 
 void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_9_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_9;
+    this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_9;
 
     // T7__DEEP_HISTORY2__T7__state_9 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_9."); }
@@ -9127,7 +9475,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_9_enter()
     if (trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;)`
-        this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;
+        this->vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId::T7__DEEP_HISTORY2__T7__STATE_9;
     } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
 }
 
@@ -9140,7 +9488,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_9_exit()
         trace("Exit T7__DEEP_HISTORY2__T7__state_9.");
     } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
 
-    this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2;
+    this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_2;
 }
 
 
@@ -9150,7 +9498,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_9_exit()
 
 void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_3_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_3;
+    this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_3;
 
     // T7__DEEP_HISTORY2__T7__state_3 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_3."); }
@@ -9169,7 +9517,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_3_exit()
         trace("Exit T7__DEEP_HISTORY2__T7__state_3.");
     } // end of behavior for T7__DEEP_HISTORY2__T7__state_3
 
-    this.stateId = StateId.T7__DEEP_HISTORY2;
+    this->stateId = StateId::T7__DEEP_HISTORY2;
 }
 
 void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_3_evclose()
@@ -9202,7 +9550,7 @@ void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_3_evclose()
 
 void Spec2Sm::T7__DEEP_HISTORY3_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY3;
+    this->stateId = StateId::T7__DEEP_HISTORY3;
 
     // T7__DEEP_HISTORY3 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY3."); }
@@ -9221,7 +9569,7 @@ void Spec2Sm::T7__DEEP_HISTORY3_exit()
         trace("Exit T7__DEEP_HISTORY3.");
     } // end of behavior for T7__DEEP_HISTORY3
 
-    this.stateId = StateId.TEST7;
+    this->stateId = StateId::TEST7;
 }
 
 
@@ -9231,7 +9579,7 @@ void Spec2Sm::T7__DEEP_HISTORY3_exit()
 
 void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_0_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0;
+    this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_0;
 
     // T7__DEEP_HISTORY3__T7__state_0 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_0."); }
@@ -9250,7 +9598,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_0_exit()
         trace("Exit T7__DEEP_HISTORY3__T7__state_0.");
     } // end of behavior for T7__DEEP_HISTORY3__T7__state_0
 
-    this.stateId = StateId.T7__DEEP_HISTORY3;
+    this->stateId = StateId::T7__DEEP_HISTORY3;
 }
 
 void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_0_evopen()
@@ -9260,7 +9608,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_0_evopen()
     if (trace_guard("State T7__DEEP_HISTORY3__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY3__T7__state_3)`.", true))
     {
         // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__DEEP_HISTORY3);
+        exitUpToStateHandler(StateId::T7__DEEP_HISTORY3);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3.");`.
         trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3.");
@@ -9290,7 +9638,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
 
         // T7__DEEP_HISTORY3__T7__state_0.<History> behavior
         // uml: [$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_2)
-        if (this.vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2)
+        if (this->vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId::T7__DEEP_HISTORY3__T7__STATE_2)
         {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -9329,7 +9677,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
 
 void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_1_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_1;
+    this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_1;
 
     // T7__DEEP_HISTORY3__T7__state_1 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_1."); }
@@ -9343,7 +9691,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_1_enter()
     if (trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;)`
-        this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;
+        this->vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId::T7__DEEP_HISTORY3__T7__STATE_1;
     } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
 }
 
@@ -9356,7 +9704,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_1_exit()
         trace("Exit T7__DEEP_HISTORY3__T7__state_1.");
     } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
 
-    this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0;
+    this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_0;
 }
 
 void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_1_evstep()
@@ -9389,7 +9737,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_1_evstep()
 
 void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_2_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2;
+    this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_2;
 
     // T7__DEEP_HISTORY3__T7__state_2 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_2."); }
@@ -9403,7 +9751,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_2_enter()
     if (trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;)`
-        this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;
+        this->vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId::T7__DEEP_HISTORY3__T7__STATE_2;
     } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
 }
 
@@ -9416,7 +9764,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_2_exit()
         trace("Exit T7__DEEP_HISTORY3__T7__state_2.");
     } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
 
-    this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0;
+    this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_0;
 }
 
 void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_2_evback()
@@ -9426,7 +9774,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_2_evback()
     if (trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY3__T7__state_1)`.", true))
     {
         // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__DEEP_HISTORY3__T7__STATE_0);
+        exitUpToStateHandler(StateId::T7__DEEP_HISTORY3__T7__STATE_0);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1.");`.
         trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1.");
@@ -9466,7 +9814,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__state_2_InitialState_transition()
 
 void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_6_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_6;
+    this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_6;
 
     // T7__DEEP_HISTORY3__T7__state_6 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_6."); }
@@ -9485,7 +9833,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_6_exit()
         trace("Exit T7__DEEP_HISTORY3__T7__state_6.");
     } // end of behavior for T7__DEEP_HISTORY3__T7__state_6
 
-    this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2;
+    this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_2;
 }
 
 void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_6_evstep()
@@ -9517,7 +9865,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_6_evstep()
 
 void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_9_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_9;
+    this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_9;
 
     // T7__DEEP_HISTORY3__T7__state_9 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_9."); }
@@ -9536,7 +9884,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_9_exit()
         trace("Exit T7__DEEP_HISTORY3__T7__state_9.");
     } // end of behavior for T7__DEEP_HISTORY3__T7__state_9
 
-    this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2;
+    this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_2;
 }
 
 
@@ -9546,7 +9894,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_9_exit()
 
 void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_3_enter()
 {
-    this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_3;
+    this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_3;
 
     // T7__DEEP_HISTORY3__T7__state_3 behavior
     // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_3."); }
@@ -9565,7 +9913,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_3_exit()
         trace("Exit T7__DEEP_HISTORY3__T7__state_3.");
     } // end of behavior for T7__DEEP_HISTORY3__T7__state_3
 
-    this.stateId = StateId.T7__DEEP_HISTORY3;
+    this->stateId = StateId::T7__DEEP_HISTORY3;
 }
 
 void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_3_evclose()
@@ -9598,7 +9946,7 @@ void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_3_evclose()
 
 void Spec2Sm::T7__HISTORY1_enter()
 {
-    this.stateId = StateId.T7__HISTORY1;
+    this->stateId = StateId::T7__HISTORY1;
 
     // T7__HISTORY1 behavior
     // uml: enter / { trace("Enter T7__HISTORY1."); }
@@ -9617,7 +9965,7 @@ void Spec2Sm::T7__HISTORY1_exit()
         trace("Exit T7__HISTORY1.");
     } // end of behavior for T7__HISTORY1
 
-    this.stateId = StateId.TEST7;
+    this->stateId = StateId::TEST7;
 }
 
 
@@ -9627,7 +9975,7 @@ void Spec2Sm::T7__HISTORY1_exit()
 
 void Spec2Sm::T7__H1__OFF_enter()
 {
-    this.stateId = StateId.T7__H1__OFF;
+    this->stateId = StateId::T7__H1__OFF;
 
     // T7__H1__OFF behavior
     // uml: enter / { trace("Enter T7__H1__OFF."); }
@@ -9646,7 +9994,7 @@ void Spec2Sm::T7__H1__OFF_exit()
         trace("Exit T7__H1__OFF.");
     } // end of behavior for T7__H1__OFF
 
-    this.stateId = StateId.T7__HISTORY1;
+    this->stateId = StateId::T7__HISTORY1;
 }
 
 void Spec2Sm::T7__H1__OFF_ev3()
@@ -9656,7 +10004,7 @@ void Spec2Sm::T7__H1__OFF_ev3()
     if (trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", true))
     {
         // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__H1__OFF);
+        exitUpToStateHandler(StateId::T7__H1__OFF);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");`.
         trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");
@@ -9678,7 +10026,7 @@ void Spec2Sm::T7__H1__OFF_ev4()
     if (trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", true))
     {
         // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__HISTORY1);
+        exitUpToStateHandler(StateId::T7__HISTORY1);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");`.
         trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");
@@ -9701,7 +10049,7 @@ void Spec2Sm::T7__H1__OFF_ev7()
     if (trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", true))
     {
         // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__HISTORY1);
+        exitUpToStateHandler(StateId::T7__HISTORY1);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");`.
         trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");
@@ -9732,7 +10080,7 @@ void Spec2Sm::T7__H1__OFF_InitialState_transition()
 
         // T7__H1__OFF.<History> behavior
         // uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF2)] / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2."); } TransitionTo(T7__H1__OFF2)
-        if (this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF2)
+        if (this->vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId::T7__H1__OFF2)
         {
             // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -9748,7 +10096,7 @@ void Spec2Sm::T7__H1__OFF_InitialState_transition()
 
         // T7__H1__OFF.<History> behavior
         // uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3)] / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
-        if (this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3)
+        if (this->vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId::T7__H1__OFF3)
         {
             // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -9786,7 +10134,7 @@ void Spec2Sm::T7__H1__OFF_InitialState_transition()
 
 void Spec2Sm::T7__H1__OFF1_enter()
 {
-    this.stateId = StateId.T7__H1__OFF1;
+    this->stateId = StateId::T7__H1__OFF1;
 
     // T7__H1__OFF1 behavior
     // uml: enter / { trace("Enter T7__H1__OFF1."); }
@@ -9800,7 +10148,7 @@ void Spec2Sm::T7__H1__OFF1_enter()
     if (trace_guard("State T7__H1__OFF1: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;)`
-        this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;
+        this->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId::T7__H1__OFF1;
     } // end of behavior for T7__H1__OFF1
 }
 
@@ -9813,7 +10161,7 @@ void Spec2Sm::T7__H1__OFF1_exit()
         trace("Exit T7__H1__OFF1.");
     } // end of behavior for T7__H1__OFF1
 
-    this.stateId = StateId.T7__H1__OFF;
+    this->stateId = StateId::T7__H1__OFF;
 }
 
 void Spec2Sm::T7__H1__OFF1_ev1()
@@ -9845,7 +10193,7 @@ void Spec2Sm::T7__H1__OFF1_ev1()
 
 void Spec2Sm::T7__H1__OFF2_enter()
 {
-    this.stateId = StateId.T7__H1__OFF2;
+    this->stateId = StateId::T7__H1__OFF2;
 
     // T7__H1__OFF2 behavior
     // uml: enter / { trace("Enter T7__H1__OFF2."); }
@@ -9859,7 +10207,7 @@ void Spec2Sm::T7__H1__OFF2_enter()
     if (trace_guard("State T7__H1__OFF2: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;)`
-        this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;
+        this->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId::T7__H1__OFF2;
     } // end of behavior for T7__H1__OFF2
 }
 
@@ -9872,7 +10220,7 @@ void Spec2Sm::T7__H1__OFF2_exit()
         trace("Exit T7__H1__OFF2.");
     } // end of behavior for T7__H1__OFF2
 
-    this.stateId = StateId.T7__H1__OFF;
+    this->stateId = StateId::T7__H1__OFF;
 }
 
 void Spec2Sm::T7__H1__OFF2_ev1()
@@ -9904,7 +10252,7 @@ void Spec2Sm::T7__H1__OFF2_ev1()
 
 void Spec2Sm::T7__H1__OFF3_enter()
 {
-    this.stateId = StateId.T7__H1__OFF3;
+    this->stateId = StateId::T7__H1__OFF3;
 
     // T7__H1__OFF3 behavior
     // uml: enter / { trace("Enter T7__H1__OFF3."); }
@@ -9918,7 +10266,7 @@ void Spec2Sm::T7__H1__OFF3_enter()
     if (trace_guard("State T7__H1__OFF3: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;)`
-        this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;
+        this->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId::T7__H1__OFF3;
     } // end of behavior for T7__H1__OFF3
 }
 
@@ -9931,7 +10279,7 @@ void Spec2Sm::T7__H1__OFF3_exit()
         trace("Exit T7__H1__OFF3.");
     } // end of behavior for T7__H1__OFF3
 
-    this.stateId = StateId.T7__H1__OFF;
+    this->stateId = StateId::T7__H1__OFF;
 }
 
 
@@ -9941,7 +10289,7 @@ void Spec2Sm::T7__H1__OFF3_exit()
 
 void Spec2Sm::T7__H1__ON_enter()
 {
-    this.stateId = StateId.T7__H1__ON;
+    this->stateId = StateId::T7__H1__ON;
 
     // T7__H1__ON behavior
     // uml: enter / { trace("Enter T7__H1__ON."); }
@@ -9960,7 +10308,7 @@ void Spec2Sm::T7__H1__ON_exit()
         trace("Exit T7__H1__ON.");
     } // end of behavior for T7__H1__ON
 
-    this.stateId = StateId.T7__HISTORY1;
+    this->stateId = StateId::T7__HISTORY1;
 }
 
 void Spec2Sm::T7__H1__ON_ev6()
@@ -9970,7 +10318,7 @@ void Spec2Sm::T7__H1__ON_ev6()
     if (trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", true))
     {
         // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__HISTORY1);
+        exitUpToStateHandler(StateId::T7__HISTORY1);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");`.
         trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");
@@ -10001,7 +10349,7 @@ void Spec2Sm::T7__H1__ON_InitialState_transition()
 
         // T7__H1__ON.<History> behavior
         // uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON2)] / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2."); } TransitionTo(T7__H1__ON2)
-        if (this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON2)
+        if (this->vars.T7__H1__ON_history == T7__H1__ON_HistoryId::T7__H1__ON2)
         {
             // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -10017,7 +10365,7 @@ void Spec2Sm::T7__H1__ON_InitialState_transition()
 
         // T7__H1__ON.<History> behavior
         // uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3)] / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3."); } TransitionTo(T7__H1__ON3)
-        if (this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3)
+        if (this->vars.T7__H1__ON_history == T7__H1__ON_HistoryId::T7__H1__ON3)
         {
             // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -10055,7 +10403,7 @@ void Spec2Sm::T7__H1__ON_InitialState_transition()
 
 void Spec2Sm::T7__H1__ON1_enter()
 {
-    this.stateId = StateId.T7__H1__ON1;
+    this->stateId = StateId::T7__H1__ON1;
 
     // T7__H1__ON1 behavior
     // uml: enter / { trace("Enter T7__H1__ON1."); }
@@ -10069,7 +10417,7 @@ void Spec2Sm::T7__H1__ON1_enter()
     if (trace_guard("State T7__H1__ON1: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;)`
-        this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;
+        this->vars.T7__H1__ON_history = T7__H1__ON_HistoryId::T7__H1__ON1;
     } // end of behavior for T7__H1__ON1
 }
 
@@ -10082,7 +10430,7 @@ void Spec2Sm::T7__H1__ON1_exit()
         trace("Exit T7__H1__ON1.");
     } // end of behavior for T7__H1__ON1
 
-    this.stateId = StateId.T7__H1__ON;
+    this->stateId = StateId::T7__H1__ON;
 }
 
 void Spec2Sm::T7__H1__ON1_ev1()
@@ -10114,7 +10462,7 @@ void Spec2Sm::T7__H1__ON1_ev1()
 
 void Spec2Sm::T7__H1__ON2_enter()
 {
-    this.stateId = StateId.T7__H1__ON2;
+    this->stateId = StateId::T7__H1__ON2;
 
     // T7__H1__ON2 behavior
     // uml: enter / { trace("Enter T7__H1__ON2."); }
@@ -10128,7 +10476,7 @@ void Spec2Sm::T7__H1__ON2_enter()
     if (trace_guard("State T7__H1__ON2: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;)`
-        this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;
+        this->vars.T7__H1__ON_history = T7__H1__ON_HistoryId::T7__H1__ON2;
     } // end of behavior for T7__H1__ON2
 }
 
@@ -10141,7 +10489,7 @@ void Spec2Sm::T7__H1__ON2_exit()
         trace("Exit T7__H1__ON2.");
     } // end of behavior for T7__H1__ON2
 
-    this.stateId = StateId.T7__H1__ON;
+    this->stateId = StateId::T7__H1__ON;
 }
 
 void Spec2Sm::T7__H1__ON2_ev1()
@@ -10173,7 +10521,7 @@ void Spec2Sm::T7__H1__ON2_ev1()
 
 void Spec2Sm::T7__H1__ON3_enter()
 {
-    this.stateId = StateId.T7__H1__ON3;
+    this->stateId = StateId::T7__H1__ON3;
 
     // T7__H1__ON3 behavior
     // uml: enter / { trace("Enter T7__H1__ON3."); }
@@ -10187,7 +10535,7 @@ void Spec2Sm::T7__H1__ON3_enter()
     if (trace_guard("State T7__H1__ON3: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }`.", true))
     {
         // Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;)`
-        this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;
+        this->vars.T7__H1__ON_history = T7__H1__ON_HistoryId::T7__H1__ON3;
     } // end of behavior for T7__H1__ON3
 }
 
@@ -10200,7 +10548,7 @@ void Spec2Sm::T7__H1__ON3_exit()
         trace("Exit T7__H1__ON3.");
     } // end of behavior for T7__H1__ON3
 
-    this.stateId = StateId.T7__H1__ON;
+    this->stateId = StateId::T7__H1__ON;
 }
 
 void Spec2Sm::T7__H1__ON3_ev1()
@@ -10232,7 +10580,7 @@ void Spec2Sm::T7__H1__ON3_ev1()
 
 void Spec2Sm::T7__INITIAL1_enter()
 {
-    this.stateId = StateId.T7__INITIAL1;
+    this->stateId = StateId::T7__INITIAL1;
 
     // T7__INITIAL1 behavior
     // uml: enter / { trace("Enter T7__INITIAL1."); }
@@ -10251,7 +10599,7 @@ void Spec2Sm::T7__INITIAL1_exit()
         trace("Exit T7__INITIAL1.");
     } // end of behavior for T7__INITIAL1
 
-    this.stateId = StateId.TEST7;
+    this->stateId = StateId::TEST7;
 }
 
 
@@ -10261,7 +10609,7 @@ void Spec2Sm::T7__INITIAL1_exit()
 
 void Spec2Sm::T7__INITIAL1__PARENT_enter()
 {
-    this.stateId = StateId.T7__INITIAL1__PARENT;
+    this->stateId = StateId::T7__INITIAL1__PARENT;
 
     // T7__INITIAL1__PARENT behavior
     // uml: enter / { trace("Enter T7__INITIAL1__PARENT."); }
@@ -10280,7 +10628,7 @@ void Spec2Sm::T7__INITIAL1__PARENT_exit()
         trace("Exit T7__INITIAL1__PARENT.");
     } // end of behavior for T7__INITIAL1__PARENT
 
-    this.stateId = StateId.T7__INITIAL1;
+    this->stateId = StateId::T7__INITIAL1;
 }
 
 void Spec2Sm::T7__INITIAL1__PARENT_ev5()
@@ -10290,7 +10638,7 @@ void Spec2Sm::T7__INITIAL1__PARENT_ev5()
     if (trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count++; }`.", true))
     {
         // Step 1: execute action `count++;`
-        this.vars.count++;
+        this->vars.count++;
     } // end of behavior for T7__INITIAL1__PARENT
 
     // No ancestor handles this event.
@@ -10321,7 +10669,7 @@ void Spec2Sm::T7__INITIAL1__PARENT_InitialState_transition()
 
 void Spec2Sm::T7__INITIAL1__G_enter()
 {
-    this.stateId = StateId.T7__INITIAL1__G;
+    this->stateId = StateId::T7__INITIAL1__G;
 
     // T7__INITIAL1__G behavior
     // uml: enter / { trace("Enter T7__INITIAL1__G."); }
@@ -10340,7 +10688,7 @@ void Spec2Sm::T7__INITIAL1__G_exit()
         trace("Exit T7__INITIAL1__G.");
     } // end of behavior for T7__INITIAL1__G
 
-    this.stateId = StateId.T7__INITIAL1__PARENT;
+    this->stateId = StateId::T7__INITIAL1__PARENT;
 }
 
 void Spec2Sm::T7__INITIAL1__G_ev2()
@@ -10350,7 +10698,7 @@ void Spec2Sm::T7__INITIAL1__G_ev2()
     if (trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.<InitialState>)`.", true))
     {
         // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.T7__INITIAL1__PARENT);
+        exitUpToStateHandler(StateId::T7__INITIAL1__PARENT);
 
         // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>.");`.
         trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>.");
@@ -10370,7 +10718,7 @@ void Spec2Sm::T7__INITIAL1__G_InitialState_transition()
 {
     // T7__INITIAL1__G.<InitialState> behavior
     // uml: [count == 1] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1."); } TransitionTo(T7__INITIAL1__G_S1)
-    if (this.vars.count == 1)
+    if (this->vars.count == 1)
     {
         // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -10386,7 +10734,7 @@ void Spec2Sm::T7__INITIAL1__G_InitialState_transition()
 
     // T7__INITIAL1__G.<InitialState> behavior
     // uml: [count == 2] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2."); } TransitionTo(T7__INITIAL1__G_S2)
-    if (this.vars.count == 2)
+    if (this->vars.count == 2)
     {
         // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -10423,7 +10771,7 @@ void Spec2Sm::T7__INITIAL1__G_InitialState_transition()
 
 void Spec2Sm::T7__INITIAL1__G_S1_enter()
 {
-    this.stateId = StateId.T7__INITIAL1__G_S1;
+    this->stateId = StateId::T7__INITIAL1__G_S1;
 
     // T7__INITIAL1__G_S1 behavior
     // uml: enter / { trace("Enter T7__INITIAL1__G_S1."); }
@@ -10442,7 +10790,7 @@ void Spec2Sm::T7__INITIAL1__G_S1_exit()
         trace("Exit T7__INITIAL1__G_S1.");
     } // end of behavior for T7__INITIAL1__G_S1
 
-    this.stateId = StateId.T7__INITIAL1__G;
+    this->stateId = StateId::T7__INITIAL1__G;
 }
 
 
@@ -10452,7 +10800,7 @@ void Spec2Sm::T7__INITIAL1__G_S1_exit()
 
 void Spec2Sm::T7__INITIAL1__G_S2_enter()
 {
-    this.stateId = StateId.T7__INITIAL1__G_S2;
+    this->stateId = StateId::T7__INITIAL1__G_S2;
 
     // T7__INITIAL1__G_S2 behavior
     // uml: enter / { trace("Enter T7__INITIAL1__G_S2."); }
@@ -10471,7 +10819,7 @@ void Spec2Sm::T7__INITIAL1__G_S2_exit()
         trace("Exit T7__INITIAL1__G_S2.");
     } // end of behavior for T7__INITIAL1__G_S2
 
-    this.stateId = StateId.T7__INITIAL1__G;
+    this->stateId = StateId::T7__INITIAL1__G;
 }
 
 
@@ -10481,7 +10829,7 @@ void Spec2Sm::T7__INITIAL1__G_S2_exit()
 
 void Spec2Sm::T7__INITIAL1__G_S3_enter()
 {
-    this.stateId = StateId.T7__INITIAL1__G_S3;
+    this->stateId = StateId::T7__INITIAL1__G_S3;
 
     // T7__INITIAL1__G_S3 behavior
     // uml: enter / { trace("Enter T7__INITIAL1__G_S3."); }
@@ -10500,7 +10848,7 @@ void Spec2Sm::T7__INITIAL1__G_S3_exit()
         trace("Exit T7__INITIAL1__G_S3.");
     } // end of behavior for T7__INITIAL1__G_S3
 
-    this.stateId = StateId.T7__INITIAL1__G;
+    this->stateId = StateId::T7__INITIAL1__G;
 }
 
 
@@ -10510,7 +10858,7 @@ void Spec2Sm::T7__INITIAL1__G_S3_exit()
 
 void Spec2Sm::T7__INITIAL1__S1_enter()
 {
-    this.stateId = StateId.T7__INITIAL1__S1;
+    this->stateId = StateId::T7__INITIAL1__S1;
 
     // T7__INITIAL1__S1 behavior
     // uml: enter / { trace("Enter T7__INITIAL1__S1."); }
@@ -10529,7 +10877,7 @@ void Spec2Sm::T7__INITIAL1__S1_exit()
         trace("Exit T7__INITIAL1__S1.");
     } // end of behavior for T7__INITIAL1__S1
 
-    this.stateId = StateId.T7__INITIAL1__PARENT;
+    this->stateId = StateId::T7__INITIAL1__PARENT;
 }
 
 void Spec2Sm::T7__INITIAL1__S1_ev1()
@@ -10586,7 +10934,7 @@ void Spec2Sm::T7__INITIAL1__S1_ev3()
 
 void Spec2Sm::TEST7_DECIDE_enter()
 {
-    this.stateId = StateId.TEST7_DECIDE;
+    this->stateId = StateId::TEST7_DECIDE;
 
     // TEST7_DECIDE behavior
     // uml: enter / { trace("Enter TEST7_DECIDE."); }
@@ -10613,7 +10961,7 @@ void Spec2Sm::TEST7_DECIDE_exit()
         trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
     } // end of behavior for TEST7_DECIDE
 
-    this.stateId = StateId.TEST7_INITIAL_OR_HISTORY;
+    this->stateId = StateId::TEST7_INITIAL_OR_HISTORY;
 }
 
 void Spec2Sm::TEST7_DECIDE_ev1()
@@ -10804,7 +11152,7 @@ void Spec2Sm::TEST7_DECIDE_ev5()
 
 void Spec2Sm::TEST8_ENTRY_CHOICE_enter()
 {
-    this.stateId = StateId.TEST8_ENTRY_CHOICE;
+    this->stateId = StateId::TEST8_ENTRY_CHOICE;
 
     // TEST8_ENTRY_CHOICE behavior
     // uml: enter / { trace("Enter TEST8_ENTRY_CHOICE."); }
@@ -10823,7 +11171,7 @@ void Spec2Sm::TEST8_ENTRY_CHOICE_exit()
         trace("Exit TEST8_ENTRY_CHOICE.");
     } // end of behavior for TEST8_ENTRY_CHOICE
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -10833,7 +11181,7 @@ void Spec2Sm::TEST8_ENTRY_CHOICE_exit()
 
 void Spec2Sm::TEST8_ROOT_enter()
 {
-    this.stateId = StateId.TEST8_ROOT;
+    this->stateId = StateId::TEST8_ROOT;
 
     // TEST8_ROOT behavior
     // uml: enter / { trace("Enter TEST8_ROOT."); }
@@ -10860,7 +11208,7 @@ void Spec2Sm::TEST8_ROOT_exit()
         trace("Exit TEST8_ROOT.");
     } // end of behavior for TEST8_ROOT
 
-    this.stateId = StateId.TEST8_ENTRY_CHOICE;
+    this->stateId = StateId::TEST8_ENTRY_CHOICE;
 }
 
 void Spec2Sm::TEST8_ROOT_ev3()
@@ -10882,7 +11230,7 @@ void Spec2Sm::TEST8_ROOT_ev5()
     if (trace_guard("State TEST8_ROOT: check behavior `EV5 / { count++; }`.", true))
     {
         // Step 1: execute action `count++;`
-        this.vars.count++;
+        this->vars.count++;
     } // end of behavior for TEST8_ROOT
 
     // No ancestor handles this event.
@@ -10913,7 +11261,7 @@ void Spec2Sm::TEST8_ROOT_EntryPoint_1__transition()
 
 void Spec2Sm::TEST8_G_enter()
 {
-    this.stateId = StateId.TEST8_G;
+    this->stateId = StateId::TEST8_G;
 
     // TEST8_G behavior
     // uml: enter / { trace("Enter TEST8_G."); }
@@ -10932,7 +11280,7 @@ void Spec2Sm::TEST8_G_exit()
         trace("Exit TEST8_G.");
     } // end of behavior for TEST8_G
 
-    this.stateId = StateId.TEST8_ROOT;
+    this->stateId = StateId::TEST8_ROOT;
 }
 
 void Spec2Sm::TEST8_G_ev2()
@@ -10942,7 +11290,7 @@ void Spec2Sm::TEST8_G_ev2()
     if (trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.<EntryPoint>(1))`.", true))
     {
         // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST8_ROOT);
+        exitUpToStateHandler(StateId::TEST8_ROOT);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).");`.
         trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).");
@@ -10962,7 +11310,7 @@ void Spec2Sm::TEST8_G_EntryPoint_1__transition()
 {
     // TEST8_G.<EntryPoint>(1) behavior
     // uml: [count == 1] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1."); } TransitionTo(TEST8_G_S1)
-    if (this.vars.count == 1)
+    if (this->vars.count == 1)
     {
         // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -10978,7 +11326,7 @@ void Spec2Sm::TEST8_G_EntryPoint_1__transition()
 
     // TEST8_G.<EntryPoint>(1) behavior
     // uml: [count == 2] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2."); } TransitionTo(TEST8_G_S2)
-    if (this.vars.count == 2)
+    if (this->vars.count == 2)
     {
         // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
@@ -11017,7 +11365,7 @@ void Spec2Sm::TEST8_G_EntryPoint_3__transition()
 
         // Step 2: Transition action: `trace("Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).");\ncount += 0;`.
         trace("Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).");
-        this.vars.count += 0;
+        this->vars.count += 0;
 
         // Step 3: Enter/move towards transition target `TEST8_G.<EntryPoint>(1)`.
         // TEST8_G.<EntryPoint>(1) is a pseudo state and cannot have an `enter` trigger.
@@ -11035,7 +11383,7 @@ void Spec2Sm::TEST8_G_EntryPoint_3__transition()
 
 void Spec2Sm::TEST8_G_S1_enter()
 {
-    this.stateId = StateId.TEST8_G_S1;
+    this->stateId = StateId::TEST8_G_S1;
 
     // TEST8_G_S1 behavior
     // uml: enter / { trace("Enter TEST8_G_S1."); }
@@ -11054,7 +11402,7 @@ void Spec2Sm::TEST8_G_S1_exit()
         trace("Exit TEST8_G_S1.");
     } // end of behavior for TEST8_G_S1
 
-    this.stateId = StateId.TEST8_G;
+    this->stateId = StateId::TEST8_G;
 }
 
 
@@ -11064,7 +11412,7 @@ void Spec2Sm::TEST8_G_S1_exit()
 
 void Spec2Sm::TEST8_G_S2_enter()
 {
-    this.stateId = StateId.TEST8_G_S2;
+    this->stateId = StateId::TEST8_G_S2;
 
     // TEST8_G_S2 behavior
     // uml: enter / { trace("Enter TEST8_G_S2."); }
@@ -11083,7 +11431,7 @@ void Spec2Sm::TEST8_G_S2_exit()
         trace("Exit TEST8_G_S2.");
     } // end of behavior for TEST8_G_S2
 
-    this.stateId = StateId.TEST8_G;
+    this->stateId = StateId::TEST8_G;
 }
 
 
@@ -11093,7 +11441,7 @@ void Spec2Sm::TEST8_G_S2_exit()
 
 void Spec2Sm::TEST8_G_S3_enter()
 {
-    this.stateId = StateId.TEST8_G_S3;
+    this->stateId = StateId::TEST8_G_S3;
 
     // TEST8_G_S3 behavior
     // uml: enter / { trace("Enter TEST8_G_S3."); }
@@ -11112,7 +11460,7 @@ void Spec2Sm::TEST8_G_S3_exit()
         trace("Exit TEST8_G_S3.");
     } // end of behavior for TEST8_G_S3
 
-    this.stateId = StateId.TEST8_G;
+    this->stateId = StateId::TEST8_G;
 }
 
 
@@ -11122,7 +11470,7 @@ void Spec2Sm::TEST8_G_S3_exit()
 
 void Spec2Sm::TEST8_S1_enter()
 {
-    this.stateId = StateId.TEST8_S1;
+    this->stateId = StateId::TEST8_S1;
 
     // TEST8_S1 behavior
     // uml: enter / { trace("Enter TEST8_S1."); }
@@ -11141,7 +11489,7 @@ void Spec2Sm::TEST8_S1_exit()
         trace("Exit TEST8_S1.");
     } // end of behavior for TEST8_S1
 
-    this.stateId = StateId.TEST8_ROOT;
+    this->stateId = StateId::TEST8_ROOT;
 }
 
 void Spec2Sm::TEST8_S1_ev1()
@@ -11170,7 +11518,7 @@ void Spec2Sm::TEST8_S1_ev1()
     if (trace_guard("State TEST8_S1: check behavior `2. EV1 / { count++; /* shouldn't run */ }`.", true))
     {
         // Step 1: execute action `count++; /* shouldn't run */`
-        this.vars.count++; /* shouldn't run */
+        this->vars.count++; /* shouldn't run */
     } // end of behavior for TEST8_S1
 
     // No ancestor handles this event.
@@ -11237,7 +11585,7 @@ void Spec2Sm::TEST8_S1_ev6()
 
 void Spec2Sm::TEST9_EXIT_CHOICE_enter()
 {
-    this.stateId = StateId.TEST9_EXIT_CHOICE;
+    this->stateId = StateId::TEST9_EXIT_CHOICE;
 
     // TEST9_EXIT_CHOICE behavior
     // uml: enter / { trace("Enter TEST9_EXIT_CHOICE."); }
@@ -11256,7 +11604,7 @@ void Spec2Sm::TEST9_EXIT_CHOICE_exit()
         trace("Exit TEST9_EXIT_CHOICE.");
     } // end of behavior for TEST9_EXIT_CHOICE
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -11266,7 +11614,7 @@ void Spec2Sm::TEST9_EXIT_CHOICE_exit()
 
 void Spec2Sm::TEST9_DECIDE_enter()
 {
-    this.stateId = StateId.TEST9_DECIDE;
+    this->stateId = StateId::TEST9_DECIDE;
 
     // TEST9_DECIDE behavior
     // uml: enter / { trace("Enter TEST9_DECIDE."); }
@@ -11285,7 +11633,7 @@ void Spec2Sm::TEST9_DECIDE_exit()
         trace("Exit TEST9_DECIDE.");
     } // end of behavior for TEST9_DECIDE
 
-    this.stateId = StateId.TEST9_EXIT_CHOICE;
+    this->stateId = StateId::TEST9_EXIT_CHOICE;
 }
 
 void Spec2Sm::TEST9_DECIDE_ev1()
@@ -11356,7 +11704,7 @@ void Spec2Sm::TEST9_DECIDE_ev2()
 
             // Step 2: Transition action: `trace("Transition action `count = 0;` for TEST9A_ROOT.<InitialState> to TEST9A_S1.");\ncount = 0;`.
             trace("Transition action `count = 0;` for TEST9A_ROOT.<InitialState> to TEST9A_S1.");
-            this.vars.count = 0;
+            this->vars.count = 0;
 
             // Step 3: Enter/move towards transition target `TEST9A_S1`.
             TEST9A_S1_enter();
@@ -11399,7 +11747,7 @@ void Spec2Sm::TEST9_DECIDE_ev3()
 
 void Spec2Sm::TEST9_ROOT_enter()
 {
-    this.stateId = StateId.TEST9_ROOT;
+    this->stateId = StateId::TEST9_ROOT;
 
     // TEST9_ROOT behavior
     // uml: enter / { trace("Enter TEST9_ROOT."); }
@@ -11418,7 +11766,7 @@ void Spec2Sm::TEST9_ROOT_exit()
         trace("Exit TEST9_ROOT.");
     } // end of behavior for TEST9_ROOT
 
-    this.stateId = StateId.TEST9_EXIT_CHOICE;
+    this->stateId = StateId::TEST9_EXIT_CHOICE;
 }
 
 void Spec2Sm::TEST9_ROOT_ev5()
@@ -11428,7 +11776,7 @@ void Spec2Sm::TEST9_ROOT_ev5()
     if (trace_guard("State TEST9_ROOT: check behavior `EV5 / { count++; }`.", true))
     {
         // Step 1: execute action `count++;`
-        this.vars.count++;
+        this->vars.count++;
     } // end of behavior for TEST9_ROOT
 
     // No ancestor handles this event.
@@ -11441,7 +11789,7 @@ void Spec2Sm::TEST9_ROOT_ev5()
 
 void Spec2Sm::TEST9_G_S1_enter()
 {
-    this.stateId = StateId.TEST9_G_S1;
+    this->stateId = StateId::TEST9_G_S1;
 
     // TEST9_G_S1 behavior
     // uml: enter / { trace("Enter TEST9_G_S1."); }
@@ -11460,7 +11808,7 @@ void Spec2Sm::TEST9_G_S1_exit()
         trace("Exit TEST9_G_S1.");
     } // end of behavior for TEST9_G_S1
 
-    this.stateId = StateId.TEST9_ROOT;
+    this->stateId = StateId::TEST9_ROOT;
 }
 
 
@@ -11470,7 +11818,7 @@ void Spec2Sm::TEST9_G_S1_exit()
 
 void Spec2Sm::TEST9_G_S2_enter()
 {
-    this.stateId = StateId.TEST9_G_S2;
+    this->stateId = StateId::TEST9_G_S2;
 
     // TEST9_G_S2 behavior
     // uml: enter / { trace("Enter TEST9_G_S2."); }
@@ -11489,7 +11837,7 @@ void Spec2Sm::TEST9_G_S2_exit()
         trace("Exit TEST9_G_S2.");
     } // end of behavior for TEST9_G_S2
 
-    this.stateId = StateId.TEST9_ROOT;
+    this->stateId = StateId::TEST9_ROOT;
 }
 
 
@@ -11499,7 +11847,7 @@ void Spec2Sm::TEST9_G_S2_exit()
 
 void Spec2Sm::TEST9_G_S3_enter()
 {
-    this.stateId = StateId.TEST9_G_S3;
+    this->stateId = StateId::TEST9_G_S3;
 
     // TEST9_G_S3 behavior
     // uml: enter / { trace("Enter TEST9_G_S3."); }
@@ -11518,7 +11866,7 @@ void Spec2Sm::TEST9_G_S3_exit()
         trace("Exit TEST9_G_S3.");
     } // end of behavior for TEST9_G_S3
 
-    this.stateId = StateId.TEST9_ROOT;
+    this->stateId = StateId::TEST9_ROOT;
 }
 
 
@@ -11528,7 +11876,7 @@ void Spec2Sm::TEST9_G_S3_exit()
 
 void Spec2Sm::TEST9_G_S4_enter()
 {
-    this.stateId = StateId.TEST9_G_S4;
+    this->stateId = StateId::TEST9_G_S4;
 
     // TEST9_G_S4 behavior
     // uml: enter / { trace("Enter TEST9_G_S4."); }
@@ -11547,7 +11895,7 @@ void Spec2Sm::TEST9_G_S4_exit()
         trace("Exit TEST9_G_S4.");
     } // end of behavior for TEST9_G_S4
 
-    this.stateId = StateId.TEST9_ROOT;
+    this->stateId = StateId::TEST9_ROOT;
 }
 
 
@@ -11557,7 +11905,7 @@ void Spec2Sm::TEST9_G_S4_exit()
 
 void Spec2Sm::TEST9_S1_enter()
 {
-    this.stateId = StateId.TEST9_S1;
+    this->stateId = StateId::TEST9_S1;
 
     // TEST9_S1 behavior
     // uml: enter / { trace("Enter TEST9_S1."); }
@@ -11576,7 +11924,7 @@ void Spec2Sm::TEST9_S1_exit()
         trace("Exit TEST9_S1.");
     } // end of behavior for TEST9_S1
 
-    this.stateId = StateId.TEST9_ROOT;
+    this->stateId = StateId::TEST9_ROOT;
 }
 
 
@@ -11586,7 +11934,7 @@ void Spec2Sm::TEST9_S1_exit()
 
 void Spec2Sm::TEST9_S1_1_enter()
 {
-    this.stateId = StateId.TEST9_S1_1;
+    this->stateId = StateId::TEST9_S1_1;
 
     // TEST9_S1_1 behavior
     // uml: enter / { trace("Enter TEST9_S1_1."); }
@@ -11613,7 +11961,7 @@ void Spec2Sm::TEST9_S1_1_exit()
         trace("Exit TEST9_S1_1.");
     } // end of behavior for TEST9_S1_1
 
-    this.stateId = StateId.TEST9_S1;
+    this->stateId = StateId::TEST9_S1;
 }
 
 void Spec2Sm::TEST9_S1_1_ev1()
@@ -11633,7 +11981,7 @@ void Spec2Sm::TEST9_S1_1_ev1()
 
         // TEST9_S1.<ExitPoint>(1) behavior
         // uml: [count == 4] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S4."); } TransitionTo(TEST9_G_S4)
-        if (this.vars.count == 4)
+        if (this->vars.count == 4)
         {
             // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
             TEST9_S1_exit();
@@ -11650,7 +11998,7 @@ void Spec2Sm::TEST9_S1_1_ev1()
 
         // TEST9_S1.<ExitPoint>(1) behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S1."); } TransitionTo(TEST9_G_S1)
-        if (this.vars.count == 1)
+        if (this->vars.count == 1)
         {
             // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
             TEST9_S1_exit();
@@ -11667,7 +12015,7 @@ void Spec2Sm::TEST9_S1_1_ev1()
 
         // TEST9_S1.<ExitPoint>(1) behavior
         // uml: [count == 2] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S2."); } TransitionTo(TEST9_G_S2)
-        if (this.vars.count == 2)
+        if (this->vars.count == 2)
         {
             // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
             TEST9_S1_exit();
@@ -11709,7 +12057,7 @@ void Spec2Sm::TEST9_S1_1_ev1()
 
 void Spec2Sm::TEST9A_ROOT_enter()
 {
-    this.stateId = StateId.TEST9A_ROOT;
+    this->stateId = StateId::TEST9A_ROOT;
 
     // TEST9A_ROOT behavior
     // uml: enter / { trace("Enter TEST9A_ROOT."); }
@@ -11728,7 +12076,7 @@ void Spec2Sm::TEST9A_ROOT_exit()
         trace("Exit TEST9A_ROOT.");
     } // end of behavior for TEST9A_ROOT
 
-    this.stateId = StateId.TEST9_EXIT_CHOICE;
+    this->stateId = StateId::TEST9_EXIT_CHOICE;
 }
 
 
@@ -11738,7 +12086,7 @@ void Spec2Sm::TEST9A_ROOT_exit()
 
 void Spec2Sm::TEST9A_S1_enter()
 {
-    this.stateId = StateId.TEST9A_S1;
+    this->stateId = StateId::TEST9A_S1;
 
     // TEST9A_S1 behavior
     // uml: enter / { trace("Enter TEST9A_S1."); }
@@ -11757,7 +12105,7 @@ void Spec2Sm::TEST9A_S1_exit()
         trace("Exit TEST9A_S1.");
     } // end of behavior for TEST9A_S1
 
-    this.stateId = StateId.TEST9A_ROOT;
+    this->stateId = StateId::TEST9A_ROOT;
 }
 
 void Spec2Sm::TEST9A_S1_InitialState_transition()
@@ -11785,7 +12133,7 @@ void Spec2Sm::TEST9A_S1_InitialState_transition()
 
 void Spec2Sm::TEST9A_S1_1_enter()
 {
-    this.stateId = StateId.TEST9A_S1_1;
+    this->stateId = StateId::TEST9A_S1_1;
 
     // TEST9A_S1_1 behavior
     // uml: enter / { trace("Enter TEST9A_S1_1."); }
@@ -11796,7 +12144,7 @@ void Spec2Sm::TEST9A_S1_1_enter()
 
     // TEST9A_S1_1 behavior
     // uml: enter [trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.", count == 0)] / { clear_output(); }
-    if (trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.", this.vars.count == 0))
+    if (trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.", this->vars.count == 0))
     {
         // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");
@@ -11817,10 +12165,10 @@ void Spec2Sm::TEST9A_S1_1_exit()
     if (trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100; }`.", true))
     {
         // Step 1: execute action `count = 100;`
-        this.vars.count = 100;
+        this->vars.count = 100;
     } // end of behavior for TEST9A_S1_1
 
-    this.stateId = StateId.TEST9A_S1;
+    this->stateId = StateId::TEST9A_S1;
 }
 
 void Spec2Sm::TEST9A_S1_1_ev1()
@@ -11847,7 +12195,7 @@ void Spec2Sm::TEST9A_S1_1_ev1()
 
             // Step 2: Transition action: `trace("Transition action `count++;` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.");\ncount++;`.
             trace("Transition action `count++;` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.");
-            this.vars.count++;
+            this->vars.count++;
 
             // Step 3: Enter/move towards transition target `TEST9A_S1`.
             // Already in target. No entering required.
@@ -11867,7 +12215,7 @@ void Spec2Sm::TEST9A_S1_1_ev1()
 
 void Spec2Sm::TEST9B_ROOT_enter()
 {
-    this.stateId = StateId.TEST9B_ROOT;
+    this->stateId = StateId::TEST9B_ROOT;
 
     // TEST9B_ROOT behavior
     // uml: enter / { trace("Enter TEST9B_ROOT."); }
@@ -11894,7 +12242,7 @@ void Spec2Sm::TEST9B_ROOT_exit()
         trace("Exit TEST9B_ROOT.");
     } // end of behavior for TEST9B_ROOT
 
-    this.stateId = StateId.TEST9_EXIT_CHOICE;
+    this->stateId = StateId::TEST9_EXIT_CHOICE;
 }
 
 void Spec2Sm::TEST9B_ROOT_ev1()
@@ -11904,7 +12252,7 @@ void Spec2Sm::TEST9B_ROOT_ev1()
     if (trace_guard("State TEST9B_ROOT: check behavior `EV1 TransitionTo(TEST9B_ROOT__A4)`.", true))
     {
         // Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
-        exitUpToStateHandler(StateId.TEST9B_ROOT);
+        exitUpToStateHandler(StateId::TEST9B_ROOT);
 
         // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.");`.
         trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.");
@@ -11929,7 +12277,7 @@ void Spec2Sm::TEST9B_ROOT_ev1()
 
 void Spec2Sm::TEST9B_ROOT__A1_enter()
 {
-    this.stateId = StateId.TEST9B_ROOT__A1;
+    this->stateId = StateId::TEST9B_ROOT__A1;
 
     // TEST9B_ROOT__A1 behavior
     // uml: enter / { trace("Enter TEST9B_ROOT__A1."); }
@@ -11948,7 +12296,7 @@ void Spec2Sm::TEST9B_ROOT__A1_exit()
         trace("Exit TEST9B_ROOT__A1.");
     } // end of behavior for TEST9B_ROOT__A1
 
-    this.stateId = StateId.TEST9B_ROOT;
+    this->stateId = StateId::TEST9B_ROOT;
 }
 
 
@@ -11958,7 +12306,7 @@ void Spec2Sm::TEST9B_ROOT__A1_exit()
 
 void Spec2Sm::TEST9B_ROOT__A2_enter()
 {
-    this.stateId = StateId.TEST9B_ROOT__A2;
+    this->stateId = StateId::TEST9B_ROOT__A2;
 
     // TEST9B_ROOT__A2 behavior
     // uml: enter / { trace("Enter TEST9B_ROOT__A2."); }
@@ -11977,7 +12325,7 @@ void Spec2Sm::TEST9B_ROOT__A2_exit()
         trace("Exit TEST9B_ROOT__A2.");
     } // end of behavior for TEST9B_ROOT__A2
 
-    this.stateId = StateId.TEST9B_ROOT__A1;
+    this->stateId = StateId::TEST9B_ROOT__A1;
 }
 
 
@@ -11987,7 +12335,7 @@ void Spec2Sm::TEST9B_ROOT__A2_exit()
 
 void Spec2Sm::TEST9B_ROOT__A3_enter()
 {
-    this.stateId = StateId.TEST9B_ROOT__A3;
+    this->stateId = StateId::TEST9B_ROOT__A3;
 
     // TEST9B_ROOT__A3 behavior
     // uml: enter / { trace("Enter TEST9B_ROOT__A3."); }
@@ -12006,7 +12354,7 @@ void Spec2Sm::TEST9B_ROOT__A3_exit()
         trace("Exit TEST9B_ROOT__A3.");
     } // end of behavior for TEST9B_ROOT__A3
 
-    this.stateId = StateId.TEST9B_ROOT__A2;
+    this->stateId = StateId::TEST9B_ROOT__A2;
 }
 
 
@@ -12016,7 +12364,7 @@ void Spec2Sm::TEST9B_ROOT__A3_exit()
 
 void Spec2Sm::TEST9B_ROOT__A4_enter()
 {
-    this.stateId = StateId.TEST9B_ROOT__A4;
+    this->stateId = StateId::TEST9B_ROOT__A4;
 
     // TEST9B_ROOT__A4 behavior
     // uml: enter / { trace("Enter TEST9B_ROOT__A4."); }
@@ -12035,7 +12383,7 @@ void Spec2Sm::TEST9B_ROOT__A4_exit()
         trace("Exit TEST9B_ROOT__A4.");
     } // end of behavior for TEST9B_ROOT__A4
 
-    this.stateId = StateId.TEST9B_ROOT__A3;
+    this->stateId = StateId::TEST9B_ROOT__A3;
 }
 
 void Spec2Sm::TEST9B_ROOT__A4_ev1()
@@ -12059,7 +12407,7 @@ void Spec2Sm::TEST9B_ROOT__A4_ev1()
         // uml: / { trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4."); } TransitionTo(TEST9B_ROOT__B4)
         {
             // Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
-            exitUpToStateHandler(StateId.TEST9B_ROOT);
+            exitUpToStateHandler(StateId::TEST9B_ROOT);
 
             // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4.");`.
             trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4.");
@@ -12089,7 +12437,7 @@ void Spec2Sm::TEST9B_ROOT__A4_ev1()
 
 void Spec2Sm::TEST9B_ROOT__B1_enter()
 {
-    this.stateId = StateId.TEST9B_ROOT__B1;
+    this->stateId = StateId::TEST9B_ROOT__B1;
 
     // TEST9B_ROOT__B1 behavior
     // uml: enter / { trace("Enter TEST9B_ROOT__B1."); }
@@ -12108,7 +12456,7 @@ void Spec2Sm::TEST9B_ROOT__B1_exit()
         trace("Exit TEST9B_ROOT__B1.");
     } // end of behavior for TEST9B_ROOT__B1
 
-    this.stateId = StateId.TEST9B_ROOT;
+    this->stateId = StateId::TEST9B_ROOT;
 }
 
 
@@ -12118,7 +12466,7 @@ void Spec2Sm::TEST9B_ROOT__B1_exit()
 
 void Spec2Sm::TEST9B_ROOT__B2_enter()
 {
-    this.stateId = StateId.TEST9B_ROOT__B2;
+    this->stateId = StateId::TEST9B_ROOT__B2;
 
     // TEST9B_ROOT__B2 behavior
     // uml: enter / { trace("Enter TEST9B_ROOT__B2."); }
@@ -12137,7 +12485,7 @@ void Spec2Sm::TEST9B_ROOT__B2_exit()
         trace("Exit TEST9B_ROOT__B2.");
     } // end of behavior for TEST9B_ROOT__B2
 
-    this.stateId = StateId.TEST9B_ROOT__B1;
+    this->stateId = StateId::TEST9B_ROOT__B1;
 }
 
 
@@ -12147,7 +12495,7 @@ void Spec2Sm::TEST9B_ROOT__B2_exit()
 
 void Spec2Sm::TEST9B_ROOT__B3_enter()
 {
-    this.stateId = StateId.TEST9B_ROOT__B3;
+    this->stateId = StateId::TEST9B_ROOT__B3;
 
     // TEST9B_ROOT__B3 behavior
     // uml: enter / { trace("Enter TEST9B_ROOT__B3."); }
@@ -12166,7 +12514,7 @@ void Spec2Sm::TEST9B_ROOT__B3_exit()
         trace("Exit TEST9B_ROOT__B3.");
     } // end of behavior for TEST9B_ROOT__B3
 
-    this.stateId = StateId.TEST9B_ROOT__B2;
+    this->stateId = StateId::TEST9B_ROOT__B2;
 }
 
 
@@ -12176,7 +12524,7 @@ void Spec2Sm::TEST9B_ROOT__B3_exit()
 
 void Spec2Sm::TEST9B_ROOT__B4_enter()
 {
-    this.stateId = StateId.TEST9B_ROOT__B4;
+    this->stateId = StateId::TEST9B_ROOT__B4;
 
     // TEST9B_ROOT__B4 behavior
     // uml: enter / { trace("Enter TEST9B_ROOT__B4."); }
@@ -12195,7 +12543,7 @@ void Spec2Sm::TEST9B_ROOT__B4_exit()
         trace("Exit TEST9B_ROOT__B4.");
     } // end of behavior for TEST9B_ROOT__B4
 
-    this.stateId = StateId.TEST9B_ROOT__B3;
+    this->stateId = StateId::TEST9B_ROOT__B3;
 }
 
 
@@ -12205,7 +12553,7 @@ void Spec2Sm::TEST9B_ROOT__B4_exit()
 
 void Spec2Sm::UNREACHABLE_enter()
 {
-    this.stateId = StateId.UNREACHABLE;
+    this->stateId = StateId::UNREACHABLE;
 
     // UNREACHABLE behavior
     // uml: enter / { trace("Enter UNREACHABLE."); }
@@ -12224,7 +12572,7 @@ void Spec2Sm::UNREACHABLE_exit()
         trace("Exit UNREACHABLE.");
     } // end of behavior for UNREACHABLE
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 
@@ -12234,7 +12582,7 @@ void Spec2Sm::UNREACHABLE_exit()
 
 void Spec2Sm::USELESS_enter()
 {
-    this.stateId = StateId.USELESS;
+    this->stateId = StateId::USELESS;
 
     // USELESS behavior
     // uml: enter / { trace("Enter USELESS."); }
@@ -12253,212 +12601,212 @@ void Spec2Sm::USELESS_exit()
         trace("Exit USELESS.");
     } // end of behavior for USELESS
 
-    this.stateId = StateId.ROOT;
+    this->stateId = StateId::ROOT;
 }
 
 // Thread safe.
-static char const * Spec2Sm::stateIdToString(StateId id)
+char const * Spec2Sm::stateIdToString(StateId id)
     {
     switch (id)
     {
-        case StateId.ROOT: return "ROOT";
-        case StateId.PREFIXING: return "PREFIXING";
-        case StateId.PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU";
-        case StateId.PREFIXING__OM__BEVERAGE: return "PREFIXING__OM__BEVERAGE";
-        case StateId.PREFIXING__OM__BEV__NONE: return "PREFIXING__OM__BEV__NONE";
-        case StateId.PREFIXING__OM__BEV__TEA: return "PREFIXING__OM__BEV__TEA";
-        case StateId.PREFIXING__OM__BEV__WATER: return "PREFIXING__OM__BEV__WATER";
-        case StateId.PREFIXING__OM__VEG: return "PREFIXING__OM__VEG";
-        case StateId.PREFIXING__OM__VEG__NONE: return "PREFIXING__OM__VEG__NONE";
-        case StateId.PREFIXING__OM__VEG__POTATO: return "PREFIXING__OM__VEG__POTATO";
-        case StateId.PREFIXING__OM__VEG__YAM: return "PREFIXING__OM__VEG__YAM";
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX: return "PREFIXING__SHOWS_MANUAL_PREFIX";
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: return "PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU";
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE";
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE";
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA";
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER";
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG";
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE";
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO";
-        case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM";
-        case StateId.SPEC2SM__DECIDE: return "SPEC2SM__DECIDE";
-        case StateId.TEST1_DO_EVENT_TESTING: return "TEST1_DO_EVENT_TESTING";
-        case StateId.TEST1_ROOT: return "TEST1_ROOT";
-        case StateId.TEST1_S1: return "TEST1_S1";
-        case StateId.TEST1_S1_1: return "TEST1_S1_1";
-        case StateId.TEST1_S2: return "TEST1_S2";
-        case StateId.TEST10_CHOICE_POINT: return "TEST10_CHOICE_POINT";
-        case StateId.TEST10_A: return "TEST10_A";
-        case StateId.TEST10_A_1: return "TEST10_A_1";
-        case StateId.TEST10_ROOT: return "TEST10_ROOT";
-        case StateId.TEST10_G: return "TEST10_G";
-        case StateId.TEST10_G_S0: return "TEST10_G_S0";
-        case StateId.TEST10_G_S1: return "TEST10_G_S1";
-        case StateId.TEST10_G_S2: return "TEST10_G_S2";
-        case StateId.TEST10_G_S3: return "TEST10_G_S3";
-        case StateId.TEST10_S1: return "TEST10_S1";
-        case StateId.TEST10_S4: return "TEST10_S4";
-        case StateId.TEST2_REGULAR_EVENT_TESTING: return "TEST2_REGULAR_EVENT_TESTING";
-        case StateId.TEST2_ROOT: return "TEST2_ROOT";
-        case StateId.TEST2_S1: return "TEST2_S1";
-        case StateId.TEST2_S1_1: return "TEST2_S1_1";
-        case StateId.TEST2_S2: return "TEST2_S2";
-        case StateId.TEST3_BEHAVIOR_ORDERING: return "TEST3_BEHAVIOR_ORDERING";
-        case StateId.TEST3_ROOT: return "TEST3_ROOT";
-        case StateId.TEST3_S1: return "TEST3_S1";
-        case StateId.TEST3_S2: return "TEST3_S2";
-        case StateId.TEST3_S3: return "TEST3_S3";
-        case StateId.TEST4_PARENT_CHILD_TRANSITIONS: return "TEST4_PARENT_CHILD_TRANSITIONS";
-        case StateId.TEST4_B_AND_OTHERS: return "TEST4_B_AND_OTHERS";
-        case StateId.TEST4B_LOCAL: return "TEST4B_LOCAL";
-        case StateId.TEST4B_G: return "TEST4B_G";
-        case StateId.TEST4B_G_1: return "TEST4B_G_1";
-        case StateId.TEST4C_LOCAL_TO_ALIAS: return "TEST4C_LOCAL_TO_ALIAS";
-        case StateId.TEST4C_G: return "TEST4C_G";
-        case StateId.TEST4C_G_1: return "TEST4C_G_1";
-        case StateId.TEST4D_EXTERNAL: return "TEST4D_EXTERNAL";
-        case StateId.TEST4D_G: return "TEST4D_G";
-        case StateId.TEST4D_G_1: return "TEST4D_G_1";
-        case StateId.TEST4_DECIDE: return "TEST4_DECIDE";
-        case StateId.TEST4_ROOT: return "TEST4_ROOT";
-        case StateId.TEST4_S1: return "TEST4_S1";
-        case StateId.TEST4_S10: return "TEST4_S10";
-        case StateId.TEST4_S10_1: return "TEST4_S10_1";
-        case StateId.TEST4_S2: return "TEST4_S2";
-        case StateId.TEST4_S20: return "TEST4_S20";
-        case StateId.TEST4_S20_1: return "TEST4_S20_1";
-        case StateId.TEST4_S3: return "TEST4_S3";
-        case StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: return "TEST5_PARENT_CHILD_TRANSITIONS_ALIAS";
-        case StateId.TEST5_ROOT: return "TEST5_ROOT";
-        case StateId.TEST5_S1: return "TEST5_S1";
-        case StateId.TEST5_S2: return "TEST5_S2";
-        case StateId.TEST5_S3: return "TEST5_S3";
-        case StateId.TEST6_VARS_EXPANSIONS: return "TEST6_VARS_EXPANSIONS";
-        case StateId.TEST6_ROOT: return "TEST6_ROOT";
-        case StateId.AUTO_VAR_TEST: return "AUTO_VAR_TEST";
-        case StateId.AUTO_VAR_TEST__S1: return "AUTO_VAR_TEST__S1";
-        case StateId.AUTO_VAR_TEST__S2: return "AUTO_VAR_TEST__S2";
-        case StateId.META_EXPANSIONS: return "META_EXPANSIONS";
-        case StateId.META_EXPANSIONS__S1: return "META_EXPANSIONS__S1";
-        case StateId.META_EXPANSIONS__S2: return "META_EXPANSIONS__S2";
-        case StateId.S3: return "S3";
-        case StateId.S4: return "S4";
-        case StateId.S5: return "S5";
-        case StateId.NORMAL: return "NORMAL";
-        case StateId.NORMAL__S1: return "NORMAL__S1";
-        case StateId.NORMAL__S2: return "NORMAL__S2";
-        case StateId.TEST6_VARS_EXPANSIONS__DECIDE: return "TEST6_VARS_EXPANSIONS__DECIDE";
-        case StateId.TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY";
-        case StateId.TEST7: return "TEST7";
-        case StateId.T7__DEEP_HISTORY1: return "T7__DEEP_HISTORY1";
-        case StateId.T7__DH1__SANTAS_WORKSHOP: return "T7__DH1__SANTAS_WORKSHOP";
-        case StateId.T7__DH1__ALIENS_DETECTED: return "T7__DH1__ALIENS_DETECTED";
-        case StateId.T7__DH1__GET_BACKUP: return "T7__DH1__GET_BACKUP";
-        case StateId.T7__DH1__HERO: return "T7__DH1__HERO";
-        case StateId.T7__DH1__CALL_BATMAN: return "T7__DH1__CALL_BATMAN";
-        case StateId.T7__DH1__CALL_THOR: return "T7__DH1__CALL_THOR";
-        case StateId.T7__DH1__LOCAL_HELP: return "T7__DH1__LOCAL_HELP";
-        case StateId.T7__DH1__BUDDY_ELF: return "T7__DH1__BUDDY_ELF";
-        case StateId.T7__DH1__POLAR_BEARS: return "T7__DH1__POLAR_BEARS";
-        case StateId.T7__DH1__GIVE_COOKIES: return "T7__DH1__GIVE_COOKIES";
-        case StateId.T7__DH1__SNOWBALL_FIGHT: return "T7__DH1__SNOWBALL_FIGHT";
-        case StateId.T7__DH1__BUILD: return "T7__DH1__BUILD";
-        case StateId.T7__DH1__TOOL: return "T7__DH1__TOOL";
-        case StateId.T7__DH1__CIRCULAR_SAW: return "T7__DH1__CIRCULAR_SAW";
-        case StateId.T7__DH1__IMPACT_DRILL: return "T7__DH1__IMPACT_DRILL";
-        case StateId.T7__DH1__TOY: return "T7__DH1__TOY";
-        case StateId.T7__DH1__GLOW_WORM: return "T7__DH1__GLOW_WORM";
-        case StateId.T7__DH1__RACE_CAR: return "T7__DH1__RACE_CAR";
-        case StateId.T7__DH1__ROBOT: return "T7__DH1__ROBOT";
-        case StateId.T7__DH1__BATTLEBOT: return "T7__DH1__BATTLEBOT";
-        case StateId.T7__DH1__WALL_E: return "T7__DH1__WALL_E";
-        case StateId.T7__DH1__TEDDY_BEAR: return "T7__DH1__TEDDY_BEAR";
-        case StateId.T7__DEEP_HISTORY2: return "T7__DEEP_HISTORY2";
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_0: return "T7__DEEP_HISTORY2__T7__STATE_0";
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_1: return "T7__DEEP_HISTORY2__T7__STATE_1";
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_2: return "T7__DEEP_HISTORY2__T7__STATE_2";
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_6: return "T7__DEEP_HISTORY2__T7__STATE_6";
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_9: return "T7__DEEP_HISTORY2__T7__STATE_9";
-        case StateId.T7__DEEP_HISTORY2__T7__STATE_3: return "T7__DEEP_HISTORY2__T7__STATE_3";
-        case StateId.T7__DEEP_HISTORY3: return "T7__DEEP_HISTORY3";
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_0: return "T7__DEEP_HISTORY3__T7__STATE_0";
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_1: return "T7__DEEP_HISTORY3__T7__STATE_1";
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_2: return "T7__DEEP_HISTORY3__T7__STATE_2";
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_6: return "T7__DEEP_HISTORY3__T7__STATE_6";
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_9: return "T7__DEEP_HISTORY3__T7__STATE_9";
-        case StateId.T7__DEEP_HISTORY3__T7__STATE_3: return "T7__DEEP_HISTORY3__T7__STATE_3";
-        case StateId.T7__HISTORY1: return "T7__HISTORY1";
-        case StateId.T7__H1__OFF: return "T7__H1__OFF";
-        case StateId.T7__H1__OFF1: return "T7__H1__OFF1";
-        case StateId.T7__H1__OFF2: return "T7__H1__OFF2";
-        case StateId.T7__H1__OFF3: return "T7__H1__OFF3";
-        case StateId.T7__H1__ON: return "T7__H1__ON";
-        case StateId.T7__H1__ON1: return "T7__H1__ON1";
-        case StateId.T7__H1__ON2: return "T7__H1__ON2";
-        case StateId.T7__H1__ON3: return "T7__H1__ON3";
-        case StateId.T7__INITIAL1: return "T7__INITIAL1";
-        case StateId.T7__INITIAL1__PARENT: return "T7__INITIAL1__PARENT";
-        case StateId.T7__INITIAL1__G: return "T7__INITIAL1__G";
-        case StateId.T7__INITIAL1__G_S1: return "T7__INITIAL1__G_S1";
-        case StateId.T7__INITIAL1__G_S2: return "T7__INITIAL1__G_S2";
-        case StateId.T7__INITIAL1__G_S3: return "T7__INITIAL1__G_S3";
-        case StateId.T7__INITIAL1__S1: return "T7__INITIAL1__S1";
-        case StateId.TEST7_DECIDE: return "TEST7_DECIDE";
-        case StateId.TEST8_ENTRY_CHOICE: return "TEST8_ENTRY_CHOICE";
-        case StateId.TEST8_ROOT: return "TEST8_ROOT";
-        case StateId.TEST8_G: return "TEST8_G";
-        case StateId.TEST8_G_S1: return "TEST8_G_S1";
-        case StateId.TEST8_G_S2: return "TEST8_G_S2";
-        case StateId.TEST8_G_S3: return "TEST8_G_S3";
-        case StateId.TEST8_S1: return "TEST8_S1";
-        case StateId.TEST9_EXIT_CHOICE: return "TEST9_EXIT_CHOICE";
-        case StateId.TEST9_DECIDE: return "TEST9_DECIDE";
-        case StateId.TEST9_ROOT: return "TEST9_ROOT";
-        case StateId.TEST9_G_S1: return "TEST9_G_S1";
-        case StateId.TEST9_G_S2: return "TEST9_G_S2";
-        case StateId.TEST9_G_S3: return "TEST9_G_S3";
-        case StateId.TEST9_G_S4: return "TEST9_G_S4";
-        case StateId.TEST9_S1: return "TEST9_S1";
-        case StateId.TEST9_S1_1: return "TEST9_S1_1";
-        case StateId.TEST9A_ROOT: return "TEST9A_ROOT";
-        case StateId.TEST9A_S1: return "TEST9A_S1";
-        case StateId.TEST9A_S1_1: return "TEST9A_S1_1";
-        case StateId.TEST9B_ROOT: return "TEST9B_ROOT";
-        case StateId.TEST9B_ROOT__A1: return "TEST9B_ROOT__A1";
-        case StateId.TEST9B_ROOT__A2: return "TEST9B_ROOT__A2";
-        case StateId.TEST9B_ROOT__A3: return "TEST9B_ROOT__A3";
-        case StateId.TEST9B_ROOT__A4: return "TEST9B_ROOT__A4";
-        case StateId.TEST9B_ROOT__B1: return "TEST9B_ROOT__B1";
-        case StateId.TEST9B_ROOT__B2: return "TEST9B_ROOT__B2";
-        case StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3";
-        case StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4";
-        case StateId.UNREACHABLE: return "UNREACHABLE";
-        case StateId.USELESS: return "USELESS";
+        case StateId::ROOT: return "ROOT";
+        case StateId::PREFIXING: return "PREFIXING";
+        case StateId::PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU";
+        case StateId::PREFIXING__OM__BEVERAGE: return "PREFIXING__OM__BEVERAGE";
+        case StateId::PREFIXING__OM__BEV__NONE: return "PREFIXING__OM__BEV__NONE";
+        case StateId::PREFIXING__OM__BEV__TEA: return "PREFIXING__OM__BEV__TEA";
+        case StateId::PREFIXING__OM__BEV__WATER: return "PREFIXING__OM__BEV__WATER";
+        case StateId::PREFIXING__OM__VEG: return "PREFIXING__OM__VEG";
+        case StateId::PREFIXING__OM__VEG__NONE: return "PREFIXING__OM__VEG__NONE";
+        case StateId::PREFIXING__OM__VEG__POTATO: return "PREFIXING__OM__VEG__POTATO";
+        case StateId::PREFIXING__OM__VEG__YAM: return "PREFIXING__OM__VEG__YAM";
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX: return "PREFIXING__SHOWS_MANUAL_PREFIX";
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: return "PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU";
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE";
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE";
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA";
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER";
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG";
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE";
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO";
+        case StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM";
+        case StateId::SPEC2SM__DECIDE: return "SPEC2SM__DECIDE";
+        case StateId::TEST1_DO_EVENT_TESTING: return "TEST1_DO_EVENT_TESTING";
+        case StateId::TEST1_ROOT: return "TEST1_ROOT";
+        case StateId::TEST1_S1: return "TEST1_S1";
+        case StateId::TEST1_S1_1: return "TEST1_S1_1";
+        case StateId::TEST1_S2: return "TEST1_S2";
+        case StateId::TEST10_CHOICE_POINT: return "TEST10_CHOICE_POINT";
+        case StateId::TEST10_A: return "TEST10_A";
+        case StateId::TEST10_A_1: return "TEST10_A_1";
+        case StateId::TEST10_ROOT: return "TEST10_ROOT";
+        case StateId::TEST10_G: return "TEST10_G";
+        case StateId::TEST10_G_S0: return "TEST10_G_S0";
+        case StateId::TEST10_G_S1: return "TEST10_G_S1";
+        case StateId::TEST10_G_S2: return "TEST10_G_S2";
+        case StateId::TEST10_G_S3: return "TEST10_G_S3";
+        case StateId::TEST10_S1: return "TEST10_S1";
+        case StateId::TEST10_S4: return "TEST10_S4";
+        case StateId::TEST2_REGULAR_EVENT_TESTING: return "TEST2_REGULAR_EVENT_TESTING";
+        case StateId::TEST2_ROOT: return "TEST2_ROOT";
+        case StateId::TEST2_S1: return "TEST2_S1";
+        case StateId::TEST2_S1_1: return "TEST2_S1_1";
+        case StateId::TEST2_S2: return "TEST2_S2";
+        case StateId::TEST3_BEHAVIOR_ORDERING: return "TEST3_BEHAVIOR_ORDERING";
+        case StateId::TEST3_ROOT: return "TEST3_ROOT";
+        case StateId::TEST3_S1: return "TEST3_S1";
+        case StateId::TEST3_S2: return "TEST3_S2";
+        case StateId::TEST3_S3: return "TEST3_S3";
+        case StateId::TEST4_PARENT_CHILD_TRANSITIONS: return "TEST4_PARENT_CHILD_TRANSITIONS";
+        case StateId::TEST4_B_AND_OTHERS: return "TEST4_B_AND_OTHERS";
+        case StateId::TEST4B_LOCAL: return "TEST4B_LOCAL";
+        case StateId::TEST4B_G: return "TEST4B_G";
+        case StateId::TEST4B_G_1: return "TEST4B_G_1";
+        case StateId::TEST4C_LOCAL_TO_ALIAS: return "TEST4C_LOCAL_TO_ALIAS";
+        case StateId::TEST4C_G: return "TEST4C_G";
+        case StateId::TEST4C_G_1: return "TEST4C_G_1";
+        case StateId::TEST4D_EXTERNAL: return "TEST4D_EXTERNAL";
+        case StateId::TEST4D_G: return "TEST4D_G";
+        case StateId::TEST4D_G_1: return "TEST4D_G_1";
+        case StateId::TEST4_DECIDE: return "TEST4_DECIDE";
+        case StateId::TEST4_ROOT: return "TEST4_ROOT";
+        case StateId::TEST4_S1: return "TEST4_S1";
+        case StateId::TEST4_S10: return "TEST4_S10";
+        case StateId::TEST4_S10_1: return "TEST4_S10_1";
+        case StateId::TEST4_S2: return "TEST4_S2";
+        case StateId::TEST4_S20: return "TEST4_S20";
+        case StateId::TEST4_S20_1: return "TEST4_S20_1";
+        case StateId::TEST4_S3: return "TEST4_S3";
+        case StateId::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: return "TEST5_PARENT_CHILD_TRANSITIONS_ALIAS";
+        case StateId::TEST5_ROOT: return "TEST5_ROOT";
+        case StateId::TEST5_S1: return "TEST5_S1";
+        case StateId::TEST5_S2: return "TEST5_S2";
+        case StateId::TEST5_S3: return "TEST5_S3";
+        case StateId::TEST6_VARS_EXPANSIONS: return "TEST6_VARS_EXPANSIONS";
+        case StateId::TEST6_ROOT: return "TEST6_ROOT";
+        case StateId::AUTO_VAR_TEST: return "AUTO_VAR_TEST";
+        case StateId::AUTO_VAR_TEST__S1: return "AUTO_VAR_TEST__S1";
+        case StateId::AUTO_VAR_TEST__S2: return "AUTO_VAR_TEST__S2";
+        case StateId::META_EXPANSIONS: return "META_EXPANSIONS";
+        case StateId::META_EXPANSIONS__S1: return "META_EXPANSIONS__S1";
+        case StateId::META_EXPANSIONS__S2: return "META_EXPANSIONS__S2";
+        case StateId::S3: return "S3";
+        case StateId::S4: return "S4";
+        case StateId::S5: return "S5";
+        case StateId::NORMAL: return "NORMAL";
+        case StateId::NORMAL__S1: return "NORMAL__S1";
+        case StateId::NORMAL__S2: return "NORMAL__S2";
+        case StateId::TEST6_VARS_EXPANSIONS__DECIDE: return "TEST6_VARS_EXPANSIONS__DECIDE";
+        case StateId::TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY";
+        case StateId::TEST7: return "TEST7";
+        case StateId::T7__DEEP_HISTORY1: return "T7__DEEP_HISTORY1";
+        case StateId::T7__DH1__SANTAS_WORKSHOP: return "T7__DH1__SANTAS_WORKSHOP";
+        case StateId::T7__DH1__ALIENS_DETECTED: return "T7__DH1__ALIENS_DETECTED";
+        case StateId::T7__DH1__GET_BACKUP: return "T7__DH1__GET_BACKUP";
+        case StateId::T7__DH1__HERO: return "T7__DH1__HERO";
+        case StateId::T7__DH1__CALL_BATMAN: return "T7__DH1__CALL_BATMAN";
+        case StateId::T7__DH1__CALL_THOR: return "T7__DH1__CALL_THOR";
+        case StateId::T7__DH1__LOCAL_HELP: return "T7__DH1__LOCAL_HELP";
+        case StateId::T7__DH1__BUDDY_ELF: return "T7__DH1__BUDDY_ELF";
+        case StateId::T7__DH1__POLAR_BEARS: return "T7__DH1__POLAR_BEARS";
+        case StateId::T7__DH1__GIVE_COOKIES: return "T7__DH1__GIVE_COOKIES";
+        case StateId::T7__DH1__SNOWBALL_FIGHT: return "T7__DH1__SNOWBALL_FIGHT";
+        case StateId::T7__DH1__BUILD: return "T7__DH1__BUILD";
+        case StateId::T7__DH1__TOOL: return "T7__DH1__TOOL";
+        case StateId::T7__DH1__CIRCULAR_SAW: return "T7__DH1__CIRCULAR_SAW";
+        case StateId::T7__DH1__IMPACT_DRILL: return "T7__DH1__IMPACT_DRILL";
+        case StateId::T7__DH1__TOY: return "T7__DH1__TOY";
+        case StateId::T7__DH1__GLOW_WORM: return "T7__DH1__GLOW_WORM";
+        case StateId::T7__DH1__RACE_CAR: return "T7__DH1__RACE_CAR";
+        case StateId::T7__DH1__ROBOT: return "T7__DH1__ROBOT";
+        case StateId::T7__DH1__BATTLEBOT: return "T7__DH1__BATTLEBOT";
+        case StateId::T7__DH1__WALL_E: return "T7__DH1__WALL_E";
+        case StateId::T7__DH1__TEDDY_BEAR: return "T7__DH1__TEDDY_BEAR";
+        case StateId::T7__DEEP_HISTORY2: return "T7__DEEP_HISTORY2";
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_0: return "T7__DEEP_HISTORY2__T7__STATE_0";
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_1: return "T7__DEEP_HISTORY2__T7__STATE_1";
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_2: return "T7__DEEP_HISTORY2__T7__STATE_2";
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_6: return "T7__DEEP_HISTORY2__T7__STATE_6";
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_9: return "T7__DEEP_HISTORY2__T7__STATE_9";
+        case StateId::T7__DEEP_HISTORY2__T7__STATE_3: return "T7__DEEP_HISTORY2__T7__STATE_3";
+        case StateId::T7__DEEP_HISTORY3: return "T7__DEEP_HISTORY3";
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_0: return "T7__DEEP_HISTORY3__T7__STATE_0";
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_1: return "T7__DEEP_HISTORY3__T7__STATE_1";
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_2: return "T7__DEEP_HISTORY3__T7__STATE_2";
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_6: return "T7__DEEP_HISTORY3__T7__STATE_6";
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_9: return "T7__DEEP_HISTORY3__T7__STATE_9";
+        case StateId::T7__DEEP_HISTORY3__T7__STATE_3: return "T7__DEEP_HISTORY3__T7__STATE_3";
+        case StateId::T7__HISTORY1: return "T7__HISTORY1";
+        case StateId::T7__H1__OFF: return "T7__H1__OFF";
+        case StateId::T7__H1__OFF1: return "T7__H1__OFF1";
+        case StateId::T7__H1__OFF2: return "T7__H1__OFF2";
+        case StateId::T7__H1__OFF3: return "T7__H1__OFF3";
+        case StateId::T7__H1__ON: return "T7__H1__ON";
+        case StateId::T7__H1__ON1: return "T7__H1__ON1";
+        case StateId::T7__H1__ON2: return "T7__H1__ON2";
+        case StateId::T7__H1__ON3: return "T7__H1__ON3";
+        case StateId::T7__INITIAL1: return "T7__INITIAL1";
+        case StateId::T7__INITIAL1__PARENT: return "T7__INITIAL1__PARENT";
+        case StateId::T7__INITIAL1__G: return "T7__INITIAL1__G";
+        case StateId::T7__INITIAL1__G_S1: return "T7__INITIAL1__G_S1";
+        case StateId::T7__INITIAL1__G_S2: return "T7__INITIAL1__G_S2";
+        case StateId::T7__INITIAL1__G_S3: return "T7__INITIAL1__G_S3";
+        case StateId::T7__INITIAL1__S1: return "T7__INITIAL1__S1";
+        case StateId::TEST7_DECIDE: return "TEST7_DECIDE";
+        case StateId::TEST8_ENTRY_CHOICE: return "TEST8_ENTRY_CHOICE";
+        case StateId::TEST8_ROOT: return "TEST8_ROOT";
+        case StateId::TEST8_G: return "TEST8_G";
+        case StateId::TEST8_G_S1: return "TEST8_G_S1";
+        case StateId::TEST8_G_S2: return "TEST8_G_S2";
+        case StateId::TEST8_G_S3: return "TEST8_G_S3";
+        case StateId::TEST8_S1: return "TEST8_S1";
+        case StateId::TEST9_EXIT_CHOICE: return "TEST9_EXIT_CHOICE";
+        case StateId::TEST9_DECIDE: return "TEST9_DECIDE";
+        case StateId::TEST9_ROOT: return "TEST9_ROOT";
+        case StateId::TEST9_G_S1: return "TEST9_G_S1";
+        case StateId::TEST9_G_S2: return "TEST9_G_S2";
+        case StateId::TEST9_G_S3: return "TEST9_G_S3";
+        case StateId::TEST9_G_S4: return "TEST9_G_S4";
+        case StateId::TEST9_S1: return "TEST9_S1";
+        case StateId::TEST9_S1_1: return "TEST9_S1_1";
+        case StateId::TEST9A_ROOT: return "TEST9A_ROOT";
+        case StateId::TEST9A_S1: return "TEST9A_S1";
+        case StateId::TEST9A_S1_1: return "TEST9A_S1_1";
+        case StateId::TEST9B_ROOT: return "TEST9B_ROOT";
+        case StateId::TEST9B_ROOT__A1: return "TEST9B_ROOT__A1";
+        case StateId::TEST9B_ROOT__A2: return "TEST9B_ROOT__A2";
+        case StateId::TEST9B_ROOT__A3: return "TEST9B_ROOT__A3";
+        case StateId::TEST9B_ROOT__A4: return "TEST9B_ROOT__A4";
+        case StateId::TEST9B_ROOT__B1: return "TEST9B_ROOT__B1";
+        case StateId::TEST9B_ROOT__B2: return "TEST9B_ROOT__B2";
+        case StateId::TEST9B_ROOT__B3: return "TEST9B_ROOT__B3";
+        case StateId::TEST9B_ROOT__B4: return "TEST9B_ROOT__B4";
+        case StateId::UNREACHABLE: return "UNREACHABLE";
+        case StateId::USELESS: return "USELESS";
         default: return "?";
     }
 }
 
 // Thread safe.
-static char const * Spec2Sm::eventIdToString(EventId id)
+char const * Spec2Sm::eventIdToString(EventId id)
     {
     switch (id)
     {
-        case EventId.DO: return "DO";
-        case EventId.EV1: return "EV1";
-        case EventId.EV10: return "EV10";
-        case EventId.EV2: return "EV2";
-        case EventId.EV3: return "EV3";
-        case EventId.EV4: return "EV4";
-        case EventId.EV5: return "EV5";
-        case EventId.EV6: return "EV6";
-        case EventId.EV7: return "EV7";
-        case EventId.EV8: return "EV8";
-        case EventId.EV9: return "EV9";
-        case EventId.EVBACK: return "EVBACK";
-        case EventId.EVCLOSE: return "EVCLOSE";
-        case EventId.EVOPEN: return "EVOPEN";
-        case EventId.EVSTEP: return "EVSTEP";
+        case EventId::DO: return "DO";
+        case EventId::EV1: return "EV1";
+        case EventId::EV10: return "EV10";
+        case EventId::EV2: return "EV2";
+        case EventId::EV3: return "EV3";
+        case EventId::EV4: return "EV4";
+        case EventId::EV5: return "EV5";
+        case EventId::EV6: return "EV6";
+        case EventId::EV7: return "EV7";
+        case EventId::EV8: return "EV8";
+        case EventId::EV9: return "EV9";
+        case EventId::EVBACK: return "EVBACK";
+        case EventId::EVCLOSE: return "EVCLOSE";
+        case EventId::EVOPEN: return "EVOPEN";
+        case EventId::EVSTEP: return "EVSTEP";
         default: return "?";
     }
 }

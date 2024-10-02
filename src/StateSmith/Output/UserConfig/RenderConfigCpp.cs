@@ -61,15 +61,6 @@ public class RenderConfigCppVars
     /// </summary>
     public string ClassCode = "";
 
-    /// <summary>
-    /// Will replace `{enumName}` with name of enumeration. Use like this:
-    /// <code>
-    /// typedef enum __attribute__((packed)) {enumName}
-    /// </code>
-    /// https://github.com/StateSmith/StateSmith/issues/185
-    /// </summary>
-    public string EnumDeclarer = "";
-
     public void SetFrom(IRenderConfigCpp config, bool autoDeIndentAndTrim)
     {
         string Process(string str)
@@ -89,11 +80,16 @@ public class RenderConfigCppVars
         HFileBottomPreIncludeGuard = Process(config.HFileBottomPreIncludeGuard);
         HFileBottom = Process(config.HFileBottom);
 
+        CFileBottom = Process(config.CFileBottom);
+        CFileIncludes = Process(config.CFileIncludes);
+        CFileTop = Process(config.CFileTop);
+
         NameSpace = Process(config.NameSpace);
 
         ClassCode = Process(config.ClassCode);
-        EnumDeclarer = Process(config.EnumDeclarer);
+        BaseClassCode = Process(config.BaseClassCode);
 
+        CFileExtension = config.CFileExtension.Trim();
         HFileExtension = config.HFileExtension.Trim();
         IncludeGuardLabel = config.IncludeGuardLabel.Trim();
     }

@@ -56,10 +56,11 @@ public class AlgoTranspilerCustomizer
             case TranspilerId.Cpp:
                 {
                     sp.AddSingletonT<IGilTranspiler, GilToCpp>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
+                    sp.AddSingletonT<IExpansionVarsPathProvider, CppExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
                     algoBalanced1Settings.varsStructAsClass = true;
+                    algoBalanced1Settings.outputSwitchDefault = true;
                 }
                 break;
 

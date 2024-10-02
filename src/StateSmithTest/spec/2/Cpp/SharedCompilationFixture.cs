@@ -26,7 +26,7 @@ public class SharedCompilationFixture
         this.compilation = new CCompilerMux().Compile(new CCompRequest()
         {
             WorkingDirectory = OutputDirectory,
-            SourceFiles = ["../../lang-helpers/c/helper.c", "main.cpp", "Spec2Sm.cpp"],
+            SourceFiles = ["main.cpp", "Spec2Sm.cpp"],
             Flags = [
                 // we disable `unused-function` warning because some states are intentionally unreachable
                 CCompRequest.FlagId.IgnoreUnusedFunctions,
@@ -40,13 +40,15 @@ public class SharedCompilationFixture
     {
         Spec2GenericVarExpansions spec2GenericVarExpansions = new();
 
-        string IRenderConfigCpp.HFileIncludes => @"
-                #include <stdint.h>
-            ";
+        string IRenderConfigCpp.HFileIncludes => """
+            #include "Spec2SmBase.hpp"
+            """;
 
         string IRenderConfig.VariableDeclarations => @"
                 uint8_t count;
             ";
+
+        string IRenderConfigCpp.BaseClassCode => "public Spec2SmBase";
 
         string IRenderConfig.AutoExpandedVars => "uint8_t auto_var_1;";
     }

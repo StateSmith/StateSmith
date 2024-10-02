@@ -56,13 +56,4 @@ public interface IRenderConfigCpp : IRenderConfig
     /// Use to add custom code to generated state machine class.
     /// </summary>
     string ClassCode => "";
-
-    /// <summary>
-    /// Will replace `{enumName}` with name of enumeration. Use like this:
-    /// <code>
-    /// typedef enum __attribute__((packed)) {enumName}
-    /// </code>
-    /// https://github.com/StateSmith/StateSmith/issues/185
-    /// </summary>
-    string EnumDeclarer => "";
 }

@@ -1,14 +1,10 @@
+#nullable enable
+
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using StateSmith.Input.Antlr4;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Xml.Linq;
-
-#nullable enable
 
 namespace StateSmith.Output.Gil;
 

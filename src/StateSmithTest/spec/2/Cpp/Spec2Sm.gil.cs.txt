@@ -339,6 +339,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break;
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -347,6 +349,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -355,6 +359,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -364,6 +370,8 @@ public class Spec2Sm
                 {
                     case EventId.EV2: this.PREFIXING__OM__BEVERAGE_ev2(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -374,6 +382,8 @@ public class Spec2Sm
                     case EventId.EV1: this.PREFIXING__OM__BEV__NONE_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -383,6 +393,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -393,6 +405,8 @@ public class Spec2Sm
                     case EventId.EV1: this.PREFIXING__OM__BEV__WATER_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -402,6 +416,8 @@ public class Spec2Sm
                 {
                     case EventId.EV2: this.PREFIXING__OM__VEG_ev2(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -412,6 +428,8 @@ public class Spec2Sm
                     case EventId.EV1: this.PREFIXING__OM__VEG__NONE_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -422,6 +440,8 @@ public class Spec2Sm
                     case EventId.EV1: this.PREFIXING__OM__VEG__POTATO_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -431,6 +451,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -439,6 +461,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -447,6 +471,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -456,6 +482,8 @@ public class Spec2Sm
                 {
                     case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -466,6 +494,8 @@ public class Spec2Sm
                     case EventId.EV1: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -475,6 +505,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -485,6 +517,8 @@ public class Spec2Sm
                     case EventId.EV1: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -494,6 +528,8 @@ public class Spec2Sm
                 {
                     case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -504,6 +540,8 @@ public class Spec2Sm
                     case EventId.EV1: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -514,6 +552,8 @@ public class Spec2Sm
                     case EventId.EV1: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -523,6 +563,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -541,6 +583,8 @@ public class Spec2Sm
                     case EventId.EV9: this.SPEC2SM__DECIDE_ev9(); break;
                     case EventId.EV10: this.SPEC2SM__DECIDE_ev10(); break;
                     case EventId.DO: this.SPEC2SM__DECIDE_do(); break;
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -549,6 +593,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -557,6 +603,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.TEST1_ROOT_do(); break;
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -565,6 +613,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.TEST1_ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -574,6 +624,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.TEST1_S1_1_do(); break;
                     case EventId.EV1: this.TEST1_S1_1_ev1(); break;
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -582,6 +634,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.TEST1_S2_do(); break;
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -590,6 +644,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -598,6 +654,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -606,6 +664,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -615,6 +675,8 @@ public class Spec2Sm
                 {
                     case EventId.EV5: this.TEST10_ROOT_ev5(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -624,6 +686,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -633,6 +697,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -642,6 +708,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -651,6 +719,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -660,6 +730,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -673,6 +745,8 @@ public class Spec2Sm
                     case EventId.EV10: this.TEST10_S1_ev10(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -682,6 +756,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -690,6 +766,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -700,6 +778,8 @@ public class Spec2Sm
                     case EventId.EV1: this.TEST2_ROOT_ev1(); break;
                     case EventId.EV2: this.TEST2_ROOT_ev2(); break;
                     case EventId.DO: this.TEST2_ROOT_do(); break;
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -710,6 +790,8 @@ public class Spec2Sm
                     case EventId.DO: this.TEST2_ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST2_ROOT_ev1(); break; // First ancestor handler for this event
                     case EventId.EV2: this.TEST2_ROOT_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -720,6 +802,8 @@ public class Spec2Sm
                     case EventId.EV1: this.TEST2_S1_1_ev1(); break;
                     case EventId.DO: this.TEST2_S1_1_do(); break;
                     case EventId.EV2: this.TEST2_ROOT_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -730,6 +814,8 @@ public class Spec2Sm
                     case EventId.EV1: this.TEST2_S2_ev1(); break;
                     case EventId.EV2: this.TEST2_S2_ev2(); break;
                     case EventId.DO: this.TEST2_ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -738,6 +824,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -747,6 +835,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.TEST3_ROOT_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -756,6 +846,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.TEST3_S1_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -765,6 +857,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.TEST3_S2_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -774,6 +868,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST3_ROOT_ev1(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -782,6 +878,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -790,6 +888,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -798,6 +898,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -807,6 +909,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.TEST4B_G_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -817,6 +921,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST4B_G_1_ev2(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST4B_G_ev1(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -825,6 +931,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -834,6 +942,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.TEST4C_G_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -844,6 +954,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST4C_G_1_ev2(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST4C_G_ev1(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -852,6 +964,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -861,6 +975,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.TEST4D_G_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -871,6 +987,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST4D_G_1_ev2(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST4D_G_ev1(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -883,6 +1001,8 @@ public class Spec2Sm
                     case EventId.EV3: this.TEST4_DECIDE_ev3(); break;
                     case EventId.EV4: this.TEST4_DECIDE_ev4(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -894,6 +1014,8 @@ public class Spec2Sm
                     case EventId.EV3: this.TEST4_ROOT_ev3(); break;
                     case EventId.EV4: this.TEST4_ROOT_ev4(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -906,6 +1028,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                     case EventId.EV4: this.TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -917,6 +1041,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -928,6 +1054,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                     case EventId.EV4: this.TEST4_S10_ev4(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -940,6 +1068,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                     case EventId.EV4: this.TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -951,6 +1081,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -962,6 +1094,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                     case EventId.EV4: this.TEST4_S20_ev4(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -974,6 +1108,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST4_ROOT_ev2(); break; // First ancestor handler for this event
                     case EventId.EV3: this.TEST4_ROOT_ev3(); break; // First ancestor handler for this event
                     case EventId.EV4: this.TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -982,6 +1118,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -991,6 +1129,8 @@ public class Spec2Sm
                 {
                     case EventId.EV2: this.TEST5_ROOT_ev2(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1001,6 +1141,8 @@ public class Spec2Sm
                     case EventId.EV1: this.TEST5_S1_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1011,6 +1153,8 @@ public class Spec2Sm
                     case EventId.EV1: this.TEST5_S2_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1021,6 +1165,8 @@ public class Spec2Sm
                     case EventId.EV1: this.TEST5_S3_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1029,6 +1175,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1037,6 +1185,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1045,6 +1195,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1054,6 +1206,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.AUTO_VAR_TEST__S1_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1062,6 +1216,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1070,6 +1226,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1079,6 +1237,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.META_EXPANSIONS__S1_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1089,6 +1249,8 @@ public class Spec2Sm
                     case EventId.EV1: this.META_EXPANSIONS__S2_ev1(); break;
                     case EventId.EV2: this.META_EXPANSIONS__S2_ev2(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1098,6 +1260,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.S3_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1106,6 +1270,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1114,6 +1280,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1122,6 +1290,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1131,6 +1301,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.NORMAL__S1_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1139,6 +1311,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1150,6 +1324,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST6_VARS_EXPANSIONS__DECIDE_ev2(); break;
                     case EventId.EV3: this.TEST6_VARS_EXPANSIONS__DECIDE_ev3(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1158,6 +1334,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1166,6 +1344,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1174,6 +1354,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1182,6 +1364,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1191,6 +1375,8 @@ public class Spec2Sm
                 {
                     case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1200,6 +1386,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1209,6 +1397,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1219,6 +1409,8 @@ public class Spec2Sm
                     case EventId.EV1: this.T7__DH1__CALL_BATMAN_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1229,6 +1421,8 @@ public class Spec2Sm
                     case EventId.EV1: this.T7__DH1__CALL_THOR_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1238,6 +1432,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1248,6 +1444,8 @@ public class Spec2Sm
                     case EventId.EV1: this.T7__DH1__BUDDY_ELF_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1257,6 +1455,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1267,6 +1467,8 @@ public class Spec2Sm
                     case EventId.EV1: this.T7__DH1__GIVE_COOKIES_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1277,6 +1479,8 @@ public class Spec2Sm
                     case EventId.EV1: this.T7__DH1__SNOWBALL_FIGHT_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV8: this.T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1287,6 +1491,8 @@ public class Spec2Sm
                     case EventId.EV6: this.T7__DH1__BUILD_ev6(); break;
                     case EventId.EV7: this.T7__DH1__BUILD_ev7(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1298,6 +1504,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1309,6 +1517,8 @@ public class Spec2Sm
                     case EventId.EV2: this.T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1321,6 +1531,8 @@ public class Spec2Sm
                     case EventId.EV2: this.T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1332,6 +1544,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1343,6 +1557,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1354,6 +1570,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1365,6 +1583,8 @@ public class Spec2Sm
                     case EventId.EV1: this.T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1376,6 +1596,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1387,6 +1609,8 @@ public class Spec2Sm
                     case EventId.EV1: this.T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1398,6 +1622,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1406,6 +1632,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1415,6 +1643,8 @@ public class Spec2Sm
                 {
                     case EventId.EVOPEN: this.T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1425,6 +1655,8 @@ public class Spec2Sm
                     case EventId.EVSTEP: this.T7__DEEP_HISTORY2__T7__STATE_1_evstep(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EVOPEN: this.T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1435,6 +1667,8 @@ public class Spec2Sm
                     case EventId.EVBACK: this.T7__DEEP_HISTORY2__T7__STATE_2_evback(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EVOPEN: this.T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1446,6 +1680,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EVOPEN: this.T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
                     case EventId.EVBACK: this.T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1456,6 +1692,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EVOPEN: this.T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
                     case EventId.EVBACK: this.T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1465,6 +1703,8 @@ public class Spec2Sm
                 {
                     case EventId.EVCLOSE: this.T7__DEEP_HISTORY2__T7__STATE_3_evclose(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1473,6 +1713,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1482,6 +1724,8 @@ public class Spec2Sm
                 {
                     case EventId.EVOPEN: this.T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1492,6 +1736,8 @@ public class Spec2Sm
                     case EventId.EVSTEP: this.T7__DEEP_HISTORY3__T7__STATE_1_evstep(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EVOPEN: this.T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1502,6 +1748,8 @@ public class Spec2Sm
                     case EventId.EVBACK: this.T7__DEEP_HISTORY3__T7__STATE_2_evback(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EVOPEN: this.T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1513,6 +1761,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EVOPEN: this.T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
                     case EventId.EVBACK: this.T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1523,6 +1773,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EVOPEN: this.T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
                     case EventId.EVBACK: this.T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1532,6 +1784,8 @@ public class Spec2Sm
                 {
                     case EventId.EVCLOSE: this.T7__DEEP_HISTORY3__T7__STATE_3_evclose(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1540,6 +1794,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1551,6 +1807,8 @@ public class Spec2Sm
                     case EventId.EV4: this.T7__H1__OFF_ev4(); break;
                     case EventId.EV7: this.T7__H1__OFF_ev7(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1563,6 +1821,8 @@ public class Spec2Sm
                     case EventId.EV3: this.T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                     case EventId.EV4: this.T7__H1__OFF_ev4(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1575,6 +1835,8 @@ public class Spec2Sm
                     case EventId.EV3: this.T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                     case EventId.EV4: this.T7__H1__OFF_ev4(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1586,6 +1848,8 @@ public class Spec2Sm
                     case EventId.EV3: this.T7__H1__OFF_ev3(); break; // First ancestor handler for this event
                     case EventId.EV4: this.T7__H1__OFF_ev4(); break; // First ancestor handler for this event
                     case EventId.EV7: this.T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1595,6 +1859,8 @@ public class Spec2Sm
                 {
                     case EventId.EV6: this.T7__H1__ON_ev6(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1605,6 +1871,8 @@ public class Spec2Sm
                     case EventId.EV1: this.T7__H1__ON1_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__H1__ON_ev6(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1615,6 +1883,8 @@ public class Spec2Sm
                     case EventId.EV1: this.T7__H1__ON2_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__H1__ON_ev6(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1625,6 +1895,8 @@ public class Spec2Sm
                     case EventId.EV1: this.T7__H1__ON3_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV6: this.T7__H1__ON_ev6(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1633,6 +1905,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1642,6 +1916,8 @@ public class Spec2Sm
                 {
                     case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1652,6 +1928,8 @@ public class Spec2Sm
                     case EventId.EV2: this.T7__INITIAL1__G_ev2(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1662,6 +1940,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
                     case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1672,6 +1952,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
                     case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1682,6 +1964,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV2: this.T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
                     case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1693,6 +1977,8 @@ public class Spec2Sm
                     case EventId.EV3: this.T7__INITIAL1__S1_ev3(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1706,6 +1992,8 @@ public class Spec2Sm
                     case EventId.EV4: this.TEST7_DECIDE_ev4(); break;
                     case EventId.EV5: this.TEST7_DECIDE_ev5(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1714,6 +2002,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1724,6 +2014,8 @@ public class Spec2Sm
                     case EventId.EV5: this.TEST8_ROOT_ev5(); break;
                     case EventId.EV3: this.TEST8_ROOT_ev3(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1735,6 +2027,8 @@ public class Spec2Sm
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV3: this.TEST8_ROOT_ev3(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1746,6 +2040,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST8_G_ev2(); break; // First ancestor handler for this event
                     case EventId.EV3: this.TEST8_ROOT_ev3(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1757,6 +2053,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST8_G_ev2(); break; // First ancestor handler for this event
                     case EventId.EV3: this.TEST8_ROOT_ev3(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1768,6 +2066,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST8_G_ev2(); break; // First ancestor handler for this event
                     case EventId.EV3: this.TEST8_ROOT_ev3(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1780,6 +2080,8 @@ public class Spec2Sm
                     case EventId.EV6: this.TEST8_S1_ev6(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1788,6 +2090,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1799,6 +2103,8 @@ public class Spec2Sm
                     case EventId.EV2: this.TEST9_DECIDE_ev2(); break;
                     case EventId.EV3: this.TEST9_DECIDE_ev3(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1808,6 +2114,8 @@ public class Spec2Sm
                 {
                     case EventId.EV5: this.TEST9_ROOT_ev5(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1817,6 +2125,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1826,6 +2136,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1835,6 +2147,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1844,6 +2158,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1853,6 +2169,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1863,6 +2181,8 @@ public class Spec2Sm
                     case EventId.EV1: this.TEST9_S1_1_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV5: this.TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1871,6 +2191,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1879,6 +2201,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1888,6 +2212,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.TEST9A_S1_1_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1897,6 +2223,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.TEST9B_ROOT_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1906,6 +2234,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1915,6 +2245,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1924,6 +2256,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1933,6 +2267,8 @@ public class Spec2Sm
                 {
                     case EventId.EV1: this.TEST9B_ROOT__A4_ev1(); break;
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1942,6 +2278,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1951,6 +2289,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1960,6 +2300,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1969,6 +2311,8 @@ public class Spec2Sm
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
                     case EventId.EV1: this.TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1977,6 +2321,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
             
@@ -1985,6 +2331,8 @@ public class Spec2Sm
                 switch (eventId)
                 {
                     case EventId.DO: this.ROOT_do(); break; // First ancestor handler for this event
+                    
+                    default: break; // to avoid "unused enumeration value in switch" warning
                 }
                 break;
         }
@@ -4047,7 +4395,7 @@ public class Spec2Sm
     {
         // TEST10_A.<ChoicePoint>() behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>()."); } TransitionTo(TEST10_A.<ChoicePoint>())
-        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 1")))
+        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 1")))
         {
             // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -4083,7 +4431,7 @@ public class Spec2Sm
     {
         // TEST10_A.<ChoicePoint>() behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
-        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 1")))
+        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 1")))
         {
             // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -4119,7 +4467,7 @@ public class Spec2Sm
     {
         // TEST10_A.<ChoicePoint>(a) behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
-        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 1")))
+        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 1")))
         {
             // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -4234,7 +4582,7 @@ public class Spec2Sm
         if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State TEST10_ROOT: check behavior `EV5 / { count++; }`.\", true)")))
         {
             // Step 1: execute action `count++;`
-            ____GilData_EchoStringVoid("this.vars.count++;");
+            ____GilData_EchoStringVoid("this->vars.count++;");
         } // end of behavior for TEST10_ROOT
         
         // No ancestor handles this event.
@@ -4284,7 +4632,7 @@ public class Spec2Sm
             
             // TEST10_G.<ChoicePoint>(1) behavior
             // uml: 1. [count <= 0] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0."); } TransitionTo(TEST10_G_S0)
-            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count <= 0")))
+            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count <= 0")))
             {
                 // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -4300,7 +4648,7 @@ public class Spec2Sm
             
             // TEST10_G.<ChoicePoint>(1) behavior
             // uml: [count <= 2] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower)."); } TransitionTo(TEST10_G.<ChoicePoint>(lower))
-            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count <= 2")))
+            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count <= 2")))
             {
                 // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -4312,7 +4660,7 @@ public class Spec2Sm
                 
                 // TEST10_G.<ChoicePoint>(lower) behavior
                 // uml: [count <=1] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1."); } TransitionTo(TEST10_G_S1)
-                if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count <=1")))
+                if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count <=1")))
                 {
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
@@ -4355,7 +4703,7 @@ public class Spec2Sm
                 
                 // TEST10_G.<ChoicePoint>(upper) behavior
                 // uml: [count <= 3] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3."); } TransitionTo(TEST10_G_S3)
-                if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count <= 3")))
+                if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count <= 3")))
                 {
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
@@ -4594,7 +4942,7 @@ public class Spec2Sm
             
             // TEST10_A.<InitialState> behavior
             // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>()."); } TransitionTo(TEST10_A.<ChoicePoint>())
-            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 1")))
+            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 1")))
             {
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -4611,13 +4959,13 @@ public class Spec2Sm
             
             // TEST10_A.<InitialState> behavior
             // uml: [count == 0] / { trace("Transition action `count++;` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");\ncount++; } TransitionTo(TEST10_A.<ChoicePoint>())
-            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 0")))
+            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 0")))
             {
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `count++;` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");\ncount++;`.
                 ____GilData_EchoStringVoid("trace(\"Transition action `count++;` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().\");");
-                ____GilData_EchoStringVoid("this.vars.count++;");
+                ____GilData_EchoStringVoid("this->vars.count++;");
                 
                 // Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
                 // TEST10_A.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
@@ -6744,12 +7092,12 @@ public class Spec2Sm
         if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1++; }`.\", true)")))
         {
             // Step 1: execute action `auto_var_1++;`
-            ____GilData_EchoStringVoid("this.vars.auto_var_1++;");
+            ____GilData_EchoStringVoid("this->vars.auto_var_1++;");
         } // end of behavior for AUTO_VAR_TEST__S1
         
         // AUTO_VAR_TEST__S1 behavior
         // uml: 2. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", auto_var_1 == 2)] / { trace("Transition action `` for AUTO_VAR_TEST__S1 to AUTO_VAR_TEST__S2."); } TransitionTo(AUTO_VAR_TEST__S2)
-        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.\", this.vars.auto_var_1 == 2)")))
+        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.\", this->vars.auto_var_1 == 2)")))
         {
             // Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition).
             this.AUTO_VAR_TEST__S1_exit();
@@ -7188,12 +7536,12 @@ public class Spec2Sm
         if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State NORMAL__S1: check behavior `1. EV1 / { count++; }`.\", true)")))
         {
             // Step 1: execute action `count++;`
-            ____GilData_EchoStringVoid("this.vars.count++;");
+            ____GilData_EchoStringVoid("this->vars.count++;");
         } // end of behavior for NORMAL__S1
         
         // NORMAL__S1 behavior
         // uml: 2. EV1 [trace_guard("State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.", count >= 2)] / { trace("Transition action `` for NORMAL__S1 to NORMAL__S2."); } TransitionTo(NORMAL__S2)
-        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.\", this.vars.count >= 2)")))
+        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.\", this->vars.count >= 2)")))
         {
             // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
             this.NORMAL__S1_exit();
@@ -10581,7 +10929,7 @@ public class Spec2Sm
         if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State T7__INITIAL1__PARENT: check behavior `EV5 / { count++; }`.\", true)")))
         {
             // Step 1: execute action `count++;`
-            ____GilData_EchoStringVoid("this.vars.count++;");
+            ____GilData_EchoStringVoid("this->vars.count++;");
         } // end of behavior for T7__INITIAL1__PARENT
         
         // No ancestor handles this event.
@@ -10661,7 +11009,7 @@ public class Spec2Sm
     {
         // T7__INITIAL1__G.<InitialState> behavior
         // uml: [count == 1] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1."); } TransitionTo(T7__INITIAL1__G_S1)
-        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 1")))
+        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 1")))
         {
             // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -10677,7 +11025,7 @@ public class Spec2Sm
         
         // T7__INITIAL1__G.<InitialState> behavior
         // uml: [count == 2] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2."); } TransitionTo(T7__INITIAL1__G_S2)
-        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 2")))
+        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 2")))
         {
             // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -11173,7 +11521,7 @@ public class Spec2Sm
         if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State TEST8_ROOT: check behavior `EV5 / { count++; }`.\", true)")))
         {
             // Step 1: execute action `count++;`
-            ____GilData_EchoStringVoid("this.vars.count++;");
+            ____GilData_EchoStringVoid("this->vars.count++;");
         } // end of behavior for TEST8_ROOT
         
         // No ancestor handles this event.
@@ -11253,7 +11601,7 @@ public class Spec2Sm
     {
         // TEST8_G.<EntryPoint>(1) behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1."); } TransitionTo(TEST8_G_S1)
-        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 1")))
+        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 1")))
         {
             // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -11269,7 +11617,7 @@ public class Spec2Sm
         
         // TEST8_G.<EntryPoint>(1) behavior
         // uml: [count == 2] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2."); } TransitionTo(TEST8_G_S2)
-        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 2")))
+        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 2")))
         {
             // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -11308,7 +11656,7 @@ public class Spec2Sm
             
             // Step 2: Transition action: `trace("Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).");\ncount += 0;`.
             ____GilData_EchoStringVoid("trace(\"Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).\");");
-            ____GilData_EchoStringVoid("this.vars.count += 0;");
+            ____GilData_EchoStringVoid("this->vars.count += 0;");
             
             // Step 3: Enter/move towards transition target `TEST8_G.<EntryPoint>(1)`.
             // TEST8_G.<EntryPoint>(1) is a pseudo state and cannot have an `enter` trigger.
@@ -11461,7 +11809,7 @@ public class Spec2Sm
         if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State TEST8_S1: check behavior `2. EV1 / { count++; /* shouldn't run */ }`.\", true)")))
         {
             // Step 1: execute action `count++; /* shouldn't run */`
-            ____GilData_EchoStringVoid("this.vars.count++; /* shouldn't run */");
+            ____GilData_EchoStringVoid("this->vars.count++; /* shouldn't run */");
         } // end of behavior for TEST8_S1
         
         // No ancestor handles this event.
@@ -11647,7 +11995,7 @@ public class Spec2Sm
                 
                 // Step 2: Transition action: `trace("Transition action `count = 0;` for TEST9A_ROOT.<InitialState> to TEST9A_S1.");\ncount = 0;`.
                 ____GilData_EchoStringVoid("trace(\"Transition action `count = 0;` for TEST9A_ROOT.<InitialState> to TEST9A_S1.\");");
-                ____GilData_EchoStringVoid("this.vars.count = 0;");
+                ____GilData_EchoStringVoid("this->vars.count = 0;");
                 
                 // Step 3: Enter/move towards transition target `TEST9A_S1`.
                 this.TEST9A_S1_enter();
@@ -11719,7 +12067,7 @@ public class Spec2Sm
         if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State TEST9_ROOT: check behavior `EV5 / { count++; }`.\", true)")))
         {
             // Step 1: execute action `count++;`
-            ____GilData_EchoStringVoid("this.vars.count++;");
+            ____GilData_EchoStringVoid("this->vars.count++;");
         } // end of behavior for TEST9_ROOT
         
         // No ancestor handles this event.
@@ -11924,7 +12272,7 @@ public class Spec2Sm
             
             // TEST9_S1.<ExitPoint>(1) behavior
             // uml: [count == 4] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S4."); } TransitionTo(TEST9_G_S4)
-            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 4")))
+            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 4")))
             {
                 // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 this.TEST9_S1_exit();
@@ -11941,7 +12289,7 @@ public class Spec2Sm
             
             // TEST9_S1.<ExitPoint>(1) behavior
             // uml: [count == 1] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S1."); } TransitionTo(TEST9_G_S1)
-            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 1")))
+            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 1")))
             {
                 // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 this.TEST9_S1_exit();
@@ -11958,7 +12306,7 @@ public class Spec2Sm
             
             // TEST9_S1.<ExitPoint>(1) behavior
             // uml: [count == 2] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S2."); } TransitionTo(TEST9_G_S2)
-            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this.vars.count == 2")))
+            if (____GilData_VarArgsToBool(____GilData_EchoStringBool("this->vars.count == 2")))
             {
                 // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 this.TEST9_S1_exit();
@@ -12087,7 +12435,7 @@ public class Spec2Sm
         
         // TEST9A_S1_1 behavior
         // uml: enter [trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.", count == 0)] / { clear_output(); }
-        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.\", this.vars.count == 0)")))
+        if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.\", this->vars.count == 0)")))
         {
             // Step 1: execute action `clear_output();`
             ____GilData_EchoStringVoid("trace(\"IGNORE_OUTPUT_BEFORE_THIS\");");
@@ -12108,7 +12456,7 @@ public class Spec2Sm
         if (____GilData_VarArgsToBool(____GilData_EchoStringBool("trace_guard(\"State TEST9A_S1_1: check behavior `exit / { count = 100; }`.\", true)")))
         {
             // Step 1: execute action `count = 100;`
-            ____GilData_EchoStringVoid("this.vars.count = 100;");
+            ____GilData_EchoStringVoid("this->vars.count = 100;");
         } // end of behavior for TEST9A_S1_1
         
         this.stateId = StateId.TEST9A_S1;
@@ -12138,7 +12486,7 @@ public class Spec2Sm
                 
                 // Step 2: Transition action: `trace("Transition action `count++;` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.");\ncount++;`.
                 ____GilData_EchoStringVoid("trace(\"Transition action `count++;` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.\");");
-                ____GilData_EchoStringVoid("this.vars.count++;");
+                ____GilData_EchoStringVoid("this->vars.count++;");
                 
                 // Step 3: Enter/move towards transition target `TEST9A_S1`.
                 // Already in target. No entering required.
