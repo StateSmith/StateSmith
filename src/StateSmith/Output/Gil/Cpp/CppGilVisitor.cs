@@ -5,7 +5,6 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 using System.Text;
 using StateSmith.Common;
-using Microsoft.CodeAnalysis.Formatting;
 using System.Linq;
 using System;
 
@@ -68,12 +67,10 @@ public class CppGilVisitor : CSharpSyntaxWalker
         renderingHeader = true;
         sb = hFileSb;
         this.DefaultVisit(transpilerHelper.root);
-        FormatOutput(sb);
 
         renderingHeader = false;
         sb = cFileSb;
         this.DefaultVisit(transpilerHelper.root);
-        FormatOutput(sb);
 
         OutputFileBottomSections();
     }
@@ -164,16 +161,6 @@ public class CppGilVisitor : CSharpSyntaxWalker
         classDepth--;
     }
 
-    private static void FormatOutput(StringBuilder sb)
-    {
-        var outputCode = sb.ToString();
-        sb.Clear();
-
-        // note: we don't use the regular `NormalizeWhitespace()` as it tightens all code up, and actually messes up some indentation.
-        outputCode = Formatter.Format(CSharpSyntaxTree.ParseText(outputCode).GetRoot(), new AdhocWorkspace()).ToFullString();
-        sb.Append(outputCode);
-    }
-
     public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
     {
         base.VisitEnumDeclaration(node);
@@ -189,9 +176,9 @@ public class CppGilVisitor : CSharpSyntaxWalker
         if (node.IsConst())
         {
             VisitToken(node.GetFirstToken()); // should be 'public' or 'private'
-            sb.Append("enum\n    {\n    ");
+            sb.Append("enum\n    {\n        ");
             Visit(node.Declaration.Variables.Single());
-            sb.Append("\n};\n");
+            sb.Append("\n    };\n");    // todolow - get proper indentation setting
             return;
         }
 
@@ -450,10 +437,9 @@ public class CppGilVisitor : CSharpSyntaxWalker
             return;
         }
 
-        this.VisitLeadingTrivia(token);
-
         string tokenText = token.Text;
-        //bool skipTrailing = false;
+        bool visitTrailingTrivia = true;
+        bool visitLeadingTrivia = true;
 
         if (renderingHeader)
         {
@@ -468,8 +454,11 @@ public class CppGilVisitor : CSharpSyntaxWalker
             switch ((SyntaxKind)token.RawKind)
             {
                 case SyntaxKind.PrivateKeyword:
+                case SyntaxKind.PublicKeyword:
                 case SyntaxKind.StaticKeyword:
-                case SyntaxKind.PublicKeyword: tokenText = ""; break;
+                    visitTrailingTrivia = false;
+                    tokenText = "";
+                    break;
             }
         }
 
@@ -478,8 +467,17 @@ public class CppGilVisitor : CSharpSyntaxWalker
             case SyntaxKind.EnumKeyword: tokenText += " class"; break;
         }
 
+        if (visitLeadingTrivia)
+        {
+            this.VisitLeadingTrivia(token);
+        }
+
         sb.Append(tokenText);
-        this.VisitTrailingTrivia(token);
+
+        if (visitTrailingTrivia)
+        {
+            this.VisitTrailingTrivia(token);
+        }
     }
 
     public override void VisitTrivia(SyntaxTrivia trivia)
