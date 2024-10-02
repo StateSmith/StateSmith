@@ -13,7 +13,7 @@ public class GccCompilation : ICompilation
     public GccCompilation(CCompRequest request)
     {
         workingDirectory = request.WorkingDirectory;
-        CCompUtils.GccClangCompile(request, command: "gcc");
+        CCompUtils.GccClangCompile(request, CCompilerId.GCC);
     }
 
     public SimpleProcess RunExecutable(string runArgs = "")

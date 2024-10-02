@@ -4,6 +4,9 @@ using System.IO;
 
 namespace StateSmithTest.Processes.CComp;
 
+/// <summary>
+/// This doesn't work yet. It's a work in progress. We don't need it right now anyway.
+/// </summary>
 public class MsvcCompilation : ICompilation
 {
     const string createdExecutableName = "a.exe";
@@ -19,6 +22,7 @@ public class MsvcCompilation : ICompilation
         SimpleProcess process = CCompUtils.SetupDefaultProcess(request, command: "cl");
 
         AddArgs(process, request);
+        CCompUtils.AddIncludePathsArgs(process, request);
         CCompUtils.AddSourceFilesArgs(process, request);
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
     }

@@ -1,7 +1,5 @@
 #nullable enable
 
-using System.IO;
-
 namespace StateSmithTest.Processes.CComp;
 
 public class WslGccCompilation : ICompilation
@@ -15,7 +13,7 @@ public class WslGccCompilation : ICompilation
     public WslGccCompilation(CCompRequest request)
     {
         workingDirectory = request.WorkingDirectory;
-        SimpleProcess process = CCompUtils.GccClangSetup(request, command: "gcc");
+        SimpleProcess process = CCompUtils.GccClangSetup(request, CCompilerId.GCC);
         process.RequireLinux();
         process.RunWithExtraAttemptForWsl(timeoutMs: 8000);
     }

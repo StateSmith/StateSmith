@@ -1,14 +1,14 @@
 #include <stdio.h>
+#include "helper.h"
 
 class Spec2SmBase {
 protected:
 
     void trace(const char* msg) {
-        printf("%s\n", msg);
+        ::trace(msg);
     }
 
     bool trace_guard(const char* msg, bool guard) {
-        trace(msg);
-        return guard;
+        return ::trace_guard(msg, guard);
     }
 };

@@ -25,8 +25,10 @@ public class SharedCompilationFixture
 
         this.compilation = new CCompilerMux().Compile(new CCompRequest()
         {
+            IsCpp = true,
             WorkingDirectory = OutputDirectory,
-            SourceFiles = ["main.cpp", "Spec2Sm.cpp"],
+            SourceFiles = ["../../lang-helpers/c/helper.c", "main.cpp", "Spec2Sm.cpp"],
+            IncludePaths = ["../../lang-helpers/c"],
             Flags = [
                 // we disable `unused-function` warning because some states are intentionally unreachable
                 CCompRequest.FlagId.IgnoreUnusedFunctions,
