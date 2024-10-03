@@ -321,6 +321,17 @@ public:
     // Thread safe.
     static char const * eventIdToString(EventId id);
 
+    void user_class_code_example()
+    {
+        // your code here
+    }
+
+private:
+    void private_user_class_code_example()
+    {
+        // your code here
+    }
+
 
 // ################################### PRIVATE MEMBERS ###################################
 private:

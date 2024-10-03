@@ -50,6 +50,21 @@ public class SharedCompilationFixture
                 uint8_t count;
             ";
 
+        string IRenderConfigCpp.ClassCode => """
+
+                void user_class_code_example()
+                {
+                    // your code here
+                }
+
+            private:
+                void private_user_class_code_example()
+                {
+                    // your code here
+                }
+            
+            """;
+
         string IRenderConfigCpp.BaseClassCode => "public Spec2SmBase";
 
         string IRenderConfig.AutoExpandedVars => "uint8_t auto_var_1;";

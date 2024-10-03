@@ -152,7 +152,6 @@ public class CppGilVisitor : CSharpSyntaxWalker
             VisitTrailingTrivia(node.Identifier);
 
             list.VisitUpTo(node.OpenBraceToken, including: true);
-            sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.ClassCode);  // append class code after open brace token
 
             // sort remaining members by public/private
 
@@ -169,6 +168,13 @@ public class CppGilVisitor : CSharpSyntaxWalker
                 {
                     Visit(item);
                 }
+            }
+
+            if (classDepth == 1 && !String.IsNullOrWhiteSpace(cppObjs.renderConfigCpp.ClassCode))
+            {
+                string classCode = cppObjs.renderConfigCpp.ClassCode;
+                //classCode = StringUtils.Indent(classCode, cppObjs.codeStyleSettings.Indent1);
+                sb.Append(classCode);
             }
 
             if (privateMembers.Any())

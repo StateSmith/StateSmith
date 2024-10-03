@@ -86,7 +86,7 @@ public class RenderConfigCppVars
 
         NameSpace = Process(config.NameSpace);
 
-        ClassCode = Process(config.ClassCode);
+        ClassCode = config.ClassCode;
         BaseClassCode = Process(config.BaseClassCode);
 
         CFileExtension = config.CFileExtension.Trim();
