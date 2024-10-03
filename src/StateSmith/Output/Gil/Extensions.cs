@@ -111,6 +111,12 @@ public static class Extensions
         return node.Modifiers.HasModifier(SyntaxKind.ConstKeyword);
     }
 
+    public static bool IsPublic(this MemberDeclarationSyntax? node)
+    {
+        if (node == null) return false;
+        return node.Modifiers.HasModifier(SyntaxKind.PublicKeyword);
+    }
+
     public static bool IsStatic(this FieldDeclarationSyntax? node)
     {
         if (node == null) return false;

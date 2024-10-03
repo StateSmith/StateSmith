@@ -25,6 +25,16 @@ public class WalkableChildSyntaxList
 
     }
 
+    public int GetIndex()
+    {
+        return index;
+    }
+
+    public void SetIndex(int index)
+    {
+        this.index = index;
+    }
+
     public void VisitUpTo(Predicate<SyntaxNodeOrToken> test, bool including = false)
     {
         while (index < nodeOrTokenList.Count)

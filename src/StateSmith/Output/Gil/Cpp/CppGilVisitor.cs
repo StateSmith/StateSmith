@@ -7,6 +7,8 @@ using System.Text;
 using StateSmith.Common;
 using System.Linq;
 using System;
+using StateSmith.Input.Antlr4;
+using Microsoft.Extensions.Primitives;
 
 namespace StateSmith.Output.Gil.Cpp;
 
@@ -152,8 +154,36 @@ public class CppGilVisitor : CSharpSyntaxWalker
             list.VisitUpTo(node.OpenBraceToken, including: true);
             sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.ClassCode);  // append class code after open brace token
 
-            list.VisitRest();
+            // sort remaining members by public/private
 
+            var members = node.ChildNodes().OfType<MemberDeclarationSyntax>();
+            var publicMembers = members.Where(f => f.IsPublic());
+            var privateMembers = members.Where(f => !f.IsPublic());
+
+            var classLevelIndent = StringUtils.FindIndent(node.OpenBraceToken.LeadingTrivia.ToFullString());
+
+            if (publicMembers.Any())
+            {
+                sb.Append($"{classLevelIndent}public:\n");
+                foreach (var item in publicMembers)
+                {
+                    Visit(item);
+                }
+            }
+
+            if (privateMembers.Any())
+            {
+                sb.AppendLine($"{classLevelIndent}");
+                sb.AppendLine($"{classLevelIndent}");
+                sb.AppendLine($"{classLevelIndent}// ################################### PRIVATE MEMBERS ###################################");
+                sb.AppendLine($"{classLevelIndent}private:");
+                foreach (var item in privateMembers)
+                {
+                    Visit(item);
+                }
+            }
+
+            VisitToken(node.CloseBraceToken);
             StringUtils.EraseTrailingWhitespace(sb);
             sb.Append(";\n");
         }
@@ -445,8 +475,11 @@ public class CppGilVisitor : CSharpSyntaxWalker
         {
             switch ((SyntaxKind)token.RawKind)
             {
-                case SyntaxKind.PublicKeyword: tokenText += ":"; break;
-                case SyntaxKind.PrivateKeyword: tokenText += ":"; break;
+                case SyntaxKind.PublicKeyword:
+                case SyntaxKind.PrivateKeyword:
+                    visitTrailingTrivia = false;
+                    tokenText = "";
+                    break;
             }
         }
         else

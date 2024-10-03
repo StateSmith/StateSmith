@@ -8,7 +8,8 @@
 // Generated state machine
 class Spec2Sm : public Spec2SmBase
 {
-    public: enum class EventId
+public:
+    enum class EventId
     {
         DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
         EV1 = 1,
@@ -27,12 +28,12 @@ class Spec2Sm : public Spec2SmBase
         EVSTEP = 14,
     };
     
-    public: enum
+    enum
     {
         EventIdCount = 15
     };
     
-    public: enum class StateId
+    enum class StateId
     {
         ROOT = 0,
         PREFIXING = 1,
@@ -210,12 +211,12 @@ class Spec2Sm : public Spec2SmBase
         USELESS = 173,
     };
     
-    public: enum
+    enum
     {
         StateIdCount = 174
     };
     
-    public: enum class T7__H1__ON_HistoryId
+    enum class T7__H1__ON_HistoryId
     {
         T7__H1__ON1 = 0, // default transition
         T7__H1__ON2 = 1,
@@ -223,7 +224,7 @@ class Spec2Sm : public Spec2SmBase
     };
 
     
-    public: enum class T7__H1__OFF_HistoryId
+    enum class T7__H1__OFF_HistoryId
     {
         T7__H1__OFF1 = 0, // default transition
         T7__H1__OFF2 = 1,
@@ -231,7 +232,7 @@ class Spec2Sm : public Spec2SmBase
     };
 
     
-    public: enum class T7__DH1__ALIENS_DETECTED_HistoryId
+    enum class T7__DH1__ALIENS_DETECTED_HistoryId
     {
         T7__DH1__SNOWBALL_FIGHT = 0, // default transition
         T7__DH1__GIVE_COOKIES = 1,
@@ -241,7 +242,7 @@ class Spec2Sm : public Spec2SmBase
     };
 
     
-    public: enum class T7__DH1__GET_BACKUP_HistoryId
+    enum class T7__DH1__GET_BACKUP_HistoryId
     {
         T7__DH1__GET_BACKUP_CHOICEPOINT = 0, // default transition
         T7__DH1__HERO = 1,
@@ -250,7 +251,7 @@ class Spec2Sm : public Spec2SmBase
     };
 
     
-    public: enum class T7__DH1__BUILD_HistoryId
+    enum class T7__DH1__BUILD_HistoryId
     {
         T7__DH1__TOY = 0, // default transition
         T7__DH1__TOOL = 1,
@@ -265,7 +266,7 @@ class Spec2Sm : public Spec2SmBase
     };
 
     
-    public: enum class T7__DEEP_HISTORY2__T7__state_0_HistoryId
+    enum class T7__DEEP_HISTORY2__T7__state_0_HistoryId
     {
         T7__DEEP_HISTORY2__T7__STATE_1 = 0, // default transition
         T7__DEEP_HISTORY2__T7__STATE_2 = 1,
@@ -274,7 +275,7 @@ class Spec2Sm : public Spec2SmBase
     };
 
     
-    public: enum class T7__DEEP_HISTORY3__T7__state_0_HistoryId
+    enum class T7__DEEP_HISTORY3__T7__state_0_HistoryId
     {
         T7__DEEP_HISTORY3__T7__STATE_1 = 0, // default transition
         T7__DEEP_HISTORY3__T7__STATE_2 = 1,
@@ -282,1922 +283,1927 @@ class Spec2Sm : public Spec2SmBase
 
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
-    public: StateId stateId;
+    StateId stateId;
     
     // State machine variables. Can be used for inputs, outputs, user variables...
-    public: class Vars : public Spec2SmBase
+    class Vars : public Spec2SmBase
     {
-        public: T7__H1__ON_HistoryId T7__H1__ON_history;
-        public: T7__H1__OFF_HistoryId T7__H1__OFF_history;
-        public: T7__DH1__ALIENS_DETECTED_HistoryId T7__DH1__ALIENS_DETECTED_history;
-        public: T7__DH1__GET_BACKUP_HistoryId T7__DH1__GET_BACKUP_history;
-        public: T7__DH1__BUILD_HistoryId T7__DH1__BUILD_history;
-        public: T7__DEEP_HISTORY2__T7__state_0_HistoryId T7__DEEP_HISTORY2__T7__state_0_history;
-        public: T7__DEEP_HISTORY3__T7__state_0_HistoryId T7__DEEP_HISTORY3__T7__state_0_history;
+    public:
+        T7__H1__ON_HistoryId T7__H1__ON_history;
+        T7__H1__OFF_HistoryId T7__H1__OFF_history;
+        T7__DH1__ALIENS_DETECTED_HistoryId T7__DH1__ALIENS_DETECTED_history;
+        T7__DH1__GET_BACKUP_HistoryId T7__DH1__GET_BACKUP_history;
+        T7__DH1__BUILD_HistoryId T7__DH1__BUILD_history;
+        T7__DEEP_HISTORY2__T7__state_0_HistoryId T7__DEEP_HISTORY2__T7__state_0_history;
+        T7__DEEP_HISTORY3__T7__state_0_HistoryId T7__DEEP_HISTORY3__T7__state_0_history;
         uint8_t count;
         uint8_t auto_var_1;
     };
     
     // Variables. Can be used for inputs, outputs, user variables...
-    public: Vars vars {};
+    Vars vars {};
     
     // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
-    public: Spec2Sm()
+    Spec2Sm()
     {
     }
     
     // Starts the state machine. Must be called before dispatching events. Not thread safe.
-    public: void start();
+    void start();
     
     // Dispatches an event to the state machine. Not thread safe.
     // Note! This function assumes that the `eventId` parameter is valid.
-    public: void dispatchEvent(EventId eventId);
+    void dispatchEvent(EventId eventId);
+    
+    // Thread safe.
+    static char const * stateIdToString(StateId id);
+    
+    // Thread safe.
+    static char const * eventIdToString(EventId id);
+
+
+// ################################### PRIVATE MEMBERS ###################################
+private:
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    private: void exitUpToStateHandler(StateId desiredState);
+    void exitUpToStateHandler(StateId desiredState);
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void ROOT_enter();
+    void ROOT_enter();
     
-    private: void ROOT_do();
+    void ROOT_do();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING_enter();
+    void PREFIXING_enter();
     
-    private: void PREFIXING_exit();
+    void PREFIXING_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__ORDER_MENU
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__ORDER_MENU_enter();
+    void PREFIXING__ORDER_MENU_enter();
     
-    private: void PREFIXING__ORDER_MENU_exit();
+    void PREFIXING__ORDER_MENU_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__BEVERAGE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__OM__BEVERAGE_enter();
+    void PREFIXING__OM__BEVERAGE_enter();
     
-    private: void PREFIXING__OM__BEVERAGE_exit();
+    void PREFIXING__OM__BEVERAGE_exit();
     
-    private: void PREFIXING__OM__BEVERAGE_ev2();
+    void PREFIXING__OM__BEVERAGE_ev2();
     
-    private: void PREFIXING__OM__BEVERAGE_InitialState_transition();
+    void PREFIXING__OM__BEVERAGE_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__BEV__NONE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__OM__BEV__NONE_enter();
+    void PREFIXING__OM__BEV__NONE_enter();
     
-    private: void PREFIXING__OM__BEV__NONE_exit();
+    void PREFIXING__OM__BEV__NONE_exit();
     
-    private: void PREFIXING__OM__BEV__NONE_ev1();
+    void PREFIXING__OM__BEV__NONE_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__BEV__TEA
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__OM__BEV__TEA_enter();
+    void PREFIXING__OM__BEV__TEA_enter();
     
-    private: void PREFIXING__OM__BEV__TEA_exit();
+    void PREFIXING__OM__BEV__TEA_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__BEV__WATER
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__OM__BEV__WATER_enter();
+    void PREFIXING__OM__BEV__WATER_enter();
     
-    private: void PREFIXING__OM__BEV__WATER_exit();
+    void PREFIXING__OM__BEV__WATER_exit();
     
-    private: void PREFIXING__OM__BEV__WATER_ev1();
+    void PREFIXING__OM__BEV__WATER_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__VEG
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__OM__VEG_enter();
+    void PREFIXING__OM__VEG_enter();
     
-    private: void PREFIXING__OM__VEG_exit();
+    void PREFIXING__OM__VEG_exit();
     
-    private: void PREFIXING__OM__VEG_ev2();
+    void PREFIXING__OM__VEG_ev2();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__VEG__NONE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__OM__VEG__NONE_enter();
+    void PREFIXING__OM__VEG__NONE_enter();
     
-    private: void PREFIXING__OM__VEG__NONE_exit();
+    void PREFIXING__OM__VEG__NONE_exit();
     
-    private: void PREFIXING__OM__VEG__NONE_ev1();
+    void PREFIXING__OM__VEG__NONE_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__VEG__POTATO
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__OM__VEG__POTATO_enter();
+    void PREFIXING__OM__VEG__POTATO_enter();
     
-    private: void PREFIXING__OM__VEG__POTATO_exit();
+    void PREFIXING__OM__VEG__POTATO_exit();
     
-    private: void PREFIXING__OM__VEG__POTATO_ev1();
+    void PREFIXING__OM__VEG__POTATO_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__VEG__YAM
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__OM__VEG__YAM_enter();
+    void PREFIXING__OM__VEG__YAM_enter();
     
-    private: void PREFIXING__OM__VEG__YAM_exit();
+    void PREFIXING__OM__VEG__YAM_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX_enter();
+    void PREFIXING__SHOWS_MANUAL_PREFIX_enter();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX_exit();
+    void PREFIXING__SHOWS_MANUAL_PREFIX_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter();
     
-    private: void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit();
+    void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state SPEC2SM__DECIDE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void SPEC2SM__DECIDE_enter();
+    void SPEC2SM__DECIDE_enter();
     
-    private: void SPEC2SM__DECIDE_exit();
+    void SPEC2SM__DECIDE_exit();
     
-    private: void SPEC2SM__DECIDE_do();
+    void SPEC2SM__DECIDE_do();
     
-    private: void SPEC2SM__DECIDE_ev1();
+    void SPEC2SM__DECIDE_ev1();
     
-    private: void SPEC2SM__DECIDE_ev10();
+    void SPEC2SM__DECIDE_ev10();
     
-    private: void SPEC2SM__DECIDE_ev2();
+    void SPEC2SM__DECIDE_ev2();
     
-    private: void SPEC2SM__DECIDE_ev3();
+    void SPEC2SM__DECIDE_ev3();
     
-    private: void SPEC2SM__DECIDE_ev4();
+    void SPEC2SM__DECIDE_ev4();
     
-    private: void SPEC2SM__DECIDE_ev5();
+    void SPEC2SM__DECIDE_ev5();
     
-    private: void SPEC2SM__DECIDE_ev6();
+    void SPEC2SM__DECIDE_ev6();
     
-    private: void SPEC2SM__DECIDE_ev7();
+    void SPEC2SM__DECIDE_ev7();
     
-    private: void SPEC2SM__DECIDE_ev8();
+    void SPEC2SM__DECIDE_ev8();
     
-    private: void SPEC2SM__DECIDE_ev9();
+    void SPEC2SM__DECIDE_ev9();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST1_DO_EVENT_TESTING
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST1_DO_EVENT_TESTING_enter();
+    void TEST1_DO_EVENT_TESTING_enter();
     
-    private: void TEST1_DO_EVENT_TESTING_exit();
+    void TEST1_DO_EVENT_TESTING_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST1_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST1_ROOT_enter();
+    void TEST1_ROOT_enter();
     
-    private: void TEST1_ROOT_exit();
+    void TEST1_ROOT_exit();
     
-    private: void TEST1_ROOT_do();
+    void TEST1_ROOT_do();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST1_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST1_S1_enter();
+    void TEST1_S1_enter();
     
-    private: void TEST1_S1_exit();
+    void TEST1_S1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST1_S1_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST1_S1_1_enter();
+    void TEST1_S1_1_enter();
     
-    private: void TEST1_S1_1_exit();
+    void TEST1_S1_1_exit();
     
-    private: void TEST1_S1_1_do();
+    void TEST1_S1_1_do();
     
-    private: void TEST1_S1_1_ev1();
+    void TEST1_S1_1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST1_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST1_S2_enter();
+    void TEST1_S2_enter();
     
-    private: void TEST1_S2_exit();
+    void TEST1_S2_exit();
     
-    private: void TEST1_S2_do();
+    void TEST1_S2_do();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_CHOICE_POINT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST10_CHOICE_POINT_enter();
+    void TEST10_CHOICE_POINT_enter();
     
-    private: void TEST10_CHOICE_POINT_exit();
+    void TEST10_CHOICE_POINT_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_A
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST10_A_enter();
+    void TEST10_A_enter();
     
-    private: void TEST10_A_exit();
+    void TEST10_A_exit();
     
-    private: void TEST10_A_ChoicePoint__transition();
+    void TEST10_A_ChoicePoint__transition();
     
-    private: void TEST10_A_ChoicePoint__transition_kid_index3();
+    void TEST10_A_ChoicePoint__transition_kid_index3();
     
-    private: void TEST10_A_ChoicePoint_a__transition();
+    void TEST10_A_ChoicePoint_a__transition();
     
-    private: void TEST10_A_ChoicePoint_a__transition_kid_index5();
+    void TEST10_A_ChoicePoint_a__transition_kid_index5();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_A_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST10_A_1_enter();
+    void TEST10_A_1_enter();
     
-    private: void TEST10_A_1_exit();
+    void TEST10_A_1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST10_ROOT_enter();
+    void TEST10_ROOT_enter();
     
-    private: void TEST10_ROOT_exit();
+    void TEST10_ROOT_exit();
     
-    private: void TEST10_ROOT_ev5();
+    void TEST10_ROOT_ev5();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_G
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST10_G_enter();
+    void TEST10_G_enter();
     
-    private: void TEST10_G_exit();
+    void TEST10_G_exit();
     
-    private: void TEST10_G_ChoicePoint__transition();
+    void TEST10_G_ChoicePoint__transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_G_S0
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST10_G_S0_enter();
+    void TEST10_G_S0_enter();
     
-    private: void TEST10_G_S0_exit();
+    void TEST10_G_S0_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_G_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST10_G_S1_enter();
+    void TEST10_G_S1_enter();
     
-    private: void TEST10_G_S1_exit();
+    void TEST10_G_S1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_G_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST10_G_S2_enter();
+    void TEST10_G_S2_enter();
     
-    private: void TEST10_G_S2_exit();
+    void TEST10_G_S2_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_G_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST10_G_S3_enter();
+    void TEST10_G_S3_enter();
     
-    private: void TEST10_G_S3_exit();
+    void TEST10_G_S3_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST10_S1_enter();
+    void TEST10_S1_enter();
     
-    private: void TEST10_S1_exit();
+    void TEST10_S1_exit();
     
-    private: void TEST10_S1_ev1();
+    void TEST10_S1_ev1();
     
-    private: void TEST10_S1_ev10();
+    void TEST10_S1_ev10();
     
-    private: void TEST10_S1_ev2();
+    void TEST10_S1_ev2();
     
-    private: void TEST10_S1_ev3();
+    void TEST10_S1_ev3();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_S4
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST10_S4_enter();
+    void TEST10_S4_enter();
     
-    private: void TEST10_S4_exit();
+    void TEST10_S4_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST2_REGULAR_EVENT_TESTING
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST2_REGULAR_EVENT_TESTING_enter();
+    void TEST2_REGULAR_EVENT_TESTING_enter();
     
-    private: void TEST2_REGULAR_EVENT_TESTING_exit();
+    void TEST2_REGULAR_EVENT_TESTING_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST2_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST2_ROOT_enter();
+    void TEST2_ROOT_enter();
     
-    private: void TEST2_ROOT_exit();
+    void TEST2_ROOT_exit();
     
-    private: void TEST2_ROOT_do();
+    void TEST2_ROOT_do();
     
-    private: void TEST2_ROOT_ev1();
+    void TEST2_ROOT_ev1();
     
-    private: void TEST2_ROOT_ev2();
+    void TEST2_ROOT_ev2();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST2_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST2_S1_enter();
+    void TEST2_S1_enter();
     
-    private: void TEST2_S1_exit();
+    void TEST2_S1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST2_S1_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST2_S1_1_enter();
+    void TEST2_S1_1_enter();
     
-    private: void TEST2_S1_1_exit();
+    void TEST2_S1_1_exit();
     
-    private: void TEST2_S1_1_do();
+    void TEST2_S1_1_do();
     
-    private: void TEST2_S1_1_ev1();
+    void TEST2_S1_1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST2_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST2_S2_enter();
+    void TEST2_S2_enter();
     
-    private: void TEST2_S2_exit();
+    void TEST2_S2_exit();
     
-    private: void TEST2_S2_ev1();
+    void TEST2_S2_ev1();
     
-    private: void TEST2_S2_ev2();
+    void TEST2_S2_ev2();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST3_BEHAVIOR_ORDERING
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST3_BEHAVIOR_ORDERING_enter();
+    void TEST3_BEHAVIOR_ORDERING_enter();
     
-    private: void TEST3_BEHAVIOR_ORDERING_exit();
+    void TEST3_BEHAVIOR_ORDERING_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST3_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST3_ROOT_enter();
+    void TEST3_ROOT_enter();
     
-    private: void TEST3_ROOT_exit();
+    void TEST3_ROOT_exit();
     
-    private: void TEST3_ROOT_ev1();
+    void TEST3_ROOT_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST3_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST3_S1_enter();
+    void TEST3_S1_enter();
     
-    private: void TEST3_S1_exit();
+    void TEST3_S1_exit();
     
-    private: void TEST3_S1_ev1();
+    void TEST3_S1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST3_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST3_S2_enter();
+    void TEST3_S2_enter();
     
-    private: void TEST3_S2_exit();
+    void TEST3_S2_exit();
     
-    private: void TEST3_S2_ev1();
+    void TEST3_S2_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST3_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST3_S3_enter();
+    void TEST3_S3_enter();
     
-    private: void TEST3_S3_exit();
+    void TEST3_S3_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_PARENT_CHILD_TRANSITIONS
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4_PARENT_CHILD_TRANSITIONS_enter();
+    void TEST4_PARENT_CHILD_TRANSITIONS_enter();
     
-    private: void TEST4_PARENT_CHILD_TRANSITIONS_exit();
+    void TEST4_PARENT_CHILD_TRANSITIONS_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_B_AND_OTHERS
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4_B_AND_OTHERS_enter();
+    void TEST4_B_AND_OTHERS_enter();
     
-    private: void TEST4_B_AND_OTHERS_exit();
+    void TEST4_B_AND_OTHERS_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4B_LOCAL
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4B_LOCAL_enter();
+    void TEST4B_LOCAL_enter();
     
-    private: void TEST4B_LOCAL_exit();
+    void TEST4B_LOCAL_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4B_G
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4B_G_enter();
+    void TEST4B_G_enter();
     
-    private: void TEST4B_G_exit();
+    void TEST4B_G_exit();
     
-    private: void TEST4B_G_ev1();
+    void TEST4B_G_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4B_G_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4B_G_1_enter();
+    void TEST4B_G_1_enter();
     
-    private: void TEST4B_G_1_exit();
+    void TEST4B_G_1_exit();
     
-    private: void TEST4B_G_1_ev2();
+    void TEST4B_G_1_ev2();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4C_LOCAL_TO_ALIAS
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4C_LOCAL_TO_ALIAS_enter();
+    void TEST4C_LOCAL_TO_ALIAS_enter();
     
-    private: void TEST4C_LOCAL_TO_ALIAS_exit();
+    void TEST4C_LOCAL_TO_ALIAS_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4C_G
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4C_G_enter();
+    void TEST4C_G_enter();
     
-    private: void TEST4C_G_exit();
+    void TEST4C_G_exit();
     
-    private: void TEST4C_G_ev1();
+    void TEST4C_G_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4C_G_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4C_G_1_enter();
+    void TEST4C_G_1_enter();
     
-    private: void TEST4C_G_1_exit();
+    void TEST4C_G_1_exit();
     
-    private: void TEST4C_G_1_ev2();
+    void TEST4C_G_1_ev2();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4D_EXTERNAL
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4D_EXTERNAL_enter();
+    void TEST4D_EXTERNAL_enter();
     
-    private: void TEST4D_EXTERNAL_exit();
+    void TEST4D_EXTERNAL_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4D_G
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4D_G_enter();
+    void TEST4D_G_enter();
     
-    private: void TEST4D_G_exit();
+    void TEST4D_G_exit();
     
-    private: void TEST4D_G_ev1();
+    void TEST4D_G_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4D_G_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4D_G_1_enter();
+    void TEST4D_G_1_enter();
     
-    private: void TEST4D_G_1_exit();
+    void TEST4D_G_1_exit();
     
-    private: void TEST4D_G_1_ev2();
+    void TEST4D_G_1_ev2();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_DECIDE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4_DECIDE_enter();
+    void TEST4_DECIDE_enter();
     
-    private: void TEST4_DECIDE_exit();
+    void TEST4_DECIDE_exit();
     
-    private: void TEST4_DECIDE_ev1();
+    void TEST4_DECIDE_ev1();
     
-    private: void TEST4_DECIDE_ev2();
+    void TEST4_DECIDE_ev2();
     
-    private: void TEST4_DECIDE_ev3();
+    void TEST4_DECIDE_ev3();
     
-    private: void TEST4_DECIDE_ev4();
+    void TEST4_DECIDE_ev4();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4_ROOT_enter();
+    void TEST4_ROOT_enter();
     
-    private: void TEST4_ROOT_exit();
+    void TEST4_ROOT_exit();
     
-    private: void TEST4_ROOT_ev2();
+    void TEST4_ROOT_ev2();
     
-    private: void TEST4_ROOT_ev3();
+    void TEST4_ROOT_ev3();
     
-    private: void TEST4_ROOT_ev4();
+    void TEST4_ROOT_ev4();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4_S1_enter();
+    void TEST4_S1_enter();
     
-    private: void TEST4_S1_exit();
+    void TEST4_S1_exit();
     
-    private: void TEST4_S1_ev1();
+    void TEST4_S1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S10
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4_S10_enter();
+    void TEST4_S10_enter();
     
-    private: void TEST4_S10_exit();
+    void TEST4_S10_exit();
     
-    private: void TEST4_S10_ev4();
+    void TEST4_S10_ev4();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S10_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4_S10_1_enter();
+    void TEST4_S10_1_enter();
     
-    private: void TEST4_S10_1_exit();
+    void TEST4_S10_1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4_S2_enter();
+    void TEST4_S2_enter();
     
-    private: void TEST4_S2_exit();
+    void TEST4_S2_exit();
     
-    private: void TEST4_S2_ev1();
+    void TEST4_S2_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S20
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4_S20_enter();
+    void TEST4_S20_enter();
     
-    private: void TEST4_S20_exit();
+    void TEST4_S20_exit();
     
-    private: void TEST4_S20_ev4();
+    void TEST4_S20_ev4();
     
-    private: void TEST4_S20_InitialState_transition();
+    void TEST4_S20_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S20_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4_S20_1_enter();
+    void TEST4_S20_1_enter();
     
-    private: void TEST4_S20_1_exit();
+    void TEST4_S20_1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST4_S3_enter();
+    void TEST4_S3_enter();
     
-    private: void TEST4_S3_exit();
+    void TEST4_S3_exit();
     
-    private: void TEST4_S3_ev1();
+    void TEST4_S3_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter();
+    void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter();
     
-    private: void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit();
+    void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST5_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST5_ROOT_enter();
+    void TEST5_ROOT_enter();
     
-    private: void TEST5_ROOT_exit();
+    void TEST5_ROOT_exit();
     
-    private: void TEST5_ROOT_ev2();
+    void TEST5_ROOT_ev2();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST5_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST5_S1_enter();
+    void TEST5_S1_enter();
     
-    private: void TEST5_S1_exit();
+    void TEST5_S1_exit();
     
-    private: void TEST5_S1_ev1();
+    void TEST5_S1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST5_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST5_S2_enter();
+    void TEST5_S2_enter();
     
-    private: void TEST5_S2_exit();
+    void TEST5_S2_exit();
     
-    private: void TEST5_S2_ev1();
+    void TEST5_S2_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST5_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST5_S3_enter();
+    void TEST5_S3_enter();
     
-    private: void TEST5_S3_exit();
+    void TEST5_S3_exit();
     
-    private: void TEST5_S3_ev1();
+    void TEST5_S3_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST6_VARS_EXPANSIONS
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST6_VARS_EXPANSIONS_enter();
+    void TEST6_VARS_EXPANSIONS_enter();
     
-    private: void TEST6_VARS_EXPANSIONS_exit();
+    void TEST6_VARS_EXPANSIONS_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST6_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST6_ROOT_enter();
+    void TEST6_ROOT_enter();
     
-    private: void TEST6_ROOT_exit();
+    void TEST6_ROOT_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state AUTO_VAR_TEST
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void AUTO_VAR_TEST_enter();
+    void AUTO_VAR_TEST_enter();
     
-    private: void AUTO_VAR_TEST_exit();
+    void AUTO_VAR_TEST_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state AUTO_VAR_TEST__S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void AUTO_VAR_TEST__S1_enter();
+    void AUTO_VAR_TEST__S1_enter();
     
-    private: void AUTO_VAR_TEST__S1_exit();
+    void AUTO_VAR_TEST__S1_exit();
     
-    private: void AUTO_VAR_TEST__S1_ev1();
+    void AUTO_VAR_TEST__S1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state AUTO_VAR_TEST__S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void AUTO_VAR_TEST__S2_enter();
+    void AUTO_VAR_TEST__S2_enter();
     
-    private: void AUTO_VAR_TEST__S2_exit();
+    void AUTO_VAR_TEST__S2_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state META_EXPANSIONS
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void META_EXPANSIONS_enter();
+    void META_EXPANSIONS_enter();
     
-    private: void META_EXPANSIONS_exit();
+    void META_EXPANSIONS_exit();
     
-    private: void META_EXPANSIONS_ChoicePoint_2__transition();
+    void META_EXPANSIONS_ChoicePoint_2__transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state META_EXPANSIONS__S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void META_EXPANSIONS__S1_enter();
+    void META_EXPANSIONS__S1_enter();
     
-    private: void META_EXPANSIONS__S1_exit();
+    void META_EXPANSIONS__S1_exit();
     
-    private: void META_EXPANSIONS__S1_ev1();
+    void META_EXPANSIONS__S1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state META_EXPANSIONS__S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void META_EXPANSIONS__S2_enter();
+    void META_EXPANSIONS__S2_enter();
     
-    private: void META_EXPANSIONS__S2_exit();
+    void META_EXPANSIONS__S2_exit();
     
-    private: void META_EXPANSIONS__S2_ev1();
+    void META_EXPANSIONS__S2_ev1();
     
-    private: void META_EXPANSIONS__S2_ev2();
+    void META_EXPANSIONS__S2_ev2();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void S3_enter();
+    void S3_enter();
     
-    private: void S3_exit();
+    void S3_exit();
     
-    private: void S3_ev1();
+    void S3_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state S4
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void S4_enter();
+    void S4_enter();
     
-    private: void S4_exit();
+    void S4_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state S5
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void S5_enter();
+    void S5_enter();
     
-    private: void S5_exit();
+    void S5_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state NORMAL
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void NORMAL_enter();
+    void NORMAL_enter();
     
-    private: void NORMAL_exit();
+    void NORMAL_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state NORMAL__S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void NORMAL__S1_enter();
+    void NORMAL__S1_enter();
     
-    private: void NORMAL__S1_exit();
+    void NORMAL__S1_exit();
     
-    private: void NORMAL__S1_ev1();
+    void NORMAL__S1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state NORMAL__S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void NORMAL__S2_enter();
+    void NORMAL__S2_enter();
     
-    private: void NORMAL__S2_exit();
+    void NORMAL__S2_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST6_VARS_EXPANSIONS__DECIDE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST6_VARS_EXPANSIONS__DECIDE_enter();
+    void TEST6_VARS_EXPANSIONS__DECIDE_enter();
     
-    private: void TEST6_VARS_EXPANSIONS__DECIDE_exit();
+    void TEST6_VARS_EXPANSIONS__DECIDE_exit();
     
-    private: void TEST6_VARS_EXPANSIONS__DECIDE_ev1();
+    void TEST6_VARS_EXPANSIONS__DECIDE_ev1();
     
-    private: void TEST6_VARS_EXPANSIONS__DECIDE_ev2();
+    void TEST6_VARS_EXPANSIONS__DECIDE_ev2();
     
-    private: void TEST6_VARS_EXPANSIONS__DECIDE_ev3();
+    void TEST6_VARS_EXPANSIONS__DECIDE_ev3();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST7_INITIAL_OR_HISTORY
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST7_INITIAL_OR_HISTORY_enter();
+    void TEST7_INITIAL_OR_HISTORY_enter();
     
-    private: void TEST7_INITIAL_OR_HISTORY_exit();
+    void TEST7_INITIAL_OR_HISTORY_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST7
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST7_enter();
+    void TEST7_enter();
     
-    private: void TEST7_exit();
+    void TEST7_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY1_enter();
+    void T7__DEEP_HISTORY1_enter();
     
-    private: void T7__DEEP_HISTORY1_exit();
+    void T7__DEEP_HISTORY1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__SANTAS_WORKSHOP
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__SANTAS_WORKSHOP_enter();
+    void T7__DH1__SANTAS_WORKSHOP_enter();
     
-    private: void T7__DH1__SANTAS_WORKSHOP_exit();
+    void T7__DH1__SANTAS_WORKSHOP_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__ALIENS_DETECTED
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__ALIENS_DETECTED_enter();
+    void T7__DH1__ALIENS_DETECTED_enter();
     
-    private: void T7__DH1__ALIENS_DETECTED_exit();
+    void T7__DH1__ALIENS_DETECTED_exit();
     
-    private: void T7__DH1__ALIENS_DETECTED_ev8();
+    void T7__DH1__ALIENS_DETECTED_ev8();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__GET_BACKUP
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__GET_BACKUP_enter();
+    void T7__DH1__GET_BACKUP_enter();
     
-    private: void T7__DH1__GET_BACKUP_exit();
+    void T7__DH1__GET_BACKUP_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__HERO
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__HERO_enter();
+    void T7__DH1__HERO_enter();
     
-    private: void T7__DH1__HERO_exit();
+    void T7__DH1__HERO_exit();
     
-    private: void T7__DH1__HERO_InitialState_transition();
+    void T7__DH1__HERO_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__CALL_BATMAN
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__CALL_BATMAN_enter();
+    void T7__DH1__CALL_BATMAN_enter();
     
-    private: void T7__DH1__CALL_BATMAN_exit();
+    void T7__DH1__CALL_BATMAN_exit();
     
-    private: void T7__DH1__CALL_BATMAN_ev1();
+    void T7__DH1__CALL_BATMAN_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__CALL_THOR
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__CALL_THOR_enter();
+    void T7__DH1__CALL_THOR_enter();
     
-    private: void T7__DH1__CALL_THOR_exit();
+    void T7__DH1__CALL_THOR_exit();
     
-    private: void T7__DH1__CALL_THOR_ev1();
+    void T7__DH1__CALL_THOR_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__LOCAL_HELP
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__LOCAL_HELP_enter();
+    void T7__DH1__LOCAL_HELP_enter();
     
-    private: void T7__DH1__LOCAL_HELP_exit();
+    void T7__DH1__LOCAL_HELP_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__BUDDY_ELF
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__BUDDY_ELF_enter();
+    void T7__DH1__BUDDY_ELF_enter();
     
-    private: void T7__DH1__BUDDY_ELF_exit();
+    void T7__DH1__BUDDY_ELF_exit();
     
-    private: void T7__DH1__BUDDY_ELF_ev1();
+    void T7__DH1__BUDDY_ELF_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__POLAR_BEARS
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__POLAR_BEARS_enter();
+    void T7__DH1__POLAR_BEARS_enter();
     
-    private: void T7__DH1__POLAR_BEARS_exit();
+    void T7__DH1__POLAR_BEARS_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__GIVE_COOKIES
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__GIVE_COOKIES_enter();
+    void T7__DH1__GIVE_COOKIES_enter();
     
-    private: void T7__DH1__GIVE_COOKIES_exit();
+    void T7__DH1__GIVE_COOKIES_exit();
     
-    private: void T7__DH1__GIVE_COOKIES_ev1();
+    void T7__DH1__GIVE_COOKIES_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__SNOWBALL_FIGHT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__SNOWBALL_FIGHT_enter();
+    void T7__DH1__SNOWBALL_FIGHT_enter();
     
-    private: void T7__DH1__SNOWBALL_FIGHT_exit();
+    void T7__DH1__SNOWBALL_FIGHT_exit();
     
-    private: void T7__DH1__SNOWBALL_FIGHT_ev1();
+    void T7__DH1__SNOWBALL_FIGHT_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__BUILD
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__BUILD_enter();
+    void T7__DH1__BUILD_enter();
     
-    private: void T7__DH1__BUILD_exit();
+    void T7__DH1__BUILD_exit();
     
-    private: void T7__DH1__BUILD_ev6();
+    void T7__DH1__BUILD_ev6();
     
-    private: void T7__DH1__BUILD_ev7();
+    void T7__DH1__BUILD_ev7();
     
-    private: void T7__DH1__BUILD_InitialState_transition();
+    void T7__DH1__BUILD_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__TOOL
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__TOOL_enter();
+    void T7__DH1__TOOL_enter();
     
-    private: void T7__DH1__TOOL_exit();
+    void T7__DH1__TOOL_exit();
     
-    private: void T7__DH1__TOOL_ev2();
+    void T7__DH1__TOOL_ev2();
     
-    private: void T7__DH1__TOOL_InitialState_transition();
+    void T7__DH1__TOOL_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__CIRCULAR_SAW
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__CIRCULAR_SAW_enter();
+    void T7__DH1__CIRCULAR_SAW_enter();
     
-    private: void T7__DH1__CIRCULAR_SAW_exit();
+    void T7__DH1__CIRCULAR_SAW_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__IMPACT_DRILL
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__IMPACT_DRILL_enter();
+    void T7__DH1__IMPACT_DRILL_enter();
     
-    private: void T7__DH1__IMPACT_DRILL_exit();
+    void T7__DH1__IMPACT_DRILL_exit();
     
-    private: void T7__DH1__IMPACT_DRILL_ev1();
+    void T7__DH1__IMPACT_DRILL_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__TOY
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__TOY_enter();
+    void T7__DH1__TOY_enter();
     
-    private: void T7__DH1__TOY_exit();
+    void T7__DH1__TOY_exit();
     
-    private: void T7__DH1__TOY_ev1();
+    void T7__DH1__TOY_ev1();
     
-    private: void T7__DH1__TOY_InitialState_transition();
+    void T7__DH1__TOY_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__GLOW_WORM
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__GLOW_WORM_enter();
+    void T7__DH1__GLOW_WORM_enter();
     
-    private: void T7__DH1__GLOW_WORM_exit();
+    void T7__DH1__GLOW_WORM_exit();
     
-    private: void T7__DH1__GLOW_WORM_ev1();
+    void T7__DH1__GLOW_WORM_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__RACE_CAR
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__RACE_CAR_enter();
+    void T7__DH1__RACE_CAR_enter();
     
-    private: void T7__DH1__RACE_CAR_exit();
+    void T7__DH1__RACE_CAR_exit();
     
-    private: void T7__DH1__RACE_CAR_ev1();
+    void T7__DH1__RACE_CAR_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__ROBOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__ROBOT_enter();
+    void T7__DH1__ROBOT_enter();
     
-    private: void T7__DH1__ROBOT_exit();
+    void T7__DH1__ROBOT_exit();
     
-    private: void T7__DH1__ROBOT_InitialState_transition();
+    void T7__DH1__ROBOT_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__BATTLEBOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__BATTLEBOT_enter();
+    void T7__DH1__BATTLEBOT_enter();
     
-    private: void T7__DH1__BATTLEBOT_exit();
+    void T7__DH1__BATTLEBOT_exit();
     
-    private: void T7__DH1__BATTLEBOT_ev1();
+    void T7__DH1__BATTLEBOT_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__WALL_E
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__WALL_E_enter();
+    void T7__DH1__WALL_E_enter();
     
-    private: void T7__DH1__WALL_E_exit();
+    void T7__DH1__WALL_E_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__TEDDY_BEAR
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DH1__TEDDY_BEAR_enter();
+    void T7__DH1__TEDDY_BEAR_enter();
     
-    private: void T7__DH1__TEDDY_BEAR_exit();
+    void T7__DH1__TEDDY_BEAR_exit();
     
-    private: void T7__DH1__TEDDY_BEAR_ev1();
+    void T7__DH1__TEDDY_BEAR_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY2_enter();
+    void T7__DEEP_HISTORY2_enter();
     
-    private: void T7__DEEP_HISTORY2_exit();
+    void T7__DEEP_HISTORY2_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_0
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_0_enter();
+    void T7__DEEP_HISTORY2__T7__STATE_0_enter();
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_0_exit();
+    void T7__DEEP_HISTORY2__T7__STATE_0_exit();
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_0_evopen();
+    void T7__DEEP_HISTORY2__T7__STATE_0_evopen();
     
-    private: void T7__DEEP_HISTORY2__T7__state_0_InitialState_transition();
+    void T7__DEEP_HISTORY2__T7__state_0_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_1_enter();
+    void T7__DEEP_HISTORY2__T7__STATE_1_enter();
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_1_exit();
+    void T7__DEEP_HISTORY2__T7__STATE_1_exit();
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_1_evstep();
+    void T7__DEEP_HISTORY2__T7__STATE_1_evstep();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_2_enter();
+    void T7__DEEP_HISTORY2__T7__STATE_2_enter();
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_2_exit();
+    void T7__DEEP_HISTORY2__T7__STATE_2_exit();
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_2_evback();
+    void T7__DEEP_HISTORY2__T7__STATE_2_evback();
     
-    private: void T7__DEEP_HISTORY2__T7__state_2_InitialState_transition();
+    void T7__DEEP_HISTORY2__T7__state_2_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_6
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_6_enter();
+    void T7__DEEP_HISTORY2__T7__STATE_6_enter();
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_6_exit();
+    void T7__DEEP_HISTORY2__T7__STATE_6_exit();
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_6_evstep();
+    void T7__DEEP_HISTORY2__T7__STATE_6_evstep();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_9
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_9_enter();
+    void T7__DEEP_HISTORY2__T7__STATE_9_enter();
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_9_exit();
+    void T7__DEEP_HISTORY2__T7__STATE_9_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_3_enter();
+    void T7__DEEP_HISTORY2__T7__STATE_3_enter();
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_3_exit();
+    void T7__DEEP_HISTORY2__T7__STATE_3_exit();
     
-    private: void T7__DEEP_HISTORY2__T7__STATE_3_evclose();
+    void T7__DEEP_HISTORY2__T7__STATE_3_evclose();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY3_enter();
+    void T7__DEEP_HISTORY3_enter();
     
-    private: void T7__DEEP_HISTORY3_exit();
+    void T7__DEEP_HISTORY3_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_0
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_0_enter();
+    void T7__DEEP_HISTORY3__T7__STATE_0_enter();
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_0_exit();
+    void T7__DEEP_HISTORY3__T7__STATE_0_exit();
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_0_evopen();
+    void T7__DEEP_HISTORY3__T7__STATE_0_evopen();
     
-    private: void T7__DEEP_HISTORY3__T7__state_0_InitialState_transition();
+    void T7__DEEP_HISTORY3__T7__state_0_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_1_enter();
+    void T7__DEEP_HISTORY3__T7__STATE_1_enter();
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_1_exit();
+    void T7__DEEP_HISTORY3__T7__STATE_1_exit();
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_1_evstep();
+    void T7__DEEP_HISTORY3__T7__STATE_1_evstep();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_2_enter();
+    void T7__DEEP_HISTORY3__T7__STATE_2_enter();
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_2_exit();
+    void T7__DEEP_HISTORY3__T7__STATE_2_exit();
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_2_evback();
+    void T7__DEEP_HISTORY3__T7__STATE_2_evback();
     
-    private: void T7__DEEP_HISTORY3__T7__state_2_InitialState_transition();
+    void T7__DEEP_HISTORY3__T7__state_2_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_6
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_6_enter();
+    void T7__DEEP_HISTORY3__T7__STATE_6_enter();
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_6_exit();
+    void T7__DEEP_HISTORY3__T7__STATE_6_exit();
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_6_evstep();
+    void T7__DEEP_HISTORY3__T7__STATE_6_evstep();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_9
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_9_enter();
+    void T7__DEEP_HISTORY3__T7__STATE_9_enter();
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_9_exit();
+    void T7__DEEP_HISTORY3__T7__STATE_9_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_3_enter();
+    void T7__DEEP_HISTORY3__T7__STATE_3_enter();
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_3_exit();
+    void T7__DEEP_HISTORY3__T7__STATE_3_exit();
     
-    private: void T7__DEEP_HISTORY3__T7__STATE_3_evclose();
+    void T7__DEEP_HISTORY3__T7__STATE_3_evclose();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__HISTORY1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__HISTORY1_enter();
+    void T7__HISTORY1_enter();
     
-    private: void T7__HISTORY1_exit();
+    void T7__HISTORY1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__OFF
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__H1__OFF_enter();
+    void T7__H1__OFF_enter();
     
-    private: void T7__H1__OFF_exit();
+    void T7__H1__OFF_exit();
     
-    private: void T7__H1__OFF_ev3();
+    void T7__H1__OFF_ev3();
     
-    private: void T7__H1__OFF_ev4();
+    void T7__H1__OFF_ev4();
     
-    private: void T7__H1__OFF_ev7();
+    void T7__H1__OFF_ev7();
     
-    private: void T7__H1__OFF_InitialState_transition();
+    void T7__H1__OFF_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__OFF1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__H1__OFF1_enter();
+    void T7__H1__OFF1_enter();
     
-    private: void T7__H1__OFF1_exit();
+    void T7__H1__OFF1_exit();
     
-    private: void T7__H1__OFF1_ev1();
+    void T7__H1__OFF1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__OFF2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__H1__OFF2_enter();
+    void T7__H1__OFF2_enter();
     
-    private: void T7__H1__OFF2_exit();
+    void T7__H1__OFF2_exit();
     
-    private: void T7__H1__OFF2_ev1();
+    void T7__H1__OFF2_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__OFF3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__H1__OFF3_enter();
+    void T7__H1__OFF3_enter();
     
-    private: void T7__H1__OFF3_exit();
+    void T7__H1__OFF3_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__ON
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__H1__ON_enter();
+    void T7__H1__ON_enter();
     
-    private: void T7__H1__ON_exit();
+    void T7__H1__ON_exit();
     
-    private: void T7__H1__ON_ev6();
+    void T7__H1__ON_ev6();
     
-    private: void T7__H1__ON_InitialState_transition();
+    void T7__H1__ON_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__ON1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__H1__ON1_enter();
+    void T7__H1__ON1_enter();
     
-    private: void T7__H1__ON1_exit();
+    void T7__H1__ON1_exit();
     
-    private: void T7__H1__ON1_ev1();
+    void T7__H1__ON1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__ON2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__H1__ON2_enter();
+    void T7__H1__ON2_enter();
     
-    private: void T7__H1__ON2_exit();
+    void T7__H1__ON2_exit();
     
-    private: void T7__H1__ON2_ev1();
+    void T7__H1__ON2_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__ON3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__H1__ON3_enter();
+    void T7__H1__ON3_enter();
     
-    private: void T7__H1__ON3_exit();
+    void T7__H1__ON3_exit();
     
-    private: void T7__H1__ON3_ev1();
+    void T7__H1__ON3_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__INITIAL1_enter();
+    void T7__INITIAL1_enter();
     
-    private: void T7__INITIAL1_exit();
+    void T7__INITIAL1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__PARENT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__INITIAL1__PARENT_enter();
+    void T7__INITIAL1__PARENT_enter();
     
-    private: void T7__INITIAL1__PARENT_exit();
+    void T7__INITIAL1__PARENT_exit();
     
-    private: void T7__INITIAL1__PARENT_ev5();
+    void T7__INITIAL1__PARENT_ev5();
     
-    private: void T7__INITIAL1__PARENT_InitialState_transition();
+    void T7__INITIAL1__PARENT_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__G
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__INITIAL1__G_enter();
+    void T7__INITIAL1__G_enter();
     
-    private: void T7__INITIAL1__G_exit();
+    void T7__INITIAL1__G_exit();
     
-    private: void T7__INITIAL1__G_ev2();
+    void T7__INITIAL1__G_ev2();
     
-    private: void T7__INITIAL1__G_InitialState_transition();
+    void T7__INITIAL1__G_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__G_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__INITIAL1__G_S1_enter();
+    void T7__INITIAL1__G_S1_enter();
     
-    private: void T7__INITIAL1__G_S1_exit();
+    void T7__INITIAL1__G_S1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__G_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__INITIAL1__G_S2_enter();
+    void T7__INITIAL1__G_S2_enter();
     
-    private: void T7__INITIAL1__G_S2_exit();
+    void T7__INITIAL1__G_S2_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__G_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__INITIAL1__G_S3_enter();
+    void T7__INITIAL1__G_S3_enter();
     
-    private: void T7__INITIAL1__G_S3_exit();
+    void T7__INITIAL1__G_S3_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void T7__INITIAL1__S1_enter();
+    void T7__INITIAL1__S1_enter();
     
-    private: void T7__INITIAL1__S1_exit();
+    void T7__INITIAL1__S1_exit();
     
-    private: void T7__INITIAL1__S1_ev1();
+    void T7__INITIAL1__S1_ev1();
     
-    private: void T7__INITIAL1__S1_ev3();
+    void T7__INITIAL1__S1_ev3();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST7_DECIDE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST7_DECIDE_enter();
+    void TEST7_DECIDE_enter();
     
-    private: void TEST7_DECIDE_exit();
+    void TEST7_DECIDE_exit();
     
-    private: void TEST7_DECIDE_ev1();
+    void TEST7_DECIDE_ev1();
     
-    private: void TEST7_DECIDE_ev2();
+    void TEST7_DECIDE_ev2();
     
-    private: void TEST7_DECIDE_ev3();
+    void TEST7_DECIDE_ev3();
     
-    private: void TEST7_DECIDE_ev4();
+    void TEST7_DECIDE_ev4();
     
-    private: void TEST7_DECIDE_ev5();
+    void TEST7_DECIDE_ev5();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_ENTRY_CHOICE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST8_ENTRY_CHOICE_enter();
+    void TEST8_ENTRY_CHOICE_enter();
     
-    private: void TEST8_ENTRY_CHOICE_exit();
+    void TEST8_ENTRY_CHOICE_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST8_ROOT_enter();
+    void TEST8_ROOT_enter();
     
-    private: void TEST8_ROOT_exit();
+    void TEST8_ROOT_exit();
     
-    private: void TEST8_ROOT_ev3();
+    void TEST8_ROOT_ev3();
     
-    private: void TEST8_ROOT_ev5();
+    void TEST8_ROOT_ev5();
     
-    private: void TEST8_ROOT_EntryPoint_1__transition();
+    void TEST8_ROOT_EntryPoint_1__transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_G
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST8_G_enter();
+    void TEST8_G_enter();
     
-    private: void TEST8_G_exit();
+    void TEST8_G_exit();
     
-    private: void TEST8_G_ev2();
+    void TEST8_G_ev2();
     
-    private: void TEST8_G_EntryPoint_1__transition();
+    void TEST8_G_EntryPoint_1__transition();
     
-    private: void TEST8_G_EntryPoint_3__transition();
+    void TEST8_G_EntryPoint_3__transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_G_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST8_G_S1_enter();
+    void TEST8_G_S1_enter();
     
-    private: void TEST8_G_S1_exit();
+    void TEST8_G_S1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_G_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST8_G_S2_enter();
+    void TEST8_G_S2_enter();
     
-    private: void TEST8_G_S2_exit();
+    void TEST8_G_S2_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_G_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST8_G_S3_enter();
+    void TEST8_G_S3_enter();
     
-    private: void TEST8_G_S3_exit();
+    void TEST8_G_S3_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST8_S1_enter();
+    void TEST8_S1_enter();
     
-    private: void TEST8_S1_exit();
+    void TEST8_S1_exit();
     
-    private: void TEST8_S1_ev1();
+    void TEST8_S1_ev1();
     
-    private: void TEST8_S1_ev3();
+    void TEST8_S1_ev3();
     
-    private: void TEST8_S1_ev6();
+    void TEST8_S1_ev6();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_EXIT_CHOICE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9_EXIT_CHOICE_enter();
+    void TEST9_EXIT_CHOICE_enter();
     
-    private: void TEST9_EXIT_CHOICE_exit();
+    void TEST9_EXIT_CHOICE_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_DECIDE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9_DECIDE_enter();
+    void TEST9_DECIDE_enter();
     
-    private: void TEST9_DECIDE_exit();
+    void TEST9_DECIDE_exit();
     
-    private: void TEST9_DECIDE_ev1();
+    void TEST9_DECIDE_ev1();
     
-    private: void TEST9_DECIDE_ev2();
+    void TEST9_DECIDE_ev2();
     
-    private: void TEST9_DECIDE_ev3();
+    void TEST9_DECIDE_ev3();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9_ROOT_enter();
+    void TEST9_ROOT_enter();
     
-    private: void TEST9_ROOT_exit();
+    void TEST9_ROOT_exit();
     
-    private: void TEST9_ROOT_ev5();
+    void TEST9_ROOT_ev5();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_G_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9_G_S1_enter();
+    void TEST9_G_S1_enter();
     
-    private: void TEST9_G_S1_exit();
+    void TEST9_G_S1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_G_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9_G_S2_enter();
+    void TEST9_G_S2_enter();
     
-    private: void TEST9_G_S2_exit();
+    void TEST9_G_S2_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_G_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9_G_S3_enter();
+    void TEST9_G_S3_enter();
     
-    private: void TEST9_G_S3_exit();
+    void TEST9_G_S3_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_G_S4
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9_G_S4_enter();
+    void TEST9_G_S4_enter();
     
-    private: void TEST9_G_S4_exit();
+    void TEST9_G_S4_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9_S1_enter();
+    void TEST9_S1_enter();
     
-    private: void TEST9_S1_exit();
+    void TEST9_S1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_S1_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9_S1_1_enter();
+    void TEST9_S1_1_enter();
     
-    private: void TEST9_S1_1_exit();
+    void TEST9_S1_1_exit();
     
-    private: void TEST9_S1_1_ev1();
+    void TEST9_S1_1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9A_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9A_ROOT_enter();
+    void TEST9A_ROOT_enter();
     
-    private: void TEST9A_ROOT_exit();
+    void TEST9A_ROOT_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9A_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9A_S1_enter();
+    void TEST9A_S1_enter();
     
-    private: void TEST9A_S1_exit();
+    void TEST9A_S1_exit();
     
-    private: void TEST9A_S1_InitialState_transition();
+    void TEST9A_S1_InitialState_transition();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9A_S1_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9A_S1_1_enter();
+    void TEST9A_S1_1_enter();
     
-    private: void TEST9A_S1_1_exit();
+    void TEST9A_S1_1_exit();
     
-    private: void TEST9A_S1_1_ev1();
+    void TEST9A_S1_1_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9B_ROOT_enter();
+    void TEST9B_ROOT_enter();
     
-    private: void TEST9B_ROOT_exit();
+    void TEST9B_ROOT_exit();
     
-    private: void TEST9B_ROOT_ev1();
+    void TEST9B_ROOT_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__A1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9B_ROOT__A1_enter();
+    void TEST9B_ROOT__A1_enter();
     
-    private: void TEST9B_ROOT__A1_exit();
+    void TEST9B_ROOT__A1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__A2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9B_ROOT__A2_enter();
+    void TEST9B_ROOT__A2_enter();
     
-    private: void TEST9B_ROOT__A2_exit();
+    void TEST9B_ROOT__A2_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__A3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9B_ROOT__A3_enter();
+    void TEST9B_ROOT__A3_enter();
     
-    private: void TEST9B_ROOT__A3_exit();
+    void TEST9B_ROOT__A3_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__A4
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9B_ROOT__A4_enter();
+    void TEST9B_ROOT__A4_enter();
     
-    private: void TEST9B_ROOT__A4_exit();
+    void TEST9B_ROOT__A4_exit();
     
-    private: void TEST9B_ROOT__A4_ev1();
+    void TEST9B_ROOT__A4_ev1();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__B1
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9B_ROOT__B1_enter();
+    void TEST9B_ROOT__B1_enter();
     
-    private: void TEST9B_ROOT__B1_exit();
+    void TEST9B_ROOT__B1_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__B2
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9B_ROOT__B2_enter();
+    void TEST9B_ROOT__B2_enter();
     
-    private: void TEST9B_ROOT__B2_exit();
+    void TEST9B_ROOT__B2_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__B3
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9B_ROOT__B3_enter();
+    void TEST9B_ROOT__B3_enter();
     
-    private: void TEST9B_ROOT__B3_exit();
+    void TEST9B_ROOT__B3_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__B4
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void TEST9B_ROOT__B4_enter();
+    void TEST9B_ROOT__B4_enter();
     
-    private: void TEST9B_ROOT__B4_exit();
+    void TEST9B_ROOT__B4_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state UNREACHABLE
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void UNREACHABLE_enter();
+    void UNREACHABLE_enter();
     
-    private: void UNREACHABLE_exit();
+    void UNREACHABLE_exit();
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state USELESS
     ////////////////////////////////////////////////////////////////////////////////
     
-    private: void USELESS_enter();
+    void USELESS_enter();
     
-    private: void USELESS_exit();
-    
-    // Thread safe.
-    public: static char const * stateIdToString(StateId id);
-    
-    // Thread safe.
-    public: static char const * eventIdToString(EventId id);
+    void USELESS_exit();
 };
