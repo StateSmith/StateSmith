@@ -109,9 +109,9 @@ public class SimpleProcess
         SetupCommandAndArgs();
         cmd.StartInfo.WorkingDirectory = WorkingDirectory;
 
-        //Console.WriteLine("cmd.StartInfo.ProgramPath: " + cmd.StartInfo.FileName);
-        //Console.WriteLine("cmd.StartInfo.Arguments: " + cmd.StartInfo.Arguments);
-        //Console.WriteLine("cmd.StartInfo.WorkingDirectory: " + cmd.StartInfo.WorkingDirectory);
+        Console.WriteLine("cmd.StartInfo.ProgramPath: " + cmd.StartInfo.FileName);
+        Console.WriteLine("cmd.StartInfo.Arguments: " + cmd.StartInfo.Arguments);
+        Console.WriteLine("cmd.StartInfo.WorkingDirectory: " + cmd.StartInfo.WorkingDirectory);
 
         cmd.StartInfo.RedirectStandardOutput = true;
         cmd.StartInfo.RedirectStandardError = true;

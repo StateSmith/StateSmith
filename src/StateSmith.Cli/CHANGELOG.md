@@ -6,6 +6,21 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
+---
+
+## [0.??]
+### Added
+- Add support for creating idiomatic `C++` projects
+  - https://github.com/StateSmith/StateSmith/issues/126
+
+### Upgrade StateSmith library version to `0.??`
+#### Added
+- Add support for idiomatic `Cpp` transpiler (only supports algorithm `Balanced2` right now).
+  - requires C++11 or later.
+  - https://github.com/StateSmith/StateSmith/issues/126
+
+---
+
 ## [0.15.0]
 ### Added
 - Add support for creating `TypeScript` projects

@@ -1,7 +1,6 @@
 using Xunit;
 using FluentAssertions;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace StateSmithTest.Output.C99;
 

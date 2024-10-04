@@ -78,12 +78,14 @@ public class TemplatePlantUmlMinimalNoCsx
             [RenderConfig.C]
             # CFileExtension = ".inc" # if you want to include sm in another file
             HFileIncludes = """
-                #include <stdint.h> // required for count var
+                #include <stdint.h> // for count var
                 """
             CFileIncludes = """
                 // #include "your_header_here.h"
                 """
             # IncludeGuardLabel = "{FILENAME}_H"
+
+            # More C settings are available. See docs.
 
             [SmRunnerSettings]
             transpilerId = "C99"
@@ -125,15 +127,66 @@ public class TemplatePlantUmlMinimalNoCsx
             CFileExtension = ".cpp"
             HFileExtension = ".hpp"
             HFileIncludes = """
-                #include <stdint.h> // required for count var
+                #include <stdint.h> // for count var
                 """
             CFileIncludes = """
                 // #include "your_header_here.h"
                 """
             # IncludeGuardLabel = "{FILENAME}_H"
 
+            # More C settings are available. See docs.
+
             [SmRunnerSettings]
             transpilerId = "C99"
+            '/
+            @enduml
+            """", outputCleanActual: true);
+        });
+
+        generator.GenerateFiles();
+
+        // make sure the calls were made
+        mockFileWriter.Received().Write("RocketSm.plantuml", Arg.Any<string>());
+    }
+
+    [Fact]
+    public void LangCpp()
+    {
+        settings.TargetLanguageId = TargetLanguageId.Cpp;
+        Generator generator = new(settings);
+        generator.tomlConfigType = TemplateLoader.TomlConfigType.Minimal;
+        generator.SetFileWriter(mockFileWriter);
+
+        // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
+        mockFileWriter.When(x => x.Write("RocketSm.plantuml", Arg.Any<string>())).Do(x => {
+            x.ArgAt<string>(1).ShouldBeShowDiff($$""""
+            {{Top}}
+
+            [RenderConfig]
+            FileTop = """
+                // Whatever you put in this `FileTop` section will end up 
+                // being printed at the top of every generated code file.
+                """
+            AutoExpandedVars = """
+                uint16_t count; // this var can be referenced in diagram
+                """
+
+            [RenderConfig.Cpp]
+            # HFileExtension = ".h"
+            # IncludeGuardLabel = "{FILENAME}_H"
+            # NameSpace = "MyNamespace"
+            # BaseClassCode = "public: MyUserBaseClass"
+            HFileIncludes = """
+                #include <stdint.h> // for count var
+                """
+            CFileIncludes = """
+                // #include "your_header_here.h"
+                """
+
+            # More Cpp settings are available. See docs.
+            
+            [SmRunnerSettings]
+            transpilerId = "Cpp"
             '/
             @enduml
             """", outputCleanActual: true);
@@ -173,6 +226,8 @@ public class TemplatePlantUmlMinimalNoCsx
             # BaseList = "MyUserBaseClass, IMyOtherUserInterface"
             # UseNullable = false
             # UsePartialClass = false
+
+            # More CSharp settings are available. See docs.
 
             [SmRunnerSettings]
             transpilerId = "CSharp"
@@ -214,6 +269,8 @@ public class TemplatePlantUmlMinimalNoCsx
             [RenderConfig.JavaScript]
             # ExtendsSuperClass = "MyUserBaseClass"
             # UseExportOnClass = true
+
+            # More JavaScript settings are available. See docs.
 
             [SmRunnerSettings]
             transpilerId = "JavaScript"
@@ -257,6 +314,8 @@ public class TemplatePlantUmlMinimalNoCsx
             # Extends = "SomeUserBaseClass"
             # Implements = "SomeUserDefinedInterface"
 
+            # More TypeScript settings are available. See docs.
+
             [SmRunnerSettings]
             transpilerId = "TypeScript"
             '/
@@ -299,6 +358,8 @@ public class TemplatePlantUmlMinimalNoCsx
                 """
             # Extends = "MyUserBaseClass"
             # Implements = "SomeUserInterface"
+
+            # More Java settings are available. See docs.
 
             [SmRunnerSettings]
             transpilerId = "Java"

@@ -4,6 +4,7 @@ using StateSmith.Output;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output.Algos.Balanced2;
 using StateSmith.Output.Gil.C99;
+using StateSmith.Output.Gil.Cpp;
 using StateSmith.Output.Gil.CSharp;
 using StateSmith.Output.Gil.Java;
 using StateSmith.Output.Gil.JavaScript;
@@ -49,6 +50,23 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IGilTranspiler, GilToC99>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
                     algoBalanced1Settings.outputSwitchDefault = true;
+                }
+                break;
+
+            case TranspilerId.Cpp:
+                {
+                    sp.AddSingletonT<IGilTranspiler, GilToCpp>();
+                    sp.AddSingletonT<IExpansionVarsPathProvider, CppExpansionVarsPathProvider>();
+                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
+                    algoBalanced1Settings.skipClassIndentation = false;
+                    algoBalanced1Settings.varsStructAsClass = true;
+                    algoBalanced1Settings.outputSwitchDefault = true;
+
+                    // https://github.com/StateSmith/StateSmith/issues/411
+                    if (algorithmId != AlgorithmId.Balanced2)
+                    {
+                        throw new Exception("Cpp transpiler currently only supports `AlgorithmId.Balanced2`. You can use C99 transpiler or reply to https://github.com/StateSmith/StateSmith/issues/411 .");
+                    }
                 }
                 break;
 

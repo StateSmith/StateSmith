@@ -33,7 +33,7 @@ public class IncludeGuardProviderTests_112
 
         includeGuardProvider.OutputIncludeGuardTop(hFileSb);
         hFileSb.ToString().ShouldBeShowDiff("""
-            #pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/issues/112
+            #pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md
 
             """);
 
@@ -114,7 +114,7 @@ public class IncludeGuardProviderTests_112
         var code = fakeFs.GetCapturesForFileName("ExampleSm.h").Single().code;
 
         code.Should().Contain("""#pragma once""");
-        code.Should().Contain("""https://github.com/StateSmith/StateSmith/issues/112""");
+        code.Should().Contain("""https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md""");
     }
 
     [Fact]
@@ -170,7 +170,7 @@ public class IncludeGuardProviderTests_112
 
         renderConfigC.IncludeGuardLabel = IncludeGuardLabel;
         outputInfo.baseFileName = baseFileName;
-        IncludeGuardProvider includeGuardProvider = new(renderConfigC, outputInfo);
+        IncludeGuardProvider includeGuardProvider = new(IncludeGuardLabel, outputInfo);
         return includeGuardProvider;
     }
 }

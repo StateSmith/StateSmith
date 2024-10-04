@@ -3,7 +3,7 @@
 
 // diagram embedded HFileTop
 // inside sm - diagram embedded HFileTop
-#pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/issues/112
+#pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md
 #include <stdint.h>
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
 // diagram embedded HFileIncludes

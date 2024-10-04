@@ -1,14 +1,10 @@
+#nullable enable
+
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using StateSmith.Input.Antlr4;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Xml.Linq;
-
-#nullable enable
 
 namespace StateSmith.Output.Gil;
 
@@ -113,6 +109,12 @@ public static class Extensions
     {
         if (node == null) return false;
         return node.Modifiers.HasModifier(SyntaxKind.ConstKeyword);
+    }
+
+    public static bool IsPublic(this MemberDeclarationSyntax? node)
+    {
+        if (node == null) return false;
+        return node.Modifiers.HasModifier(SyntaxKind.PublicKeyword);
     }
 
     public static bool IsStatic(this FieldDeclarationSyntax? node)

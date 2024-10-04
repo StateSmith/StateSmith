@@ -14,6 +14,8 @@ public class CCompRequest
         IgnoreUnusedFunctions,
     }
 
+    public bool IsCpp = false;
+
     public string WorkingDirectory = "";
 
     /// <summary>

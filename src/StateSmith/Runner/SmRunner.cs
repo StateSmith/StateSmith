@@ -187,6 +187,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(renderConfigAllVars);
             services.AddSingleton(renderConfigAllVars.Base);
             services.AddSingleton(renderConfigAllVars.C);
+            services.AddSingleton(renderConfigAllVars.Cpp);
             services.AddSingleton(renderConfigAllVars.CSharp);
             services.AddSingleton(renderConfigAllVars.JavaScript);
             services.AddSingleton(renderConfigAllVars.TypeScript);
@@ -206,6 +207,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         if (iRenderConfig is IRenderConfigC ircc)
             renderConfigAllVars.C.SetFrom(ircc, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigCpp irccpp)
+            renderConfigAllVars.Cpp.SetFrom(irccpp, autoDeIndentAndTrimRenderConfigItems);
 
         if (iRenderConfig is IRenderConfigCSharp irccs)
             renderConfigAllVars.CSharp.SetFrom(irccs, autoDeIndentAndTrimRenderConfigItems);

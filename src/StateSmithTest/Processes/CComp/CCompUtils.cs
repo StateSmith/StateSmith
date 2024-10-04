@@ -23,6 +23,15 @@ public class CCompUtils
     {
         process.Args += "-Wall ";
 
+        if (request.IsCpp)
+        {
+            process.Args += "-std=c++11 ";
+        }
+        else
+        {
+            process.Args += "-std=c11 "; // only needed for test static asserts
+        }
+
         foreach (var flag in request.Flags)
         {
             switch (flag)
@@ -76,16 +85,40 @@ public class CCompUtils
         process.Args += string.Join(" ", request.SourceFiles);
     }
 
-    public static void GccClangCompile(CCompRequest request, string command)
+    public static void AddIncludePathsArgs(SimpleProcess process, CCompRequest request)
     {
-        SimpleProcess process = GccClangSetup(request, command);
+        foreach (var includePath in request.IncludePaths)
+        {
+            process.Args += $"-I {includePath} ";
+        }
+    }
+
+    public static void GccClangCompile(CCompRequest request, CCompilerId cCompilerId)
+    {
+        SimpleProcess process = GccClangSetup(request, cCompilerId);
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
     }
 
-    public static SimpleProcess GccClangSetup(CCompRequest request, string command)
+    public static SimpleProcess GccClangSetup(CCompRequest request, CCompilerId cCompilerId)
     {
+        string command;
+
+        if (cCompilerId == CCompilerId.GCC)
+        {
+            command = request.IsCpp ? "g++" : "gcc";
+        }
+        else if (cCompilerId == CCompilerId.CLANG)
+        {
+            command = request.IsCpp ? "clang++" : "clang";
+        }
+        else
+        {
+            throw new System.Exception($"Unknown compiler id: {cCompilerId}");
+        }
+
         SimpleProcess process = SetupDefaultProcess(request, command: command);
         AddGccClangArgs(process, request);
+        AddIncludePathsArgs(process, request);
         AddSourceFilesArgs(process, request);
         return process;
     }

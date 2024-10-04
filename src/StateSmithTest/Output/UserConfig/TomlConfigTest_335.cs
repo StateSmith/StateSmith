@@ -147,9 +147,10 @@ public class TomlConfigTest_335
         TestHelper.ExpectPropertyCount<IRenderConfigC>(13, because: "test need updating");
         TestHelper.ExpectPropertyCount<IRenderConfigCSharp>(6, because: "test need updating");
         TestHelper.ExpectPropertyCount<IRenderConfigJavaScript>(4, because: "test need updating");
+        TestHelper.ExpectPropertyCount<IRenderConfigCpp>(14, because: "test need updating");
 
         // assert only 6 transpiler IDs
-        Enum.GetValues(typeof(TranspilerId)).Length.Should().Be(6 + 2, because: "Needs to be updated for new language"); // +2 for NotYetSet and Default
+        Enum.GetValues(typeof(TranspilerId)).Length.Should().Be(7 + 2, because: "Needs to be updated for new language"); // +2 for NotYetSet and Default
 
 
         var toml = """"
@@ -182,6 +183,22 @@ public class TomlConfigTest_335
             CEnumDeclarer = "typedef enum __attribute__((packed)) {enumName}"
             UseStdBool = false
             IncludeGuardLabel = "MY_HEADER_H"
+
+            [RenderConfig.Cpp]
+            HFileTop = ""
+            IncludeGuardLabel = ""
+            HFileTopPostIncludeGuard = ""
+            HFileIncludes = ""
+            HFileBottomPreIncludeGuard = ""
+            HFileBottom = ""
+            CFileTop = ""
+            CFileIncludes = ""
+            CFileBottom = ""
+            CFileExtension = ".cpp"
+            HFileExtension = ".hpp"
+            NameSpace = ""
+            BaseClassCode = ""
+            ClassCode = ""
 
             [RenderConfig.CSharp]
             NameSpace = ""

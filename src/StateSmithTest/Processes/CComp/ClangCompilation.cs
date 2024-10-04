@@ -16,7 +16,7 @@ public class ClangCompilation : ICompilation
     public ClangCompilation(CCompRequest request)
     {
         workingDirectory = request.WorkingDirectory;
-        CCompUtils.GccClangCompile(request, command: "clang");
+        CCompUtils.GccClangCompile(request, CCompilerId.CLANG);
     }
 
     public SimpleProcess RunExecutable(string runArgs = "")

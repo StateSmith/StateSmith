@@ -17,15 +17,40 @@ AutoExpandedVars = """
 CFileExtension = ".cpp" //!!<line-filter:CppC>
 HFileExtension = ".hpp" //!!<line-filter:CppC>
 HFileIncludes = """
-    #include <stdint.h> // required for count var
+    #include <stdint.h> // for count var
     """
 CFileIncludes = """
     // #include "your_header_here.h"
     """
 # IncludeGuardLabel = "{FILENAME}_H"
 
+# More C settings are available. See docs.
+
 //!!</filter>
 
+
+
+
+//!!<filter:Cpp>
+AutoExpandedVars = """
+    uint16_t count; // this var can be referenced in diagram
+    """
+
+[RenderConfig.Cpp]
+# HFileExtension = ".h"
+# IncludeGuardLabel = "{FILENAME}_H"
+# NameSpace = "MyNamespace"
+# BaseClassCode = "public: MyUserBaseClass"
+HFileIncludes = """
+    #include <stdint.h> // for count var
+    """
+CFileIncludes = """
+    // #include "your_header_here.h"
+    """
+
+# More Cpp settings are available. See docs.
+
+//!!</filter>
 
 
 
@@ -43,6 +68,8 @@ AutoExpandedVars = """
 # UseNullable = false
 # UsePartialClass = false
 
+# More CSharp settings are available. See docs.
+
 //!!</filter>
 
 
@@ -57,6 +84,8 @@ AutoExpandedVars = """
 [RenderConfig.JavaScript]
 # ExtendsSuperClass = "MyUserBaseClass"
 # UseExportOnClass = true
+
+# More JavaScript settings are available. See docs.
 
 //!!</filter>
 
@@ -74,6 +103,8 @@ AutoExpandedVars = """
 [RenderConfig.TypeScript]
 # Extends = "SomeUserBaseClass"
 # Implements = "SomeUserDefinedInterface"
+
+# More TypeScript settings are available. See docs.
 
 //!!</filter>
 
@@ -93,6 +124,8 @@ Imports = """
     """
 # Extends = "MyUserBaseClass"
 # Implements = "SomeUserInterface"
+
+# More Java settings are available. See docs.
 
 //!!</filter>
 
@@ -123,6 +156,7 @@ ClassCode = """
 
 [SmRunnerSettings]
 transpilerId = "C99"  //!!<line-filter:C,CppC>
+transpilerId = "Cpp"  //!!<line-filter:Cpp>
 transpilerId = "CSharp"  //!!<line-filter:CSharp>
 transpilerId = "JavaScript"  //!!<line-filter:JavaScript>
 transpilerId = "TypeScript"  //!!<line-filter:TypeScript>
