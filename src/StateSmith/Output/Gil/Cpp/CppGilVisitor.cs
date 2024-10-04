@@ -27,7 +27,8 @@ public class CppGilVisitor : CSharpSyntaxWalker
     private readonly IncludeGuardProvider includeGuardProvider;
 
     private SemanticModel model;
-    
+
+    // Not yet supported. See https://github.com/StateSmith/StateSmith/issues/411
     private bool useStaticDelegates = true;    // could make this a user accessible setting
 
     /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>

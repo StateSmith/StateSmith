@@ -61,6 +61,12 @@ public class AlgoTranspilerCustomizer
                     algoBalanced1Settings.skipClassIndentation = false;
                     algoBalanced1Settings.varsStructAsClass = true;
                     algoBalanced1Settings.outputSwitchDefault = true;
+
+                    // https://github.com/StateSmith/StateSmith/issues/411
+                    if (algorithmId != AlgorithmId.Balanced2)
+                    {
+                        throw new Exception("Cpp transpiler currently only supports `AlgorithmId.Balanced2`. You can use C99 transpiler or reply to https://github.com/StateSmith/StateSmith/issues/411 .");
+                    }
                 }
                 break;
 

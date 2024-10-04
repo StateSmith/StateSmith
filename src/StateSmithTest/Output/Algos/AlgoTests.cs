@@ -27,7 +27,7 @@ public class AlgoTests
     }
 
     [Fact]
-    public void IntegrationTests_SingleEvent_C99_CSharp_Javascript_Java_Python_TypeScript()
+    public void IntegrationTests_SingleEvent_C99_CPP_CSharp_Javascript_Java_Python_TypeScript()
     {
         const string basicSingleEventPlantUml = """
             @startuml RocketSm
@@ -44,7 +44,7 @@ public class AlgoTests
     }
 
     [Fact]
-    public void IntegrationTests_MultipleEvent_C99_CSharp_Javascript_Java_Python_TypeScript()
+    public void IntegrationTests_MultipleEvent_C99_CPP_CSharp_Javascript_Java_Python_TypeScript()
     {
         RunIntegrationTestMatrix(allLangsMultipleEvents, "out2");
     }
@@ -71,6 +71,10 @@ public class AlgoTests
 
                 // TypeScript only supports Balanced2 right now. See https://github.com/StateSmith/StateSmith/issues/407
                 if (transpilerId == TranspilerId.TypeScript && algoId != AlgorithmId.Balanced2)
+                    continue;
+
+                // Cpp only supports Balanced2 right now. See https://github.com/StateSmith/StateSmith/issues/411
+                if (transpilerId == TranspilerId.Cpp && algoId != AlgorithmId.Balanced2)
                     continue;
 
                 var dirName = $"{outDir}/{algoId}_{transpilerId}";
