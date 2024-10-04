@@ -32,7 +32,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
     protected readonly GilTranspilerHelper transpilerHelper;
     protected readonly IncludeGuardProvider includeGuardProvider;
 
-    public C99GenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigBaseVars renderConfig, RenderConfigCVars renderConfigC, IGilToC99Customizer customizer, IncludeGuardProvider includeGuardProvider) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public C99GenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigBaseVars renderConfig, RenderConfigCVars renderConfigC, IGilToC99Customizer customizer, IOutputInfo outputInfo) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.model = model;
         this.hFileSb = hFileSb;
@@ -40,7 +40,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         this.renderConfig = renderConfig;
         this.renderConfigC = renderConfigC;
         this.customizer = customizer;
-        this.includeGuardProvider = includeGuardProvider;
+        this.includeGuardProvider = new IncludeGuardProvider(renderConfigC.IncludeGuardLabel, outputInfo);
 
         transpilerHelper = new(this, model);
 

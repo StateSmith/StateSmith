@@ -1,9 +1,6 @@
 #nullable enable
 
-using StateSmith.Output.UserConfig;
 using System.Text;
-
-// spell-checker: ignore customizer
 
 namespace StateSmith.Output.Gil.C99;
 
@@ -12,40 +9,40 @@ namespace StateSmith.Output.Gil.C99;
 /// </summary>
 public class IncludeGuardProvider
 {
-    private readonly string? IncludeGuardLabel;
+    private readonly string? includeGuardLabel;
 
-    public IncludeGuardProvider(RenderConfigCVars renderConfigC, IOutputInfo outputInfo)
+    public IncludeGuardProvider(string includeGuardLabel, IOutputInfo outputInfo)
     {
-        if (string.IsNullOrWhiteSpace(renderConfigC.IncludeGuardLabel))
+        if (string.IsNullOrWhiteSpace(includeGuardLabel))
         {
-            IncludeGuardLabel = null;
+            this.includeGuardLabel = null;
         }
         else
         {
-            IncludeGuardLabel = renderConfigC.IncludeGuardLabel;
-            IncludeGuardLabel = IncludeGuardLabel.Replace("{fileName}", outputInfo.BaseFileName);
-            IncludeGuardLabel = IncludeGuardLabel.Replace("{FILENAME}", outputInfo.BaseFileName.ToUpper());
+            this.includeGuardLabel = includeGuardLabel;
+            this.includeGuardLabel = this.includeGuardLabel.Replace("{fileName}", outputInfo.BaseFileName);
+            this.includeGuardLabel = this.includeGuardLabel.Replace("{FILENAME}", outputInfo.BaseFileName.ToUpper());
         }
     }
 
     public void OutputIncludeGuardTop(StringBuilder hFileSb)
     {
-        if (IncludeGuardLabel == null)
+        if (includeGuardLabel == null)
         {
-            hFileSb.AppendLine("#pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/issues/112");
+            hFileSb.AppendLine("#pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md");
         }
         else
         {
-            hFileSb.AppendLine($"#ifndef {IncludeGuardLabel}");
-            hFileSb.AppendLine($"#define {IncludeGuardLabel}");
+            hFileSb.AppendLine($"#ifndef {includeGuardLabel}");
+            hFileSb.AppendLine($"#define {includeGuardLabel}");
         }
     }
 
     public void OutputIncludeGuardBottom(StringBuilder hFileSb)
     {
-        if (IncludeGuardLabel != null)
+        if (includeGuardLabel != null)
         {
-            hFileSb.AppendLine($"#endif // {IncludeGuardLabel}");
+            hFileSb.AppendLine($"#endif // {includeGuardLabel}");
         }
     }
 }

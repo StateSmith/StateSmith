@@ -7,8 +7,8 @@ using System.Text;
 using StateSmith.Common;
 using System.Linq;
 using System;
-using StateSmith.Input.Antlr4;
-using Microsoft.Extensions.Primitives;
+using StateSmith.Output.Gil.C99;
+using StateSmith.Output.UserConfig;
 
 namespace StateSmith.Output.Gil.Cpp;
 
@@ -24,6 +24,7 @@ public class CppGilVisitor : CSharpSyntaxWalker
     private StringBuilder sb;
     private readonly CppGilHelpers cppObjs;
     private readonly GilTranspilerHelper transpilerHelper;
+    private readonly IncludeGuardProvider includeGuardProvider;
 
     private SemanticModel model;
     
@@ -36,12 +37,16 @@ public class CppGilVisitor : CSharpSyntaxWalker
     /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
     private MethodPtrFinder MethodPtrFinder => _methodPtrFinder.ThrowIfNull();
 
+    RenderConfigCppVars renderConfigCpp => cppObjs.renderConfigCpp;
+    RenderConfigBaseVars renderConfig => cppObjs.renderConfig;
+
     public CppGilVisitor(string gilCode, CppGilHelpers cppGilHelpers) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = cFileSb;
         this.cppObjs = cppGilHelpers;
         transpilerHelper = GilTranspilerHelper.Create(this, gilCode, cppObjs.roslynCompiler);
         model = transpilerHelper.model;
+        includeGuardProvider = new IncludeGuardProvider(renderConfigCpp.IncludeGuardLabel, cppObjs.outputInfo);
     }
 
     public void Process()
@@ -56,10 +61,10 @@ public class CppGilVisitor : CSharpSyntaxWalker
         OutputCFileTopSections();
 
         // TODO support namespaces
-        //var nameSpace = cppObjs.renderConfigCpp.NameSpace.Trim();
+        //var nameSpace = renderConfigCpp.NameSpace.Trim();
         //if (nameSpace.Length > 0)
         //{
-        //    sb.AppendLine("namespace " + cppObjs.renderConfigCpp.NameSpace);
+        //    sb.AppendLine("namespace " + renderConfigCpp.NameSpace);
         //    sb.AppendLine("{");
         //}
 
@@ -81,47 +86,47 @@ public class CppGilVisitor : CSharpSyntaxWalker
     {
         sb = hFileSb;
         transpilerHelper.PreProcess();
-        sb.AppendLineIfNotBlank(cppObjs.renderConfig.FileTop);
-        sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.HFileTop);
+        sb.AppendLineIfNotBlank(renderConfig.FileTop);
+        sb.AppendLineIfNotBlank(renderConfigCpp.HFileTop);
 
-        cppObjs.includeGuardProvider.OutputIncludeGuardTop(sb);
-        sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.HFileTopPostIncludeGuard);
+        includeGuardProvider.OutputIncludeGuardTop(sb);
+        sb.AppendLineIfNotBlank(renderConfigCpp.HFileTopPostIncludeGuard);
 
         sb.AppendLine("#include <stdint.h>");
-        sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.HFileIncludes);
+        sb.AppendLineIfNotBlank(renderConfigCpp.HFileIncludes);
         sb.AppendLine();
     }
 
     public string MakeHFileName()
     {
-        return $"{cppObjs.outputInfo.BaseFileName}{cppObjs.renderConfigCpp.HFileExtension}";
+        return $"{cppObjs.outputInfo.BaseFileName}{renderConfigCpp.HFileExtension}";
     }
 
     public string MakeCFileName()
     {
-        return $"{cppObjs.outputInfo.BaseFileName}{cppObjs.renderConfigCpp.CFileExtension}";
+        return $"{cppObjs.outputInfo.BaseFileName}{renderConfigCpp.CFileExtension}";
     }
 
     private void OutputCFileTopSections()
     {
         sb = cFileSb;
         transpilerHelper.PreProcess();
-        sb.AppendLineIfNotBlank(cppObjs.renderConfig.FileTop);
-        sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.CFileTop);
+        sb.AppendLineIfNotBlank(renderConfig.FileTop);
+        sb.AppendLineIfNotBlank(renderConfigCpp.CFileTop);
         sb.AppendLine($"#include \"{MakeHFileName()}\"");
         sb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
         sb.AppendLine("#include <string.h> // for memset");
-        sb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.CFileIncludes);
+        sb.AppendLineIfNotBlank(renderConfigCpp.CFileIncludes);
         sb.AppendLine();
     }
 
     private void OutputFileBottomSections()
     {
-        hFileSb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.HFileBottomPreIncludeGuard);
-        cppObjs.includeGuardProvider.OutputIncludeGuardBottom(hFileSb);
-        hFileSb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.HFileBottom);
+        hFileSb.AppendLineIfNotBlank(renderConfigCpp.HFileBottomPreIncludeGuard);
+        includeGuardProvider.OutputIncludeGuardBottom(hFileSb);
+        hFileSb.AppendLineIfNotBlank(renderConfigCpp.HFileBottom);
 
-        cFileSb.AppendLineIfNotBlank(cppObjs.renderConfigCpp.CFileBottom);
+        cFileSb.AppendLineIfNotBlank(renderConfigCpp.CFileBottom);
     }
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
@@ -170,10 +175,10 @@ public class CppGilVisitor : CSharpSyntaxWalker
                 }
             }
 
-            if (classDepth == 1 && !String.IsNullOrWhiteSpace(cppObjs.renderConfigCpp.ClassCode))
+            if (classDepth == 1 && !String.IsNullOrWhiteSpace(renderConfigCpp.ClassCode))
             {
                 sb.AppendLine("");
-                string classCode = cppObjs.renderConfigCpp.ClassCode;
+                string classCode = renderConfigCpp.ClassCode;
                 sb.Append(classCode);
                 sb.AppendLine();
             }
@@ -362,7 +367,7 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
     private void MaybeOutputBaseList()
     {
-        var baseList = cppObjs.renderConfigCpp.BaseClassCode.Trim();
+        var baseList = renderConfigCpp.BaseClassCode.Trim();
         if (baseList.Length > 0)
             sb.Append(" : " + baseList);
     }

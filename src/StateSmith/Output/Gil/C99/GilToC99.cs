@@ -37,7 +37,7 @@ public class GilToC99 : IGilTranspiler
 
         roslynCompiler.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
 
-        C99GenVisitor visitor = new(model, hFileSb, cFileSb, renderConfig, renderConfigC, cCustomizer, new(renderConfigC, outputInfo));
+        C99GenVisitor visitor = new(model, hFileSb, cFileSb, renderConfig, renderConfigC, cCustomizer, outputInfo);
 
         visitor.Visit(root);
 
