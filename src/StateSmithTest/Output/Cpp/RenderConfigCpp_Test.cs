@@ -2,13 +2,13 @@ using Xunit;
 using FluentAssertions;
 using System.Linq;
 
-namespace StateSmithTest.Output.C99;
+namespace StateSmithTest.Output.Cpp;
 
-public class RenderConfigC_Test
+public class RenderConfigCpp_Test
 {
     /// <summary>
     /// Tests that .c and .h sections are rendered in the correct order.
-    /// https://github.com/StateSmith/StateSmith/issues/385
+    /// Related: https://github.com/StateSmith/StateSmith/issues/385
     /// </summary>
     [Fact]
     public void SectionsOrder_IncludeGuard_385()
@@ -18,12 +18,12 @@ public class RenderConfigC_Test
             [*] --> s1
 
             /'! $CONFIG: toml
-                SmRunnerSettings.transpilerId = "C99"
+                SmRunnerSettings.transpilerId = "Cpp"
 
                 [RenderConfig]
                 FileTop = "// FileTop"
 
-                [RenderConfig.C]
+                [RenderConfig.Cpp]
                 HFileTop = "// HFileTop"
                 IncludeGuardLabel = "MY_INCLUDE_GUARD_H"
                 HFileTopPostIncludeGuard = "// HFileTopPostIncludeGuard"
@@ -33,8 +33,8 @@ public class RenderConfigC_Test
                 CFileTop = "// CFileTop"
                 CFileIncludes = "// CFileIncludes"
                 CFileBottom = "// CFileBottom"
-                CFileExtension = ".cpp"
-                HFileExtension = ".hpp"
+                CFileExtension = ".cc"
+                HFileExtension = ".hh"
             '/
             @enduml
             """";
@@ -53,7 +53,7 @@ public class RenderConfigC_Test
 
         // test H file
         {
-            var hCode = fakeFs.GetCapturesForFileName("ExampleSm.hpp").Single().code.ConvertLineEndingsToN();
+            var hCode = fakeFs.GetCapturesForFileName("ExampleSm.hh").Single().code.ConvertLineEndingsToN();
 
             int index = 0;
             index = ExpectNext(hCode, index, "\n// FileTop\n");
@@ -70,12 +70,12 @@ public class RenderConfigC_Test
 
         // test C file
         {
-            var cCode = fakeFs.GetCapturesForFileName("ExampleSm.cpp").Single().code.ConvertLineEndingsToN();
+            var cCode = fakeFs.GetCapturesForFileName("ExampleSm.cc").Single().code.ConvertLineEndingsToN();
 
             int index = 0;
             index = ExpectNext(cCode, index, "\n// FileTop\n");
             index = ExpectNext(cCode, index, "\n// CFileTop\n");
-            index = ExpectNext(cCode, index, "\n#include \"ExampleSm.hpp\"\n"); // auto included by StateSmith
+            index = ExpectNext(cCode, index, "\n#include \"ExampleSm.hh\"\n"); // auto included by StateSmith
             index = ExpectNext(cCode, index, "\n#include <stdbool.h> ");        // auto included by StateSmith
             index = ExpectNext(cCode, index, "\n#include <string.h> ");         // auto included by StateSmith
             index = ExpectNext(cCode, index, "\n// CFileIncludes\n");
@@ -85,7 +85,7 @@ public class RenderConfigC_Test
 
     /// <summary>
     /// Tests that .c and .h sections are rendered in the correct order.
-    /// https://github.com/StateSmith/StateSmith/issues/385
+    /// Related: https://github.com/StateSmith/StateSmith/issues/385
     /// </summary>
     [Fact]
     public void SectionsOrder_PragmaOnce_385()
@@ -95,12 +95,12 @@ public class RenderConfigC_Test
             [*] --> s1
 
             /'! $CONFIG: toml
-                SmRunnerSettings.transpilerId = "C99"
+                SmRunnerSettings.transpilerId = "Cpp"
 
                 [RenderConfig]
                 FileTop = "// FileTop"
 
-                [RenderConfig.C]
+                [RenderConfig.Cpp]
                 HFileTop = "// HFileTop"
                 HFileTopPostIncludeGuard = "// HFileTopPostIncludeGuard"
                 HFileIncludes = "// HFileIncludes"
@@ -143,33 +143,5 @@ public class RenderConfigC_Test
         }
 
         // c file isn't affected by pragma once so we don't need to test it here (see other test)
-    }
-
-    /// <summary>
-    /// RenderConfig.C.UseStdBool
-    /// https://github.com/StateSmith/StateSmith/pull/376
-    /// </summary>
-    [Fact]
-    public void Disable_UseStdBool_376()
-    {
-        var plantUmlText = """"
-            @startuml ExampleSm
-            [*] --> s1
-            s1 : EV1 / consume_event = false; /' to ensure `consume_event` generated '/
-
-            /'! $CONFIG: toml
-                SmRunnerSettings.transpilerId = "C99"
-                RenderConfig.C.UseStdBool = false
-            '/
-            @enduml
-            """";
-
-        var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
-
-        var cCode = fakeFs.GetCapturesForFileName("ExampleSm.c").Single().code.ConvertLineEndingsToN();
-        cCode.Should().NotContain("#include <stdbool.h>");
-        cCode.Should().NotContain("bool consume_event = ");
-        cCode.Should().Contain("int consume_event = ");
     }
 }
