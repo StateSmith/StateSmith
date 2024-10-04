@@ -175,7 +175,7 @@ public class TemplatePlantUmlMinimalNoCsx
             # HFileExtension = ".h"
             # IncludeGuardLabel = "{FILENAME}_H"
             # NameSpace = "MyNamespace"
-            # BaseClassCode = "public: MyUserBaseClass"
+            # BaseClassCode = "public MyUserBaseClass"
             HFileIncludes = """
                 #include <stdint.h> // for count var
                 """
