@@ -64,6 +64,22 @@ AutoExpandedVars  = "stuff..."
   - [RenderConfig.C.HFileExtension](#renderconfigchfileextension)
   - [RenderConfig.C.CEnumDeclarer](#renderconfigccenumdeclarer)
   - [RenderConfig.C.UseStdBool](#renderconfigcusestdbool)
+- [RenderConfig.Cpp](#renderconfigcpp)
+  - [RenderConfig.Cpp.NameSpace](#renderconfigcppnamespace)
+  - [RenderConfig.Cpp.BaseClassCode](#renderconfigcppbaseclasscode)
+  - [RenderConfig.Cpp.ClassCode](#renderconfigcppclasscode)
+  - [RenderConfig.Cpp.HFileExtension](#renderconfigcpphfileextension)
+  - [RenderConfig.Cpp.HFileTop](#renderconfigcpphfiletop)
+  - [RenderConfig.Cpp.IncludeGuardLabel](#renderconfigcppincludeguardlabel)
+    - [Supports `{FILENAME}` and `{fileName}` replacements](#supports-filename-and-filename-replacements-1)
+  - [RenderConfig.Cpp.HFileTopPostIncludeGuard](#renderconfigcpphfiletoppostincludeguard)
+  - [RenderConfig.Cpp.HFileIncludes](#renderconfigcpphfileincludes)
+  - [RenderConfig.Cpp.HFileBottomPreIncludeGuard](#renderconfigcpphfilebottompreincludeguard)
+  - [RenderConfig.Cpp.HFileBottom](#renderconfigcpphfilebottom)
+  - [RenderConfig.Cpp.CFileExtension](#renderconfigcppcfileextension)
+  - [RenderConfig.Cpp.CFileTop](#renderconfigcppcfiletop)
+  - [RenderConfig.Cpp.CFileIncludes](#renderconfigcppcfileincludes)
+  - [RenderConfig.Cpp.CFileBottom](#renderconfigcppcfilebottom)
 - [RenderConfig.CSharp](#renderconfigcsharp)
   - [RenderConfig.CSharp.NameSpace](#renderconfigcsharpnamespace)
   - [RenderConfig.CSharp.Usings](#renderconfigcsharpusings)
@@ -417,7 +433,7 @@ Copied to top of generated header file after include guard. Can be code or comme
 ```toml
 [RenderConfig.C]
 HFileTopPostIncludeGuard = """
-    // Use this state machine to ...
+    // ...
     """
 ```
 
@@ -444,7 +460,7 @@ Copied to bottom of generated header file just before include guard area. Can be
 ```toml
 [RenderConfig.C]
 HFileBottomPreIncludeGuard = """
-    // Use this state machine to ...
+    // ...
     """
 ```
 
@@ -457,7 +473,7 @@ Copied to bottom of generated header file after include guard area. Can be code 
 ```toml
 [RenderConfig.C]
 HFileBottom = """
-    // Use this state machine to ...
+    // ...
     """
 ```
 
@@ -495,7 +511,7 @@ Copied to bottom of generated source file. Can be code or comments. Can span mul
 ```toml
 [RenderConfig.C]
 CFileBottom = """
-    // Use this state machine to ...
+    // ...
     """
 ```
 
@@ -554,6 +570,228 @@ Useful if your toolchain doesn't have `<stdbool.h>`.
 [RenderConfig.C]
 UseStdBool = false
 ```
+
+
+<br>
+<br>
+
+
+# RenderConfig.Cpp
+Maps to [IRenderConfigCpp](../src/StateSmith/Output/UserConfig/IRenderConfigCpp.cs) interface.
+
+```toml
+[RenderConfig.Cpp]
+NameSpace = "MyNamespace"
+BaseClassCode = "public MyBaseClass, public MyOtherBaseClass"
+ClassCode = """
+    // Add custom code here...
+    """
+
+# header stuff:
+HFileExtension = ".h"
+HFileTop = "// code at top of header file"
+IncludeGuardLabel = "{FILENAME}_H"
+HFileTopPostIncludeGuard = "// code after include guard"
+HFileIncludes = """
+    #include "some_type.h"
+    #include "some_other_type.h"
+    """
+HFileBottomPreIncludeGuard = "// code before include guard bottom"
+HFileBottom = "// code at bottom of header file"
+
+# source stuff:
+CFileExtension = ".cc"
+CFileTop = "// code at top of source file"
+CFileIncludes = """
+    #include "some_header.h"
+    #include "some_other_header.h"
+    """
+CFileBottom = "// code at bottom of source file"
+```
+
+## RenderConfig.Cpp.NameSpace
+Type: `string`
+
+Namespace for the generated class. If empty, no namespace is generated.
+
+```toml
+[RenderConfig.Cpp]
+NameSpace = "MyNamespace"
+```
+
+## RenderConfig.Cpp.BaseClassCode
+Type: `string`
+
+Base class or interfaces for the generated class. Can be multiple interfaces separated by a comma.
+
+```toml
+[RenderConfig.Cpp]
+BaseClassCode = "public MyBaseClass, public MyOtherBaseClass"
+```
+
+## RenderConfig.Cpp.ClassCode
+Type: `string`
+
+Use to add custom code to generated state machine class. Inheritance or composition is often a better choice.
+
+```toml
+[RenderConfig.Cpp]
+ClassCode = """
+    // Add custom code here...
+    """
+```
+
+## RenderConfig.Cpp.HFileExtension
+Type: `string`
+
+File extension for generated header files. Default is `.hpp`.
+
+```toml
+[RenderConfig.Cpp]
+HFileExtension = ".h"
+```
+
+## RenderConfig.Cpp.HFileTop
+Type: `string`
+
+Copied to top of generated header file. Can be code or comments. Can span multiple lines.
+
+```toml
+[RenderConfig.Cpp]
+HFileTop = """
+    // Use this state machine to ...
+    """
+```
+
+## RenderConfig.Cpp.IncludeGuardLabel
+Type: `string`
+
+If blank (the default), `#pragma once` is used as the include guard. If you want to use standard `#ifdef` include guards, you can specify a label here.
+
+```toml
+[RenderConfig.Cpp]
+IncludeGuardLabel = "MY_HEADER_H"
+```
+
+Generates:
+```c
+#ifndef MY_HEADER_H
+#define MY_HEADER_H
+//...
+#endif // MY_HEADER_H
+```
+
+
+### Supports `{FILENAME}` and `{fileName}` replacements
+
+```toml
+[RenderConfig.Cpp]
+IncludeGuardLabel = "{FILENAME}_H"
+```
+
+Assuming generated file name is `RocketSm.h`, generates:
+```c
+#ifndef ROCKETSM_H
+#define ROCKETSM_H
+//...
+#endif // ROCKETSM_H
+```
+
+## RenderConfig.Cpp.HFileTopPostIncludeGuard
+Type: `string`
+
+Copied to top of generated header file after include guard. Can be code or comments. Can span multiple lines.
+
+```toml
+[RenderConfig.Cpp]
+HFileTopPostIncludeGuard = """
+    // ...
+    """
+```
+
+## RenderConfig.Cpp.HFileIncludes
+Type: `string`
+
+Include statements for the generated header file. Can span multiple lines.
+
+```toml
+[RenderConfig.Cpp]
+HFileIncludes = """
+    #include <stdint.h> // For uint8_t
+    #include "some_header.h"
+    """
+```
+
+## RenderConfig.Cpp.HFileBottomPreIncludeGuard
+Type: `string`
+
+Copied to bottom of generated header file just before include guard area. Can be code or comments. Can span multiple lines.
+
+```toml
+[RenderConfig.Cpp]
+HFileBottomPreIncludeGuard = """
+    // ...
+    """
+```
+
+## RenderConfig.Cpp.HFileBottom
+Type: `string`
+
+Copied to bottom of generated header file after include guard area. Can be code or comments. Can span multiple lines.
+
+```toml
+[RenderConfig.Cpp]
+HFileBottom = """
+    // ...
+    """
+```
+
+## RenderConfig.Cpp.CFileExtension
+Type: `string`
+
+File extension for generated source files. Default is `.cpp`.
+
+```toml
+[RenderConfig.Cpp]
+CFileExtension = ".cc"
+```
+
+## RenderConfig.Cpp.CFileTop
+Type: `string`
+
+Copied to top of generated source file. Can be code or comments. Can span multiple lines.
+
+```toml
+[RenderConfig.Cpp]
+CFileTop = """
+    // Use this state machine to ...
+    """
+```
+
+## RenderConfig.Cpp.CFileIncludes
+Type: `string`
+
+Include statements for the generated source file. Can span multiple lines.
+
+```toml
+[RenderConfig.Cpp]
+CFileIncludes = """
+    #include "some_header.c"
+    """
+```
+
+## RenderConfig.Cpp.CFileBottom
+Type: `string`
+
+Copied to bottom of generated source file. Can be code or comments. Can span multiple lines.
+
+```toml
+[RenderConfig.Cpp]
+CFileBottom = """
+    // ...
+    """
+```
+
 
 
 
