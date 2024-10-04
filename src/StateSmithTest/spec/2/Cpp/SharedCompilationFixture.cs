@@ -67,6 +67,8 @@ public class SharedCompilationFixture
         string IRenderConfigCpp.BaseClassCode => "public Spec2SmBase";
 
         string IRenderConfig.AutoExpandedVars => "uint8_t auto_var_1;";
+
+        string IRenderConfigCpp.NameSpace => "Spec2";
     }
 }
 

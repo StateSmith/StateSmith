@@ -10,6 +10,8 @@
 #include <string.h>
 #include <unordered_map>
 
+using namespace Spec2;
+
 // https://stackoverflow.com/a/4415646/7331858
 #define COUNT_OF(x) ((sizeof(x) / sizeof(0 [x])) / ((size_t)(!(sizeof(x) % sizeof(0 [x])))))
 

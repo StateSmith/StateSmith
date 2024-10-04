@@ -60,17 +60,6 @@ public class CppGilVisitor : CSharpSyntaxWalker
         OutputHFileTopSections();
         OutputCFileTopSections();
 
-        // TODO support namespaces
-        //var nameSpace = renderConfigCpp.NameSpace.Trim();
-        //if (nameSpace.Length > 0)
-        //{
-        //    sb.AppendLine("namespace " + renderConfigCpp.NameSpace);
-        //    sb.AppendLine("{");
-        //}
-
-        //this.Visit(transpilerHelper.root);
-        //sb.AppendLine("}");
-
         renderingHeader = true;
         sb = hFileSb;
         this.DefaultVisit(transpilerHelper.root);
@@ -137,6 +126,14 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
         classDepth++;
 
+        var nameSpace = renderConfigCpp.NameSpace.Trim();
+        if (classDepth == 1 && nameSpace.Length > 0)
+        {
+            sb.AppendLine("namespace " + renderConfigCpp.NameSpace);
+            sb.AppendLine("{");
+            sb.AppendLine(PostProcessor.trimBlankLinesMarker);
+        }
+
         if (!renderingHeader)
         {
             foreach (var method in node.DescendantNodes().OfType<MethodDeclarationSyntax>())
@@ -200,6 +197,11 @@ public class CppGilVisitor : CSharpSyntaxWalker
             VisitToken(node.CloseBraceToken);
             StringUtils.EraseTrailingWhitespace(sb);
             sb.Append(";\n");
+        }
+
+        if (classDepth == 1 && nameSpace.Length > 0)
+        {
+            sb.AppendLine("}");
         }
 
         classDepth--;

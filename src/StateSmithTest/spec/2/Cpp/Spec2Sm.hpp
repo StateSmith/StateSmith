@@ -5,6 +5,8 @@
 #include <stdint.h>
 #include "Spec2SmBase.hpp"
 
+namespace Spec2
+{
 // Generated state machine
 class Spec2Sm : public Spec2SmBase
 {
@@ -2219,3 +2221,4 @@ private:
     
     void USELESS_exit();
 };
+}
