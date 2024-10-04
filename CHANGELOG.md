@@ -29,6 +29,14 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## [0.??]
+### Added
+- Add support for idiomatic `Cpp` transpiler (only supports algorithm `Balanced2` right now).
+  - requires C++11 or later.
+  - https://github.com/StateSmith/StateSmith/issues/126
+
+---
+
 ## [0.16.0]
 ### Fixed (minor)
 - fix grammar - allow multiple single quote and backtick strings in guard and action code.
