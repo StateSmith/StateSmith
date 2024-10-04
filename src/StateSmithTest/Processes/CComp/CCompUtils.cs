@@ -23,6 +23,15 @@ public class CCompUtils
     {
         process.Args += "-Wall ";
 
+        if (request.IsCpp)
+        {
+            process.Args += "-std=c++11 ";
+        }
+        else
+        {
+            process.Args += "-std=c11 "; // only needed for test static asserts
+        }
+
         foreach (var flag in request.Flags)
         {
             switch (flag)

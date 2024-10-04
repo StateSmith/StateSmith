@@ -46,7 +46,7 @@ int main(int arg_count, char** args)
     for (int i = 1; i < arg_count; i++) // start at 1 to skip program name
     {
         char* line = args[i];
-        if (strnlen(line, 1000) == 0)
+        if (strlen(line) == 0)
         {
             continue;
         }

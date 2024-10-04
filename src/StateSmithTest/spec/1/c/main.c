@@ -34,7 +34,7 @@ int main(int arg_count, char** args)
     {
         char* line = args[i];
 
-        if (strnlen(line, 1000) == 0)
+        if (strlen(line) == 0)
         {
             continue;
         }

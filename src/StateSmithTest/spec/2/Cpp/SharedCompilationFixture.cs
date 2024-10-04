@@ -23,11 +23,25 @@ public class SharedCompilationFixture
 
         Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
 
+        // compile C code first
+        new CCompilerMux().Compile(new CCompRequest()
+        {
+            IsCpp = false,
+            WorkingDirectory = OutputDirectory,
+            SourceFiles = ["../../lang-helpers/c/helper.c", "-o", "helper.o", "-c"], // later parts aren't files, but this is good enough for now
+            IncludePaths = ["../../lang-helpers/c"],
+            Flags = [
+                // we disable `unused-function` warning because some states are intentionally unreachable
+                CCompRequest.FlagId.IgnoreUnusedFunctions,
+            ]
+        });
+
+        // compile C++ and link with C object files
         this.compilation = new CCompilerMux().Compile(new CCompRequest()
         {
             IsCpp = true,
             WorkingDirectory = OutputDirectory,
-            SourceFiles = ["../../lang-helpers/c/helper.c", "main.cpp", "Spec2Sm.cpp"],
+            SourceFiles = ["helper.o", "main.cpp", "Spec2Sm.cpp"],
             IncludePaths = ["../../lang-helpers/c"],
             Flags = [
                 // we disable `unused-function` warning because some states are intentionally unreachable
