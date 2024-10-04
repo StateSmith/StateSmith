@@ -11,7 +11,7 @@ namespace Spec2
 class Spec2Sm : public Spec2SmBase
 {
 public:
-    enum class EventId
+    enum class EventId: uint8_t
     {
         DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
         EV1 = 1,
@@ -35,7 +35,7 @@ public:
         EventIdCount = 15
     };
     
-    enum class StateId
+    enum class StateId: uint8_t
     {
         ROOT = 0,
         PREFIXING = 1,
@@ -218,7 +218,7 @@ public:
         StateIdCount = 174
     };
     
-    enum class T7__H1__ON_HistoryId
+    enum class T7__H1__ON_HistoryId: uint8_t
     {
         T7__H1__ON1 = 0, // default transition
         T7__H1__ON2 = 1,
@@ -226,7 +226,7 @@ public:
     };
 
     
-    enum class T7__H1__OFF_HistoryId
+    enum class T7__H1__OFF_HistoryId: uint8_t
     {
         T7__H1__OFF1 = 0, // default transition
         T7__H1__OFF2 = 1,
@@ -234,7 +234,7 @@ public:
     };
 
     
-    enum class T7__DH1__ALIENS_DETECTED_HistoryId
+    enum class T7__DH1__ALIENS_DETECTED_HistoryId: uint8_t
     {
         T7__DH1__SNOWBALL_FIGHT = 0, // default transition
         T7__DH1__GIVE_COOKIES = 1,
@@ -244,7 +244,7 @@ public:
     };
 
     
-    enum class T7__DH1__GET_BACKUP_HistoryId
+    enum class T7__DH1__GET_BACKUP_HistoryId: uint8_t
     {
         T7__DH1__GET_BACKUP_CHOICEPOINT = 0, // default transition
         T7__DH1__HERO = 1,
@@ -253,7 +253,7 @@ public:
     };
 
     
-    enum class T7__DH1__BUILD_HistoryId
+    enum class T7__DH1__BUILD_HistoryId: uint8_t
     {
         T7__DH1__TOY = 0, // default transition
         T7__DH1__TOOL = 1,
@@ -268,7 +268,7 @@ public:
     };
 
     
-    enum class T7__DEEP_HISTORY2__T7__state_0_HistoryId
+    enum class T7__DEEP_HISTORY2__T7__state_0_HistoryId: uint8_t
     {
         T7__DEEP_HISTORY2__T7__STATE_1 = 0, // default transition
         T7__DEEP_HISTORY2__T7__STATE_2 = 1,
@@ -277,7 +277,7 @@ public:
     };
 
     
-    enum class T7__DEEP_HISTORY3__T7__state_0_HistoryId
+    enum class T7__DEEP_HISTORY3__T7__state_0_HistoryId: uint8_t
     {
         T7__DEEP_HISTORY3__T7__STATE_1 = 0, // default transition
         T7__DEEP_HISTORY3__T7__STATE_2 = 1,

@@ -209,7 +209,22 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
     public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
     {
-        base.VisitEnumDeclaration(node);
+        WalkableChildSyntaxList list = new(this, node.ChildNodesAndTokens());
+        list.VisitUpTo(node.Identifier);
+        sb.Append("class ");
+        list.VisitNext(); // identifier
+        StringUtils.EraseTrailingWhitespace(sb);
+
+        // if the enum has less than 256 members, use uint8_t to save RAM. Otherwise leave it up to compiler.
+        var enumMemberCount = node.ChildNodes().Count();
+        if (enumMemberCount < byte.MaxValue)
+        {
+            sb.Append(": uint8_t");
+        }
+
+        VisitTrailingTrivia(node.Identifier);
+        list.VisitRest();
+
         StringUtils.EraseTrailingWhitespace(sb);
         sb.Append(";\n");
     }
@@ -509,11 +524,6 @@ public class CppGilVisitor : CSharpSyntaxWalker
                     tokenText = "";
                     break;
             }
-        }
-
-        switch ((SyntaxKind)token.RawKind)
-        {
-            case SyntaxKind.EnumKeyword: tokenText += " class"; break;
         }
 
         if (visitLeadingTrivia)
