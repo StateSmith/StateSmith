@@ -41,6 +41,7 @@ public class CsxTemplateRenderer
         TranspilerId transpilerId = targetLanguageId switch
         {
             TargetLanguageId.C => TranspilerId.C99,
+            TargetLanguageId.Cpp => TranspilerId.Cpp,
             TargetLanguageId.CppC => TranspilerId.C99,
             TargetLanguageId.CSharp => TranspilerId.CSharp,
             TargetLanguageId.JavaScript => TranspilerId.JavaScript,
@@ -55,6 +56,7 @@ public class CsxTemplateRenderer
         {
             TargetLanguageId.C => nameof(IRenderConfigC),
             TargetLanguageId.CppC => nameof(IRenderConfigC),
+            TargetLanguageId.Cpp => nameof(IRenderConfigCpp),
             TargetLanguageId.CSharp => nameof(IRenderConfigCSharp),
             TargetLanguageId.JavaScript => nameof(IRenderConfigJavaScript),
             TargetLanguageId.TypeScript => nameof(IRenderConfigTypeScript),
@@ -68,6 +70,7 @@ public class CsxTemplateRenderer
         {
             TargetLanguageId.C => "C",
             TargetLanguageId.CppC => "CppC",
+            TargetLanguageId.Cpp => "Cpp",
             TargetLanguageId.CSharp => "CSharp",
             TargetLanguageId.JavaScript => "JavaScript",
             TargetLanguageId.TypeScript => "TypeScript",

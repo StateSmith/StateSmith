@@ -11,6 +11,7 @@ namespace StateSmith.Cli.Create;
 public enum TargetLanguageId
 {
     C,
+    Cpp,
     CppC,
     CSharp,
     JavaScript,

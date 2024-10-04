@@ -1,7 +1,9 @@
 using FluentAssertions;
 using StateSmith.Cli.Create;
 using StateSmith.Cli.Utils;
+using StateSmith.Runner;
 using StateSmithTest;
+using System;
 using Xunit;
 
 namespace StateSmithCliTest.Create;
@@ -39,8 +41,15 @@ public class JsonSettingsTest
     [Fact]
     public void TestAllTargetLanguageIds()
     {
+        // Ensure that none of the enum member names have been changed. This is important as the enum values are persisted in the user's configuration file.
+        Enum.GetNames(typeof(TargetLanguageId)).Should().BeEquivalentTo(["C", "Cpp", "CppC", "CSharp", "JavaScript", "TypeScript", "Java", "Python"]);
+
+        // Detect if a new language has been added.
+        Enum.GetNames(typeof(TranspilerId)).Should().BeEquivalentTo(["NotYetSet", "Default", "C99", "Cpp", "CSharp", "JavaScript", "TypeScript", "Java", "Python"]);
+
         Test("C", TargetLanguageId.C);
         Test("CppC", TargetLanguageId.CppC);
+        Test("Cpp", TargetLanguageId.Cpp);
         Test("CSharp", TargetLanguageId.CSharp);
         Test("JavaScript", TargetLanguageId.JavaScript);
         Test("TypeScript", TargetLanguageId.TypeScript);
