@@ -76,8 +76,10 @@ public class CppGilVisitor : CSharpSyntaxWalker
         this.DefaultVisit(transpilerHelper.root);
 
         renderingHeader = false;
-        sb = cFileSb;
+        sb = new StringBuilder(); // temp so that we can deindent
         this.DefaultVisit(transpilerHelper.root);
+        cFileSb.Append(StringUtils.DeIndent(sb.ToString()));
+        sb = cFileSb;
 
         OutputFileBottomSections();
     }
