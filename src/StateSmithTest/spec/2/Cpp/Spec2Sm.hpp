@@ -321,6 +321,7 @@ public:
     // Thread safe.
     static char const * eventIdToString(EventId id);
 
+public:
     void user_class_code_example()
     {
         // your code here

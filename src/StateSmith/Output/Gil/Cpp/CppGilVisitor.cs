@@ -172,9 +172,10 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
             if (classDepth == 1 && !String.IsNullOrWhiteSpace(cppObjs.renderConfigCpp.ClassCode))
             {
+                sb.AppendLine("");
                 string classCode = cppObjs.renderConfigCpp.ClassCode;
-                //classCode = StringUtils.Indent(classCode, cppObjs.codeStyleSettings.Indent1);
                 sb.Append(classCode);
+                sb.AppendLine();
             }
 
             if (privateMembers.Any())

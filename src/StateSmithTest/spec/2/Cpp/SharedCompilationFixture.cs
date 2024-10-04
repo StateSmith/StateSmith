@@ -51,7 +51,7 @@ public class SharedCompilationFixture
             ";
 
         string IRenderConfigCpp.ClassCode => """
-
+            public:
                 void user_class_code_example()
                 {
                     // your code here
@@ -62,7 +62,6 @@ public class SharedCompilationFixture
                 {
                     // your code here
                 }
-            
             """;
 
         string IRenderConfigCpp.BaseClassCode => "public Spec2SmBase";
