@@ -3,23 +3,34 @@ using NSubstitute;
 using Spectre.Console.Testing;
 using StateSmith.Cli.Manifest;
 using StateSmith.Cli.Run;
+using StateSmith.CliTest.Utils;
 using StateSmith.Common;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace StateSmith.CliTest.Run;
 
+/// <summary>
+/// NOTE! This class has a number of experiments on how best to test the console UI.
+/// </summary>
 public class CreateBlankManifestTests
 {
     private readonly string dirOrManifestPath = ExamplesHelper.GetExamplesDir() + "/1/";
+
+    private const string ManifestWriteSuccessMessage = "Manifest written successfully to statesmith.cli.json";
+    private const string OverwriteConfirmationMessage = "Overwrite existing files?";
+    private const string NoSelection = "> no";
+    private const string YesSelection = "> yes";
     private readonly IManifestPersistance mockPersistence = Substitute.For<IManifestPersistance>();
-    private readonly TestConsole testConsole = new();
-    private readonly RunUi runUi;
+    private TestConsole testConsole = new();
+    private RunUi runUi;
 
     public CreateBlankManifestTests()
     {
         // We can't use an NSubstitute console mock because Spectre.Console uses a lot of extension methods.
         // Instead, we mark the console as interactive so that selection prompts will work.
         testConsole.Interactive();
+
         runUi = new RunUi(new RunOptions(), testConsole, dirOrManifestPath);
     }
 
@@ -37,20 +48,6 @@ public class CreateBlankManifestTests
         // Assert
         mockPersistence.Received(1).Write(Arg.Any<ManifestData>(), overWrite: true);
         AssertBlankManifestData(data);
-    }
-
-    private static void AssertBlankManifestData(ManifestData? data)
-    {
-        data.ThrowIfNull().RunManifest.IncludePathGlobs.Should().BeEquivalentTo([
-                "**/*.csx",
-                "**/*.drawio.svg",
-                "**/*.drawio",
-                "**/*.dio",
-                "**/*.plantuml",
-                "**/*.puml",
-                "**/*.pu",
-                "**/*.graphml",
-            ]);
     }
 
     [Fact]
@@ -75,22 +72,76 @@ public class CreateBlankManifestTests
         AssertBlankManifestData(data);
     }
 
+    // Less fragile for menu driving. Probably better to create a menu abstraction instead.
     [Fact]
-    public void CreateBlankManifest_ExistingNoOverwrite()
+    public void CreateBlankManifest_ExistingOverwrite_Thread()
     {
         // Arrange
+        ManifestData? data = null;
+        mockPersistence.Write(Arg.Do<ManifestData>(md => data = md), overWrite: true);
+
+        var liveConsole = new DrivableConsole();
+        runUi = new RunUi(new RunOptions(), liveConsole, dirOrManifestPath);
         mockPersistence.ManifestExists().Returns(true);
-        // queue select no
-        // NOTE! This test is a bit fragile because it depends on the order of the choices.
-        // We somewhat mitigate this below by checking the output.
-        testConsole.Input.PushTextWithEnter("");
 
         // Act
-        runUi.CreateBlankManifestAskIfOverwrite(mockPersistence);
-        testConsole.Output.Should().Match("*Warning!*> no*yes*");
+        var task = new Task(() =>
+        {
+            runUi.CreateBlankManifestAskIfOverwrite(mockPersistence);
+        });
+        task.Start();
+
+        liveConsole.WaitForOutputIgnoreCase(OverwriteConfirmationMessage);
+        liveConsole.WaitForOutputIgnoreCase(NoSelection);
+        liveConsole.ClearOutput();
+        liveConsole.SendDownArrow();
+        liveConsole.WaitForOutputIgnoreCase(YesSelection);
+        liveConsole.SendEnter();
 
         // Assert
+        task.Wait(1000).Should().BeTrue(); // will throw if task had an exception
+
+        liveConsole.Output.Should().Contain(ManifestWriteSuccessMessage);
+        mockPersistence.Received(1).Write(Arg.Any<ManifestData>(), true);
+        AssertBlankManifestData(data);
+    }
+
+    [Fact]
+    public void CreateBlankManifest_ExistingNoOverwrite_Thread()
+    {
+        // Arrange
+        var liveConsole = new DrivableConsole();
+        runUi = new RunUi(new RunOptions(), liveConsole, dirOrManifestPath);
+        mockPersistence.ManifestExists().Returns(true);
+
+        // Act
+        var task = new Task(() =>
+        {
+            runUi.CreateBlankManifestAskIfOverwrite(mockPersistence);
+        });
+        task.Start();
+
+        liveConsole.WaitForOutputIgnoreCase(OverwriteConfirmationMessage);
+        liveConsole.WaitForOutputIgnoreCase(NoSelection);
+        liveConsole.SendEnter();
+
+        // Assert
+        task.Wait(1000).Should().BeTrue(); // will throw if task had an exception
+        liveConsole.Output.Should().NotContain(ManifestWriteSuccessMessage);
         mockPersistence.Received(0).Write(Arg.Any<ManifestData>(), Arg.Any<bool>());
     }
 
+    private static void AssertBlankManifestData(ManifestData? data)
+    {
+        data.ThrowIfNull().RunManifest.IncludePathGlobs.Should().BeEquivalentTo([
+                "**/*.csx",
+                "**/*.drawio.svg",
+                "**/*.drawio",
+                "**/*.dio",
+                "**/*.plantuml",
+                "**/*.puml",
+                "**/*.pu",
+                "**/*.graphml",
+            ]);
+    }
 }
