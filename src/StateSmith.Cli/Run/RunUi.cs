@@ -126,9 +126,32 @@ public class RunUi
             //    runHandler.ScanAndCreateManifest();
             //    break;
             case blankManifest:
-                runHandler.CreateBlankManifest();
+                CreateBlankManifestAskIfOverwrite(new ManifestPersistance(this.currentDirectory));
                 break;
         }
+    }
+
+    internal void CreateBlankManifestAskIfOverwrite(IManifestPersistance persistance)
+    {
+        if (persistance.ManifestExists() && UiHelper.AskForOverwrite(_console) == false)
+        {
+            return;
+        }
+
+        ForceCreateBlankManifest(persistance);
+        _console.MarkupLine($"Manifest written successfully to [green]{ManifestPersistance.ManifestFileName}[/].");
+    }
+
+    static void ForceCreateBlankManifest(IManifestPersistance persistance)
+    {
+        var manifest = new ManifestData();
+
+        foreach (var ext in StandardFiles.GetStandardFileExtensions())
+        {
+            manifest.RunManifest.IncludePathGlobs.Add($"**/*{ext}");
+        }
+
+        persistance.Write(manifest, overWrite: true);
     }
 
     internal void SearchUpForManifestAndRun()

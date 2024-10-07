@@ -12,7 +12,6 @@ public class RunHandler
 {
     public SsCsxDiagramFileFinder Finder;
 
-    private IManifestPersistance _manifestPersistance;
     private string _manifestDirectory;
     private string _SearchDirectory => _manifestDirectory;
 
@@ -24,7 +23,7 @@ public class RunHandler
     private RunHandlerOptions _runHandlerOptions;
     private CsxRunner _csxRunner;
 
-    public RunHandler(IAnsiConsole console, string dirOrManifestPath, DiagramOptions diagramOptions, RunHandlerOptions runHandlerOptions, IManifestPersistance? manifestPersistance = null)
+    public RunHandler(IAnsiConsole console, string dirOrManifestPath, DiagramOptions diagramOptions, RunHandlerOptions runHandlerOptions)
     {
         Finder = new SsCsxDiagramFileFinder();
 
@@ -40,7 +39,6 @@ public class RunHandler
         _manifestDirectory = Path.GetDirectoryName(dirOrManifestPath).ThrowIfNull();
         _runInfo = new RunInfo(dirOrManifestPath);
         _runInfoDataBase = new RunInfoDataBase(dirOrManifestPath, console);
-        _manifestPersistance = manifestPersistance ?? new ManifestPersistance(_manifestDirectory);
         _runConsole = new RunConsole(_console);
         _csxRunner = new CsxRunner(_runConsole, _runInfo, _SearchDirectory, _runHandlerOptions);
     }
@@ -49,33 +47,10 @@ public class RunHandler
     private bool IsNoCsx => _runHandlerOptions.NoCsx;
     private bool IsRebuild => _runHandlerOptions.Rebuild;
 
-    public void CreateBlankManifest()
-    {
-        var manifest = new ManifestData();
-
-        foreach (var ext in StandardFiles.GetStandardFileExtensions())
-        {
-            manifest.RunManifest.IncludePathGlobs.Add($"**/*{ext}");
-        }
-
-        WriteManifest(manifest);
-    }
-
     public void AddFromManifest(ManifestData manifest)
     {
         Finder.AddIncludePatterns(manifest.RunManifest.IncludePathGlobs);
         Finder.AddExcludePatterns(manifest.RunManifest.ExcludePathGlobs);
-    }
-
-    private void WriteManifest(ManifestData manifest)
-    {
-        if (_manifestPersistance.ManifestExists() && UiHelper.AskForOverwrite(_console) == false)
-        {
-            return;
-        }
-
-        _manifestPersistance.Write(manifest, overWrite: true);
-        _console.MarkupLine($"Manifest written successfully to [green]{ManifestPersistance.ManifestFileName}[/].");
     }
 
     public void Run()

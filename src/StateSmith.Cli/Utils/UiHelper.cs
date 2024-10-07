@@ -1,5 +1,4 @@
 using Spectre.Console;
-using System;
 
 namespace StateSmith.Cli.Utils;
 
