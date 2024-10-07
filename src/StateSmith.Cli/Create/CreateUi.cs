@@ -18,6 +18,7 @@ public class CreateUi
     private readonly string _updateInfoPersistencePath;
     string _latestStateSmithVersion = UpdateInfo.DefaultStateSmithLibVersion;
     IAnsiConsole _console = AnsiConsole.Console;
+    IPrompter _prompter;
 
     public CreateUi(IAnsiConsole console, DataPaths settingsPaths)
     {
@@ -27,6 +28,7 @@ public class CreateUi
         _settingsPersistencePath = settingsPaths.Create_SettingsPersistencePath;
         _updateInfoPersistencePath = settingsPaths.Create_UpdateInfoPersistencePath;
         this._console = console;
+        _prompter = new Prompter(console);
     }
 
     public string GetSettingsPersistencePath() => _settingsPersistencePath;
@@ -89,7 +91,7 @@ public class CreateUi
         // if files exist, ask if should overwrite
         if (File.Exists(_settings.diagramFileName) || WouldOverwiteScriptFile())
         {
-            proceed = UiHelper.AskForOverwrite(_console);
+            proceed = _prompter.AskForOverwrite();
         }
 
         return proceed;

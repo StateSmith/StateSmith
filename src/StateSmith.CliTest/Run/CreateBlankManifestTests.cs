@@ -3,6 +3,7 @@ using NSubstitute;
 using Spectre.Console.Testing;
 using StateSmith.Cli.Manifest;
 using StateSmith.Cli.Run;
+using StateSmith.Cli.Utils;
 using StateSmith.CliTest.Utils;
 using StateSmith.Common;
 using System.Threading.Tasks;
@@ -22,22 +23,18 @@ public class CreateBlankManifestTests
     private const string NoSelection = "> no";
     private const string YesSelection = "> yes";
     private readonly IManifestPersistance mockPersistence = Substitute.For<IManifestPersistance>();
-    private TestConsole testConsole = new();
-    private RunUi runUi;
 
     public CreateBlankManifestTests()
     {
-        // We can't use an NSubstitute console mock because Spectre.Console uses a lot of extension methods.
-        // Instead, we mark the console as interactive so that selection prompts will work.
-        testConsole.Interactive();
-
-        runUi = new RunUi(new RunOptions(), testConsole, dirOrManifestPath);
+       
     }
 
     [Fact]
     public void CreateBlankManifest_NoExisting()
     {
         // Arrange
+        RunUi runUi = new(new RunOptions(), new TestConsole(), dirOrManifestPath);
+
         mockPersistence.ManifestExists().Returns(false);
         ManifestData? data = null;
         mockPersistence.Write(Arg.Do<ManifestData>(md => data = md), overWrite: true);
@@ -54,6 +51,12 @@ public class CreateBlankManifestTests
     public void CreateBlankManifest_ExistingOverwrite()
     {
         // Arrange
+        TestConsole testConsole = new();
+        // We can't use an NSubstitute console mock because Spectre.Console uses a lot of extension methods.
+        // Instead, we mark the console as interactive so that selection prompts will work.
+        testConsole.Interactive();
+        RunUi runUi = new(new RunOptions(), testConsole, dirOrManifestPath);
+
         mockPersistence.ManifestExists().Returns(true);
         ManifestData? data = null;
         mockPersistence.Write(Arg.Do<ManifestData>(md => data = md), overWrite: true);
@@ -81,7 +84,7 @@ public class CreateBlankManifestTests
         mockPersistence.Write(Arg.Do<ManifestData>(md => data = md), overWrite: true);
 
         var liveConsole = new DrivableConsole();
-        runUi = new RunUi(new RunOptions(), liveConsole, dirOrManifestPath);
+        var runUi = new RunUi(new RunOptions(), liveConsole, dirOrManifestPath);
         mockPersistence.ManifestExists().Returns(true);
 
         // Act
@@ -107,11 +110,51 @@ public class CreateBlankManifestTests
     }
 
     [Fact]
+    public void CreateBlankManifest_ExistingOverwrite_Prompter()
+    {
+        // Arrange
+        ManifestData? data = null;
+        mockPersistence.Write(Arg.Do<ManifestData>(md => data = md), overWrite: true);
+
+        TestConsole testConsole = new();
+        IPrompter prompter = Substitute.For<IPrompter>();
+        RunUi runUi = new(new RunOptions(), testConsole, dirOrManifestPath, prompter);
+        mockPersistence.ManifestExists().Returns(true);
+        prompter.AskForOverwrite().Returns(true);
+
+        // Act
+        runUi.CreateBlankManifestAskIfOverwrite(mockPersistence);
+
+        // Assert
+        testConsole.Output.Should().Contain(ManifestWriteSuccessMessage);
+        mockPersistence.Received(1).Write(Arg.Any<ManifestData>(), true);
+        AssertBlankManifestData(data);
+    }
+
+    [Fact]
+    public void CreateBlankManifest_ExistingNoOverwrite_Prompter()
+    {
+        // Arrange
+        TestConsole testConsole = new();
+        IPrompter prompter = Substitute.For<IPrompter>();
+        RunUi runUi = new(new RunOptions(), testConsole, dirOrManifestPath, prompter);
+        mockPersistence.ManifestExists().Returns(true);
+        prompter.AskForOverwrite().Returns(false);
+
+        // Act
+        runUi.CreateBlankManifestAskIfOverwrite(mockPersistence);
+
+        // Assert
+        mockPersistence.Received(0).Write(Arg.Any<ManifestData>(), Arg.Any<bool>());
+        testConsole.Output.Should().NotContain(ManifestWriteSuccessMessage);
+    }
+
+    [Fact]
     public void CreateBlankManifest_ExistingNoOverwrite_Thread()
     {
         // Arrange
         var liveConsole = new DrivableConsole();
-        runUi = new RunUi(new RunOptions(), liveConsole, dirOrManifestPath);
+        var runUi = new RunUi(new RunOptions(), liveConsole, dirOrManifestPath);
         mockPersistence.ManifestExists().Returns(true);
 
         // Act
@@ -130,6 +173,7 @@ public class CreateBlankManifestTests
         liveConsole.Output.Should().NotContain(ManifestWriteSuccessMessage);
         mockPersistence.Received(0).Write(Arg.Any<ManifestData>(), Arg.Any<bool>());
     }
+
 
     private static void AssertBlankManifestData(ManifestData? data)
     {

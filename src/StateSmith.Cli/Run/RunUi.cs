@@ -9,16 +9,18 @@ namespace StateSmith.Cli.Run;
 public class RunUi
 {
     IAnsiConsole _console;
+    IPrompter _prompter;
     RunOptions opts;
     RunHandler runHandler;
     readonly string currentDirectory;
 
-    public RunUi(RunOptions opts, IAnsiConsole _console, string currentDirectory)
+    public RunUi(RunOptions opts, IAnsiConsole _console, string currentDirectory, IPrompter? prompter = null)
     {
         this.opts = opts;
         this.currentDirectory = currentDirectory;
         runHandler = new(_console, currentDirectory, opts.GetDiagramOptions(), opts.GetRunHandlerOptions(currentDirectory: currentDirectory));
         this._console = _console;
+        _prompter = prompter ?? new Prompter(_console);
     }
 
     public int HandleRunCommand()
@@ -133,7 +135,7 @@ public class RunUi
 
     internal void CreateBlankManifestAskIfOverwrite(IManifestPersistance persistance)
     {
-        if (persistance.ManifestExists() && UiHelper.AskForOverwrite(_console) == false)
+        if (persistance.ManifestExists() && _prompter.AskForOverwrite() == false)
         {
             return;
         }
