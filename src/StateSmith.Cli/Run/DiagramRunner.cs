@@ -1,5 +1,3 @@
-using Spectre.Console;
-using StateSmith.Output.Gil;
 using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
@@ -10,10 +8,11 @@ namespace StateSmith.Cli.Run;
 public class DiagramRunner
 {
     //IAnsiConsole _console;
-    RunConsole _runConsole;
-    DiagramOptions _diagramOptions;
-    RunInfo _runInfo;
-    readonly string _searchDirectory;
+    private RunConsole _runConsole;
+    private DiagramOptions _diagramOptions;
+    private RunInfo _runInfo;
+
+    private readonly string _searchDirectory;
     private readonly RunHandlerOptions _runHandlerOptions;
     private string CurrentDirectory => _runHandlerOptions.CurrentDirectory;
 

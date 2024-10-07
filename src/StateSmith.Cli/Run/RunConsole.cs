@@ -12,6 +12,11 @@ public class RunConsole
         _console = console;
     }
 
+    public IAnsiConsole GetIAnsiConsole()
+    {
+        return _console;
+    }
+
     public void AddMildHeader(string header)
     {
         _console.MarkupLine("");

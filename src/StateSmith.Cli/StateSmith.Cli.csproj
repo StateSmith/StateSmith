@@ -8,6 +8,7 @@
     <Product>StateSmith</Product>
     <Authors>Adam Fraser-Kruck</Authors>
     <Nullable>enable</Nullable>
+    <WarningsAsErrors>Nullable</WarningsAsErrors>
 
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>ss.cli</ToolCommandName>

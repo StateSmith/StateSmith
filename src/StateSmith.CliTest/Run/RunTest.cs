@@ -20,8 +20,8 @@ public class RunTest
     [Fact]
     public void DebuggerTest()
     {
-        if (!Debugger.IsAttached)
-            return;
+        //if (!Debugger.IsAttached)
+        //    return;
 
         RunHandler runHandler = new(AnsiConsole.Console, dirOrManifestPath, new(), new(currentDirectory: dirOrManifestPath));
         runHandler.Finder.AddExcludePattern("a/a3");
