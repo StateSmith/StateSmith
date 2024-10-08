@@ -34,7 +34,8 @@ public class DiagramRunner
 
         foreach (var diagramFile in targetDiagramFiles)
         {
-            ranFiles |= RunDiagramFileIfNeeded(diagramFile, runInfoStore);
+            RunDiagramFileIfNeeded(diagramFile, runInfoStore, out var diagramRan);
+            ranFiles |= diagramRan;
         }
 
         _runConsole.WriteLine("\nFinished running diagrams.");
@@ -44,31 +45,25 @@ public class DiagramRunner
     private bool IsVerbose => _runHandlerOptions.Verbose;
     private bool IsRebuild => _runHandlerOptions.Rebuild;
 
-    public bool RunDiagramFileIfNeeded(string diagramShortPath, RunInfoStore runInfoStore)
+    public void RunDiagramFileIfNeeded(string diagramRelPath, RunInfoStore runInfoStore, out bool diagramRan, bool rebuildIfLastFailure = false)
     {
-        bool diagramRan;
-        string diagramLongerPath = $"{_searchDirectory}/{diagramShortPath}";
+        string diagramLongerPath = $"{_searchDirectory}/{diagramRelPath}";
         string diagramAbsolutePath = Path.GetFullPath(diagramLongerPath);
 
         string? csxAbsPath = runInfoStore.FindCsxWithDiagram(diagramAbsolutePath);
         if (csxAbsPath != null)
         {
             var csxRelativePath = Path.GetRelativePath(_searchDirectory, csxAbsPath);
-            if (IsVerbose)
-            {
-                _runConsole.QuietMarkupLine($"...Skipping diagram `{diagramShortPath}` already run by csx file `{csxRelativePath}`.");
-            }
+            _runConsole.QuietMarkupLine($"...Skipping diagram `{diagramRelPath}` already run by csx file `{csxRelativePath}`.", filter: IsVerbose);
             diagramRan = false;
-            return diagramRan;
+            return;
         }
 
-        _runConsole.AddMildHeader($"Checking diagram: `{diagramShortPath}`");
-        _runConsole.WriteLine($"Diagram settings: {_diagramOptions.Describe()}");
-        _runConsole.QuietMarkupLine($"Change detection not implemented yet. Rebuild for diagram. Issue #328.");
-        // TODO: https://github.com/StateSmith/StateSmith/issues/328
-        // Need to actually check something like `_incrementalRunChecker.TestFilePath(absolutePath);`
-        IncrementalRunChecker.Result runCheck = IncrementalRunChecker.Result.NeedsRunNoInfo;
-        if (runCheck != IncrementalRunChecker.Result.OkToSkip)
+        _runConsole.AddMildHeader($"Checking diagram: `{diagramRelPath}`", filter: IsVerbose);
+        _runConsole.WriteLine($"Diagram settings: {_diagramOptions.Describe()}", filter: IsVerbose);
+        var incrementalRunChecker = new IncrementalRunChecker(_runConsole, _searchDirectory, IsVerbose, runInfoStore);
+
+        if (incrementalRunChecker.TestDiagramOnlyFilePath(diagramAbsolutePath, rebuildIfLastFailure) != IncrementalRunChecker.Result.OkToSkip)
         {
             // already basically printed by IncrementalRunChecker
             //_console.WriteLine($"Script or its diagram dependencies have changed. Running script.");
@@ -83,12 +78,11 @@ public class DiagramRunner
             {
                 _runConsole.QuietMarkupLine($"Diagram and its dependencies haven't changed. Skipping.", filter: IsVerbose);
                 diagramRan = false;
-                return diagramRan; //!!!!!!!!!!! NOTE the return here.
+                return; //!!!!!!!!!!! NOTE the return here.
             }
         }
 
-        RunDiagramFile(diagramShortPath, diagramAbsolutePath, out diagramRan, runInfoStore);
-        return diagramRan;
+        RunDiagramFile(diagramRelPath, diagramAbsolutePath, out diagramRan, runInfoStore);
     }
 
     public void RunDiagramFile(string shortPath, string absolutePath, out bool diagramRan, RunInfoStore runInfoStore)

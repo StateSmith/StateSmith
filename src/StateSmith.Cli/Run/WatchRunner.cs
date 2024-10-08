@@ -180,53 +180,31 @@ public class WatchRunner
 
     private bool RunDiagramFileIfNeeded(string diagramRelPath, bool rebuildIfLastFailure = false)
     {
-        bool ranFile = false;
+        bool diagramRan = false;
 
-        var diagramAbsPath = MakeAbsolute(diagramRelPath);
-        if (_runInfoStore.FindCsxWithDiagram(diagramAbsPath) != null)
+        try
         {
-            return false;
-        }
-        _runInfoStore.diagramRuns.TryGetValue(diagramAbsPath, out var runInfo);
+            _diagramRunner.RunDiagramFileIfNeeded(diagramRelPath: diagramRelPath, _runInfoStore, out diagramRan);
 
-        if (runInfo == null)
-        {
-            runInfo = new DiagramRunInfo(diagramAbsPath);
-            runInfo.lastCodeGenStartDateTime = DateTime.MinValue;
-            runInfo.lastCodeGenEndDateTime = DateTime.MinValue;
-        }
-
-        var diagFileInfo = new FileInfo(diagramAbsPath);
-
-        bool needsRun =
-            (diagFileInfo.Exists && diagFileInfo.LastWriteTime >= runInfo.lastCodeGenStartDateTime) ||
-            (rebuildIfLastFailure && runInfo.success == false);
-
-        if (needsRun)
-        {
-            ranFile = true;
-
-            try
+            if (diagramRan)
             {
-                _console.QuietMarkupLine($"Diagram `{diagramRelPath}` needs to be run");
-                _diagramRunner.RunDiagramFile(shortPath: diagramRelPath, absolutePath: diagramAbsPath, out ranFile, _runInfoStore);
-                if (ranFile)
-                {
-                    _successTracker.AddSuccess(diagramRelPath);
-                }
+                _successTracker.AddSuccess(diagramRelPath);
             }
-            catch (Exception)
-            {
-                _console.ErrorMarkupLine($"Error running diagram file: `{diagramRelPath}`");
-                _successTracker.AddFailure(diagramRelPath);
-                //_console.WriteException(e);
-            }
+        }
+        catch (Exception)
+        {
+            _successTracker.AddFailure(diagramRelPath);
+            _console.ErrorMarkupLine($"Error running file: `{diagramRelPath}`");
+            //_console.WriteException(e);
+        }
+
+        if (diagramRan)
+        {
             _console.WriteLine("");
-
             _runInfoDataBase.PersistRunInfo(_runInfoStore);
         }
 
-        return ranFile;
+        return diagramRan;
     }
 
     private string MakeAbsolute(string path)

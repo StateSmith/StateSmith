@@ -101,7 +101,7 @@ public class CsxRunner
 
         var incrementalRunChecker = new IncrementalRunChecker(_runConsole, _searchDirectory, IsVerbose, runInfoStore);
 
-        if (incrementalRunChecker.TestFilePath(csxAbsolutePath, rebuildIfLastFailure) != IncrementalRunChecker.Result.OkToSkip)
+        if (incrementalRunChecker.TestCsxFilePath(csxAbsolutePath, rebuildIfLastFailure) != IncrementalRunChecker.Result.OkToSkip)
         {
             // already basically printed by IncrementalRunChecker
             //_console.WriteLine($"Script or its diagram dependencies have changed. Running script.");

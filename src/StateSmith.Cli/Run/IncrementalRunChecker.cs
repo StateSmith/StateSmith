@@ -27,9 +27,11 @@ public class IncrementalRunChecker
         return Path.GetRelativePath(relativePath, absolutePath);
     }
 
-    public Result TestFilePath(string csxAbsolutePath, bool rebuildIfLastFailure)
+    public Result TestCsxFilePath(string csxAbsolutePath, bool rebuildIfLastFailure)
     {
-        if (_runInfoStore == null || !_runInfoStore.csxRuns.ContainsKey(csxAbsolutePath))
+        CsxRunInfo? runInfo;
+
+        if (_runInfoStore == null || !_runInfoStore.csxRuns.TryGetValue(csxAbsolutePath, out runInfo))
         {
             ConsoleMarkupLine($"No previous run info found for {GetRelativePath(csxAbsolutePath)}. Code gen needed.");
             return Result.NeedsRunNoInfo;
@@ -37,27 +39,60 @@ public class IncrementalRunChecker
 
         Result result;
 
-        var csxRun = _runInfoStore.csxRuns[csxAbsolutePath];
-        if (!csxRun.success && rebuildIfLastFailure)
+        if (!runInfo.success && rebuildIfLastFailure)
         {
             result = Result.NeedsRunLastTimeFailed;
             return result;
         }
 
-        result = CheckFile(csxAbsolutePath, csxRun.lastCodeGenStartDateTime);
+        result = CheckFile(csxAbsolutePath, runInfo.lastCodeGenStartDateTime);
         if (result != Result.OkToSkip)
             return result;
 
-        foreach (var diagramPath in csxRun.diagramAbsolutePaths)
+        foreach (var diagramPath in runInfo.diagramAbsolutePaths)
         {
-            result = CheckFile(diagramPath, csxRun.lastCodeGenStartDateTime);
+            result = CheckFile(diagramPath, runInfo.lastCodeGenStartDateTime);
             if (result != Result.OkToSkip)
                 return result;
         }
 
-        foreach (var diagramPath in csxRun.writtenFileAbsolutePaths)
+        foreach (var outputFilePath in runInfo.writtenFileAbsolutePaths)
         {
-            result = CheckFile(diagramPath, csxRun.lastCodeGenEndDateTime);
+            // output files are checked against the end time because they are written after the source file
+            result = CheckFile(outputFilePath, runInfo.lastCodeGenEndDateTime);
+            if (result != Result.OkToSkip)
+                return result;
+        }
+
+        return result;
+    }
+
+    public Result TestDiagramOnlyFilePath(string diagramAbsolutePath, bool rebuildIfLastFailure)
+    {
+        DiagramRunInfo? runInfo;
+
+        if (_runInfoStore == null || !_runInfoStore.diagramRuns.TryGetValue(diagramAbsolutePath, out runInfo))
+        {
+            ConsoleMarkupLine($"No previous run info found for {GetRelativePath(diagramAbsolutePath)}. Code gen needed.");
+            return Result.NeedsRunNoInfo;
+        }
+
+        Result result;
+
+        if (!runInfo.success && rebuildIfLastFailure)
+        {
+            result = Result.NeedsRunLastTimeFailed;
+            return result;
+        }
+
+        result = CheckFile(diagramAbsolutePath, runInfo.lastCodeGenStartDateTime);
+        if (result != Result.OkToSkip)
+            return result;
+
+        foreach (var outputFilePath in runInfo.writtenFileAbsolutePaths)
+        {
+            // output files are checked against the end time because they are written after the source file
+            result = CheckFile(outputFilePath, runInfo.lastCodeGenEndDateTime);
             if (result != Result.OkToSkip)
                 return result;
         }
