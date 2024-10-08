@@ -8,6 +8,16 @@ namespace StateSmith.Cli.Run;
 
 public class CsxOutputParser
 {
+    /// <summary>
+    /// Don't throw if something is not found. Needed when parsing the output of a command that may not have generated any files.
+    /// </summary>
+    private bool permissive = false;
+
+    public void Permissive()
+    {
+        permissive = true;
+    }
+
     public List<string> GetPrintedDiagramPaths(string stateSmithConsoleOutput)
     {
         List<string> diagramPaths = new();
@@ -22,7 +32,7 @@ public class CsxOutputParser
             diagramPaths.Add(match.Groups[1].Value);
         }
 
-        if (diagramPaths.Count == 0)
+        if (diagramPaths.Count == 0 && !permissive)
         {
             throw new InvalidOperationException("Couldn't find diagram file from StateSmith console output: " + stateSmithConsoleOutput);
         }
@@ -44,7 +54,7 @@ public class CsxOutputParser
             writtenFilePaths.Add(match.Groups[1].Value);
         }
 
-        if (writtenFilePaths.Count == 0)
+        if (writtenFilePaths.Count == 0 && !permissive)
         {
             throw new InvalidOperationException("Couldn't find written file from StateSmith console output: " + stateSmithConsoleOutput);
         }

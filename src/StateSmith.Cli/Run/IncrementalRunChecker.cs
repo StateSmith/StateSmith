@@ -7,12 +7,12 @@ namespace StateSmith.Cli.Run;
 public class IncrementalRunChecker
 {
     RunInfo _readRunInfo;
-    private IAnsiConsole _console;
+    private RunConsole _console;
     private string relativePath;
     public bool FoundMissingFile { get; private set; } = false;
     bool verbose;
 
-    public IncrementalRunChecker(IAnsiConsole console, string relativePath, bool verbose, RunInfo readRunInfo)
+    public IncrementalRunChecker(RunConsole console, string relativePath, bool verbose, RunInfo readRunInfo)
     {
         _console = console;
         this.relativePath = relativePath;

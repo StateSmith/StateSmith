@@ -1,6 +1,5 @@
 using Spectre.Console;
 using StateSmith.Cli.Manifest;
-using StateSmith.Cli.Utils;
 using StateSmith.Common;
 using StateSmith.Runner;
 using System;
@@ -22,6 +21,7 @@ public class RunHandler
     private RunConsole _runConsole;
     private RunHandlerOptions _runHandlerOptions;
     private CsxRunner _csxRunner;
+    private DiagramRunner _diagramRunner;
 
     public RunHandler(IAnsiConsole console, string dirOrManifestPath, DiagramOptions diagramOptions, RunHandlerOptions runHandlerOptions)
     {
@@ -41,6 +41,7 @@ public class RunHandler
         _runInfoDataBase = new RunInfoDataBase(dirOrManifestPath, console);
         _runConsole = new RunConsole(_console);
         _csxRunner = new CsxRunner(_runConsole, _runInfo, _SearchDirectory, _runHandlerOptions);
+        _diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, searchDirectory: _SearchDirectory, _runHandlerOptions);
     }
 
     private bool IsVerbose => _runHandlerOptions.Verbose;
@@ -58,7 +59,6 @@ public class RunHandler
         try
         {
             ReadPastRunInfoDatabase();
-            var scanResults = Finder.Scan(searchDirectory: _SearchDirectory);
 
             if (_runHandlerOptions.Watch)
             {
@@ -92,26 +92,34 @@ public class RunHandler
 
     private void Watch()
     {
+        SsCsxDiagramFileFinder.ScanResults scanResults = ScanForFiles();
+        PrintInterstingScanInfo(scanResults);
 
+        var watchRunner = new WatchRunner(_runConsole, _csxRunner, _diagramRunner, _runInfo, _runHandlerOptions, _runInfoDataBase, searchDirectory: _SearchDirectory);
+        watchRunner.Run(scanResults);
     }
 
     private void ExecuteNormalRun()
     {
-        var scanResults = Finder.Scan(searchDirectory: _SearchDirectory);
+        SsCsxDiagramFileFinder.ScanResults scanResults = ScanForFiles();
 
         _csxRunner.RunScriptsIfNeeded(scanResults.targetCsxFiles, _runInfo, out bool ranFiles);
+        ranFiles |= _diagramRunner.Run(scanResults.targetDiagramFiles, _runInfo);
+
         if (ranFiles)
         {
-            _runInfoDataBase.PersistRunInfo(_runInfo);
+            _runInfoDataBase.PersistRunInfo(_runInfo, printMessage: true);
         }
 
-        var diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, _runInfo, searchDirectory: _SearchDirectory, _runHandlerOptions);
-        diagramRunner.Run(scanResults.targetDiagramFiles);
-
-        PrintScanInfo(scanResults);
+        PrintInterstingScanInfo(scanResults);
     }
 
-    private void PrintScanInfo(SsCsxDiagramFileFinder.ScanResults scanResults)
+    private SsCsxDiagramFileFinder.ScanResults ScanForFiles()
+    {
+        return Finder.Scan(searchDirectory: _SearchDirectory);
+    }
+
+    private void PrintInterstingScanInfo(SsCsxDiagramFileFinder.ScanResults scanResults)
     {
         bool spacerPrinted = false;
 

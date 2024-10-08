@@ -1,8 +1,8 @@
-using StateSmith.Runner;
 using System.Collections.Generic;
 using System.IO;
 using System;
 using StateSmith.Cli.Utils;
+using StateSmith.Runner;
 
 namespace StateSmith.Cli.Run;
 
@@ -22,6 +22,11 @@ public class CsxRunner
         _runConsole = runConsole;
         _searchDirectory = searchDirectory;
         _runHandlerOptions = runHandlerOptions;
+    }
+
+    public void SetConsole(RunConsole runConsole)
+    {
+        _runConsole = runConsole;
     }
 
     public void RunScriptsIfNeeded(List<string> csxScripts, RunInfo runInfo, out bool ranFiles)
@@ -75,7 +80,7 @@ public class CsxRunner
 
         foreach (var csxShortPath in csxScripts)
         {
-            anyScriptsRan |= RunScriptIfNeeded(searchDirectory: _searchDirectory, csxShortPath, runInfo);
+            anyScriptsRan |= RunScriptIfNeeded(csxShortPath, runInfo);
             //_console.WriteLine(); // already lots of newlines in RunScriptIfNeeded
         }
 
@@ -90,15 +95,15 @@ public class CsxRunner
         }
     }
 
-    private bool RunScriptIfNeeded(string searchDirectory, string csxShortPath, RunInfo runInfo)
+    public bool RunScriptIfNeeded(string csxShortPath, RunInfo runInfo)
     {
         bool scriptRan = false;
-        string csxLongerPath = $"{searchDirectory}/{csxShortPath}";
+        string csxLongerPath = $"{_searchDirectory}/{csxShortPath}";
         string csxAbsolutePath = Path.GetFullPath(csxLongerPath);
 
         _runConsole.AddMildHeader($"Checking script and diagram dependencies for: `{csxShortPath}`");
 
-        var incrementalRunChecker = new IncrementalRunChecker(_runConsole.GetIAnsiConsole(), _searchDirectory, IsVerbose, runInfo);
+        var incrementalRunChecker = new IncrementalRunChecker(_runConsole, _searchDirectory, IsVerbose, runInfo);
 
         if (incrementalRunChecker.TestFilePath(csxAbsolutePath) != IncrementalRunChecker.Result.OkToSkip)
         {
@@ -123,7 +128,7 @@ public class CsxRunner
 
         SimpleProcess process = new()
         {
-            WorkingDirectory = searchDirectory,
+            WorkingDirectory = _searchDirectory,
             SpecificCommand = DotnetScriptProgram.Name,
             SpecificArgs = csxAbsolutePath,
             throwOnExitCode = false
@@ -133,17 +138,23 @@ public class CsxRunner
         // Important that we grab time before running the process.
         // This ensures that we can detect if diagram or csx file was modified after our run.
         var info = new CsxRunInfo(csxAbsolutePath: csxAbsolutePath);
+        runInfo.csxRuns[csxAbsolutePath] = info; // will overwrite if already exists
         process.Run(timeoutMs: 60000);
         info.lastCodeGenEndDateTime = DateTime.Now;
+
+        // We need to parse output before potentially throwing to support Watch mode.
+        CsxOutputParser parser = new();
+        if (process.GetExitCode() != 0)
+        {
+            parser.Permissive();
+        }
+        parser.ParseAndResolveFilePaths(process.StdOutput, info);
 
         if (process.GetExitCode() != 0)
         {
             throw new FinishedWithFailureException();
         }
 
-        CsxOutputParser parser = new();
-        parser.ParseAndResolveFilePaths(process.StdOutput, info);
-        runInfo.csxRuns[csxAbsolutePath] = info; // will overwrite if already exists
         return scriptRan;
     }
 }

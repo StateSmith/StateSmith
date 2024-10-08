@@ -15,6 +15,11 @@ public class RunInfo : Versionable
     /// </summary>
     public Dictionary<string, CsxRunInfo> csxRuns = new();
 
+    /// <summary>
+    /// Key is diagram absolute path
+    /// </summary>
+    public Dictionary<string, DiagramRunInfo> diagramRuns = new();
+
     public RunInfo(string dirOrManifestPath)
     {
         this.dirOrManifestPath = dirOrManifestPath;

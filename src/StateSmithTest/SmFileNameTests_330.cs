@@ -23,7 +23,7 @@ public class SmFileNameTests_330
             """;
 
         var fakeFs = new CapturingCodeFileWriter();
-        var console = new StringBufferConsolePrinter();
+        var console = new StringBuilderConsolePrinter();
         var fileBaseName = "RocketSm" + Guid.NewGuid().ToString().Replace('-', '_');
         var fileName = fileBaseName + ".plantuml";
 

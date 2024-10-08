@@ -51,7 +51,7 @@ public class RunInfoDataBase
         return readRunInfo;
     }
 
-    public void PersistRunInfo(RunInfo runInfo)
+    public void PersistRunInfo(RunInfo runInfo, bool printMessage = false)
     {
         //create temp directory if it doesn't exist
         if (!Directory.Exists(_tempPath))
@@ -66,7 +66,11 @@ public class RunInfoDataBase
             IncludeFields = true
         };
         jsonFilePersistence.PersistToFile(runInfo, runInfoFilePath);
-        _console.WriteLine("Run info stored in " + runInfoFilePath);
+
+        if (printMessage)
+        {
+            _console.WriteLine("Run info stored in " + runInfoFilePath);
+        }
     }
 
     private string GetRunInfoFilePath(string targetDirOrFile)

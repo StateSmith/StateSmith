@@ -26,7 +26,7 @@ public class GilToC99Tests
         };
 
         FilePathPrinter pathPrinter = new(outputInfo.outputDirectory);
-        GilToC99 gilToC = new(outputInfo, new GilToC99Customizer(renderConfigC, outputInfo), new CodeFileWriter(new StringBufferConsolePrinter(), pathPrinter), renderConfig, renderConfigC, new());
+        GilToC99 gilToC = new(outputInfo, new GilToC99Customizer(renderConfigC, outputInfo), new CodeFileWriter(new StringBuilderConsolePrinter(), pathPrinter), renderConfig, renderConfigC, new());
 
         gilToC.TranspileAndOutputCode(programText);
     }

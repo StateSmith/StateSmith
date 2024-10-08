@@ -1,3 +1,4 @@
+using StateSmith.Output;
 using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
@@ -7,45 +8,49 @@ namespace StateSmith.Cli.Run;
 
 public class DiagramRunner
 {
-    //IAnsiConsole _console;
     private RunConsole _runConsole;
     private DiagramOptions _diagramOptions;
-    private RunInfo _runInfo;
 
     private readonly string _searchDirectory;
     private readonly RunHandlerOptions _runHandlerOptions;
     private string CurrentDirectory => _runHandlerOptions.CurrentDirectory;
 
-    public DiagramRunner(RunConsole runConsole, DiagramOptions diagramOptions, RunInfo runInfo, string searchDirectory, RunHandlerOptions runHandlerOptions)
+    public DiagramRunner(RunConsole runConsole, DiagramOptions diagramOptions, string searchDirectory, RunHandlerOptions runHandlerOptions)
     {
         _runConsole = runConsole;
         this._diagramOptions = diagramOptions;
-        _runInfo = runInfo;
         _searchDirectory = searchDirectory;
         this._runHandlerOptions = runHandlerOptions;
     }
 
-    public void Run(List<string> targetDiagramFiles)
+    public void SetConsole(RunConsole runConsole)
     {
+        _runConsole = runConsole;
+    }
+
+    public bool Run(List<string> targetDiagramFiles, RunInfo runInfo)
+    {
+        bool ranFiles = false;
+
         foreach (var diagramFile in targetDiagramFiles)
         {
-            RunDiagramFile(diagramFile);
+            ranFiles |= RunDiagramFileIfNeeded(diagramFile, runInfo);
         }
 
         _runConsole.WriteLine("\nFinished running diagrams.");
+        return ranFiles;
     }
 
     private bool IsVerbose => _runHandlerOptions.Verbose;
     private bool IsRebuild => _runHandlerOptions.Rebuild;
 
-    private bool RunDiagramFile(string diagramShortPath)
+    public bool RunDiagramFileIfNeeded(string diagramShortPath, RunInfo runInfo)
     {
         bool diagramRan;
-
         string diagramLongerPath = $"{_searchDirectory}/{diagramShortPath}";
         string diagramAbsolutePath = Path.GetFullPath(diagramLongerPath);
 
-        string? csxAbsPath = _runInfo.FindCsxWithDiagram(diagramAbsolutePath);
+        string? csxAbsPath = runInfo.FindCsxWithDiagram(diagramAbsolutePath);
         if (csxAbsPath != null)
         {
             var csxRelativePath = Path.GetRelativePath(_searchDirectory, csxAbsPath);
@@ -82,15 +87,26 @@ public class DiagramRunner
             }
         }
 
+        diagramRan = RunDiagramFile(diagramShortPath, diagramAbsolutePath, runInfo);
+        return diagramRan;
+    }
+
+    public bool RunDiagramFile(string shortPath, string absolutePath, RunInfo runInfo)
+    {
+        bool diagramRan;
         string callerFilePath = CurrentDirectory + "/";  // Slash needed for fix of https://github.com/StateSmith/StateSmith/issues/345
 
-        RunnerSettings runnerSettings = new(diagramFile: diagramAbsolutePath, transpilerId: _diagramOptions.Lang);
+        RunnerSettings runnerSettings = new(diagramFile: absolutePath, transpilerId: _diagramOptions.Lang);
         runnerSettings.simulation.enableGeneration = !_diagramOptions.NoSimGen; // enabled by default
         runnerSettings.propagateExceptions = _runHandlerOptions.PropagateExceptions;
         runnerSettings.dumpErrorsToFile = _runHandlerOptions.DumpErrorsToFile;
 
+        var info = new DiagramRunInfo(absolutePath: absolutePath);
+        runInfo.diagramRuns[absolutePath] = info; // will overwrite if already exists
+
         // the constructor will attempt to read diagram settings from the diagram file
         SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);
+        smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter, LoggingCodeFileWriter>();
 
         if (smRunner.PreDiagramBasedSettingsException != null)
         {
@@ -99,6 +115,8 @@ public class DiagramRunner
             throw new Exception("Should not get here.");
         }
 
+        _runConsole.WriteLine($"Running diagram: `{shortPath}`");
+
         if (runnerSettings.transpilerId == TranspilerId.NotYetSet)
         {
             _runConsole.MarkupLine($"Ignoring diagram as no language specified `--lang` and no transpiler ID found in diagram.");
@@ -106,9 +124,18 @@ public class DiagramRunner
             return diagramRan; //!!!!!!!!!!! NOTE the return here.
         }
 
-        _runConsole.WriteLine($"Running diagram: `{diagramShortPath}`");
-        smRunner.Run();
-        diagramRan = true;
+        LoggingCodeFileWriter loggingCodeFileWriter = (LoggingCodeFileWriter)smRunner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<ICodeFileWriter>();
+
+        try
+        {
+            diagramRan = true;
+            smRunner.Run();
+        }
+        finally
+        {
+            info.writtenFileAbsolutePaths.AddRange(loggingCodeFileWriter.filePathsWritten);
+            info.lastCodeGenEndDateTime = DateTime.Now;
+        }
 
         return diagramRan;
     }
