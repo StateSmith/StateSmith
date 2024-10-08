@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 
 namespace StateSmith.Cli.Run;
@@ -27,11 +28,11 @@ public class WatchRunner
     public WatchRunner(RunConsole console, CsxRunner csxRunner, DiagramRunner diagramRunner, RunInfo runInfo, RunHandlerOptions runHandlerOptions, RunInfoDataBase runInfoDataBase, string searchDirectory)
     {
         _console = console;
-        var silentConsole = console.CloneWithoutSettings();
-        silentConsole.SetSilent(true);
+        //var silentConsole = console.CloneWithoutSettings();
+        //silentConsole.SetSilent(true);
 
         _csxRunner = csxRunner;
-        _csxRunner.SetConsole(silentConsole);
+        //_csxRunner.SetConsole(silentConsole);
         _diagramRunner = diagramRunner;
 
         _runInfo = runInfo;
@@ -42,6 +43,8 @@ public class WatchRunner
 
     public void Run(SsCsxDiagramFileFinder.ScanResults scanResults)
     {
+        _runHandlerOptions.Rebuild = false; // we don't want constant builds
+
         if (!IsNoCsx)
         {
             _csxFilesToRun.AddRange(scanResults.targetCsxFiles);
@@ -61,21 +64,23 @@ public class WatchRunner
 
     private void RunInner()
     {
-        bool noFilesToRun = true;
+        bool someFilesToRun = false;
 
         if (_diagramFilesToRun.Count > 0)
         {
+            someFilesToRun = true;
+
             _console.MarkupLine("Watching the following diagram files:");
             foreach (var diagramFile in _diagramFilesToRun)
             {
                 _console.MarkupLine($"- {diagramFile}");
-                noFilesToRun = false;
             }
         }
 
-        noFilesToRun = SetupAndPrintCsxFiles(noFilesToRun);
+        SetupAndPrintCsxFiles();
+        someFilesToRun |= _csxFilesToRun.Count > 0;
 
-        if (noFilesToRun)
+        if (!someFilesToRun)
         {
             _console.MarkupLine("No files to watch.");
         }
@@ -100,7 +105,12 @@ public class WatchRunner
         // scan through files and see if they need to be run
         foreach (var relPath in _diagramFilesToRun)
         {
-            ranFiles |= RunDiagramFileIfNeeded(ranFiles, relPath);
+            ranFiles |= RunDiagramFileIfNeeded(relPath);
+        }
+
+        foreach (var relPath in _csxFilesToRun)
+        {
+            ranFiles |= RunCsxFileIfNeeded(relPath);
         }
 
         if (ranFiles)
@@ -112,7 +122,7 @@ public class WatchRunner
         {
             if (_successTracker.SuccessfulSources.Count > 0)
             {
-                _console.MarkupLine($"[green]Successful sources: {_successTracker.SuccessfulSources.Count} [/]");
+                _console.MarkupLine($"[green]Successful sources: {_successTracker.SuccessfulSources.Count}[/]");
             }
 
             if (_successTracker.FailedSources.Count > 0)
@@ -128,8 +138,39 @@ public class WatchRunner
         }
     }
 
-    private bool RunDiagramFileIfNeeded(bool ranFiles, string diagramRelPath)
+    private bool RunCsxFileIfNeeded(string csxRelPath)
     {
+        bool scriptRan = false;
+
+        try
+        {
+            _csxRunner.RunScriptIfNeeded(csxRelPath, _runInfo, out scriptRan);
+
+            if (scriptRan)
+            {
+                _successTracker.AddSuccess(csxRelPath);
+            }
+        }
+        catch (Exception)
+        {
+            _successTracker.AddFailure(csxRelPath);
+            _console.ErrorMarkupLine($"Error running file: {csxRelPath}");
+            //_console.WriteException(e);
+        }
+        
+        if (scriptRan)
+        {
+            _console.WriteLine("");
+            _runInfoDataBase.PersistRunInfo(_runInfo);
+        }
+
+        return scriptRan;
+    }
+
+    private bool RunDiagramFileIfNeeded(string diagramRelPath)
+    {
+        bool ranFiles = false;
+
         var diagramAbsPath = MakeAbsolute(diagramRelPath);
         if (_runInfo.FindCsxWithDiagram(diagramAbsPath) != null)
         {
@@ -148,14 +189,13 @@ public class WatchRunner
             lastRun = runInfo.lastCodeGenStartDateTime;
         }
 
-        var fileInfo = new FileInfo(diagramRelPath);
+        var fileInfo = new FileInfo(diagramAbsPath);
         if (fileInfo.Exists && fileInfo.LastWriteTime >= lastRun)
         {
             ranFiles = true;
 
             try
             {
-                //UiHelper.AddSectionLeftHeader(_console.GetIAnsiConsole(), "Change detected: " + diagramRelPath);
                 _console.QuietMarkupLine($"Change detected: {diagramRelPath}");
                 _diagramRunner.RunDiagramFile(shortPath: diagramRelPath, absolutePath: diagramAbsPath, _runInfo);
                 _successTracker.AddSuccess(diagramRelPath);
@@ -179,7 +219,7 @@ public class WatchRunner
         return Path.GetFullPath(Path.Combine(_searchDirectory, path));
     }
 
-    private bool SetupAndPrintCsxFiles(bool noFilesToRun)
+    private void SetupAndPrintCsxFiles()
     {
         if (_csxFilesToRun.Count > 0)
         {
@@ -187,7 +227,6 @@ public class WatchRunner
             foreach (var csxFile in _csxFilesToRun)
             {
                 _console.MarkupLine($"- {csxFile}");
-                noFilesToRun = false;
             }
         }
 
@@ -212,28 +251,32 @@ public class WatchRunner
             _csxFilesToRun.Clear();
         }
 
-        if (_csxFilesToRun.Count > 0)
-        {
-            UiHelper.AddSectionLeftHeader(_console.GetIAnsiConsole(), "Checking .csx file dependencies");
+        //if (_csxFilesToRun.Count > 0)
+        //{
+        //    UiHelper.AddSectionLeftHeader(_console.GetIAnsiConsole(), "Checking .csx file dependencies");
 
-            foreach (var csxRelPath in _csxFilesToRun)
-            {
-                try
-                {
-                    _csxRunner.RunScriptsIfNeeded(_csxFilesToRun, _runInfo, out var _);
-                    _successTracker.AddSuccess(csxRelPath);
-                }
-                catch (Exception e)
-                {
-                    _console.WriteException(e);
-                    _successTracker.AddFailure(csxRelPath);
-                }
-            }
+        //    foreach (var csxRelPath in _csxFilesToRun)
+        //    {
+        //        bool scriptRan = false;
 
-            _runInfoDataBase.PersistRunInfo(_runInfo);  // todolow - only do if needed
-            _console.WriteLine("done checking dependencies");
-        }
+        //        try
+        //        {
+        //            _csxRunner.RunScriptsIfNeeded(_csxFilesToRun, _runInfo, out scriptRan);
+        //            _successTracker.AddSuccess(csxRelPath);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            _console.WriteException(e);
+        //            _successTracker.AddFailure(csxRelPath);
+        //        }
 
-        return noFilesToRun;
+        //        if (scriptRan)
+        //        {
+        //            _runInfoDataBase.PersistRunInfo(_runInfo);
+        //        }
+        //    }
+
+        //    _console.WriteLine("done checking dependencies");
+        //}
     }
 }

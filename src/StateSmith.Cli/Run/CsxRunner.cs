@@ -35,10 +35,7 @@ public class CsxRunner
 
         if (IsNoCsx)
         {
-            if (IsVerbose)
-            {
-                _runConsole.QuietMarkupLine("Ignoring all .csx scripts for --no-csx.");
-            }
+            _runConsole.QuietMarkupLine("Ignoring all .csx scripts for --no-csx.", filter: IsVerbose);
             return;
         }
 
@@ -64,23 +61,20 @@ public class CsxRunner
                 _runConsole.WriteLine("Attempted command to detect version:");
                 _runConsole.WriteException(exception!);
                 _runConsole.WriteLine("");
-
                 _runConsole.MarkupLine("You can ignore .csx files with the [green]--no-csx[/] CLI option.");
             }
 
             return;
         }
 
-        if (IsVerbose)
-        {
-            _runConsole.QuietMarkupLine($"Running StateSmith .csx scripts with `{DotnetScriptProgram.Name}` version: " + versionString);
-        }
+        _runConsole.QuietMarkupLine($"Running StateSmith .csx scripts with `{DotnetScriptProgram.Name}` version: " + versionString, filter: IsVerbose);
 
         bool anyScriptsRan = false;
 
         foreach (var csxShortPath in csxScripts)
         {
-            anyScriptsRan |= RunScriptIfNeeded(csxShortPath, runInfo);
+            RunScriptIfNeeded(csxShortPath, runInfo, out bool scriptRan);
+            anyScriptsRan |= scriptRan;
             //_console.WriteLine(); // already lots of newlines in RunScriptIfNeeded
         }
 
@@ -95,13 +89,15 @@ public class CsxRunner
         }
     }
 
-    public bool RunScriptIfNeeded(string csxShortPath, RunInfo runInfo)
+    public void RunScriptIfNeeded(string csxShortPath, RunInfo runInfo, out bool scriptRan)
     {
-        bool scriptRan = false;
         string csxLongerPath = $"{_searchDirectory}/{csxShortPath}";
         string csxAbsolutePath = Path.GetFullPath(csxLongerPath);
 
-        _runConsole.AddMildHeader($"Checking script and diagram dependencies for: `{csxShortPath}`");
+        if (IsVerbose)
+        {
+            _runConsole.AddMildHeader($"Checking script and diagram dependencies for: `{csxShortPath}`");
+        }
 
         var incrementalRunChecker = new IncrementalRunChecker(_runConsole, _searchDirectory, IsVerbose, runInfo);
 
@@ -114,12 +110,13 @@ public class CsxRunner
         {
             if (IsRebuild)
             {
-                _runConsole.MarkupLine("Would normally skip (file dates look good), but [yellow]rebuild[/] option set.");
+                _runConsole.MarkupLine("Would normally skip (file dates look good), but [yellow]rebuild[/] option set.", filter: IsVerbose);
             }
             else
             {
-                _runConsole.QuietMarkupLine($"Script and its diagram dependencies haven't changed. Skipping.");
-                return scriptRan; //!!!!!!!!!!! NOTE the return here.
+                _runConsole.QuietMarkupLine($"Script and its diagram dependencies haven't changed. Skipping.", filter: IsVerbose);
+                scriptRan = false;
+                return; //!!!!!!!!!!! NOTE the return here.
             }
         }
 
@@ -154,7 +151,5 @@ public class CsxRunner
         {
             throw new FinishedWithFailureException();
         }
-
-        return scriptRan;
     }
 }
