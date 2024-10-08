@@ -105,12 +105,7 @@ public class WatchRunner
 
         // csx files need to be run first so that we know which diagram files they use
         ranFiles |= RunCsxFilesIfNeeded(rebuildIfLastFailure: firstRun);
-
-        // scan through files and see if they need to be run
-        foreach (var relPath in _diagramFilesToRun)
-        {
-            ranFiles |= RunDiagramFileIfNeeded(relPath, rebuildIfLastFailure: firstRun);
-        }
+        ranFiles |= RunDiagramFilesIfNeeded(rebuildIfLastFailure: firstRun);
 
         if (ranFiles)
         {
@@ -144,6 +139,20 @@ public class WatchRunner
         foreach (var relPath in _csxFilesToRun)
         {
             someRan |= RunCsxFileIfNeeded(relPath, rebuildIfLastFailure);
+            Thread.Sleep(10);
+        }
+
+        return someRan;
+    }
+
+    private bool RunDiagramFilesIfNeeded(bool rebuildIfLastFailure = false)
+    {
+        bool someRan = false;
+
+        foreach (var relPath in _diagramFilesToRun)
+        {
+            someRan |= RunDiagramFileIfNeeded(relPath, rebuildIfLastFailure);
+            Thread.Sleep(10);
         }
 
         return someRan;
