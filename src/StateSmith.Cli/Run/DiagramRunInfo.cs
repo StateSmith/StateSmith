@@ -12,10 +12,21 @@ namespace StateSmith.Cli.Run;
 /// </summary>
 public class DiagramRunInfo : Versionable
 {
+    /// <summary>
+    /// Use for comparing against source files.
+    /// </summary>
     public DateTime lastCodeGenStartDateTime = DateTime.Now;
+
+    /// <summary>
+    /// Use for comparing against generated files.
+    /// End date time is important for checking output files as their last write time will ALWAYS
+    /// be after the source file's last write time.
+    /// </summary>
+    public DateTime lastCodeGenEndDateTime = DateTime.Now;
+
     public string absolutePath;
     public List<string> writtenFileAbsolutePaths = new();
-    public DateTime lastCodeGenEndDateTime = DateTime.Now;
+    public bool success;
 
     public DiagramRunInfo(string absolutePath)
     {

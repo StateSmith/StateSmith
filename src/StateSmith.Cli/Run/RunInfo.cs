@@ -5,9 +5,11 @@ namespace StateSmith.Cli.Run;
 
 /// <summary>
 /// This class is persisted to disk in json format.
+/// TODO - needs a better name. Perhaps RunInfoStore? Or RunsInfo?
 /// </summary>
 public class RunInfo : Versionable
 {
+    // not sure we need this anymore
     public string dirOrManifestPath;
 
     /// <summary>

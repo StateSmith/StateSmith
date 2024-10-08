@@ -89,7 +89,7 @@ public class CsxRunner
         }
     }
 
-    public void RunScriptIfNeeded(string csxShortPath, RunInfo runInfo, out bool scriptRan)
+    public void RunScriptIfNeeded(string csxShortPath, RunInfo runInfo, out bool scriptRan, bool rebuildIfLastFailure = false)
     {
         string csxLongerPath = $"{_searchDirectory}/{csxShortPath}";
         string csxAbsolutePath = Path.GetFullPath(csxLongerPath);
@@ -101,7 +101,7 @@ public class CsxRunner
 
         var incrementalRunChecker = new IncrementalRunChecker(_runConsole, _searchDirectory, IsVerbose, runInfo);
 
-        if (incrementalRunChecker.TestFilePath(csxAbsolutePath) != IncrementalRunChecker.Result.OkToSkip)
+        if (incrementalRunChecker.TestFilePath(csxAbsolutePath, rebuildIfLastFailure) != IncrementalRunChecker.Result.OkToSkip)
         {
             // already basically printed by IncrementalRunChecker
             //_console.WriteLine($"Script or its diagram dependencies have changed. Running script.");
@@ -151,5 +151,7 @@ public class CsxRunner
         {
             throw new FinishedWithFailureException();
         }
+
+        info.success = true;
     }
 }

@@ -20,14 +20,14 @@ public class IncrementalRunChecker
         _readRunInfo = readRunInfo;
     }
 
-    public enum Result { OkToSkip, NeedsRunNoInfo, NeedsRunOutdated, NeedsRunMissingFiles }
+    public enum Result { OkToSkip, NeedsRunNoInfo, NeedsRunOutdated, NeedsRunMissingFiles, NeedsRunLastTimeFailed }
 
     private string GetRelativePath(string absolutePath)
     {
         return Path.GetRelativePath(relativePath, absolutePath);
     }
 
-    public Result TestFilePath(string csxAbsolutePath)
+    public Result TestFilePath(string csxAbsolutePath, bool rebuildIfLastFailure)
     {
         if (_readRunInfo == null || !_readRunInfo.csxRuns.ContainsKey(csxAbsolutePath))
         {
@@ -38,6 +38,12 @@ public class IncrementalRunChecker
         Result result;
 
         var csxRun = _readRunInfo.csxRuns[csxAbsolutePath];
+        if (!csxRun.success && rebuildIfLastFailure)
+        {
+            result = Result.NeedsRunLastTimeFailed;
+            return result;
+        }
+
         result = CheckFile(csxAbsolutePath, csxRun.lastCodeGenStartDateTime);
         if (result != Result.OkToSkip)
             return result;

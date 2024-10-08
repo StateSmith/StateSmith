@@ -89,28 +89,28 @@ public class WatchRunner
             Stopwatch messageStopwatch = new();
             messageStopwatch.Start();
             UiHelper.AddSectionLeftHeader(_console.GetIAnsiConsole(), "Watching Files");
+            bool firstRun = true;
 
             while (true)
             {
-                WatchIterate(messageStopwatch);
+                WatchIterate(messageStopwatch, firstRun);
+                firstRun = false;
                 Thread.Sleep(1000);
             }
         }
     }
 
-    private void WatchIterate(Stopwatch messageStopwatch)
+    private void WatchIterate(Stopwatch messageStopwatch, bool firstRun)
     {
         bool ranFiles = false;
+
+        // csx files need to be run first so that we know which diagram files they use
+        ranFiles |= RunCsxFilesIfNeeded(rebuildIfLastFailure: firstRun);
 
         // scan through files and see if they need to be run
         foreach (var relPath in _diagramFilesToRun)
         {
-            ranFiles |= RunDiagramFileIfNeeded(relPath);
-        }
-
-        foreach (var relPath in _csxFilesToRun)
-        {
-            ranFiles |= RunCsxFileIfNeeded(relPath);
+            ranFiles |= RunDiagramFileIfNeeded(relPath, rebuildIfLastFailure: firstRun);
         }
 
         if (ranFiles)
@@ -138,13 +138,25 @@ public class WatchRunner
         }
     }
 
-    private bool RunCsxFileIfNeeded(string csxRelPath)
+    private bool RunCsxFilesIfNeeded(bool rebuildIfLastFailure = false)
+    {
+        bool someRan = false;
+
+        foreach (var relPath in _csxFilesToRun)
+        {
+            someRan |= RunCsxFileIfNeeded(relPath, rebuildIfLastFailure);
+        }
+
+        return someRan;
+    }
+
+    private bool RunCsxFileIfNeeded(string csxRelPath, bool rebuildIfLastFailure = false)
     {
         bool scriptRan = false;
 
         try
         {
-            _csxRunner.RunScriptIfNeeded(csxRelPath, _runInfo, out scriptRan);
+            _csxRunner.RunScriptIfNeeded(csxRelPath, _runInfo, out scriptRan, rebuildIfLastFailure);
 
             if (scriptRan)
             {
@@ -167,9 +179,9 @@ public class WatchRunner
         return scriptRan;
     }
 
-    private bool RunDiagramFileIfNeeded(string diagramRelPath)
+    private bool RunDiagramFileIfNeeded(string diagramRelPath, bool rebuildIfLastFailure = false)
     {
-        bool ranFiles = false;
+        bool ranFile = false;
 
         var diagramAbsPath = MakeAbsolute(diagramRelPath);
         if (_runInfo.FindCsxWithDiagram(diagramAbsPath) != null)
@@ -178,31 +190,35 @@ public class WatchRunner
         }
         _runInfo.diagramRuns.TryGetValue(diagramAbsPath, out var runInfo);
 
-        DateTime lastRun;
-
         if (runInfo == null)
         {
-            lastRun = DateTime.MinValue;
-        }
-        else
-        {
-            lastRun = runInfo.lastCodeGenStartDateTime;
+            runInfo = new DiagramRunInfo(diagramAbsPath);
+            runInfo.lastCodeGenStartDateTime = DateTime.MinValue;
+            runInfo.lastCodeGenEndDateTime = DateTime.MinValue;
         }
 
-        var fileInfo = new FileInfo(diagramAbsPath);
-        if (fileInfo.Exists && fileInfo.LastWriteTime >= lastRun)
+        var diagFileInfo = new FileInfo(diagramAbsPath);
+
+        bool needsRun =
+            (diagFileInfo.Exists && diagFileInfo.LastWriteTime >= runInfo.lastCodeGenStartDateTime) ||
+            (rebuildIfLastFailure && runInfo.success == false);
+
+        if (needsRun)
         {
-            ranFiles = true;
+            ranFile = true;
 
             try
             {
-                _console.QuietMarkupLine($"Change detected: {diagramRelPath}");
-                _diagramRunner.RunDiagramFile(shortPath: diagramRelPath, absolutePath: diagramAbsPath, _runInfo);
-                _successTracker.AddSuccess(diagramRelPath);
+                _console.QuietMarkupLine($"Diagram `{diagramRelPath}` needs to be run");
+                _diagramRunner.RunDiagramFile(shortPath: diagramRelPath, absolutePath: diagramAbsPath, out ranFile, _runInfo);
+                if (ranFile)
+                {
+                    _successTracker.AddSuccess(diagramRelPath);
+                }
             }
             catch (Exception)
             {
-                _console.ErrorMarkupLine($"Error running diagram file: {diagramRelPath}");
+                _console.ErrorMarkupLine($"Error running diagram file: `{diagramRelPath}`");
                 _successTracker.AddFailure(diagramRelPath);
                 //_console.WriteException(e);
             }
@@ -211,7 +227,7 @@ public class WatchRunner
             _runInfoDataBase.PersistRunInfo(_runInfo);
         }
 
-        return ranFiles;
+        return ranFile;
     }
 
     private string MakeAbsolute(string path)
@@ -250,33 +266,5 @@ public class WatchRunner
 
             _csxFilesToRun.Clear();
         }
-
-        //if (_csxFilesToRun.Count > 0)
-        //{
-        //    UiHelper.AddSectionLeftHeader(_console.GetIAnsiConsole(), "Checking .csx file dependencies");
-
-        //    foreach (var csxRelPath in _csxFilesToRun)
-        //    {
-        //        bool scriptRan = false;
-
-        //        try
-        //        {
-        //            _csxRunner.RunScriptsIfNeeded(_csxFilesToRun, _runInfo, out scriptRan);
-        //            _successTracker.AddSuccess(csxRelPath);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            _console.WriteException(e);
-        //            _successTracker.AddFailure(csxRelPath);
-        //        }
-
-        //        if (scriptRan)
-        //        {
-        //            _runInfoDataBase.PersistRunInfo(_runInfo);
-        //        }
-        //    }
-
-        //    _console.WriteLine("done checking dependencies");
-        //}
     }
 }

@@ -77,23 +77,22 @@ public class DiagramRunner
         {
             if (IsRebuild)
             {
-                _runConsole.MarkupLine("Would normally skip (file dates look good), but [yellow]rebuild[/] option set.");
+                _runConsole.MarkupLine("Would normally skip (file dates look good), but [yellow]rebuild[/] option set.", filter: IsVerbose);
             }
             else
             {
-                _runConsole.QuietMarkupLine($"Diagram and its dependencies haven't changed. Skipping.");
+                _runConsole.QuietMarkupLine($"Diagram and its dependencies haven't changed. Skipping.", filter: IsVerbose);
                 diagramRan = false;
                 return diagramRan; //!!!!!!!!!!! NOTE the return here.
             }
         }
 
-        diagramRan = RunDiagramFile(diagramShortPath, diagramAbsolutePath, runInfo);
+        RunDiagramFile(diagramShortPath, diagramAbsolutePath, out diagramRan, runInfo);
         return diagramRan;
     }
 
-    public bool RunDiagramFile(string shortPath, string absolutePath, RunInfo runInfo)
+    public void RunDiagramFile(string shortPath, string absolutePath, out bool diagramRan, RunInfo runInfo)
     {
-        bool diagramRan;
         string callerFilePath = CurrentDirectory + "/";  // Slash needed for fix of https://github.com/StateSmith/StateSmith/issues/345
 
         RunnerSettings runnerSettings = new(diagramFile: absolutePath, transpilerId: _diagramOptions.Lang);
@@ -121,7 +120,7 @@ public class DiagramRunner
         {
             _runConsole.MarkupLine($"Ignoring diagram as no language specified `--lang` and no transpiler ID found in diagram.");
             diagramRan = false;
-            return diagramRan; //!!!!!!!!!!! NOTE the return here.
+            return; //!!!!!!!!!!! NOTE the return here.
         }
 
         LoggingCodeFileWriter loggingCodeFileWriter = (LoggingCodeFileWriter)smRunner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<ICodeFileWriter>();
@@ -130,13 +129,12 @@ public class DiagramRunner
         {
             diagramRan = true;
             smRunner.Run();
+            info.success = true;
         }
         finally
         {
             info.writtenFileAbsolutePaths.AddRange(loggingCodeFileWriter.filePathsWritten);
             info.lastCodeGenEndDateTime = DateTime.Now;
         }
-
-        return diagramRan;
     }
 }

@@ -12,11 +12,22 @@ namespace StateSmith.Cli.Run;
 /// </summary>
 public class CsxRunInfo : Versionable
 {
-    public DateTime lastCodeGenStartDateTime = DateTime.Now;
     public string csxAbsolutePath;
     public List<string> diagramAbsolutePaths = new();
     public List<string> writtenFileAbsolutePaths = new();
+
+    /// <summary>
+    /// Use for comparing against source files.
+    /// </summary>
+    public DateTime lastCodeGenStartDateTime = DateTime.Now;
+
+    /// <summary>
+    /// Use for comparing against generated files.
+    /// End date time is important for checking output files as their last write time will ALWAYS
+    /// be after the source file's last write time.
+    /// </summary>
     public DateTime lastCodeGenEndDateTime = DateTime.Now;
+    public bool success;
 
     public CsxRunInfo(string csxAbsolutePath)
     {
