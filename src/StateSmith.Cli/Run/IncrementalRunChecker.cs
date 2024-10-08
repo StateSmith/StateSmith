@@ -6,18 +6,18 @@ namespace StateSmith.Cli.Run;
 
 public class IncrementalRunChecker
 {
-    RunInfo _readRunInfo;
+    RunInfoStore _runInfoStore;
     private RunConsole _console;
     private string relativePath;
     public bool FoundMissingFile { get; private set; } = false;
     bool verbose;
 
-    public IncrementalRunChecker(RunConsole console, string relativePath, bool verbose, RunInfo readRunInfo)
+    public IncrementalRunChecker(RunConsole console, string relativePath, bool verbose, RunInfoStore runInfoStore)
     {
         _console = console;
         this.relativePath = relativePath;
         this.verbose = verbose;
-        _readRunInfo = readRunInfo;
+        _runInfoStore = runInfoStore;
     }
 
     public enum Result { OkToSkip, NeedsRunNoInfo, NeedsRunOutdated, NeedsRunMissingFiles, NeedsRunLastTimeFailed }
@@ -29,7 +29,7 @@ public class IncrementalRunChecker
 
     public Result TestFilePath(string csxAbsolutePath, bool rebuildIfLastFailure)
     {
-        if (_readRunInfo == null || !_readRunInfo.csxRuns.ContainsKey(csxAbsolutePath))
+        if (_runInfoStore == null || !_runInfoStore.csxRuns.ContainsKey(csxAbsolutePath))
         {
             ConsoleMarkupLine($"No previous run info found for {GetRelativePath(csxAbsolutePath)}. Code gen needed.");
             return Result.NeedsRunNoInfo;
@@ -37,7 +37,7 @@ public class IncrementalRunChecker
 
         Result result;
 
-        var csxRun = _readRunInfo.csxRuns[csxAbsolutePath];
+        var csxRun = _runInfoStore.csxRuns[csxAbsolutePath];
         if (!csxRun.success && rebuildIfLastFailure)
         {
             result = Result.NeedsRunLastTimeFailed;

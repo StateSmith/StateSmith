@@ -28,13 +28,13 @@ public class DiagramRunner
         _runConsole = runConsole;
     }
 
-    public bool Run(List<string> targetDiagramFiles, RunInfo runInfo)
+    public bool Run(List<string> targetDiagramFiles, RunInfoStore runInfoStore)
     {
         bool ranFiles = false;
 
         foreach (var diagramFile in targetDiagramFiles)
         {
-            ranFiles |= RunDiagramFileIfNeeded(diagramFile, runInfo);
+            ranFiles |= RunDiagramFileIfNeeded(diagramFile, runInfoStore);
         }
 
         _runConsole.WriteLine("\nFinished running diagrams.");
@@ -44,13 +44,13 @@ public class DiagramRunner
     private bool IsVerbose => _runHandlerOptions.Verbose;
     private bool IsRebuild => _runHandlerOptions.Rebuild;
 
-    public bool RunDiagramFileIfNeeded(string diagramShortPath, RunInfo runInfo)
+    public bool RunDiagramFileIfNeeded(string diagramShortPath, RunInfoStore runInfoStore)
     {
         bool diagramRan;
         string diagramLongerPath = $"{_searchDirectory}/{diagramShortPath}";
         string diagramAbsolutePath = Path.GetFullPath(diagramLongerPath);
 
-        string? csxAbsPath = runInfo.FindCsxWithDiagram(diagramAbsolutePath);
+        string? csxAbsPath = runInfoStore.FindCsxWithDiagram(diagramAbsolutePath);
         if (csxAbsPath != null)
         {
             var csxRelativePath = Path.GetRelativePath(_searchDirectory, csxAbsPath);
@@ -87,11 +87,11 @@ public class DiagramRunner
             }
         }
 
-        RunDiagramFile(diagramShortPath, diagramAbsolutePath, out diagramRan, runInfo);
+        RunDiagramFile(diagramShortPath, diagramAbsolutePath, out diagramRan, runInfoStore);
         return diagramRan;
     }
 
-    public void RunDiagramFile(string shortPath, string absolutePath, out bool diagramRan, RunInfo runInfo)
+    public void RunDiagramFile(string shortPath, string absolutePath, out bool diagramRan, RunInfoStore runInfoStore)
     {
         string callerFilePath = CurrentDirectory + "/";  // Slash needed for fix of https://github.com/StateSmith/StateSmith/issues/345
 
@@ -101,7 +101,7 @@ public class DiagramRunner
         runnerSettings.dumpErrorsToFile = _runHandlerOptions.DumpErrorsToFile;
 
         var info = new DiagramRunInfo(absolutePath: absolutePath);
-        runInfo.diagramRuns[absolutePath] = info; // will overwrite if already exists
+        runInfoStore.diagramRuns[absolutePath] = info; // will overwrite if already exists
 
         // the constructor will attempt to read diagram settings from the diagram file
         SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading;
 
 namespace StateSmith.Cli.Run;
@@ -13,7 +12,7 @@ public class WatchRunner
     private RunConsole _console;
     private CsxRunner _csxRunner;
     private DiagramRunner _diagramRunner;
-    private readonly RunInfo _runInfo;
+    private readonly RunInfoStore _runInfoStore;
     private List<string> _csxFilesToRun = new();
     private List<string> _diagramFilesToRun = new();
     private readonly RunHandlerOptions _runHandlerOptions;
@@ -25,7 +24,7 @@ public class WatchRunner
     private bool IsVerbose => _runHandlerOptions.Verbose;
     private bool IsNoCsx => _runHandlerOptions.NoCsx;
 
-    public WatchRunner(RunConsole console, CsxRunner csxRunner, DiagramRunner diagramRunner, RunInfo runInfo, RunHandlerOptions runHandlerOptions, RunInfoDataBase runInfoDataBase, string searchDirectory)
+    public WatchRunner(RunConsole console, CsxRunner csxRunner, DiagramRunner diagramRunner, RunInfoStore runInfoStore, RunHandlerOptions runHandlerOptions, RunInfoDataBase runInfoDataBase, string searchDirectory)
     {
         _console = console;
         //var silentConsole = console.CloneWithoutSettings();
@@ -35,7 +34,7 @@ public class WatchRunner
         //_csxRunner.SetConsole(silentConsole);
         _diagramRunner = diagramRunner;
 
-        _runInfo = runInfo;
+        _runInfoStore = runInfoStore;
         _runHandlerOptions = runHandlerOptions;
         _runInfoDataBase = runInfoDataBase;
         _searchDirectory = searchDirectory;
@@ -156,7 +155,7 @@ public class WatchRunner
 
         try
         {
-            _csxRunner.RunScriptIfNeeded(csxRelPath, _runInfo, out scriptRan, rebuildIfLastFailure);
+            _csxRunner.RunScriptIfNeeded(csxRelPath, _runInfoStore, out scriptRan, rebuildIfLastFailure);
 
             if (scriptRan)
             {
@@ -173,7 +172,7 @@ public class WatchRunner
         if (scriptRan)
         {
             _console.WriteLine("");
-            _runInfoDataBase.PersistRunInfo(_runInfo);
+            _runInfoDataBase.PersistRunInfo(_runInfoStore);
         }
 
         return scriptRan;
@@ -184,11 +183,11 @@ public class WatchRunner
         bool ranFile = false;
 
         var diagramAbsPath = MakeAbsolute(diagramRelPath);
-        if (_runInfo.FindCsxWithDiagram(diagramAbsPath) != null)
+        if (_runInfoStore.FindCsxWithDiagram(diagramAbsPath) != null)
         {
             return false;
         }
-        _runInfo.diagramRuns.TryGetValue(diagramAbsPath, out var runInfo);
+        _runInfoStore.diagramRuns.TryGetValue(diagramAbsPath, out var runInfo);
 
         if (runInfo == null)
         {
@@ -210,7 +209,7 @@ public class WatchRunner
             try
             {
                 _console.QuietMarkupLine($"Diagram `{diagramRelPath}` needs to be run");
-                _diagramRunner.RunDiagramFile(shortPath: diagramRelPath, absolutePath: diagramAbsPath, out ranFile, _runInfo);
+                _diagramRunner.RunDiagramFile(shortPath: diagramRelPath, absolutePath: diagramAbsPath, out ranFile, _runInfoStore);
                 if (ranFile)
                 {
                     _successTracker.AddSuccess(diagramRelPath);
@@ -224,7 +223,7 @@ public class WatchRunner
             }
             _console.WriteLine("");
 
-            _runInfoDataBase.PersistRunInfo(_runInfo);
+            _runInfoDataBase.PersistRunInfo(_runInfoStore);
         }
 
         return ranFile;

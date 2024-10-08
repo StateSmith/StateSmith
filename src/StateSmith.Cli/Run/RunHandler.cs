@@ -14,7 +14,7 @@ public class RunHandler
     private string _manifestDirectory;
     private string _SearchDirectory => _manifestDirectory;
 
-    private RunInfo _runInfo;
+    private RunInfoStore _runInfoStore;
     private RunInfoDataBase _runInfoDataBase;
     private IAnsiConsole _console;
     private readonly DiagramOptions _diagramOptions;
@@ -37,10 +37,10 @@ public class RunHandler
             dirOrManifestPath = PathUtils.EnsureDirEndingSeperator(dirOrManifestPath);
 
         _manifestDirectory = Path.GetDirectoryName(dirOrManifestPath).ThrowIfNull();
-        _runInfo = new RunInfo(dirOrManifestPath);
+        _runInfoStore = new RunInfoStore(dirOrManifestPath);
         _runInfoDataBase = new RunInfoDataBase(dirOrManifestPath, console);
         _runConsole = new RunConsole(_console);
-        _csxRunner = new CsxRunner(_runConsole, _runInfo, _SearchDirectory, _runHandlerOptions);
+        _csxRunner = new CsxRunner(_runConsole, _SearchDirectory, _runHandlerOptions);
         _diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, searchDirectory: _SearchDirectory, _runHandlerOptions);
     }
 
@@ -82,11 +82,11 @@ public class RunHandler
 
     private void ReadPastRunInfoDatabase()
     {
-        RunInfo? readRunInfo = _runInfoDataBase.ReadRunInfoDatabase();
+        RunInfoStore? readRunInfo = _runInfoDataBase.ReadRunInfoDatabase();
 
         if (readRunInfo != null)
         {
-            _runInfo = readRunInfo.DeepCopy();
+            _runInfoStore = readRunInfo.DeepCopy();
         }
     }
 
@@ -95,7 +95,7 @@ public class RunHandler
         SsCsxDiagramFileFinder.ScanResults scanResults = ScanForFiles();
         PrintInterstingScanInfo(scanResults);
 
-        var watchRunner = new WatchRunner(_runConsole, _csxRunner, _diagramRunner, _runInfo, _runHandlerOptions, _runInfoDataBase, searchDirectory: _SearchDirectory);
+        var watchRunner = new WatchRunner(_runConsole, _csxRunner, _diagramRunner, _runInfoStore, _runHandlerOptions, _runInfoDataBase, searchDirectory: _SearchDirectory);
         watchRunner.Run(scanResults);
     }
 
@@ -103,12 +103,12 @@ public class RunHandler
     {
         SsCsxDiagramFileFinder.ScanResults scanResults = ScanForFiles();
 
-        _csxRunner.RunScriptsIfNeeded(scanResults.targetCsxFiles, _runInfo, out bool ranFiles);
-        ranFiles |= _diagramRunner.Run(scanResults.targetDiagramFiles, _runInfo);
+        _csxRunner.RunScriptsIfNeeded(scanResults.targetCsxFiles, _runInfoStore, out bool ranFiles);
+        ranFiles |= _diagramRunner.Run(scanResults.targetDiagramFiles, _runInfoStore);
 
         if (ranFiles)
         {
-            _runInfoDataBase.PersistRunInfo(_runInfo, printMessage: true);
+            _runInfoDataBase.PersistRunInfo(_runInfoStore, printMessage: true);
         }
 
         PrintInterstingScanInfo(scanResults);

@@ -17,7 +17,7 @@ public class CsxRunner
     private bool IsNoCsx => _runHandlerOptions.NoCsx;
     private bool IsRebuild => _runHandlerOptions.Rebuild;
 
-    public CsxRunner(RunConsole runConsole, RunInfo runInfo, string searchDirectory, RunHandlerOptions runHandlerOptions)
+    public CsxRunner(RunConsole runConsole, string searchDirectory, RunHandlerOptions runHandlerOptions)
     {
         _runConsole = runConsole;
         _searchDirectory = searchDirectory;
@@ -29,7 +29,7 @@ public class CsxRunner
         _runConsole = runConsole;
     }
 
-    public void RunScriptsIfNeeded(List<string> csxScripts, RunInfo runInfo, out bool ranFiles)
+    public void RunScriptsIfNeeded(List<string> csxScripts, RunInfoStore runInfoStore, out bool ranFiles)
     {
         ranFiles = false;
 
@@ -73,7 +73,7 @@ public class CsxRunner
 
         foreach (var csxShortPath in csxScripts)
         {
-            RunScriptIfNeeded(csxShortPath, runInfo, out bool scriptRan);
+            RunScriptIfNeeded(csxShortPath, runInfoStore, out bool scriptRan);
             anyScriptsRan |= scriptRan;
             //_console.WriteLine(); // already lots of newlines in RunScriptIfNeeded
         }
@@ -89,7 +89,7 @@ public class CsxRunner
         }
     }
 
-    public void RunScriptIfNeeded(string csxShortPath, RunInfo runInfo, out bool scriptRan, bool rebuildIfLastFailure = false)
+    public void RunScriptIfNeeded(string csxShortPath, RunInfoStore runInfoStore, out bool scriptRan, bool rebuildIfLastFailure = false)
     {
         string csxLongerPath = $"{_searchDirectory}/{csxShortPath}";
         string csxAbsolutePath = Path.GetFullPath(csxLongerPath);
@@ -99,7 +99,7 @@ public class CsxRunner
             _runConsole.AddMildHeader($"Checking script and diagram dependencies for: `{csxShortPath}`");
         }
 
-        var incrementalRunChecker = new IncrementalRunChecker(_runConsole, _searchDirectory, IsVerbose, runInfo);
+        var incrementalRunChecker = new IncrementalRunChecker(_runConsole, _searchDirectory, IsVerbose, runInfoStore);
 
         if (incrementalRunChecker.TestFilePath(csxAbsolutePath, rebuildIfLastFailure) != IncrementalRunChecker.Result.OkToSkip)
         {
@@ -135,7 +135,7 @@ public class CsxRunner
         // Important that we grab time before running the process.
         // This ensures that we can detect if diagram or csx file was modified after our run.
         var info = new CsxRunInfo(csxAbsolutePath: csxAbsolutePath);
-        runInfo.csxRuns[csxAbsolutePath] = info; // will overwrite if already exists
+        runInfoStore.csxRuns[csxAbsolutePath] = info; // will overwrite if already exists
         process.Run(timeoutMs: 60000);
         info.lastCodeGenEndDateTime = DateTime.Now;
 

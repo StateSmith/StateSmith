@@ -5,9 +5,8 @@ namespace StateSmith.Cli.Run;
 
 /// <summary>
 /// This class is persisted to disk in json format.
-/// TODO - needs a better name. Perhaps RunInfoStore? Or RunsInfo?
 /// </summary>
-public class RunInfo : Versionable
+public class RunInfoStore : Versionable
 {
     // not sure we need this anymore
     public string dirOrManifestPath;
@@ -22,7 +21,7 @@ public class RunInfo : Versionable
     /// </summary>
     public Dictionary<string, DiagramRunInfo> diagramRuns = new();
 
-    public RunInfo(string dirOrManifestPath)
+    public RunInfoStore(string dirOrManifestPath)
     {
         this.dirOrManifestPath = dirOrManifestPath;
     }
@@ -44,11 +43,11 @@ public class RunInfo : Versionable
     /// Not the fastest, but it works and is simple. We don't need to optimize this.
     /// </summary>
     /// <returns></returns>
-    public RunInfo DeepCopy()
+    public RunInfoStore DeepCopy()
     {
         JsonFilePersistence jsonFilePersistence = new();
         jsonFilePersistence.IncludeFields = true;
         var json = jsonFilePersistence.PersistToString(this);
-        return jsonFilePersistence.RestoreFromString<RunInfo>(json);
+        return jsonFilePersistence.RestoreFromString<RunInfoStore>(json);
     }
 }
