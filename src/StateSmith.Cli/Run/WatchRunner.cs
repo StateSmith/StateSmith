@@ -214,25 +214,23 @@ public class WatchRunner
 
     private void SetupAndPrintCsxFiles()
     {
-        if (_csxFilesToRun.Count > 0)
+        if (_csxFilesToRun.Count == 0)
         {
-            _console.MarkupLine("Watching the following csx files:");
-            foreach (var csxFile in _csxFilesToRun)
-            {
-                _console.MarkupLine($"- {csxFile}");
-            }
+            _console.MarkupLine("No .csx scripts found to run.", IsVerbose);
+            return;
+        }
+
+        _console.MarkupLine("Watching the following csx files:");
+        foreach (var csxFile in _csxFilesToRun)
+        {
+            _console.MarkupLine($"- {csxFile}");
         }
 
         (string? versionString, Exception? exception) = DotnetScriptProgram.TryGetVersionString();
         if (versionString == null)
         {
             _console.ErrorMarkupLine($"Did not detect `{DotnetScriptProgram.Name}` program.");
-            _console.WarnMarkupLine($"Not attempting to run StateSmith .csx scripts:");
-            foreach (var path in _csxFilesToRun)
-            {
-                _console.WarnMarkupLine("    " + path);
-            }
-            _console.WriteLine("");
+            _console.WarnMarkupLine($"Not attempting to run StateSmith .csx scripts.");
 
             if (IsVerbose)
             {
