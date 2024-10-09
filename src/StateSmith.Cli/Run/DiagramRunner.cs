@@ -124,11 +124,11 @@ public class DiagramRunner
             diagramRan = true;
             smRunner.Run();
             info.success = true;
+            info.lastCodeGenEndDateTime = DateTime.Now;
         }
         finally
         {
             info.writtenFileAbsolutePaths.AddRange(loggingCodeFileWriter.filePathsWritten);
-            info.lastCodeGenEndDateTime = DateTime.Now;
         }
     }
 }

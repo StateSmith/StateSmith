@@ -6,11 +6,10 @@ namespace StateSmith.Cli.Run;
 
 public class IncrementalRunChecker
 {
-    RunInfoStore _runInfoStore;
+    private RunInfoStore _runInfoStore;
     private RunConsole _console;
     private string relativePath;
-    public bool FoundMissingFile { get; private set; } = false;
-    bool verbose;
+    private bool verbose;
 
     public IncrementalRunChecker(RunConsole console, string relativePath, bool verbose, RunInfoStore runInfoStore)
     {
@@ -33,38 +32,11 @@ public class IncrementalRunChecker
 
         if (_runInfoStore == null || !_runInfoStore.csxRuns.TryGetValue(csxAbsolutePath, out runInfo))
         {
-            ConsoleMarkupLine($"No previous run info found for {GetRelativePath(csxAbsolutePath)}. Code gen needed.");
+            _console.MarkupLine($"No previous run info found for {GetRelativePath(csxAbsolutePath)}. Code gen needed.");
             return Result.NeedsRunNoInfo;
         }
 
-        Result result;
-
-        if (!runInfo.success && rebuildIfLastFailure)
-        {
-            result = Result.NeedsRunLastTimeFailed;
-            return result;
-        }
-
-        result = CheckFile(csxAbsolutePath, runInfo.lastCodeGenStartDateTime);
-        if (result != Result.OkToSkip)
-            return result;
-
-        foreach (var diagramPath in runInfo.diagramAbsolutePaths)
-        {
-            result = CheckFile(diagramPath, runInfo.lastCodeGenStartDateTime);
-            if (result != Result.OkToSkip)
-                return result;
-        }
-
-        foreach (var outputFilePath in runInfo.writtenFileAbsolutePaths)
-        {
-            // output files are checked against the end time because they are written after the source file
-            result = CheckFile(outputFilePath, runInfo.lastCodeGenEndDateTime);
-            if (result != Result.OkToSkip)
-                return result;
-        }
-
-        return result;
+        return CheckRunInfo(runInfo, rebuildIfLastFailure);
     }
 
     public Result TestDiagramOnlyFilePath(string diagramAbsolutePath, bool rebuildIfLastFailure)
@@ -73,11 +45,16 @@ public class IncrementalRunChecker
 
         if (_runInfoStore == null || !_runInfoStore.diagramRuns.TryGetValue(diagramAbsolutePath, out runInfo))
         {
-            ConsoleMarkupLine($"No previous run info found for {GetRelativePath(diagramAbsolutePath)}. Code gen needed.");
+            _console.MarkupLine($"No previous run info found for {GetRelativePath(diagramAbsolutePath)}. Code gen needed.");
             return Result.NeedsRunNoInfo;
         }
 
-        Result result;
+        return CheckRunInfo(runInfo, rebuildIfLastFailure);
+    }
+
+    private Result CheckRunInfo(RunInfo runInfo, bool rebuildIfLastFailure)
+    {
+        Result result = Result.OkToSkip;
 
         if (!runInfo.success && rebuildIfLastFailure)
         {
@@ -85,14 +62,16 @@ public class IncrementalRunChecker
             return result;
         }
 
-        result = CheckFile(diagramAbsolutePath, runInfo.lastCodeGenStartDateTime);
-        if (result != Result.OkToSkip)
-            return result;
+        foreach (var sourceFilePath in runInfo.GetSourceFileAbsolutePaths())
+        {
+            result = CheckSourceFile(sourceFilePath, runInfo);
+            if (result != Result.OkToSkip)
+                return result;
+        }
 
         foreach (var outputFilePath in runInfo.writtenFileAbsolutePaths)
         {
-            // output files are checked against the end time because they are written after the source file
-            result = CheckFile(outputFilePath, runInfo.lastCodeGenEndDateTime);
+            result = CheckOutputFile(outputFilePath, runInfo);
             if (result != Result.OkToSkip)
                 return result;
         }
@@ -100,38 +79,44 @@ public class IncrementalRunChecker
         return result;
     }
 
-    private Result CheckFile(string filePath, in DateTime lastCodeGenDateTime)
+    private Result CheckSourceFile(string filePath, in RunInfo runInfo)
+    {
+        // if last run was a failure, we don't care if a source file is missing
+        return CheckFile(filePath, runInfo.lastCodeGenStartDateTime, ignoreMissing: !runInfo.success);
+    }
+
+    private Result CheckOutputFile(string filePath, in RunInfo runInfo)
+    {
+        // output files are checked against the code gen end time because they are written after the source file
+        // we do care if the output file is missing
+        return CheckFile(filePath, runInfo.lastCodeGenEndDateTime, ignoreMissing: false);
+    }
+
+    private Result CheckFile(string filePath, in DateTime lastCodeGenDateTime, bool ignoreMissing)
     {
         var fileInfo = new FileInfo(filePath);
 
         if (!fileInfo.Exists)
         {
-            FoundMissingFile = true;
-            ConsoleMarkupLine($"Expected file missing `{GetRelativePath(filePath)}`. Code gen needed.");
-            return Result.NeedsRunMissingFiles;
+            if (ignoreMissing)
+            {
+                _console.QuietMarkupLine($"Expected file missing `{GetRelativePath(filePath)}`. Ignoring missing file.", filter: verbose);
+            }
+            else
+            {
+                _console.MarkupLine($"Expected file missing `{GetRelativePath(filePath)}`. Code gen needed.");
+                return Result.NeedsRunMissingFiles;
+            }
         }
 
-        if (fileInfo.LastWriteTime >= lastCodeGenDateTime)
+        if (fileInfo.LastWriteTime >= lastCodeGenDateTime || fileInfo.CreationTime >= lastCodeGenDateTime)
         {
-            ConsoleMarkupLine($"File `{GetRelativePath(filePath)}` [yellow]CHANGED[/] since last code gen. Code gen needed.");
+            _console.MarkupLine($"File `{GetRelativePath(filePath)}` [yellow]CHANGED[/] since last code gen. Code gen needed.");
             return Result.NeedsRunOutdated;
         }
 
-        if (verbose)
-        {
-            QuietMarkupLine($"File `{GetRelativePath(filePath)}` hasn't changed since last code gen.");
-        }
+        _console.QuietMarkupLine($"File `{GetRelativePath(filePath)}` hasn't changed since last code gen.", filter: verbose);
+
         return Result.OkToSkip;
-    }
-
-    // TODOLOW use run console that does this already
-    private void QuietMarkupLine(string message)
-    {
-        ConsoleMarkupLine($"[grey]{message}[/]");
-    }
-
-    private void ConsoleMarkupLine(string message)
-    {
-        _console.MarkupLine(message);
     }
 }

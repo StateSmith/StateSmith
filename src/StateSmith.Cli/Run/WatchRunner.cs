@@ -132,7 +132,7 @@ public class WatchRunner
         }
     }
 
-    private bool RunCsxFilesIfNeeded(bool rebuildIfLastFailure = false)
+    private bool RunCsxFilesIfNeeded(bool rebuildIfLastFailure)
     {
         bool someRan = false;
 
@@ -145,7 +145,7 @@ public class WatchRunner
         return someRan;
     }
 
-    private bool RunDiagramFilesIfNeeded(bool rebuildIfLastFailure = false)
+    private bool RunDiagramFilesIfNeeded(bool rebuildIfLastFailure)
     {
         bool someRan = false;
 
@@ -158,62 +158,64 @@ public class WatchRunner
         return someRan;
     }
 
-    private bool RunCsxFileIfNeeded(string csxRelPath, bool rebuildIfLastFailure = false)
+    private bool RunCsxFileIfNeeded(string csxRelPath, bool rebuildIfLastFailure)
     {
-        bool scriptRan = false;
+        bool scriptRanOrFailed = false;
 
         try
         {
-            _csxRunner.RunScriptIfNeeded(csxRelPath, _runInfoStore, out scriptRan, rebuildIfLastFailure);
+            _csxRunner.RunScriptIfNeeded(csxRelPath, _runInfoStore, out scriptRanOrFailed, rebuildIfLastFailure);
 
-            if (scriptRan)
+            if (scriptRanOrFailed)
             {
                 _successTracker.AddSuccess(csxRelPath);
             }
         }
         catch (Exception)
         {
+            scriptRanOrFailed = true;
             _successTracker.AddFailure(csxRelPath);
             _console.ErrorMarkupLine($"Error running file: {csxRelPath}");
             //_console.WriteException(e);
         }
         
-        if (scriptRan)
+        if (scriptRanOrFailed)
         {
             _console.WriteLine("");
             _runInfoDataBase.PersistRunInfo(_runInfoStore);
         }
 
-        return scriptRan;
+        return scriptRanOrFailed;
     }
 
-    private bool RunDiagramFileIfNeeded(string diagramRelPath, bool rebuildIfLastFailure = false)
+    private bool RunDiagramFileIfNeeded(string diagramRelPath, bool rebuildIfLastFailure)
     {
-        bool diagramRan = false;
+        bool diagramRanOrFailed = false;
 
         try
         {
-            _diagramRunner.RunDiagramFileIfNeeded(diagramRelPath: diagramRelPath, _runInfoStore, out diagramRan);
+            _diagramRunner.RunDiagramFileIfNeeded(diagramRelPath: diagramRelPath, _runInfoStore, out diagramRanOrFailed, rebuildIfLastFailure);
 
-            if (diagramRan)
+            if (diagramRanOrFailed)
             {
                 _successTracker.AddSuccess(diagramRelPath);
             }
         }
         catch (Exception)
         {
+            diagramRanOrFailed = true;
             _successTracker.AddFailure(diagramRelPath);
             _console.ErrorMarkupLine($"Error running file: `{diagramRelPath}`");
             //_console.WriteException(e);
         }
 
-        if (diagramRan)
+        if (diagramRanOrFailed)
         {
             _console.WriteLine("");
             _runInfoDataBase.PersistRunInfo(_runInfoStore);
         }
 
-        return diagramRan;
+        return diagramRanOrFailed;
     }
 
     private string MakeAbsolute(string path)
