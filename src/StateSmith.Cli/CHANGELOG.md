@@ -8,6 +8,7 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.17.1]
 ### Added
 - Improve `--watch` & change detection functionality.
   - https://github.com/StateSmith/StateSmith/issues/265
