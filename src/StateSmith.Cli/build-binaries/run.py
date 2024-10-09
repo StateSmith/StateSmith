@@ -74,7 +74,7 @@ if os.name == 'nt':
 
     run_windows_binary_command("--version")
     run_windows_binary_command("version")
-    run_windows_binary_command("run --here")
+    run_windows_binary_command("run --here --rebuild --verbose")
 
     input("Press Enter to continue...")
     print("cleaning up...")
