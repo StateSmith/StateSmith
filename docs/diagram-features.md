@@ -20,6 +20,8 @@ Examples:
 - ` / some_action();`
 - ` / { some_action(); more_action(); }`
 
+More behavior syntax detail here: https://github.com/StateSmith/StateSmith/wiki/Behaviors
+
 ---
 
 ## Important note about shapes
