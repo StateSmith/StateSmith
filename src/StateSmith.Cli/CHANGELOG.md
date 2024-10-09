@@ -7,7 +7,7 @@ They have different version numbers.
 Test/interim releases are not documented here.
 
 ---
-## [0.17.0-alpha]
+## [0.17.0]
 ### Added
 - Add `--watch` option to `run` command.
   - https://github.com/StateSmith/StateSmith/issues/265
