@@ -7,6 +7,7 @@ using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace StateSmith.Cli.Run;
 
@@ -98,6 +99,37 @@ public class RunHandler
 
         ReadPastRunInfoDatabase();
         var scanResults = Finder.Scan(searchDirectory: searchDirectory);
+
+        RunInnerInner(searchDirectory, scanResults);
+
+        if( _runHandlerOptions.Watch) {
+            var watchers = new List<FileSystemWatcher>();
+            foreach (var diagramFile in scanResults.targetDiagramFiles.Union( scanResults.targetCsxFiles ))
+            {
+                var watcher = new FileSystemWatcher();
+                watchers.Add(watcher); // don't let watchers go out of scope yet
+                var path = Path.GetDirectoryName(diagramFile);
+                watcher.Path = path!=null && path.Length>0 ? path : "."; 
+                watcher.Filter = Path.GetFileName(diagramFile);
+                _runConsole.WriteLine($"Watching {diagramFile}");
+                _runConsole.WriteLine($"Path: {watcher.Path}");
+                _runConsole.WriteLine($"Filter: {watcher.Filter}");
+                watcher.Changed += (sender, e) => 
+                {
+                    _runConsole.WriteLine($"File {diagramFile} has changed.");
+                    // TODO only process the changed file. Not sure how to break up ScanResults to do this
+                    RunInnerInner(searchDirectory, scanResults);
+                };
+                watcher.EnableRaisingEvents = true;            
+            }
+
+            Console.WriteLine("Watching for changes. Press enter to exit.");
+            Console.ReadLine();
+        }
+    }
+
+    private void RunInnerInner(string searchDirectory, SsCsxDiagramFileFinder.ScanResults scanResults) 
+    {
         RunScriptsIfNeeded(scanResults.targetCsxFiles);
 
         var diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, _runInfo, searchDirectory: searchDirectory, _runHandlerOptions);

@@ -12,12 +12,12 @@ public class DiagramRunner
     //IAnsiConsole _console;
     RunConsole _runConsole;
     DiagramOptions _diagramOptions;
-    RunInfo _runInfo;
+    RunInfo? _runInfo;
     readonly string _searchDirectory;
     private readonly RunHandlerOptions _runHandlerOptions;
     private string CurrentDirectory => _runHandlerOptions.CurrentDirectory;
 
-    public DiagramRunner(RunConsole runConsole, DiagramOptions diagramOptions, RunInfo runInfo, string searchDirectory, RunHandlerOptions runHandlerOptions)
+    public DiagramRunner(RunConsole runConsole, DiagramOptions diagramOptions, RunInfo? runInfo, string searchDirectory, RunHandlerOptions runHandlerOptions)
     {
         _runConsole = runConsole;
         this._diagramOptions = diagramOptions;
@@ -46,7 +46,7 @@ public class DiagramRunner
         string diagramLongerPath = $"{_searchDirectory}/{diagramShortPath}";
         string diagramAbsolutePath = Path.GetFullPath(diagramLongerPath);
 
-        string? csxAbsPath = _runInfo.FindCsxWithDiagram(diagramAbsolutePath);
+        string? csxAbsPath = _runInfo?.FindCsxWithDiagram(diagramAbsolutePath);
         if (csxAbsPath != null)
         {
             var csxRelativePath = Path.GetRelativePath(_searchDirectory, csxAbsPath);
