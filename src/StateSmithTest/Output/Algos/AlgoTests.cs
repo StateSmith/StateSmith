@@ -87,7 +87,7 @@ public class AlgoTests
     private static string GenerateCForAlgo(AlgorithmId algo)
     {
         var fakeFs = new CapturingCodeFileWriter();
-        var console = new StringBufferConsolePrinter();
+        var console = new StringBuilderConsolePrinter();
 
         TestHelper.CaptureRunSmRunnerForPlantUmlString(codeFileWriter: fakeFs, consoleCapturer: console, algorithmId: algo);
         var cCode = fakeFs.GetSoleCaptureWithName("RocketSm.c").code;

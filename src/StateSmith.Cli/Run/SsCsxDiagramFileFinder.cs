@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Microsoft.Extensions.FileSystemGlobbing;
 using Microsoft.Extensions.FileSystemGlobbing.Abstractions;
 using StateSmith.Runner;
@@ -80,7 +81,7 @@ public class SsCsxDiagramFileFinder
 
     public ScanResults Scan(string searchDirectory)
     {
-        ScanResults scanResults = new();
+        ScanResults scanResults = new(searchDirectory);
 
         PatternMatchingResult result = matcher.Execute(new DirectoryInfoWrapper(new DirectoryInfo(searchDirectory)));
 
@@ -158,6 +159,8 @@ public class SsCsxDiagramFileFinder
 
     public class ScanResults
     {
+        public string searchDirectory;
+
         /// <summary>
         /// relative to searchDirectory
         /// </summary>
@@ -183,6 +186,14 @@ public class SsCsxDiagramFileFinder
         /// https://github.com/StateSmith/StateSmith/issues/341
         /// </summary>
         public List<string> brokenDrawioSvgFiles = new();
+
+        public List<string> AbsoluteCsxFiles => targetCsxFiles.Select(relPath => Path.Combine(searchDirectory, relPath)).ToList();
+        public List<string> AbsoluteDiagramFiles => targetDiagramFiles.Select(relPath => Path.Combine(searchDirectory, relPath)).ToList();
+
+        public ScanResults(string searchDirectory)
+        {
+            this.searchDirectory = searchDirectory;
+        }
     }
 }
 

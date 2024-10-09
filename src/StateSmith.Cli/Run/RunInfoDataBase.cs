@@ -18,9 +18,9 @@ public class RunInfoDataBase
         this._console = console;
     }
 
-    public RunInfo? ReadRunInfoDatabase()
+    public RunInfoStore? ReadRunInfoDatabase()
     {
-        RunInfo? readRunInfo = null;
+        RunInfoStore? runInfoStore = null;
 
         string runInfoFilePath = GetRunInfoFilePath(dirOrManifestPath);
         if (!File.Exists(runInfoFilePath))
@@ -40,7 +40,7 @@ public class RunInfoDataBase
 
             try
             {
-                readRunInfo = jsonFilePersistence.RestoreFromFile<RunInfo>(runInfoFilePath);
+                runInfoStore = jsonFilePersistence.RestoreFromFile<RunInfoStore>(runInfoFilePath);
             }
             catch (Exception e)
             {
@@ -48,10 +48,10 @@ public class RunInfoDataBase
             }
         }
 
-        return readRunInfo;
+        return runInfoStore;
     }
 
-    public void PersistRunInfo(RunInfo runInfo)
+    public void PersistRunInfo(RunInfoStore runInfoStore, bool printMessage = false)
     {
         //create temp directory if it doesn't exist
         if (!Directory.Exists(_tempPath))
@@ -65,8 +65,12 @@ public class RunInfoDataBase
         {
             IncludeFields = true
         };
-        jsonFilePersistence.PersistToFile(runInfo, runInfoFilePath);
-        _console.WriteLine("Run info stored in " + runInfoFilePath);
+        jsonFilePersistence.PersistToFile(runInfoStore, runInfoFilePath);
+
+        if (printMessage)
+        {
+            _console.WriteLine("Run info stored in " + runInfoFilePath);
+        }
     }
 
     private string GetRunInfoFilePath(string targetDirOrFile)

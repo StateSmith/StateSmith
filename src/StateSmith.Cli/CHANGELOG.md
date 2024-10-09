@@ -7,6 +7,14 @@ They have different version numbers.
 Test/interim releases are not documented here.
 
 ---
+## [0.17.0-alpha]
+### Added
+- Add `--watch` option to `run` command.
+  - https://github.com/StateSmith/StateSmith/issues/265
+- Add change detection for diagram only runs.
+  - https://github.com/StateSmith/StateSmith/issues/328
+
+---
 
 ## [0.16.0]
 ### Added

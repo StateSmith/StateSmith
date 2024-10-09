@@ -1,11 +1,10 @@
-using StateSmith.Runner;
 using System.Text;
 
-namespace StateSmithTest;
+namespace StateSmith.Runner;
 
-public class StringBufferConsolePrinter : IConsolePrinter
+public class StringBuilderConsolePrinter : IConsolePrinter
 {
-    public readonly StringBuilder sb = new();
+    public StringBuilder sb = new();
 
     public void SetLineEnding(string lineEnding)
     {

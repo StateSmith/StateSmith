@@ -9,16 +9,18 @@ namespace StateSmith.Cli.Run;
 public class RunUi
 {
     IAnsiConsole _console;
+    IPrompter _prompter;
     RunOptions opts;
     RunHandler runHandler;
     readonly string currentDirectory;
 
-    public RunUi(RunOptions opts, IAnsiConsole _console, string currentDirectory)
+    public RunUi(RunOptions opts, IAnsiConsole _console, string currentDirectory, IPrompter? prompter = null)
     {
         this.opts = opts;
         this.currentDirectory = currentDirectory;
         runHandler = new(_console, currentDirectory, opts.GetDiagramOptions(), opts.GetRunHandlerOptions(currentDirectory: currentDirectory));
         this._console = _console;
+        _prompter = prompter ?? new Prompter(_console);
     }
 
     public int HandleRunCommand()
@@ -126,9 +128,32 @@ public class RunUi
             //    runHandler.ScanAndCreateManifest();
             //    break;
             case blankManifest:
-                runHandler.CreateBlankManifest();
+                CreateBlankManifestAskIfOverwrite(new ManifestPersistance(this.currentDirectory));
                 break;
         }
+    }
+
+    internal void CreateBlankManifestAskIfOverwrite(IManifestPersistance persistance)
+    {
+        if (persistance.ManifestExists() && _prompter.AskForOverwrite() == false)
+        {
+            return;
+        }
+
+        ForceCreateBlankManifest(persistance);
+        _console.MarkupLine($"Manifest written successfully to [green]{ManifestPersistance.ManifestFileName}[/].");
+    }
+
+    static void ForceCreateBlankManifest(IManifestPersistance persistance)
+    {
+        var manifest = new ManifestData();
+
+        foreach (var ext in StandardFiles.GetStandardFileExtensions())
+        {
+            manifest.RunManifest.IncludePathGlobs.Add($"**/*{ext}");
+        }
+
+        persistance.Write(manifest, overWrite: true);
     }
 
     internal void SearchUpForManifestAndRun()

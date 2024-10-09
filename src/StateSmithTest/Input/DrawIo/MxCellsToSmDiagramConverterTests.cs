@@ -125,7 +125,7 @@ public class MxCellsToSmDiagramConverterTests
     [Fact]
     public void UnterminatedEdgeSource()
     {
-        StringBufferConsolePrinter console = new();
+        StringBuilderConsolePrinter console = new();
 
         try
         {
@@ -156,7 +156,7 @@ public class MxCellsToSmDiagramConverterTests
     [Fact]
     public void UnterminatedEdgeTarget()
     {
-        StringBufferConsolePrinter console = new();
+        StringBuilderConsolePrinter console = new();
 
         try
         {
@@ -187,7 +187,7 @@ public class MxCellsToSmDiagramConverterTests
     [Fact]
     public void UnterminatedEdgeTargetNested()
     {
-        StringBufferConsolePrinter console = new();
+        StringBuilderConsolePrinter console = new();
 
         try
         {

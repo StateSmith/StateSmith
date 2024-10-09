@@ -14,7 +14,7 @@ public class SmRunnerTests
         string tempPath = Path.GetTempPath();
 
         SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath);
-        StringBufferConsolePrinter fakeConsole = new();
+        StringBuilderConsolePrinter fakeConsole = new();
         runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(fakeConsole);
         runner.Run();
 
@@ -51,7 +51,7 @@ public class SmRunnerTests
 
         SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath);
         runner.Settings.filePathPrintBase = tempPath;
-        StringBufferConsolePrinter fakeConsole = new();
+        StringBuilderConsolePrinter fakeConsole = new();
         runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(fakeConsole);
         runner.Run();
 

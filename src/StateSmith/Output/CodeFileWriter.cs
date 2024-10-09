@@ -14,10 +14,9 @@ public class CodeFileWriter : ICodeFileWriter
         this.pathPrinter = pathPrinter;
     }
 
-    public void WriteFile(string filePath, string code)
+    public virtual void WriteFile(string filePath, string code)
     {
         consolePrinter.OutputStageMessage($"Writing to file `{pathPrinter.PrintPath(filePath)}`");
         File.WriteAllText(path:filePath, code);
     }
 }
-

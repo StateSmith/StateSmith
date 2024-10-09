@@ -15,20 +15,23 @@ public class RunOptions
     [Option('h', "here", HelpText = "Runs code generation in this directory.")]
     public bool Here { get; set; } = false;
 
-    [Option('b', "rebuild", HelpText = "Ensures code generation is run. Ignores change detection.")]
-    public bool Rebuild { get; set; } = false;
-
-    [Option('u', "up", SetName = "up", HelpText = "Searches upwards for manifest file.")]
-    public bool Up { get; set; } = false;
-
     [Option('r', "recursive", SetName = "recursive", HelpText = "Recursive. Can't use with -i.")]
     public bool Recursive { get; set; } = false;
+
+    [Option('w', "watch", HelpText = "Watch input files for changes.")]
+    public bool Watch { get; set; } = false;
 
     [Option('x', "exclude", HelpText = "Glob patterns to exclude")]
     public IEnumerable<string> ExcludePatterns { get; set; } = new List<string>();
 
     [Option('i', "include", SetName = "include", HelpText = "Glob patterns to include. ex: `**/src/*.csx`. Can't use with -r.")]
     public IEnumerable<string> IncludePatterns { get; set; } = new List<string>();
+
+    [Option('b', "rebuild", HelpText = "Ensures code generation is run. Ignores change detection.")]
+    public bool Rebuild { get; set; } = false;
+
+    [Option('u', "up", SetName = "up", HelpText = "Searches upwards for manifest file.")]
+    public bool Up { get; set; } = false;
 
     [Option(SetName = "menu", HelpText = "Shows a terminal GUI with a choice menu. Don't use with other options.")]
     public bool Menu { get; set; } = false;
@@ -68,6 +71,7 @@ public class RunOptions
             PropagateExceptions = PropagateExceptions,
             DumpErrorsToFile = DumpErrorsToFile,
             Rebuild = Rebuild,
+            Watch = Watch,
         };
     }
 
