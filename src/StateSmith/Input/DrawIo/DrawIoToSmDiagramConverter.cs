@@ -8,12 +8,14 @@ public class DrawIoToSmDiagramConverter
 {
     public List<DiagramEdge> Edges = new();
     public List<DiagramNode> Roots = new();
+    private readonly IConsolePrinter consolePrinter;
 
     public DiServiceProvider DiServiceProvider { get; }
 
-    public DrawIoToSmDiagramConverter(DiServiceProvider diServiceProvider)
+    public DrawIoToSmDiagramConverter(DiServiceProvider diServiceProvider, IConsolePrinter consolePrinter)
     {
         DiServiceProvider = diServiceProvider;
+        this.consolePrinter = consolePrinter;
     }
 
     public void ProcessFile(string filePath)
@@ -60,7 +62,7 @@ public class DrawIoToSmDiagramConverter
 
     public void ProcessDiagramContents(string diagramXml)
     {
-        MxCellParser mxCellParser = new(diagramXml);
+        MxCellParser mxCellParser = new(diagramXml, consolePrinter);
         mxCellParser.Parse();
 
         // we need a new converter for each diagram

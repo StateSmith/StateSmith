@@ -1,12 +1,12 @@
+#nullable enable
+
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Text.RegularExpressions;
 using System.Linq;
-using Microsoft.CodeAnalysis;
 using StateSmith.Output;
-
-#nullable enable
+using StateSmith.Runner;
 
 namespace StateSmith.Input.DrawIo;
 
@@ -17,6 +17,7 @@ public class MxCellParser
 {
     protected readonly XmlTextReader reader;
     private readonly string xmlContents;
+    private readonly IConsolePrinter consolePrinter;
     public Dictionary<string, MxCell> mxCells = new();
 
     MxCell? lastVertexCell;
@@ -27,10 +28,11 @@ public class MxCellParser
         return mxCells[id];
     }
 
-    public MxCellParser(string xmlContents)
+    public MxCellParser(string xmlContents, IConsolePrinter consolePrinter)
     {
         reader = new XmlTextReader(new StringReader(xmlContents));
         this.xmlContents = xmlContents;
+        this.consolePrinter = consolePrinter;
     }
 
     public void Close()
@@ -105,7 +107,7 @@ public class MxCellParser
         mxCell.source = MaybeGetAttribute("source");
         mxCell.target = MaybeGetAttribute("target");
         SetStyle(mxCell);
-        MxCellSanitizer.SanitizeLabel(mxCell);
+        MxCellSanitizer.SanitizeLabel(mxCell, consolePrinter);
 
         mxCells.Add(mxCell.id, mxCell);
     }

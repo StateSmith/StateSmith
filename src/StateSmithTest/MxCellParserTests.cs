@@ -4,25 +4,28 @@ using StateSmith.Input.DrawIo;
 using FluentAssertions;
 using System.Collections.Generic;
 using System;
-using System.Threading;
 using StateSmith.Runner;
 
 namespace StateSmithTest.DrawIo;
 
 public class MxCellParserTests
 {
+    IConsolePrinter consolePrinter = new ConsolePrinter();
+
     [Fact]
     public void SanitizeLabelToNewLines()
     {
-        static void Test(string input)
+        void Test(string input)
         {
             string expected = "$NOTES\nblah";
-            MxCellSanitizer.SanitizeLabelHtml(input).Should().Be(expected); // unit test
+            MxCellSanitizer.HtmlToPlainText(input, consolePrinter).Should().Be(expected); // unit test
             TestWithMxCell(input, expected);    // more of an integration test
         }
 
-        Test(@"$NOTES</div>blah");
-        Test(@"$NOTES</p>blah");
+        Test(@"<div>$NOTES</div>blah");
+        Test(@"$NOTES<div>blah</div>");
+        Test(@"<p>$NOTES</p>blah");
+        Test(@"$NOTES<p>blah</p>");
 
         Test(@"$NOTES</br>blah");
         Test(@"$NOTES<br>blah");
@@ -37,7 +40,7 @@ public class MxCellParserTests
     [Fact]
     public void SanitizeLabelToSpaces()
     {
-        static void Test(char weirdSpaceChar)
+        void Test(char weirdSpaceChar)
         {
             string input = $"x{weirdSpaceChar}= y;";
             string expected = "x = y;";
@@ -70,7 +73,7 @@ public class MxCellParserTests
     public void Test()
     {
         string small1Xml = Small1Xml;
-        MxCellParser mxCellParser = new(small1Xml);
+        MxCellParser mxCellParser = new(small1Xml, consolePrinter);
         mxCellParser.Parse();
 
         var smRoot = mxCellParser.GetCellById("5hg7lKXR2ijf20l0Po2r-1");
@@ -126,7 +129,7 @@ public class MxCellParserTests
                 </diagram>
             </mxfile>
             """;
-        MxCellParser mxCellParser = new(small1Xml);
+        MxCellParser mxCellParser = new(small1Xml, consolePrinter);
         Action a = () => mxCellParser.Parse();
         a.Should().Throw<Exception>()
             .WithMessage("*failed getting attribute `id`*")
@@ -141,7 +144,7 @@ public class MxCellParserTests
     [Fact]
     public void TestInvalidAttributeId_Large_353()
     {
-        MxCellParser mxCellParser = new(XmlWithMissingIdAttribute);
+        MxCellParser mxCellParser = new(XmlWithMissingIdAttribute, consolePrinter);
         Action a = () => mxCellParser.Parse();
         a.Should().Throw<Exception>()
             .WithMessage("*failed getting attribute `id`*")
@@ -246,11 +249,11 @@ public class MxCellParserTests
         </mxfile>
         """;
 
-    private static void TestWithMxCell(string input, string expected)
+    private void TestWithMxCell(string input, string expected)
     {
         MxCell cell = GetHtmlCell();
         cell.label = input;
-        MxCellSanitizer.SanitizeLabel(cell);
+        MxCellSanitizer.SanitizeLabel(cell, consolePrinter);
         cell.label.Should().Be(expected);
     }
 
