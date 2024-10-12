@@ -32,9 +32,11 @@ Test/interim releases are not documented here.
 ---
 
 ## [0.17.1]
-### Fixed
+### Fixed (minor)
 - Fix draw.io formatted (html) label conversion to text for new lines.
   - https://github.com/StateSmith/StateSmith/issues/414
+- Fix multiple line guard code splitting across multiple lines.
+  - https://github.com/StateSmith/StateSmith/issues/415
 
 ---
 

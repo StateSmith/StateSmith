@@ -7,6 +7,7 @@ using StateSmith.Output.Gil;
 using System.Text.RegularExpressions;
 using StateSmith.Output.UserConfig;
 using StateSmith.SmGraph.Validation;
+using StateSmith.Output;
 
 namespace StateSmith.Input.Expansions;
 
@@ -42,7 +43,13 @@ public class WrappingExpander
     public string ExpandWrapGuardCode(Behavior b)
     {
         UpdateForBehavior(b);
-        return ExpandWrapCode(b.guardCode, isGuard: true, b);
+
+        // Prevent guard code from spanning multiple lines as it looks ugly and would also break python code generation.
+        // https://github.com/StateSmith/StateSmith/issues/415
+        // We may need to revisit this in the future.
+        var code = StringUtils.ReplaceNewLineChars(b.guardCode, "");
+
+        return ExpandWrapCode(code, isGuard: true, b);
     }
 
     public string ExpandWrapActionCode(Behavior b)

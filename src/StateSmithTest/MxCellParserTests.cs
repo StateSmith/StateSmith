@@ -34,6 +34,13 @@ public class MxCellParserTests
         Test(@"$NOTES<br style='color:blue;'>blah");
     }
 
+    [Fact]
+    public void TestFromEnemy3Sm()
+    {
+        TestWithMxCell(input: """NOTICE [noticeEvent.isGrenadeLive() &amp;&amp;&nbsp;<div>e.groundObject]</div>""",
+                        expected: "NOTICE [noticeEvent.isGrenadeLive() && \ne.groundObject]");
+    }
+
     /// <summary>
     /// https://github.com/StateSmith/StateSmith/issues/100
     /// </summary>

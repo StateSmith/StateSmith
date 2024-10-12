@@ -1,7 +1,9 @@
 using Xunit;
 using StateSmith.Input.DrawIo;
+using StateSmith.Runner;
+using System.Linq;
 
-namespace StateSmithTest.DrawIo;
+namespace StateSmithTest.Input.DrawIo;
 
 /// <summary>
 /// See https://github.com/StateSmith/StateSmith/issues/414
@@ -41,10 +43,20 @@ public class HtmlToPlainTextLibTests
             """);
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/415
+    /// </summary>
+    [Fact]
+    public void SplitLineGuard()
+    {
+        AssertExpected("NOTICE [noticeEvent.isGrenadeLive() &amp;&amp;&nbsp;<div>e.groundObject]</div>",
+            expected: "NOTICE [noticeEvent.isGrenadeLive() && \ne.groundObject]");
+    }
+
     [Fact]
     public void Whitespace()
     {
-        AssertExpected("""[ after_ms(100)     <br>&amp;&amp; x &gt;= 13]""", 
+        AssertExpected("""[ after_ms(100)     <br>&amp;&amp; x &gt;= 13]""",
             expected: """
             [ after_ms(100)
             && x >= 13]
@@ -145,4 +157,3 @@ public class HtmlToPlainTextLibTests
         new HtmlToPlainTextLib().Convert(input).ShouldBeShowDiff(expected, outputCleanActual: true);
     }
 }
-
