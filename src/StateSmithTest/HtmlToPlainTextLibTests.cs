@@ -42,6 +42,32 @@ public class HtmlToPlainTextLibTests
     }
 
     [Fact]
+    public void Whitespace()
+    {
+        AssertExpected("""[ after_ms(100)     <br>&amp;&amp; x &gt;= 13]""", 
+            expected: """
+            [ after_ms(100)
+            && x >= 13]
+            """);
+
+        AssertExpected("""abc      def""",
+            expected: """
+            abc def
+            """);
+
+        AssertExpected("""<font>    enter   </font>""", expected: """enter""");
+        AssertExpected("""<font>    enter   </font>a""", expected: """enter a""");
+        AssertExpected("""b<font>    enter   </font>a""", expected: """b enter a""");
+        AssertExpected("""b<font>ENTER</font>a""", expected: """bENTERa""");
+    }
+
+    [Fact]
+    public void LotsOfNewLines()
+    {
+        AssertExpected("<div><br></div><div><br></div><div><br></div><div>abc</div>", expected: "\n\n\nabc");
+    }
+
+    [Fact]
     public void TestColored()
     {
         AssertExpected("""<font color="#00aaff">enter&nbsp;</font><font color="#ffd700">/</font><font color="#dcdcaa">&nbsp;{&nbsp;<br></font><font color="#dcdcaa">&nbsp; set_timeout(5 min);<br>&nbsp; x *= 23;<br>}</font><font color="#00aaff"><br></font>""",
@@ -50,7 +76,10 @@ public class HtmlToPlainTextLibTests
               set_timeout(5 min);
               x *= 23;
             }
+
             """);
+
+        // NOTE! The trailing \n is technically incorrect, but it's fine for our needs.
     }
 
     /// <summary>

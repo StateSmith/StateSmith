@@ -8,6 +8,7 @@ namespace StateSmith.Input.DrawIo;
 
 /// <summary>
 /// Modified from https://stackoverflow.com/a/30088920/7331858
+/// See https://github.com/StateSmith/StateSmith/issues/414
 /// </summary>
 public class HtmlToPlainTextLib : IHtmlToPlainText
 {
@@ -38,17 +39,10 @@ public class HtmlToPlainTextLib : IHtmlToPlainText
 
                 if (tag == "br")
                 {
-                    builder.Append('\n'); // prefer \n over Environment.NewLine
+                    builder.Append('\n'); // prefer '\n' over Environment.NewLine
                     state = ToPlainTextState.StartLine;
                 }
-                else if (NonVisibleTags.Contains(tag))
-                {
-                }
-                else if (InlineTags.Contains(tag))
-                {
-                    Plain(builder, ref state, node.ChildNodes);
-                }
-                else
+                else if (BlockTags.Contains(tag))
                 {
                     if (state != ToPlainTextState.StartLine)
                     {
@@ -62,11 +56,15 @@ public class HtmlToPlainTextLib : IHtmlToPlainText
                         state = ToPlainTextState.StartLine;
                     }
                 }
+                else
+                {
+                    // inline tags. Just process the children.
+                    Plain(builder, ref state, node.ChildNodes);
+                }
             }
         }
     }
 
-    //common part
     public static void Process(StringBuilder builder, ref ToPlainTextState state, params char[] chars)
     {
         foreach (var ch in chars)
@@ -100,24 +98,16 @@ public class HtmlToPlainTextLib : IHtmlToPlainText
         return ch == 0xA0 || ch == 0x2007 || ch == 0x202F;
     }
 
-    private static readonly HashSet<string> InlineTags = new HashSet<string>
+    private static readonly HashSet<string> BlockTags = new()
     {
-      //from https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elemente
-      "b", "big", "i", "small", "tt", "abbr", "acronym",
-      "cite", "code", "dfn", "em", "kbd", "strong", "samp",
-      "var", "a", "bdo", "br", "img", "map", "object", "q",
-      "script", "span", "sub", "sup", "button", "input", "label",
-      "select", "textarea", "font"
-    };
-
-    private static readonly HashSet<string> NonVisibleTags = new HashSet<string>
-    {
-          "script", "style"
+        // from https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content
+        "div", "p", "hr", "pre", "table", "h1", "h2", "h3", "h4", "h5", "h6", "blockquote", "ol", "ul", "li", "dl", "dt", "dd",
+        "figure", "figcaption", "main", "nav", "section", "article", "aside", "header", "footer", "address", "fieldset", "legend", "form", "details", "summary",
     };
 
     public enum ToPlainTextState
     {
-        StartLine = 0,
+        StartLine,
         NotWhiteSpace,
         WhiteSpace,
     }

@@ -374,7 +374,7 @@ public class SmDesignDescriberTests
 
                 exit / { stop_buzz(); }
 
-                [after_ms(100) 
+                [after_ms(100)
                 && x >= 13] TransitionTo(RUNNING)
 
                 =========== from ancestor NORMAL ===========
@@ -541,7 +541,7 @@ public class SmDesignDescriberTests
 
                 exit / { stop_buzz(); }
 
-                do [after_ms(100) 
+                do [after_ms(100)
                 && x >= 13] TransitionTo(RUNNING)
 
                 =========== from ancestor NORMAL ===========

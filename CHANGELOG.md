@@ -29,6 +29,15 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+---
+
+## [0.17.1]
+### Fixed
+- Fix draw.io formatted (html) label conversion to text for new lines.
+  - https://github.com/StateSmith/StateSmith/issues/414
+
+---
+
 ## [0.17.0]
 ### Added
 - Add support for idiomatic `Cpp` transpiler (only supports algorithm `Balanced2` right now).
