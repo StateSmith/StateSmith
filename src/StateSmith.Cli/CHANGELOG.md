@@ -9,6 +9,10 @@ Test/interim releases are not documented here.
 ---
 
 ## [0.17.2]
+### Added
+- Improve draw.io pages template to mention line break issue and fix.
+  - https://github.com/StateSmith/StateSmith/issues/414
+
 ### Upgrade StateSmith library version to `0.17.1`
 #### Fixed
 - Fix draw.io formatted (html) label conversion to text for new lines.
