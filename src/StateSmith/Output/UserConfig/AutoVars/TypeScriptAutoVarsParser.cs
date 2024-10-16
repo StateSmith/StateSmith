@@ -17,6 +17,7 @@ public class TypeScriptAutoVarsParser : IAutoVarsParser
     {
         var result = new List<string>();
 
+        // todolow - need to remove comments and strings at the same time as they can interfere with each other.
         code = StringUtils.RemoveCCodeComments(code);
         code = StringUtils.RemoveJsStrings(code);
 

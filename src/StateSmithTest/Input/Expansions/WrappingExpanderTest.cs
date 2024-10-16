@@ -61,9 +61,10 @@ public class WrappingExpanderTest
     [Fact]
     public void GuardCodeBeside()
     {
+        // newline behavior: https://github.com/StateSmith/StateSmith/issues/415
         var code = ExpandWrapGuardCode("var_a == \"255\"\n || $gil(var_a == 45) || var_a<25");
-        code.Should().Be($"""{GilCreationHelper.GilFuncName_VarArgsToBool}({GilCreationHelper.WrapRawCodeWithBoolReturn("expanded_var_a == \"255\"\n || ")},var_a == 45,{GilCreationHelper.WrapRawCodeWithBoolReturn(" || expanded_var_a<25")})""");
-        code.Should().Be("""____GilData_VarArgsToBool(____GilData_EchoStringBool("expanded_var_a == \"255\"\n || "),var_a == 45,____GilData_EchoStringBool(" || expanded_var_a<25"))""");
+        code.Should().Be($"""{GilCreationHelper.GilFuncName_VarArgsToBool}({GilCreationHelper.WrapRawCodeWithBoolReturn("expanded_var_a == \"255\" || ")},var_a == 45,{GilCreationHelper.WrapRawCodeWithBoolReturn(" || expanded_var_a<25")})""");
+        code.Should().Be("""____GilData_VarArgsToBool(____GilData_EchoStringBool("expanded_var_a == \"255\" || "),var_a == 45,____GilData_EchoStringBool(" || expanded_var_a<25"))""");
     }
 
     [Fact]

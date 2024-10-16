@@ -1,6 +1,7 @@
-using System.Text.RegularExpressions;
-
 #nullable enable
+
+using StateSmith.Runner;
+using System;
 
 namespace StateSmith.Input.DrawIo;
 
@@ -8,19 +9,21 @@ public class MxCellSanitizer
 {
     public const string StyleHtml = "html";
 
-    public static void SanitizeLabel(MxCell mxCell)
+    public static void SanitizeLabel(MxCell mxCell, IConsolePrinter consolePrinter)
     {
         if (mxCell.label == null)
             return;
 
-        mxCell.label = ProcessSpecialChars(mxCell.label);
-
         if (mxCell.HasMatchingStyle(StyleHtml, "1"))
         {
             var label = mxCell.label;
-            label = SanitizeLabelHtml(label);
+            label = HtmlToPlainText(label, consolePrinter);
             mxCell.label = label;
         }
+
+        // process special characters after converting html to plain text
+        // because some of the special characters are detected.
+        mxCell.label = ProcessSpecialChars(mxCell.label);
     }
 
     public static string ProcessSpecialChars(string input)
@@ -48,14 +51,19 @@ public class MxCellSanitizer
         return input;
     }
 
-    public static string SanitizeLabelHtml(string label)
+    public static string HtmlToPlainText(string html, IConsolePrinter consolePrinter)
     {
-        label = Regex.Replace(label, @"</div>", "\n");
-        label = Regex.Replace(label, @"</p>", "\n");
-        label = Regex.Replace(label, @"(?x) < /? br [^>]* >", "\n"); // (?x) verbose regex mode. br tags can have many differnt forms: https://www.tutorialspoint.com/What-is-the-correct-way-of-using-br-br-or-br-in-HTML
-        label = Regex.Replace(label, @"&nbsp;", " ");
-        label = Regex.Replace(label, @"<[^>]*>", "");
-        label = System.Web.HttpUtility.HtmlDecode(label);
-        return label;
+        try
+        {
+            return new HtmlToPlainTextLib().Convert(html);
+        }
+        catch (Exception e)
+        {
+            // I don't actually expect this to happen, but I'd rather have a fallback while we send it out to users for testing.
+            // TODOLOW - remove this fallback once we're confident that HtmlToPlainTextLib is working.
+            consolePrinter.WriteErrorLine("!!! Please report this issue. HtmlToPlainTextLib failed. Falling back to HtmlToPlainTextRegex.");
+            consolePrinter.WriteErrorLine(e.ToString());
+            return new HtmlToPlainTextRegex().Convert(html);
+        }
     }
 }
