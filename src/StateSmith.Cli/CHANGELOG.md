@@ -8,6 +8,14 @@ Test/interim releases are not documented here.
 
 ---
 
+## WIP
+### Added
+- Add `--no-ask` option to `run` verb.
+  - Use this to skip asking for user input. Useful for CI/CD pipelines.
+  - https://github.com/StateSmith/StateSmith/issues/420
+
+---
+
 ## [0.17.2]
 ### Added
 - Improve draw.io pages template to mention line break issue and fix.

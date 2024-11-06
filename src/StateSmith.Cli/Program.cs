@@ -78,7 +78,7 @@ public class Program
         int resultCode = parserResult.MapResult(
             (RunOptions opts) =>
             {
-                PreRunNoArgError(_console);
+                PreRunNoArgError(_console, noAsk: opts.NoAsk);
                 var runUi = new RunUi(opts, _console, currentDirectory: _currentDirectory);
                 return runUi.HandleRunCommand();
             },
@@ -172,10 +172,16 @@ public class Program
         return 0;
     }
 
-    private void PreRunNoArgError(IAnsiConsole _console)
+    private void PreRunNoArgError(IAnsiConsole _console, bool noAsk = false)
     {
         _console.WriteLine(HeadingInfo.Default);
-        TryCheckForUpdates();
+
+        // don't ask if the user doesn't want to be asked
+        // https://github.com/StateSmith/StateSmith/issues/420
+        if (!noAsk)
+        {
+            TryCheckForUpdates();
+        }
     }
 
     private void TryCheckForUpdates()

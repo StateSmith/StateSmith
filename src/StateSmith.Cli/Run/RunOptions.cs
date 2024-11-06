@@ -46,6 +46,12 @@ public class RunOptions
     public bool NoCsx { get; set; } = false;
 
     /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/420
+    /// </summary>
+    [Option("no-ask", HelpText = $"Prevents tool from prompting you. Good for CI/CD.")]
+    public bool NoAsk { get; set; } = false;
+
+    /// <summary>
     /// https://github.com/StateSmith/StateSmith/issues/348
     /// </summary>
     [Option("propagate-exceptions", HelpText = "Useful for troubleshooting. Exceptions will propagate out of SmRunner with original stack trace " +
