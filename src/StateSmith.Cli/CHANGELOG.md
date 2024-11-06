@@ -8,7 +8,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## WIP
+## [0.17.3]
 ### Added
 - Add `--no-ask` option to `run` verb.
   - Use this to skip asking for user input. Useful for CI/CD pipelines.
