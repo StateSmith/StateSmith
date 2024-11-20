@@ -29,6 +29,11 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## [WIP]
+### Fixed (minor)
+- Fix PlantUML entry/exit point conversion failure.
+  - https://github.com/StateSmith/StateSmith/issues/424
+
 ---
 
 ## [0.17.1]

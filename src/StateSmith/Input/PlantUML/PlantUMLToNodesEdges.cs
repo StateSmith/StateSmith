@@ -4,7 +4,6 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using StateSmith.Common;
 using StateSmith.Input.Antlr4;
-using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -80,6 +79,11 @@ public class PlantUMLToNodesEdges
             // transitions coming into an entry point need to be adjusted
             if (IsNodeEntryPoint(edge.target))
             {
+                if (edge.label.Length > 0)
+                {
+                    edge.label += " "; // fixes https://github.com/StateSmith/StateSmith/issues/424
+                }
+
                 edge.label += "via entry " + edge.target.label;
                 edge.target = edge.target.parent.ThrowIfNull();
             }
@@ -87,6 +91,11 @@ public class PlantUMLToNodesEdges
             // transitions from an exit point need to be adjusted
             if (IsNodeExitPoint(edge.source))
             {
+                if (edge.label.Length > 0)
+                {
+                    edge.label += " "; // fixes https://github.com/StateSmith/StateSmith/issues/424
+                }
+
                 edge.label += "via exit " + edge.source.label;
                 edge.source = edge.source.parent.ThrowIfNull();
             }
