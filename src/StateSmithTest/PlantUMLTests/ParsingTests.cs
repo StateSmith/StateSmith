@@ -309,9 +309,9 @@ public class ParsingTests
         AssertEdge(translator.Edges[i++], source: sin, target: sin2, label: "");
         AssertEdge(translator.Edges[i++], source: sin2, target: exitA, label: "");
         // following edges need re-routing and label adjustments
-        AssertEdge(translator.Edges[i++], source: initial, target: /* was entry1 */ Somp, label: "/ initial_tx_action();via entry entry1");
+        AssertEdge(translator.Edges[i++], source: initial, target: /* was entry1 */ Somp, label: "/ initial_tx_action(); via entry entry1");
         AssertEdge(translator.Edges[i++], source: /* was exitA */ Somp, target: Foo, label: "via exit exitA");
-        AssertEdge(translator.Edges[i++], source: Foo1, target: /* was entry2 */ Somp, label: "EV1 [guard()] / action_e2();via entry entry2");
+        AssertEdge(translator.Edges[i++], source: Foo1, target: /* was entry2 */ Somp, label: "EV1 [guard()] / action_e2(); via entry entry2");
 
         // ensure entry and exit validation works
 
@@ -865,6 +865,82 @@ public class ParsingTests
     //###############################################################################################
     // End of tests for https://github.com/StateSmith/StateSmith/issues/334
     //###############################################################################################
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/424
+    /// </summary>
+    [Fact]
+    public void EntryExitPoint_FromEvent_424()
+    {
+        var plantUmlText = """
+            @startuml SomeName
+            [*] --> StateA
+            
+            state Idle {
+                state ToOffEntryPt <<entryPoint>>
+                state ToOnEntryPt <<entryPoint>>
+                state ToStateAExitPt <<exitPoint>>
+                state Off
+                state On
+                ToOffEntryPt --> Off
+                ToOnEntryPt --> On
+                On --> ToStateAExitPt : REASON1
+                ToStateAExitPt --> StateA
+            }
+            
+            StateA --> ToOnEntryPt : REASON1
+            StateA --> ToOffEntryPt : REASON2
+            
+            @enduml
+            """;
+
+        InputSmBuilder inputSmBuilder = new();
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.FinishRunning();
+
+        StateMachine root = inputSmBuilder.GetStateMachine();
+        State StateA = root.Child<State>("StateA");
+        State StateOn = (State)root.DescendantWithDiagramId("On");
+
+        // test transitions into and out of entry/exit points
+
+        {
+            EntryPoint ToOnEntryPt = (EntryPoint)root.DescendantWithDiagramId("ToOnEntryPt");
+            ToOnEntryPt.IncomingTransitions.Single().OwningVertex.Should().Be(StateA);
+            ToOnEntryPt.IncomingTransitions.Single().DescribeAsUml().ShouldBeShowDiff("""
+                REASON1 TransitionTo(Idle.<EntryPoint>(ToOnEntryPt))
+                """);
+
+            ToOnEntryPt.TransitionBehaviors().Single().DescribeAsUml().ShouldBeShowDiff("""
+                TransitionTo(On)
+                """);
+        }
+
+        {
+            EntryPoint ToOffEntryPt = (EntryPoint)root.DescendantWithDiagramId("ToOffEntryPt");
+            ToOffEntryPt.IncomingTransitions.Single().OwningVertex.Should().Be(StateA);
+            ToOffEntryPt.IncomingTransitions.Single().DescribeAsUml().ShouldBeShowDiff("""
+                REASON2 TransitionTo(Idle.<EntryPoint>(ToOffEntryPt))
+                """);
+
+            ToOffEntryPt.TransitionBehaviors().Single().DescribeAsUml().ShouldBeShowDiff("""
+                TransitionTo(Off)
+                """);
+        }
+
+        {
+            ExitPoint ToStateAExitPt = (ExitPoint)root.DescendantWithDiagramId("ToStateAExitPt");
+            ToStateAExitPt.IncomingTransitions.Single().OwningVertex.Should().Be(StateOn);
+            ToStateAExitPt.IncomingTransitions.Single().DescribeAsUml().ShouldBeShowDiff("""
+                REASON1 TransitionTo(Idle.<ExitPoint>(ToStateAExitPt))
+                """);
+
+            ToStateAExitPt.TransitionBehaviors().Single().DescribeAsUml().ShouldBeShowDiff("""
+                TransitionTo(StateA)
+                """);
+        }
+    }
+
 
 
 
