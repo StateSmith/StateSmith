@@ -845,7 +845,7 @@ Usings = """
 ## RenderConfig.CSharp.ClassCode
 Type: `string`
 
-Use to add custom code to generated state machine class, although partial classes are usually a better choice, or inheritance.
+Use to add custom code to the generated state machine class. Probably best to save this feature for special cases.
 
 ```toml
 [RenderConfig.CSharp]
