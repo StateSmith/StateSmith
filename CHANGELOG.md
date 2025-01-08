@@ -39,6 +39,8 @@ Test/interim releases are not documented here.
 ### Fixed (minor)
 - Fix python transpiler to call user's base class constructor (@alexis-boisserand).
   - https://github.com/StateSmith/StateSmith/issues/429
+- Fix Cpp transpiler so that nested `Vars` class doesn't extend user base class.
+  - https://github.com/StateSmith/StateSmith/issues/427
 
 ---
 
