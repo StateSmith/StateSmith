@@ -265,9 +265,13 @@ public class PythonGilVisitor : CSharpSyntaxWalker
             throw new NotImplementedException("Constructors with parameters are not yet supported.");
         }
 
-        //AddIndent(1);
-        sb.AppendLine("def __init__(self):");
+        sb.AppendLine("def __init__(self, *args, **kwargs):");
         sb.AppendLine(PostProcessor.trimBlankLinesMarker);
+        if (!string.IsNullOrWhiteSpace(renderConfigPython.Extends))
+        {
+            AddIndent(2);
+            sb.Append("super().__init__(*args, **kwargs)");
+        }
 
         // get class fields
         var fields = node.Ancestors().OfType<ClassDeclarationSyntax>().First().ChildNodes().OfType<FieldDeclarationSyntax>();
