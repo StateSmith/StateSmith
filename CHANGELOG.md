@@ -41,6 +41,8 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/429
 - Fix Cpp transpiler so that nested `Vars` class doesn't extend user base class.
   - https://github.com/StateSmith/StateSmith/issues/427
+- Fix PlantUML entry/exit point conversion failure.
+  - https://github.com/StateSmith/StateSmith/issues/424
 
 ---
 
