@@ -31,7 +31,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## [0.17.?]
+## [0.17.2]
 ### Contributors
 - @alexis-boisserand
   - https://github.com/StateSmith/StateSmith/pull/430/
