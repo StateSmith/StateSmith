@@ -15,7 +15,7 @@ class RocketSm():
         G2 = 3
     
     # State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         # Used internally by state machine. Feel free to inspect, but don't modify.
         self.stateId = None
     

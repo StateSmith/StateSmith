@@ -144,4 +144,38 @@ public class RenderConfigCpp_Test
 
         // c file isn't affected by pragma once so we don't need to test it here (see other test)
     }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/427
+    /// </summary>
+    [Fact]
+    public void BaseClassOnlyForTopSmClass_427()
+    {
+        var plantUmlText = """"
+            @startuml ExampleSm
+            [*] --> s1
+
+            /'! $CONFIG: toml
+            [RenderConfig]
+            AutoExpandedVars = """
+                int count;
+            """
+            
+            [RenderConfig.Cpp]
+            BaseClassCode = "public LightController"
+            HFileExtension = ".hpp"
+            
+            [SmRunnerSettings]
+            transpilerId = "Cpp"
+            '/
+            @enduml
+            """";
+
+        var fakeFs = new CapturingCodeFileWriter();
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        var code = fakeFs.GetCapturesForFileName("ExampleSm.hpp").Single().code;
+
+        // use regex to make white space insensitive
+        code.Should().NotMatchRegex("""(?x) class \s+ Vars \s+ : \s+ public \s+ LightController""");
+    }
 }

@@ -288,7 +288,7 @@ public:
     StateId stateId;
     
     // State machine variables. Can be used for inputs, outputs, user variables...
-    class Vars : public Spec2SmBase
+    class Vars
     {
     public:
         T7__H1__ON_HistoryId T7__H1__ON_history;

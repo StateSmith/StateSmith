@@ -36,6 +36,19 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.17.?]
+### Contributors
+- @alexis-boisserand
+  - https://github.com/StateSmith/StateSmith/pull/430/
+
+### Fixed (minor)
+- Fix python transpiler to call user's base class constructor (@alexis-boisserand).
+  - https://github.com/StateSmith/StateSmith/issues/429
+- Fix Cpp transpiler so that nested `Vars` class doesn't extend user base class.
+  - https://github.com/StateSmith/StateSmith/issues/427
+
+---
+
 ## [0.17.1]
 ### Fixed (minor)
 - Fix draw.io formatted (html) label conversion to text for new lines.

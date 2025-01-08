@@ -153,7 +153,11 @@ public class CppGilVisitor : CSharpSyntaxWalker
             }
             list.VisitUpTo(node.Identifier, including: true);
             StringUtils.EraseTrailingWhitespace(sb);
-            MaybeOutputBaseList();
+
+            if (classDepth == 1)    // fix for https://github.com/StateSmith/StateSmith/issues/427
+            {
+                MaybeOutputBaseList();
+            }
             VisitTrailingTrivia(node.Identifier);
 
             list.VisitUpTo(node.OpenBraceToken, including: true);
