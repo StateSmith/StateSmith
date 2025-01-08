@@ -8,6 +8,22 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.17.4]
+### Upgrade StateSmith library version to `0.17.2`
+#### Contributors
+- @alexis-boisserand
+  - https://github.com/StateSmith/StateSmith/pull/430/
+
+#### Fixed (minor)
+- Fix python transpiler to call user's base class constructor (@alexis-boisserand).
+  - https://github.com/StateSmith/StateSmith/issues/429
+- Fix Cpp transpiler so that nested `Vars` class doesn't extend user base class.
+  - https://github.com/StateSmith/StateSmith/issues/427
+- Fix PlantUML entry/exit point conversion failure.
+  - https://github.com/StateSmith/StateSmith/issues/424
+
+---
+
 ## [0.17.3]
 ### Added
 - Add `--no-ask` option to `run` verb.
