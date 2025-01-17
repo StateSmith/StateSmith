@@ -71,6 +71,10 @@ public class C99GenVisitor : CSharpSyntaxWalker
         sb.AppendLine("#include <stdint.h>");
         sb.AppendLineIfNotBlank(renderConfigC.HFileIncludes);
         sb.AppendLine();
+        sb.AppendLine("#ifdef __cplusplus");
+        sb.AppendLine("extern \"C\" {");
+        sb.AppendLine("#endif");
+        sb.AppendLine();
     }
 
     private void OutputCFileTopSections()
