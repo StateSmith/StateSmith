@@ -40,6 +40,9 @@ public class IncludeGuardProvider
 
     public void OutputIncludeGuardBottom(StringBuilder hFileSb)
     {
+        hFileSb.AppendLine($"#ifdef __cplusplus");
+        hFileSb.AppendLine($"}}");
+        hFileSb.AppendLine($"#endif");
         if (includeGuardLabel != null)
         {
             hFileSb.AppendLine($"#endif // {includeGuardLabel}");
