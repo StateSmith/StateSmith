@@ -52,7 +52,10 @@ public class AlgoTests
     private static void RunIntegrationTestMatrix(string MinimalPlantUmlFsm, string outDirName)
     {
         var outDir = TestHelper.GetThisDir() + "/" + outDirName;
-        Directory.Delete(outDir, recursive: true);
+        if (Directory.Exists(outDir))
+        {
+            Directory.Delete(outDir, recursive: true);
+        }
 
         foreach (var algoId in GetValues<AlgorithmId>())
         {

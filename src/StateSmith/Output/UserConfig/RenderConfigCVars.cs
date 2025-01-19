@@ -4,6 +4,7 @@ namespace StateSmith.Output.UserConfig;
 
 /// <summary>
 /// NOTE! Field name used with reflection for toml parsing.
+/// Note: This file should mirror <seealso cref="IRenderConfigC"/>
 /// </summary>
 public class RenderConfigCVars
 {
@@ -22,6 +23,13 @@ public class RenderConfigCVars
     public string HFileTopPostIncludeGuard = "";
 
     public string HFileIncludes = "";
+
+    /// <summary>
+    /// If true, it will output `extern "C"` around your state machine code.
+    /// https://github.com/StateSmith/StateSmith/issues/435
+    /// Default is false to avoid breaking old c style C++ projects.
+    /// </summary>
+    public bool HFileUseExternC = false;
 
     public string HFileBottomPreIncludeGuard = "";
 
@@ -76,6 +84,7 @@ public class RenderConfigCVars
         HFileTop = Process(config.HFileTop);
         HFileTopPostIncludeGuard = Process(config.HFileTopPostIncludeGuard);
         HFileIncludes = Process(config.HFileIncludes);
+        HFileUseExternC = config.HFileUseExternC;
         HFileBottomPreIncludeGuard = Process(config.HFileBottomPreIncludeGuard);
         HFileBottom = Process(config.HFileBottom);
 

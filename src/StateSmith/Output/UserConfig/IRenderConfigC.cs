@@ -2,6 +2,9 @@
 
 namespace StateSmith.Output.UserConfig;
 
+/// <summary>
+/// Note: this file should mirror <seealso cref="RenderConfigCVars"/>
+/// </summary>
 public interface IRenderConfigC : IRenderConfig
 {
     /// <summary>
@@ -19,6 +22,13 @@ public interface IRenderConfigC : IRenderConfig
     string HFileTopPostIncludeGuard => "";
 
     string HFileIncludes => "";
+
+    /// <summary>
+    /// If true, it will output `extern "C"` around your state machine code.
+    /// https://github.com/StateSmith/StateSmith/issues/435
+    /// Default is false to avoid breaking old c style C++ projects.
+    /// </summary>
+    bool HFileUseExternC => false;
 
     string HFileBottomPreIncludeGuard => "";
 

@@ -71,10 +71,8 @@ public class C99GenVisitor : CSharpSyntaxWalker
         sb.AppendLine("#include <stdint.h>");
         sb.AppendLineIfNotBlank(renderConfigC.HFileIncludes);
         sb.AppendLine();
-        sb.AppendLine("#ifdef __cplusplus");
-        sb.AppendLine("extern \"C\" {");
-        sb.AppendLine("#endif");
-        sb.AppendLine();
+
+        OutputExternCTop();
     }
 
     private void OutputCFileTopSections()
@@ -96,10 +94,34 @@ public class C99GenVisitor : CSharpSyntaxWalker
     private void OutputFileBottomSections()
     {
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileBottomPreIncludeGuard);
+        OutputExternCBottom();
         includeGuardProvider.OutputIncludeGuardBottom(hFileSb);
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileBottom);
 
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileBottom);
+    }
+    private void OutputExternCTop()
+    {
+        if (renderConfigC.HFileUseExternC)
+        {
+            hFileSb.AppendLine("");
+            hFileSb.AppendLine("#ifdef __cplusplus");
+            hFileSb.AppendLine("extern \"C\" {");
+            hFileSb.AppendLine("#endif");
+            hFileSb.AppendLine("");
+        }
+    }
+
+    private void OutputExternCBottom()
+    {
+        if (renderConfigC.HFileUseExternC)
+        {
+            hFileSb.AppendLine("");
+            hFileSb.AppendLine($"#ifdef __cplusplus");
+            hFileSb.AppendLine($"}}  // extern \"C\"");
+            hFileSb.AppendLine($"#endif");
+            hFileSb.AppendLine("");
+        }
     }
 
     public override void VisitExpressionStatement(ExpressionStatementSyntax node)

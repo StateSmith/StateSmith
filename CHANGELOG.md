@@ -29,6 +29,15 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## [0.17.?]
+### Contributors
+- @WXrock
+  - https://github.com/StateSmith/StateSmith/pull/433
+
+### Added
+- C99 - Add `extern C` setting `HFileUseExternC` (@WXrock).
+  - https://github.com/StateSmith/StateSmith/issues/435
+
 ---
 
 ## [0.17.2]

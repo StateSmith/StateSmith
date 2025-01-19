@@ -1,6 +1,8 @@
 using Xunit;
 using FluentAssertions;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.IO;
 
 namespace StateSmithTest.Output.C99;
 
@@ -171,5 +173,77 @@ public class RenderConfigC_Test
         cCode.Should().NotContain("#include <stdbool.h>");
         cCode.Should().NotContain("bool consume_event = ");
         cCode.Should().Contain("int consume_event = ");
+    }
+
+    /// <summary>
+    /// RenderConfig.C.HFileUseExternC
+    /// https://github.com/StateSmith/StateSmith/pull/435
+    /// </summary>
+    [Fact]
+    public void HFileUseExternC_435()
+    {
+        const string moduleName = "ExampleSm";
+        const string hFileName = moduleName + ".h";
+
+        var outDir = TestHelper.GetThisDir() + "/HFileUseExternC_435";
+        if (Directory.Exists(outDir))
+        {
+            Directory.Delete(outDir, recursive: true);
+        }
+        Directory.CreateDirectory(outDir);
+
+        var plantUmlText = """"
+            @startuml ExampleSm
+            [*] --> s1
+            s1 : EV1 / consume_event = false; /' to ensure `consume_event` generated '/
+
+            /'! $CONFIG: toml
+                SmRunnerSettings.transpilerId = "C99"
+                RenderConfig.C.HFileUseExternC = false
+            '/
+            @enduml
+            """";
+
+        bool Matcher(string code)
+        {
+            bool matches = true;
+
+            matches &= Regex.Match(code, """
+                (?xm)
+                ^   [#]ifdef [ ]+ __cplusplus \s* \n+
+                ^   extern [ ]+ "C" \s* [{] \s* \n+
+                ^   [#]endif \s* \n+
+                """).Success;
+
+            matches &= Regex.Match(code, """
+                (?xm)
+                ^   [#]ifdef [ ]+ __cplusplus \s* \n+
+                ^   [}] [ ]* // [ ]* extern [ ]+ "C" \s* \n+
+                ^   [#]endif \s* \n+
+                """).Success;
+
+            return matches;
+        }
+
+        // disabled
+        {
+            var fakeFs = new CapturingCodeFileWriter();
+            TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+
+            var code = fakeFs.GetCapturesForFileName(hFileName).Single().code.ConvertLineEndingsToN();
+            Matcher(code).Should().BeFalse();
+        }
+
+        // enabled
+        {
+            plantUmlText = plantUmlText.Replace("HFileUseExternC = false", "HFileUseExternC = true");
+            var fakeFs = new CapturingCodeFileWriter();
+            TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+
+            var code = fakeFs.GetCapturesForFileName(hFileName).Single().code.ConvertLineEndingsToN();
+            Matcher(code).Should().BeTrue();
+
+            File.WriteAllText(outDir + "/" + hFileName, code);
+        }
     }
 }

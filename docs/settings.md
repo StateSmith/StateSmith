@@ -55,6 +55,7 @@ AutoExpandedVars  = "stuff..."
     - [Supports `{FILENAME}` and `{fileName}` replacements](#supports-filename-and-filename-replacements)
   - [RenderConfig.C.HFileTopPostIncludeGuard](#renderconfigchfiletoppostincludeguard)
   - [RenderConfig.C.HFileIncludes](#renderconfigchfileincludes)
+  - [RenderConfig.C.HFileUseExternC](#renderconfigchfileuseexternc)
   - [RenderConfig.C.HFileBottomPreIncludeGuard](#renderconfigchfilebottompreincludeguard)
   - [RenderConfig.C.HFileBottom](#renderconfigchfilebottom)
   - [RenderConfig.C.CFileTop](#renderconfigccfiletop)
@@ -450,6 +451,21 @@ HFileIncludes = """
     #include "some_header.h"
     """
 ```
+
+
+## RenderConfig.C.HFileUseExternC
+Type: `bool`
+
+If true, it will output `extern "C"` around your state machine code in the header file.
+https://github.com/StateSmith/StateSmith/issues/435
+
+Default is false to avoid breaking old c style C++ projects.
+
+```toml
+[RenderConfig.C]
+HFileUseExternC = true
+```
+
 
 ## RenderConfig.C.HFileBottomPreIncludeGuard
 Type: `string`

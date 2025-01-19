@@ -143,15 +143,29 @@ public class TomlConfigTest_335
         RunnerSettings smRunnerSettings = new("");
         var reader = new TomlReader(renderConfigAllVars, smRunnerSettings);
 
+        // base
         TestHelper.ExpectPropertyCount<IRenderConfig>(8, because: "test need updating");
-        TestHelper.ExpectPropertyCount<IRenderConfigC>(13, because: "test need updating");
+        TestHelper.ExpectFieldCount<RenderConfigBaseVars>(8, because: "test need updating");
+        // c
+        TestHelper.ExpectPropertyCount<IRenderConfigC>(14, because: "test need updating");
+        TestHelper.ExpectFieldCount<RenderConfigCVars>(14, because: "test need updating");
+        // c#
         TestHelper.ExpectPropertyCount<IRenderConfigCSharp>(6, because: "test need updating");
+        TestHelper.ExpectFieldCount<RenderConfigCSharpVars>(6, because: "test need updating");
+        // js
         TestHelper.ExpectPropertyCount<IRenderConfigJavaScript>(4, because: "test need updating");
+        TestHelper.ExpectFieldCount<RenderConfigJavaScriptVars>(4, because: "test need updating");
+        // ts
+        TestHelper.ExpectPropertyCount<IRenderConfigTypeScript>(3, because: "test need updating");
+        TestHelper.ExpectFieldCount<RenderConfigTypeScriptVars>(3, because: "test need updating");
+        // cpp
         TestHelper.ExpectPropertyCount<IRenderConfigCpp>(14, because: "test need updating");
-
-        // assert only 6 transpiler IDs
+        TestHelper.ExpectFieldCount<RenderConfigCppVars>(14, because: "test need updating");
+        // python
+        TestHelper.ExpectPropertyCount<IRenderConfigPython>(3, because: "test need updating");
+        TestHelper.ExpectFieldCount<RenderConfigPythonVars>(3, because: "test need updating");
+        // assert only 7 transpiler IDs
         Enum.GetValues(typeof(TranspilerId)).Length.Should().Be(7 + 2, because: "Needs to be updated for new language"); // +2 for NotYetSet and Default
-
 
         var toml = """"
             ############Render Config Settings ##############
@@ -173,6 +187,7 @@ public class TomlConfigTest_335
             HFileTop = ""
             HFileTopPostIncludeGuard = ""
             HFileIncludes = "#include <stdlib.h>"
+            HFileUseExternC = true
             HFileBottomPreIncludeGuard = ""
             HFileBottom = ""
             CFileTop = ""
