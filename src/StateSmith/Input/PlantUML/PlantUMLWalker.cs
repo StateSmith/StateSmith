@@ -5,6 +5,7 @@ using Antlr4.Runtime.Misc;
 using StateSmith.Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace StateSmith.Input.PlantUML;
@@ -16,6 +17,7 @@ public class PlantUMLWalker : PlantUMLBaseListener
     public Dictionary<DiagramNode, string> nodeStereoTypeLookup = new();
     public Dictionary<string, DiagramNode> nodeMap = new();
     public List<KeptComment> keptCommentBlocks = new();
+    public string filepath;
 
     private DiagramNode currentNode;
 
@@ -125,9 +127,8 @@ public class PlantUMLWalker : PlantUMLBaseListener
     {
         root.id = context.startuml().statemachine_name()?.GetText() ?? "";
 
-        if (root.id == "")
-        {
-            ThrowValidationFailure("PlantUML diagrams need a name and should start like `@startuml MySmName`", context.startuml());
+        if( root.id == "") {
+            root.id = Path.GetFileNameWithoutExtension(filepath);
         }
 
         root.label = "$STATEMACHINE : " + root.id;
