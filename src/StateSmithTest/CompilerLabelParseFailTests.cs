@@ -65,7 +65,7 @@ public class CompilerLabelParseFailTests
 
     private void ParseAssertNoError(string input)
     {
-        translator.ParseDiagramText(input);
+        translator.ParseDiagramText("foo", input);
         translator.HasError().Should().BeFalse();
     }
 }
