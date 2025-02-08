@@ -46,10 +46,6 @@ public class SsDiagramFilter
 
     public bool IsSsPlantUmlFileContents(string diagramContents)
     {
-        // Need to find `@startuml <nonSpace>` and `->`
-        // Nonspace to support `{fileNames}` in the diagram. https://github.com/StateSmith/StateSmith/issues/330
-        var regex = new Regex(@"@startuml[ \t]+\S+");
-        return regex.IsMatch(diagramContents) && diagramContents.Contains("->");
-        // Don't test for `[*]` as new users may forget to add it initially.
+        return diagramContents.Contains("@startuml");
     }
 }
