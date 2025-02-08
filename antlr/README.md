@@ -18,9 +18,6 @@ https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-suppo
 
 If you want to uninstall java later, see https://stackoverflow.com/questions/23959615/how-to-remove-default-jre-java-installation-from-ubuntu
 
-## Download antlr
-Run `./install.sh` script.
-
 
 <br>
 
@@ -41,17 +38,11 @@ One very useful feature is to enable the railroad diagram.
 <br>
 
 # Compile the grammar(s)
-Run `. setup.sh` to setup some variables to allow us to run antlr easily. Note the dot infront of the script file so that we [source it](https://stackoverflow.com/questions/9772036/pass-all-variables-from-one-shell-script-to-another).
-```
-. setup.sh
-```
 
-Now compile the grammars you are interested in using one of the scripts below. Note that we are sourcing these scripts as well.
+Now compile the grammars you are interested in using the script below.
 
 ```
-. compile-plantuml.sh
-. compile-ss.sh
-. compile-all.sh
+StateSmith/antlr% ./compile.sh
 ```
 
 
