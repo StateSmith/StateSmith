@@ -27,6 +27,16 @@ public class ParsingTests
         translator.Root.id.Should().Be("MyPumlSm1");
     }
 
+    public void NoDiagramName()
+    {
+        ParseAssertNoError("""
+            @startuml
+
+            @enduml
+            """);
+        translator.Root.id.Should().Be("foo");
+    }
+
     [Fact]
     public void DiagramNameIndented()
     {
@@ -247,13 +257,13 @@ public class ParsingTests
 
     private void ParseAssertNoError(string input)
     {
-        translator.ParseDiagramText("foo", input);
+        translator.ParseDiagramText("foo.puml", input);
         translator.HasError().Should().BeFalse();
     }
 
     private void ParseAssertHasAtLeastOneError(string input)
     {
-        translator.ParseDiagramText("foo", input);
+        translator.ParseDiagramText("foo.puml", input);
         translator.HasError().Should().BeTrue();
     }
 
@@ -333,7 +343,7 @@ public class ParsingTests
             @enduml
             """;
         InputSmBuilder inputSmBuilder = new();
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo", plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.FinishRunning();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
@@ -374,7 +384,7 @@ public class ParsingTests
             @enduml
             """;
         InputSmBuilder inputSmBuilder = new();
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo", plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.FinishRunning();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
@@ -504,7 +514,7 @@ public class ParsingTests
             @enduml
             """;
         InputSmBuilder inputSmBuilder = new();
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo", plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.FinishRunning();
 
         var sm = inputSmBuilder.GetStateMachine();
@@ -892,7 +902,7 @@ public class ParsingTests
             """;
 
         InputSmBuilder inputSmBuilder = new();
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo", plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.FinishRunning();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
