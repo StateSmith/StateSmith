@@ -11,10 +11,10 @@ public class CommandOptions
     public const string Description = "Run StateSmith code generation.";
 
 
-    [Option(HelpText = "Specifies programming language for transpiler. Ignored for csx files.")]
+    [Option(HelpText = "Specifies output language.")]
     public TranspilerId Lang { get; set; } = TranspilerId.NotYetSet;
 
-    [Option("no-sim-gen", HelpText = "Disables simulation .html file generation. Ignored for csx files.")]
+    [Option("no-sim-gen", HelpText = "Disables simulation .html file generation.")]
     public bool NoSimGen { get; set; } = false;
 
 
