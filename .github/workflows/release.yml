@@ -38,4 +38,4 @@ jobs:
           done
 
       # - name: Release
-      #   run: TODO
+      #   run: TODO update https://github.com/StateSmith/StateSmith/releases/new with the new versions
