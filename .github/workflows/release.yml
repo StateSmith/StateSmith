@@ -1,0 +1,45 @@
+name: Release new versions of StateSmith to repos
+
+on: workflow_dispatch # Only run this workflow manually
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'  # stick to 22 for now. 23 has some bumps causing TypeScript tests to fail: https://github.com/nodejs/node/issues/55417
+
+      - run: npm install -g typescript
+          
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            6.0.x
+            7.0.x
+            8.0.x
+      - name: Install dependencies
+        run: dotnet restore src/StateSmith.sln
+
+      - name: Build
+        run: |
+          dotnet build --configuration Debug --no-restore src/StateSmith.sln
+          for dir in src/StateSmith.Cli src/StateSmith.Exe; do
+            cd $dir
+            for arch in linux-arm linux-arm64 linux-musl-arm64 linux-musl-x64 linux-x64 osx-arm64 osx-x64 win-arm64 win-x64 win-x86; do
+              for framework in net6.0 net7.0 net8.0; do
+                dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework /p:DefineConstants="SS_SINGLE_FILE_APPLICATION"
+              done
+            done
+            cd -
+          done
+
+      # - name: Release
+      #   run: TODO

@@ -29,17 +29,7 @@ jobs:
         run: dotnet restore src/StateSmith.sln
 
       - name: Build
-        run: |
-          dotnet build --configuration Debug --no-restore src/StateSmith.sln
-          for dir in src/StateSmith.Cli src/StateSmith.Exe; do
-            cd $dir
-            for arch in linux-arm linux-arm64 linux-musl-arm64 linux-musl-x64 linux-x64 osx-arm64 osx-x64 win-arm64 win-x64 win-x86; do
-              for framework in net6.0 net7.0 net8.0; do
-                dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework /p:DefineConstants="SS_SINGLE_FILE_APPLICATION"
-              done
-            done
-            cd -
-          done
+        run: dotnet build --configuration Debug --no-restore src/StateSmith.sln
 
       - name: Test
         run: dotnet test --no-restore src/StateSmith.sln
