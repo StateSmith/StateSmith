@@ -13,6 +13,8 @@ public class Program
 {
     static IAnsiConsole _console = AnsiConsole.Console;
     
+    private ProgramOptions _Options  = new ProgramOptions();
+
     public Program()
     {
     }
@@ -44,7 +46,7 @@ public class Program
 
     public void Run()
     {
-
+        _diagramRunner.Run(scanResults.targetDiagramFiles, _runInfoStore);
     }
 
     static internal int ParseCommands(string[] args, IAnsiConsole _console, Program program)
@@ -58,12 +60,12 @@ public class Program
             settings.CaseInsensitiveEnumValues = true;
         });
 
-        var parserResult = parser.ParseArguments<CommandOptions>(args);
+        var parserResult = parser.ParseArguments<ProgramOptions>(args);
 
         int resultCode = parserResult.MapResult(
-            (CommandOptions opts) =>
+            (ProgramOptions opts) =>
             {
-                // TODO set program parameters
+                program._Options = opts; // set the options in the program
                 return 0;
             },
             errs =>
@@ -77,7 +79,7 @@ public class Program
     }
 
 
-    static internal void PrintUsage( ParserResult<CommandOptions> parserResult, IAnsiConsole console)
+    static internal void PrintUsage( ParserResult<ProgramOptions> parserResult, IAnsiConsole console)
     {
         console.WriteLine(HelpText.AutoBuild(parserResult));
     }

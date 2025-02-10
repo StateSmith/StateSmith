@@ -6,7 +6,7 @@ namespace StateSmith.Exe;
 
 // https://github.com/commandlineparser/commandline
 // https://github.com/commandlineparser/commandline/wiki/Mutually-Exclusive-Options
-public class CommandOptions
+public class ProgramOptions
 {
     // TODO how to make a description appear in the output?
     public const string Description = "Run StateSmith code generation.";
