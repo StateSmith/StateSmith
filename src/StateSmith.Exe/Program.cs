@@ -19,12 +19,20 @@ public class Program
 
     public static void Main(string[] args)
     {        
+        if (args.Length == 0)
+          args = new [] { "--help" };
+
         try
         {
             var program = new Program();
             var parseResult = Program.ParseCommands(args, Program._console, program);
+            if (parseResult != 0)
+            {
+                Environment.ExitCode = parseResult;
+                return;
+            }
             program.Run();
-            Environment.ExitCode = parseResult;
+            Environment.ExitCode = 0;
         }
         catch (Exception ex)
         {
@@ -60,7 +68,7 @@ public class Program
             },
             errs =>
             {
-                PrintUsage(_console);
+                PrintUsage( parserResult, _console);
                 return 1;
             }
         );
@@ -69,16 +77,8 @@ public class Program
     }
 
 
-    static internal void PrintUsage(IAnsiConsole console)
+    static internal void PrintUsage( ParserResult<CommandOptions> parserResult, IAnsiConsole console)
     {
-        // TODO
-        // var helpText = new HelpText
-        // {
-        //     Heading = new Heading("Usage:", new Style(foreground: Color.Green)),
-        //     AdditionalNewLineAfterOption = false,
-        //     AddDashesToOption = true
-        // };
-        // helpText.AddOptions(new CommandOptions());
-        // console.WriteLine(helpText);
+        console.WriteLine(HelpText.AutoBuild(parserResult));
     }
 }
