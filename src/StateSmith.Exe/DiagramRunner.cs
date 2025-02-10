@@ -3,56 +3,50 @@ using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Spectre.Console;
 
 namespace StateSmith.Exe;
 
 public class DiagramRunner
 {
-    private RunConsole _runConsole;
-    private DiagramOptions _diagramOptions;
+    private IAnsiConsole _console;
+    private ProgramOptions _options;
 
-    public DiagramRunner(RunConsole runConsole, DiagramOptions diagramOptions)
+    public DiagramRunner(IAnsiConsole console, ProgramOptions options)
     {
-        _runConsole = runConsole;
-        _diagramOptions = diagramOptions;
+        _console = console;
+        _options = options;
     }
 
-    public bool Run(List<string> diagramFiles)
+    public void Run(List<string> files)
     {
-        foreach (var diagramFile in diagramFiles)
+        foreach (var file in files)
         {
-            RunDiagramFile(diagramFile);
+            ProcessFile(file);
         }
-
-        _runConsole.WriteLine("\nFinished running diagrams.");
-        return 0;
     }
 
-    public bool IsVerbose = _diagramOptions.Verbose;
-
-    public void RunDiagramFile(string diagramPath)
+    public void ProcessFile(string filePath)
     {
-        string callerFilePath = CurrentDirectory + "/";  // Slash needed for fix of https://github.com/StateSmith/StateSmith/issues/345
-
-        RunnerSettings runnerSettings = new(diagramFile: absolutePath, transpilerId: _diagramOptions.Lang);
-        runnerSettings.simulation.enableGeneration = !_diagramOptions.NoSimGen; // enabled by default
+        RunnerSettings runnerSettings = new(diagramFile: Path.GetFullPath(filePath), transpilerId: _options.Lang);
+        runnerSettings.simulation.enableGeneration = !_options.NoSimGen; // enabled by default
 
         // the constructor will attempt to read diagram settings from the diagram file
-        SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);
+        SmRunner smRunner = new(settings: runnerSettings, renderConfig: null);
         smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter, LoggingCodeFileWriter>();
 
         if (smRunner.PreDiagramBasedSettingsException != null)
         {
-            _runConsole.ErrorMarkupLine("\nFailed while trying to read diagram for settings.\n");
+            _console.WriteLine($"Failed while trying to read '`{filePath}`' for settings.");
             smRunner.PrintAndThrowIfPreDiagramSettingsException();   // need to do this before we check the transpiler ID
             throw new Exception("Should not get here.");
         }
 
-        _runConsole.WriteLine($"Running diagram: `{shortPath}`");
+        _console.WriteLine($"Running diagram: `{filePath}`");
 
         if (runnerSettings.transpilerId == TranspilerId.NotYetSet)
         {
-            _runConsole.MarkupLine($"Ignoring diagram as no language specified `--lang` and no transpiler ID found in diagram.");
+            _console.MarkupLine($"Ignoring diagram as no language specified `--lang` and no transpiler ID found in diagram.");
             return; 
         }
 

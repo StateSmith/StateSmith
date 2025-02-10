@@ -22,5 +22,9 @@ public class ProgramOptions
     [Option('v', "verbose", HelpText = "Enables verbose info printing.")]
     public bool Verbose { get; set; } = false;
 
+
+  [Value(0)]
+  public IEnumerable<string> Files { get; set; } = new List<string>();
+
 }
 

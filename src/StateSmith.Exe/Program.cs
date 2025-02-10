@@ -13,7 +13,7 @@ public class Program
 {
     static IAnsiConsole _console = AnsiConsole.Console;
     
-    private ProgramOptions _Options  = new ProgramOptions();
+    private ProgramOptions _options  = new ProgramOptions();
 
     public Program()
     {
@@ -46,7 +46,7 @@ public class Program
 
     public void Run()
     {
-        _diagramRunner.Run(scanResults.targetDiagramFiles, _runInfoStore);
+        new DiagramRunner(_console,_options).Run(_options.Files.ToList());
     }
 
     static internal int ParseCommands(string[] args, IAnsiConsole _console, Program program)
@@ -65,7 +65,7 @@ public class Program
         int resultCode = parserResult.MapResult(
             (ProgramOptions opts) =>
             {
-                program._Options = opts; // set the options in the program
+                program._options = opts; // set the options in the program
                 return 0;
             },
             errs =>
