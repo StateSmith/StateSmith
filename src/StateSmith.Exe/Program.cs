@@ -71,13 +71,14 @@ public class Program
 
     static internal void PrintUsage(IAnsiConsole console)
     {
-        var helpText = new HelpText
-        {
-            Heading = new Heading("Usage:", new Style(foreground: Color.Green)),
-            AdditionalNewLineAfterOption = false,
-            AddDashesToOption = true
-        };
-        helpText.AddOptions(new CommandOptions());
-        console.WriteLine(helpText);
+        // TODO
+        // var helpText = new HelpText
+        // {
+        //     Heading = new Heading("Usage:", new Style(foreground: Color.Green)),
+        //     AdditionalNewLineAfterOption = false,
+        //     AddDashesToOption = true
+        // };
+        // helpText.AddOptions(new CommandOptions());
+        // console.WriteLine(helpText);
     }
 }
