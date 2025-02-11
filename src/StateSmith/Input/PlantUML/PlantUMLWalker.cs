@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace StateSmith.Input.PlantUML;
 
@@ -128,10 +129,20 @@ public class PlantUMLWalker : PlantUMLBaseListener
         root.id = context.startuml().statemachine_name()?.GetText() ?? "";
 
         if( root.id == "") {
-            root.id = Path.GetFileNameWithoutExtension(filepath.ThrowIfNull());
+            root.id = SanitizeStateMachineName(Path.GetFileNameWithoutExtension(filepath.ThrowIfNull()));
         }
 
         root.label = "$STATEMACHINE : " + root.id;
+    }
+
+    private string SanitizeStateMachineName(string name)
+    {
+        name = Regex.Replace(name, "[^a-zA-Z0-9_]", "");
+        if( Regex.IsMatch(name, "^[0-9]"))
+        {
+            name = "sm" + name;
+        }
+        return name;
     }
 
     public override void EnterTransition([NotNull] PlantUMLParser.TransitionContext context)

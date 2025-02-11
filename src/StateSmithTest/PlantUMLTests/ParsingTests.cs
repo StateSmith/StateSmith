@@ -39,6 +39,28 @@ public class ParsingTests
     }
 
     [Fact]
+    public void InvalidDiagramName()
+    {
+        ParseAssertNoError("%$foo##$*.puml", """
+            @startuml
+
+            @enduml
+            """);
+        translator.Root.id.Should().Be("foo");
+    }
+
+    [Fact]
+    public void InvalidDiagramNameStartsWithNumber()
+    {
+        ParseAssertNoError("22# $%foo##$*.puml", """
+            @startuml
+
+            @enduml
+            """);
+        translator.Root.id.Should().Be("sm22foo");
+    }
+
+    [Fact]
     public void DiagramNameIndented()
     {
         ParseAssertNoError("""
@@ -258,7 +280,12 @@ public class ParsingTests
 
     private void ParseAssertNoError(string input)
     {
-        translator.ParseDiagramText("foo.puml", input);
+        ParseAssertNoError("foo.puml", input);
+    }
+
+    private void ParseAssertNoError(string filename, string input)
+    {
+        translator.ParseDiagramText(filename, input);
         translator.HasError().Should().BeFalse();
     }
 
