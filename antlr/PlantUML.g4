@@ -267,7 +267,7 @@ startuml:
     START_UML
     (
         HWS+
-        statemachine_name
+        statemachine_name?
     )?
     ;
 

@@ -90,7 +90,8 @@ public class TestScan
             "a/a1/a1a.plantuml",
             "a/a1/a1b.drawio.svg",
             "a/a1/a1c.plantuml",
-            "a/a1/a1-diagram-lang.plantuml"
+            "a/a1/a1-diagram-lang.plantuml",
+            "a/a2/missing-sm-name.plantuml"
         );
 
         scanResults.ignoredFiles.Should().BeEquivalentTo(
@@ -100,7 +101,6 @@ public class TestScan
         );
 
         scanResults.nonMatchingFiles.Should().BeEquivalentTo(
-            "a/a2/missing-sm-name.plantuml",
             "a/a2/no-ss-match.drawio.svg",
             "b/b-non-ss.csx"
         );

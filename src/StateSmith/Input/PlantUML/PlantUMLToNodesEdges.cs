@@ -24,12 +24,13 @@ public class PlantUMLToNodesEdges
     public void ParseDiagramFile(string filepath)
     {
         var text = File.ReadAllText(filepath);
-        ParseDiagramText(text);
+        ParseDiagramText(filepath, text);
     }
 
-    public void ParseDiagramText(string plantUMLDiagramText)
+    public void ParseDiagramText(string filepath, string plantUMLDiagramText)
     {
         PlantUMLParser parser = BuildParserForString(plantUMLDiagramText);
+        walker.filepath = filepath;
         IParseTree tree = parser.diagram();
         ParseTreeWalker.Default.Walk(walker, tree);
         PostProcessForEntryExit();

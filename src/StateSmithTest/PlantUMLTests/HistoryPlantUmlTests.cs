@@ -20,7 +20,7 @@ public class HistoryPlantUmlTests
             S1-->S2
             @enduml
             """;
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
@@ -59,7 +59,7 @@ public class HistoryPlantUmlTests
             @enduml
 
             """;
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
@@ -91,7 +91,7 @@ public class HistoryPlantUmlTests
             @enduml
 
             """;
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
@@ -143,7 +143,7 @@ public class HistoryPlantUmlTests
             @enduml
 
             """;
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
@@ -171,7 +171,7 @@ public class HistoryPlantUmlTests
             }
             @enduml
             """;
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
         StateMachine root = inputSmBuilder.GetStateMachine();

@@ -33,10 +33,13 @@ Test/interim releases are not documented here.
 ### Contributors
 - @WXrock
   - https://github.com/StateSmith/StateSmith/pull/433
+- @emmby
+  - https://github.com/StateSmith/StateSmith/pull/439
 
 ### Added
 - C99 - Add `extern C` setting `HFileUseExternC` (@WXrock).
   - https://github.com/StateSmith/StateSmith/issues/435
+- PlantUML - make statemachine_name optional by inferring it from the filename.
 
 ---
 

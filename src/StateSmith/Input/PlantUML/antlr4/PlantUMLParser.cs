@@ -2370,12 +2370,12 @@ public partial class PlantUMLParser : Parser {
 
 	public partial class StartumlContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode START_UML() { return GetToken(PlantUMLParser.START_UML, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public Statemachine_nameContext statemachine_name() {
-			return GetRuleContext<Statemachine_nameContext>(0);
-		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantUMLParser.HWS); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS(int i) {
 			return GetToken(PlantUMLParser.HWS, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public Statemachine_nameContext statemachine_name() {
+			return GetRuleContext<Statemachine_nameContext>(0);
 		}
 		public StartumlContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -2406,31 +2406,46 @@ public partial class PlantUMLParser : Parser {
 		EnterRule(_localctx, 50, RULE_startuml);
 		int _la;
 		try {
+			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 346;
 			Match(START_UML);
-			State = 353;
+			State = 355;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,42,Context) ) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,43,Context) ) {
 			case 1:
 				{
 				State = 348;
 				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
+				_alt = 1;
 				do {
-					{
-					{
-					State = 347;
-					Match(HWS);
-					}
+					switch (_alt) {
+					case 1:
+						{
+						{
+						State = 347;
+						Match(HWS);
+						}
+						}
+						break;
+					default:
+						throw new NoViableAltException(this);
 					}
 					State = 350;
 					ErrorHandler.Sync(this);
-					_la = TokenStream.LA(1);
-				} while ( _la==HWS );
-				State = 352;
-				statemachine_name();
+					_alt = Interpreter.AdaptivePredict(TokenStream,41,Context);
+				} while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER );
+				State = 353;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__8) | (1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << IDENTIFIER))) != 0)) {
+					{
+					State = 352;
+					statemachine_name();
+					}
+				}
+
 				}
 				break;
 			}
@@ -2506,47 +2521,47 @@ public partial class PlantUMLParser : Parser {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 355;
-			optional_any_space();
-			State = 356;
-			startuml();
 			State = 357;
+			optional_any_space();
+			State = 358;
+			startuml();
+			State = 359;
 			ohs();
-			State = 361;
+			State = 363;
 			ErrorHandler.Sync(this);
-			_alt = Interpreter.AdaptivePredict(TokenStream,43,Context);
+			_alt = Interpreter.AdaptivePredict(TokenStream,44,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					State = 358;
+					State = 360;
 					diagram_element();
 					}
 					} 
 				}
-				State = 363;
+				State = 365;
 				ErrorHandler.Sync(this);
-				_alt = Interpreter.AdaptivePredict(TokenStream,43,Context);
+				_alt = Interpreter.AdaptivePredict(TokenStream,44,Context);
 			}
-			State = 365;
+			State = 367;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 364;
+				State = 366;
 				line_ending_ows();
 				}
 				}
-				State = 367;
+				State = 369;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			} while ( _la==HWS || _la==LINE_ENDER );
-			State = 369;
-			Match(END_UML);
-			State = 370;
-			optional_any_space();
 			State = 371;
+			Match(END_UML);
+			State = 372;
+			optional_any_space();
+			State = 373;
 			Match(Eof);
 			}
 		}
@@ -2594,7 +2609,7 @@ public partial class PlantUMLParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 373;
+			State = 375;
 			_la = TokenStream.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << IDENTIFIER))) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
@@ -2618,7 +2633,7 @@ public partial class PlantUMLParser : Parser {
 
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', '*', '\x17A', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
+		'\x5964', '\x3', '*', '\x17C', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
 		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x4', '\x5', '\t', '\x5', '\x4', 
 		'\x6', '\t', '\x6', '\x4', '\a', '\t', '\a', '\x4', '\b', '\t', '\b', 
 		'\x4', '\t', '\t', '\t', '\x4', '\n', '\t', '\n', '\x4', '\v', '\t', '\v', 
@@ -2693,34 +2708,35 @@ public partial class PlantUMLParser : Parser {
 		'\x5', '\x1A', '\x159', '\n', '\x1A', '\x5', '\x1A', '\x15B', '\n', '\x1A', 
 		'\x3', '\x1B', '\x3', '\x1B', '\x6', '\x1B', '\x15F', '\n', '\x1B', '\r', 
 		'\x1B', '\xE', '\x1B', '\x160', '\x3', '\x1B', '\x5', '\x1B', '\x164', 
-		'\n', '\x1B', '\x3', '\x1C', '\x3', '\x1C', '\x3', '\x1C', '\x3', '\x1C', 
-		'\a', '\x1C', '\x16A', '\n', '\x1C', '\f', '\x1C', '\xE', '\x1C', '\x16D', 
-		'\v', '\x1C', '\x3', '\x1C', '\x6', '\x1C', '\x170', '\n', '\x1C', '\r', 
-		'\x1C', '\xE', '\x1C', '\x171', '\x3', '\x1C', '\x3', '\x1C', '\x3', '\x1C', 
-		'\x3', '\x1C', '\x3', '\x1D', '\x3', '\x1D', '\x3', '\x1D', '\x2', '\x2', 
-		'\x1E', '\x2', '\x4', '\x6', '\b', '\n', '\f', '\xE', '\x10', '\x12', 
-		'\x14', '\x16', '\x18', '\x1A', '\x1C', '\x1E', ' ', '\"', '$', '&', '(', 
-		'*', ',', '.', '\x30', '\x32', '\x34', '\x36', '\x38', '\x2', '\t', '\x3', 
-		'\x2', '\x1F', ' ', '\x3', '\x2', '\x5', '\x6', '\x5', '\x2', '\x4', '\x4', 
-		'\a', '\a', ' ', ' ', '\x3', '\x2', '\xF', '\x10', '\x3', '\x2', ' ', 
-		' ', '\x4', '\x2', ' ', ' ', '*', '*', '\x6', '\x2', '\xF', '\x11', '\x13', 
-		'\x17', '\x19', '\x1C', '!', '!', '\x2', '\x197', '\x2', ':', '\x3', '\x2', 
-		'\x2', '\x2', '\x4', '\x41', '\x3', '\x2', '\x2', '\x2', '\x6', 'G', '\x3', 
-		'\x2', '\x2', '\x2', '\b', 'J', '\x3', '\x2', '\x2', '\x2', '\n', 'L', 
-		'\x3', '\x2', '\x2', '\x2', '\f', 'P', '\x3', '\x2', '\x2', '\x2', '\xE', 
-		'\\', '\x3', '\x2', '\x2', '\x2', '\x10', 'n', '\x3', '\x2', '\x2', '\x2', 
-		'\x12', 'p', '\x3', '\x2', '\x2', '\x2', '\x14', 'r', '\x3', '\x2', '\x2', 
-		'\x2', '\x16', '~', '\x3', '\x2', '\x2', '\x2', '\x18', '\x88', '\x3', 
-		'\x2', '\x2', '\x2', '\x1A', '\x8C', '\x3', '\x2', '\x2', '\x2', '\x1C', 
-		'\xAD', '\x3', '\x2', '\x2', '\x2', '\x1E', '\xB0', '\x3', '\x2', '\x2', 
-		'\x2', ' ', '\xEA', '\x3', '\x2', '\x2', '\x2', '\"', '\xED', '\x3', '\x2', 
-		'\x2', '\x2', '$', '\xF9', '\x3', '\x2', '\x2', '\x2', '&', '\x109', '\x3', 
-		'\x2', '\x2', '\x2', '(', '\x10B', '\x3', '\x2', '\x2', '\x2', '*', '\x112', 
+		'\n', '\x1B', '\x5', '\x1B', '\x166', '\n', '\x1B', '\x3', '\x1C', '\x3', 
+		'\x1C', '\x3', '\x1C', '\x3', '\x1C', '\a', '\x1C', '\x16C', '\n', '\x1C', 
+		'\f', '\x1C', '\xE', '\x1C', '\x16F', '\v', '\x1C', '\x3', '\x1C', '\x6', 
+		'\x1C', '\x172', '\n', '\x1C', '\r', '\x1C', '\xE', '\x1C', '\x173', '\x3', 
+		'\x1C', '\x3', '\x1C', '\x3', '\x1C', '\x3', '\x1C', '\x3', '\x1D', '\x3', 
+		'\x1D', '\x3', '\x1D', '\x2', '\x2', '\x1E', '\x2', '\x4', '\x6', '\b', 
+		'\n', '\f', '\xE', '\x10', '\x12', '\x14', '\x16', '\x18', '\x1A', '\x1C', 
+		'\x1E', ' ', '\"', '$', '&', '(', '*', ',', '.', '\x30', '\x32', '\x34', 
+		'\x36', '\x38', '\x2', '\t', '\x3', '\x2', '\x1F', ' ', '\x3', '\x2', 
+		'\x5', '\x6', '\x5', '\x2', '\x4', '\x4', '\a', '\a', ' ', ' ', '\x3', 
+		'\x2', '\xF', '\x10', '\x3', '\x2', ' ', ' ', '\x4', '\x2', ' ', ' ', 
+		'*', '*', '\x6', '\x2', '\xF', '\x11', '\x13', '\x17', '\x19', '\x1C', 
+		'!', '!', '\x2', '\x19A', '\x2', ':', '\x3', '\x2', '\x2', '\x2', '\x4', 
+		'\x41', '\x3', '\x2', '\x2', '\x2', '\x6', 'G', '\x3', '\x2', '\x2', '\x2', 
+		'\b', 'J', '\x3', '\x2', '\x2', '\x2', '\n', 'L', '\x3', '\x2', '\x2', 
+		'\x2', '\f', 'P', '\x3', '\x2', '\x2', '\x2', '\xE', '\\', '\x3', '\x2', 
+		'\x2', '\x2', '\x10', 'n', '\x3', '\x2', '\x2', '\x2', '\x12', 'p', '\x3', 
+		'\x2', '\x2', '\x2', '\x14', 'r', '\x3', '\x2', '\x2', '\x2', '\x16', 
+		'~', '\x3', '\x2', '\x2', '\x2', '\x18', '\x88', '\x3', '\x2', '\x2', 
+		'\x2', '\x1A', '\x8C', '\x3', '\x2', '\x2', '\x2', '\x1C', '\xAD', '\x3', 
+		'\x2', '\x2', '\x2', '\x1E', '\xB0', '\x3', '\x2', '\x2', '\x2', ' ', 
+		'\xEA', '\x3', '\x2', '\x2', '\x2', '\"', '\xED', '\x3', '\x2', '\x2', 
+		'\x2', '$', '\xF9', '\x3', '\x2', '\x2', '\x2', '&', '\x109', '\x3', '\x2', 
+		'\x2', '\x2', '(', '\x10B', '\x3', '\x2', '\x2', '\x2', '*', '\x112', 
 		'\x3', '\x2', '\x2', '\x2', ',', '\x12E', '\x3', '\x2', '\x2', '\x2', 
 		'.', '\x144', '\x3', '\x2', '\x2', '\x2', '\x30', '\x151', '\x3', '\x2', 
 		'\x2', '\x2', '\x32', '\x15A', '\x3', '\x2', '\x2', '\x2', '\x34', '\x15C', 
-		'\x3', '\x2', '\x2', '\x2', '\x36', '\x165', '\x3', '\x2', '\x2', '\x2', 
-		'\x38', '\x177', '\x3', '\x2', '\x2', '\x2', ':', ';', '\x5', '\x4', '\x3', 
+		'\x3', '\x2', '\x2', '\x2', '\x36', '\x167', '\x3', '\x2', '\x2', '\x2', 
+		'\x38', '\x179', '\x3', '\x2', '\x2', '\x2', ':', ';', '\x5', '\x4', '\x3', 
 		'\x2', ';', '<', '\a', ' ', '\x2', '\x2', '<', '=', '\x5', '\x4', '\x3', 
 		'\x2', '=', '\x3', '\x3', '\x2', '\x2', '\x2', '>', '@', '\t', '\x2', 
 		'\x2', '\x2', '?', '>', '\x3', '\x2', '\x2', '\x2', '@', '\x43', '\x3', 
@@ -2923,32 +2939,35 @@ public partial class PlantUMLParser : Parser {
 		'\x157', '\x3', '\x2', '\x2', '\x2', '\x158', '\x159', '\x3', '\x2', '\x2', 
 		'\x2', '\x159', '\x15B', '\x3', '\x2', '\x2', '\x2', '\x15A', '\x153', 
 		'\x3', '\x2', '\x2', '\x2', '\x15A', '\x154', '\x3', '\x2', '\x2', '\x2', 
-		'\x15B', '\x33', '\x3', '\x2', '\x2', '\x2', '\x15C', '\x163', '\a', '\x1D', 
+		'\x15B', '\x33', '\x3', '\x2', '\x2', '\x2', '\x15C', '\x165', '\a', '\x1D', 
 		'\x2', '\x2', '\x15D', '\x15F', '\a', '\x1F', '\x2', '\x2', '\x15E', '\x15D', 
 		'\x3', '\x2', '\x2', '\x2', '\x15F', '\x160', '\x3', '\x2', '\x2', '\x2', 
 		'\x160', '\x15E', '\x3', '\x2', '\x2', '\x2', '\x160', '\x161', '\x3', 
-		'\x2', '\x2', '\x2', '\x161', '\x162', '\x3', '\x2', '\x2', '\x2', '\x162', 
-		'\x164', '\x5', '\x32', '\x1A', '\x2', '\x163', '\x15E', '\x3', '\x2', 
-		'\x2', '\x2', '\x163', '\x164', '\x3', '\x2', '\x2', '\x2', '\x164', '\x35', 
-		'\x3', '\x2', '\x2', '\x2', '\x165', '\x166', '\x5', '\x4', '\x3', '\x2', 
-		'\x166', '\x167', '\x5', '\x34', '\x1B', '\x2', '\x167', '\x16B', '\x5', 
-		'\x6', '\x4', '\x2', '\x168', '\x16A', '\x5', '\"', '\x12', '\x2', '\x169', 
-		'\x168', '\x3', '\x2', '\x2', '\x2', '\x16A', '\x16D', '\x3', '\x2', '\x2', 
-		'\x2', '\x16B', '\x169', '\x3', '\x2', '\x2', '\x2', '\x16B', '\x16C', 
+		'\x2', '\x2', '\x2', '\x161', '\x163', '\x3', '\x2', '\x2', '\x2', '\x162', 
+		'\x164', '\x5', '\x32', '\x1A', '\x2', '\x163', '\x162', '\x3', '\x2', 
+		'\x2', '\x2', '\x163', '\x164', '\x3', '\x2', '\x2', '\x2', '\x164', '\x166', 
+		'\x3', '\x2', '\x2', '\x2', '\x165', '\x15E', '\x3', '\x2', '\x2', '\x2', 
+		'\x165', '\x166', '\x3', '\x2', '\x2', '\x2', '\x166', '\x35', '\x3', 
+		'\x2', '\x2', '\x2', '\x167', '\x168', '\x5', '\x4', '\x3', '\x2', '\x168', 
+		'\x169', '\x5', '\x34', '\x1B', '\x2', '\x169', '\x16D', '\x5', '\x6', 
+		'\x4', '\x2', '\x16A', '\x16C', '\x5', '\"', '\x12', '\x2', '\x16B', '\x16A', 
 		'\x3', '\x2', '\x2', '\x2', '\x16C', '\x16F', '\x3', '\x2', '\x2', '\x2', 
-		'\x16D', '\x16B', '\x3', '\x2', '\x2', '\x2', '\x16E', '\x170', '\x5', 
-		'\x2', '\x2', '\x2', '\x16F', '\x16E', '\x3', '\x2', '\x2', '\x2', '\x170', 
-		'\x171', '\x3', '\x2', '\x2', '\x2', '\x171', '\x16F', '\x3', '\x2', '\x2', 
-		'\x2', '\x171', '\x172', '\x3', '\x2', '\x2', '\x2', '\x172', '\x173', 
-		'\x3', '\x2', '\x2', '\x2', '\x173', '\x174', '\a', '\x1E', '\x2', '\x2', 
-		'\x174', '\x175', '\x5', '\x4', '\x3', '\x2', '\x175', '\x176', '\a', 
-		'\x2', '\x2', '\x3', '\x176', '\x37', '\x3', '\x2', '\x2', '\x2', '\x177', 
-		'\x178', '\t', '\b', '\x2', '\x2', '\x178', '\x39', '\x3', '\x2', '\x2', 
-		'\x2', '/', '\x41', 'G', 'R', 'Z', '\\', '\x61', 'g', 'k', 'n', '|', '\x82', 
+		'\x16D', '\x16B', '\x3', '\x2', '\x2', '\x2', '\x16D', '\x16E', '\x3', 
+		'\x2', '\x2', '\x2', '\x16E', '\x171', '\x3', '\x2', '\x2', '\x2', '\x16F', 
+		'\x16D', '\x3', '\x2', '\x2', '\x2', '\x170', '\x172', '\x5', '\x2', '\x2', 
+		'\x2', '\x171', '\x170', '\x3', '\x2', '\x2', '\x2', '\x172', '\x173', 
+		'\x3', '\x2', '\x2', '\x2', '\x173', '\x171', '\x3', '\x2', '\x2', '\x2', 
+		'\x173', '\x174', '\x3', '\x2', '\x2', '\x2', '\x174', '\x175', '\x3', 
+		'\x2', '\x2', '\x2', '\x175', '\x176', '\a', '\x1E', '\x2', '\x2', '\x176', 
+		'\x177', '\x5', '\x4', '\x3', '\x2', '\x177', '\x178', '\a', '\x2', '\x2', 
+		'\x3', '\x178', '\x37', '\x3', '\x2', '\x2', '\x2', '\x179', '\x17A', 
+		'\t', '\b', '\x2', '\x2', '\x17A', '\x39', '\x3', '\x2', '\x2', '\x2', 
+		'\x30', '\x41', 'G', 'R', 'Z', '\\', '\x61', 'g', 'k', 'n', '|', '\x82', 
 		'\x90', '\x96', '\x9C', '\x9E', '\xA4', '\xA8', '\xAD', '\xCD', '\xD2', 
 		'\xD7', '\xD9', '\xDB', '\xE1', '\xEA', '\xEF', '\xF7', '\xFD', '\x102', 
 		'\x10F', '\x116', '\x11C', '\x122', '\x129', '\x132', '\x138', '\x13F', 
-		'\x148', '\x151', '\x158', '\x15A', '\x160', '\x163', '\x16B', '\x171',
+		'\x148', '\x151', '\x158', '\x15A', '\x160', '\x163', '\x165', '\x16D', 
+		'\x173',
 	};
 
 	public static readonly ATN _ATN =

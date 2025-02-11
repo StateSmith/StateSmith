@@ -23,7 +23,7 @@ public class SsDiagramFilterTest
     /// <summary>
     /// Missing diagram name.
     /// </summary>
-    private const string PlantUmlNoMatch = """
+    private const string PlantUmlMatchNoMachineName = """
             @startuml
             [*] --> State1
             @enduml
@@ -36,12 +36,12 @@ public class SsDiagramFilterTest
     {
         diagramFilter.IsTargetDiagramFile("blah.plantuml", PlantUmlMatch).Should().BeTrue();
         diagramFilter.IsTargetDiagramFile("blah.drawio", DrawioYedMatch).Should().BeTrue();
+        diagramFilter.IsTargetDiagramFile("blah.plantuml", PlantUmlMatchNoMachineName).Should().BeTrue();
     }
 
     [Fact]
     public void IsTargetDiagramFile_NoMatch()
     {
-        diagramFilter.IsTargetDiagramFile("blah.plantuml", PlantUmlNoMatch).Should().BeFalse();
         diagramFilter.IsTargetDiagramFile("blah.drawio", DrawioYedNoMatch).Should().BeFalse();
         diagramFilter.IsTargetDiagramFile("blah.drawio", PlantUmlMatch).Should().BeFalse("wrong contents for file type");
         diagramFilter.IsTargetDiagramFile("blah.plantuml", DrawioYedMatch).Should().BeFalse("wrong contents for file type");
@@ -59,6 +59,6 @@ public class SsDiagramFilterTest
     {
         diagramFilter.IsSsPlantUmlFileContents(PlantUmlMatch).Should().BeTrue();
         diagramFilter.IsSsPlantUmlFileContents(PlantUmlMatchFileName).Should().BeTrue();
-        diagramFilter.IsSsPlantUmlFileContents(PlantUmlNoMatch).Should().BeFalse();
+        diagramFilter.IsSsPlantUmlFileContents(PlantUmlMatchNoMachineName).Should().BeTrue();
     }
 }

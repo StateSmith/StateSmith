@@ -130,16 +130,16 @@ public class InputSmBuilder
     public void ConvertPlantUmlFileNodesToVertices(string filepath)
     {
         var text = File.ReadAllText(filepath);
-        ConvertPlantUmlTextNodesToVertices(text);
+        ConvertPlantUmlTextNodesToVertices(filepath, text);
     }
 
     /// <summary>
     /// Step 1
     /// </summary>
-    public void ConvertPlantUmlTextNodesToVertices(string plantUmlText)
+    public void ConvertPlantUmlTextNodesToVertices(string filepath, string plantUmlText)
     {
         PlantUMLToNodesEdges translator = new();
-        translator.ParseDiagramText(plantUmlText);
+        translator.ParseDiagramText(filepath, plantUmlText);
 
         if (translator.HasError())
         {
