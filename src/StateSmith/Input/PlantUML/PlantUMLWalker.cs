@@ -17,7 +17,7 @@ public class PlantUMLWalker : PlantUMLBaseListener
     public Dictionary<DiagramNode, string> nodeStereoTypeLookup = new();
     public Dictionary<string, DiagramNode> nodeMap = new();
     public List<KeptComment> keptCommentBlocks = new();
-    public string filepath;
+    public string? filepath;
 
     private DiagramNode currentNode;
 
