@@ -27,6 +27,7 @@ public class ParsingTests
         translator.Root.id.Should().Be("MyPumlSm1");
     }
 
+    [Fact]
     public void NoDiagramName()
     {
         ParseAssertNoError("""
