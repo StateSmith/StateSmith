@@ -39,7 +39,7 @@ One very useful feature is to enable the railroad diagram.
 
 # Compile the grammar(s)
 
-Now compile the grammars you are interested in using the script below.
+Now compile the grammars you are interested in using the script below in this directory.
 
 ```
 StateSmith/antlr% ./compile.sh
