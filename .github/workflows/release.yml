@@ -40,21 +40,21 @@ jobs:
                 ( 
                   cd src/StateSmith.Cli 
                   dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework /p:DefineConstants="SS_SINGLE_FILE_APPLICATION" 
-                  mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli$extension /tmp/publish/ss.cli-$arch$extension 
+                  mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli$extension /tmp/publish/ss.cli$extension
                   rm -rf ./bin
                 )
                 (
                   cd src/StateSmith.Exe
                   dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework /p:DefineConstants="SS_SINGLE_FILE_APPLICATION" 
-                  mv ./bin/Release/$framework/$arch/publish/StateSmith.Exe$extension /tmp/publish/statesmith-$arch$extension 
+                  mv ./bin/Release/$framework/$arch/publish/StateSmith.Exe$extension /tmp/publish/statesmith$extension
                   rm -rf ./bin
                 )
                 (
                   cd /tmp/publish                  
                   ls -lh .
                   # homebrew expects darwin instead of osx
-                  zip -r statesmith-${arch/osx-/darwin-}-$framework.zip ss.cli-$arch$extension statesmith-$arch$extension
-                  rm ss.cli-$arch$extension statesmith-$arch$extension
+                  tar zcf statesmith-${arch/osx-/darwin-}-$framework.tar.gz ss.cli$extension statesmith$extension
+                  rm ss.cli$extension statesmith$extension
                 )
               done
             done
@@ -63,5 +63,5 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: /tmp/publish/*
+          files: /tmp/publish/*.tar.gz
   
