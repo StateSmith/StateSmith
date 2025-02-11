@@ -128,7 +128,7 @@ public class PlantUMLWalker : PlantUMLBaseListener
         root.id = context.startuml().statemachine_name()?.GetText() ?? "";
 
         if( root.id == "") {
-            root.id = Path.GetFileNameWithoutExtension(filepath);
+            root.id = Path.GetFileNameWithoutExtension(filepath.ThrowIfNull());
         }
 
         root.label = "$STATEMACHINE : " + root.id;
