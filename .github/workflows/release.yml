@@ -27,15 +27,38 @@ jobs:
       - name: Build
         run: |
           dotnet build --configuration Debug --no-restore src/StateSmith.sln
-          for dir in src/StateSmith.Cli src/StateSmith.Exe; do
-            cd $dir
+          mkdir publish
+          (
+            cd src/StateSmith.Cli
             for arch in linux-arm linux-arm64 linux-musl-arm64 linux-musl-x64 linux-x64 osx-arm64 osx-x64 win-arm64 win-x64 win-x86; do
+              extension=""
+              if [[ $arch == "win"* ]]; then
+                extension=".exe"
+              fi
               for framework in net6.0 net7.0 net8.0; do
                 dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework /p:DefineConstants="SS_SINGLE_FILE_APPLICATION"
+                mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli ../publish/ss.cli-$arch$extension 
+                rm -rf ./bin
               done
             done
-            cd -
-          done
+          )
+
+          (
+            cd src/StateSmith.Exe
+            for arch in linux-arm linux-arm64 linux-musl-arm64 linux-musl-x64 linux-x64 osx-arm64 osx-x64 win-arm64 win-x64 win-x86; do
+              extension=""
+              if [[ $arch == "win"* ]]; then
+                extension=".exe"
+              fi
+              for framework in net6.0 net7.0 net8.0; do
+                dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework /p:DefineConstants="SS_SINGLE_FILE_APPLICATION"
+                mv ./bin/Release/$framework/$arch/publish/StateSmith.Exe ../publish/statesmith-$arch$extension 
+                rm -rf ./bin
+              done
+            done
+          )
+
+          ls -lh publish
 
       # - name: Release
       #   run: TODO update https://github.com/StateSmith/StateSmith/releases/new with the new versions
