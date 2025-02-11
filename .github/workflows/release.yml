@@ -1,6 +1,7 @@
 name: Release new versions of StateSmith to repos
 
-on: workflow_dispatch # Only run this workflow manually
+on: 
+  workflow_dispatch 
 
 jobs:
   build:
