@@ -1,7 +1,9 @@
-name: Release new versions of StateSmith to repos
+name: Release new versions of StateSmith to repos on v*.*.* tags
 
-on: 
-  workflow_dispatch 
+on:
+  push:
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:
@@ -61,5 +63,8 @@ jobs:
 
           ls -lh /tmp/publish
 
-      # - name: Release
-      #   run: TODO update https://github.com/StateSmith/StateSmith/releases/new with the new versions
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: /tmp/publish/*
+  
