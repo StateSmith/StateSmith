@@ -4,30 +4,9 @@ With StateSmith, your state machine diagram is code. Never worry about keeping y
 
 Visit our [Quickstart](/docs/quickstart/) to get started.
 
-```mermaid
 
-flowchart TD
+{% include_relative statesmith.puml %}
 
-DrawIO["draw.io"]
-PlantUML
-yED
-StateSmith@{ img: "https://github.com/emmby/StateSmith/raw/main/docs/media/logo.png", label:"StateSmith", pos: "t", w: 100, h: 100 }
-
-
-subgraph code
-CPP["C / C++"]
-CSharp["C#"]
-JS["JavaScript<br />TypeScript"]
-Python
-end
-
-DrawIO --> StateSmith
-PlantUML --> StateSmith
-yED --> StateSmith
-
-StateSmith --> code
-
-```
 
 
 

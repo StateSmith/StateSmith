@@ -1,0 +1,26 @@
+@startuml
+
+frame output [
+{{
+  object "C / C++"
+  object "C#"
+  object "JavaScript\nTypeScript"
+  object Python
+}}
+]
+
+object "draw.io" as drawio
+object plantuml
+object yed
+object statesmith
+
+statesmith : <img:https://github.com/emmby/StateSmith/raw/main/docs/media/logo.png>
+
+
+drawio --> statesmith
+plantuml --> statesmith
+yed --> statesmith
+
+statesmith --> output
+
+@enduml
