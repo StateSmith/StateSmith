@@ -13,7 +13,7 @@ public class ProgramOptions
 
 
     [Option(HelpText = "Specifies output language.")]
-    public TranspilerId Lang { get; set; } = TranspilerId.NotYetSet;
+    public TranspilerId Lang { get; set; } = TranspilerId.JavaScript;
 
     [Option("no-sim-gen", HelpText = "Disables simulation .html file generation.")]
     public bool NoSimGen { get; set; } = false;
