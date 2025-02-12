@@ -11,7 +11,7 @@ namespace StateSmith.Exe;
 
 public class Program
 {
-    static IAnsiConsole _console = AnsiConsole.Console;
+    internal static IAnsiConsole _console = AnsiConsole.Console;
     
     internal ProgramOptions _options  = new ProgramOptions();
 

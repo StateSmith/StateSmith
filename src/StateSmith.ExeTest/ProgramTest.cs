@@ -47,6 +47,7 @@ namespace StateSmith.Exe.Tests
             // Arrange
             var console = new TestConsole();
             var program = new Program();
+            program._options.Lang = TranspilerId.C99;
             program._options.Files = new[] { "file1", "file2" };
 
             // Act
@@ -62,17 +63,13 @@ namespace StateSmith.Exe.Tests
         {
             // Arrange
             var args = new string[] {  };
-            var console = new TestConsole();
-            var program = new Program();
+            Program._console = new TestConsole();
             
-
             // Act
-            var parseResult = program.ParseCommands(args,console);
-            program.Run();
+            Program.Main(args);
 
             // Assert
-            parseResult.Should().Be(0);            
-            console.Output.Should().Contain("StateSmith - a state machine diagram tool.");
+            ((TestConsole)Program._console).Output.Should().Contain("StateSmith - a state machine diagram tool.");
         }
 
         [Fact]
