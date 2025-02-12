@@ -42,19 +42,20 @@ namespace StateSmith.Exe.Tests
         }
 
         [Fact]
-        public void Run_ExecutesWithoutException()
+        public void Run_MissingFile()
         {
             // Arrange
+            var args = new string[] { "--lang=JavaScript", "test.puml" };
             var console = new TestConsole();
-            var program = new Program();
-            program._options.Lang = TranspilerId.C99;
-            program._options.Files = new[] { "file1", "file2" };
+            Program._console = new TestConsole();
 
             // Act
-            Action act = () => program.Run();
+            Action act = () => Program.Main(args);
 
             // Assert
             act.Should().NotThrow();
+            ((TestConsole)Program._console).Output.Should().Contain("Failed while trying to read '`test.puml`' for settings.");
+
         }
 
 
