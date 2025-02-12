@@ -18,7 +18,7 @@ Visit our [Quickstart](/docs/quickstart/) to get started.
 
 It's easy to get started with StateSmith.
 
-1. First, write or draw a statemachine in the tool of your choice<br />
+1. First, write or draw a statemachine in the tool of your choice.<br />
 
 <table>
 <tr>
@@ -29,7 +29,7 @@ It's easy to get started with StateSmith.
 </td>
 <td>
 <pre>
-# light.puml
+# lightbulb.puml
 @startuml
 [*] --> Off
 Off -> On : Switch pressed
@@ -41,8 +41,8 @@ On -> Off : Switch pressed
 </table>
 
 
- 2. run `statesmith light.puml`
- 3. add the resulting state machine code to your C, C++, C#, Java, JavaScript, or TypeScript app.
+ 2. Run `statesmith lightbulb.puml`.
+ 3. Add the resulting state machine code to your C, C++, C#, Java, JavaScript, or TypeScript app.
 
 Learn more in our [Quickstart](https://emmby.github.io/StateSmith/quickstart/) tutorial.
 
