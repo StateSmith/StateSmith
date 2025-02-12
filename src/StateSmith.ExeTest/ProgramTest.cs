@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using Xunit;
 using FluentAssertions;
+using StateSmith.Runner;
 
 namespace StateSmith.Exe.Tests
 {
@@ -18,11 +19,11 @@ namespace StateSmith.Exe.Tests
             var program = new Program();
 
             // Act
-            var result = Program.ParseCommands(args, console, program);
+            var result = program.ParseCommands(args, console);
 
             // Assert
             result.Should().Be(0);
-            program._options.Lang.Should().Be("C99");
+            program._options.Lang.Should().Be(TranspilerId.C99);
         }
 
         [Fact]
@@ -34,7 +35,7 @@ namespace StateSmith.Exe.Tests
             var program = new Program();
 
             // Act
-            var result = Program.ParseCommands(args, console, program);
+            var result = program.ParseCommands(args, console);
 
             // Assert
             result.Should().Be(1);
@@ -63,12 +64,14 @@ namespace StateSmith.Exe.Tests
             var args = new string[] {  };
             var console = new TestConsole();
             var program = new Program();
-            var parserResult = new Parser().ParseArguments<ProgramOptions>(args);
+            
 
             // Act
-            Program.PrintUsage(parserResult, console);
+            var parseResult = program.ParseCommands(args,console);
+            program.Run();
 
             // Assert
+            parseResult.Should().Be(0);            
             console.Output.Should().Contain("StateSmith - a state machine diagram tool.");
         }
 

@@ -27,7 +27,7 @@ public class Program
         try
         {
             var program = new Program();
-            var parseResult = Program.ParseCommands(args, Program._console, program);
+            var parseResult = program.ParseCommands(args, Program._console);
             if (parseResult != 0)
             {
                 Environment.ExitCode = parseResult;
@@ -49,7 +49,7 @@ public class Program
         new DiagramRunner(_console,_options).Run(_options.Files.ToList());
     }
 
-    static internal int ParseCommands(string[] args, IAnsiConsole _console, Program program)
+    internal int ParseCommands(string[] args, IAnsiConsole _console)
     {
         var parser = new Parser(settings =>
         {
@@ -65,7 +65,7 @@ public class Program
         int resultCode = parserResult.MapResult(
             (ProgramOptions opts) =>
             {
-                program._options = opts; // set the options in the program
+                _options = opts; // set the options in the program
                 return 0;
             },
             errs =>
