@@ -14,7 +14,7 @@ object plantuml
 object yed
 object statesmith
 
-statesmith : <img:https://raw.githubusercontent.com/emmby/StateSmith/docs-revamp2/docs/media/logo.png{scale=0.1}>
+statesmith : <img:media/logo.png{scale=0.1}>
 
 
 drawio --> statesmith
