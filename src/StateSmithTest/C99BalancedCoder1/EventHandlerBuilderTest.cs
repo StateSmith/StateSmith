@@ -65,7 +65,7 @@ state group1 {
     private static void CompileAndExpectException(string plantUmlText, string expectedWildcardPattern)
     {
         InputSmBuilder inputSmBuilder = new();
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
 
         Action action = () => {
             inputSmBuilder.FinishRunning();

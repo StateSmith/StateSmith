@@ -19,7 +19,7 @@ public class SupportAlternateTriggersProcessor_Tests
     {
         var inputSmBuilder = new InputSmBuilder();
 
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("""
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", """
             @startuml SomeSmName
             [*] --> MY_STATE_1
             MY_STATE_1 : enter / log("enter");
@@ -62,7 +62,7 @@ public class TriggerModHelper_Tests
                 });
         }));
 
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(@"
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", @"
             @startuml SomeSmName
             [*] --> MY_STATE_1
             MY_STATE_1 : $mod / $log();
