@@ -81,6 +81,9 @@ public class Program
 
     static internal void PrintUsage( ParserResult<ProgramOptions> parserResult, IAnsiConsole console)
     {
-        console.WriteLine(HelpText.AutoBuild(parserResult));
+        console.WriteLine(HelpText.AutoBuild(parserResult, h=> {
+            h.Heading = "\nStateSmith - a state machine diagram tool.\nUsage: statesmith [options] file1 [file2...]\n";
+            return h;
+        }, e=>e));
     }
 }
