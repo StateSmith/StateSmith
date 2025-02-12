@@ -60,15 +60,15 @@ namespace StateSmith.Exe.Tests
         public void Run_NoArgs()
         {
             // Arrange
+            var args = new string[] {  };
             var console = new TestConsole();
             var program = new Program();
-            program._options.Files = new string[] { }; // Correcting the initialization of Files to use string[]
+            var parserResult = new Parser().ParseArguments<ProgramOptions>(args);
 
             // Act
-            Action act = () => program.Run();
+            Program.PrintUsage(parserResult, console);
 
             // Assert
-            act.Should().NotThrow();
             console.Output.Should().Contain("StateSmith - a state machine diagram tool.");
         }
 
