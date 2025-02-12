@@ -18,7 +18,7 @@ Using Pages enabled us to customize, doing things like:
 * embed the simulator directly into the page as an iframe
 
 It also makes documentation much easier to maintain and update than the Wiki. Anyone can submit a documentation
-update along with the rest of their PR.
+update along with the rest of their PR. All docs are always in sync with the code.
 
 #### Interactive, up to date examples
 
