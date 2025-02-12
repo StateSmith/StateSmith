@@ -1,0 +1,36 @@
+name: Run makefiles in docs directory
+on:
+  push:
+
+permissions:
+  # Give the default GITHUB_TOKEN write permission to commit and push the
+  # added or changed files to the repository.
+  contents: write
+
+jobs:
+  plantuml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v2
+
+      - name: Download ss.cli
+        run: |
+           mkdir -p /tmp/statesmith/
+           curl -sSL -o /tmp/statesmith/ss.cli https://github.com/StateSmith/StateSmith/releases/download/cli-v0.17.4/ss.cli-linux-x64
+           chmod a+x /tmp/statesmith/ss.cli
+           /tmp/statesmith/ss.cli --version
+           
+      - name: Run makefiles
+        run: |
+          export PATH=$PATH:/tmp/statesmith/
+          find docs -name 'Makefile' -execdir make \;
+
+      - name: Push Local Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Run makefiles in docs directory"
+          branch: ${{ github.head_ref }}
