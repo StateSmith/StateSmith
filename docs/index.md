@@ -5,8 +5,7 @@ With StateSmith, your state machine diagram is code. Never worry about keeping y
 Visit our [Quickstart](/docs/quickstart/) to get started.
 
 
-{% include_relative statesmith.puml %}
-
+![statesmith](statesmith.svg)
 
 
 
