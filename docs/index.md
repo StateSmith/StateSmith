@@ -41,7 +41,7 @@ On -> Off : Switch pressed
 </table>
 
 
- 2. Run `statesmith lightbulb.puml`.
+ 2. Run `statesmith --lang=<your choice> lightbulb.puml`.
  3. Add the resulting state machine code to your C, C++, C#, Java, JavaScript, or TypeScript app.
 
 Learn more in our [Quickstart](https://emmby.github.io/StateSmith/quickstart/) tutorial.
