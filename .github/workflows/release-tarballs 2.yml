@@ -1,0 +1,68 @@
+name: Release new versions of StateSmith to repos on v*.*.* tags
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'  # stick to 22 for now. 23 has some bumps causing TypeScript tests to fail: https://github.com/nodejs/node/issues/55417
+
+      - run: npm install -g typescript
+          
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            6.0.x
+            7.0.x
+            8.0.x
+      - name: Install dependencies
+        run: dotnet restore src/StateSmith.sln
+
+      - name: Build
+        run: |
+          dotnet build --configuration Debug --no-restore src/StateSmith.sln
+          mkdir -p /tmp/publish
+            for arch in linux-arm linux-arm64 linux-musl-arm64 linux-musl-x64 linux-x64 osx-arm64 osx-x64 win-arm64 win-x64 win-x86; do
+              extension=""
+              if [[ $arch == "win"* ]]; then
+                extension=".exe"
+              fi
+              for framework in net6.0 net7.0 net8.0; do
+                ( 
+                  cd src/StateSmith.Cli 
+                  dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework /p:DefineConstants="SS_SINGLE_FILE_APPLICATION" 
+                  mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli$extension /tmp/publish/ss.cli$extension
+                  rm -rf ./bin
+                )
+                (
+                  cd src/StateSmith.Exe
+                  dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework /p:DefineConstants="SS_SINGLE_FILE_APPLICATION" 
+                  mv ./bin/Release/$framework/$arch/publish/StateSmith.Exe$extension /tmp/publish/statesmith$extension
+                  rm -rf ./bin
+                )
+                (
+                  cd /tmp/publish                  
+                  ls -lh .
+                  # homebrew expects darwin instead of osx
+                  tar zcf statesmith-${arch/osx-/darwin-}-$framework.tar.gz ss.cli$extension statesmith$extension
+                  rm ss.cli$extension statesmith$extension
+                )
+              done
+            done
+
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: /tmp/publish/*.tar.gz
+  

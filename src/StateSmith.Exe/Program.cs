@@ -13,7 +13,7 @@ public class Program
 {
     static IAnsiConsole _console = AnsiConsole.Console;
     
-    private ProgramOptions _options  = new ProgramOptions();
+    internal ProgramOptions _options  = new ProgramOptions();
 
     public Program()
     {
