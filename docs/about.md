@@ -66,3 +66,4 @@ github integration documentation.
 * Add a link to allow readers to file feedback bugs in the footer
 * Force makefiles to run before github pages are generated
 * open the sidebar for the current section
+* disable the old wiki
