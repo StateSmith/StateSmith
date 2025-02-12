@@ -1,0 +1,1 @@
+See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md
