@@ -1,5 +1,4 @@
 using CommandLine;
-using Spectre.Console;
 using Spectre.Console.Testing;
 using System;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace StateSmith.Exe.Tests
         {
             // Arrange
             var args = new[] { "--lang", "C99" };
-            var console = AnsiConsole.Console;
+            var console = new TestConsole();
             var program = new Program();
 
             // Act
@@ -31,7 +30,7 @@ namespace StateSmith.Exe.Tests
         {
             // Arrange
             var args = new[] { "--invalidOption" };
-            var console = AnsiConsole.Console;
+            var console = new TestConsole();
             var program = new Program();
 
             // Act
@@ -45,7 +44,7 @@ namespace StateSmith.Exe.Tests
         public void Run_ExecutesWithoutException()
         {
             // Arrange
-            var console = AnsiConsole.Console;
+            var console = new TestConsole();
             var program = new Program();
             program._options.Files = new[] { "file1", "file2" };
 
