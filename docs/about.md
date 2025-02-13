@@ -66,6 +66,7 @@ github integration documentation.
 * Force makefiles to run before github pages are generated
 * open the sidebar for the current section
 * Add download links to sidebar
+* Figure out best way to consolidate actions
 
 
 ## FUTURE WORK
