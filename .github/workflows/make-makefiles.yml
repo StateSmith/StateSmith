@@ -18,6 +18,7 @@ jobs:
         uses: ts-graphviz/setup-graphviz@v2
 
       # plantuml version on apt is ancient so we use homebrew
+      # this is ridiculously inefficient
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
