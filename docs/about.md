@@ -65,7 +65,7 @@ github integration documentation.
 * apt get support
 * Force makefiles to run before github pages are generated
 * open the sidebar for the current section
-
+* Add download links to sidebar
 
 
 ## FUTURE WORK
