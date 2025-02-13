@@ -1,10 +1,5 @@
-# Assumes that ss.cli is in your path
+# Assumes that ss.cli and plantuml are in your path
 
-all: /tmp/plantuml.jar
-	java -jar /tmp/plantuml.jar -headless -tsvg lightbulb.puml	
+all:
+	plantuml -headless -tsvg lightbulb.puml	
 	ss.cli run --lang=JavaScript --no-ask --no-csx -h -b
-
-# This depends on graphviz
-/tmp/plantuml.jar:
-	wget https://sourceforge.net/projects/plantuml/files/plantuml.jar/download -O /tmp/plantuml.jar
-
