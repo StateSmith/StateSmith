@@ -14,11 +14,16 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v4
 
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v2
+
+      # plantuml version on apt is ancient so we use homebrew
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
       - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install graphviz
-          sudo apt install plantuml
+        run: brew install plantuml
 
       - name: Download ss.cli
         run: |
