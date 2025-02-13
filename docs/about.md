@@ -49,25 +49,27 @@ github integration documentation.
 
 #### Other notes
 
-* Examples are embedded directly into the documentation. Similar to mermaid, but using PlantUML instead.
-* Make PlantUML work out of the box https://github.com/StateSmith/StateSmith/issues/438
+* Examples are embedded directly into the documentation.
 * Documentation looks good in dark and light modes
-* I took a stab at making a logo. Lightbulbs are always used to demo state machines, so it
-  takes inspiration for that. It's a lightbulb that's transitioning into code. It came out
-  better than my forge ideas, but it's just one idea, i'm sure there are other good ones.
-
-
+* We talked about a logo at one point so I took a stab at making one. Lightbulbs are always 
+  used to demo state machines, so it takes inspiration for that. It's a lightbulb that's transitioning 
+  into code. It came out better than my forge ideas, but it's just one idea, i'm sure there are other good ones.
 
 
 
 
 
 ## TODO
-* fix the hero graphic on main page
 * use the current binary, not a hardcoded downloaded binary
 * package manager support
-* google analytics support to track broken pages
-* Add a link to allow readers to file feedback bugs in the footer
 * Force makefiles to run before github pages are generated
+
+
+
+## FUTURE WORK
+* Make yED and drawio.svg examples for each statemachine_reference example.
+  Make a dropdown that can select between plantuml/yed/drawio examples
+* google analytics support to track broken pages
+* Add a link to allow readers to file documentation feedback in the footer
 * open the sidebar for the current section
-* disable the old wiki
+* disable the old wiki once this is merged in
