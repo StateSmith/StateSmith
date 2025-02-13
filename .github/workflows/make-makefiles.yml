@@ -17,13 +17,16 @@ jobs:
       - name: Setup Graphviz
         uses: ts-graphviz/setup-graphviz@v2
 
+      - name: Install dependencies
+        run: apt install plantuml
+
       - name: Download ss.cli
         run: |
            mkdir -p /tmp/statesmith/
            curl -sSL -o /tmp/statesmith/ss.cli https://github.com/StateSmith/StateSmith/releases/download/cli-v0.17.4/ss.cli-linux-x64
            chmod a+x /tmp/statesmith/ss.cli
            /tmp/statesmith/ss.cli --version
-           
+
       - name: Run makefiles
         run: |
           export PATH=$PATH:/tmp/statesmith/
