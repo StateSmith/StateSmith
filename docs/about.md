@@ -64,6 +64,7 @@ github integration documentation.
 * homebrew support
 * apt get support
 * Force makefiles to run before github pages are generated
+* open the sidebar for the current section
 
 
 
@@ -72,6 +73,5 @@ github integration documentation.
   Make a dropdown that can select between plantuml/yed/drawio examples
 * google analytics support to track broken pages
 * Add a link to allow readers to file documentation feedback in the footer
-* open the sidebar for the current section
 * disable the old wiki once this is merged in
 * add nuget to github publish actions
