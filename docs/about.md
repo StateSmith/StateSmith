@@ -61,7 +61,8 @@ github integration documentation.
 
 ## TODO
 * use the current binary, not a hardcoded downloaded binary
-* package manager support
+* homebrew support
+* apt get support
 * Force makefiles to run before github pages are generated
 
 
@@ -73,3 +74,4 @@ github integration documentation.
 * Add a link to allow readers to file documentation feedback in the footer
 * open the sidebar for the current section
 * disable the old wiki once this is merged in
+* add nuget to github publish actions
