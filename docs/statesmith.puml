@@ -14,7 +14,7 @@ object plantuml
 object yed
 object statesmith
 
-statesmith : <img:media/logo.png{scale=0.1}>
+statesmith : <img:media/logo/logo.128.png>
 
 
 drawio --> statesmith
