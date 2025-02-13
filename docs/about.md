@@ -52,6 +52,10 @@ github integration documentation.
 * Examples are embedded directly into the documentation. Similar to mermaid, but using PlantUML instead.
 * Make PlantUML work out of the box https://github.com/StateSmith/StateSmith/issues/438
 * Documentation looks good in dark and light modes
+* I took a stab at making a logo. Lightbulbs are always used to demo state machines, so it
+  takes inspiration for that. It's a lightbulb that's transitioning into code. It came out
+  better than my forge ideas, but it's just one idea, i'm sure there are other good ones.
+
 
 
 
