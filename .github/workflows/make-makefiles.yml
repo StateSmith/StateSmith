@@ -18,7 +18,7 @@ jobs:
         uses: ts-graphviz/setup-graphviz@v2
 
       - name: Install dependencies
-        run: apt install plantuml
+        run: sudo apt install plantuml
 
       - name: Download ss.cli
         run: |
