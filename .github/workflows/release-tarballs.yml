@@ -53,8 +53,7 @@ jobs:
                 (
                   cd /tmp/publish                  
                   ls -lh .
-                  # homebrew expects darwin instead of osx
-                  tar zcf statesmith-${arch/osx-/darwin-}-$framework.tar.gz ss.cli$extension statesmith$extension
+                  tar zcf statesmith-${arch}-$framework.tar.gz ss.cli$extension statesmith$extension
                   rm ss.cli$extension statesmith$extension
                 )
               done
