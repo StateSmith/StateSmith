@@ -1,4 +1,4 @@
-name: Release StateSmith tarballs on v*.*.* tags
+name: Release CLI tarballs on cli-v*.*.* tags
 
 on:
   push:
