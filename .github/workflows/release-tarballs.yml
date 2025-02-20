@@ -3,7 +3,7 @@ name: Release StateSmith tarballs on v*.*.* tags
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "cli-v*.*.*"
   workflow_dispatch:
 
 jobs:
