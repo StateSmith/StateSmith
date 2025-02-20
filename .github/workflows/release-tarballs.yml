@@ -38,22 +38,19 @@ jobs:
             if [[ $arch == "win"* ]]; then
               extension=".exe"
             fi
-            for framework in net6.0 net7.0 net8.0; do
-              mkdir -p $staging
-
-              ( 
-                cd src/StateSmith.Cli 
-                dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true /p:DefineConstants="SS_SINGLE_FILE_APPLICATION" 
-                mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli$extension $staging/ss.cli$extension
-                rm -rf ./bin
-              )
-              (
-                cd $staging                  
-                ls -lh .
-                tar zcf $publish/statesmith-${arch}-$framework.tar.gz ss.cli$extension
-              )
-              rm -rf $staging
-            done
+            framework="net8.0"
+            mkdir -p $staging
+            ( 
+              cd src/StateSmith.Cli 
+              dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true /p:DefineConstants="SS_SINGLE_FILE_APPLICATION" 
+              mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli$extension $staging/ss.cli$extension
+              rm -rf ./bin
+            )
+            (
+              cd $staging
+              tar zcf $publish/statesmith-${arch}.tar.gz ss.cli$extension
+            )
+            rm -rf $staging
           done
 
 
