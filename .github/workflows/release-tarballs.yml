@@ -42,7 +42,7 @@ jobs:
             mkdir -p $staging
             ( 
               cd src/StateSmith.Cli 
-              dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true /p:DefineConstants="SS_SINGLE_FILE_APPLICATION" -p:Version=$version
+              dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true /p:DefineConstants="SS_SINGLE_FILE_APPLICATION"
               mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli$extension $staging/ss.cli$extension
               rm -rf ./bin
             )
