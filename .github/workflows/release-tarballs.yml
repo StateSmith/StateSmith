@@ -33,7 +33,7 @@ jobs:
           staging="/tmp/staging"
           publish="/tmp/publish"
           mkdir -p $publish
-          sed -i '' 's#<Version>.*</Version>#<Version>$version</Version>#' src/StateSmith.Cli/StateSmith.Cli.csproj
+          sed -i.bak 's#<Version>.*</Version>#<Version>$version</Version>#' src/StateSmith.Cli/StateSmith.Cli.csproj
           for arch in linux-arm linux-arm64 linux-musl-arm64 linux-musl-x64 linux-x64 osx-arm64 osx-x64 win-arm64 win-x64 win-x86; do
             extension=""
             if [[ $arch == "win"* ]]; then
