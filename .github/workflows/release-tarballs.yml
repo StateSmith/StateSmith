@@ -33,7 +33,6 @@ jobs:
           staging="/tmp/staging"
           publish="/tmp/publish"
           mkdir -p $publish
-          # dotnet build --configuration Debug --no-restore src/StateSmith.sln
           for arch in linux-arm linux-arm64 linux-musl-arm64 linux-musl-x64 linux-x64 osx-arm64 osx-x64 win-arm64 win-x64 win-x86; do
             extension=""
             if [[ $arch == "win"* ]]; then
