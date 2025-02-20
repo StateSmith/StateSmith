@@ -43,7 +43,7 @@ jobs:
 
               ( 
                 cd src/StateSmith.Cli 
-                dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true /p:DefineConstants="SS_SINGLE_FILE_APPLICATION" 
+                dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true /p:DefineConstants="SS_SINGLE_FILE_APPLICATION"  -p:Version=$version
                 mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli$extension $staging/ss.cli$extension
                 rm -rf ./bin
               )
