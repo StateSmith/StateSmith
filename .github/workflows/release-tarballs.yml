@@ -24,7 +24,14 @@ jobs:
             6.0.x
             7.0.x
             8.0.x
-            
+            9.0.x
+
+      - name: Extract SemVer from GITHUB_REF
+        run: echo "semver=${GITHUB_REF#refs/tags/cli-v}" >> $GITHUB_ENV
+
+      - name: Print SemVer
+        run: echo "Current tag $semver"
+
       - name: Install dependencies
         run: dotnet restore src/StateSmith.sln
 
@@ -33,17 +40,16 @@ jobs:
           staging="/tmp/staging"
           publish="/tmp/publish"
           mkdir -p $publish          
-          sed -i.bak "s#<Version>.*</Version>#<Version>$version</Version>#" src/StateSmith/StateSmith.csproj src/StateSmith.Cli/StateSmith.Cli.csproj 
           for arch in linux-arm linux-arm64 linux-musl-arm64 linux-musl-x64 linux-x64 osx-arm64 osx-x64 win-arm64 win-x64 win-x86; do
             extension=""
             if [[ $arch == "win"* ]]; then
               extension=".exe"
             fi
-            framework="net8.0"
+            framework="net9.0"
             mkdir -p $staging
             ( 
               cd src/StateSmith.Cli 
-              dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true /p:DefineConstants="SS_SINGLE_FILE_APPLICATION"
+              dotnet publish -c Release -p:Version=$semver -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true -p:DefineConstants="SS_SINGLE_FILE_APPLICATION"
               mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli$extension $staging/ss.cli$extension
               rm -rf ./bin
             )
