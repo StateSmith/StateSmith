@@ -1,4 +1,7 @@
-name: Release CLI tarballs on cli-v*.*.* tags
+name: Release ss.cli on cli-v*.*.* tags
+
+# TODO - prevent release if tests fail
+# https://github.com/StateSmith/StateSmith/issues/447
 
 on:
   push:
@@ -11,11 +14,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'  # stick to 22 for now. 23 has some bumps causing TypeScript tests to fail: https://github.com/nodejs/node/issues/55417
-
-      - run: npm install -g typescript
           
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v4
@@ -35,7 +33,12 @@ jobs:
       - name: Install dependencies
         run: dotnet restore src/StateSmith.sln
 
-      - name: Build
+      - name: Build And Publish Nuget
+        run: |
+          dotnet pack src/StateSmith.Cli/StateSmith.Cli.csproj -c Release -p:Version=$semver
+          dotnet nuget push src/StateSmith.Cli/nupkg/StateSmith.Cli.$semver.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+
+      - name: Build Binaries
         run: |
           staging="/tmp/staging"
           publish="/tmp/publish"
@@ -59,7 +62,6 @@ jobs:
             )
             rm -rf $staging
           done
-
 
       - name: Release
         uses: softprops/action-gh-release@v2
