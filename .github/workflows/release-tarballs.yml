@@ -1,0 +1,62 @@
+name: Release CLI tarballs on cli-v*.*.* tags
+
+on:
+  push:
+    tags:
+      - "cli-v*.*.*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'  # stick to 22 for now. 23 has some bumps causing TypeScript tests to fail: https://github.com/nodejs/node/issues/55417
+
+      - run: npm install -g typescript
+          
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            6.0.x
+            7.0.x
+            8.0.x
+            
+      - name: Install dependencies
+        run: dotnet restore src/StateSmith.sln
+
+      - name: Build
+        run: |
+          staging="/tmp/staging"
+          publish="/tmp/publish"
+          mkdir -p $publish          
+          sed -i.bak "s#<Version>.*</Version>#<Version>$version</Version>#" src/StateSmith/StateSmith.csproj src/StateSmith.Cli/StateSmith.Cli.csproj 
+          for arch in linux-arm linux-arm64 linux-musl-arm64 linux-musl-x64 linux-x64 osx-arm64 osx-x64 win-arm64 win-x64 win-x86; do
+            extension=""
+            if [[ $arch == "win"* ]]; then
+              extension=".exe"
+            fi
+            framework="net8.0"
+            mkdir -p $staging
+            ( 
+              cd src/StateSmith.Cli 
+              dotnet publish -c Release -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true /p:DefineConstants="SS_SINGLE_FILE_APPLICATION"
+              mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli$extension $staging/ss.cli$extension
+              rm -rf ./bin
+            )
+            (
+              cd $staging
+              tar zcf $publish/statesmith-${arch}.tar.gz ss.cli$extension
+            )
+            rm -rf $staging
+          done
+
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: /tmp/publish/*.tar.gz
+  
