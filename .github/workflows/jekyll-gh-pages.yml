@@ -22,9 +22,44 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Prebuild job
+  prebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4
+
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v2
+
+      # plantuml version on apt is ancient so we use homebrew
+      # TODO this is ridiculously inefficient
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Install dependencies
+        run: brew install plantuml
+
+      - name: Install ss.cli
+        run: dotnet tool install --global StateSmith.Cli --version 0.17.5
+
+      - name: Run makefiles
+        run: find docs -name 'Makefile' -execdir make \;
+
+      - name: Push Local Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Run makefiles in docs directory"
+          branch: ${{ github.head_ref }}
+
   # Build job
   build:
     runs-on: ubuntu-latest
+    needs: prebuild
     steps:
       - name: Checkout
         uses: actions/checkout@v4
