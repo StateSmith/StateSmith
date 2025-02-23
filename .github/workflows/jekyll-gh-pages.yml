@@ -29,32 +29,46 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+            node-version: 20
+
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            9.0.x
 
-      - name: Setup Graphviz
-        uses: ts-graphviz/setup-graphviz@v2
+      - name: Add .NET tools to PATH
+        run: echo '/root/.dotnet/tools' >> $GITHUB_PATH
 
-      # plantuml version on apt is ancient so we use homebrew
-      # TODO this is ridiculously inefficient
-      - name: Set up Homebrew
-        id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+      - name: Verify dotnet
+        run: dotnet --version
 
-      - name: Install dependencies
-        run: brew install plantuml
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Install plantuml
+        run: |
+          curl -L https://github.com/plantuml/plantuml/releases/download/v1.2025.1/plantuml-1.2025.1.jar -o /tmp/plantuml.jar
+          sudo cat <<EOF > /usr/local/bin/plantuml
+          #!/bin/bash
+          java -jar /tmp/plantuml.jar "\$@"
+          EOF
+          sudo chmod +x /usr/local/bin/plantuml
+          plantuml --version
 
       - name: Install ss.cli
-        run: dotnet tool install --global StateSmith.Cli --version 0.17.5
+        run: |
+          dotnet tool install --global StateSmith.Cli --version 0.17.5
+          ss.cli --version
 
       - name: Run makefiles
         run: find docs -name 'Makefile' -execdir make \;
-
-      - name: Push Local Changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Run makefiles in docs directory"
-          branch: ${{ github.head_ref }}
 
   # Build job
   build:
