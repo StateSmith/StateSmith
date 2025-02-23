@@ -64,6 +64,7 @@ github integration documentation.
 * add csx examples (same as dll?)
 * homebrew support
 * apt get support
+* make-docs-makefiles.yml shouldn't install homebrew
 * Force makefiles to run before github pages are generated
 * open the sidebar for the current section
 * Add download links to sidebar
