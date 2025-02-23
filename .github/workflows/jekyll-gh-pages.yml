@@ -35,14 +35,10 @@ jobs:
       - name: Setup Graphviz
         uses: ts-graphviz/setup-graphviz@v2
 
-      # plantuml version on apt is ancient so we use homebrew
-      # TODO this is ridiculously inefficient
-      - name: Set up Homebrew
-        id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
-
-      - name: Install dependencies
-        run: brew install plantuml
+      - name: Install plantuml
+        run: |
+          curl -L https://github.com/plantuml/plantuml/releases/download/v1.2025.1/plantuml-1.2025.1.jar -o plantuml.jar
+          echo 'alias plantuml="java -jar /tmp/plantuml.jar"' >> $GITHUB_ENV
 
       - name: Install ss.cli
         run: dotnet tool install --global StateSmith.Cli --version 0.17.5
