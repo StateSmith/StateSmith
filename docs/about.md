@@ -60,7 +60,8 @@ github integration documentation.
 
 
 ## TODO
-* use the current binary, not a hardcoded downloaded binary
+* add dll examples
+* add csx examples (same as dll?)
 * homebrew support
 * apt get support
 * Force makefiles to run before github pages are generated
