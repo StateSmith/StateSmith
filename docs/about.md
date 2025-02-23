@@ -61,6 +61,7 @@ github integration documentation.
 
 ## TODO
 * use absolute_url for urls
+* make find exit nonzero on failure
 * add dll examples
 * add csx examples (same as dll?)
 * homebrew support
