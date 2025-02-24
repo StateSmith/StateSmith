@@ -21,9 +21,14 @@ You need to verify that your changes render properly before you submit. To do th
 ```
 # Install act using the package manager of your choice, eg. `brew install act`.
 # You may also need to separately install docker. Check the Act installation instructions.
-# Then from the root of your StateSmith repo:
+# Then from the root of your StateSmith repo, run the following.
 
 StateSmith %   act -P ubuntu-latest=catthehacker/ubuntu:act-latest -W .github/workflows/jekyll-gh-pages.yml
+
+# On subsequent runs, add --pull=false to avoid downloading the 15GB+
+# image again
+StateSmith %   act --pull=false -P ubuntu-latest=catthehacker/ubuntu:act-latest -W .github/workflows/jekyll-gh-pages.yml
+
 ```
 
 This will run your action in a docker instance on your local machine. The action will build the pages in `StateSmith/_site`. (It will fail trying to publish the changes to git, but that's okay.)

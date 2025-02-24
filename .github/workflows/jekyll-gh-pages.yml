@@ -22,8 +22,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Prebuild job
-  prebuild:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
@@ -70,16 +69,6 @@ jobs:
           dotnet tool install --global StateSmith.Cli --version 0.17.5
           ss.cli --version
 
-      - name: Run makefiles
-        run: find docs -name 'Makefile' -execdir make \;
-
-  # Build job
-  build:
-    runs-on: ubuntu-latest
-    needs: prebuild
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build with Jekyll
@@ -87,6 +76,21 @@ jobs:
         with:
           source: ./docs
           destination: ./_site
+
+      - name: Run makefiles
+        run: |
+          set -e
+          find . -name "Makefile" | while read makefile; do
+            dir=$(dirname "$makefile")
+            (          
+              set -e
+              cd "$dir"
+              make
+            )
+          done
+          find _site
+          echo "BOOGA BOOGA"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
