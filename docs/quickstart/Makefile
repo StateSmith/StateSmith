@@ -16,6 +16,12 @@ all: \
 	$(SITE_DIR)/quickstart/lightbulb.sim.html \
 
 
+# In general,
+#   1. Make copies the diagram file (*.puml) to the _site directory
+#   2. Make generates the SVG file from the diagram file, both in the _site directory
+#   3. Make generates the simulator and code file(s) from the same diagram file
+
+
 # _site/**/*.svg depends on _site/**/*.puml
 $(SITE_DIR)/%.svg: $(SITE_DIR)/%.puml
 	mkdir -p $(@D)
