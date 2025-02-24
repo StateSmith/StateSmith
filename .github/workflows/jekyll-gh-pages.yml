@@ -34,6 +34,9 @@ jobs:
         with:
             node-version: 20
 
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v2
+      
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v4
         with:
