@@ -31,5 +31,7 @@ $(SITE_DIR)/%.sim.html: $(SITE_DIR)/%.puml
 
 $(SITE_DIR)/%.puml: $(DOCS_DIR)/%.puml
 	mkdir -p $(@D)
+	ls -ld $(@D)
+	touch $(@D)/foobar
 	cp $< $@
 
