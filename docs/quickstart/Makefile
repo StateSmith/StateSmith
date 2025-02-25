@@ -30,7 +30,9 @@ $(SITE_DIR)/%.sim.html: $(SITE_DIR)/%.puml
 	cd $(@D) && ss.cli run --lang=JavaScript --no-ask --no-csx -h -b
 
 $(SITE_DIR)/%.puml: $(DOCS_DIR)/%.puml
+	whoami
 	mkdir -p $(@D)
+	chmod +w $(@D)
 	ls -ld $(@D)
 	touch $(@D)/foobar
 	cp $< $@
