@@ -85,13 +85,11 @@ jobs:
             dir=$(dirname "$makefile")
             (          
               set -e
-              echo "Building $dir"
               cd "$dir"
               make
             )
           done
           find _site
-          echo "BOOGA BOOGA"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
