@@ -84,6 +84,7 @@ jobs:
             dir=$(dirname "$makefile")
             (          
               set -e
+              echo "Building $dir"
               cd "$dir"
               make
             )
