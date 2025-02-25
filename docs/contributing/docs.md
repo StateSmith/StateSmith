@@ -38,7 +38,7 @@ Then:
 3. Run `python3 -m http.server` from your `_site` directory.
 3. Then open the URL logged by python with your browser to verify it looks the way you expect. In particular verify any new links work as expected.
 
-![docker_site]( {{ '/media/docker_site.png' | relative_url }} )
+![docker_site]( /StateSmith/media/docker_site.png )
 
 Note: If you are on AMD or Apple Silicon, you will need to specify `--container-architecture linux/amd64`
 
