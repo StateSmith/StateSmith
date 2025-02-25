@@ -86,7 +86,7 @@ jobs:
               set -e
               echo "Building $dir"
               cd "$dir"
-              make
+              sudo make
             )
           done
           find _site
