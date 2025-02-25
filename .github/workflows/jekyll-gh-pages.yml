@@ -80,13 +80,14 @@ jobs:
       - name: Run makefiles
         run: |
           set -e
+          sudo chmod -R +w ./_site
           find . -name "Makefile" | while read makefile; do
             dir=$(dirname "$makefile")
             (          
               set -e
               echo "Building $dir"
               cd "$dir"
-              sudo make
+              make
             )
           done
           find _site
