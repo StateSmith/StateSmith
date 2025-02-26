@@ -13,6 +13,27 @@ The [docs](/) site is generated automatically on push from the `docs` directory 
 #### URLs
 TODO how to do URLS properly
 
+YES
+
+```
+# URLs relative to current directory
+![lightbulb](lightbulb.svg)
+![lightbulb](./lightbulb.svg)
+![lightbulb](../lightbulb.svg)
+[Quickstart](../quickstart/index.md)
+[Quickstart](../quickstart/index.md)
+
+# URLs relative to root begin with StateSmith
+![lightbulb](/StateSmith/media/lightbulb.svg)
+[Quickstart](/StateSmith/quickstart/index.md)
+```
+
+NO
+```
+![lightbulb](/media/lightbulb.svg) # URLs beginning with / must start with /StateSmith
+
+```
+
 ## Verifying your changes
 
 You need to verify that your changes render properly before you submit. To do that, you need to run the `jekyll-gh-pages.yml` locally before push. We use [Nektos Act](https://nektosact.com/) to do this.
