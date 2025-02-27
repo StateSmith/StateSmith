@@ -60,10 +60,14 @@ Note: the size of the docker image and subsequent downloads is over 15GB
 
 Then:
 1. Open Docker Desktop and enable `Settings > Resources > Network > Enable host networking`
-2. Open the `Exec` tap of your running docker container, find the `_site` folder and rename it to `StateSmith` in the shell.  This reproduces the url structure on the web, which starts all your URLs with `/StateSmith`.
-3. Run `python3 -m http.server` from the directory ABOVE the directory you just renamed (formerly `_site`, now called `StateSmith`). 
-4. Open a webrowser and connect to `http://localhost:8000` to verify it looks the way you expect. In particular verify any new links work as expected.
+2. Run the following in your docker container's `Exec` tab: 
+   ```
+root@docker-desktop:/Users/mike/Documents/GitHub/StateSmith# mv _site StateSmith
+root@docker-desktop:/Users/mike/Documents/GitHub/StateSmith# python3 -m http.server
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+   ```
+3. Open a webrowser and connect to `http://localhost:8000/StateSmith` to verify it looks the way you expect. In particular verify any new links work as expected.
 
-![docker_site]( /StateSmith/media/docker_site.png )
+![docker_httpserver]( /StateSmith/media/docker_http_server.png )
 
 
