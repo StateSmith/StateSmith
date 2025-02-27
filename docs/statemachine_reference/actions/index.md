@@ -9,7 +9,7 @@ When an event is dispatched the state machine responds by performing actions, su
 {% include_relative lightbulb.puml %}
 ```
 
-<iframe height="300" width="600" src="https://emmby.github.io/StateSmith/statemachine_reference/actions/lightbulb.sim.html"></iframe>
+<iframe height="300" width="600" src="lightbulb.sim.html"></iframe>
 
 
 ## Trigger and action syntax

@@ -14,7 +14,7 @@ This example uses `enter` and `exit` events to trigger the `enter_off()` and `en
 {% include_relative lightbulb.puml %}
 ```
 
-<iframe height="300" width="600" src="https://emmby.github.io/StateSmith/statemachine_reference/events/lightbulb.sim.html"></iframe>
+<iframe height="300" width="600" src="lightbulb.sim.html"></iframe>
 
 
 ## User-defined events
