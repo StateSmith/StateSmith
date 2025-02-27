@@ -6,7 +6,7 @@ This tutorial will walk you through how to generate JavaScript source code for a
 ## Prerequisites
 
 This tutorial assumes you have completed the following sections before proceeding:
-* [Quickstart](docs/quickstart/)
+* [Quickstart](StateSmith/quickstart/)
 
 ## Adding actions to your state machine
 
