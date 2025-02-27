@@ -148,6 +148,23 @@
     </div>
 
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const currentUrl = window.location.pathname;
+        const navLinks = document.querySelectorAll("ul.nav a");
+
+        navLinks.forEach(link => {
+          if (link.getAttribute("href") === currentUrl) {
+            let parentDetails = link.closest("details");
+            if (parentDetails) {
+              parentDetails.setAttribute("open", "open");
+            }
+          }
+        });
+      });
+    </script>
+
     {% if site.google_analytics %}
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
