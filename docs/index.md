@@ -2,7 +2,7 @@ StateSmith is a cross platform, free/open source tool for synchronizing state ma
 
 With StateSmith, your state machine diagram is code. Never worry about keeping your statemachine documentation in sync with your code again.
 
-Visit our [Quickstart](/docs/quickstart/) to get started.
+Visit our [Quickstart](/StateSmith/quickstart/) to get started.
 
 
 ![statesmith](statesmith.svg)
@@ -24,7 +24,7 @@ It's easy to get started with StateSmith.
 <tr>
 <td>
 
-<img src="https://emmby.github.io/StateSmith/media/light.svg" />
+<img src="/StateSmith/media/light.svg" />
 
 </td>
 <td>
@@ -44,7 +44,7 @@ On -> Off : Switch pressed
  2. Run `statesmith --lang=<your choice> lightbulb.puml`.
  3. Add the resulting state machine code to your C, C++, C#, Java, JavaScript, or TypeScript app.
 
-Learn more in our [Quickstart](https://emmby.github.io/StateSmith/quickstart/) tutorial.
+Learn more in our [Quickstart](/StateSmith/quickstart/) tutorial.
 
 
 
@@ -77,5 +77,5 @@ Now that we use StateSmith at my work, I never have to worry about the above. I 
 ### Works with the tools you already use
 statesmith doesn't try to take over your entire workflow. It does not replace your IDE, require you to write tests in a custom language, or have its own build tool. It works with the tools you're already using, like GitHub, VS Code, Visual Studio, JUnit, Jest, etc.
 
-See [Integrations]() for recipes to integrate statesmith into your tooling.
+See [Integrations](/StateSmith/integrations/) for recipes to integrate statesmith into your tooling.
 

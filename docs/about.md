@@ -60,16 +60,14 @@ github integration documentation.
 
 
 ## TODO
-* make find exit nonzero on failure
 * add dll examples
 * add csx examples (same as dll?)
 * homebrew support
 * apt get support
-* make-docs-makefiles.yml shouldn't install homebrew
-* Force makefiles to run before github pages are generated
 * open the sidebar for the current section
 * Add download links to sidebar
 * Figure out best way to consolidate actions
+* Don't generate pages if tests don't pass
 
 
 ## FUTURE WORK
