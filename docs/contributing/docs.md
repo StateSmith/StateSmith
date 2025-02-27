@@ -22,10 +22,13 @@ YES
 ![lightbulb](../lightbulb.svg)
 [Quickstart](../quickstart/index.md)
 [Quickstart](../quickstart/index.md)
+<img src="light.svg" />
+<iframe height="300" width="600" src="lightbulb.sim.html"></iframe>
 
 # URLs relative to root begin with StateSmith
 ![lightbulb](/StateSmith/media/lightbulb.svg)
 [Quickstart](/StateSmith/quickstart/index.md)
+<img src="/StateSmith/media/light.svg" />
 ```
 
 NO
