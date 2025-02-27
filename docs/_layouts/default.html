@@ -26,7 +26,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><img src="{{ '/media/logo/logo.64.png' | absolute_url }}"><a href="{{ "/" | absolute_url }}">StateSmith</a></h1>
+        <h1><img src="{{ '/media/logo/logo.64.png' | relative_url }}"><a href="{{ "/" | relative_url }}">StateSmith</a></h1>
 
         {% if site.logo %}
           <img src="{{site.logo | relative_url}}" alt="Logo" />
@@ -52,15 +52,15 @@
 
         <!-- Sitemap navigation -->
         <ul class="nav">
-          <li><a href="{{ "/" | absolute_url }}">Home</a></li>
-          <li><a href="{{ "/" | absolute_url }}quickstart/">Quickstart</a></li>
+          <li><a href="{{ "/" | relative_url }}">Home</a></li>
+          <li><a href="{{ "/" | relative_url }}quickstart/">Quickstart</a></li>
           <li><details><summary>Generating state machines in different target languages</summary>
             <ul>
-              <li><a href="{{ "/" | absolute_url }}languages/c/">C</a></li>
+              <li><a href="{{ "/" | relative_url }}languages/c/">C</a></li>
               <li>C++</li>
               <li>C#</li>
               <li>Java</li>
-              <li><a href="{{ "/" | absolute_url }}languages/javascript/">JavaScript / TypeScript</a></li>
+              <li><a href="{{ "/" | relative_url }}languages/javascript/">JavaScript / TypeScript</a></li>
               <li>SVG diagrams<li>
               <li>...</li>
             </ul>
@@ -80,7 +80,7 @@
             <ul>
               <li>Android Studio</li>
               <li>Arduino IDE</li>
-              <li><a href="{{ "/" | absolute_url }}integrations/github.html">GitHub</a></li>              
+              <li><a href="{{ "/" | relative_url }}integrations/github.html">GitHub</a></li>              
               <li>Visual Studio</li>
               <li>VS Code</li>              
             </ul>
@@ -89,8 +89,8 @@
           <li><details><summary>State Machine Language Reference</summary>
             <ul>
               <li>States and transitions</li>
-              <li><a href="{{ "/" | absolute_url }}statemachine_reference/actions/">Actions and triggers</a> </li>
-              <li><a href="{{ "/" | absolute_url }}statemachine_reference/events/">Event triggers</a></li>
+              <li><a href="{{ "/" | relative_url }}statemachine_reference/actions/">Actions and triggers</a> </li>
+              <li><a href="{{ "/" | relative_url }}statemachine_reference/events/">Event triggers</a></li>
               <li>Guards</li>
               <li>Choices</li>
               <li>Composite states</li>
@@ -98,7 +98,7 @@
             </ul>
           </details>
           </li>
-          <li><a href="{{ "/" | absolute_url }}cli.html">Command Line Reference</a></li>
+          <li><a href="{{ "/" | relative_url }}cli.html">Command Line Reference</a></li>
           <li><details><summary>Advanced StateSmith Usage</summary>
             <ul>
               <li>Working with StateSmith CSX config files </li>
@@ -106,14 +106,14 @@
             </ul>
           </details>
           </li>
-          <li><a href="{{ "/" | absolute_url }}examples.html">Examples</a></li>
+          <li><a href="{{ "/" | relative_url }}examples.html">Examples</a></li>
           <li><details><summary>Contributing</summary>
             <ul>
-              <li><a href="{{ "/" | absolute_url }}contributing/building.html">Building</a></li>
-              <li><a href="{{ "/" | absolute_url }}contributing/tour.html">A Brief Tour</a></li>
-              <li><a href="{{ "/" | absolute_url }}contributing/ide.html">Using an IDE</a></li>
-              <li><a href="{{ "/" | absolute_url }}contributing/docs.html">Contributing to the Docs</a></li>
-              <li><a href="{{ "/" | absolute_url }}contributing/releasing.html">Releasing New Binaries</a></li>
+              <li><a href="{{ "/" | relative_url }}contributing/building.html">Building</a></li>
+              <li><a href="{{ "/" | relative_url }}contributing/tour.html">A Brief Tour</a></li>
+              <li><a href="{{ "/" | relative_url }}contributing/ide.html">Using an IDE</a></li>
+              <li><a href="{{ "/" | relative_url }}contributing/docs.html">Contributing to the Docs</a></li>
+              <li><a href="{{ "/" | relative_url }}contributing/releasing.html">Releasing New Binaries</a></li>
             </ul>
           </details>
           </li>
