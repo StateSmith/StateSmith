@@ -1,6 +1,6 @@
 # Using StateSmith in CSX and apps
 
-You can use the StateSmith library from within any dotnet program, including CSX files.
+You can use the StateSmith library from within any dotnet program, including dotnet CSX files.
 
 ## Generating code from CSX
 
