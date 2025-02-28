@@ -5,22 +5,42 @@
 
 You can install statesmith using many common package managers:
 
-```
- Mac homebrew: ...
-```
+<table>
+<tr><th>
+Mac <a target="_blank" href="https://brew.sh">(Homebrew)</a>
+</th></tr>
+<tr><td>
+<code>
+ % brew install statesmith
+</code>
+</td></tr>
+</table>
 
-```
- Linux apt-get:
-```
+<table>
+<tr><th>
+Linux
+</th></tr>
+<tr><td>
+<code>
+ % apt-get ...
+</code>
+</td></tr>
+</table>
 
-```
- Windows nuget:
-```
+<table>
+<tr><th>
+Windows
+</th></tr>
+<tr><td>
+<code>
+ % nuget ...
+</code>
+</td></tr>
+</table>
 
 
 
-If you don't want to use one of the methods above, you can always download the binary directly:
-* download link
+If you don't want to use one of the methods above, you can always download the binary directly from the [Releases page]({{ site.github.repository_url }}/releases)
 
 
 ## Create a State Machine
