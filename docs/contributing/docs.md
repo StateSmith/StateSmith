@@ -23,7 +23,7 @@ YES
 <img src="light.svg" />
 <iframe height="300" width="600" src="lightbulb.sim.html"></iframe>
 
-# URLs relative to root begin with StateSmith
+# URLs relative to root begin with StateSmith, not docs
 ![lightbulb](/StateSmith/media/lightbulb.svg)
 [Quickstart](/StateSmith/quickstart/index.md)
 <img src="/StateSmith/media/light.svg" />
@@ -32,17 +32,10 @@ YES
 NO
 ```
 ![lightbulb](/media/lightbulb.svg) # URLs beginning with / must start with /StateSmith
+![lightbulb](/docs/media/lightbulb.svg) # URLs do not start with /docs
 
 ```
 
-
-JEKYLL DIRECTIVES
-
-The `/StateSmith/` prefix is not needed for jekyll directives that use `| relative_url`. It will be added by `relative_url`.
-```
-{{ '/quickstart/' | relative_url }} becomes /StateSmith/quickstart/
-<img src="{{ '/media/logo/logo.64.png' | relative_url }}"> becomes /StateSmith/media/logo/logo64.png
-```
 
 
 ## Verifying your changes
