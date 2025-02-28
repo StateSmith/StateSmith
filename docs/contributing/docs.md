@@ -11,8 +11,6 @@ The [docs](/) site is generated automatically on push from the `docs` directory 
 ## Style guide
 
 #### URLs
-TODO how to do URLS properly
-
 YES
 
 ```
@@ -36,6 +34,16 @@ NO
 ![lightbulb](/media/lightbulb.svg) # URLs beginning with / must start with /StateSmith
 
 ```
+
+
+JEKYLL DIRECTIVES
+
+The `/StateSmith/` prefix is not needed for jekyll directives that use `| relative_url`. It will be added by `relative_url`.
+```
+{{ '/quickstart/' | relative_url }} becomes /StateSmith/quickstart/
+<img src="{{ '/media/logo/logo.64.png' | relative_url }}"> becomes /StateSmith/media/logo/logo64.png
+```
+
 
 ## Verifying your changes
 
