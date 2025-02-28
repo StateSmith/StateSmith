@@ -35,7 +35,7 @@ Each section demonstrates a feature of statesmith with a clear, interactive exam
 
 The advanced usage information is still available for power users or users with specific needs (eg. low memory usage for microcontrollers), and is hopefully easier to find.
 
-We standardize on a single diagram format, PlantUML. It's easy to read and easy to visualize as SVG. yED and draw.io can be finnicky to work with, and explaining their ins and outs adds complexity to the onboarding story.
+We standardize on a single diagram format, PlantUML. It's easy to read and easy to visualize as SVG. yED and draw.io can be finnicky to work with, and explaining how to use them effectively adds complexity to the onboarding story.
 
 #### A simplified, posix style build tool.
 ss.cli is a powerful shell-like tool that excels at being interactive.
