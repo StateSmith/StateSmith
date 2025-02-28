@@ -1,3 +1,4 @@
+#!/usr/bin/env dotnet-script
 #r "nuget: StateSmith, 0.17.3"
 
 using StateSmith.Runner;
