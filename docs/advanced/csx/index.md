@@ -5,7 +5,7 @@ You can use the StateSmith library from within any dotnet program, including dot
 ## Generating code from CSX
 
 Place the following in a file named `lightbulb.csx`
-```
+```c#
 {% include_relative lightbulb.csx %}
 ```
 
