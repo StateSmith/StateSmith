@@ -36,3 +36,11 @@ class lightbulb
 ```
 
 Read on to the other sections to learn more about what you can do with RenderConfig
+
+> You can actually define the render config options directly in the diagram if you want. See [this wiki page](https://github.com/StateSmith/StateSmith/wiki/Diagram-Based-Render-Config) for details.
+>
+> In the future, we won't need to use .csx files at all.
+
+
+
+
