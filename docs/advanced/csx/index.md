@@ -1,4 +1,4 @@
-# Using StateSmith in CSX and apps
+# Advanced: Running StateSmith via CSX and apps
 
 You can use the StateSmith library from within any dotnet program, including dotnet CSX files.
 
@@ -49,5 +49,3 @@ Finished running diagrams.
 Run info stored in /var/folders/4k/tf_42jmj3fx85x6q81cchc1m0000gn/T/StateSmith.Cli/runinfo.2aa3a7dba341731215ffaf1695ad386d.json
 
 ```
-
-## RenderConfig and Variables
