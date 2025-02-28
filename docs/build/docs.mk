@@ -22,6 +22,10 @@ $(SITE_DIR)/%.sim.html: $(SITE_DIR)/%.puml
 	mkdir -p $(@D)
 	cd $(@D) && ss.cli run --lang=JavaScript --no-ask --no-csx -h -b
 
+$(SITE_DIR)/%.c: $(SITE_DIR)/%.puml
+	mkdir -p $(@D)
+	cd $(@D) && ss.cli run --lang=C99 --no-ask --no-csx -h -b
+
 $(SITE_DIR)/%.puml: $(DOCS_DIR)/%.puml
 	mkdir -p $(@D)
 	cp $< $@
