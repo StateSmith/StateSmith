@@ -151,16 +151,15 @@
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
 
     <script>
+      // Display the current page in the sitemap
       document.addEventListener("DOMContentLoaded", function() {
         const currentUrl = window.location.pathname;
         const navLinks = document.querySelectorAll("ul.nav a");
 
         navLinks.forEach(link => {
           if (link.getAttribute("href") === currentUrl) {
-            let parentDetails = link.closest("details");
-            if (parentDetails) {
-              parentDetails.setAttribute("open", "open");
-            }
+            link.setAttribute("style", "font-weight: bold;");
+            link.closest("details")?.setAttribute("open", "open");
           }
         });
       });
