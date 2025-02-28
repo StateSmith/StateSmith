@@ -3,18 +3,7 @@
 
 ## Installation
 
-You can install statesmith using many common package managers:
-
-<table>
-<tr><th>
-Mac <a target="_blank" href="https://brew.sh">(Homebrew)</a>
-</th></tr>
-<tr><td>
-<code>
- % brew install statesmith
-</code>
-</td></tr>
-</table>
+You can install statesmith using many common package managers.
 
 <table>
 <tr><th>
@@ -29,11 +18,22 @@ Linux
 
 <table>
 <tr><th>
-Windows
+Mac (using <a target="_blank" href="https://brew.sh">Homebrew</a>)
 </th></tr>
 <tr><td>
 <code>
- % nuget ...
+ % brew install statesmith
+</code>
+</td></tr>
+</table>
+
+<table>
+<tr><th>
+Windows (using <a target="_blank" href="https://dotnet.microsoft.com/en-us/download">.NET SDK</a>)
+</th></tr>
+<tr><td>
+<code>
+ % dotnet tool install --global StateSmith.Cli
 </code>
 </td></tr>
 </table>
