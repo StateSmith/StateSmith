@@ -5,6 +5,7 @@
 This tutorial assumes you have completed the following sections before proceeding:
 * [Using StateSmith in CSX and apps](/StateSmith/advanced/csx/)
 * [Advanced: RenderConfig](/StateSmith/advanced/renderconfig/)
+* [Actions](/StateSmith/statemachine_reference/actions/)
 
 
 # Add Some `VariableDeclarations`
@@ -85,11 +86,24 @@ For javascript, you can access the count variable using `this.vars.count` as sho
 
 > **TIP:** It is best to access state machine variables through Expansions (covered next) because the path to the variable is dependent upon the chosen language, algorithm, and potentially future options.
 
-![](docs/js-access-count.png)
 
-Feel free to run the code gen and play with the design by opening `index.html` in a web browser. Try making some changes.
+<table>
+<tr>
+<td>
+<pre>
+{% include_relative lightbulb.puml %}
+</pre>
+</td>
+</tr>
+<tr>
+<td>
+<img src="lightbulb.svg" >
+</td>
+</tr>
+</table>
 
-![](docs/count-alert.png)
+
+<iframe height="300" width="600" src="lightbulb.sim.html"></iframe>
 
 
 

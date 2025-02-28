@@ -3,7 +3,9 @@
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 
-SmRunner runner = new(diagramPath: "lightbulb.puml", new LightSmRenderConfig(), transpilerId: TranspilerId.JavaScript);
+RunnerSettings settings = new RunnerSettings(diagramFile: "lightbulb.puml", transpilerId: TranspilerId.JavaScript);
+settings.simulation.enableGeneration = true;
+SmRunner runner = new(settings, new LightSmRenderConfig());
 runner.Run();
 
 
