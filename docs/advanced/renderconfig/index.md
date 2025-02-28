@@ -1,14 +1,16 @@
-# Advanced: RenderConfig and Variables
+# Advanced: RenderConfig
+
+You can use a `RenderConfig` to customize StateSmith's code generation to do things like add additional elements to your functions and classes.
 
 ## Prerequisites
 
 This tutorial assumes you have completed the following sections before proceeding:
-* [Using StateSmith in CSX and apps](/StateSmith/advanced/csx)
+* [Using StateSmith in CSX and apps](/StateSmith/advanced/csx/)
 
 
 ## Adding a RenderConfig
 
-Add a RenderConfig to the CSX you created in the previous section.
+Add an [IRenderConfig]( {{ site.github.repository_url }}/src/StateSmith/Output/UserConfig/IRenderConfig.cs ) to the CSX you created in the previous section. 
 
 ```c#
 {% include_relative lightbulb.csx %}
@@ -32,3 +34,5 @@ class lightbulb
     ...
 }
 ```
+
+Read on to the other sections to learn more about what you can do with RenderConfig
