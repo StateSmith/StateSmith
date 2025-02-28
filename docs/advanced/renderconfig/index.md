@@ -22,5 +22,13 @@ Then run your script
 If you inspect the output `lightbulb.js` you should see `turtles` at the top:
 
 ```js
-{% include_relative lightbulb.js %}
+// Copyright: turtles, turtles, turtles...
+// You can include other files/modules specific to your programming language here
+let x = 55; // You can even output raw code...
+
+// Generated state machine
+class lightbulb
+{
+    ...
+}
 ```
