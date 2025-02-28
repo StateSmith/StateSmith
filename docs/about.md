@@ -62,11 +62,9 @@ github integration documentation.
 
 
 ## TODO
-* add dll examples
-* add csx examples (same as dll?)
+* jekyll pages should build and use the current ss.cli not the hardcoded package
 * homebrew support
 * apt get support
-* open the sidebar for the current section
 * Add download links to sidebar
 * Figure out best way to consolidate actions
 * Don't generate pages if tests don't pass
