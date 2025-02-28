@@ -60,7 +60,7 @@ StateSmith has a strong suite of tests (730+) and behavior specification coverag
 
 
 ### Easy to use
-statesmith is incredibly easy to use.
+StateSmith is incredibly easy to use.
 
  ...
 
@@ -75,7 +75,6 @@ Now that we use StateSmith at my work, I never have to worry about the above. I 
 
 
 ### Works with the tools you already use
-statesmith doesn't try to take over your entire workflow. It does not replace your IDE, require you to write tests in a custom language, or have its own build tool. It works with the tools you're already using, like GitHub, VS Code, Visual Studio, JUnit, Jest, etc.
+StateSmith doesn't try to take over your entire workflow. It does not replace your IDE, require you to write tests in a custom language, or have its own build tool. It works with the tools you're already using, like GitHub, VS Code, Visual Studio, JUnit, Jest, etc.
 
-See [Integrations](/StateSmith/integrations/) for recipes to integrate statesmith into your tooling.
 
