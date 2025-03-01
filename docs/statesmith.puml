@@ -1,6 +1,6 @@
 @startuml
 
-frame output [
+rectangle output [
 {{
   object "C / C++"
   object "C#"
@@ -10,9 +10,9 @@ frame output [
 ]
 
 object "draw.io" as drawio
-object plantuml
-object yed
-object statesmith
+object "PlantUML" as plantuml
+object "yEd" as yed
+object "StateSmith" as statesmith
 
 statesmith : <img:media/logo/logo.128.png>
 
