@@ -44,3 +44,9 @@ This will generate JavaScript by default (since most everyone can run JS conveni
 
 The PlantUML website has a great deal of information about supported state machine syntax at: 
 https://plantuml.com/state-diagram
+
+
+## PlantUML editor
+
+There is a handy PlantUML online editor with live preview at:
+https://editor.plantuml.com/
