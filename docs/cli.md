@@ -2,7 +2,7 @@
 
 ## statesmith
 
-The `statesmith` tool is a simple POSIX-style tool that one or more diagrams into generated source code in the language of your choice. It is designed for integrating with build systems and CI/CD pipelines as well as light developer needs.
+The `statesmith` tool is a simple command-line tool that turns one or more state machine diagrams into generated source code in the language of your choice. It is designed for integrating with build systems and CI/CD pipelines and for light developer needs.
 
 ```
 statesmith [--flags] file1 [file2 ...]
