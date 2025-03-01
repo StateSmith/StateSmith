@@ -40,3 +40,7 @@ Using StateSmith to generate source code in the language of your choice is easy.
 
 This will generate JavaScript by default (since most everyone can run JS conveniently in a browser). Visit the `Languages` section to see how to generate other supported languages.
 
+## PlantUML state machine reference
+
+The PlantUML website has a great deal of information about supported state machine syntax at: 
+https://plantuml.com/state-diagram
