@@ -2,8 +2,7 @@
 
 The [docs](/) site is generated automatically on push from the `docs` directory using the [jekyll-gh-pages.yml](/jekyll-gh-pages.yml) Github Action workflow.
 
-![WARNING]
-> Common Gotchas!
+> **Common Gotchas!**
 > * Watch out for broken URLs! Follow the Style guide below.
 > * Test your changes! See the verification section below.
 
