@@ -1,4 +1,4 @@
-# Creating Diagrams with draw.io
+# Creating State Machines with draw.io
 
 StateSmith can work with regular draw.io diagrams, but we recommend loading our custom draw.io plugin. It adds some very useful features.
 
