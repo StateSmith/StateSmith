@@ -74,7 +74,7 @@ Lightbulb is off
 Congratulations! You've now written your first app using a StateSmith state machine!
 
 
-## Getting rid of that pesky implicit-function-declaration error.
+## Handling forward declarations.
 
 The previous code works, but it causes some errors in the compiler. We had to disable the `implicit-function-declaration` warning in `gcc` to get it to compile.
 
