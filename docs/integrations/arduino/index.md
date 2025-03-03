@@ -12,6 +12,8 @@ This tutorial assumes you have completed the following sections before proceedin
 
 Arduino IDE has the ability to define prebuild hooks that execute before your project is compiled. They're global rather than per-project, but we can make them work on a per-project basis fairly easily using the following technique.
 
+> NOTE: If you ever re-install your platform or IDE, you will need to redo these edits in `platform.txt`
+
 
 #### Make a global hook to run prebuild.sh
 
