@@ -70,3 +70,7 @@ chmod +x prebuild.sh
 ```
 
 Now run a build in Arduino IDE and verify that you see StateSmith and plantuml successfully run in the verbose logging output.
+
+
+> TIP: `prebuild.sh` is re-run every time you build whether you've made any changes or not. You might consider using
+> a make Makefile to only run statesmith when necessary. Instructions for doing so are beyond the scope of this document.
