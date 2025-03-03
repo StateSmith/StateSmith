@@ -64,5 +64,9 @@ ss.cli run -h --lang=CPP --no-csx
 mv FILENAME.cpp FILENAME.inc.h
 ```
 
+Make sure your file is executable
+```sh
+chmod +x prebuild.sh
+```
 
 Now run a build in Arduino IDE and verify that you see StateSmith and plantuml successfully run in the verbose logging output.
