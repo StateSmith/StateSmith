@@ -17,7 +17,7 @@ PlantUML is the preferred state machine language on the StateSmith documentation
 
 ## (Optional) Install PlantUML
 
-If you installed `StateSmith` the recommended way, PlantUML was included as a dependency on Mac and Linux. For Windows users, follow the installation instructions on https://plantuml.com/ if you would like to generate images from your PlantUML files (recommended).
+If you installed `StateSmith` the recommended way, PlantUML was included as a dependency on Mac and Linux. For Windows users, follow the installation instructions on [https://plantuml.com/](https://plantuml.com/) if you would like to generate images from your PlantUML files (recommended).
 
 TODO verify dependency for Mac and Linux
 
