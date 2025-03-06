@@ -29,7 +29,7 @@ the simulator, we can also make them interactive.
 
 Statesmith is powerful. As a new user, it can be very challenging to figure out how to get started. The new ss.cli helps, but even so it's still hard to get started. There are a great many excellent examples, but it can be hard to find the right ones at the right times.
 
-The new onboarding documentation builds on the simplification work we landed in 2024. Most examples require no configuration, and thus all the complexities of CSX are deferred until later in the tutorial.
+The new onboarding documentation builds on the simplification work we landed in 2024. Most examples require no configuration, and thus all the complexities of RenderConfig and CSX are deferred until later in the tutorial.
 
 Each section demonstrates a feature of statesmith with a clear, interactive example using the new simulator.
 
