@@ -14,7 +14,7 @@ We will want to be able to execute some code whenever the state machine changes 
 
 Update your lightbulb state machine to look like the following:
 
-```
+```plantuml
 {% include_relative lightbulb.puml %}
 ```
 

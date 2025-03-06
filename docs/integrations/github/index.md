@@ -62,13 +62,15 @@ You can add an include like the following to include your PlantUML code directly
 
 ```
 {% raw %}
+```plantuml
 {% include_relative lightbulb.puml %}
+```
 {% endraw %}
 ```
 
-<pre>
+```plantuml
 {% include_relative lightbulb.puml %}
-</pre>
+```
 
 This does not do anything on GitHub Docs markdown. It will only be processed for GitHub Pages. See how we use it [here](https://github.com/emmby/StateSmith/edit/main/docs/integrations/github.md).
 

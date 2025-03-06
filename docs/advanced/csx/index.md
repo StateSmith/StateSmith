@@ -10,7 +10,7 @@ Place the following in a file named `lightbulb.csx`
 ```
 
 Put a state machine in `lightbulb.puml`:
-```
+```plantuml
 {% include_relative lightbulb.puml %}
 ```
 

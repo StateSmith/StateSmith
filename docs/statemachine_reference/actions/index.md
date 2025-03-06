@@ -5,7 +5,7 @@ When an event is dispatched the state machine responds by performing actions, su
 
 ## A Simple Example
 
-```
+```plantuml
 {% include_relative lightbulb.puml %}
 ```
 

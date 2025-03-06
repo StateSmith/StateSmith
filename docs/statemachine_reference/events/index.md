@@ -10,7 +10,7 @@ these triggers to run arbitrary actions.
 
 This example uses `enter` and `exit` events to trigger the `enter_off()` and `enter_on()` actions.
 
-```
+```plantuml
 {% include_relative lightbulb.puml %}
 ```
 
