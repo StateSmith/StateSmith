@@ -58,7 +58,6 @@ public class CppGilVisitor : CSharpSyntaxWalker
         }
 
         OutputHFileTopSections();
-        // OutputCFileTopSections();
 
         renderingHeader = true;
         sb = hFileSb;
@@ -141,9 +140,9 @@ public class CppGilVisitor : CSharpSyntaxWalker
         {
             var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
 
+            // skip public on top level classes
             if (classDepth == 1)
             {
-                // skip public on top level classes
                 list.VisitUpToThenSkip(node.Modifiers.Single(), outputLeadingTrivia: true);
 
                 sb.AppendLine("class DefaultSmBase {};");
