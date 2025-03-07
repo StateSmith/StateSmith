@@ -40,8 +40,6 @@ Take a look at the generated files on the disk. They should look pretty similar 
 * [lightbulb.c](lightbulb.c): This is the generated implementation for your state machine. You generally won't need to do much with the implementation, but it can be interested to inspect to see how it works.
 * [lightbulb.sim.html](lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it. It's not needed, but can be handy. You can disable generation of the simulator with the `--no-sim-gen` option.
 
-Open the generated `lightbulb.sim.html` simulator in your web browser to verify your state machine works the way you expect. 
-
 
 ## Using the State Machine in your own app
 
