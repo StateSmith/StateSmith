@@ -8,7 +8,9 @@
 namespace Spec2
 {
 // Generated state machine
-class Spec2Sm : public Spec2SmBase
+class DefaultSmBase {};
+template <typename Base = DefaultSmBase>
+class Spec2Sm : Base, public Spec2SmBase
 {
 public:
     enum class EventId: uint8_t

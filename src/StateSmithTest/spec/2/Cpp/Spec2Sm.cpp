@@ -7,8 +7,11 @@
 
 namespace Spec2
 {
+template <typename Base>
+
+    
     // Starts the state machine. Must be called before dispatching events. Not thread safe.
-    void Spec2Sm::start()
+    void Spec2Sm<Base>::start()
     {
         ROOT_enter();
         // ROOT behavior
@@ -37,10 +40,12 @@ namespace Spec2
             } // end of behavior for ROOT.<InitialState>
         } // end of behavior for ROOT
     }
+template <typename Base>
+
     
     // Dispatches an event to the state machine. Not thread safe.
     // Note! This function assumes that the `eventId` parameter is valid.
-    void Spec2Sm::dispatchEvent(EventId eventId)
+    void Spec2Sm<Base>::dispatchEvent(EventId eventId)
     {
         switch (this->stateId)
         {
@@ -2048,10 +2053,12 @@ namespace Spec2
         }
         
     }
+template <typename Base>
+
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    void Spec2Sm::exitUpToStateHandler(StateId desiredState)
+    void Spec2Sm<Base>::exitUpToStateHandler(StateId desiredState)
     {
         while (this->stateId != desiredState)
         {
@@ -2407,13 +2414,15 @@ namespace Spec2
             }
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::ROOT_enter()
+    void Spec2Sm<Base>::ROOT_enter()
     {
         this->stateId = StateId::ROOT;
         
@@ -2424,8 +2433,10 @@ namespace Spec2
             trace("Enter Spec2Sm.");
         } // end of behavior for ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::ROOT_do()
+    void Spec2Sm<Base>::ROOT_do()
     {
         // ROOT behavior
         // uml: do [trace_guard("State Spec2Sm: check behavior `do`.", true)]
@@ -2436,13 +2447,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING_enter()
+    void Spec2Sm<Base>::PREFIXING_enter()
     {
         this->stateId = StateId::PREFIXING;
         
@@ -2453,8 +2466,10 @@ namespace Spec2
             trace("Enter PREFIXING.");
         } // end of behavior for PREFIXING
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING_exit()
+    void Spec2Sm<Base>::PREFIXING_exit()
     {
         // PREFIXING behavior
         // uml: exit / { trace("Exit PREFIXING."); }
@@ -2465,13 +2480,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__ORDER_MENU
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__ORDER_MENU_enter()
+    void Spec2Sm<Base>::PREFIXING__ORDER_MENU_enter()
     {
         this->stateId = StateId::PREFIXING__ORDER_MENU;
         
@@ -2482,8 +2499,10 @@ namespace Spec2
             trace("Enter PREFIXING__ORDER_MENU.");
         } // end of behavior for PREFIXING__ORDER_MENU
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__ORDER_MENU_exit()
+    void Spec2Sm<Base>::PREFIXING__ORDER_MENU_exit()
     {
         // PREFIXING__ORDER_MENU behavior
         // uml: exit / { trace("Exit PREFIXING__ORDER_MENU."); }
@@ -2494,13 +2513,15 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__BEVERAGE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__OM__BEVERAGE_enter()
+    void Spec2Sm<Base>::PREFIXING__OM__BEVERAGE_enter()
     {
         this->stateId = StateId::PREFIXING__OM__BEVERAGE;
         
@@ -2511,8 +2532,10 @@ namespace Spec2
             trace("Enter PREFIXING__OM__BEVERAGE.");
         } // end of behavior for PREFIXING__OM__BEVERAGE
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__BEVERAGE_exit()
+    void Spec2Sm<Base>::PREFIXING__OM__BEVERAGE_exit()
     {
         // PREFIXING__OM__BEVERAGE behavior
         // uml: exit / { trace("Exit PREFIXING__OM__BEVERAGE."); }
@@ -2523,8 +2546,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__ORDER_MENU;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__BEVERAGE_ev2()
+    void Spec2Sm<Base>::PREFIXING__OM__BEVERAGE_ev2()
     {
         // PREFIXING__OM__BEVERAGE behavior
         // uml: EV2 [trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG."); } TransitionTo(PREFIXING__OM__VEG)
@@ -2557,8 +2582,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__BEVERAGE_InitialState_transition()
+    void Spec2Sm<Base>::PREFIXING__OM__BEVERAGE_InitialState_transition()
     {
         // PREFIXING__OM__BEVERAGE.<InitialState> behavior
         // uml: / { trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE."); } TransitionTo(PREFIXING__OM__BEV__NONE)
@@ -2575,13 +2602,15 @@ namespace Spec2
             return;
         } // end of behavior for PREFIXING__OM__BEVERAGE.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__BEV__NONE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__OM__BEV__NONE_enter()
+    void Spec2Sm<Base>::PREFIXING__OM__BEV__NONE_enter()
     {
         this->stateId = StateId::PREFIXING__OM__BEV__NONE;
         
@@ -2592,8 +2621,10 @@ namespace Spec2
             trace("Enter PREFIXING__OM__BEV__NONE.");
         } // end of behavior for PREFIXING__OM__BEV__NONE
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__BEV__NONE_exit()
+    void Spec2Sm<Base>::PREFIXING__OM__BEV__NONE_exit()
     {
         // PREFIXING__OM__BEV__NONE behavior
         // uml: exit / { trace("Exit PREFIXING__OM__BEV__NONE."); }
@@ -2604,8 +2635,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__OM__BEVERAGE;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__BEV__NONE_ev1()
+    void Spec2Sm<Base>::PREFIXING__OM__BEV__NONE_ev1()
     {
         // PREFIXING__OM__BEV__NONE behavior
         // uml: EV1 [trace_guard("State PREFIXING__OM__BEV__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__WATER)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER."); } TransitionTo(PREFIXING__OM__BEV__WATER)
@@ -2626,13 +2659,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__BEV__TEA
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__OM__BEV__TEA_enter()
+    void Spec2Sm<Base>::PREFIXING__OM__BEV__TEA_enter()
     {
         this->stateId = StateId::PREFIXING__OM__BEV__TEA;
         
@@ -2643,8 +2678,10 @@ namespace Spec2
             trace("Enter PREFIXING__OM__BEV__TEA.");
         } // end of behavior for PREFIXING__OM__BEV__TEA
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__BEV__TEA_exit()
+    void Spec2Sm<Base>::PREFIXING__OM__BEV__TEA_exit()
     {
         // PREFIXING__OM__BEV__TEA behavior
         // uml: exit / { trace("Exit PREFIXING__OM__BEV__TEA."); }
@@ -2655,13 +2692,15 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__OM__BEVERAGE;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__BEV__WATER
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__OM__BEV__WATER_enter()
+    void Spec2Sm<Base>::PREFIXING__OM__BEV__WATER_enter()
     {
         this->stateId = StateId::PREFIXING__OM__BEV__WATER;
         
@@ -2672,8 +2711,10 @@ namespace Spec2
             trace("Enter PREFIXING__OM__BEV__WATER.");
         } // end of behavior for PREFIXING__OM__BEV__WATER
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__BEV__WATER_exit()
+    void Spec2Sm<Base>::PREFIXING__OM__BEV__WATER_exit()
     {
         // PREFIXING__OM__BEV__WATER behavior
         // uml: exit / { trace("Exit PREFIXING__OM__BEV__WATER."); }
@@ -2684,8 +2725,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__OM__BEVERAGE;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__BEV__WATER_ev1()
+    void Spec2Sm<Base>::PREFIXING__OM__BEV__WATER_ev1()
     {
         // PREFIXING__OM__BEV__WATER behavior
         // uml: EV1 [trace_guard("State PREFIXING__OM__BEV__WATER: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__TEA)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA."); } TransitionTo(PREFIXING__OM__BEV__TEA)
@@ -2706,13 +2749,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__VEG
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__OM__VEG_enter()
+    void Spec2Sm<Base>::PREFIXING__OM__VEG_enter()
     {
         this->stateId = StateId::PREFIXING__OM__VEG;
         
@@ -2723,8 +2768,10 @@ namespace Spec2
             trace("Enter PREFIXING__OM__VEG.");
         } // end of behavior for PREFIXING__OM__VEG
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__VEG_exit()
+    void Spec2Sm<Base>::PREFIXING__OM__VEG_exit()
     {
         // PREFIXING__OM__VEG behavior
         // uml: exit / { trace("Exit PREFIXING__OM__VEG."); }
@@ -2735,8 +2782,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__ORDER_MENU;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__VEG_ev2()
+    void Spec2Sm<Base>::PREFIXING__OM__VEG_ev2()
     {
         // PREFIXING__OM__VEG behavior
         // uml: EV2 [trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE."); } TransitionTo(PREFIXING__OM__BEVERAGE)
@@ -2758,13 +2807,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__VEG__NONE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__OM__VEG__NONE_enter()
+    void Spec2Sm<Base>::PREFIXING__OM__VEG__NONE_enter()
     {
         this->stateId = StateId::PREFIXING__OM__VEG__NONE;
         
@@ -2775,8 +2826,10 @@ namespace Spec2
             trace("Enter PREFIXING__OM__VEG__NONE.");
         } // end of behavior for PREFIXING__OM__VEG__NONE
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__VEG__NONE_exit()
+    void Spec2Sm<Base>::PREFIXING__OM__VEG__NONE_exit()
     {
         // PREFIXING__OM__VEG__NONE behavior
         // uml: exit / { trace("Exit PREFIXING__OM__VEG__NONE."); }
@@ -2787,8 +2840,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__OM__VEG;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__VEG__NONE_ev1()
+    void Spec2Sm<Base>::PREFIXING__OM__VEG__NONE_ev1()
     {
         // PREFIXING__OM__VEG__NONE behavior
         // uml: EV1 [trace_guard("State PREFIXING__OM__VEG__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__POTATO)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO."); } TransitionTo(PREFIXING__OM__VEG__POTATO)
@@ -2809,13 +2864,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__VEG__POTATO
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__OM__VEG__POTATO_enter()
+    void Spec2Sm<Base>::PREFIXING__OM__VEG__POTATO_enter()
     {
         this->stateId = StateId::PREFIXING__OM__VEG__POTATO;
         
@@ -2826,8 +2883,10 @@ namespace Spec2
             trace("Enter PREFIXING__OM__VEG__POTATO.");
         } // end of behavior for PREFIXING__OM__VEG__POTATO
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__VEG__POTATO_exit()
+    void Spec2Sm<Base>::PREFIXING__OM__VEG__POTATO_exit()
     {
         // PREFIXING__OM__VEG__POTATO behavior
         // uml: exit / { trace("Exit PREFIXING__OM__VEG__POTATO."); }
@@ -2838,8 +2897,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__OM__VEG;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__VEG__POTATO_ev1()
+    void Spec2Sm<Base>::PREFIXING__OM__VEG__POTATO_ev1()
     {
         // PREFIXING__OM__VEG__POTATO behavior
         // uml: EV1 [trace_guard("State PREFIXING__OM__VEG__POTATO: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__YAM)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM."); } TransitionTo(PREFIXING__OM__VEG__YAM)
@@ -2860,13 +2921,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__OM__VEG__YAM
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__OM__VEG__YAM_enter()
+    void Spec2Sm<Base>::PREFIXING__OM__VEG__YAM_enter()
     {
         this->stateId = StateId::PREFIXING__OM__VEG__YAM;
         
@@ -2877,8 +2940,10 @@ namespace Spec2
             trace("Enter PREFIXING__OM__VEG__YAM.");
         } // end of behavior for PREFIXING__OM__VEG__YAM
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__OM__VEG__YAM_exit()
+    void Spec2Sm<Base>::PREFIXING__OM__VEG__YAM_exit()
     {
         // PREFIXING__OM__VEG__YAM behavior
         // uml: exit / { trace("Exit PREFIXING__OM__VEG__YAM."); }
@@ -2889,13 +2954,15 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__OM__VEG;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX_enter()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX_enter()
     {
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX;
         
@@ -2906,8 +2973,10 @@ namespace Spec2
             trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.");
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX_exit()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX."); }
@@ -2918,13 +2987,15 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter()
     {
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU;
         
@@ -2935,8 +3006,10 @@ namespace Spec2
             trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
@@ -2947,13 +3020,15 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter()
     {
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
         
@@ -2964,8 +3039,10 @@ namespace Spec2
             trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
@@ -2976,8 +3053,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         // uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)
@@ -3010,8 +3089,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> behavior
         // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE)
@@ -3028,13 +3109,15 @@ namespace Spec2
             return;
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter()
     {
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE;
         
@@ -3045,8 +3128,10 @@ namespace Spec2
             trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
@@ -3057,8 +3142,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)
@@ -3079,13 +3166,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter()
     {
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA;
         
@@ -3096,8 +3185,10 @@ namespace Spec2
             trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
@@ -3108,13 +3199,15 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter()
     {
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER;
         
@@ -3125,8 +3218,10 @@ namespace Spec2
             trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
@@ -3137,8 +3232,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)
@@ -3159,13 +3256,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter()
     {
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
         
@@ -3176,8 +3275,10 @@ namespace Spec2
             trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
@@ -3188,8 +3289,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         // uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)
@@ -3211,13 +3314,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter()
     {
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE;
         
@@ -3228,8 +3333,10 @@ namespace Spec2
             trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
@@ -3240,8 +3347,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)
@@ -3262,13 +3371,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter()
     {
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO;
         
@@ -3279,8 +3390,10 @@ namespace Spec2
             trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
@@ -3291,8 +3404,10 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)
@@ -3313,13 +3428,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter()
     {
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM;
         
@@ -3330,8 +3447,10 @@ namespace Spec2
             trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
     }
+template <typename Base>
+
     
-    void Spec2Sm::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit()
+    void Spec2Sm<Base>::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
@@ -3342,13 +3461,15 @@ namespace Spec2
         
         this->stateId = StateId::PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state SPEC2SM__DECIDE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::SPEC2SM__DECIDE_enter()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_enter()
     {
         this->stateId = StateId::SPEC2SM__DECIDE;
         
@@ -3359,8 +3480,10 @@ namespace Spec2
             trace("Enter Spec2Sm__DECIDE.");
         } // end of behavior for Spec2Sm__DECIDE
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_exit()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_exit()
     {
         // Spec2Sm__DECIDE behavior
         // uml: exit / { trace("Exit Spec2Sm__DECIDE."); }
@@ -3371,8 +3494,10 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_do()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_do()
     {
         bool consume_event = false;
         
@@ -3399,8 +3524,10 @@ namespace Spec2
             ROOT_do();
         }
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_ev1()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_ev1()
     {
         // Spec2Sm__DECIDE behavior
         // uml: 1. EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
@@ -3463,8 +3590,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_ev10()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_ev10()
     {
         // Spec2Sm__DECIDE behavior
         // uml: EV10 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV10 TransitionTo(TEST10_CHOICE_POINT)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST10_CHOICE_POINT."); } TransitionTo(TEST10_CHOICE_POINT)
@@ -3498,8 +3627,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_ev2()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_ev2()
     {
         // Spec2Sm__DECIDE behavior
         // uml: EV2 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV2 TransitionTo(TEST2_REGULAR_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST2_REGULAR_EVENT_TESTING."); } TransitionTo(TEST2_REGULAR_EVENT_TESTING)
@@ -3545,8 +3676,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_ev3()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_ev3()
     {
         // Spec2Sm__DECIDE behavior
         // uml: EV3 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV3 TransitionTo(TEST3_BEHAVIOR_ORDERING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST3_BEHAVIOR_ORDERING."); } TransitionTo(TEST3_BEHAVIOR_ORDERING)
@@ -3591,8 +3724,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_ev4()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_ev4()
     {
         // Spec2Sm__DECIDE behavior
         // uml: EV4 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV4 TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST4_PARENT_CHILD_TRANSITIONS."); } TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)
@@ -3625,8 +3760,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_ev5()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_ev5()
     {
         // Spec2Sm__DECIDE behavior
         // uml: EV5 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV5 TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); } TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)
@@ -3659,8 +3796,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_ev6()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_ev6()
     {
         // Spec2Sm__DECIDE behavior
         // uml: EV6 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV6 TransitionTo(TEST6_VARS_EXPANSIONS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARS_EXPANSIONS."); } TransitionTo(TEST6_VARS_EXPANSIONS)
@@ -3705,8 +3844,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_ev7()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_ev7()
     {
         // Spec2Sm__DECIDE behavior
         // uml: EV7 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_OR_HISTORY)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST7_INITIAL_OR_HISTORY."); } TransitionTo(TEST7_INITIAL_OR_HISTORY)
@@ -3739,8 +3880,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_ev8()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_ev8()
     {
         // Spec2Sm__DECIDE behavior
         // uml: EV8 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV8 TransitionTo(TEST8_ENTRY_CHOICE)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST8_ENTRY_CHOICE."); } TransitionTo(TEST8_ENTRY_CHOICE)
@@ -3775,8 +3918,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::SPEC2SM__DECIDE_ev9()
+    void Spec2Sm<Base>::SPEC2SM__DECIDE_ev9()
     {
         // Spec2Sm__DECIDE behavior
         // uml: EV9 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV9 TransitionTo(TEST9_EXIT_CHOICE)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST9_EXIT_CHOICE."); } TransitionTo(TEST9_EXIT_CHOICE)
@@ -3809,13 +3954,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST1_DO_EVENT_TESTING
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST1_DO_EVENT_TESTING_enter()
+    void Spec2Sm<Base>::TEST1_DO_EVENT_TESTING_enter()
     {
         this->stateId = StateId::TEST1_DO_EVENT_TESTING;
         
@@ -3826,8 +3973,10 @@ namespace Spec2
             trace("Enter TEST1_DO_EVENT_TESTING.");
         } // end of behavior for TEST1_DO_EVENT_TESTING
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST1_DO_EVENT_TESTING_exit()
+    void Spec2Sm<Base>::TEST1_DO_EVENT_TESTING_exit()
     {
         // TEST1_DO_EVENT_TESTING behavior
         // uml: exit / { trace("Exit TEST1_DO_EVENT_TESTING."); }
@@ -3838,13 +3987,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST1_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST1_ROOT_enter()
+    void Spec2Sm<Base>::TEST1_ROOT_enter()
     {
         this->stateId = StateId::TEST1_ROOT;
         
@@ -3855,8 +4006,10 @@ namespace Spec2
             trace("Enter TEST1_ROOT.");
         } // end of behavior for TEST1_ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST1_ROOT_exit()
+    void Spec2Sm<Base>::TEST1_ROOT_exit()
     {
         // TEST1_ROOT behavior
         // uml: exit / { trace("Exit TEST1_ROOT."); }
@@ -3867,8 +4020,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST1_DO_EVENT_TESTING;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST1_ROOT_do()
+    void Spec2Sm<Base>::TEST1_ROOT_do()
     {
         bool consume_event = false;
         
@@ -3886,13 +4041,15 @@ namespace Spec2
             ROOT_do();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST1_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST1_S1_enter()
+    void Spec2Sm<Base>::TEST1_S1_enter()
     {
         this->stateId = StateId::TEST1_S1;
         
@@ -3903,8 +4060,10 @@ namespace Spec2
             trace("Enter TEST1_S1.");
         } // end of behavior for TEST1_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST1_S1_exit()
+    void Spec2Sm<Base>::TEST1_S1_exit()
     {
         // TEST1_S1 behavior
         // uml: exit / { trace("Exit TEST1_S1."); }
@@ -3915,13 +4074,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST1_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST1_S1_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST1_S1_1_enter()
+    void Spec2Sm<Base>::TEST1_S1_1_enter()
     {
         this->stateId = StateId::TEST1_S1_1;
         
@@ -3940,8 +4101,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST1_S1_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST1_S1_1_exit()
+    void Spec2Sm<Base>::TEST1_S1_1_exit()
     {
         // TEST1_S1_1 behavior
         // uml: exit / { trace("Exit TEST1_S1_1."); }
@@ -3952,8 +4115,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST1_S1;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST1_S1_1_do()
+    void Spec2Sm<Base>::TEST1_S1_1_do()
     {
         bool consume_event = false;
         
@@ -3971,8 +4136,10 @@ namespace Spec2
             TEST1_ROOT_do();
         }
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST1_S1_1_ev1()
+    void Spec2Sm<Base>::TEST1_S1_1_ev1()
     {
         // TEST1_S1_1 behavior
         // uml: EV1 [trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true)] / { trace("Transition action `` for TEST1_S1_1 to TEST1_S2."); } TransitionTo(TEST1_S2)
@@ -3993,13 +4160,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST1_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST1_S2_enter()
+    void Spec2Sm<Base>::TEST1_S2_enter()
     {
         this->stateId = StateId::TEST1_S2;
         
@@ -4010,8 +4179,10 @@ namespace Spec2
             trace("Enter TEST1_S2.");
         } // end of behavior for TEST1_S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST1_S2_exit()
+    void Spec2Sm<Base>::TEST1_S2_exit()
     {
         // TEST1_S2 behavior
         // uml: exit / { trace("Exit TEST1_S2."); }
@@ -4022,8 +4193,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST1_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST1_S2_do()
+    void Spec2Sm<Base>::TEST1_S2_do()
     {
         bool consume_event = false;
         
@@ -4042,13 +4215,15 @@ namespace Spec2
             TEST1_ROOT_do();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_CHOICE_POINT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST10_CHOICE_POINT_enter()
+    void Spec2Sm<Base>::TEST10_CHOICE_POINT_enter()
     {
         this->stateId = StateId::TEST10_CHOICE_POINT;
         
@@ -4059,8 +4234,10 @@ namespace Spec2
             trace("Enter TEST10_CHOICE_POINT.");
         } // end of behavior for TEST10_CHOICE_POINT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_CHOICE_POINT_exit()
+    void Spec2Sm<Base>::TEST10_CHOICE_POINT_exit()
     {
         // TEST10_CHOICE_POINT behavior
         // uml: exit / { trace("Exit TEST10_CHOICE_POINT."); }
@@ -4071,13 +4248,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_A
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST10_A_enter()
+    void Spec2Sm<Base>::TEST10_A_enter()
     {
         this->stateId = StateId::TEST10_A;
         
@@ -4088,8 +4267,10 @@ namespace Spec2
             trace("Enter TEST10_A.");
         } // end of behavior for TEST10_A
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_A_exit()
+    void Spec2Sm<Base>::TEST10_A_exit()
     {
         // TEST10_A behavior
         // uml: exit / { trace("Exit TEST10_A."); }
@@ -4100,8 +4281,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST10_CHOICE_POINT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_A_ChoicePoint__transition()
+    void Spec2Sm<Base>::TEST10_A_ChoicePoint__transition()
     {
         // TEST10_A.<ChoicePoint>() behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>()."); } TransitionTo(TEST10_A.<ChoicePoint>())
@@ -4136,8 +4319,10 @@ namespace Spec2
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEST10_A.<ChoicePoint>()
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_A_ChoicePoint__transition_kid_index3()
+    void Spec2Sm<Base>::TEST10_A_ChoicePoint__transition_kid_index3()
     {
         // TEST10_A.<ChoicePoint>() behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
@@ -4172,8 +4357,10 @@ namespace Spec2
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEST10_A.<ChoicePoint>()
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_A_ChoicePoint_a__transition()
+    void Spec2Sm<Base>::TEST10_A_ChoicePoint_a__transition()
     {
         // TEST10_A.<ChoicePoint>(a) behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
@@ -4208,8 +4395,10 @@ namespace Spec2
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEST10_A.<ChoicePoint>(a)
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_A_ChoicePoint_a__transition_kid_index5()
+    void Spec2Sm<Base>::TEST10_A_ChoicePoint_a__transition_kid_index5()
     {
         // TEST10_A.<ChoicePoint>(a) behavior
         // uml: / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1."); } TransitionTo(TEST10_A_1)
@@ -4226,13 +4415,15 @@ namespace Spec2
             return;
         } // end of behavior for TEST10_A.<ChoicePoint>(a)
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_A_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST10_A_1_enter()
+    void Spec2Sm<Base>::TEST10_A_1_enter()
     {
         this->stateId = StateId::TEST10_A_1;
         
@@ -4243,8 +4434,10 @@ namespace Spec2
             trace("Enter TEST10_A_1.");
         } // end of behavior for TEST10_A_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_A_1_exit()
+    void Spec2Sm<Base>::TEST10_A_1_exit()
     {
         // TEST10_A_1 behavior
         // uml: exit / { trace("Exit TEST10_A_1."); }
@@ -4255,13 +4448,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST10_A;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST10_ROOT_enter()
+    void Spec2Sm<Base>::TEST10_ROOT_enter()
     {
         this->stateId = StateId::TEST10_ROOT;
         
@@ -4272,8 +4467,10 @@ namespace Spec2
             trace("Enter TEST10_ROOT.");
         } // end of behavior for TEST10_ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_ROOT_exit()
+    void Spec2Sm<Base>::TEST10_ROOT_exit()
     {
         // TEST10_ROOT behavior
         // uml: exit / { trace("Exit TEST10_ROOT."); }
@@ -4284,8 +4481,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST10_CHOICE_POINT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_ROOT_ev5()
+    void Spec2Sm<Base>::TEST10_ROOT_ev5()
     {
         // TEST10_ROOT behavior
         // uml: EV5 [trace_guard("State TEST10_ROOT: check behavior `EV5 / { count++; }`.", true)] / { count++; }
@@ -4297,13 +4496,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_G
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST10_G_enter()
+    void Spec2Sm<Base>::TEST10_G_enter()
     {
         this->stateId = StateId::TEST10_G;
         
@@ -4314,8 +4515,10 @@ namespace Spec2
             trace("Enter TEST10_G.");
         } // end of behavior for TEST10_G
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_G_exit()
+    void Spec2Sm<Base>::TEST10_G_exit()
     {
         // TEST10_G behavior
         // uml: exit / { trace("Exit TEST10_G."); }
@@ -4326,8 +4529,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST10_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_G_ChoicePoint__transition()
+    void Spec2Sm<Base>::TEST10_G_ChoicePoint__transition()
     {
         // TEST10_G.<ChoicePoint>() behavior
         // uml: / { trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1)."); } TransitionTo(TEST10_G.<ChoicePoint>(1))
@@ -4445,13 +4650,15 @@ namespace Spec2
             } // end of behavior for TEST10_G.<ChoicePoint>(1)
         } // end of behavior for TEST10_G.<ChoicePoint>()
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_G_S0
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST10_G_S0_enter()
+    void Spec2Sm<Base>::TEST10_G_S0_enter()
     {
         this->stateId = StateId::TEST10_G_S0;
         
@@ -4462,8 +4669,10 @@ namespace Spec2
             trace("Enter TEST10_G_S0.");
         } // end of behavior for TEST10_G_S0
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_G_S0_exit()
+    void Spec2Sm<Base>::TEST10_G_S0_exit()
     {
         // TEST10_G_S0 behavior
         // uml: exit / { trace("Exit TEST10_G_S0."); }
@@ -4474,13 +4683,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST10_G;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_G_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST10_G_S1_enter()
+    void Spec2Sm<Base>::TEST10_G_S1_enter()
     {
         this->stateId = StateId::TEST10_G_S1;
         
@@ -4491,8 +4702,10 @@ namespace Spec2
             trace("Enter TEST10_G_S1.");
         } // end of behavior for TEST10_G_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_G_S1_exit()
+    void Spec2Sm<Base>::TEST10_G_S1_exit()
     {
         // TEST10_G_S1 behavior
         // uml: exit / { trace("Exit TEST10_G_S1."); }
@@ -4503,13 +4716,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST10_G;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_G_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST10_G_S2_enter()
+    void Spec2Sm<Base>::TEST10_G_S2_enter()
     {
         this->stateId = StateId::TEST10_G_S2;
         
@@ -4520,8 +4735,10 @@ namespace Spec2
             trace("Enter TEST10_G_S2.");
         } // end of behavior for TEST10_G_S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_G_S2_exit()
+    void Spec2Sm<Base>::TEST10_G_S2_exit()
     {
         // TEST10_G_S2 behavior
         // uml: exit / { trace("Exit TEST10_G_S2."); }
@@ -4532,13 +4749,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST10_G;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_G_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST10_G_S3_enter()
+    void Spec2Sm<Base>::TEST10_G_S3_enter()
     {
         this->stateId = StateId::TEST10_G_S3;
         
@@ -4549,8 +4768,10 @@ namespace Spec2
             trace("Enter TEST10_G_S3.");
         } // end of behavior for TEST10_G_S3
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_G_S3_exit()
+    void Spec2Sm<Base>::TEST10_G_S3_exit()
     {
         // TEST10_G_S3 behavior
         // uml: exit / { trace("Exit TEST10_G_S3."); }
@@ -4561,13 +4782,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST10_G;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST10_S1_enter()
+    void Spec2Sm<Base>::TEST10_S1_enter()
     {
         this->stateId = StateId::TEST10_S1;
         
@@ -4586,8 +4809,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST10_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_S1_exit()
+    void Spec2Sm<Base>::TEST10_S1_exit()
     {
         // TEST10_S1 behavior
         // uml: exit / { trace("Exit TEST10_S1."); }
@@ -4598,8 +4823,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST10_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_S1_ev1()
+    void Spec2Sm<Base>::TEST10_S1_ev1()
     {
         // TEST10_S1 behavior
         // uml: EV1 [trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.<EntryPoint>(1))`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.<EntryPoint>(1)."); } TransitionTo(TEST10_G.<EntryPoint>(1))
@@ -4634,8 +4861,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_S1_ev10()
+    void Spec2Sm<Base>::TEST10_S1_ev10()
     {
         // TEST10_S1 behavior
         // uml: EV10 [trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_A."); } TransitionTo(TEST10_A)
@@ -4704,8 +4933,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_S1_ev2()
+    void Spec2Sm<Base>::TEST10_S1_ev2()
     {
         // TEST10_S1 behavior
         // uml: EV2 [trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.<ChoicePoint>())`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.<ChoicePoint>()."); } TransitionTo(TEST10_G.<ChoicePoint>())
@@ -4728,8 +4959,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_S1_ev3()
+    void Spec2Sm<Base>::TEST10_S1_ev3()
     {
         // TEST10_S1 behavior
         // uml: EV3 [trace_guard("State TEST10_S1: check behavior `EV3 TransitionTo(TEST10_G)`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G."); } TransitionTo(TEST10_G)
@@ -4763,13 +4996,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST10_S4
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST10_S4_enter()
+    void Spec2Sm<Base>::TEST10_S4_enter()
     {
         this->stateId = StateId::TEST10_S4;
         
@@ -4780,8 +5015,10 @@ namespace Spec2
             trace("Enter TEST10_S4.");
         } // end of behavior for TEST10_S4
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST10_S4_exit()
+    void Spec2Sm<Base>::TEST10_S4_exit()
     {
         // TEST10_S4 behavior
         // uml: exit / { trace("Exit TEST10_S4."); }
@@ -4792,13 +5029,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST10_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST2_REGULAR_EVENT_TESTING
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST2_REGULAR_EVENT_TESTING_enter()
+    void Spec2Sm<Base>::TEST2_REGULAR_EVENT_TESTING_enter()
     {
         this->stateId = StateId::TEST2_REGULAR_EVENT_TESTING;
         
@@ -4809,8 +5048,10 @@ namespace Spec2
             trace("Enter TEST2_REGULAR_EVENT_TESTING.");
         } // end of behavior for TEST2_REGULAR_EVENT_TESTING
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_REGULAR_EVENT_TESTING_exit()
+    void Spec2Sm<Base>::TEST2_REGULAR_EVENT_TESTING_exit()
     {
         // TEST2_REGULAR_EVENT_TESTING behavior
         // uml: exit / { trace("Exit TEST2_REGULAR_EVENT_TESTING."); }
@@ -4821,13 +5062,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST2_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST2_ROOT_enter()
+    void Spec2Sm<Base>::TEST2_ROOT_enter()
     {
         this->stateId = StateId::TEST2_ROOT;
         
@@ -4838,8 +5081,10 @@ namespace Spec2
             trace("Enter TEST2_ROOT.");
         } // end of behavior for TEST2_ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_ROOT_exit()
+    void Spec2Sm<Base>::TEST2_ROOT_exit()
     {
         // TEST2_ROOT behavior
         // uml: exit / { trace("Exit TEST2_ROOT."); }
@@ -4850,8 +5095,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST2_REGULAR_EVENT_TESTING;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_ROOT_do()
+    void Spec2Sm<Base>::TEST2_ROOT_do()
     {
         bool consume_event = false;
         
@@ -4869,8 +5116,10 @@ namespace Spec2
             ROOT_do();
         }
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_ROOT_ev1()
+    void Spec2Sm<Base>::TEST2_ROOT_ev1()
     {
         // TEST2_ROOT behavior
         // uml: EV1 [trace_guard("State TEST2_ROOT: check behavior `EV1`.", true)]
@@ -4881,8 +5130,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_ROOT_ev2()
+    void Spec2Sm<Base>::TEST2_ROOT_ev2()
     {
         // TEST2_ROOT behavior
         // uml: EV2 [trace_guard("State TEST2_ROOT: check behavior `EV2`.", true)]
@@ -4893,13 +5144,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST2_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST2_S1_enter()
+    void Spec2Sm<Base>::TEST2_S1_enter()
     {
         this->stateId = StateId::TEST2_S1;
         
@@ -4910,8 +5163,10 @@ namespace Spec2
             trace("Enter TEST2_S1.");
         } // end of behavior for TEST2_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_S1_exit()
+    void Spec2Sm<Base>::TEST2_S1_exit()
     {
         // TEST2_S1 behavior
         // uml: exit / { trace("Exit TEST2_S1."); }
@@ -4922,13 +5177,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST2_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST2_S1_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST2_S1_1_enter()
+    void Spec2Sm<Base>::TEST2_S1_1_enter()
     {
         this->stateId = StateId::TEST2_S1_1;
         
@@ -4947,8 +5204,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST2_S1_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_S1_1_exit()
+    void Spec2Sm<Base>::TEST2_S1_1_exit()
     {
         // TEST2_S1_1 behavior
         // uml: exit / { trace("Exit TEST2_S1_1."); }
@@ -4959,8 +5218,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST2_S1;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_S1_1_do()
+    void Spec2Sm<Base>::TEST2_S1_1_do()
     {
         bool consume_event = false;
         
@@ -4987,8 +5248,10 @@ namespace Spec2
             TEST2_ROOT_do();
         }
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_S1_1_ev1()
+    void Spec2Sm<Base>::TEST2_S1_1_ev1()
     {
         bool consume_event = false;
         
@@ -5007,13 +5270,15 @@ namespace Spec2
             TEST2_ROOT_ev1();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST2_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST2_S2_enter()
+    void Spec2Sm<Base>::TEST2_S2_enter()
     {
         this->stateId = StateId::TEST2_S2;
         
@@ -5031,8 +5296,10 @@ namespace Spec2
             // Step 1: execute action ``
         } // end of behavior for TEST2_S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_S2_exit()
+    void Spec2Sm<Base>::TEST2_S2_exit()
     {
         // TEST2_S2 behavior
         // uml: exit / { trace("Exit TEST2_S2."); }
@@ -5043,8 +5310,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST2_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_S2_ev1()
+    void Spec2Sm<Base>::TEST2_S2_ev1()
     {
         bool consume_event = false;
         
@@ -5064,8 +5333,10 @@ namespace Spec2
             TEST2_ROOT_ev1();
         }
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST2_S2_ev2()
+    void Spec2Sm<Base>::TEST2_S2_ev2()
     {
         bool consume_event = false;
         
@@ -5092,13 +5363,15 @@ namespace Spec2
             TEST2_ROOT_ev2();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST3_BEHAVIOR_ORDERING
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST3_BEHAVIOR_ORDERING_enter()
+    void Spec2Sm<Base>::TEST3_BEHAVIOR_ORDERING_enter()
     {
         this->stateId = StateId::TEST3_BEHAVIOR_ORDERING;
         
@@ -5109,8 +5382,10 @@ namespace Spec2
             trace("Enter TEST3_BEHAVIOR_ORDERING.");
         } // end of behavior for TEST3_BEHAVIOR_ORDERING
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST3_BEHAVIOR_ORDERING_exit()
+    void Spec2Sm<Base>::TEST3_BEHAVIOR_ORDERING_exit()
     {
         // TEST3_BEHAVIOR_ORDERING behavior
         // uml: exit / { trace("Exit TEST3_BEHAVIOR_ORDERING."); }
@@ -5121,13 +5396,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST3_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST3_ROOT_enter()
+    void Spec2Sm<Base>::TEST3_ROOT_enter()
     {
         this->stateId = StateId::TEST3_ROOT;
         
@@ -5138,8 +5415,10 @@ namespace Spec2
             trace("Enter TEST3_ROOT.");
         } // end of behavior for TEST3_ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST3_ROOT_exit()
+    void Spec2Sm<Base>::TEST3_ROOT_exit()
     {
         // TEST3_ROOT behavior
         // uml: exit / { trace("Exit TEST3_ROOT."); }
@@ -5150,8 +5429,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST3_BEHAVIOR_ORDERING;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST3_ROOT_ev1()
+    void Spec2Sm<Base>::TEST3_ROOT_ev1()
     {
         // TEST3_ROOT behavior
         // uml: EV1 [trace_guard("State TEST3_ROOT: check behavior `EV1`.", true)]
@@ -5162,13 +5443,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST3_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST3_S1_enter()
+    void Spec2Sm<Base>::TEST3_S1_enter()
     {
         this->stateId = StateId::TEST3_S1;
         
@@ -5187,8 +5470,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST3_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST3_S1_exit()
+    void Spec2Sm<Base>::TEST3_S1_exit()
     {
         // TEST3_S1 behavior
         // uml: exit / { trace("Exit TEST3_S1."); }
@@ -5199,8 +5484,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST3_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST3_S1_ev1()
+    void Spec2Sm<Base>::TEST3_S1_ev1()
     {
         bool consume_event = false;
         
@@ -5237,13 +5524,15 @@ namespace Spec2
             TEST3_ROOT_ev1();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST3_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST3_S2_enter()
+    void Spec2Sm<Base>::TEST3_S2_enter()
     {
         this->stateId = StateId::TEST3_S2;
         
@@ -5254,8 +5543,10 @@ namespace Spec2
             trace("Enter TEST3_S2.");
         } // end of behavior for TEST3_S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST3_S2_exit()
+    void Spec2Sm<Base>::TEST3_S2_exit()
     {
         // TEST3_S2 behavior
         // uml: exit / { trace("Exit TEST3_S2."); }
@@ -5266,8 +5557,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST3_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST3_S2_ev1()
+    void Spec2Sm<Base>::TEST3_S2_ev1()
     {
         bool consume_event = false;
         
@@ -5315,13 +5608,15 @@ namespace Spec2
             TEST3_ROOT_ev1();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST3_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST3_S3_enter()
+    void Spec2Sm<Base>::TEST3_S3_enter()
     {
         this->stateId = StateId::TEST3_S3;
         
@@ -5332,8 +5627,10 @@ namespace Spec2
             trace("Enter TEST3_S3.");
         } // end of behavior for TEST3_S3
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST3_S3_exit()
+    void Spec2Sm<Base>::TEST3_S3_exit()
     {
         // TEST3_S3 behavior
         // uml: exit / { trace("Exit TEST3_S3."); }
@@ -5344,13 +5641,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST3_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_PARENT_CHILD_TRANSITIONS
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4_PARENT_CHILD_TRANSITIONS_enter()
+    void Spec2Sm<Base>::TEST4_PARENT_CHILD_TRANSITIONS_enter()
     {
         this->stateId = StateId::TEST4_PARENT_CHILD_TRANSITIONS;
         
@@ -5361,8 +5660,10 @@ namespace Spec2
             trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.");
         } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_PARENT_CHILD_TRANSITIONS_exit()
+    void Spec2Sm<Base>::TEST4_PARENT_CHILD_TRANSITIONS_exit()
     {
         // TEST4_PARENT_CHILD_TRANSITIONS behavior
         // uml: exit / { trace("Exit TEST4_PARENT_CHILD_TRANSITIONS."); }
@@ -5373,13 +5674,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_B_AND_OTHERS
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4_B_AND_OTHERS_enter()
+    void Spec2Sm<Base>::TEST4_B_AND_OTHERS_enter()
     {
         this->stateId = StateId::TEST4_B_AND_OTHERS;
         
@@ -5398,8 +5701,10 @@ namespace Spec2
             trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
         } // end of behavior for TEST4_B_AND_OTHERS
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_B_AND_OTHERS_exit()
+    void Spec2Sm<Base>::TEST4_B_AND_OTHERS_exit()
     {
         // TEST4_B_AND_OTHERS behavior
         // uml: exit / { trace("Exit TEST4_B_AND_OTHERS."); }
@@ -5410,13 +5715,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_PARENT_CHILD_TRANSITIONS;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4B_LOCAL
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4B_LOCAL_enter()
+    void Spec2Sm<Base>::TEST4B_LOCAL_enter()
     {
         this->stateId = StateId::TEST4B_LOCAL;
         
@@ -5427,8 +5734,10 @@ namespace Spec2
             trace("Enter TEST4B_LOCAL.");
         } // end of behavior for TEST4B_LOCAL
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4B_LOCAL_exit()
+    void Spec2Sm<Base>::TEST4B_LOCAL_exit()
     {
         // TEST4B_LOCAL behavior
         // uml: exit / { trace("Exit TEST4B_LOCAL."); }
@@ -5439,13 +5748,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_B_AND_OTHERS;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4B_G
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4B_G_enter()
+    void Spec2Sm<Base>::TEST4B_G_enter()
     {
         this->stateId = StateId::TEST4B_G;
         
@@ -5456,8 +5767,10 @@ namespace Spec2
             trace("Enter TEST4B_G.");
         } // end of behavior for TEST4B_G
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4B_G_exit()
+    void Spec2Sm<Base>::TEST4B_G_exit()
     {
         // TEST4B_G behavior
         // uml: exit / { trace("Exit TEST4B_G."); }
@@ -5468,8 +5781,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4B_LOCAL;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4B_G_ev1()
+    void Spec2Sm<Base>::TEST4B_G_ev1()
     {
         // TEST4B_G behavior
         // uml: EV1 [trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true)] / { trace("Transition action `` for TEST4B_G to TEST4B_G_1."); } TransitionTo(TEST4B_G_1)
@@ -5490,13 +5805,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4B_G_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4B_G_1_enter()
+    void Spec2Sm<Base>::TEST4B_G_1_enter()
     {
         this->stateId = StateId::TEST4B_G_1;
         
@@ -5507,8 +5824,10 @@ namespace Spec2
             trace("Enter TEST4B_G_1.");
         } // end of behavior for TEST4B_G_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4B_G_1_exit()
+    void Spec2Sm<Base>::TEST4B_G_1_exit()
     {
         // TEST4B_G_1 behavior
         // uml: exit / { trace("Exit TEST4B_G_1."); }
@@ -5519,8 +5838,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4B_G;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4B_G_1_ev2()
+    void Spec2Sm<Base>::TEST4B_G_1_ev2()
     {
         // TEST4B_G_1 behavior
         // uml: EV2 [trace_guard("State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`.", true)] / { trace("Transition action `` for TEST4B_G_1 to TEST4B_G."); } TransitionTo(TEST4B_G)
@@ -5540,13 +5861,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4C_LOCAL_TO_ALIAS
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4C_LOCAL_TO_ALIAS_enter()
+    void Spec2Sm<Base>::TEST4C_LOCAL_TO_ALIAS_enter()
     {
         this->stateId = StateId::TEST4C_LOCAL_TO_ALIAS;
         
@@ -5557,8 +5880,10 @@ namespace Spec2
             trace("Enter TEST4C_LOCAL_TO_ALIAS.");
         } // end of behavior for TEST4C_LOCAL_TO_ALIAS
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4C_LOCAL_TO_ALIAS_exit()
+    void Spec2Sm<Base>::TEST4C_LOCAL_TO_ALIAS_exit()
     {
         // TEST4C_LOCAL_TO_ALIAS behavior
         // uml: exit / { trace("Exit TEST4C_LOCAL_TO_ALIAS."); }
@@ -5569,13 +5894,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_B_AND_OTHERS;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4C_G
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4C_G_enter()
+    void Spec2Sm<Base>::TEST4C_G_enter()
     {
         this->stateId = StateId::TEST4C_G;
         
@@ -5586,8 +5913,10 @@ namespace Spec2
             trace("Enter TEST4C_G.");
         } // end of behavior for TEST4C_G
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4C_G_exit()
+    void Spec2Sm<Base>::TEST4C_G_exit()
     {
         // TEST4C_G behavior
         // uml: exit / { trace("Exit TEST4C_G."); }
@@ -5598,8 +5927,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4C_LOCAL_TO_ALIAS;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4C_G_ev1()
+    void Spec2Sm<Base>::TEST4C_G_ev1()
     {
         // TEST4C_G behavior
         // uml: EV1 [trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true)] / { trace("Transition action `` for TEST4C_G to TEST4C_G_1."); } TransitionTo(TEST4C_G_1)
@@ -5620,13 +5951,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4C_G_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4C_G_1_enter()
+    void Spec2Sm<Base>::TEST4C_G_1_enter()
     {
         this->stateId = StateId::TEST4C_G_1;
         
@@ -5637,8 +5970,10 @@ namespace Spec2
             trace("Enter TEST4C_G_1.");
         } // end of behavior for TEST4C_G_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4C_G_1_exit()
+    void Spec2Sm<Base>::TEST4C_G_1_exit()
     {
         // TEST4C_G_1 behavior
         // uml: exit / { trace("Exit TEST4C_G_1."); }
@@ -5649,8 +5984,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4C_G;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4C_G_1_ev2()
+    void Spec2Sm<Base>::TEST4C_G_1_ev2()
     {
         // TEST4C_G_1 behavior
         // uml: EV2 [trace_guard("State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`.", true)] / { trace("Transition action `` for TEST4C_G_1 to TEST4C_G."); } TransitionTo(TEST4C_G)
@@ -5670,13 +6007,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4D_EXTERNAL
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4D_EXTERNAL_enter()
+    void Spec2Sm<Base>::TEST4D_EXTERNAL_enter()
     {
         this->stateId = StateId::TEST4D_EXTERNAL;
         
@@ -5687,8 +6026,10 @@ namespace Spec2
             trace("Enter TEST4D_EXTERNAL.");
         } // end of behavior for TEST4D_EXTERNAL
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4D_EXTERNAL_exit()
+    void Spec2Sm<Base>::TEST4D_EXTERNAL_exit()
     {
         // TEST4D_EXTERNAL behavior
         // uml: exit / { trace("Exit TEST4D_EXTERNAL."); }
@@ -5699,13 +6040,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_B_AND_OTHERS;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4D_G
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4D_G_enter()
+    void Spec2Sm<Base>::TEST4D_G_enter()
     {
         this->stateId = StateId::TEST4D_G;
         
@@ -5716,8 +6059,10 @@ namespace Spec2
             trace("Enter TEST4D_G.");
         } // end of behavior for TEST4D_G
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4D_G_exit()
+    void Spec2Sm<Base>::TEST4D_G_exit()
     {
         // TEST4D_G behavior
         // uml: exit / { trace("Exit TEST4D_G."); }
@@ -5728,8 +6073,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4D_EXTERNAL;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4D_G_ev1()
+    void Spec2Sm<Base>::TEST4D_G_ev1()
     {
         // TEST4D_G behavior
         // uml: EV1 [trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true)] / { trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>()."); } TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())
@@ -5763,13 +6110,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4D_G_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4D_G_1_enter()
+    void Spec2Sm<Base>::TEST4D_G_1_enter()
     {
         this->stateId = StateId::TEST4D_G_1;
         
@@ -5780,8 +6129,10 @@ namespace Spec2
             trace("Enter TEST4D_G_1.");
         } // end of behavior for TEST4D_G_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4D_G_1_exit()
+    void Spec2Sm<Base>::TEST4D_G_1_exit()
     {
         // TEST4D_G_1 behavior
         // uml: exit / { trace("Exit TEST4D_G_1."); }
@@ -5792,8 +6143,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4D_G;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4D_G_1_ev2()
+    void Spec2Sm<Base>::TEST4D_G_1_ev2()
     {
         // TEST4D_G_1 behavior
         // uml: EV2 [trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true)] / { trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>()."); } TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())
@@ -5826,13 +6179,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_DECIDE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4_DECIDE_enter()
+    void Spec2Sm<Base>::TEST4_DECIDE_enter()
     {
         this->stateId = StateId::TEST4_DECIDE;
         
@@ -5843,8 +6198,10 @@ namespace Spec2
             trace("Enter TEST4_DECIDE.");
         } // end of behavior for TEST4_DECIDE
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_DECIDE_exit()
+    void Spec2Sm<Base>::TEST4_DECIDE_exit()
     {
         // TEST4_DECIDE behavior
         // uml: exit / { trace("Exit TEST4_DECIDE."); }
@@ -5855,8 +6212,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_PARENT_CHILD_TRANSITIONS;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_DECIDE_ev1()
+    void Spec2Sm<Base>::TEST4_DECIDE_ev1()
     {
         // TEST4_DECIDE behavior
         // uml: EV1 [trace_guard("State TEST4_DECIDE: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT."); } TransitionTo(TEST4_ROOT)
@@ -5877,8 +6236,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_DECIDE_ev2()
+    void Spec2Sm<Base>::TEST4_DECIDE_ev2()
     {
         // TEST4_DECIDE behavior
         // uml: EV2 [trace_guard("State TEST4_DECIDE: check behavior `EV2 TransitionTo(TEST4B_LOCAL)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL."); } TransitionTo(TEST4B_LOCAL)
@@ -5912,8 +6273,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_DECIDE_ev3()
+    void Spec2Sm<Base>::TEST4_DECIDE_ev3()
     {
         // TEST4_DECIDE behavior
         // uml: EV3 [trace_guard("State TEST4_DECIDE: check behavior `EV3 TransitionTo(TEST4C_LOCAL_TO_ALIAS)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS."); } TransitionTo(TEST4C_LOCAL_TO_ALIAS)
@@ -5947,8 +6310,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_DECIDE_ev4()
+    void Spec2Sm<Base>::TEST4_DECIDE_ev4()
     {
         // TEST4_DECIDE behavior
         // uml: EV4 [trace_guard("State TEST4_DECIDE: check behavior `EV4 TransitionTo(TEST4D_EXTERNAL)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL."); } TransitionTo(TEST4D_EXTERNAL)
@@ -5982,13 +6347,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4_ROOT_enter()
+    void Spec2Sm<Base>::TEST4_ROOT_enter()
     {
         this->stateId = StateId::TEST4_ROOT;
         
@@ -6007,8 +6374,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST4_ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_ROOT_exit()
+    void Spec2Sm<Base>::TEST4_ROOT_exit()
     {
         // TEST4_ROOT behavior
         // uml: exit / { trace("Exit TEST4_ROOT."); }
@@ -6019,8 +6388,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_PARENT_CHILD_TRANSITIONS;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_ROOT_ev2()
+    void Spec2Sm<Base>::TEST4_ROOT_ev2()
     {
         // TEST4_ROOT behavior
         // uml: EV2 [trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S1."); } TransitionTo(TEST4_S1)
@@ -6041,8 +6412,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_ROOT_ev3()
+    void Spec2Sm<Base>::TEST4_ROOT_ev3()
     {
         // TEST4_ROOT behavior
         // uml: EV3 [trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S10_1."); } TransitionTo(TEST4_S10_1)
@@ -6064,8 +6437,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_ROOT_ev4()
+    void Spec2Sm<Base>::TEST4_ROOT_ev4()
     {
         // TEST4_ROOT behavior
         // uml: EV4 [trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S20."); } TransitionTo(TEST4_S20)
@@ -6087,13 +6462,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4_S1_enter()
+    void Spec2Sm<Base>::TEST4_S1_enter()
     {
         this->stateId = StateId::TEST4_S1;
         
@@ -6104,8 +6481,10 @@ namespace Spec2
             trace("Enter TEST4_S1.");
         } // end of behavior for TEST4_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S1_exit()
+    void Spec2Sm<Base>::TEST4_S1_exit()
     {
         // TEST4_S1 behavior
         // uml: exit / { trace("Exit TEST4_S1."); }
@@ -6116,8 +6495,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S1_ev1()
+    void Spec2Sm<Base>::TEST4_S1_ev1()
     {
         // TEST4_S1 behavior
         // uml: EV1 [trace_guard("State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`.", true)] / { trace("Transition action `` for TEST4_S1 to TEST4_S2."); } TransitionTo(TEST4_S2)
@@ -6138,13 +6519,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S10
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4_S10_enter()
+    void Spec2Sm<Base>::TEST4_S10_enter()
     {
         this->stateId = StateId::TEST4_S10;
         
@@ -6155,8 +6538,10 @@ namespace Spec2
             trace("Enter TEST4_S10.");
         } // end of behavior for TEST4_S10
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S10_exit()
+    void Spec2Sm<Base>::TEST4_S10_exit()
     {
         // TEST4_S10 behavior
         // uml: exit / { trace("Exit TEST4_S10."); }
@@ -6167,8 +6552,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S10_ev4()
+    void Spec2Sm<Base>::TEST4_S10_ev4()
     {
         bool consume_event = false;
         
@@ -6195,13 +6582,15 @@ namespace Spec2
             TEST4_ROOT_ev4();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S10_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4_S10_1_enter()
+    void Spec2Sm<Base>::TEST4_S10_1_enter()
     {
         this->stateId = StateId::TEST4_S10_1;
         
@@ -6212,8 +6601,10 @@ namespace Spec2
             trace("Enter TEST4_S10_1.");
         } // end of behavior for TEST4_S10_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S10_1_exit()
+    void Spec2Sm<Base>::TEST4_S10_1_exit()
     {
         // TEST4_S10_1 behavior
         // uml: exit / { trace("Exit TEST4_S10_1."); }
@@ -6224,13 +6615,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_S10;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4_S2_enter()
+    void Spec2Sm<Base>::TEST4_S2_enter()
     {
         this->stateId = StateId::TEST4_S2;
         
@@ -6241,8 +6634,10 @@ namespace Spec2
             trace("Enter TEST4_S2.");
         } // end of behavior for TEST4_S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S2_exit()
+    void Spec2Sm<Base>::TEST4_S2_exit()
     {
         // TEST4_S2 behavior
         // uml: exit / { trace("Exit TEST4_S2."); }
@@ -6253,8 +6648,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S2_ev1()
+    void Spec2Sm<Base>::TEST4_S2_ev1()
     {
         // TEST4_S2 behavior
         // uml: EV1 [trace_guard("State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`.", true)] / { trace("Transition action `` for TEST4_S2 to TEST4_S3."); } TransitionTo(TEST4_S3)
@@ -6275,13 +6672,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S20
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4_S20_enter()
+    void Spec2Sm<Base>::TEST4_S20_enter()
     {
         this->stateId = StateId::TEST4_S20;
         
@@ -6292,8 +6691,10 @@ namespace Spec2
             trace("Enter TEST4_S20.");
         } // end of behavior for TEST4_S20
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S20_exit()
+    void Spec2Sm<Base>::TEST4_S20_exit()
     {
         // TEST4_S20 behavior
         // uml: exit / { trace("Exit TEST4_S20."); }
@@ -6304,8 +6705,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S20_ev4()
+    void Spec2Sm<Base>::TEST4_S20_ev4()
     {
         bool consume_event = false;
         
@@ -6333,8 +6736,10 @@ namespace Spec2
             TEST4_ROOT_ev4();
         }
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S20_InitialState_transition()
+    void Spec2Sm<Base>::TEST4_S20_InitialState_transition()
     {
         // TEST4_S20.<InitialState> behavior
         // uml: / { trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1."); } TransitionTo(TEST4_S20_1)
@@ -6351,13 +6756,15 @@ namespace Spec2
             return;
         } // end of behavior for TEST4_S20.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S20_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4_S20_1_enter()
+    void Spec2Sm<Base>::TEST4_S20_1_enter()
     {
         this->stateId = StateId::TEST4_S20_1;
         
@@ -6368,8 +6775,10 @@ namespace Spec2
             trace("Enter TEST4_S20_1.");
         } // end of behavior for TEST4_S20_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S20_1_exit()
+    void Spec2Sm<Base>::TEST4_S20_1_exit()
     {
         // TEST4_S20_1 behavior
         // uml: exit / { trace("Exit TEST4_S20_1."); }
@@ -6380,13 +6789,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_S20;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST4_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST4_S3_enter()
+    void Spec2Sm<Base>::TEST4_S3_enter()
     {
         this->stateId = StateId::TEST4_S3;
         
@@ -6397,8 +6808,10 @@ namespace Spec2
             trace("Enter TEST4_S3.");
         } // end of behavior for TEST4_S3
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S3_exit()
+    void Spec2Sm<Base>::TEST4_S3_exit()
     {
         // TEST4_S3 behavior
         // uml: exit / { trace("Exit TEST4_S3."); }
@@ -6409,8 +6822,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST4_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST4_S3_ev1()
+    void Spec2Sm<Base>::TEST4_S3_ev1()
     {
         // TEST4_S3 behavior
         // uml: EV1 [trace_guard("State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true)] / { trace("Transition action `` for TEST4_S3 to TEST4_ROOT."); } TransitionTo(TEST4_ROOT)
@@ -6430,13 +6845,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter()
+    void Spec2Sm<Base>::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter()
     {
         this->stateId = StateId::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS;
         
@@ -6447,8 +6864,10 @@ namespace Spec2
             trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
         } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit()
+    void Spec2Sm<Base>::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit()
     {
         // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
         // uml: exit / { trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
@@ -6459,13 +6878,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST5_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST5_ROOT_enter()
+    void Spec2Sm<Base>::TEST5_ROOT_enter()
     {
         this->stateId = StateId::TEST5_ROOT;
         
@@ -6484,8 +6905,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST5_ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST5_ROOT_exit()
+    void Spec2Sm<Base>::TEST5_ROOT_exit()
     {
         // TEST5_ROOT behavior
         // uml: exit / { trace("Exit TEST5_ROOT."); }
@@ -6496,8 +6919,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST5_PARENT_CHILD_TRANSITIONS_ALIAS;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST5_ROOT_ev2()
+    void Spec2Sm<Base>::TEST5_ROOT_ev2()
     {
         // TEST5_ROOT behavior
         // uml: EV2 [trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true)] / { trace("Transition action `` for TEST5_ROOT to TEST5_S1."); } TransitionTo(TEST5_S1)
@@ -6518,13 +6943,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST5_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST5_S1_enter()
+    void Spec2Sm<Base>::TEST5_S1_enter()
     {
         this->stateId = StateId::TEST5_S1;
         
@@ -6535,8 +6962,10 @@ namespace Spec2
             trace("Enter TEST5_S1.");
         } // end of behavior for TEST5_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST5_S1_exit()
+    void Spec2Sm<Base>::TEST5_S1_exit()
     {
         // TEST5_S1 behavior
         // uml: exit / { trace("Exit TEST5_S1."); }
@@ -6547,8 +6976,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST5_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST5_S1_ev1()
+    void Spec2Sm<Base>::TEST5_S1_ev1()
     {
         // TEST5_S1 behavior
         // uml: EV1 [trace_guard("State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`.", true)] / { trace("Transition action `` for TEST5_S1 to TEST5_S2."); } TransitionTo(TEST5_S2)
@@ -6569,13 +7000,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST5_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST5_S2_enter()
+    void Spec2Sm<Base>::TEST5_S2_enter()
     {
         this->stateId = StateId::TEST5_S2;
         
@@ -6586,8 +7019,10 @@ namespace Spec2
             trace("Enter TEST5_S2.");
         } // end of behavior for TEST5_S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST5_S2_exit()
+    void Spec2Sm<Base>::TEST5_S2_exit()
     {
         // TEST5_S2 behavior
         // uml: exit / { trace("Exit TEST5_S2."); }
@@ -6598,8 +7033,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST5_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST5_S2_ev1()
+    void Spec2Sm<Base>::TEST5_S2_ev1()
     {
         // TEST5_S2 behavior
         // uml: EV1 [trace_guard("State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`.", true)] / { trace("Transition action `` for TEST5_S2 to TEST5_S3."); } TransitionTo(TEST5_S3)
@@ -6620,13 +7057,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST5_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST5_S3_enter()
+    void Spec2Sm<Base>::TEST5_S3_enter()
     {
         this->stateId = StateId::TEST5_S3;
         
@@ -6637,8 +7076,10 @@ namespace Spec2
             trace("Enter TEST5_S3.");
         } // end of behavior for TEST5_S3
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST5_S3_exit()
+    void Spec2Sm<Base>::TEST5_S3_exit()
     {
         // TEST5_S3 behavior
         // uml: exit / { trace("Exit TEST5_S3."); }
@@ -6649,8 +7090,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST5_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST5_S3_ev1()
+    void Spec2Sm<Base>::TEST5_S3_ev1()
     {
         // TEST5_S3 behavior
         // uml: EV1 [trace_guard("State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`.", true)] / { trace("Transition action `` for TEST5_S3 to TEST5_ROOT."); } TransitionTo(TEST5_ROOT)
@@ -6670,13 +7113,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST6_VARS_EXPANSIONS
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST6_VARS_EXPANSIONS_enter()
+    void Spec2Sm<Base>::TEST6_VARS_EXPANSIONS_enter()
     {
         this->stateId = StateId::TEST6_VARS_EXPANSIONS;
         
@@ -6687,8 +7132,10 @@ namespace Spec2
             trace("Enter TEST6_VARS_EXPANSIONS.");
         } // end of behavior for TEST6_VARS_EXPANSIONS
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST6_VARS_EXPANSIONS_exit()
+    void Spec2Sm<Base>::TEST6_VARS_EXPANSIONS_exit()
     {
         // TEST6_VARS_EXPANSIONS behavior
         // uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS."); }
@@ -6699,13 +7146,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST6_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST6_ROOT_enter()
+    void Spec2Sm<Base>::TEST6_ROOT_enter()
     {
         this->stateId = StateId::TEST6_ROOT;
         
@@ -6716,8 +7165,10 @@ namespace Spec2
             trace("Enter TEST6_ROOT.");
         } // end of behavior for TEST6_ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST6_ROOT_exit()
+    void Spec2Sm<Base>::TEST6_ROOT_exit()
     {
         // TEST6_ROOT behavior
         // uml: exit / { trace("Exit TEST6_ROOT."); }
@@ -6728,13 +7179,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST6_VARS_EXPANSIONS;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state AUTO_VAR_TEST
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::AUTO_VAR_TEST_enter()
+    void Spec2Sm<Base>::AUTO_VAR_TEST_enter()
     {
         this->stateId = StateId::AUTO_VAR_TEST;
         
@@ -6745,8 +7198,10 @@ namespace Spec2
             trace("Enter AUTO_VAR_TEST.");
         } // end of behavior for AUTO_VAR_TEST
     }
+template <typename Base>
+
     
-    void Spec2Sm::AUTO_VAR_TEST_exit()
+    void Spec2Sm<Base>::AUTO_VAR_TEST_exit()
     {
         // AUTO_VAR_TEST behavior
         // uml: exit / { trace("Exit AUTO_VAR_TEST."); }
@@ -6757,13 +7212,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST6_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state AUTO_VAR_TEST__S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::AUTO_VAR_TEST__S1_enter()
+    void Spec2Sm<Base>::AUTO_VAR_TEST__S1_enter()
     {
         this->stateId = StateId::AUTO_VAR_TEST__S1;
         
@@ -6782,8 +7239,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for AUTO_VAR_TEST__S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::AUTO_VAR_TEST__S1_exit()
+    void Spec2Sm<Base>::AUTO_VAR_TEST__S1_exit()
     {
         // AUTO_VAR_TEST__S1 behavior
         // uml: exit / { trace("Exit AUTO_VAR_TEST__S1."); }
@@ -6794,8 +7253,10 @@ namespace Spec2
         
         this->stateId = StateId::AUTO_VAR_TEST;
     }
+template <typename Base>
+
     
-    void Spec2Sm::AUTO_VAR_TEST__S1_ev1()
+    void Spec2Sm<Base>::AUTO_VAR_TEST__S1_ev1()
     {
         // AUTO_VAR_TEST__S1 behavior
         // uml: 1. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1++; }`.", true)] / { auto_var_1++; }
@@ -6824,13 +7285,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state AUTO_VAR_TEST__S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::AUTO_VAR_TEST__S2_enter()
+    void Spec2Sm<Base>::AUTO_VAR_TEST__S2_enter()
     {
         this->stateId = StateId::AUTO_VAR_TEST__S2;
         
@@ -6841,8 +7304,10 @@ namespace Spec2
             trace("Enter AUTO_VAR_TEST__S2.");
         } // end of behavior for AUTO_VAR_TEST__S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::AUTO_VAR_TEST__S2_exit()
+    void Spec2Sm<Base>::AUTO_VAR_TEST__S2_exit()
     {
         // AUTO_VAR_TEST__S2 behavior
         // uml: exit / { trace("Exit AUTO_VAR_TEST__S2."); }
@@ -6853,13 +7318,15 @@ namespace Spec2
         
         this->stateId = StateId::AUTO_VAR_TEST;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state META_EXPANSIONS
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::META_EXPANSIONS_enter()
+    void Spec2Sm<Base>::META_EXPANSIONS_enter()
     {
         this->stateId = StateId::META_EXPANSIONS;
         
@@ -6870,8 +7337,10 @@ namespace Spec2
             trace("Enter META_EXPANSIONS.");
         } // end of behavior for META_EXPANSIONS
     }
+template <typename Base>
+
     
-    void Spec2Sm::META_EXPANSIONS_exit()
+    void Spec2Sm<Base>::META_EXPANSIONS_exit()
     {
         // META_EXPANSIONS behavior
         // uml: exit / { trace("Exit META_EXPANSIONS."); }
@@ -6882,8 +7351,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST6_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::META_EXPANSIONS_ChoicePoint_2__transition()
+    void Spec2Sm<Base>::META_EXPANSIONS_ChoicePoint_2__transition()
     {
         // META_EXPANSIONS.<ChoicePoint>(2) behavior
         // uml: / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S5.");\ntrace_meta(); } TransitionTo(S5)
@@ -6903,13 +7374,15 @@ namespace Spec2
         
         // unreachable behavior: `else / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S4.");\ntrace_meta(); } TransitionTo(S4)` due to unconditional transition above
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state META_EXPANSIONS__S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::META_EXPANSIONS__S1_enter()
+    void Spec2Sm<Base>::META_EXPANSIONS__S1_enter()
     {
         this->stateId = StateId::META_EXPANSIONS__S1;
         
@@ -6928,8 +7401,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for META_EXPANSIONS__S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::META_EXPANSIONS__S1_exit()
+    void Spec2Sm<Base>::META_EXPANSIONS__S1_exit()
     {
         // META_EXPANSIONS__S1 behavior
         // uml: exit / { trace("Exit META_EXPANSIONS__S1."); }
@@ -6940,8 +7415,10 @@ namespace Spec2
         
         this->stateId = StateId::META_EXPANSIONS;
     }
+template <typename Base>
+
     
-    void Spec2Sm::META_EXPANSIONS__S1_ev1()
+    void Spec2Sm<Base>::META_EXPANSIONS__S1_ev1()
     {
         // META_EXPANSIONS__S1 behavior
         // uml: EV1 [trace_guard("State META_EXPANSIONS__S1: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS__S2)`.", true)] / { trace("Transition action `trace_meta();` for META_EXPANSIONS__S1 to META_EXPANSIONS__S2.");\ntrace_meta(); } TransitionTo(META_EXPANSIONS__S2)
@@ -6963,13 +7440,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state META_EXPANSIONS__S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::META_EXPANSIONS__S2_enter()
+    void Spec2Sm<Base>::META_EXPANSIONS__S2_enter()
     {
         this->stateId = StateId::META_EXPANSIONS__S2;
         
@@ -6988,8 +7467,10 @@ namespace Spec2
             trace("META: State: META_EXPANSIONS__S2, trigger: enter, behavior vertex: META_EXPANSIONS__S2");
         } // end of behavior for META_EXPANSIONS__S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::META_EXPANSIONS__S2_exit()
+    void Spec2Sm<Base>::META_EXPANSIONS__S2_exit()
     {
         // META_EXPANSIONS__S2 behavior
         // uml: exit / { trace("Exit META_EXPANSIONS__S2."); }
@@ -7000,8 +7481,10 @@ namespace Spec2
         
         this->stateId = StateId::META_EXPANSIONS;
     }
+template <typename Base>
+
     
-    void Spec2Sm::META_EXPANSIONS__S2_ev1()
+    void Spec2Sm<Base>::META_EXPANSIONS__S2_ev1()
     {
         // META_EXPANSIONS__S2 behavior
         // uml: EV1 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))`.", true)] / { trace("Transition action `trace_meta();` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(1).");\ntrace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))
@@ -7038,8 +7521,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::META_EXPANSIONS__S2_ev2()
+    void Spec2Sm<Base>::META_EXPANSIONS__S2_ev2()
     {
         // META_EXPANSIONS__S2 behavior
         // uml: EV2 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV2 TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", true)] / { trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(2)."); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))
@@ -7061,13 +7546,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::S3_enter()
+    void Spec2Sm<Base>::S3_enter()
     {
         this->stateId = StateId::S3;
         
@@ -7078,8 +7565,10 @@ namespace Spec2
             trace("Enter S3.");
         } // end of behavior for S3
     }
+template <typename Base>
+
     
-    void Spec2Sm::S3_exit()
+    void Spec2Sm<Base>::S3_exit()
     {
         // S3 behavior
         // uml: exit / { trace("Exit S3."); }
@@ -7090,8 +7579,10 @@ namespace Spec2
         
         this->stateId = StateId::META_EXPANSIONS;
     }
+template <typename Base>
+
     
-    void Spec2Sm::S3_ev1()
+    void Spec2Sm<Base>::S3_ev1()
     {
         // S3 behavior
         // uml: EV1 [trace_guard("State S3: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", true)] / { trace("Transition action `trace_meta();` for S3 to META_EXPANSIONS.<ChoicePoint>(2).");\ntrace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))
@@ -7114,13 +7605,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state S4
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::S4_enter()
+    void Spec2Sm<Base>::S4_enter()
     {
         this->stateId = StateId::S4;
         
@@ -7131,8 +7624,10 @@ namespace Spec2
             trace("Enter S4.");
         } // end of behavior for S4
     }
+template <typename Base>
+
     
-    void Spec2Sm::S4_exit()
+    void Spec2Sm<Base>::S4_exit()
     {
         // S4 behavior
         // uml: exit / { trace("Exit S4."); }
@@ -7143,13 +7638,15 @@ namespace Spec2
         
         this->stateId = StateId::META_EXPANSIONS;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state S5
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::S5_enter()
+    void Spec2Sm<Base>::S5_enter()
     {
         this->stateId = StateId::S5;
         
@@ -7160,8 +7657,10 @@ namespace Spec2
             trace("Enter S5.");
         } // end of behavior for S5
     }
+template <typename Base>
+
     
-    void Spec2Sm::S5_exit()
+    void Spec2Sm<Base>::S5_exit()
     {
         // S5 behavior
         // uml: exit / { trace("Exit S5."); }
@@ -7172,13 +7671,15 @@ namespace Spec2
         
         this->stateId = StateId::META_EXPANSIONS;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state NORMAL
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::NORMAL_enter()
+    void Spec2Sm<Base>::NORMAL_enter()
     {
         this->stateId = StateId::NORMAL;
         
@@ -7189,8 +7690,10 @@ namespace Spec2
             trace("Enter NORMAL.");
         } // end of behavior for NORMAL
     }
+template <typename Base>
+
     
-    void Spec2Sm::NORMAL_exit()
+    void Spec2Sm<Base>::NORMAL_exit()
     {
         // NORMAL behavior
         // uml: exit / { trace("Exit NORMAL."); }
@@ -7201,13 +7704,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST6_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state NORMAL__S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::NORMAL__S1_enter()
+    void Spec2Sm<Base>::NORMAL__S1_enter()
     {
         this->stateId = StateId::NORMAL__S1;
         
@@ -7226,8 +7731,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for NORMAL__S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::NORMAL__S1_exit()
+    void Spec2Sm<Base>::NORMAL__S1_exit()
     {
         // NORMAL__S1 behavior
         // uml: exit / { trace("Exit NORMAL__S1."); }
@@ -7238,8 +7745,10 @@ namespace Spec2
         
         this->stateId = StateId::NORMAL;
     }
+template <typename Base>
+
     
-    void Spec2Sm::NORMAL__S1_ev1()
+    void Spec2Sm<Base>::NORMAL__S1_ev1()
     {
         // NORMAL__S1 behavior
         // uml: 1. EV1 [trace_guard("State NORMAL__S1: check behavior `1. EV1 / { count++; }`.", true)] / { count++; }
@@ -7268,13 +7777,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state NORMAL__S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::NORMAL__S2_enter()
+    void Spec2Sm<Base>::NORMAL__S2_enter()
     {
         this->stateId = StateId::NORMAL__S2;
         
@@ -7285,8 +7796,10 @@ namespace Spec2
             trace("Enter NORMAL__S2.");
         } // end of behavior for NORMAL__S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::NORMAL__S2_exit()
+    void Spec2Sm<Base>::NORMAL__S2_exit()
     {
         // NORMAL__S2 behavior
         // uml: exit / { trace("Exit NORMAL__S2."); }
@@ -7297,13 +7810,15 @@ namespace Spec2
         
         this->stateId = StateId::NORMAL;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST6_VARS_EXPANSIONS__DECIDE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST6_VARS_EXPANSIONS__DECIDE_enter()
+    void Spec2Sm<Base>::TEST6_VARS_EXPANSIONS__DECIDE_enter()
     {
         this->stateId = StateId::TEST6_VARS_EXPANSIONS__DECIDE;
         
@@ -7314,8 +7829,10 @@ namespace Spec2
             trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.");
         } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST6_VARS_EXPANSIONS__DECIDE_exit()
+    void Spec2Sm<Base>::TEST6_VARS_EXPANSIONS__DECIDE_exit()
     {
         // TEST6_VARS_EXPANSIONS__DECIDE behavior
         // uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS__DECIDE."); }
@@ -7326,8 +7843,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST6_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST6_VARS_EXPANSIONS__DECIDE_ev1()
+    void Spec2Sm<Base>::TEST6_VARS_EXPANSIONS__DECIDE_ev1()
     {
         // TEST6_VARS_EXPANSIONS__DECIDE behavior
         // uml: EV1 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV1 TransitionTo(NORMAL)`.", true)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to NORMAL."); } TransitionTo(NORMAL)
@@ -7360,8 +7879,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST6_VARS_EXPANSIONS__DECIDE_ev2()
+    void Spec2Sm<Base>::TEST6_VARS_EXPANSIONS__DECIDE_ev2()
     {
         // TEST6_VARS_EXPANSIONS__DECIDE behavior
         // uml: EV2 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV2 TransitionTo(AUTO_VAR_TEST)`.", true)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to AUTO_VAR_TEST."); } TransitionTo(AUTO_VAR_TEST)
@@ -7394,8 +7915,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST6_VARS_EXPANSIONS__DECIDE_ev3()
+    void Spec2Sm<Base>::TEST6_VARS_EXPANSIONS__DECIDE_ev3()
     {
         // TEST6_VARS_EXPANSIONS__DECIDE behavior
         // uml: EV3 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV3 TransitionTo(META_EXPANSIONS)`.", true)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to META_EXPANSIONS."); } TransitionTo(META_EXPANSIONS)
@@ -7428,13 +7951,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST7_INITIAL_OR_HISTORY
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST7_INITIAL_OR_HISTORY_enter()
+    void Spec2Sm<Base>::TEST7_INITIAL_OR_HISTORY_enter()
     {
         this->stateId = StateId::TEST7_INITIAL_OR_HISTORY;
         
@@ -7445,8 +7970,10 @@ namespace Spec2
             trace("Enter TEST7_INITIAL_OR_HISTORY.");
         } // end of behavior for TEST7_INITIAL_OR_HISTORY
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST7_INITIAL_OR_HISTORY_exit()
+    void Spec2Sm<Base>::TEST7_INITIAL_OR_HISTORY_exit()
     {
         // TEST7_INITIAL_OR_HISTORY behavior
         // uml: exit / { trace("Exit TEST7_INITIAL_OR_HISTORY."); }
@@ -7457,13 +7984,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST7
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST7_enter()
+    void Spec2Sm<Base>::TEST7_enter()
     {
         this->stateId = StateId::TEST7;
         
@@ -7482,8 +8011,10 @@ namespace Spec2
             trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
         } // end of behavior for TEST7
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST7_exit()
+    void Spec2Sm<Base>::TEST7_exit()
     {
         // TEST7 behavior
         // uml: exit / { trace("Exit TEST7."); }
@@ -7494,13 +8025,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST7_INITIAL_OR_HISTORY;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY1_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY1_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY1;
         
@@ -7511,8 +8044,10 @@ namespace Spec2
             trace("Enter T7__DEEP_HISTORY1.");
         } // end of behavior for T7__DEEP_HISTORY1
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY1_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY1_exit()
     {
         // T7__DEEP_HISTORY1 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY1."); }
@@ -7523,13 +8058,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST7;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__SANTAS_WORKSHOP
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__SANTAS_WORKSHOP_enter()
+    void Spec2Sm<Base>::T7__DH1__SANTAS_WORKSHOP_enter()
     {
         this->stateId = StateId::T7__DH1__SANTAS_WORKSHOP;
         
@@ -7540,8 +8077,10 @@ namespace Spec2
             trace("Enter T7__DH1__SANTAS_WORKSHOP.");
         } // end of behavior for T7__DH1__SANTAS_WORKSHOP
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__SANTAS_WORKSHOP_exit()
+    void Spec2Sm<Base>::T7__DH1__SANTAS_WORKSHOP_exit()
     {
         // T7__DH1__SANTAS_WORKSHOP behavior
         // uml: exit / { trace("Exit T7__DH1__SANTAS_WORKSHOP."); }
@@ -7552,13 +8091,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY1;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__ALIENS_DETECTED
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__ALIENS_DETECTED_enter()
+    void Spec2Sm<Base>::T7__DH1__ALIENS_DETECTED_enter()
     {
         this->stateId = StateId::T7__DH1__ALIENS_DETECTED;
         
@@ -7569,8 +8110,10 @@ namespace Spec2
             trace("Enter T7__DH1__ALIENS_DETECTED.");
         } // end of behavior for T7__DH1__ALIENS_DETECTED
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__ALIENS_DETECTED_exit()
+    void Spec2Sm<Base>::T7__DH1__ALIENS_DETECTED_exit()
     {
         // T7__DH1__ALIENS_DETECTED behavior
         // uml: exit / { trace("Exit T7__DH1__ALIENS_DETECTED."); }
@@ -7581,8 +8124,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__SANTAS_WORKSHOP;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__ALIENS_DETECTED_ev8()
+    void Spec2Sm<Base>::T7__DH1__ALIENS_DETECTED_ev8()
     {
         // T7__DH1__ALIENS_DETECTED behavior
         // uml: EV8 [trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", true)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD."); } TransitionTo(T7__DH1__BUILD)
@@ -7604,13 +8149,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__GET_BACKUP
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__GET_BACKUP_enter()
+    void Spec2Sm<Base>::T7__DH1__GET_BACKUP_enter()
     {
         this->stateId = StateId::T7__DH1__GET_BACKUP;
         
@@ -7621,8 +8168,10 @@ namespace Spec2
             trace("Enter T7__DH1__GET_BACKUP.");
         } // end of behavior for T7__DH1__GET_BACKUP
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__GET_BACKUP_exit()
+    void Spec2Sm<Base>::T7__DH1__GET_BACKUP_exit()
     {
         // T7__DH1__GET_BACKUP behavior
         // uml: exit / { trace("Exit T7__DH1__GET_BACKUP."); }
@@ -7633,13 +8182,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__ALIENS_DETECTED;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__HERO
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__HERO_enter()
+    void Spec2Sm<Base>::T7__DH1__HERO_enter()
     {
         this->stateId = StateId::T7__DH1__HERO;
         
@@ -7666,8 +8217,10 @@ namespace Spec2
             this->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId::T7__DH1__HERO;
         } // end of behavior for T7__DH1__HERO
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__HERO_exit()
+    void Spec2Sm<Base>::T7__DH1__HERO_exit()
     {
         // T7__DH1__HERO behavior
         // uml: exit / { trace("Exit T7__DH1__HERO."); }
@@ -7678,8 +8231,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__GET_BACKUP;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__HERO_InitialState_transition()
+    void Spec2Sm<Base>::T7__DH1__HERO_InitialState_transition()
     {
         // T7__DH1__HERO.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR."); } TransitionTo(T7__DH1__CALL_THOR)
@@ -7696,13 +8251,15 @@ namespace Spec2
             return;
         } // end of behavior for T7__DH1__HERO.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__CALL_BATMAN
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__CALL_BATMAN_enter()
+    void Spec2Sm<Base>::T7__DH1__CALL_BATMAN_enter()
     {
         this->stateId = StateId::T7__DH1__CALL_BATMAN;
         
@@ -7713,8 +8270,10 @@ namespace Spec2
             trace("Enter T7__DH1__CALL_BATMAN.");
         } // end of behavior for T7__DH1__CALL_BATMAN
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__CALL_BATMAN_exit()
+    void Spec2Sm<Base>::T7__DH1__CALL_BATMAN_exit()
     {
         // T7__DH1__CALL_BATMAN behavior
         // uml: exit / { trace("Exit T7__DH1__CALL_BATMAN."); }
@@ -7725,8 +8284,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__HERO;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__CALL_BATMAN_ev1()
+    void Spec2Sm<Base>::T7__DH1__CALL_BATMAN_ev1()
     {
         // T7__DH1__CALL_BATMAN behavior
         // uml: EV1 [trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", true)] / { trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
@@ -7748,13 +8309,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__CALL_THOR
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__CALL_THOR_enter()
+    void Spec2Sm<Base>::T7__DH1__CALL_THOR_enter()
     {
         this->stateId = StateId::T7__DH1__CALL_THOR;
         
@@ -7765,8 +8328,10 @@ namespace Spec2
             trace("Enter T7__DH1__CALL_THOR.");
         } // end of behavior for T7__DH1__CALL_THOR
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__CALL_THOR_exit()
+    void Spec2Sm<Base>::T7__DH1__CALL_THOR_exit()
     {
         // T7__DH1__CALL_THOR behavior
         // uml: exit / { trace("Exit T7__DH1__CALL_THOR."); }
@@ -7777,8 +8342,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__HERO;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__CALL_THOR_ev1()
+    void Spec2Sm<Base>::T7__DH1__CALL_THOR_ev1()
     {
         // T7__DH1__CALL_THOR behavior
         // uml: EV1 [trace_guard("State T7__DH1__CALL_THOR: check behavior `EV1 TransitionTo(T7__DH1__CALL_BATMAN)`.", true)] / { trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN."); } TransitionTo(T7__DH1__CALL_BATMAN)
@@ -7799,13 +8366,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__LOCAL_HELP
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__LOCAL_HELP_enter()
+    void Spec2Sm<Base>::T7__DH1__LOCAL_HELP_enter()
     {
         this->stateId = StateId::T7__DH1__LOCAL_HELP;
         
@@ -7816,8 +8385,10 @@ namespace Spec2
             trace("Enter T7__DH1__LOCAL_HELP.");
         } // end of behavior for T7__DH1__LOCAL_HELP
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__LOCAL_HELP_exit()
+    void Spec2Sm<Base>::T7__DH1__LOCAL_HELP_exit()
     {
         // T7__DH1__LOCAL_HELP behavior
         // uml: exit / { trace("Exit T7__DH1__LOCAL_HELP."); }
@@ -7828,13 +8399,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__GET_BACKUP;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__BUDDY_ELF
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__BUDDY_ELF_enter()
+    void Spec2Sm<Base>::T7__DH1__BUDDY_ELF_enter()
     {
         this->stateId = StateId::T7__DH1__BUDDY_ELF;
         
@@ -7861,8 +8434,10 @@ namespace Spec2
             this->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId::T7__DH1__BUDDY_ELF;
         } // end of behavior for T7__DH1__BUDDY_ELF
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__BUDDY_ELF_exit()
+    void Spec2Sm<Base>::T7__DH1__BUDDY_ELF_exit()
     {
         // T7__DH1__BUDDY_ELF behavior
         // uml: exit / { trace("Exit T7__DH1__BUDDY_ELF."); }
@@ -7873,8 +8448,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__LOCAL_HELP;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__BUDDY_ELF_ev1()
+    void Spec2Sm<Base>::T7__DH1__BUDDY_ELF_ev1()
     {
         // T7__DH1__BUDDY_ELF behavior
         // uml: EV1 [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `EV1 TransitionTo(T7__DH1__POLAR_BEARS)`.", true)] / { trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
@@ -7895,13 +8472,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__POLAR_BEARS
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__POLAR_BEARS_enter()
+    void Spec2Sm<Base>::T7__DH1__POLAR_BEARS_enter()
     {
         this->stateId = StateId::T7__DH1__POLAR_BEARS;
         
@@ -7928,8 +8507,10 @@ namespace Spec2
             this->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId::T7__DH1__POLAR_BEARS;
         } // end of behavior for T7__DH1__POLAR_BEARS
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__POLAR_BEARS_exit()
+    void Spec2Sm<Base>::T7__DH1__POLAR_BEARS_exit()
     {
         // T7__DH1__POLAR_BEARS behavior
         // uml: exit / { trace("Exit T7__DH1__POLAR_BEARS."); }
@@ -7940,13 +8521,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__LOCAL_HELP;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__GIVE_COOKIES
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__GIVE_COOKIES_enter()
+    void Spec2Sm<Base>::T7__DH1__GIVE_COOKIES_enter()
     {
         this->stateId = StateId::T7__DH1__GIVE_COOKIES;
         
@@ -7965,8 +8548,10 @@ namespace Spec2
             this->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId::T7__DH1__GIVE_COOKIES;
         } // end of behavior for T7__DH1__GIVE_COOKIES
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__GIVE_COOKIES_exit()
+    void Spec2Sm<Base>::T7__DH1__GIVE_COOKIES_exit()
     {
         // T7__DH1__GIVE_COOKIES behavior
         // uml: exit / { trace("Exit T7__DH1__GIVE_COOKIES."); }
@@ -7977,8 +8562,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__ALIENS_DETECTED;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__GIVE_COOKIES_ev1()
+    void Spec2Sm<Base>::T7__DH1__GIVE_COOKIES_ev1()
     {
         // T7__DH1__GIVE_COOKIES behavior
         // uml: EV1 [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `EV1 TransitionTo(T7__DH1__CALL_THOR)`.", true)] / { trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR."); } TransitionTo(T7__DH1__CALL_THOR)
@@ -8001,13 +8588,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__SNOWBALL_FIGHT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__SNOWBALL_FIGHT_enter()
+    void Spec2Sm<Base>::T7__DH1__SNOWBALL_FIGHT_enter()
     {
         this->stateId = StateId::T7__DH1__SNOWBALL_FIGHT;
         
@@ -8026,8 +8615,10 @@ namespace Spec2
             this->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId::T7__DH1__SNOWBALL_FIGHT;
         } // end of behavior for T7__DH1__SNOWBALL_FIGHT
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__SNOWBALL_FIGHT_exit()
+    void Spec2Sm<Base>::T7__DH1__SNOWBALL_FIGHT_exit()
     {
         // T7__DH1__SNOWBALL_FIGHT behavior
         // uml: exit / { trace("Exit T7__DH1__SNOWBALL_FIGHT."); }
@@ -8038,8 +8629,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__ALIENS_DETECTED;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__SNOWBALL_FIGHT_ev1()
+    void Spec2Sm<Base>::T7__DH1__SNOWBALL_FIGHT_ev1()
     {
         // T7__DH1__SNOWBALL_FIGHT behavior
         // uml: EV1 [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `EV1 TransitionTo(T7__DH1__GIVE_COOKIES)`.", true)] / { trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES."); } TransitionTo(T7__DH1__GIVE_COOKIES)
@@ -8060,13 +8653,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__BUILD
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__BUILD_enter()
+    void Spec2Sm<Base>::T7__DH1__BUILD_enter()
     {
         this->stateId = StateId::T7__DH1__BUILD;
         
@@ -8077,8 +8672,10 @@ namespace Spec2
             trace("Enter T7__DH1__BUILD.");
         } // end of behavior for T7__DH1__BUILD
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__BUILD_exit()
+    void Spec2Sm<Base>::T7__DH1__BUILD_exit()
     {
         // T7__DH1__BUILD behavior
         // uml: exit / { trace("Exit T7__DH1__BUILD."); }
@@ -8089,8 +8686,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__SANTAS_WORKSHOP;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__BUILD_ev6()
+    void Spec2Sm<Base>::T7__DH1__BUILD_ev6()
     {
         // T7__DH1__BUILD behavior
         // uml: EV6 [trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", true)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED."); } TransitionTo(T7__DH1__ALIENS_DETECTED)
@@ -8205,8 +8804,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__BUILD_ev7()
+    void Spec2Sm<Base>::T7__DH1__BUILD_ev7()
     {
         // T7__DH1__BUILD behavior
         // uml: EV7 [trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.<History>)`.", true)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>."); } TransitionTo(T7__DH1__GET_BACKUP.<History>)
@@ -8305,8 +8906,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__BUILD_InitialState_transition()
+    void Spec2Sm<Base>::T7__DH1__BUILD_InitialState_transition()
     {
         // T7__DH1__BUILD.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>."); } TransitionTo(T7__DH1__BUILD.<History>)
@@ -8492,13 +9095,15 @@ namespace Spec2
             } // end of behavior for T7__DH1__BUILD.<History>
         } // end of behavior for T7__DH1__BUILD.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__TOOL
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__TOOL_enter()
+    void Spec2Sm<Base>::T7__DH1__TOOL_enter()
     {
         this->stateId = StateId::T7__DH1__TOOL;
         
@@ -8517,8 +9122,10 @@ namespace Spec2
             this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__TOOL;
         } // end of behavior for T7__DH1__TOOL
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__TOOL_exit()
+    void Spec2Sm<Base>::T7__DH1__TOOL_exit()
     {
         // T7__DH1__TOOL behavior
         // uml: exit / { trace("Exit T7__DH1__TOOL."); }
@@ -8529,8 +9136,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__BUILD;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__TOOL_ev2()
+    void Spec2Sm<Base>::T7__DH1__TOOL_ev2()
     {
         // T7__DH1__TOOL behavior
         // uml: EV2 [trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", true)] / { trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY."); } TransitionTo(T7__DH1__TOY)
@@ -8552,8 +9161,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__TOOL_InitialState_transition()
+    void Spec2Sm<Base>::T7__DH1__TOOL_InitialState_transition()
     {
         // T7__DH1__TOOL.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL."); } TransitionTo(T7__DH1__IMPACT_DRILL)
@@ -8570,13 +9181,15 @@ namespace Spec2
             return;
         } // end of behavior for T7__DH1__TOOL.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__CIRCULAR_SAW
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__CIRCULAR_SAW_enter()
+    void Spec2Sm<Base>::T7__DH1__CIRCULAR_SAW_enter()
     {
         this->stateId = StateId::T7__DH1__CIRCULAR_SAW;
         
@@ -8595,8 +9208,10 @@ namespace Spec2
             this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__CIRCULAR_SAW;
         } // end of behavior for T7__DH1__CIRCULAR_SAW
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__CIRCULAR_SAW_exit()
+    void Spec2Sm<Base>::T7__DH1__CIRCULAR_SAW_exit()
     {
         // T7__DH1__CIRCULAR_SAW behavior
         // uml: exit / { trace("Exit T7__DH1__CIRCULAR_SAW."); }
@@ -8607,13 +9222,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__TOOL;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__IMPACT_DRILL
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__IMPACT_DRILL_enter()
+    void Spec2Sm<Base>::T7__DH1__IMPACT_DRILL_enter()
     {
         this->stateId = StateId::T7__DH1__IMPACT_DRILL;
         
@@ -8632,8 +9249,10 @@ namespace Spec2
             this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__IMPACT_DRILL;
         } // end of behavior for T7__DH1__IMPACT_DRILL
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__IMPACT_DRILL_exit()
+    void Spec2Sm<Base>::T7__DH1__IMPACT_DRILL_exit()
     {
         // T7__DH1__IMPACT_DRILL behavior
         // uml: exit / { trace("Exit T7__DH1__IMPACT_DRILL."); }
@@ -8644,8 +9263,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__TOOL;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__IMPACT_DRILL_ev1()
+    void Spec2Sm<Base>::T7__DH1__IMPACT_DRILL_ev1()
     {
         // T7__DH1__IMPACT_DRILL behavior
         // uml: EV1 [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `EV1 TransitionTo(T7__DH1__CIRCULAR_SAW)`.", true)] / { trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW."); } TransitionTo(T7__DH1__CIRCULAR_SAW)
@@ -8666,13 +9287,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__TOY
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__TOY_enter()
+    void Spec2Sm<Base>::T7__DH1__TOY_enter()
     {
         this->stateId = StateId::T7__DH1__TOY;
         
@@ -8691,8 +9314,10 @@ namespace Spec2
             this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__TOY;
         } // end of behavior for T7__DH1__TOY
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__TOY_exit()
+    void Spec2Sm<Base>::T7__DH1__TOY_exit()
     {
         // T7__DH1__TOY behavior
         // uml: exit / { trace("Exit T7__DH1__TOY."); }
@@ -8703,8 +9328,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__BUILD;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__TOY_ev1()
+    void Spec2Sm<Base>::T7__DH1__TOY_ev1()
     {
         // T7__DH1__TOY behavior
         // uml: EV1 [trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", true)] / { trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL."); } TransitionTo(T7__DH1__TOOL)
@@ -8726,8 +9353,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__TOY_InitialState_transition()
+    void Spec2Sm<Base>::T7__DH1__TOY_InitialState_transition()
     {
         // T7__DH1__TOY.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR."); } TransitionTo(T7__DH1__RACE_CAR)
@@ -8744,13 +9373,15 @@ namespace Spec2
             return;
         } // end of behavior for T7__DH1__TOY.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__GLOW_WORM
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__GLOW_WORM_enter()
+    void Spec2Sm<Base>::T7__DH1__GLOW_WORM_enter()
     {
         this->stateId = StateId::T7__DH1__GLOW_WORM;
         
@@ -8769,8 +9400,10 @@ namespace Spec2
             this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__GLOW_WORM;
         } // end of behavior for T7__DH1__GLOW_WORM
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__GLOW_WORM_exit()
+    void Spec2Sm<Base>::T7__DH1__GLOW_WORM_exit()
     {
         // T7__DH1__GLOW_WORM behavior
         // uml: exit / { trace("Exit T7__DH1__GLOW_WORM."); }
@@ -8781,8 +9414,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__TOY;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__GLOW_WORM_ev1()
+    void Spec2Sm<Base>::T7__DH1__GLOW_WORM_ev1()
     {
         bool consume_event = false;
         
@@ -8810,13 +9445,15 @@ namespace Spec2
             T7__DH1__TOY_ev1();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__RACE_CAR
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__RACE_CAR_enter()
+    void Spec2Sm<Base>::T7__DH1__RACE_CAR_enter()
     {
         this->stateId = StateId::T7__DH1__RACE_CAR;
         
@@ -8835,8 +9472,10 @@ namespace Spec2
             this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__RACE_CAR;
         } // end of behavior for T7__DH1__RACE_CAR
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__RACE_CAR_exit()
+    void Spec2Sm<Base>::T7__DH1__RACE_CAR_exit()
     {
         // T7__DH1__RACE_CAR behavior
         // uml: exit / { trace("Exit T7__DH1__RACE_CAR."); }
@@ -8847,8 +9486,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__TOY;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__RACE_CAR_ev1()
+    void Spec2Sm<Base>::T7__DH1__RACE_CAR_ev1()
     {
         bool consume_event = false;
         
@@ -8875,13 +9516,15 @@ namespace Spec2
             T7__DH1__TOY_ev1();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__ROBOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__ROBOT_enter()
+    void Spec2Sm<Base>::T7__DH1__ROBOT_enter()
     {
         this->stateId = StateId::T7__DH1__ROBOT;
         
@@ -8900,8 +9543,10 @@ namespace Spec2
             this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__ROBOT;
         } // end of behavior for T7__DH1__ROBOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__ROBOT_exit()
+    void Spec2Sm<Base>::T7__DH1__ROBOT_exit()
     {
         // T7__DH1__ROBOT behavior
         // uml: exit / { trace("Exit T7__DH1__ROBOT."); }
@@ -8912,8 +9557,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__TOY;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__ROBOT_InitialState_transition()
+    void Spec2Sm<Base>::T7__DH1__ROBOT_InitialState_transition()
     {
         // T7__DH1__ROBOT.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT."); } TransitionTo(T7__DH1__BATTLEBOT)
@@ -8930,13 +9577,15 @@ namespace Spec2
             return;
         } // end of behavior for T7__DH1__ROBOT.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__BATTLEBOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__BATTLEBOT_enter()
+    void Spec2Sm<Base>::T7__DH1__BATTLEBOT_enter()
     {
         this->stateId = StateId::T7__DH1__BATTLEBOT;
         
@@ -8955,8 +9604,10 @@ namespace Spec2
             this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__BATTLEBOT;
         } // end of behavior for T7__DH1__BATTLEBOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__BATTLEBOT_exit()
+    void Spec2Sm<Base>::T7__DH1__BATTLEBOT_exit()
     {
         // T7__DH1__BATTLEBOT behavior
         // uml: exit / { trace("Exit T7__DH1__BATTLEBOT."); }
@@ -8967,8 +9618,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__ROBOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__BATTLEBOT_ev1()
+    void Spec2Sm<Base>::T7__DH1__BATTLEBOT_ev1()
     {
         bool consume_event = false;
         
@@ -8995,13 +9648,15 @@ namespace Spec2
             T7__DH1__TOY_ev1();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__WALL_E
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__WALL_E_enter()
+    void Spec2Sm<Base>::T7__DH1__WALL_E_enter()
     {
         this->stateId = StateId::T7__DH1__WALL_E;
         
@@ -9020,8 +9675,10 @@ namespace Spec2
             this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__WALL_E;
         } // end of behavior for T7__DH1__WALL_E
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__WALL_E_exit()
+    void Spec2Sm<Base>::T7__DH1__WALL_E_exit()
     {
         // T7__DH1__WALL_E behavior
         // uml: exit / { trace("Exit T7__DH1__WALL_E."); }
@@ -9032,13 +9689,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__ROBOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DH1__TEDDY_BEAR
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DH1__TEDDY_BEAR_enter()
+    void Spec2Sm<Base>::T7__DH1__TEDDY_BEAR_enter()
     {
         this->stateId = StateId::T7__DH1__TEDDY_BEAR;
         
@@ -9057,8 +9716,10 @@ namespace Spec2
             this->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId::T7__DH1__TEDDY_BEAR;
         } // end of behavior for T7__DH1__TEDDY_BEAR
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__TEDDY_BEAR_exit()
+    void Spec2Sm<Base>::T7__DH1__TEDDY_BEAR_exit()
     {
         // T7__DH1__TEDDY_BEAR behavior
         // uml: exit / { trace("Exit T7__DH1__TEDDY_BEAR."); }
@@ -9069,8 +9730,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DH1__TOY;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DH1__TEDDY_BEAR_ev1()
+    void Spec2Sm<Base>::T7__DH1__TEDDY_BEAR_ev1()
     {
         bool consume_event = false;
         
@@ -9097,13 +9760,15 @@ namespace Spec2
             T7__DH1__TOY_ev1();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY2_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY2;
         
@@ -9114,8 +9779,10 @@ namespace Spec2
             trace("Enter T7__DEEP_HISTORY2.");
         } // end of behavior for T7__DEEP_HISTORY2
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2_exit()
     {
         // T7__DEEP_HISTORY2 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2."); }
@@ -9126,13 +9793,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST7;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_0
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_0_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_0_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_0;
         
@@ -9143,8 +9812,10 @@ namespace Spec2
             trace("Enter T7__DEEP_HISTORY2__T7__state_0.");
         } // end of behavior for T7__DEEP_HISTORY2__T7__state_0
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_0_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_0_exit()
     {
         // T7__DEEP_HISTORY2__T7__state_0 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_0."); }
@@ -9155,8 +9826,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY2;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_0_evopen()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_0_evopen()
     {
         // T7__DEEP_HISTORY2__T7__state_0 behavior
         // uml: evOpen [trace_guard("State T7__DEEP_HISTORY2__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY2__T7__state_3)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_3)
@@ -9177,8 +9850,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
     {
         // T7__DEEP_HISTORY2__T7__state_0.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_0.<History>)
@@ -9258,13 +9933,15 @@ namespace Spec2
             } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
         } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_1_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_1_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_1;
         
@@ -9283,8 +9960,10 @@ namespace Spec2
             this->vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId::T7__DEEP_HISTORY2__T7__STATE_1;
         } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_1_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_1_exit()
     {
         // T7__DEEP_HISTORY2__T7__state_1 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_1."); }
@@ -9295,8 +9974,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_0;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_1_evstep()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_1_evstep()
     {
         // T7__DEEP_HISTORY2__T7__state_1 behavior
         // uml: evStep [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_2)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_1 to T7__DEEP_HISTORY2__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_2)
@@ -9318,13 +9999,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_2_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_2_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_2;
         
@@ -9343,8 +10026,10 @@ namespace Spec2
             this->vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId::T7__DEEP_HISTORY2__T7__STATE_2;
         } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_2_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_2_exit()
     {
         // T7__DEEP_HISTORY2__T7__state_2 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_2."); }
@@ -9355,8 +10040,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_0;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_2_evback()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_2_evback()
     {
         // T7__DEEP_HISTORY2__T7__state_2 behavior
         // uml: evBack [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY2__T7__state_1)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_1)
@@ -9377,8 +10064,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__state_2_InitialState_transition()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__state_2_InitialState_transition()
     {
         // T7__DEEP_HISTORY2__T7__state_2.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
@@ -9395,13 +10084,15 @@ namespace Spec2
             return;
         } // end of behavior for T7__DEEP_HISTORY2__T7__state_2.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_6
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_6_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_6_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_6;
         
@@ -9420,8 +10111,10 @@ namespace Spec2
             this->vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId::T7__DEEP_HISTORY2__T7__STATE_6;
         } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_6_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_6_exit()
     {
         // T7__DEEP_HISTORY2__T7__state_6 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_6."); }
@@ -9432,8 +10125,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_2;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_6_evstep()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_6_evstep()
     {
         // T7__DEEP_HISTORY2__T7__state_6 behavior
         // uml: evStep [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_9)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_6 to T7__DEEP_HISTORY2__T7__state_9."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
@@ -9454,13 +10149,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_9
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_9_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_9_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_9;
         
@@ -9479,8 +10176,10 @@ namespace Spec2
             this->vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId::T7__DEEP_HISTORY2__T7__STATE_9;
         } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_9_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_9_exit()
     {
         // T7__DEEP_HISTORY2__T7__state_9 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_9."); }
@@ -9491,13 +10190,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_2;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY2__T7__STATE_3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_3_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_3_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY2__T7__STATE_3;
         
@@ -9508,8 +10209,10 @@ namespace Spec2
             trace("Enter T7__DEEP_HISTORY2__T7__state_3.");
         } // end of behavior for T7__DEEP_HISTORY2__T7__state_3
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_3_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_3_exit()
     {
         // T7__DEEP_HISTORY2__T7__state_3 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_3."); }
@@ -9520,8 +10223,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY2;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY2__T7__STATE_3_evclose()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY2__T7__STATE_3_evclose()
     {
         // T7__DEEP_HISTORY2__T7__state_3 behavior
         // uml: evClose [trace_guard("State T7__DEEP_HISTORY2__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY2__T7__state_0)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_3 to T7__DEEP_HISTORY2__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_0)
@@ -9543,13 +10248,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY3_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY3;
         
@@ -9560,8 +10267,10 @@ namespace Spec2
             trace("Enter T7__DEEP_HISTORY3.");
         } // end of behavior for T7__DEEP_HISTORY3
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3_exit()
     {
         // T7__DEEP_HISTORY3 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3."); }
@@ -9572,13 +10281,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST7;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_0
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_0_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_0_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_0;
         
@@ -9589,8 +10300,10 @@ namespace Spec2
             trace("Enter T7__DEEP_HISTORY3__T7__state_0.");
         } // end of behavior for T7__DEEP_HISTORY3__T7__state_0
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_0_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_0_exit()
     {
         // T7__DEEP_HISTORY3__T7__state_0 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_0."); }
@@ -9601,8 +10314,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY3;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_0_evopen()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_0_evopen()
     {
         // T7__DEEP_HISTORY3__T7__state_0 behavior
         // uml: evOpen [trace_guard("State T7__DEEP_HISTORY3__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY3__T7__state_3)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_3)
@@ -9623,8 +10338,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
     {
         // T7__DEEP_HISTORY3__T7__state_0.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_0.<History>)
@@ -9670,13 +10387,15 @@ namespace Spec2
             } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<History>
         } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_1_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_1_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_1;
         
@@ -9695,8 +10414,10 @@ namespace Spec2
             this->vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId::T7__DEEP_HISTORY3__T7__STATE_1;
         } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_1_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_1_exit()
     {
         // T7__DEEP_HISTORY3__T7__state_1 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_1."); }
@@ -9707,8 +10428,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_0;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_1_evstep()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_1_evstep()
     {
         // T7__DEEP_HISTORY3__T7__state_1 behavior
         // uml: evStep [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_2)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_1 to T7__DEEP_HISTORY3__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_2)
@@ -9730,13 +10453,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_2_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_2_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_2;
         
@@ -9755,8 +10480,10 @@ namespace Spec2
             this->vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId::T7__DEEP_HISTORY3__T7__STATE_2;
         } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_2_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_2_exit()
     {
         // T7__DEEP_HISTORY3__T7__state_2 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_2."); }
@@ -9767,8 +10494,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_0;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_2_evback()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_2_evback()
     {
         // T7__DEEP_HISTORY3__T7__state_2 behavior
         // uml: evBack [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY3__T7__state_1)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_1)
@@ -9789,8 +10518,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__state_2_InitialState_transition()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__state_2_InitialState_transition()
     {
         // T7__DEEP_HISTORY3__T7__state_2.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_6)
@@ -9807,13 +10538,15 @@ namespace Spec2
             return;
         } // end of behavior for T7__DEEP_HISTORY3__T7__state_2.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_6
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_6_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_6_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_6;
         
@@ -9824,8 +10557,10 @@ namespace Spec2
             trace("Enter T7__DEEP_HISTORY3__T7__state_6.");
         } // end of behavior for T7__DEEP_HISTORY3__T7__state_6
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_6_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_6_exit()
     {
         // T7__DEEP_HISTORY3__T7__state_6 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_6."); }
@@ -9836,8 +10571,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_2;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_6_evstep()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_6_evstep()
     {
         // T7__DEEP_HISTORY3__T7__state_6 behavior
         // uml: evStep [trace_guard("State T7__DEEP_HISTORY3__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_9)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_6 to T7__DEEP_HISTORY3__T7__state_9."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_9)
@@ -9858,13 +10595,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_9
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_9_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_9_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_9;
         
@@ -9875,8 +10614,10 @@ namespace Spec2
             trace("Enter T7__DEEP_HISTORY3__T7__state_9.");
         } // end of behavior for T7__DEEP_HISTORY3__T7__state_9
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_9_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_9_exit()
     {
         // T7__DEEP_HISTORY3__T7__state_9 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_9."); }
@@ -9887,13 +10628,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_2;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__DEEP_HISTORY3__T7__STATE_3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_3_enter()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_3_enter()
     {
         this->stateId = StateId::T7__DEEP_HISTORY3__T7__STATE_3;
         
@@ -9904,8 +10647,10 @@ namespace Spec2
             trace("Enter T7__DEEP_HISTORY3__T7__state_3.");
         } // end of behavior for T7__DEEP_HISTORY3__T7__state_3
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_3_exit()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_3_exit()
     {
         // T7__DEEP_HISTORY3__T7__state_3 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_3."); }
@@ -9916,8 +10661,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__DEEP_HISTORY3;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__DEEP_HISTORY3__T7__STATE_3_evclose()
+    void Spec2Sm<Base>::T7__DEEP_HISTORY3__T7__STATE_3_evclose()
     {
         // T7__DEEP_HISTORY3__T7__state_3 behavior
         // uml: evClose [trace_guard("State T7__DEEP_HISTORY3__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY3__T7__state_0)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_3 to T7__DEEP_HISTORY3__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_0)
@@ -9939,13 +10686,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__HISTORY1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__HISTORY1_enter()
+    void Spec2Sm<Base>::T7__HISTORY1_enter()
     {
         this->stateId = StateId::T7__HISTORY1;
         
@@ -9956,8 +10705,10 @@ namespace Spec2
             trace("Enter T7__HISTORY1.");
         } // end of behavior for T7__HISTORY1
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__HISTORY1_exit()
+    void Spec2Sm<Base>::T7__HISTORY1_exit()
     {
         // T7__HISTORY1 behavior
         // uml: exit / { trace("Exit T7__HISTORY1."); }
@@ -9968,13 +10719,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST7;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__OFF
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__H1__OFF_enter()
+    void Spec2Sm<Base>::T7__H1__OFF_enter()
     {
         this->stateId = StateId::T7__H1__OFF;
         
@@ -9985,8 +10738,10 @@ namespace Spec2
             trace("Enter T7__H1__OFF.");
         } // end of behavior for T7__H1__OFF
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__OFF_exit()
+    void Spec2Sm<Base>::T7__H1__OFF_exit()
     {
         // T7__H1__OFF behavior
         // uml: exit / { trace("Exit T7__H1__OFF."); }
@@ -9997,8 +10752,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__HISTORY1;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__OFF_ev3()
+    void Spec2Sm<Base>::T7__H1__OFF_ev3()
     {
         // T7__H1__OFF behavior
         // uml: EV3 [trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
@@ -10019,8 +10776,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__OFF_ev4()
+    void Spec2Sm<Base>::T7__H1__OFF_ev4()
     {
         // T7__H1__OFF behavior
         // uml: EV4 [trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__OFF."); } TransitionTo(T7__H1__OFF)
@@ -10042,8 +10801,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__OFF_ev7()
+    void Spec2Sm<Base>::T7__H1__OFF_ev7()
     {
         // T7__H1__OFF behavior
         // uml: EV7 [trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__ON."); } TransitionTo(T7__H1__ON)
@@ -10065,8 +10826,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__OFF_InitialState_transition()
+    void Spec2Sm<Base>::T7__H1__OFF_InitialState_transition()
     {
         // T7__H1__OFF.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>."); } TransitionTo(T7__H1__OFF.<History>)
@@ -10127,13 +10890,15 @@ namespace Spec2
             } // end of behavior for T7__H1__OFF.<History>
         } // end of behavior for T7__H1__OFF.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__OFF1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__H1__OFF1_enter()
+    void Spec2Sm<Base>::T7__H1__OFF1_enter()
     {
         this->stateId = StateId::T7__H1__OFF1;
         
@@ -10152,8 +10917,10 @@ namespace Spec2
             this->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId::T7__H1__OFF1;
         } // end of behavior for T7__H1__OFF1
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__OFF1_exit()
+    void Spec2Sm<Base>::T7__H1__OFF1_exit()
     {
         // T7__H1__OFF1 behavior
         // uml: exit / { trace("Exit T7__H1__OFF1."); }
@@ -10164,8 +10931,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__H1__OFF;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__OFF1_ev1()
+    void Spec2Sm<Base>::T7__H1__OFF1_ev1()
     {
         // T7__H1__OFF1 behavior
         // uml: EV1 [trace_guard("State T7__H1__OFF1: check behavior `EV1 TransitionTo(T7__H1__OFF2)`.", true)] / { trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2."); } TransitionTo(T7__H1__OFF2)
@@ -10186,13 +10955,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__OFF2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__H1__OFF2_enter()
+    void Spec2Sm<Base>::T7__H1__OFF2_enter()
     {
         this->stateId = StateId::T7__H1__OFF2;
         
@@ -10211,8 +10982,10 @@ namespace Spec2
             this->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId::T7__H1__OFF2;
         } // end of behavior for T7__H1__OFF2
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__OFF2_exit()
+    void Spec2Sm<Base>::T7__H1__OFF2_exit()
     {
         // T7__H1__OFF2 behavior
         // uml: exit / { trace("Exit T7__H1__OFF2."); }
@@ -10223,8 +10996,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__H1__OFF;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__OFF2_ev1()
+    void Spec2Sm<Base>::T7__H1__OFF2_ev1()
     {
         // T7__H1__OFF2 behavior
         // uml: EV1 [trace_guard("State T7__H1__OFF2: check behavior `EV1 TransitionTo(T7__H1__OFF3)`.", true)] / { trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
@@ -10245,13 +11020,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__OFF3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__H1__OFF3_enter()
+    void Spec2Sm<Base>::T7__H1__OFF3_enter()
     {
         this->stateId = StateId::T7__H1__OFF3;
         
@@ -10270,8 +11047,10 @@ namespace Spec2
             this->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId::T7__H1__OFF3;
         } // end of behavior for T7__H1__OFF3
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__OFF3_exit()
+    void Spec2Sm<Base>::T7__H1__OFF3_exit()
     {
         // T7__H1__OFF3 behavior
         // uml: exit / { trace("Exit T7__H1__OFF3."); }
@@ -10282,13 +11061,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__H1__OFF;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__ON
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__H1__ON_enter()
+    void Spec2Sm<Base>::T7__H1__ON_enter()
     {
         this->stateId = StateId::T7__H1__ON;
         
@@ -10299,8 +11080,10 @@ namespace Spec2
             trace("Enter T7__H1__ON.");
         } // end of behavior for T7__H1__ON
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__ON_exit()
+    void Spec2Sm<Base>::T7__H1__ON_exit()
     {
         // T7__H1__ON behavior
         // uml: exit / { trace("Exit T7__H1__ON."); }
@@ -10311,8 +11094,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__HISTORY1;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__ON_ev6()
+    void Spec2Sm<Base>::T7__H1__ON_ev6()
     {
         // T7__H1__ON behavior
         // uml: EV6 [trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", true)] / { trace("Transition action `` for T7__H1__ON to T7__H1__OFF."); } TransitionTo(T7__H1__OFF)
@@ -10334,8 +11119,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__ON_InitialState_transition()
+    void Spec2Sm<Base>::T7__H1__ON_InitialState_transition()
     {
         // T7__H1__ON.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>."); } TransitionTo(T7__H1__ON.<History>)
@@ -10396,13 +11183,15 @@ namespace Spec2
             } // end of behavior for T7__H1__ON.<History>
         } // end of behavior for T7__H1__ON.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__ON1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__H1__ON1_enter()
+    void Spec2Sm<Base>::T7__H1__ON1_enter()
     {
         this->stateId = StateId::T7__H1__ON1;
         
@@ -10421,8 +11210,10 @@ namespace Spec2
             this->vars.T7__H1__ON_history = T7__H1__ON_HistoryId::T7__H1__ON1;
         } // end of behavior for T7__H1__ON1
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__ON1_exit()
+    void Spec2Sm<Base>::T7__H1__ON1_exit()
     {
         // T7__H1__ON1 behavior
         // uml: exit / { trace("Exit T7__H1__ON1."); }
@@ -10433,8 +11224,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__H1__ON;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__ON1_ev1()
+    void Spec2Sm<Base>::T7__H1__ON1_ev1()
     {
         // T7__H1__ON1 behavior
         // uml: EV1 [trace_guard("State T7__H1__ON1: check behavior `EV1 TransitionTo(T7__H1__ON2)`.", true)] / { trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2."); } TransitionTo(T7__H1__ON2)
@@ -10455,13 +11248,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__ON2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__H1__ON2_enter()
+    void Spec2Sm<Base>::T7__H1__ON2_enter()
     {
         this->stateId = StateId::T7__H1__ON2;
         
@@ -10480,8 +11275,10 @@ namespace Spec2
             this->vars.T7__H1__ON_history = T7__H1__ON_HistoryId::T7__H1__ON2;
         } // end of behavior for T7__H1__ON2
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__ON2_exit()
+    void Spec2Sm<Base>::T7__H1__ON2_exit()
     {
         // T7__H1__ON2 behavior
         // uml: exit / { trace("Exit T7__H1__ON2."); }
@@ -10492,8 +11289,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__H1__ON;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__ON2_ev1()
+    void Spec2Sm<Base>::T7__H1__ON2_ev1()
     {
         // T7__H1__ON2 behavior
         // uml: EV1 [trace_guard("State T7__H1__ON2: check behavior `EV1 TransitionTo(T7__H1__ON3)`.", true)] / { trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3."); } TransitionTo(T7__H1__ON3)
@@ -10514,13 +11313,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__H1__ON3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__H1__ON3_enter()
+    void Spec2Sm<Base>::T7__H1__ON3_enter()
     {
         this->stateId = StateId::T7__H1__ON3;
         
@@ -10539,8 +11340,10 @@ namespace Spec2
             this->vars.T7__H1__ON_history = T7__H1__ON_HistoryId::T7__H1__ON3;
         } // end of behavior for T7__H1__ON3
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__ON3_exit()
+    void Spec2Sm<Base>::T7__H1__ON3_exit()
     {
         // T7__H1__ON3 behavior
         // uml: exit / { trace("Exit T7__H1__ON3."); }
@@ -10551,8 +11354,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__H1__ON;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__H1__ON3_ev1()
+    void Spec2Sm<Base>::T7__H1__ON3_ev1()
     {
         // T7__H1__ON3 behavior
         // uml: EV1 [trace_guard("State T7__H1__ON3: check behavior `EV1 TransitionTo(T7__H1__ON1)`.", true)] / { trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1."); } TransitionTo(T7__H1__ON1)
@@ -10573,13 +11378,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__INITIAL1_enter()
+    void Spec2Sm<Base>::T7__INITIAL1_enter()
     {
         this->stateId = StateId::T7__INITIAL1;
         
@@ -10590,8 +11397,10 @@ namespace Spec2
             trace("Enter T7__INITIAL1.");
         } // end of behavior for T7__INITIAL1
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1_exit()
+    void Spec2Sm<Base>::T7__INITIAL1_exit()
     {
         // T7__INITIAL1 behavior
         // uml: exit / { trace("Exit T7__INITIAL1."); }
@@ -10602,13 +11411,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST7;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__PARENT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__INITIAL1__PARENT_enter()
+    void Spec2Sm<Base>::T7__INITIAL1__PARENT_enter()
     {
         this->stateId = StateId::T7__INITIAL1__PARENT;
         
@@ -10619,8 +11430,10 @@ namespace Spec2
             trace("Enter T7__INITIAL1__PARENT.");
         } // end of behavior for T7__INITIAL1__PARENT
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__PARENT_exit()
+    void Spec2Sm<Base>::T7__INITIAL1__PARENT_exit()
     {
         // T7__INITIAL1__PARENT behavior
         // uml: exit / { trace("Exit T7__INITIAL1__PARENT."); }
@@ -10631,8 +11444,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__INITIAL1;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__PARENT_ev5()
+    void Spec2Sm<Base>::T7__INITIAL1__PARENT_ev5()
     {
         // T7__INITIAL1__PARENT behavior
         // uml: EV5 [trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count++; }`.", true)] / { count++; }
@@ -10644,8 +11459,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__PARENT_InitialState_transition()
+    void Spec2Sm<Base>::T7__INITIAL1__PARENT_InitialState_transition()
     {
         // T7__INITIAL1__PARENT.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1."); } TransitionTo(T7__INITIAL1__S1)
@@ -10662,13 +11479,15 @@ namespace Spec2
             return;
         } // end of behavior for T7__INITIAL1__PARENT.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__G
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__INITIAL1__G_enter()
+    void Spec2Sm<Base>::T7__INITIAL1__G_enter()
     {
         this->stateId = StateId::T7__INITIAL1__G;
         
@@ -10679,8 +11498,10 @@ namespace Spec2
             trace("Enter T7__INITIAL1__G.");
         } // end of behavior for T7__INITIAL1__G
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__G_exit()
+    void Spec2Sm<Base>::T7__INITIAL1__G_exit()
     {
         // T7__INITIAL1__G behavior
         // uml: exit / { trace("Exit T7__INITIAL1__G."); }
@@ -10691,8 +11512,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__INITIAL1__PARENT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__G_ev2()
+    void Spec2Sm<Base>::T7__INITIAL1__G_ev2()
     {
         // T7__INITIAL1__G behavior
         // uml: EV2 [trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.<InitialState>)`.", true)] / { trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>."); } TransitionTo(T7__INITIAL1__PARENT.<InitialState>)
@@ -10714,8 +11537,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__G_InitialState_transition()
+    void Spec2Sm<Base>::T7__INITIAL1__G_InitialState_transition()
     {
         // T7__INITIAL1__G.<InitialState> behavior
         // uml: [count == 1] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1."); } TransitionTo(T7__INITIAL1__G_S1)
@@ -10764,13 +11589,15 @@ namespace Spec2
             return;
         } // end of behavior for T7__INITIAL1__G.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__G_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__INITIAL1__G_S1_enter()
+    void Spec2Sm<Base>::T7__INITIAL1__G_S1_enter()
     {
         this->stateId = StateId::T7__INITIAL1__G_S1;
         
@@ -10781,8 +11608,10 @@ namespace Spec2
             trace("Enter T7__INITIAL1__G_S1.");
         } // end of behavior for T7__INITIAL1__G_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__G_S1_exit()
+    void Spec2Sm<Base>::T7__INITIAL1__G_S1_exit()
     {
         // T7__INITIAL1__G_S1 behavior
         // uml: exit / { trace("Exit T7__INITIAL1__G_S1."); }
@@ -10793,13 +11622,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__INITIAL1__G;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__G_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__INITIAL1__G_S2_enter()
+    void Spec2Sm<Base>::T7__INITIAL1__G_S2_enter()
     {
         this->stateId = StateId::T7__INITIAL1__G_S2;
         
@@ -10810,8 +11641,10 @@ namespace Spec2
             trace("Enter T7__INITIAL1__G_S2.");
         } // end of behavior for T7__INITIAL1__G_S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__G_S2_exit()
+    void Spec2Sm<Base>::T7__INITIAL1__G_S2_exit()
     {
         // T7__INITIAL1__G_S2 behavior
         // uml: exit / { trace("Exit T7__INITIAL1__G_S2."); }
@@ -10822,13 +11655,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__INITIAL1__G;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__G_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__INITIAL1__G_S3_enter()
+    void Spec2Sm<Base>::T7__INITIAL1__G_S3_enter()
     {
         this->stateId = StateId::T7__INITIAL1__G_S3;
         
@@ -10839,8 +11674,10 @@ namespace Spec2
             trace("Enter T7__INITIAL1__G_S3.");
         } // end of behavior for T7__INITIAL1__G_S3
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__G_S3_exit()
+    void Spec2Sm<Base>::T7__INITIAL1__G_S3_exit()
     {
         // T7__INITIAL1__G_S3 behavior
         // uml: exit / { trace("Exit T7__INITIAL1__G_S3."); }
@@ -10851,13 +11688,15 @@ namespace Spec2
         
         this->stateId = StateId::T7__INITIAL1__G;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state T7__INITIAL1__S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::T7__INITIAL1__S1_enter()
+    void Spec2Sm<Base>::T7__INITIAL1__S1_enter()
     {
         this->stateId = StateId::T7__INITIAL1__S1;
         
@@ -10868,8 +11707,10 @@ namespace Spec2
             trace("Enter T7__INITIAL1__S1.");
         } // end of behavior for T7__INITIAL1__S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__S1_exit()
+    void Spec2Sm<Base>::T7__INITIAL1__S1_exit()
     {
         // T7__INITIAL1__S1 behavior
         // uml: exit / { trace("Exit T7__INITIAL1__S1."); }
@@ -10880,8 +11721,10 @@ namespace Spec2
         
         this->stateId = StateId::T7__INITIAL1__PARENT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__S1_ev1()
+    void Spec2Sm<Base>::T7__INITIAL1__S1_ev1()
     {
         // T7__INITIAL1__S1 behavior
         // uml: EV1 [trace_guard("State T7__INITIAL1__S1: check behavior `EV1 TransitionTo(T7__INITIAL1__G)`.", true)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G."); } TransitionTo(T7__INITIAL1__G)
@@ -10903,8 +11746,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::T7__INITIAL1__S1_ev3()
+    void Spec2Sm<Base>::T7__INITIAL1__S1_ev3()
     {
         // T7__INITIAL1__S1 behavior
         // uml: EV3 [trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.<InitialState>)`.", true)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.<InitialState>."); } TransitionTo(T7__INITIAL1__G.<InitialState>)
@@ -10927,13 +11772,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST7_DECIDE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST7_DECIDE_enter()
+    void Spec2Sm<Base>::TEST7_DECIDE_enter()
     {
         this->stateId = StateId::TEST7_DECIDE;
         
@@ -10944,8 +11791,10 @@ namespace Spec2
             trace("Enter TEST7_DECIDE.");
         } // end of behavior for TEST7_DECIDE
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST7_DECIDE_exit()
+    void Spec2Sm<Base>::TEST7_DECIDE_exit()
     {
         // TEST7_DECIDE behavior
         // uml: exit / { trace("Exit TEST7_DECIDE."); }
@@ -10964,8 +11813,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST7_INITIAL_OR_HISTORY;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST7_DECIDE_ev1()
+    void Spec2Sm<Base>::TEST7_DECIDE_ev1()
     {
         // TEST7_DECIDE behavior
         // uml: EV1 [trace_guard("State TEST7_DECIDE: check behavior `EV1 TransitionTo(T7__INITIAL1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1."); } TransitionTo(T7__INITIAL1)
@@ -11000,8 +11851,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST7_DECIDE_ev2()
+    void Spec2Sm<Base>::TEST7_DECIDE_ev2()
     {
         // TEST7_DECIDE behavior
         // uml: EV2 [trace_guard("State TEST7_DECIDE: check behavior `EV2 TransitionTo(T7__HISTORY1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1."); } TransitionTo(T7__HISTORY1)
@@ -11036,8 +11889,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST7_DECIDE_ev3()
+    void Spec2Sm<Base>::TEST7_DECIDE_ev3()
     {
         // TEST7_DECIDE behavior
         // uml: EV3 [trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(T7__DEEP_HISTORY1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1."); } TransitionTo(T7__DEEP_HISTORY1)
@@ -11073,8 +11928,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST7_DECIDE_ev4()
+    void Spec2Sm<Base>::TEST7_DECIDE_ev4()
     {
         // TEST7_DECIDE behavior
         // uml: EV4 [trace_guard("State TEST7_DECIDE: check behavior `EV4 TransitionTo(T7__DEEP_HISTORY2)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2."); } TransitionTo(T7__DEEP_HISTORY2)
@@ -11109,8 +11966,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST7_DECIDE_ev5()
+    void Spec2Sm<Base>::TEST7_DECIDE_ev5()
     {
         // TEST7_DECIDE behavior
         // uml: EV5 [trace_guard("State TEST7_DECIDE: check behavior `EV5 TransitionTo(T7__DEEP_HISTORY3)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3."); } TransitionTo(T7__DEEP_HISTORY3)
@@ -11145,13 +12004,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_ENTRY_CHOICE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST8_ENTRY_CHOICE_enter()
+    void Spec2Sm<Base>::TEST8_ENTRY_CHOICE_enter()
     {
         this->stateId = StateId::TEST8_ENTRY_CHOICE;
         
@@ -11162,8 +12023,10 @@ namespace Spec2
             trace("Enter TEST8_ENTRY_CHOICE.");
         } // end of behavior for TEST8_ENTRY_CHOICE
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_ENTRY_CHOICE_exit()
+    void Spec2Sm<Base>::TEST8_ENTRY_CHOICE_exit()
     {
         // TEST8_ENTRY_CHOICE behavior
         // uml: exit / { trace("Exit TEST8_ENTRY_CHOICE."); }
@@ -11174,13 +12037,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST8_ROOT_enter()
+    void Spec2Sm<Base>::TEST8_ROOT_enter()
     {
         this->stateId = StateId::TEST8_ROOT;
         
@@ -11199,8 +12064,10 @@ namespace Spec2
             trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
         } // end of behavior for TEST8_ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_ROOT_exit()
+    void Spec2Sm<Base>::TEST8_ROOT_exit()
     {
         // TEST8_ROOT behavior
         // uml: exit / { trace("Exit TEST8_ROOT."); }
@@ -11211,8 +12078,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST8_ENTRY_CHOICE;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_ROOT_ev3()
+    void Spec2Sm<Base>::TEST8_ROOT_ev3()
     {
         // TEST8_ROOT behavior
         // uml: EV3 [trace_guard("State TEST8_ROOT: check behavior `EV3`.", true)]
@@ -11223,8 +12092,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_ROOT_ev5()
+    void Spec2Sm<Base>::TEST8_ROOT_ev5()
     {
         // TEST8_ROOT behavior
         // uml: EV5 [trace_guard("State TEST8_ROOT: check behavior `EV5 / { count++; }`.", true)] / { count++; }
@@ -11236,8 +12107,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_ROOT_EntryPoint_1__transition()
+    void Spec2Sm<Base>::TEST8_ROOT_EntryPoint_1__transition()
     {
         // TEST8_ROOT.<EntryPoint>(1) behavior
         // uml: / { trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1."); } TransitionTo(TEST8_S1)
@@ -11254,13 +12127,15 @@ namespace Spec2
             return;
         } // end of behavior for TEST8_ROOT.<EntryPoint>(1)
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_G
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST8_G_enter()
+    void Spec2Sm<Base>::TEST8_G_enter()
     {
         this->stateId = StateId::TEST8_G;
         
@@ -11271,8 +12146,10 @@ namespace Spec2
             trace("Enter TEST8_G.");
         } // end of behavior for TEST8_G
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_G_exit()
+    void Spec2Sm<Base>::TEST8_G_exit()
     {
         // TEST8_G behavior
         // uml: exit / { trace("Exit TEST8_G."); }
@@ -11283,8 +12160,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST8_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_G_ev2()
+    void Spec2Sm<Base>::TEST8_G_ev2()
     {
         // TEST8_G behavior
         // uml: EV2 [trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.<EntryPoint>(1))`.", true)] / { trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1)."); } TransitionTo(TEST8_ROOT.<EntryPoint>(1))
@@ -11306,8 +12185,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_G_EntryPoint_1__transition()
+    void Spec2Sm<Base>::TEST8_G_EntryPoint_1__transition()
     {
         // TEST8_G.<EntryPoint>(1) behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1."); } TransitionTo(TEST8_G_S1)
@@ -11356,8 +12237,10 @@ namespace Spec2
             return;
         } // end of behavior for TEST8_G.<EntryPoint>(1)
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_G_EntryPoint_3__transition()
+    void Spec2Sm<Base>::TEST8_G_EntryPoint_3__transition()
     {
         // TEST8_G.<EntryPoint>(3) behavior
         // uml: / { trace("Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).");\ncount += 0; } TransitionTo(TEST8_G.<EntryPoint>(1))
@@ -11376,13 +12259,15 @@ namespace Spec2
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEST8_G.<EntryPoint>(3)
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_G_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST8_G_S1_enter()
+    void Spec2Sm<Base>::TEST8_G_S1_enter()
     {
         this->stateId = StateId::TEST8_G_S1;
         
@@ -11393,8 +12278,10 @@ namespace Spec2
             trace("Enter TEST8_G_S1.");
         } // end of behavior for TEST8_G_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_G_S1_exit()
+    void Spec2Sm<Base>::TEST8_G_S1_exit()
     {
         // TEST8_G_S1 behavior
         // uml: exit / { trace("Exit TEST8_G_S1."); }
@@ -11405,13 +12292,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST8_G;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_G_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST8_G_S2_enter()
+    void Spec2Sm<Base>::TEST8_G_S2_enter()
     {
         this->stateId = StateId::TEST8_G_S2;
         
@@ -11422,8 +12311,10 @@ namespace Spec2
             trace("Enter TEST8_G_S2.");
         } // end of behavior for TEST8_G_S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_G_S2_exit()
+    void Spec2Sm<Base>::TEST8_G_S2_exit()
     {
         // TEST8_G_S2 behavior
         // uml: exit / { trace("Exit TEST8_G_S2."); }
@@ -11434,13 +12325,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST8_G;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_G_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST8_G_S3_enter()
+    void Spec2Sm<Base>::TEST8_G_S3_enter()
     {
         this->stateId = StateId::TEST8_G_S3;
         
@@ -11451,8 +12344,10 @@ namespace Spec2
             trace("Enter TEST8_G_S3.");
         } // end of behavior for TEST8_G_S3
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_G_S3_exit()
+    void Spec2Sm<Base>::TEST8_G_S3_exit()
     {
         // TEST8_G_S3 behavior
         // uml: exit / { trace("Exit TEST8_G_S3."); }
@@ -11463,13 +12358,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST8_G;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST8_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST8_S1_enter()
+    void Spec2Sm<Base>::TEST8_S1_enter()
     {
         this->stateId = StateId::TEST8_S1;
         
@@ -11480,8 +12377,10 @@ namespace Spec2
             trace("Enter TEST8_S1.");
         } // end of behavior for TEST8_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_S1_exit()
+    void Spec2Sm<Base>::TEST8_S1_exit()
     {
         // TEST8_S1 behavior
         // uml: exit / { trace("Exit TEST8_S1."); }
@@ -11492,8 +12391,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST8_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_S1_ev1()
+    void Spec2Sm<Base>::TEST8_S1_ev1()
     {
         // TEST8_S1 behavior
         // uml: 1. EV1 [trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.<EntryPoint>(1))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(1)."); } TransitionTo(TEST8_G.<EntryPoint>(1))
@@ -11524,8 +12425,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_S1_ev3()
+    void Spec2Sm<Base>::TEST8_S1_ev3()
     {
         bool consume_event = false;
         
@@ -11554,8 +12457,10 @@ namespace Spec2
             TEST8_ROOT_ev3();
         }
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST8_S1_ev6()
+    void Spec2Sm<Base>::TEST8_S1_ev6()
     {
         // TEST8_S1 behavior
         // uml: EV6 [trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3)."); } TransitionTo(TEST8_G.<EntryPoint>(3))
@@ -11578,13 +12483,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_EXIT_CHOICE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9_EXIT_CHOICE_enter()
+    void Spec2Sm<Base>::TEST9_EXIT_CHOICE_enter()
     {
         this->stateId = StateId::TEST9_EXIT_CHOICE;
         
@@ -11595,8 +12502,10 @@ namespace Spec2
             trace("Enter TEST9_EXIT_CHOICE.");
         } // end of behavior for TEST9_EXIT_CHOICE
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_EXIT_CHOICE_exit()
+    void Spec2Sm<Base>::TEST9_EXIT_CHOICE_exit()
     {
         // TEST9_EXIT_CHOICE behavior
         // uml: exit / { trace("Exit TEST9_EXIT_CHOICE."); }
@@ -11607,13 +12516,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_DECIDE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9_DECIDE_enter()
+    void Spec2Sm<Base>::TEST9_DECIDE_enter()
     {
         this->stateId = StateId::TEST9_DECIDE;
         
@@ -11624,8 +12535,10 @@ namespace Spec2
             trace("Enter TEST9_DECIDE.");
         } // end of behavior for TEST9_DECIDE
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_DECIDE_exit()
+    void Spec2Sm<Base>::TEST9_DECIDE_exit()
     {
         // TEST9_DECIDE behavior
         // uml: exit / { trace("Exit TEST9_DECIDE."); }
@@ -11636,8 +12549,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST9_EXIT_CHOICE;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_DECIDE_ev1()
+    void Spec2Sm<Base>::TEST9_DECIDE_ev1()
     {
         // TEST9_DECIDE behavior
         // uml: EV1 [trace_guard("State TEST9_DECIDE: check behavior `EV1 TransitionTo(TEST9_ROOT)`.", true)] / { trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT."); } TransitionTo(TEST9_ROOT)
@@ -11682,8 +12597,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_DECIDE_ev2()
+    void Spec2Sm<Base>::TEST9_DECIDE_ev2()
     {
         // TEST9_DECIDE behavior
         // uml: EV2 [trace_guard("State TEST9_DECIDE: check behavior `EV2 TransitionTo(TEST9A_ROOT)`.", true)] / { trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT."); } TransitionTo(TEST9A_ROOT)
@@ -11718,8 +12635,10 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_DECIDE_ev3()
+    void Spec2Sm<Base>::TEST9_DECIDE_ev3()
     {
         // TEST9_DECIDE behavior
         // uml: EV3 [trace_guard("State TEST9_DECIDE: check behavior `EV3 TransitionTo(TEST9B_ROOT)`.", true)] / { trace("Transition action `` for TEST9_DECIDE to TEST9B_ROOT."); } TransitionTo(TEST9B_ROOT)
@@ -11740,13 +12659,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9_ROOT_enter()
+    void Spec2Sm<Base>::TEST9_ROOT_enter()
     {
         this->stateId = StateId::TEST9_ROOT;
         
@@ -11757,8 +12678,10 @@ namespace Spec2
             trace("Enter TEST9_ROOT.");
         } // end of behavior for TEST9_ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_ROOT_exit()
+    void Spec2Sm<Base>::TEST9_ROOT_exit()
     {
         // TEST9_ROOT behavior
         // uml: exit / { trace("Exit TEST9_ROOT."); }
@@ -11769,8 +12692,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST9_EXIT_CHOICE;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_ROOT_ev5()
+    void Spec2Sm<Base>::TEST9_ROOT_ev5()
     {
         // TEST9_ROOT behavior
         // uml: EV5 [trace_guard("State TEST9_ROOT: check behavior `EV5 / { count++; }`.", true)] / { count++; }
@@ -11782,13 +12707,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_G_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9_G_S1_enter()
+    void Spec2Sm<Base>::TEST9_G_S1_enter()
     {
         this->stateId = StateId::TEST9_G_S1;
         
@@ -11799,8 +12726,10 @@ namespace Spec2
             trace("Enter TEST9_G_S1.");
         } // end of behavior for TEST9_G_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_G_S1_exit()
+    void Spec2Sm<Base>::TEST9_G_S1_exit()
     {
         // TEST9_G_S1 behavior
         // uml: exit / { trace("Exit TEST9_G_S1."); }
@@ -11811,13 +12740,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_G_S2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9_G_S2_enter()
+    void Spec2Sm<Base>::TEST9_G_S2_enter()
     {
         this->stateId = StateId::TEST9_G_S2;
         
@@ -11828,8 +12759,10 @@ namespace Spec2
             trace("Enter TEST9_G_S2.");
         } // end of behavior for TEST9_G_S2
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_G_S2_exit()
+    void Spec2Sm<Base>::TEST9_G_S2_exit()
     {
         // TEST9_G_S2 behavior
         // uml: exit / { trace("Exit TEST9_G_S2."); }
@@ -11840,13 +12773,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_G_S3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9_G_S3_enter()
+    void Spec2Sm<Base>::TEST9_G_S3_enter()
     {
         this->stateId = StateId::TEST9_G_S3;
         
@@ -11857,8 +12792,10 @@ namespace Spec2
             trace("Enter TEST9_G_S3.");
         } // end of behavior for TEST9_G_S3
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_G_S3_exit()
+    void Spec2Sm<Base>::TEST9_G_S3_exit()
     {
         // TEST9_G_S3 behavior
         // uml: exit / { trace("Exit TEST9_G_S3."); }
@@ -11869,13 +12806,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_G_S4
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9_G_S4_enter()
+    void Spec2Sm<Base>::TEST9_G_S4_enter()
     {
         this->stateId = StateId::TEST9_G_S4;
         
@@ -11886,8 +12825,10 @@ namespace Spec2
             trace("Enter TEST9_G_S4.");
         } // end of behavior for TEST9_G_S4
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_G_S4_exit()
+    void Spec2Sm<Base>::TEST9_G_S4_exit()
     {
         // TEST9_G_S4 behavior
         // uml: exit / { trace("Exit TEST9_G_S4."); }
@@ -11898,13 +12839,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9_S1_enter()
+    void Spec2Sm<Base>::TEST9_S1_enter()
     {
         this->stateId = StateId::TEST9_S1;
         
@@ -11915,8 +12858,10 @@ namespace Spec2
             trace("Enter TEST9_S1.");
         } // end of behavior for TEST9_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_S1_exit()
+    void Spec2Sm<Base>::TEST9_S1_exit()
     {
         // TEST9_S1 behavior
         // uml: exit / { trace("Exit TEST9_S1."); }
@@ -11927,13 +12872,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9_S1_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9_S1_1_enter()
+    void Spec2Sm<Base>::TEST9_S1_1_enter()
     {
         this->stateId = StateId::TEST9_S1_1;
         
@@ -11952,8 +12899,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST9_S1_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_S1_1_exit()
+    void Spec2Sm<Base>::TEST9_S1_1_exit()
     {
         // TEST9_S1_1 behavior
         // uml: exit / { trace("Exit TEST9_S1_1."); }
@@ -11964,8 +12913,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST9_S1;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9_S1_1_ev1()
+    void Spec2Sm<Base>::TEST9_S1_1_ev1()
     {
         // TEST9_S1_1 behavior
         // uml: EV1 [trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.<ExitPoint>(1))`.", true)] / { trace("Transition action `` for TEST9_S1_1 to TEST9_S1.<ExitPoint>(1)."); } TransitionTo(TEST9_S1.<ExitPoint>(1))
@@ -12050,13 +13001,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9A_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9A_ROOT_enter()
+    void Spec2Sm<Base>::TEST9A_ROOT_enter()
     {
         this->stateId = StateId::TEST9A_ROOT;
         
@@ -12067,8 +13020,10 @@ namespace Spec2
             trace("Enter TEST9A_ROOT.");
         } // end of behavior for TEST9A_ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9A_ROOT_exit()
+    void Spec2Sm<Base>::TEST9A_ROOT_exit()
     {
         // TEST9A_ROOT behavior
         // uml: exit / { trace("Exit TEST9A_ROOT."); }
@@ -12079,13 +13034,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9_EXIT_CHOICE;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9A_S1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9A_S1_enter()
+    void Spec2Sm<Base>::TEST9A_S1_enter()
     {
         this->stateId = StateId::TEST9A_S1;
         
@@ -12096,8 +13053,10 @@ namespace Spec2
             trace("Enter TEST9A_S1.");
         } // end of behavior for TEST9A_S1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9A_S1_exit()
+    void Spec2Sm<Base>::TEST9A_S1_exit()
     {
         // TEST9A_S1 behavior
         // uml: exit / { trace("Exit TEST9A_S1."); }
@@ -12108,8 +13067,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST9A_ROOT;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9A_S1_InitialState_transition()
+    void Spec2Sm<Base>::TEST9A_S1_InitialState_transition()
     {
         // TEST9A_S1.<InitialState> behavior
         // uml: / { trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1."); } TransitionTo(TEST9A_S1_1)
@@ -12126,13 +13087,15 @@ namespace Spec2
             return;
         } // end of behavior for TEST9A_S1.<InitialState>
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9A_S1_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9A_S1_1_enter()
+    void Spec2Sm<Base>::TEST9A_S1_1_enter()
     {
         this->stateId = StateId::TEST9A_S1_1;
         
@@ -12151,8 +13114,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST9A_S1_1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9A_S1_1_exit()
+    void Spec2Sm<Base>::TEST9A_S1_1_exit()
     {
         // TEST9A_S1_1 behavior
         // uml: exit / { trace("Exit TEST9A_S1_1."); }
@@ -12171,8 +13136,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST9A_S1;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9A_S1_1_ev1()
+    void Spec2Sm<Base>::TEST9A_S1_1_ev1()
     {
         // TEST9A_S1_1 behavior
         // uml: EV1 [trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.<ExitPoint>(1))`.", true)] / { trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.<ExitPoint>(1)."); } TransitionTo(TEST9A_S1.<ExitPoint>(1))
@@ -12208,13 +13175,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9B_ROOT_enter()
+    void Spec2Sm<Base>::TEST9B_ROOT_enter()
     {
         this->stateId = StateId::TEST9B_ROOT;
         
@@ -12233,8 +13202,10 @@ namespace Spec2
             trace("IGNORE_OUTPUT_BEFORE_THIS");
         } // end of behavior for TEST9B_ROOT
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9B_ROOT_exit()
+    void Spec2Sm<Base>::TEST9B_ROOT_exit()
     {
         // TEST9B_ROOT behavior
         // uml: exit / { trace("Exit TEST9B_ROOT."); }
@@ -12245,8 +13216,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST9_EXIT_CHOICE;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9B_ROOT_ev1()
+    void Spec2Sm<Base>::TEST9B_ROOT_ev1()
     {
         // TEST9B_ROOT behavior
         // uml: EV1 [trace_guard("State TEST9B_ROOT: check behavior `EV1 TransitionTo(TEST9B_ROOT__A4)`.", true)] / { trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4."); } TransitionTo(TEST9B_ROOT__A4)
@@ -12270,13 +13243,15 @@ namespace Spec2
         
         // No ancestor handles this event.
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__A1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9B_ROOT__A1_enter()
+    void Spec2Sm<Base>::TEST9B_ROOT__A1_enter()
     {
         this->stateId = StateId::TEST9B_ROOT__A1;
         
@@ -12287,8 +13262,10 @@ namespace Spec2
             trace("Enter TEST9B_ROOT__A1.");
         } // end of behavior for TEST9B_ROOT__A1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9B_ROOT__A1_exit()
+    void Spec2Sm<Base>::TEST9B_ROOT__A1_exit()
     {
         // TEST9B_ROOT__A1 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__A1."); }
@@ -12299,13 +13276,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9B_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__A2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9B_ROOT__A2_enter()
+    void Spec2Sm<Base>::TEST9B_ROOT__A2_enter()
     {
         this->stateId = StateId::TEST9B_ROOT__A2;
         
@@ -12316,8 +13295,10 @@ namespace Spec2
             trace("Enter TEST9B_ROOT__A2.");
         } // end of behavior for TEST9B_ROOT__A2
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9B_ROOT__A2_exit()
+    void Spec2Sm<Base>::TEST9B_ROOT__A2_exit()
     {
         // TEST9B_ROOT__A2 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__A2."); }
@@ -12328,13 +13309,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9B_ROOT__A1;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__A3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9B_ROOT__A3_enter()
+    void Spec2Sm<Base>::TEST9B_ROOT__A3_enter()
     {
         this->stateId = StateId::TEST9B_ROOT__A3;
         
@@ -12345,8 +13328,10 @@ namespace Spec2
             trace("Enter TEST9B_ROOT__A3.");
         } // end of behavior for TEST9B_ROOT__A3
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9B_ROOT__A3_exit()
+    void Spec2Sm<Base>::TEST9B_ROOT__A3_exit()
     {
         // TEST9B_ROOT__A3 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__A3."); }
@@ -12357,13 +13342,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9B_ROOT__A2;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__A4
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9B_ROOT__A4_enter()
+    void Spec2Sm<Base>::TEST9B_ROOT__A4_enter()
     {
         this->stateId = StateId::TEST9B_ROOT__A4;
         
@@ -12374,8 +13361,10 @@ namespace Spec2
             trace("Enter TEST9B_ROOT__A4.");
         } // end of behavior for TEST9B_ROOT__A4
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9B_ROOT__A4_exit()
+    void Spec2Sm<Base>::TEST9B_ROOT__A4_exit()
     {
         // TEST9B_ROOT__A4 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__A4."); }
@@ -12386,8 +13375,10 @@ namespace Spec2
         
         this->stateId = StateId::TEST9B_ROOT__A3;
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9B_ROOT__A4_ev1()
+    void Spec2Sm<Base>::TEST9B_ROOT__A4_ev1()
     {
         bool consume_event = false;
         
@@ -12430,13 +13421,15 @@ namespace Spec2
             TEST9B_ROOT_ev1();
         }
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__B1
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9B_ROOT__B1_enter()
+    void Spec2Sm<Base>::TEST9B_ROOT__B1_enter()
     {
         this->stateId = StateId::TEST9B_ROOT__B1;
         
@@ -12447,8 +13440,10 @@ namespace Spec2
             trace("Enter TEST9B_ROOT__B1.");
         } // end of behavior for TEST9B_ROOT__B1
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9B_ROOT__B1_exit()
+    void Spec2Sm<Base>::TEST9B_ROOT__B1_exit()
     {
         // TEST9B_ROOT__B1 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__B1."); }
@@ -12459,13 +13454,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9B_ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__B2
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9B_ROOT__B2_enter()
+    void Spec2Sm<Base>::TEST9B_ROOT__B2_enter()
     {
         this->stateId = StateId::TEST9B_ROOT__B2;
         
@@ -12476,8 +13473,10 @@ namespace Spec2
             trace("Enter TEST9B_ROOT__B2.");
         } // end of behavior for TEST9B_ROOT__B2
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9B_ROOT__B2_exit()
+    void Spec2Sm<Base>::TEST9B_ROOT__B2_exit()
     {
         // TEST9B_ROOT__B2 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__B2."); }
@@ -12488,13 +13487,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9B_ROOT__B1;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__B3
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9B_ROOT__B3_enter()
+    void Spec2Sm<Base>::TEST9B_ROOT__B3_enter()
     {
         this->stateId = StateId::TEST9B_ROOT__B3;
         
@@ -12505,8 +13506,10 @@ namespace Spec2
             trace("Enter TEST9B_ROOT__B3.");
         } // end of behavior for TEST9B_ROOT__B3
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9B_ROOT__B3_exit()
+    void Spec2Sm<Base>::TEST9B_ROOT__B3_exit()
     {
         // TEST9B_ROOT__B3 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__B3."); }
@@ -12517,13 +13520,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9B_ROOT__B2;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state TEST9B_ROOT__B4
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::TEST9B_ROOT__B4_enter()
+    void Spec2Sm<Base>::TEST9B_ROOT__B4_enter()
     {
         this->stateId = StateId::TEST9B_ROOT__B4;
         
@@ -12534,8 +13539,10 @@ namespace Spec2
             trace("Enter TEST9B_ROOT__B4.");
         } // end of behavior for TEST9B_ROOT__B4
     }
+template <typename Base>
+
     
-    void Spec2Sm::TEST9B_ROOT__B4_exit()
+    void Spec2Sm<Base>::TEST9B_ROOT__B4_exit()
     {
         // TEST9B_ROOT__B4 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__B4."); }
@@ -12546,13 +13553,15 @@ namespace Spec2
         
         this->stateId = StateId::TEST9B_ROOT__B3;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state UNREACHABLE
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::UNREACHABLE_enter()
+    void Spec2Sm<Base>::UNREACHABLE_enter()
     {
         this->stateId = StateId::UNREACHABLE;
         
@@ -12563,8 +13572,10 @@ namespace Spec2
             trace("Enter UNREACHABLE.");
         } // end of behavior for UNREACHABLE
     }
+template <typename Base>
+
     
-    void Spec2Sm::UNREACHABLE_exit()
+    void Spec2Sm<Base>::UNREACHABLE_exit()
     {
         // UNREACHABLE behavior
         // uml: exit / { trace("Exit UNREACHABLE."); }
@@ -12575,13 +13586,15 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state USELESS
     ////////////////////////////////////////////////////////////////////////////////
     
-    void Spec2Sm::USELESS_enter()
+    void Spec2Sm<Base>::USELESS_enter()
     {
         this->stateId = StateId::USELESS;
         
@@ -12592,8 +13605,10 @@ namespace Spec2
             trace("Enter USELESS.");
         } // end of behavior for USELESS
     }
+template <typename Base>
+
     
-    void Spec2Sm::USELESS_exit()
+    void Spec2Sm<Base>::USELESS_exit()
     {
         // USELESS behavior
         // uml: exit / { trace("Exit USELESS."); }
@@ -12604,9 +13619,11 @@ namespace Spec2
         
         this->stateId = StateId::ROOT;
     }
+template <typename Base>
+
     
     // Thread safe.
-    char const * Spec2Sm::stateIdToString(StateId id)
+    char const * Spec2Sm<Base>::stateIdToString(StateId id)
     {
         switch (id)
         {
@@ -12787,9 +13804,11 @@ namespace Spec2
             default: return "?";
         }
     }
+template <typename Base>
+
     
     // Thread safe.
-    char const * Spec2Sm::eventIdToString(EventId id)
+    char const * Spec2Sm<Base>::eventIdToString(EventId id)
     {
         switch (id)
         {

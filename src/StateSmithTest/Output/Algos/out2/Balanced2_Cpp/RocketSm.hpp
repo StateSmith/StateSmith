@@ -5,7 +5,8 @@
 #include <stdint.h>
 
 // Generated state machine
-template <typename Base>
+class DefaultSmBase {};
+template <typename Base = DefaultSmBase>
 class RocketSm : Base
 {
 public:

@@ -5,212 +5,240 @@
 #include <stdbool.h> // required for `consume_event` flag
 #include <string.h> // for memset
 
+template <typename Base>
 
-// Starts the state machine. Must be called before dispatching events. Not thread safe.
-void RocketSm::start()
-{
-    ROOT_enter();
-    // ROOT behavior
-    // uml: TransitionTo(ROOT.<InitialState>)
+    
+    // Starts the state machine. Must be called before dispatching events. Not thread safe.
+    void RocketSm<Base>::start()
     {
-        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-        
-        // Step 2: Transition action: ``.
-        
-        // Step 3: Enter/move towards transition target `ROOT.<InitialState>`.
-        // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
-        
-        // ROOT.<InitialState> behavior
-        // uml: TransitionTo(group)
+        ROOT_enter();
+        // ROOT behavior
+        // uml: TransitionTo(ROOT.<InitialState>)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: ``.
             
-            // Step 3: Enter/move towards transition target `group`.
-            GROUP_enter();
+            // Step 3: Enter/move towards transition target `ROOT.<InitialState>`.
+            // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
-            // group.<InitialState> behavior
-            // uml: TransitionTo(g1)
+            // ROOT.<InitialState> behavior
+            // uml: TransitionTo(group)
             {
-                // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: ``.
                 
-                // Step 3: Enter/move towards transition target `g1`.
-                G1_enter();
+                // Step 3: Enter/move towards transition target `group`.
+                GROUP_enter();
                 
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                return;
-            } // end of behavior for group.<InitialState>
-        } // end of behavior for ROOT.<InitialState>
-    } // end of behavior for ROOT
-}
-
-// Dispatches an event to the state machine. Not thread safe.
-// Note! This function assumes that the `eventId` parameter is valid.
-void RocketSm::dispatchEvent(EventId eventId)
-{
-    
-    switch (this->stateId)
-    {
-        // STATE: RocketSm
-        case StateId::ROOT:
-            // state and ancestors have no handler for `do` event.
-            break;
-        
-        // STATE: group
-        case StateId::GROUP:
-            // state and ancestors have no handler for `do` event.
-            break;
-        
-        // STATE: g1
-        case StateId::G1:
-            G1_do(); 
-            break;
-        
-        // STATE: g2
-        case StateId::G2:
-            G2_do(); 
-            break;
+                // group.<InitialState> behavior
+                // uml: TransitionTo(g1)
+                {
+                    // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                    
+                    // Step 2: Transition action: ``.
+                    
+                    // Step 3: Enter/move towards transition target `g1`.
+                    G1_enter();
+                    
+                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                    return;
+                } // end of behavior for group.<InitialState>
+            } // end of behavior for ROOT.<InitialState>
+        } // end of behavior for ROOT
     }
-    
-}
+template <typename Base>
 
-// This function is used when StateSmith doesn't know what the active leaf state is at
-// compile time due to sub states or when multiple states need to be exited.
-void RocketSm::exitUpToStateHandler(StateId desiredState)
-{
-    while (this->stateId != desiredState)
+    
+    // Dispatches an event to the state machine. Not thread safe.
+    // Note! This function assumes that the `eventId` parameter is valid.
+    void RocketSm<Base>::dispatchEvent(EventId eventId)
     {
+        
         switch (this->stateId)
         {
-            case StateId::GROUP: GROUP_exit(); break;
+            // STATE: RocketSm
+            case StateId::ROOT:
+                // state and ancestors have no handler for `do` event.
+                break;
             
-            case StateId::G1: G1_exit(); break;
+            // STATE: group
+            case StateId::GROUP:
+                // state and ancestors have no handler for `do` event.
+                break;
             
-            case StateId::G2: G2_exit(); break;
+            // STATE: g1
+            case StateId::G1:
+                G1_do(); 
+                break;
             
-            default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
+            // STATE: g2
+            case StateId::G2:
+                G2_do(); 
+                break;
+        }
+        
+    }
+template <typename Base>
+
+    
+    // This function is used when StateSmith doesn't know what the active leaf state is at
+    // compile time due to sub states or when multiple states need to be exited.
+    void RocketSm<Base>::exitUpToStateHandler(StateId desiredState)
+    {
+        while (this->stateId != desiredState)
+        {
+            switch (this->stateId)
+            {
+                case StateId::GROUP: GROUP_exit(); break;
+                
+                case StateId::G1: G1_exit(); break;
+                
+                case StateId::G2: G2_exit(); break;
+                
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
+            }
         }
     }
-}
+template <typename Base>
 
-
-////////////////////////////////////////////////////////////////////////////////
-// event handlers for state ROOT
-////////////////////////////////////////////////////////////////////////////////
-
-void RocketSm::ROOT_enter()
-{
-    this->stateId = StateId::ROOT;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// event handlers for state GROUP
-////////////////////////////////////////////////////////////////////////////////
-
-void RocketSm::GROUP_enter()
-{
-    this->stateId = StateId::GROUP;
-}
-
-void RocketSm::GROUP_exit()
-{
-    this->stateId = StateId::ROOT;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// event handlers for state G1
-////////////////////////////////////////////////////////////////////////////////
-
-void RocketSm::G1_enter()
-{
-    this->stateId = StateId::G1;
-}
-
-void RocketSm::G1_exit()
-{
-    this->stateId = StateId::GROUP;
-}
-
-void RocketSm::G1_do()
-{
-    // g1 behavior
-    // uml: do TransitionTo(g2)
-    {
-        // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
-        G1_exit();
-        
-        // Step 2: Transition action: ``.
-        
-        // Step 3: Enter/move towards transition target `g2`.
-        G2_enter();
-        
-        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-        return;
-    } // end of behavior for g1
     
-    // No ancestor handles this event.
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// event handlers for state G2
-////////////////////////////////////////////////////////////////////////////////
-
-void RocketSm::G2_enter()
-{
-    this->stateId = StateId::G2;
-}
-
-void RocketSm::G2_exit()
-{
-    this->stateId = StateId::GROUP;
-}
-
-void RocketSm::G2_do()
-{
-    // g2 behavior
-    // uml: do [x > 50] TransitionTo(g1)
-    if (x > 50)
-    {
-        // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
-        G2_exit();
-        
-        // Step 2: Transition action: ``.
-        
-        // Step 3: Enter/move towards transition target `g1`.
-        G1_enter();
-        
-        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-        return;
-    } // end of behavior for g2
     
-    // No ancestor handles this event.
-}
-
-// Thread safe.
-char const * RocketSm::stateIdToString(StateId id)
-{
-    switch (id)
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state ROOT
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    void RocketSm<Base>::ROOT_enter()
     {
-        case StateId::ROOT: return "ROOT";
-        case StateId::GROUP: return "GROUP";
-        case StateId::G1: return "G1";
-        case StateId::G2: return "G2";
-        default: return "?";
+        this->stateId = StateId::ROOT;
     }
-}
+template <typename Base>
 
-// Thread safe.
-char const * RocketSm::eventIdToString(EventId id)
-{
-    switch (id)
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state GROUP
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    void RocketSm<Base>::GROUP_enter()
     {
-        case EventId::DO: return "DO";
-        default: return "?";
+        this->stateId = StateId::GROUP;
     }
-}
+template <typename Base>
+
+    
+    void RocketSm<Base>::GROUP_exit()
+    {
+        this->stateId = StateId::ROOT;
+    }
+template <typename Base>
+
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state G1
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    void RocketSm<Base>::G1_enter()
+    {
+        this->stateId = StateId::G1;
+    }
+template <typename Base>
+
+    
+    void RocketSm<Base>::G1_exit()
+    {
+        this->stateId = StateId::GROUP;
+    }
+template <typename Base>
+
+    
+    void RocketSm<Base>::G1_do()
+    {
+        // g1 behavior
+        // uml: do TransitionTo(g2)
+        {
+            // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
+            G1_exit();
+            
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `g2`.
+            G2_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for g1
+        
+        // No ancestor handles this event.
+    }
+template <typename Base>
+
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state G2
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    void RocketSm<Base>::G2_enter()
+    {
+        this->stateId = StateId::G2;
+    }
+template <typename Base>
+
+    
+    void RocketSm<Base>::G2_exit()
+    {
+        this->stateId = StateId::GROUP;
+    }
+template <typename Base>
+
+    
+    void RocketSm<Base>::G2_do()
+    {
+        // g2 behavior
+        // uml: do [x > 50] TransitionTo(g1)
+        if (x > 50)
+        {
+            // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
+            G2_exit();
+            
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `g1`.
+            G1_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for g2
+        
+        // No ancestor handles this event.
+    }
+template <typename Base>
+
+    
+    // Thread safe.
+    char const * RocketSm<Base>::stateIdToString(StateId id)
+    {
+        switch (id)
+        {
+            case StateId::ROOT: return "ROOT";
+            case StateId::GROUP: return "GROUP";
+            case StateId::G1: return "G1";
+            case StateId::G2: return "G2";
+            default: return "?";
+        }
+    }
+template <typename Base>
+
+    
+    // Thread safe.
+    char const * RocketSm<Base>::eventIdToString(EventId id)
+    {
+        switch (id)
+        {
+            case EventId::DO: return "DO";
+            default: return "?";
+        }
+    }

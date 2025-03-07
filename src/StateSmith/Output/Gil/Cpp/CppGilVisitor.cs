@@ -151,13 +151,8 @@ public class CppGilVisitor : CSharpSyntaxWalker
                 // skip public on top level classes
                 list.VisitUpToThenSkip(node.Modifiers.Single(), outputLeadingTrivia: true);
 
-                // output template declaration if base class is not specified
-                // TODO consolidate with MaybeoutputBaseList?
-                var baseList = renderConfigCpp.BaseClassCode.Trim();
-                if (baseList.Length == 0)
-                {
-                    sb.AppendLine("template <typename Base>");
-                }
+                sb.AppendLine("class DefaultSmBase {};");
+                sb.AppendLine("template <typename Base = DefaultSmBase>");
             }
             list.VisitUpTo(node.Identifier, including: true);
             StringUtils.EraseTrailingWhitespace(sb);
@@ -375,10 +370,11 @@ public class CppGilVisitor : CSharpSyntaxWalker
         }
         else
         {
+            sb.AppendLine("template <typename Base>\n");
             list.VisitUpTo(node.Identifier);
             IMethodSymbol symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
 
-            sb.Append(symbol.ContainingSymbol.Name + "::");
+            sb.Append(symbol.ContainingSymbol.Name + "<Base>::");
             list.VisitRest();
         }
     }
@@ -401,7 +397,7 @@ public class CppGilVisitor : CSharpSyntaxWalker
     {
         var baseList = renderConfigCpp.BaseClassCode.Trim();
         if (baseList.Length > 0)
-            sb.Append(" : " + baseList);
+            sb.Append(" : Base, " + baseList);
         else
             sb.Append(" : Base");
     }
