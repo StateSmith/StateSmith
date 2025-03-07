@@ -146,10 +146,18 @@ public class CppGilVisitor : CSharpSyntaxWalker
         {
             var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
 
-            // skip public on top level classes
             if (classDepth == 1)
             {
+                // skip public on top level classes
                 list.VisitUpToThenSkip(node.Modifiers.Single(), outputLeadingTrivia: true);
+
+                // output template declaration if base class is not specified
+                // TODO consolidate with MaybeoutputBaseList?
+                var baseList = renderConfigCpp.BaseClassCode.Trim();
+                if (baseList.Length == 0)
+                {
+                    sb.AppendLine("template <typename Base>");
+                }
             }
             list.VisitUpTo(node.Identifier, including: true);
             StringUtils.EraseTrailingWhitespace(sb);
@@ -394,6 +402,8 @@ public class CppGilVisitor : CSharpSyntaxWalker
         var baseList = renderConfigCpp.BaseClassCode.Trim();
         if (baseList.Length > 0)
             sb.Append(" : " + baseList);
+        else
+            sb.Append(" : Base");
     }
 
     // to ignore GIL attributes

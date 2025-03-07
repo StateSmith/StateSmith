@@ -5,7 +5,8 @@
 #include <stdint.h>
 
 // Generated state machine
-class RocketSm
+template <typename Base>
+class RocketSm : Base
 {
 public:
     enum class EventId: uint8_t
