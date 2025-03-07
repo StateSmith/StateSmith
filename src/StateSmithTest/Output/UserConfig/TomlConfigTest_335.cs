@@ -160,7 +160,7 @@ public class TomlConfigTest_335
         TestHelper.ExpectFieldCount<RenderConfigTypeScriptVars>(3, because: "test need updating");
         // cpp
         TestHelper.ExpectPropertyCount<IRenderConfigCpp>(14, because: "test need updating");
-        TestHelper.ExpectFieldCount<RenderConfigCppVars>(14, because: "test need updating");
+        TestHelper.ExpectFieldCount<RenderConfigCppVars>(13, because: "test need updating");
         // python
         TestHelper.ExpectPropertyCount<IRenderConfigPython>(3, because: "test need updating");
         TestHelper.ExpectFieldCount<RenderConfigPythonVars>(3, because: "test need updating");
@@ -209,7 +209,6 @@ public class TomlConfigTest_335
             CFileTop = ""
             CFileIncludes = ""
             CFileBottom = ""
-            CFileExtension = ".cpp"
             HFileExtension = ".hpp"
             NameSpace = ""
             BaseClassCode = ""
