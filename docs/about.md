@@ -66,8 +66,8 @@ github integration documentation.
 * homebrew support
 * apt get support
 * Add download links to sidebar
-* Figure out best way to consolidate actions
 * Don't generate pages if tests don't pass
+* Fix OO examples to have classname `Lightbulb` instead of `lightbulb`
 
 
 ## FUTURE WORK
