@@ -1,0 +1,8 @@
+@startuml
+[*] --> Off
+Off --> On : Switch
+On --> Off : Switch
+
+On: enter / printf("powerOn\n");
+Off: enter / printf("powerOff\n");
+@enduml

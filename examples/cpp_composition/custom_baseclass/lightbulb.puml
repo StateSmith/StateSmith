@@ -1,0 +1,8 @@
+@startuml
+[*] --> Off
+Off --> On : Switch
+On --> Off : Switch
+
+On: enter / callback.powerOn();
+Off: enter / callback.powerOff();
+@enduml

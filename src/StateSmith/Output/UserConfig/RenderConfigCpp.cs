@@ -37,11 +37,6 @@ public class RenderConfigCppVars
     public string CFileBottom = "";
 
     /// <summary>
-    /// Can be changed to ".cpp" (or whatever) to support C++ until idiomatic C++ support is added.
-    /// </summary>
-    public string CFileExtension = ".cpp";
-
-    /// <summary>
     /// Can be changed to ".hh" (or whatever) if you like.
     /// </summary>
     public string HFileExtension = ".hpp";
@@ -89,7 +84,6 @@ public class RenderConfigCppVars
         BaseClassCode = Process(config.BaseClassCode);
 
         ClassCode = Process(config.ClassCode);
-        CFileExtension = config.CFileExtension.Trim();
         HFileExtension = config.HFileExtension.Trim();
         IncludeGuardLabel = config.IncludeGuardLabel.Trim();
     }

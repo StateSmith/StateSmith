@@ -41,7 +41,7 @@ public class SharedCompilationFixture
         {
             IsCpp = true,
             WorkingDirectory = OutputDirectory,
-            SourceFiles = ["helper.o", "main.cpp", "Spec2Sm.cpp"],
+            SourceFiles = ["helper.o", "main.cpp"],
             IncludePaths = ["../../lang-helpers/c"],
             Flags = [
                 // we disable `unused-function` warning because some states are intentionally unreachable

@@ -15,7 +15,6 @@ namespace StateSmith.Output.Gil.Cpp;
 public class CppGilVisitor : CSharpSyntaxWalker
 {
     public readonly StringBuilder hFileSb = new();
-    public readonly StringBuilder cFileSb = new();
 
     private bool renderingHeader = false;
     private int classDepth = 0;
@@ -43,7 +42,7 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
     public CppGilVisitor(string gilCode, CppGilHelpers cppGilHelpers) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
-        this.sb = cFileSb;
+        this.sb = hFileSb;
         this.cppObjs = cppGilHelpers;
         transpilerHelper = GilTranspilerHelper.Create(this, gilCode, cppObjs.roslynCompiler);
         model = transpilerHelper.model;
@@ -59,7 +58,6 @@ public class CppGilVisitor : CSharpSyntaxWalker
         }
 
         OutputHFileTopSections();
-        OutputCFileTopSections();
 
         renderingHeader = true;
         sb = hFileSb;
@@ -68,8 +66,8 @@ public class CppGilVisitor : CSharpSyntaxWalker
         renderingHeader = false;
         sb = new StringBuilder(); // temp so that we can deindent
         this.DefaultVisit(transpilerHelper.root);
-        cFileSb.Append(StringUtils.DeIndent(sb.ToString()));
-        sb = cFileSb;
+        hFileSb.Append(StringUtils.DeIndent(sb.ToString()));
+        sb = hFileSb;
 
         OutputFileBottomSections();
     }
@@ -94,14 +92,10 @@ public class CppGilVisitor : CSharpSyntaxWalker
         return $"{cppObjs.outputInfo.BaseFileName}{renderConfigCpp.HFileExtension}";
     }
 
-    public string MakeCFileName()
-    {
-        return $"{cppObjs.outputInfo.BaseFileName}{renderConfigCpp.CFileExtension}";
-    }
 
     private void OutputCFileTopSections()
     {
-        sb = cFileSb;
+        sb = hFileSb;
         transpilerHelper.PreProcess();
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
         sb.AppendLineIfNotBlank(renderConfigCpp.CFileTop);
@@ -118,7 +112,7 @@ public class CppGilVisitor : CSharpSyntaxWalker
         includeGuardProvider.OutputIncludeGuardBottom(hFileSb);
         hFileSb.AppendLineIfNotBlank(renderConfigCpp.HFileBottom);
 
-        cFileSb.AppendLineIfNotBlank(renderConfigCpp.CFileBottom);
+        hFileSb.AppendLineIfNotBlank(renderConfigCpp.CFileBottom);
     }
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
@@ -150,6 +144,9 @@ public class CppGilVisitor : CSharpSyntaxWalker
             if (classDepth == 1)
             {
                 list.VisitUpToThenSkip(node.Modifiers.Single(), outputLeadingTrivia: true);
+
+                sb.AppendLine("class DefaultSmBase {};");
+                sb.AppendLine("template <typename Base = DefaultSmBase>");
             }
             list.VisitUpTo(node.Identifier, including: true);
             StringUtils.EraseTrailingWhitespace(sb);
@@ -367,10 +364,11 @@ public class CppGilVisitor : CSharpSyntaxWalker
         }
         else
         {
+            sb.AppendLine("template <typename Base>\n");
             list.VisitUpTo(node.Identifier);
             IMethodSymbol symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
 
-            sb.Append(symbol.ContainingSymbol.Name + "::");
+            sb.Append(symbol.ContainingSymbol.Name + "<Base>::");
             list.VisitRest();
         }
     }
@@ -393,7 +391,9 @@ public class CppGilVisitor : CSharpSyntaxWalker
     {
         var baseList = renderConfigCpp.BaseClassCode.Trim();
         if (baseList.Length > 0)
-            sb.Append(" : " + baseList);
+            sb.Append(" : Base, " + baseList);
+        else
+            sb.Append(" : Base");
     }
 
     // to ignore GIL attributes

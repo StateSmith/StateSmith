@@ -33,7 +33,6 @@ public class RenderConfigCpp_Test
                 CFileTop = "// CFileTop"
                 CFileIncludes = "// CFileIncludes"
                 CFileBottom = "// CFileBottom"
-                CFileExtension = ".cc"
                 HFileExtension = ".hh"
             '/
             @enduml
@@ -68,19 +67,6 @@ public class RenderConfigCpp_Test
             index = ExpectNext(hCode, index, "\n// HFileBottom\n");
         }
 
-        // test C file
-        {
-            var cCode = fakeFs.GetCapturesForFileName("ExampleSm.cc").Single().code.ConvertLineEndingsToN();
-
-            int index = 0;
-            index = ExpectNext(cCode, index, "\n// FileTop\n");
-            index = ExpectNext(cCode, index, "\n// CFileTop\n");
-            index = ExpectNext(cCode, index, "\n#include \"ExampleSm.hh\"\n"); // auto included by StateSmith
-            index = ExpectNext(cCode, index, "\n#include <stdbool.h> ");        // auto included by StateSmith
-            index = ExpectNext(cCode, index, "\n#include <string.h> ");         // auto included by StateSmith
-            index = ExpectNext(cCode, index, "\n// CFileIncludes\n");
-            index = ExpectNext(cCode, index, "\n// CFileBottom\n");
-        }
     }
 
     /// <summary>
@@ -109,7 +95,6 @@ public class RenderConfigCpp_Test
                 CFileTop = "// CFileTop"
                 CFileIncludes = "// CFileIncludes"
                 CFileBottom = "// CFileBottom"
-                CFileExtension = ".cpp"
                 HFileExtension = ".hpp"
             '/
             @enduml

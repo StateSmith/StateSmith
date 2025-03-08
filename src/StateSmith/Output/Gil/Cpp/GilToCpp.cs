@@ -23,9 +23,7 @@ public class GilToCpp: IGilTranspiler
         visitor.Process();
 
         PostProcessor.PostProcess(visitor.hFileSb);
-        PostProcessor.PostProcess(visitor.cFileSb);
 
-        codeFileWriter.WriteFile($"{outputInfo.OutputDirectory}{visitor.MakeCFileName()}", code: visitor.cFileSb.ToString());
         codeFileWriter.WriteFile($"{outputInfo.OutputDirectory}{visitor.MakeHFileName()}", code: visitor.hFileSb.ToString());
     }
 }
