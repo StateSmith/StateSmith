@@ -1,5 +1,5 @@
 
-# Assumes that ss.cli and plantuml are in your path
+# Assumes that statesmith and plantuml are in your path
 
 # In general,
 #   1. Make copies the diagram file (*.puml) to the site directory
@@ -20,11 +20,11 @@ $(SITE_DIR)/%.svg: $(SITE_DIR)/%.puml
 
 $(SITE_DIR)/%.sim.html: $(SITE_DIR)/%.puml
 	mkdir -p $(@D)
-	cd $(@D) && ss.cli run --lang=JavaScript --no-ask --no-csx -h -b
+	statesmith --lang=JavaScript $<
 
 $(SITE_DIR)/%.c: $(SITE_DIR)/%.puml
 	mkdir -p $(@D)
-	cd $(@D) && ss.cli run --lang=C99 --no-ask --no-csx -h -b
+	statesmith --lang=JavaScript $<
 
 $(SITE_DIR)/%.puml: $(DOCS_DIR)/%.puml
 	mkdir -p $(@D)
