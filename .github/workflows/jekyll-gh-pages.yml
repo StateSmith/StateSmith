@@ -82,7 +82,7 @@ jobs:
           source: ./docs
           destination: ./_site
 
-      - name: Run makefiles
+      - name: Run docs makefiles
         run: |
           set -e
           sudo chmod -R 'a+w' ./_site
