@@ -67,12 +67,10 @@ jobs:
       - name: Build StateSmith
         run: |
           set -e
-          mkdir -p ~/bin/
-          echo ~/bin >> $GITHUB_PATH
-          dotnet build -c Release ./src/StateSmith.Exe/StateSmith.Exe.csproj
-          cp ./src/StateSmith.Exe/bin/Release/net9.0/StateSmith.Exe ~/bin/statesmith
-
-
+          dotnet build -c Release -p:PublishSingleFile=true --self-contained -p:DefineConstants="SS_SINGLE_FILE_APPLICATION" ./src/StateSmith.Exe/
+          cp ./src/StateSmith.Exe/bin/Release/net9.0/*/StateSmith.Exe /usr/local/bin/statesmith
+          statesmith --version
+          
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build with Jekyll
