@@ -2,9 +2,9 @@
 # Assumes that statesmith and plantuml are in your path
 
 # In general,
-#   1. Make copies the diagram file (*.puml) to the site directory
-#   2. Make generates the SVG file from the diagram file, both in the site directory
-#   3. Make generates the simulator and code file(s) from the same diagram file
+#   1. Copy the diagram file (*.puml) to the site directory
+#   2. Generate the SVG file from the diagram file, both in the site directory
+#   3. Generate the simulator and code file(s) from the same diagram file
 
 # The docs directory
 DOCS_DIR = $(REPO_ROOT)/docs
