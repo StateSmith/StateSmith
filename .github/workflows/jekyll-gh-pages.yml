@@ -70,7 +70,6 @@ jobs:
           cat > /usr/local/bin/statesmith <<EOF
           #!/bin/sh
           dotnet run --framework net9.0 --project `pwd`/src/StateSmith.Exe/StateSmith.Exe.csproj -- $@
-          exit $?
           EOF
           sudo chmod +x /usr/local/bin/statesmith
           
