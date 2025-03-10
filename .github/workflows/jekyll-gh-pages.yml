@@ -64,10 +64,14 @@ jobs:
           sudo chmod +x /usr/local/bin/plantuml
           plantuml --version
 
-      - name: Install ss.cli
+      - name: Build StateSmith
         run: |
-          dotnet tool install --global StateSmith.Cli --version 0.17.5
-          ss.cli --version
+          set -e
+          mkdir -p ~/bin/
+          echo ~/bin >> $GITHUB_PATH
+          dotnet build -c Release ./src/StateSmith.Exe/StateSmith.Exe.csproj
+          cp ./src/StateSmith.Exe/bin/Release/net9.0/StateSmith.Exe ~/bin/statesmith
+
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
