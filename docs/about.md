@@ -62,11 +62,9 @@ github integration documentation.
 
 
 ## TODO
-* jekyll pages should build and use the current ss.cli not the hardcoded package
 * homebrew support
 * apt get support
 * Add download links to sidebar
-* Don't generate pages if tests don't pass
 * Fix OO examples to have classname `Lightbulb` instead of `lightbulb`
 
 
