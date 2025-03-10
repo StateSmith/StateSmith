@@ -14,18 +14,19 @@ SITE_DIR := $(REPO_ROOT)/_site
 
 
 
+# generate the diagrams in the destination directory
 $(SITE_DIR)/%.svg: $(SITE_DIR)/%.puml
-	mkdir -p $(@D)
 	cd $(@D) && plantuml -tsvg $(<F)
 
+# generate the code in the destination directory
 $(SITE_DIR)/%.sim.html: $(SITE_DIR)/%.puml
-	mkdir -p $(@D)
-	statesmith --lang=JavaScript $<
+	cd $(@D) && statesmith --lang=JavaScript $<
 
+# generate the code in the destination directory
 $(SITE_DIR)/%.c: $(SITE_DIR)/%.puml
-	mkdir -p $(@D)
-	statesmith --lang=JavaScript $<
+	cd $(@D) && statesmith --lang=JavaScript $<
 
+# copy the diagram code to the destination directory
 $(SITE_DIR)/%.puml: $(DOCS_DIR)/%.puml
 	mkdir -p $(@D)
 	cp $< $@
