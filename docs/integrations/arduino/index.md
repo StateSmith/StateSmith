@@ -60,7 +60,7 @@ Now that you have the hook, you can implement the script that will run StateSmit
 set -e
 
 plantuml -tsvg FILENAME.puml
-ss.cli run -h --lang=CPP --no-csx
+statesmith --lang=CPP FILENAME.puml
 mv FILENAME.cpp FILENAME.inc.h
 ```
 
