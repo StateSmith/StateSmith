@@ -64,12 +64,14 @@ jobs:
           sudo chmod +x /usr/local/bin/plantuml
           plantuml --version
 
-      - name: Build StateSmith
+      - name: Install local statesmith
         run: |
           set -e
-          dotnet build -c Release -p:PublishSingleFile=true --self-contained -p:DefineConstants="SS_SINGLE_FILE_APPLICATION" ./src/StateSmith.Exe/
-          cp ./src/StateSmith.Exe/bin/Release/net9.0/*/StateSmith.Exe /usr/local/bin/statesmith
-          statesmith --version
+          cat > /usr/local/bin/statesmith <<EOF
+          #!/bin/sh
+          dotnet run --framework net9.0 --project `pwd`/src/StateSmith.Exe/StateSmith.Exe.csproj -- $@
+          EOF
+          sudo chmod +x /usr/local/bin/statesmith
           
       - name: Setup Pages
         uses: actions/configure-pages@v5
