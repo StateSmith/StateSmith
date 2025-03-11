@@ -1,5 +1,6 @@
 # Generating Java State Machines
 
+> TODO depends on default inheritance
 
 ## Prerequisites
 
