@@ -18,13 +18,25 @@ SITE_DIR := $(REPO_ROOT)/_site
 $(SITE_DIR)/%.svg: $(SITE_DIR)/%.puml
 	cd $(@D) && plantuml -tsvg $(<F)
 
-# generate the code in the destination directory
+# generate the simulator in the destination directory
 $(SITE_DIR)/%.sim.html: $(SITE_DIR)/%.puml
 	cd $(@D) && statesmith --lang=JavaScript $<
 
-# generate the code in the destination directory
+# generate C in the destination directory
 $(SITE_DIR)/%.c: $(SITE_DIR)/%.puml
+	cd $(@D) && statesmith --lang=C99 $<
+
+# generate Java in the destination directory
+$(SITE_DIR)/%.java: $(SITE_DIR)/%.puml
+	cd $(@D) && statesmith --lang=Java $<
+
+# generate JavaScript in the destination directory
+$(SITE_DIR)/%.js: $(SITE_DIR)/%.puml
 	cd $(@D) && statesmith --lang=JavaScript $<
+
+# generate Python in the destination directory
+$(SITE_DIR)/%.py: $(SITE_DIR)/%.puml
+	cd $(@D) && statesmith --lang=Python $<
 
 # copy the diagram code to the destination directory
 $(SITE_DIR)/%.puml: $(DOCS_DIR)/%.puml
