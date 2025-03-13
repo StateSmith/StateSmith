@@ -1,7 +1,16 @@
 public class MyApp {
-    public static void main(String[] args) {        
-        Lightbulb bulb = new Lightbulb();
+    public static void main(String[] args) throws Exception {
+        LightbulbCallback callback = new LightbulbCallback();    
+        Lightbulb bulb = new Lightbulb(callback);
         bulb.start();
-        bulb.dispatchEvent(Lightbulb.Events.SWITCH);
+
+        System.out.println("Press <enter> to toggle the light switch.");
+        System.out.println("Press ^C to quit.");
+
+        while(true) {
+            System.in.read();
+            bulb.dispatchEvent(Lightbulb.EventId.SWITCH);
+        }
+        
     }
 }
