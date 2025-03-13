@@ -13,34 +13,27 @@ DOCS_DIR = $(REPO_ROOT)/docs
 SITE_DIR := $(REPO_ROOT)/_site
 
 
+%.sim.html: %.puml
+	statesmith --lang=JavaScript $<
+
+%.c: %.puml
+	statesmith --lang=C99 $<
+
+%.cpp: %.puml
+	statesmith --lang=cpp $<
+
+%.java: %.puml
+	statesmith --lang=Java $<
+
+%.js: %.puml
+	statesmith --lang=JavaScript $<
+
+%.py: %.puml
+	statesmith --lang=Python $<
 
 # generate the diagrams in the destination directory
-$(SITE_DIR)/%.svg: $(SITE_DIR)/%.puml
+%.svg: %.puml
 	cd $(@D) && plantuml -tsvg $(<F)
-
-# generate the simulator in the destination directory
-$(SITE_DIR)/%.sim.html: $(SITE_DIR)/%.puml
-	cd $(@D) && statesmith --lang=JavaScript $<
-
-# generate C in the destination directory
-$(SITE_DIR)/%.c: $(SITE_DIR)/%.puml
-	cd $(@D) && statesmith --lang=C99 $<
-
-# generate C++ in the destination directory
-$(SITE_DIR)/%.cpp: $(SITE_DIR)/%.puml
-	cd $(@D) && statesmith --lang=cpp $<
-
-# generate Java in the destination directory
-$(SITE_DIR)/%.java: $(SITE_DIR)/%.puml
-	cd $(@D) && statesmith --lang=Java $<
-
-# generate JavaScript in the destination directory
-$(SITE_DIR)/%.js: $(SITE_DIR)/%.puml
-	cd $(@D) && statesmith --lang=JavaScript $<
-
-# generate Python in the destination directory
-$(SITE_DIR)/%.py: $(SITE_DIR)/%.puml
-	cd $(@D) && statesmith --lang=Python $<
 
 # copy the diagram code to the destination directory
 $(SITE_DIR)/%.puml: $(DOCS_DIR)/%.puml
