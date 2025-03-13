@@ -1,6 +1,6 @@
 # Generating Java State Machines
 
-> TODO depends on default inheritance
+> TODO depends on default callbacks
 
 ## Prerequisites
 
