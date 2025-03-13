@@ -47,8 +47,8 @@ Take a look at the generated files on the disk. They should look pretty similar 
 To write an app that will use your new state machine,
 add the following contents to a new file `MyApp.java`. This code will:
 
-1. Implement a base class that defines the `enter_on()` and `enter_off()` methods you referenced in `Lightbulb.puml`.
-2. Instantiate the state machine.
+1. Implement a callback class that defines the `enter_on()` and `enter_off()` methods you referenced in `Lightbulb.puml`.
+2. Instantiate the state machine with an instance of that callback.
 3. Start an event loop that tickles the state machine with every tick of the loop.
 
 ```java
