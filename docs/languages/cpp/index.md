@@ -59,7 +59,7 @@ add the following contents to a new file `myapp.cpp`. This code will:
 
 ```c++
 // LightbulbCallback.cpp
-{% include_relative LightbulbCallback.cpp %}
+{% include_relative LightbulbCallback.hpp %}
 ```
 
 ```c++
