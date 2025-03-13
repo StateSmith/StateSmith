@@ -74,14 +74,6 @@ jobs:
           EOF
           sudo chmod +x /usr/local/bin/statesmith
           
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./docs
-          destination: ./_site
-
       - name: Run docs makefiles
         run: |
           set -e
@@ -95,6 +87,14 @@ jobs:
             )
           done
           find _site
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./docs
+          destination: ./_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
