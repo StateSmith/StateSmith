@@ -55,7 +55,12 @@ add the following contents to a new file `MyApp.java`. This code will:
 3. Start an event loop that tickles the state machine with every tick of the loop.
 
 ```java
-/* MyApp.java */
+// LightbulbCallback.java
+{% include_relative LightbulbCallback.java %}
+```
+
+```java
+// MyApp.java
 {% include_relative MyApp.java %}
 ```
 
