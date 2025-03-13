@@ -7,6 +7,6 @@ On -> Off : Switch
 ' such as entering or exiting a state.
 ' You can call these functions whatever you want.
 ' You will define these functions in your app.
-Off: enter / enter_off();
-On: enter / enter_on();
+Off: enter / callback.enter_off();
+On: enter / callback.enter_on();
 @enduml
