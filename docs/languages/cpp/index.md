@@ -64,7 +64,7 @@ add the following contents to a new file `myapp.cpp`. This code will:
 
 ```c++
 // MyApp.cpp
-{% include_relative LightbulbCallback.cpp %}
+{% include_relative MyApp.cpp %}
 ```
 
 To run your app, compile it with the C++ compiler of your choice. Here we use Gnu g++
