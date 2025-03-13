@@ -26,6 +26,10 @@ $(SITE_DIR)/%.sim.html: $(SITE_DIR)/%.puml
 $(SITE_DIR)/%.c: $(SITE_DIR)/%.puml
 	cd $(@D) && statesmith --lang=C99 $<
 
+# generate C++ in the destination directory
+$(SITE_DIR)/%.cpp: $(SITE_DIR)/%.puml
+	cd $(@D) && statesmith --lang=cpp $<
+
 # generate Java in the destination directory
 $(SITE_DIR)/%.java: $(SITE_DIR)/%.puml
 	cd $(@D) && statesmith --lang=Java $<
