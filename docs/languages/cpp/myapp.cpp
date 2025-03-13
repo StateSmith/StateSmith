@@ -1,21 +1,14 @@
 /* Include the generated state machine */
-#include "lightbulb.hpp"
+#include "Lightbulb.hpp"
+#include "LightbulbCallback.hpp"
 
 using namespace std;
 
-/* Implement a base class for your statemachine that contains your callbacks */
-class MyBase {
-protected:
-    void enter_on() { cout << "Lightbulb is on" << endl; }
-    void enter_off() { cout << "Lightbulb is off" << endl; }
-}
-
-
 /* 
- * Instantiate the state machine using your base.
- * This will make lightbulb inherit from MyBase.
+ * Instantiate the state machine with an instance of your callback.
  */
-lightbulb<MyBase> bulb;
+LightbulbCallback callback;
+Lightbulb bulb(callback);
 
 /* 
  * The event loop that will be started by main. 
@@ -23,7 +16,7 @@ lightbulb<MyBase> bulb;
  */
 void loop() {
   int c = getchar(); // we don't care what the character is, we just need to consume it
-  bulb.dispatchEvent(lightbulb::EventId::SWITCH);
+  bulb.dispatchEvent(Lightbulb::EventId::SWITCH);
 }
 
 int main() {

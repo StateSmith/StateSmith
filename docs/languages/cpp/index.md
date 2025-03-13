@@ -1,7 +1,10 @@
 # Generating C++ State Machines
 
 
-> TODO: this depends on https://github.com/StateSmith/StateSmith/issues/450
+> TODO depends on default callbacks.
+> I decided to use callbacks instead of inheritance because inheritance restricts
+> the user to just the default constructor, whereas callbacks allow the user
+> to construct the object however they need
 
 
 ## Prerequisites
@@ -18,31 +21,31 @@ We will want to be able to execute some code whenever the state machine changes 
 Update your lightbulb state machine to look like the following:
 
 ```plantuml
-{% include_relative lightbulb.puml %}
+{% include_relative Lightbulb.puml %}
 ```
 
 You can see what the new states look like in the simulator.
 
-<iframe height="300" width="600" src="lightbulb.sim.html"></iframe>
+<iframe height="300" width="600" src="Lightbulb.sim.html"></iframe>
 
 
 It looks like the state machine is doing what we want. Let's go write some code to use our new state machine.
 
 ## Generate the code in C++ 
 
-Let's generate C++ code from `lightbulb.puml` using StateSmith:
+Let's generate C++ code from `Lightbulb.puml` using StateSmith:
 
 ```
-% statesmith --lang=c++ lightbulb.puml
+% statesmith --lang=c++ Lightbulb.puml
 ```
 
 ## View the State Machine
 
 Take a look at the generated files on the disk. They should look pretty similar to the ones in the links below.
 
-* [lightbulb.hpp](lightbulb.hpp): This is the generated header for your state machine. You will use this state machine in your apps.
-* [lightbulb.cpp](lightbulb.cpp): This is the generated implementation for your state machine. You generally won't need to do much with the implementation, but it can be interested to inspect to see how it works.
-* [lightbulb.sim.html](lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it. It's not needed, but can be handy. You can disable generation of the simulator with the `--no-sim-gen` option.
+* [Lightbulb.hpp](Lightbulb.hpp): This is the generated header for your state machine. You will use this state machine in your apps.
+* [Lightbulb.cpp](Lightbulb.cpp): This is the generated implementation for your state machine. You generally won't need to do much with the implementation, but it can be interested to inspect to see how it works.
+* [Lightbulb.sim.html](Lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it. It's not needed, but can be handy. You can disable generation of the simulator with the `--no-sim-gen` option.
 
 
 ## Using the State Machine in your own app
@@ -50,13 +53,18 @@ Take a look at the generated files on the disk. They should look pretty similar 
 To write an app that will use your new state machine,
 add the following contents to a new file `myapp.cpp`. This code will:
 
-1. Implement a base class that defines the `enter_on()` and `enter_off()` methods you referenced in `lightbulb.puml`.
-2. Instantiate the state machine.
+1. Implement a callback class that defines the `enter_on()` and `enter_off()` methods you referenced in `Lightbulb.puml`.
+2. Instantiate the state machine with an instance of the callback.
 3. Start an event loop that tickles the state machine with every tick of the loop.
 
 ```c++
-/* myapp.cpp */
-{% include_relative myapp.cpp %}
+// LightbulbCallback.cpp
+{% include_relative LightbulbCallback.cpp %}
+```
+
+```c++
+// MyApp.cpp
+{% include_relative LightbulbCallback.cpp %}
 ```
 
 To run your app, compile it with the C++ compiler of your choice. Here we use Gnu g++
