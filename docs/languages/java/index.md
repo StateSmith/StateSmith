@@ -1,6 +1,10 @@
 # Generating Java State Machines
 
-> TODO depends on default callbacks
+> TODO depends on default callbacks.
+> I decided to use callbacks instead of inheritance because it gives the user more
+> flexibility in their constructors. With a callback, the user can have any
+> constructors they want and it will work fine, but with inheritance they are 
+> limited only to the default constructor.
 
 ## Prerequisites
 
