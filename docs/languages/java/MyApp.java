@@ -1,7 +1,8 @@
 public class MyApp {
+    LightbulbCallback callback = new LightbulbCallback();    
+    Lightbulb bulb = new Lightbulb(callback);
+    
     public static void main(String[] args) throws Exception {
-        LightbulbCallback callback = new LightbulbCallback();    
-        Lightbulb bulb = new Lightbulb(callback);
         bulb.start();
 
         System.out.println("Press <enter> to toggle the light switch.");
