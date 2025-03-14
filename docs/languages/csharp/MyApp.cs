@@ -1,21 +1,19 @@
-import Lightbulb;
-import LightbulbCallback;
 
 public class MyApp
 {
-    LightbulbCallback callback = new LightbulbCallback();
-    Lightbulb lightbulb = new Lightbulb(callback);
     
-    public void Main()
+    public static void Main()
     {
-        lightbulb.Start();
+        LightbulbCallback callback = new LightbulbCallback();
+        Lightbulb bulb = new Lightbulb(callback);
+        bulb.Start();
 
         Console.WriteLine("Press <enter> to toggle the light switch.");
         Console.WriteLine("Press ^C to quit.");
 
         while (true) {            
             Console.ReadLine();
-            lightbulb.DispatchEvent(Lightbulb.EventId.SWITCH);
+            bulb.DispatchEvent(Lightbulb.EventId.SWITCH);
         }
     }
 }
