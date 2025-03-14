@@ -13,25 +13,22 @@ DOCS_DIR = $(REPO_ROOT)/docs
 SITE_DIR := $(REPO_ROOT)/_site
 
 
-%.sim.html: %.puml
-	statesmith --lang=JavaScript $<
-
-%.c: %.puml
+%.c %.h %.sim.html&: %.puml
 	statesmith --lang=C99 $<
 
-%.cpp: %.puml
+%.cpp %.hpp %.sim.html&: %.puml
 	statesmith --lang=cpp $<
 
-%.cs: %.puml
+%.cs %.sim.html&: %.puml
 	statesmith --lang=csharp $<
 
-%.java: %.puml
+%.java %.sim.html&: %.puml
 	statesmith --lang=Java $<
 
-%.js: %.puml
+%.js %.sim.html&: %.puml
 	statesmith --lang=JavaScript $<
 
-%.py: %.puml
+%.py %.sim.html&: %.puml
 	statesmith --lang=Python $<
 
 # generate the diagrams in the destination directory
