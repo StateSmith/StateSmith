@@ -10,7 +10,7 @@ def main():
     print("Press ^C to quit.")
 
     while True:
-        command = input()
+        input()
         bulb.dispatchEvent(lightbulb.EventId.SWITCH)
 
 
