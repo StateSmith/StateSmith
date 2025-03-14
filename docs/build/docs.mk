@@ -22,6 +22,9 @@ SITE_DIR := $(REPO_ROOT)/_site
 %.cpp: %.puml
 	statesmith --lang=cpp $<
 
+%.cs: %.puml
+	statesmith --lang=csharp $<
+
 %.java: %.puml
 	statesmith --lang=Java $<
 
