@@ -1,5 +1,5 @@
 
-public class MyApp
+public class Program
 {
     
     public static void Main()

@@ -50,11 +50,20 @@ Take a look at the generated files on the disk. They should look pretty similar 
 ## Using the State Machine in your own app
 
 To write an app that will use your new state machine,
-add the following contents to a new file `MyApp.cs`. This code will:
+add the following contents to a new file `Program.cs`. This code will:
 
 1. Implement a callback class that defines the `EnterOn()` and `EnterOff()` methods you referenced in `Lightbulb.puml`.
 2. Instantiate the state machine with an instance of the callback.
 3. Start an event loop that tickles the state machine with every tick of the loop.
+
+But first, use `dotnet new` to create a new c# console project.
+
+```
+% dotnet new console
+```
+
+Then edit the following files.
+
 
 ```c#
 // LightbulbCallback.cs
@@ -62,14 +71,16 @@ add the following contents to a new file `MyApp.cs`. This code will:
 ```
 
 ```c#
-// MyApp.cs
-{% include_relative MyApp.cs %}
+// Program.cs
+{% include_relative Program.cs %}
 ```
 
-To run your app, compile it with the C# compiler of your choice (eg. Visual Studio, VS Code, csc.exe, etc.) and run it.
+To run your app, compile it with the dotent C# compiler and run it.
 
 
 ```
+% dotnet build
+% dotnet run
 Press <enter> to toggle the light switch.
 Press ^C to quit.
 Lightbulb is off
