@@ -3,6 +3,8 @@
 You can use the following Make rules to generate statesmith code.
 
 ```make
+# This rule says that to get a .c, .h, and a .sim.html file, you need 
+# to run statesmith on the corresponding .puml file.
 %.c %.h %.sim.html&: %.puml
 	statesmith --lang=C99 $<
 
