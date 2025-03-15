@@ -110,6 +110,7 @@ jobs:
                   dir=$(dirname "$makefile")
                   (          
                     set -e
+                    echo "Running make in $dir"
                     cd "$dir"
                     make
                   )
