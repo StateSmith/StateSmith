@@ -19,7 +19,9 @@ With StateSmith, your state machine diagram is code. Never worry about keeping y
 Visit our [Quickstart](/StateSmith/quickstart/) to get started.
 
 
-![statesmith](statesmith.svg)
+{% plantuml %}
+{% include_relative statesmith.puml %}
+{% endplantuml %}
 
 
 
