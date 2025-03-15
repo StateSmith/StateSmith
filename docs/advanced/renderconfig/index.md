@@ -1,3 +1,9 @@
+---
+title: RenderConfig
+parent: Advanced usage
+layout: default
+---
+
 # Advanced: RenderConfig
 
 You can use a `RenderConfig` to customize StateSmith's code generation to do things like add additional elements to your functions and classes.

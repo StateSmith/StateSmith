@@ -1,3 +1,9 @@
+---
+title: RenderConfig variables
+parent: Advanced usage
+layout: default
+---
+
 # Advanced: RenderConfig Variables
 
 ## Prerequisites
