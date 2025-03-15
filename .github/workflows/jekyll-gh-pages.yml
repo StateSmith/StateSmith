@@ -3,8 +3,8 @@ name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 
 on:
   # Runs on pushes targeting this branch
-  push:
-    branches: ["docs-revamp2"]
+  # push:
+  #   branches: ["docs-revamp2"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
