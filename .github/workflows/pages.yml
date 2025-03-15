@@ -43,6 +43,69 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
           working-directory: '${{ github.workspace }}/docs'
+
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+            node-version: 20
+
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v2
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+            dotnet-version: |
+                9.0.x
+
+      - name: Add .NET tools to PATH
+        run: echo '/root/.dotnet/tools' >> $GITHUB_PATH
+
+      - name: Verify dotnet
+        run: dotnet --version
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+            distribution: 'temurin'
+            java-version: '21'
+
+      - name: Install plantuml
+        run: |
+            curl -L https://github.com/plantuml/plantuml/releases/download/v1.2025.1/plantuml-1.2025.1.jar -o /tmp/plantuml.jar
+            sudo cat <<EOF > /usr/local/bin/plantuml
+            #!/bin/bash
+            java -jar /tmp/plantuml.jar "\$@"
+            EOF
+            sudo chmod +x /usr/local/bin/plantuml
+            plantuml --version
+
+      - name: Install local statesmith
+        run: |
+            set -e
+            cat > /usr/local/bin/statesmith <<EOF
+            #!/bin/sh
+            dotnet run --framework net9.0 --project `pwd`/src/StateSmith.Exe/StateSmith.Exe.csproj -- \$@
+            echo \$?
+            EOF
+            sudo chmod +x /usr/local/bin/statesmith
+                    
+
+      - name: Run docs makefiles
+        run: |
+              set -e
+              sudo chmod -R 'a+w' ./_site
+              find . -name "Makefile" | while read makefile; do
+                dir=$(dirname "$makefile")
+                (          
+                  set -e
+                  cd "$dir"
+                  make
+                )
+              done
+              find _site
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
