@@ -6,3 +6,7 @@ url: https://emmby.github.io/StateSmith/
 
 aux_links:
   Template Repository: https://github.com/just-the-docs/just-the-docs-template
+
+sass:
+  quiet_deps: true # https://github.com/just-the-docs/just-the-docs/issues/1541
+  silence_deprecations: ['import'] # https://github.com/just-the-docs/just-the-docs/issues/1607
