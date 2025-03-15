@@ -14,7 +14,7 @@ object "PlantUML" as plantuml
 object "yEd" as yed
 object "StateSmith" as statesmith
 
-statesmith : <img:media/logo/logo.128.png>
+statesmith : <img:../media/logo/logo.128.png>
 
 
 drawio --> statesmith
