@@ -6,6 +6,5 @@ include $(REPO_ROOT)/docs/build/docs.mk
 
 # The list of files to build, relative to SITE_DIR
 all: \
-	$(SITE_DIR)/advanced/renderconfig_variables/lightbulb.svg \
 	$(SITE_DIR)/advanced/renderconfig_variables/lightbulb.puml \
 	$(SITE_DIR)/advanced/renderconfig_variables/lightbulb.sim.html

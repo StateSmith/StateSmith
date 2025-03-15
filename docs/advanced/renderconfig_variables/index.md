@@ -103,7 +103,9 @@ For javascript, you can access the count variable using `this.vars.count` as sho
 </tr>
 <tr>
 <td>
-<img src="lightbulb.svg" >
+{% plantuml %}
+{% include_relative lightbulb.puml %}
+{% endplantuml %}
 </td>
 </tr>
 </table>
