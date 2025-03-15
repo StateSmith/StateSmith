@@ -1,3 +1,9 @@
+---
+title: Building
+parent: Contributing
+layout: default
+---
+
 # Building StateSmith from Source
 
 ## Install prerequisites

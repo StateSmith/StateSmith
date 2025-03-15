@@ -1,3 +1,9 @@
+---
+title: Contributing to docs
+parent: Contributing
+layout: default
+---
+
 # Contributing to Documentation
 
 The [docs](/) site is generated automatically on push from the `docs` directory using the [jekyll-gh-pages.yml](/jekyll-gh-pages.yml) Github Action workflow.

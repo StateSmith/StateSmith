@@ -1,3 +1,9 @@
+---
+title: Events
+parent: State Machine Reference
+layout: default
+---
+
 # Event triggers
 
 You use Events to trigger different actions.

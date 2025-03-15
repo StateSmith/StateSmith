@@ -1,3 +1,9 @@
+---
+title: A brief tour
+parent: Contributing
+layout: default
+---
+
 # A brief tour of the codebase
 
 This page describes various good starting points to look at in the code if you're trying to get started making contributions to StateSmith.

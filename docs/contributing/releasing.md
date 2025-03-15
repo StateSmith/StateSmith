@@ -1,3 +1,9 @@
+---
+title: Releasing new distributions
+parent: Contributing
+layout: default
+---
+
 # Releasing new distributions
 
 Releases are primarily managed through GitHub Actions

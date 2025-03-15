@@ -1,3 +1,9 @@
+---
+title: Arduino IDE
+parent: Integrating with other tools
+layout: default
+---
+
 # Integrating with Arduino
 
 StateSmith is designed specifically to work in low memory, low performance situations such as microcontrollers, which makes it great for using with Arduino projects!

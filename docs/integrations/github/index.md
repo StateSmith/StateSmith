@@ -1,3 +1,9 @@
+---
+title: GitHub
+parent: Integrating with other tools
+layout: default
+---
+
 # Integrating with GitHub
 
 There are a few ways StateSmith makes it easy to integrate with GitHub. You can easily display state machine diagrams on GitHub Docs and Pages. You can use GitHub Actions to automatically generate state machine source code on push. Read on for more details.

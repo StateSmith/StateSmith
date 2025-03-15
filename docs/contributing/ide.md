@@ -1,3 +1,9 @@
+---
+title: Using an IDE
+parent: Contributing
+layout: default
+---
+
 # Using an IDE
 
 

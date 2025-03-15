@@ -1,3 +1,9 @@
+---
+title: Command Line Reference
+layout: default
+nav_order: 7
+---
+
 # Command Line Reference
 
 ## statesmith

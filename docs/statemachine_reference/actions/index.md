@@ -1,3 +1,9 @@
+---
+title: Actions and Triggers
+parent: State Machine Reference
+layout: default
+---
+
 # Actions and Triggers
 
 When an event is dispatched the state machine responds by performing actions, such as changing a variable, performing I/O, invoking a function, generating another event instance, or changing to another state.

@@ -1,3 +1,9 @@
+---
+title: Make
+parent: Integrating with other tools
+layout: default
+---
+
 # Integrating with Makefiles
 
 You can use the following Make rules to generate statesmith code.
