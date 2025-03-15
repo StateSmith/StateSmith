@@ -95,7 +95,7 @@ jobs:
       - name: Run docs makefiles
         run: |
               set -e
-              sudo chmod -R 'a+w' ./_site
+              sudo chmod -R 'a+w' docs/_site
               find . -name "Makefile" | while read makefile; do
                 dir=$(dirname "$makefile")
                 (          
@@ -104,7 +104,7 @@ jobs:
                   make
                 )
               done
-              find _site
+              find docs/_site
 
       - name: Setup Pages
         id: pages
