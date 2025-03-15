@@ -105,7 +105,7 @@ jobs:
       - name: Run docs makefiles
         run: |
                 set -e
-                sudo chmod -R 'a+w' docs/_site
+                sudo chmod -R 'a+w' ${{ steps.pages.outputs.base_path }}
                 find . -name "Makefile" | while read makefile; do
                   dir=$(dirname "$makefile")
                   (          
@@ -114,7 +114,7 @@ jobs:
                     make
                   )
                 done
-                find docs/_site
+                find ${{ steps.pages.outputs.base_path }}
   
   
       - name: Upload artifact
