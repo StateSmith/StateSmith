@@ -1,5 +1,5 @@
 ---
-title: Command Line Reference
+title: Command line reference
 layout: default
 nav_order: 7
 ---

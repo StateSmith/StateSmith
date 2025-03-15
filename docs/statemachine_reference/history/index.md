@@ -1,6 +1,6 @@
 ---
 title: History nodes
-parent: State Machine Reference
+parent: State machine reference
 layout: default
 nav_order: 1
 ---

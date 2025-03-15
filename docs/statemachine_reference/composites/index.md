@@ -1,6 +1,6 @@
 ---
 title: Composite states
-parent: State Machine Reference
+parent: State machine reference
 layout: default
 ---
 

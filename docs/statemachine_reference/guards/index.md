@@ -1,6 +1,6 @@
 ---
 title: Guards
-parent: State Machine Reference
+parent: State machine reference
 layout: default
 ---
 

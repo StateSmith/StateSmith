@@ -1,5 +1,5 @@
 ---
-title: State Machine Reference
+title: State machine reference
 layout: default
 nav_order: 6
 ---

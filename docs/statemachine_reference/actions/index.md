@@ -1,6 +1,6 @@
 ---
 title: Actions and Triggers
-parent: State Machine Reference
+parent: State machine reference
 layout: default
 nav_order: 1
 ---
