@@ -106,7 +106,7 @@ jobs:
         run: |
                 set -e
                 sudo chmod -R 'a+w' ${{ github.workspace }}/docs/_site
-                find ${{ github.workspace }}/docs -name "Makefile" -not -path "./vendor/*" | while read makefile; do
+                find ${{ github.workspace }}/docs -name "Makefile" -not -path "*/vendor/*" | while read makefile; do
                   dir=$(dirname "$makefile")
                   (          
                     set -e
