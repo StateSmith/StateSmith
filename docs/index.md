@@ -34,7 +34,13 @@ It's easy to get started with StateSmith.
 <tr>
 <td>
 
-<img src="/StateSmith/media/light.svg" />
+{% plantuml %}
+@startuml
+[*] --> Off
+Off -> On : Switch pressed
+On -> Off : Switch pressed
+@enduml
+{% endplantuml %}
 
 </td>
 <td>
