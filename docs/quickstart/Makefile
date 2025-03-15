@@ -6,6 +6,5 @@ include $(REPO_ROOT)/docs/build/docs.mk
 
 # The list of files to build, relative to SITE_DIR
 all: \
-	$(SITE_DIR)/quickstart/lightbulb.svg \
 	$(SITE_DIR)/quickstart/lightbulb.puml \
 	$(SITE_DIR)/quickstart/lightbulb.sim.html 	

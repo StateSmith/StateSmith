@@ -31,7 +31,6 @@ SITE_DIR := $(DOCS_DIR)/_site
 %.py %.sim.html&: %.puml
 	statesmith --lang=Python $<
 
-# generate the diagrams in the destination directory
 %.svg: %.puml
 	cd $(@D) && plantuml -tsvg $(<F)
 

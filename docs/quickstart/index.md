@@ -57,7 +57,9 @@ Let's create our first state machine. We'll use PlantUML to get started quickly.
 <tr>
 <td>
 
-<img src="lightbulb.svg">
+{% plantuml %}
+{% include_relative lightbulb.puml %}
+{% endplantuml %}
 
 </td>
 <td>

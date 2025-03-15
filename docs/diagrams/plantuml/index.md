@@ -12,7 +12,9 @@ PlantUML is the preferred state machine language on the StateSmith documentation
 <table>
 <tr>
 <td>
-<img src="lightbulb.svg">
+{% plantuml %}
+{% include_relative lightbulb.puml %}
+{% endplantuml %}
 </td>
 <td>
 <pre>
