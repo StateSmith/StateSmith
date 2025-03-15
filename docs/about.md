@@ -64,8 +64,7 @@ github integration documentation.
 ## TODO
 * homebrew support
 * apt get support
-* Add download links to sidebar
-* Fix OO examples to have classname `Lightbulb` instead of `lightbulb`
+* switch to Just the Docs https://github.com/just-the-docs/just-the-docs/blob/main/README.md
 
 
 ## FUTURE WORK
