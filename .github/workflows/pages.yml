@@ -96,26 +96,27 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Run docs makefiles
-        run: |
-              set -e
-              sudo chmod -R 'a+w' docs/_site
-              find . -name "Makefile" | while read makefile; do
-                dir=$(dirname "$makefile")
-                (          
-                  set -e
-                  cd "$dir"
-                  make
-                )
-              done
-              find docs/_site
-
-
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+
+      - name: Run docs makefiles
+        run: |
+                set -e
+                sudo chmod -R 'a+w' docs/_site
+                find . -name "Makefile" | while read makefile; do
+                  dir=$(dirname "$makefile")
+                  (          
+                    set -e
+                    cd "$dir"
+                    make
+                  )
+                done
+                find docs/_site
+  
+  
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
