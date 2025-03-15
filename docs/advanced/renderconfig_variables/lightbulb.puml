@@ -1,4 +1,4 @@
-@startuml lightbulb
+@startuml
 [*] -> Off
 Off -> On : INCREASE / this.vars.count++
 On -> Off : DECREASE / this.vars.count--
