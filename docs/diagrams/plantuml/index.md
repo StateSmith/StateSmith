@@ -1,3 +1,10 @@
+---
+title: PlantUML
+parent: Diagrams
+layout: default
+---
+
+
 # Creating State Machines with PlantUML 
 
 PlantUML is the preferred state machine language on the StateSmith documentation website, so you'll find many examples as you browse around the documentation.
