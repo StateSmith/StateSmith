@@ -82,12 +82,14 @@ jobs:
       - name: Install local statesmith
         run: |
             set -e
+            ls -l  ${{ github.workspace }}/src/StateSmith.Exe/StateSmith.Exe.csproj
             cat > /usr/local/bin/statesmith <<EOF
             #!/bin/sh
-            dotnet run --framework net9.0 --project `pwd`/src/StateSmith.Exe/StateSmith.Exe.csproj -- \$@
+            dotnet run --framework net9.0 --project ${{ github.workspace }}/src/StateSmith.Exe/StateSmith.Exe.csproj -- \$@
             echo \$?
             EOF
             sudo chmod +x /usr/local/bin/statesmith
+            statesmith --version
                     
 
       - name: Setup Pages
