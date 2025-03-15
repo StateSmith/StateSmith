@@ -15,7 +15,32 @@ Visit our [Quickstart](/StateSmith/quickstart/) to get started.
 
 {% plantuml %}
 {% raw %}
-{% include_relative statesmith.puml %}
+@startuml
+
+rectangle output [
+{{
+  object "C / C++"
+  object "C#"
+  object "JavaScript\nTypeScript"
+  object Python
+}}
+]
+
+object "draw.io" as drawio
+object "PlantUML" as plantuml
+object "yEd" as yed
+object "StateSmith" as statesmith
+
+statesmith : <img:../media/logo/logo.128.png>
+
+
+drawio --> statesmith
+plantuml --> statesmith
+yed --> statesmith
+
+statesmith --> output
+
+@enduml
 {% endraw %}
 {% endplantuml %}
 
