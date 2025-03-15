@@ -2,13 +2,12 @@ title: StateSmith
 description: A state machine code generation tool suitable for bare metal, embedded and more.
 theme: just-the-docs
 
-url: https://just-the-docs.github.io
+url: https://emmby.github.io
 
 logo: "/media/logo/logo.64.png"
+favicon_ico: "/media/logo/logo.32.png"
 
 
-aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
 
 sass:
   quiet_deps: true # https://github.com/just-the-docs/just-the-docs/issues/1541
