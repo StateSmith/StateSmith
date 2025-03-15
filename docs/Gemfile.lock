@@ -45,6 +45,8 @@ GEM
       webrick (~> 1.7)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)
+    jekyll-plantuml (1.4.2)
+      jekyll (> 2.0)
     jekyll-sass-converter (3.1.0)
       sass-embedded (~> 1.75)
     jekyll-seo-tag (2.8.0)
@@ -91,6 +93,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (~> 4.4.1)
+  jekyll-plantuml (~> 1.4.2)
   jekyll-sass-converter (~> 3.1.0)
   just-the-docs (= 0.10.1)
 
