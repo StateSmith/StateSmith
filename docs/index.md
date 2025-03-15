@@ -14,7 +14,9 @@ Visit our [Quickstart](/StateSmith/quickstart/) to get started.
 
 
 {% plantuml %}
+{% raw %}
 {% include_relative statesmith.puml %}
+{% endraw %}
 {% endplantuml %}
 
 
