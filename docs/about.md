@@ -65,6 +65,7 @@ github integration documentation.
 * homebrew support
 * apt get support
 * why did statesmith.puml lose everything in the rectangle?
+* update contributing docs and integration docs
 
 
 ## FUTURE WORK
