@@ -108,7 +108,7 @@ Now compile the app. Voila! No errors.
 ```
 
 
-{: .highlight}
+{: .highlight }
 > Why does this work?
 > 
 > In the first example, `myapp.c` and `lightbulb.c` were both `.c` files and expected to
