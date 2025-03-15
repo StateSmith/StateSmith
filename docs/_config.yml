@@ -7,6 +7,8 @@ url: https://emmby.github.io
 logo: "/media/logo/logo.64.png"
 favicon_ico: "/media/logo/logo.32.png"
 
+gems: ['jekyll-plantuml']
+
 callouts_level: quiet # or loud
 callouts:
   highlight:
