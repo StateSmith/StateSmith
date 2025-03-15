@@ -64,7 +64,7 @@ github integration documentation.
 ## TODO
 * homebrew support
 * apt get support
-* switch to Just the Docs https://github.com/just-the-docs/just-the-docs/blob/main/README.md
+* why did statesmith.puml lose everything in the rectangle?
 
 
 ## FUTURE WORK
