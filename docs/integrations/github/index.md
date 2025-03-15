@@ -105,7 +105,7 @@ TODO
 
 ## Displaying Diagrams using Mermaid
 
-> [!NOTE]
+{: .note}
 > StateSmith does not natively support Mermaid. If you use mermaid diagrams in your docs
 > you will need to find another way to keep them in sync with your code. We recommend
 > one of the other diagramming solutions for GitHub, such as PlantUML or draw.io above.
