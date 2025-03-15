@@ -1,3 +1,8 @@
+---
+title: Home
+layout: home
+---
+
 StateSmith is a cross platform, free/open source tool for synchronizing state machine diagrams to multiple programming languages. The generated code is human readable, has zero dependencies and is suitable for use with tiny bare metal microcontrollers, video games, apps, web, computers... It avoids dynamic memory allocations for the safety or performance inclined.
 
 With StateSmith, your state machine diagram is code. Never worry about keeping your statemachine documentation in sync with your code again.
