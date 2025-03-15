@@ -2,6 +2,7 @@
 title: Actions and Triggers
 parent: State Machine Reference
 layout: default
+nav_order: 1
 ---
 
 # Actions and Triggers
