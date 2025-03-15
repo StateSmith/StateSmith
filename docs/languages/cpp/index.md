@@ -1,3 +1,9 @@
+---
+title: C++
+parent: Languages
+layout: default
+---
+
 # Generating C++ State Machines
 
 

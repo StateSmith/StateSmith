@@ -1,3 +1,9 @@
+---
+title: Java
+parent: Languages
+layout: default
+---
+
 # Generating Java State Machines
 
 > TODO depends on default callbacks.

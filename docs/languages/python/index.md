@@ -1,5 +1,10 @@
-# Generating Python State Machines
+---
+title: Python
+parent: Languages
+layout: default
+---
 
+# Generating Python State Machines
 
 > TODO depends on default callbacks.
 > I decided to use callbacks instead of inheritance because inheritance restricts
