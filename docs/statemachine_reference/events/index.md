@@ -2,6 +2,7 @@
 title: Events
 parent: State Machine Reference
 layout: default
+nav_order: 2
 ---
 
 # Event triggers
