@@ -1,2 +1,8 @@
-# Custom theme with sidebar: https://stackoverflow.com/a/67796897/82156
-theme: jekyll-theme-minimal
+title: StateSmith
+description: A state machine code generation tool suitable for bare metal, embedded and more.
+theme: just-the-docs
+
+url: https://emmby.github.io/StateSmith/
+
+aux_links:
+  Template Repository: https://github.com/just-the-docs/just-the-docs-template
