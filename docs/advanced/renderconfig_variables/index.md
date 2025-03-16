@@ -23,7 +23,7 @@ The `VariableDeclarations` section allows us to specify text and code to put in 
 no state machine variable object will be created.
 
 ```cs
-{% include_relative gen/lightbulb.csx %}
+{% include_relative lightbulb.csx %}
 ```
 
 
