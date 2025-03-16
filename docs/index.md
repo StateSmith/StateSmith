@@ -46,7 +46,11 @@ statesmith --> output
 
 # Features
 
-[A quick summary of features, a few svgs, and links to interactive examples]
+* Many supported languages, including C, C++, C#, Java, JavaScript, TypeScript, and Python.
+* Multiple supported diagraming tools, including PlantUML, yED, and draw.io.
+* Integrations with GitHub, Arduino, and more.
+* Deploy on everything from embedded systems to web UIs.
+* A built-in simulator to manually step through your state machines and view them on the web.
 
 
 # Getting Started
@@ -98,15 +102,6 @@ If you are new to state machines, then prepare to level up your toolbox!
 ### Powerful and Production ready
 
 StateSmith has a strong suite of tests (730+) and behavior specification coverage. The specification integration tests read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. The same suite of integration tests run for each supported programming language. StateSmith has been starred the most of any state machine library on Github, and is in production use by several companies.
-
-
-### Easy to use
-StateSmith is incredibly easy to use.
-
- ...
-
-You can easily try out your statemachine using the built in simulator.
-
 
 ### The Diagram is always accurate!
 
