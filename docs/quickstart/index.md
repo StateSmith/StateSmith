@@ -11,40 +11,17 @@ nav_order: 2
 
 You can install statesmith using many common package managers.
 
-<table>
-<tr><th>
-Linux
-</th></tr>
-<tr><td>
-<code>
- % apt-get ...
-</code>
-</td></tr>
-</table>
+{: .highlight}
+> Linux <br />
+> `% apt-get ...`
 
-<table>
-<tr><th>
-Mac (using <a target="_blank" href="https://brew.sh">Homebrew</a>)
-</th></tr>
-<tr><td>
-<code>
- % brew install statesmith
-</code>
-</td></tr>
-</table>
+{: .highlight}
+> Mac (using <a target="_blank" href="https://brew.sh">Homebrew</a>) <br />
+> `% brew install statesmith`
 
-<table>
-<tr><th>
-Windows (using <a target="_blank" href="https://dotnet.microsoft.com/en-us/download">.NET SDK</a>)
-</th></tr>
-<tr><td>
-<code>
- % dotnet tool install --global StateSmith.Cli
-</code>
-</td></tr>
-</table>
-
-
+{: .highlight}
+> Windows (using <a target="_blank" href="https://dotnet.microsoft.com/en-us/download">.NET SDK</a>) <br />
+> `% dotnet tool install --global StateSmith.Cli`
 
 If you don't want to use one of the methods above, you can always download the binary directly from the [Releases page]({{ site.github.repository_url }}/releases)
 
