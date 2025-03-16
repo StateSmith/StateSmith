@@ -55,7 +55,7 @@ statesmith --> output
 
 It's easy to get started with StateSmith.
 
-1. First, write or draw a statemachine in the tool of your choice.<br />
+1. First, write or draw a statemachine in the tool of your choice. Here we use PlantUML.<br />
 
 <table>
 <tr>
