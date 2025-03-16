@@ -64,7 +64,7 @@ github integration documentation.
 ## TODO
 * homebrew support
 * apt get support
-* update contributing docs and integration docs
+* update integration docs
 * speed up dotnet builder
 
 
