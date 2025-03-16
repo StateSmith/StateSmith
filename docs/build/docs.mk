@@ -10,7 +10,7 @@
 DOCS_DIR = $(REPO_ROOT)/docs
 
 # The generated _site directory
-SITE_DIR := $(DOCS_DIR)/_site
+SITE_DIR := $(DOCS_DIR)
 
 
 %.c %.h %.sim.html&: %.puml

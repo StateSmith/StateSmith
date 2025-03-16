@@ -90,8 +90,22 @@ jobs:
             EOF
             sudo chmod +x /usr/local/bin/statesmith
             statesmith --version
-                    
 
+      - name: Run docs makefiles
+        run: |
+                set -e
+                # sudo chmod -R 'a+w' ${{ github.workspace }}/docs/_site
+                find ${{ github.workspace }}/docs -name "Makefile" -not -path "*/vendor/*" | while read makefile; do
+                    dir=$(dirname "$makefile")
+                    (          
+                    set -e
+                    echo "Running make in $dir"
+                    cd "$dir"
+                    make
+                    )
+                done
+                find ${{ github.workspace }}/docs
+    
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -102,22 +116,6 @@ jobs:
         env:
           JEKYLL_ENV: production
 
-      - name: Run docs makefiles
-        run: |
-                set -e
-                sudo chmod -R 'a+w' ${{ github.workspace }}/docs/_site
-                find ${{ github.workspace }}/docs -name "Makefile" -not -path "*/vendor/*" | while read makefile; do
-                  dir=$(dirname "$makefile")
-                  (          
-                    set -e
-                    echo "Running make in $dir"
-                    cd "$dir"
-                    make
-                  )
-                done
-                find ${{ github.workspace }}/docs/_site
-  
-  
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
