@@ -73,12 +73,12 @@ Then edit the following files.
 
 ```c#
 // LightbulbCallback.cs
-{% include_relative gen/LightbulbCallback.cs %}
+{% include_relative LightbulbCallback.cs %}
 ```
 
 ```c#
 // Program.cs
-{% include_relative gen/Program.cs %}
+{% include_relative Program.cs %}
 ```
 
 To run your app, compile it with the dotent C# compiler and run it.
