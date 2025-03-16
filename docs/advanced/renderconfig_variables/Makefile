@@ -1,10 +1,6 @@
-# The root directory
-REPO_ROOT := $(shell git rev-parse --show-toplevel)
-
 # The common build rules
-include $(REPO_ROOT)/docs/build/docs.mk
-
-# The list of files to build, relative to SITE_DIR
+include $(shell git rev-parse --show-toplevel)/docs/build/docs.mk
+	
+# The list of files to build in ./gen/ directory
 all: \
-	$(SITE_DIR)/advanced/renderconfig_variables/lightbulb.puml \
-	$(SITE_DIR)/advanced/renderconfig_variables/lightbulb.sim.html
+	gen/lightbulb.sim.html
