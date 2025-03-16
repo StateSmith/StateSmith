@@ -23,7 +23,7 @@ The `VariableDeclarations` section allows us to specify text and code to put in 
 no state machine variable object will be created.
 
 ```cs
-{% include_relative lightbulb.csx %}
+{% include_relative gen/lightbulb.csx %}
 ```
 
 
@@ -111,7 +111,7 @@ For javascript, you can access the count variable using `this.vars.count` as sho
 </table>
 
 
-<iframe height="300" width="600" src="lightbulb.sim.html"></iframe>
+<iframe height="300" width="600" src="gen/lightbulb.sim.html"></iframe>
 
 
 

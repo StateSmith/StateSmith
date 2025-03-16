@@ -31,7 +31,7 @@ Update your lightbulb state machine to look like the following:
 
 You can see what the new states look like in the simulator.
 
-<iframe height="300" width="600" src="Lightbulb.sim.html"></iframe>
+<iframe height="300" width="600" src="gen/Lightbulb.sim.html"></iframe>
 
 
 It looks like the state machine is doing what we want. Let's go write some code to use our new state machine.
@@ -48,8 +48,8 @@ Let's generate Java code from `Lightbulb.puml` using StateSmith:
 
 Take a look at the generated files on the disk. They should look pretty similar to the ones in the links below.
 
-* [Lightbulb.java](Lightbulb.java): This is the generated code for your state machine. You will use this state machine in your apps.
-* [Lightbulb.sim.html](Lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it. It's not needed, but can be handy. You can disable generation of the simulator with the `--no-sim-gen` option.
+* [Lightbulb.java](gen/Lightbulb.java): This is the generated code for your state machine. You will use this state machine in your apps.
+* [Lightbulb.sim.html](gen/Lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it. It's not needed, but can be handy. You can disable generation of the simulator with the `--no-sim-gen` option.
 
 
 ## Using the State Machine in your own app
@@ -63,12 +63,12 @@ add the following contents to a new file `MyApp.java`. This code will:
 
 ```java
 // LightbulbCallback.java
-{% include_relative LightbulbCallback.java %}
+{% include_relative gen/LightbulbCallback.java %}
 ```
 
 ```java
 // MyApp.java
-{% include_relative MyApp.java %}
+{% include_relative gen/MyApp.java %}
 ```
 
 Now compile and run the app.

@@ -1,11 +1,7 @@
-# The root directory
-REPO_ROOT := $(shell git rev-parse --show-toplevel)
-
 # The common build rules
-include $(REPO_ROOT)/docs/build/docs.mk
+include $(shell git rev-parse --show-toplevel)/docs/build/docs.mk
 
-# The list of files to build, relative to SITE_DIR
+# The list of files to build in ./gen/ directory
 all: \
-	$(SITE_DIR)/languages/python/lightbulb.puml \
-	$(SITE_DIR)/languages/python/lightbulb.py \
-	$(SITE_DIR)/languages/python/lightbulb.sim.html
+	gen/lightbulb.py \
+	gen/lightbulb.sim.html

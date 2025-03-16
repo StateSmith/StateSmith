@@ -26,7 +26,7 @@ Update your lightbulb state machine to look like the following:
 
 You can see what the new states look like in the simulator.
 
-<iframe height="300" width="600" src="lightbulb.sim.html"></iframe>
+<iframe height="300" width="600" src="gen/lightbulb.sim.html"></iframe>
 
 
 It looks like the state machine is doing what we want. Let's go write some code to use our new state machine.

@@ -32,7 +32,7 @@ Update your lightbulb state machine to look like the following:
 
 You can see what the new states look like in the simulator.
 
-<iframe height="300" width="600" src="lightbulb.sim.html"></iframe>
+<iframe height="300" width="600" src="gen/lightbulb.sim.html"></iframe>
 
 
 It looks like the state machine is doing what we want. Let's go write some code to use our new state machine.
@@ -49,8 +49,8 @@ Let's generate Python code from `lightbulb.puml` using StateSmith:
 
 Take a look at the generated files on the disk. They should look pretty similar to the ones in the links below.
 
-* [lightbulb.py](lightbulb.py): This is the generated header for your state machine. You will use this state machine in your apps.
-* [lightbulb.sim.html](lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it. It's not needed, but can be handy. You can disable generation of the simulator with the `--no-sim-gen` option.
+* [lightbulb.py](gen/lightbulb.py): This is the generated header for your state machine. You will use this state machine in your apps.
+* [lightbulb.sim.html](gen/lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it. It's not needed, but can be handy. You can disable generation of the simulator with the `--no-sim-gen` option.
 
 
 ## Using the State Machine in your own app

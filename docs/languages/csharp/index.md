@@ -32,7 +32,7 @@ Update your lightbulb state machine to look like the following:
 
 You can see what the new states look like in the simulator.
 
-<iframe height="300" width="600" src="Lightbulb.sim.html"></iframe>
+<iframe height="300" width="600" src="gen/Lightbulb.sim.html"></iframe>
 
 
 It looks like the state machine is doing what we want. Let's go write some code to use our new state machine.
@@ -49,8 +49,8 @@ Let's generate C# code from `Lightbulb.puml` using StateSmith:
 
 Take a look at the generated files on the disk. They should look pretty similar to the ones in the links below.
 
-* [Lightbulb.cs](Lightbulb.cs): This is the generated header for your state machine. You will use this state machine in your apps.
-* [Lightbulb.sim.html](Lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it. It's not needed, but can be handy. You can disable generation of the simulator with the `--no-sim-gen` option.
+* [Lightbulb.cs](gen/Lightbulb.cs): This is the generated header for your state machine. You will use this state machine in your apps.
+* [Lightbulb.sim.html](gen/Lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it. It's not needed, but can be handy. You can disable generation of the simulator with the `--no-sim-gen` option.
 
 
 ## Using the State Machine in your own app
@@ -73,12 +73,12 @@ Then edit the following files.
 
 ```c#
 // LightbulbCallback.cs
-{% include_relative LightbulbCallback.cs %}
+{% include_relative gen/LightbulbCallback.cs %}
 ```
 
 ```c#
 // Program.cs
-{% include_relative Program.cs %}
+{% include_relative gen/Program.cs %}
 ```
 
 To run your app, compile it with the dotent C# compiler and run it.

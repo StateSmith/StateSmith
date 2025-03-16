@@ -33,7 +33,7 @@ Update your lightbulb state machine to look like the following:
 
 You can see what the new states look like in the simulator.
 
-<iframe height="300" width="600" src="Lightbulb.sim.html"></iframe>
+<iframe height="300" width="600" src="gen/Lightbulb.sim.html"></iframe>
 
 
 It looks like the state machine is doing what we want. Let's go write some code to use our new state machine.
@@ -50,9 +50,9 @@ Let's generate C++ code from `Lightbulb.puml` using StateSmith:
 
 Take a look at the generated files on the disk. They should look pretty similar to the ones in the links below.
 
-* [Lightbulb.hpp](Lightbulb.hpp): This is the generated header for your state machine. You will use this state machine in your apps.
-* [Lightbulb.cpp](Lightbulb.cpp): This is the generated implementation for your state machine. You generally won't need to do much with the implementation, but it can be interested to inspect to see how it works.
-* [Lightbulb.sim.html](Lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it. It's not needed, but can be handy. You can disable generation of the simulator with the `--no-sim-gen` option.
+* [Lightbulb.hpp](gen/Lightbulb.hpp): This is the generated header for your state machine. You will use this state machine in your apps.
+* [Lightbulb.cpp](gen/Lightbulb.cpp): This is the generated implementation for your state machine. You generally won't need to do much with the implementation, but it can be interested to inspect to see how it works.
+* [Lightbulb.sim.html](gen/Lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it. It's not needed, but can be handy. You can disable generation of the simulator with the `--no-sim-gen` option.
 
 
 ## Using the State Machine in your own app
@@ -66,12 +66,12 @@ add the following contents to a new file `myapp.cpp`. This code will:
 
 ```c++
 // LightbulbCallback.cpp
-{% include_relative LightbulbCallback.hpp %}
+{% include_relative gen/LightbulbCallback.hpp %}
 ```
 
 ```c++
 // MyApp.cpp
-{% include_relative MyApp.cpp %}
+{% include_relative gen/MyApp.cpp %}
 ```
 
 To run your app, compile it with the C++ compiler of your choice. Here we use Gnu g++
