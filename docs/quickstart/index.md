@@ -56,6 +56,7 @@ Let's create our first state machine. We'll use PlantUML to get started quickly.
 <table>
 <tr><td>
 <pre>
+' lightbulb.puml
 {% include_relative lightbulb.puml %}
 </pre>
 </td></tr>
