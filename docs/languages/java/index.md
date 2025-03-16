@@ -63,12 +63,12 @@ add the following contents to a new file `MyApp.java`. This code will:
 
 ```java
 // LightbulbCallback.java
-{% include_relative gen/LightbulbCallback.java %}
+{% include_relative LightbulbCallback.java %}
 ```
 
 ```java
 // MyApp.java
-{% include_relative gen/MyApp.java %}
+{% include_relative MyApp.java %}
 ```
 
 Now compile and run the app.
