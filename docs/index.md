@@ -74,7 +74,7 @@ On -> Off : Switch pressed
 </td>
 <td>
 <pre>
-# lightbulb.puml
+' lightbulb.puml
 @startuml
 [*] --> Off
 Off -> On : Switch pressed
