@@ -54,20 +54,16 @@ If you don't want to use one of the methods above, you can always download the b
 Let's create our first state machine. We'll use PlantUML to get started quickly. Later you can try one of our other supported diagraming formats.
 
 <table>
-<tr>
-<td>
-
-{% plantuml %}
-{% include_relative lightbulb.puml %}
-{% endplantuml %}
-
-</td>
-<td>
+<tr><td>
 <pre>
 {% include_relative lightbulb.puml %}
 </pre>
-</td>
-</tr>
+</td></tr>
+<tr><td>
+{% plantuml %}
+{% include_relative lightbulb.puml %}
+{% endplantuml %}
+</td></tr>
 </table>
 
 ## Generate the JavaScript Code
@@ -97,4 +93,4 @@ Try clicking the `Switch` button on the right and watch the diagram update with 
 
 Congratulations! You've generated your first StateSmith state machine and played around in it with our built in simulator.
 
-Continue next to the Languages section to see how to generate state machine in C, C++, C#, Java, Python, TypeScript, or one of our other supported languges. 
+Continue next to the [Languages](/StateSmith/languages/) section to see how to generate state machine in C, C++, C#, Java, Python, TypeScript, or one of our other supported languges. 
