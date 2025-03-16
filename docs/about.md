@@ -66,6 +66,8 @@ github integration documentation.
 * apt get support
 * why did statesmith.puml lose everything in the rectangle?
 * update contributing docs and integration docs
+* speed up dotnet builder
+* move gen files to gen dir and add to gitignore
 
 
 ## FUTURE WORK
