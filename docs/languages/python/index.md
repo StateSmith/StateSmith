@@ -6,6 +6,7 @@ layout: default
 
 # Generating Python State Machines
 
+{: .warning }
 > TODO depends on default callbacks.
 > I decided to use callbacks instead of inheritance because inheritance restricts
 > the user to just the default constructor, whereas callbacks allow the user
