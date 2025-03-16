@@ -39,3 +39,6 @@ $(SITE_DIR)/%.puml: $(DOCS_DIR)/%.puml
 	mkdir -p $(@D)
 	cp $< $@
 
+gen/%.puml: %.puml
+	mkdir -p $(@D)
+	cp $< $@
