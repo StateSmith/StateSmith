@@ -54,8 +54,12 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v4
         with:
+            cache: true
             dotnet-version: |
                 9.0.x
+                8.0.x
+                7.0.x
+                6.0.x
 
       - name: Add .NET tools to PATH
         run: echo '/root/.dotnet/tools' >> $GITHUB_PATH
