@@ -56,13 +56,13 @@ Now run `statesmith` to generate code for this state machine.
 
 Take a look at the generated files on the disk. They should look pretty similar to the ones in the links below.
 
-* [lightbulb.js](lightbulb.js): This is the **generated JavaScript state machine.** You can include this state machine in your JavaScript apps.
-* [lightbulb.sim.html](lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it.
+* [lightbulb.js](gen/lightbulb.js): This is the **generated JavaScript state machine.** You can include this state machine in your JavaScript apps.
+* [lightbulb.sim.html](gen/lightbulb.sim.html): A simple simulator that runs your statemachine and allows you to interact with it.
 
-Open the `lightbulb.sim.html` simulator in your web browser. Here's the same simulator hosted on github: [lightbulb.sim.html simulator](lightbulb.sim.html)
+Open the `lightbulb.sim.html` simulator in your web browser. Here's the same simulator hosted on github: [lightbulb.sim.html simulator](gen/lightbulb.sim.html)
 
 
-<iframe height="300" width="600" src="lightbulb.sim.html"></iframe>
+<iframe height="300" width="600" src="gen/lightbulb.sim.html"></iframe>
 
 Try clicking the `Switch` button on the right and watch the diagram update with the active state. You'll also see the event recorded in the event history on the right hand side.
 
