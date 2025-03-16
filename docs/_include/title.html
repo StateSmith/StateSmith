@@ -1,3 +1,4 @@
-<img src="/StateSmith/media/logo/logo.64.png">
-<pre> </pre>
-StateSmith
+{% if site.logo %}
+  <div class="site-logo" role="img" aria-label="{{ site.title }}"></div>
+{% endif %}
+  {{ site.title }}
