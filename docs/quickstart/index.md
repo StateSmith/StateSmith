@@ -21,7 +21,7 @@ You can install statesmith using many common package managers.
 
 {: .highlight}
 > Windows (using <a target="_blank" href="https://dotnet.microsoft.com/en-us/download">.NET SDK</a>) <br />
-> `% dotnet tool install --global StateSmith.Cli`
+> `% dotnet tool install --global StateSmith`
 
 If you don't want to use one of the methods above, you can always download the binary directly from the [Releases page]({{ site.github.repository_url }}/releases)
 
