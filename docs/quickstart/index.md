@@ -12,8 +12,8 @@ nav_order: 2
 You can install statesmith using many common package managers.
 
 {: .highlight}
-> Linux <br />
-> `% apt-get ...`
+> Linux TODO<br />
+> `% apt-get install statesmith`
 
 {: .highlight}
 > Mac (using <a target="_blank" href="https://brew.sh">Homebrew</a>) <br />
