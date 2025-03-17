@@ -8,13 +8,28 @@ layout: default
 
 There are a few ways StateSmith makes it easy to integrate with GitHub. You can easily display state machine diagrams on GitHub Docs and Pages. You can use GitHub Actions to automatically generate state machine source code on push. Read on for more details.
 
-## Displaying Diagrams using PlantUML
 
-You can use GitHub Actions to convert your PlantUML files to SVG, which can then be displayed in GitHub Docs and Pages.
+## SVG Diagrams on GitHub Docs
+
+GitHub Docs are the markdown files in your repo, displayed directly on the GitHub website (eg. README.md).
+
+GitHub Docs can display most diagram formats natively, so simply check in your SVG files into your repository and you can use them in markdown. This works for draw.io and PlantUML SVGs, for example.
+
+```
+  ![lightbulb](lightbulb.svg)
+```
+
+
+
+## PlantUML Diagrams in GitHub Pages
+
+You can use GitHub Actions to convert your PlantUML files to SVG on-the-fly, which can then be displayed in GitHub Pages.
 
 The following recipe will find all PlantUML files in your repository, generate a corresponding SVG, and then commit the SVG to your repo.
 
 TODO convert this to using statesmith once statesmith supports image generation
+TODO remove the commit by using a gen dir
+TODO use jekyll plugin
 
 ```
 # Add this recipe to your repo here: .github/workflows/puml-to-svg.yml
@@ -61,7 +76,7 @@ You can use the generated images in markdown or html:
 <img src="lightbulb.svg">
 
 
-## Displaying PlantUML files on GitHub Pages
+## PlantUML code on GitHub Pages
 
 GitHub Pages allows you to use Jekyll directives to do things like include files in the rendered output.
 You can add an include like the following to include your PlantUML code directly into your documentation.
@@ -81,20 +96,6 @@ You can add an include like the following to include your PlantUML code directly
 This does not do anything on GitHub Docs markdown. It will only be processed for GitHub Pages. See how we use it [here](https://github.com/emmby/StateSmith/edit/main/docs/integrations/github.md).
 
 
-## Displaying Diagrams using draw.io
-
-draw.io diagrams are just SVG, so they work on webpages out of the box!
-
-Upload your images to GitHub and using markdown or html to render them, eg. 
-
-```
-  ![lightbulb](lightbulb.drawio.svg)
-```
-```
-<img src="https://emmby.github.io/StateSmith/integrations/lightbulb.drawio.svg" >
-```
-
-TODO drawio example svg
 
 ## Generating code on commit using StateSmith GitHub Actions
 
@@ -103,7 +104,7 @@ TODO
 
 
 
-## Displaying Diagrams using Mermaid
+## Diagrams using Mermaid
 
 {: .note}
 > StateSmith does not natively support Mermaid. If you use mermaid diagrams in your docs
