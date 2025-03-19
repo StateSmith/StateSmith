@@ -6,7 +6,6 @@ nav_order: 1
 ---
 
 {: .note}
-> TODO: table of contents
 > TODO: examples in diagram files
 
 # StateSmith Settings
@@ -37,7 +36,9 @@ FileTop = "stuff..."
 AutoExpandedVars  = "stuff..."
 ```
 
-<br>
+
+1. TOC
+{:toc}
 
 
 
