@@ -21,14 +21,21 @@ jobs:
       - name: Verify dotnet
         run: dotnet --version
 
-      - name: create sample script
+      - name: Create statesmith deb package
         run: |
           mkdir -p .debpkg/usr/bin
           mkdir -p .debpkg/usr/lib/statesmith
           # TODO version
           dotnet publish -c Release --framework net9.0 --no-self-contained --use-current-runtime -p:Version=0.1.0 -o .debpkg/usr/lib/statesmith src/StateSmith.Cli
-          echo -e "#!/bin/bash\n/usr/bin/dotnet /usr/lib/statesmith/StateSmith.Cli \"\$@\"" > .debpkg/usr/bin/statesmith
-          chmod +x .debpkg/usr/bin/statesmith
+          echo -e "#!/bin/bash\n/usr/bin/dotnet /usr/lib/statesmith/StateSmith.Cli \"\$@\"" > .debpkg/usr/bin/ss.cli
+          # TODO relative paths
+          cat <<EOF > .debpkg/usr/bin/ss.cli
+            #!/bin/bash
+            DOTNET_ROOT="/usr/lib/dotnet"
+            exec "/usr/bin/dotnet" "/usr/lib/statesmith/StateSmith.Cli.dll" "\$@"
+          EOF
+
+          chmod +x .debpkg/usr/bin/ss.cli
 
       - uses: jiro4989/build-deb-action@v4
         with:
@@ -38,6 +45,7 @@ jobs:
           version: 0.1.0 # TODO version
         #   version: ${{ github.ref }} # refs/tags/v*.*.*
         #   arch: 'amd64' # optional
+        # TODO dotnet-runtime-8.0?
           depends: 'dotnet-sdk-8.0 (>= 8.0), git'
           desc: 'A state machine code generation tool suitable for bare metal, embedded and more.'
           homepage: 'https://github.com/StateSmith'
@@ -46,3 +54,8 @@ jobs:
       # Check a created deb file
       - name: Check a path of deb file
         run: ls ${{ steps.build.outputs.file_name }}
+
+      - name: abort to save container
+        run : |
+          echo "Abort to save container"
+          exit 1
