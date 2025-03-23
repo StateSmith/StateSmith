@@ -88,14 +88,16 @@ jobs:
             depends: 'dotnet-runtime-8.0 (>= 8.0), git'
             desc: 'A state machine code generation tool suitable for bare metal, embedded and more.'
             homepage: 'https://github.com/StateSmith'
-        id: build
+        id: build-deb
   
       # Check a created deb file
       - name: Check a path of deb file
-        run: ls ${{ steps.build.outputs.file_name }}
+        run: ls ${{ steps.build-deb.outputs.file_name }}
   
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: /tmp/publish/*.tar.gz
+          files:
+            ${{ steps.build-deb.outputs.file_name }}
+            /tmp/publish/*.tar.gz
   
