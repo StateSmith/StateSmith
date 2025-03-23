@@ -1,10 +1,37 @@
 # StateSmith CLI Change Log
 Note that this is a change log for the CLI tool, not the StateSmith library.
 
-They have different version numbers.
+They usually have different version numbers.
 
 # Releases
 Test/interim releases are not documented here.
+
+---
+
+## [0.17.5]
+### Contributors
+- @emmby
+  - https://github.com/StateSmith/StateSmith/pull/442
+  - https://github.com/StateSmith/StateSmith/pull/446
+
+### Changed (minor)
+- ss.cli binaries are now built via github action.
+  - Uses net9.0 (no need to install that though).
+  - https://github.com/StateSmith/StateSmith/pull/442
+
+### Upgrade StateSmith library version to `0.17.3`
+#### Contributors
+- @WXrock
+  - https://github.com/StateSmith/StateSmith/pull/433
+- @emmby
+  - https://github.com/StateSmith/StateSmith/pull/439
+
+#### Added
+- C99 - Add `extern C` setting `HFileUseExternC` (@WXrock).
+  - https://github.com/StateSmith/StateSmith/issues/435
+- PlantUML - PlantUML diagrams no longer need to define a state machine name. 
+  If missing, it will be inferred from the filename (@emmby).
+  - https://github.com/StateSmith/StateSmith/pull/439
 
 ---
 

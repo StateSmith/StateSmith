@@ -29,7 +29,7 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
-## [0.17.?]
+## [0.17.3]
 ### Contributors
 - @WXrock
   - https://github.com/StateSmith/StateSmith/pull/433
@@ -39,7 +39,9 @@ Test/interim releases are not documented here.
 ### Added
 - C99 - Add `extern C` setting `HFileUseExternC` (@WXrock).
   - https://github.com/StateSmith/StateSmith/issues/435
-- PlantUML - make statemachine_name optional by inferring it from the filename.
+- PlantUML - PlantUML diagrams no longer need to define a state machine name. 
+  If missing, it will be inferred from the filename (@emmby).
+  - https://github.com/StateSmith/StateSmith/pull/439
 
 ---
 

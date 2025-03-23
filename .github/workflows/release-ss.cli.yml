@@ -1,0 +1,70 @@
+name: Release ss.cli on cli-v*.*.* tags
+
+# TODO - prevent release if tests fail
+# https://github.com/StateSmith/StateSmith/issues/447
+
+on:
+  push:
+    tags:
+      - "cli-v*.*.*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+          
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            6.0.x
+            7.0.x
+            8.0.x
+            9.0.x
+
+      - name: Extract SemVer from GITHUB_REF
+        run: echo "semver=${GITHUB_REF#refs/tags/cli-v}" >> $GITHUB_ENV
+
+      - name: Print SemVer
+        run: echo "Current tag $semver"
+
+      - name: Install dependencies
+        run: dotnet restore src/StateSmith.sln
+
+      - name: Build And Publish Nuget
+        run: |
+          dotnet pack src/StateSmith.Cli/StateSmith.Cli.csproj -c Release -p:Version=$semver
+          dotnet nuget push src/StateSmith.Cli/nupkg/StateSmith.Cli.$semver.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+
+      - name: Build Binaries
+        run: |
+          staging="/tmp/staging"
+          publish="/tmp/publish"
+          mkdir -p $publish          
+          for arch in linux-arm linux-arm64 linux-musl-arm64 linux-musl-x64 linux-x64 osx-arm64 osx-x64 win-arm64 win-x64 win-x86; do
+            extension=""
+            if [[ $arch == "win"* ]]; then
+              extension=".exe"
+            fi
+            framework="net9.0"
+            mkdir -p $staging
+            ( 
+              cd src/StateSmith.Cli 
+              dotnet publish -c Release -p:Version=$semver -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true -p:DefineConstants="SS_SINGLE_FILE_APPLICATION"
+              mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli$extension $staging/ss.cli$extension
+              rm -rf ./bin
+            )
+            (
+              cd $staging
+              tar zcf $publish/statesmith-${arch}.tar.gz ss.cli$extension
+            )
+            rm -rf $staging
+          done
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: /tmp/publish/*.tar.gz
+  

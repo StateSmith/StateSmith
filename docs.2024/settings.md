@@ -648,7 +648,7 @@ BaseClassCode = "public MyBaseClass, public MyOtherBaseClass"
 ## RenderConfig.Cpp.ClassCode
 Type: `string`
 
-Use to add custom code to generated state machine class. Inheritance or composition is often a better choice.
+Use to add custom code to generated state machine class (in the header file). Inheritance or composition is often a better choice.
 
 ```toml
 [RenderConfig.Cpp]
