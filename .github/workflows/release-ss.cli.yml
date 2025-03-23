@@ -60,7 +60,7 @@ jobs:
             )
             (
               cd $staging
-              tar zcf $publish/statesmith-${arch}.tar.gz ss.cli$extension
+              tar zcf $publish/statesmith-$semver-${arch}.tar.gz ss.cli$extension
             )
             rm -rf $staging
           done
