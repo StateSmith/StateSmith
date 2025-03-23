@@ -1,4 +1,4 @@
-name: Release ss.cli on cli-v*.*.* tags
+name: Release ss.cli on v*.*.* tags
 
 # TODO - prevent release if tests fail
 # https://github.com/StateSmith/StateSmith/issues/447
@@ -6,7 +6,7 @@ name: Release ss.cli on cli-v*.*.* tags
 on:
   push:
     tags:
-      - "cli-v*.*.*"
+      - "v*.*.*"
 
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
             9.0.x
 
       - name: Extract SemVer from GITHUB_REF
-        run: echo "semver=${GITHUB_REF#refs/tags/cli-v}" >> $GITHUB_ENV
+        run: echo "semver=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
 
       - name: Print SemVer
         run: echo "Current tag $semver"
