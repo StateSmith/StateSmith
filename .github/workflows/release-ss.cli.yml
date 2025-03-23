@@ -11,7 +11,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:  
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
     steps:
       - uses: actions/checkout@v4
           
@@ -33,7 +34,8 @@ jobs:
       - name: Install dependencies
         run: dotnet restore src/StateSmith.sln
 
-      - name: Build And Publish Nuget
+      - if: env.NUGET_API_KEY != ''
+        name: Build And Publish Nuget
         run: |
           dotnet pack src/StateSmith.Cli/StateSmith.Cli.csproj -c Release -p:Version=$semver
           dotnet nuget push src/StateSmith.Cli/nupkg/StateSmith.Cli.$semver.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
