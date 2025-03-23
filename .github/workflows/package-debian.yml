@@ -28,13 +28,11 @@ jobs:
           # TODO version
           dotnet publish -c Release --framework net9.0 --no-self-contained --use-current-runtime -p:Version=0.1.0 -o .debpkg/usr/lib/statesmith src/StateSmith.Cli
           echo -e "#!/bin/bash\n/usr/bin/dotnet /usr/lib/statesmith/StateSmith.Cli \"\$@\"" > .debpkg/usr/bin/ss.cli
-          # TODO relative paths
           cat <<EOF > .debpkg/usr/bin/ss.cli
             #!/bin/bash
             DOTNET_ROOT="/usr/lib/dotnet"
             exec "/usr/bin/dotnet" "/usr/lib/statesmith/StateSmith.Cli.dll" "\$@"
           EOF
-
           chmod +x .debpkg/usr/bin/ss.cli
 
       - uses: jiro4989/build-deb-action@v4
@@ -44,9 +42,7 @@ jobs:
           maintainer: Adam Fraser-Kruck
           version: 0.1.0 # TODO version
         #   version: ${{ github.ref }} # refs/tags/v*.*.*
-        #   arch: 'amd64' # optional
-        # TODO dotnet-runtime-8.0?
-          depends: 'dotnet-sdk-8.0 (>= 8.0), git'
+          depends: 'dotnet-runtime-8.0 (>= 8.0), git'
           desc: 'A state machine code generation tool suitable for bare metal, embedded and more.'
           homepage: 'https://github.com/StateSmith'
         id: build
