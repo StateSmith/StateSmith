@@ -12,6 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:  
+      # Put secrets in env so we can test for their existence
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
     steps:
       - uses: actions/checkout@v4
@@ -94,6 +95,17 @@ jobs:
       - name: Check a path of deb file
         run: ls ${{ steps.build-deb.outputs.file_name }}
   
+      - name: Update Homebrew formula
+        uses: dawidd6/action-homebrew-bump-formula@v4
+        if: false
+        with:
+          # Required, custom GitHub access token with the 'public_repo' and 'workflow' scopes
+          formula: statesmith
+          token: ${{secrets.TOKEN}}
+          user_name: Adam Fraser-Kruck
+          user_email: adamfk@gmail.com
+      
+
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
