@@ -49,6 +49,14 @@ xxx
 meet the users where they are. support popular package managers via github actions
 github integration documentation.
 
+
+#### Open Questions
+1. Ideally the package installers would install the new simplified exe as well as the existing ss.cli.
+   This implies they should both be releasable together. But right now the separate v0.0.0 and cli-v0.0.0 
+   tags are making this difficult. Also the debian packager can't handle cli-v0.0.0 style tags. 
+   What should we do here?
+
+
 #### Other notes
 
 * Examples are embedded directly into the documentation.
@@ -63,9 +71,14 @@ github integration documentation.
 
 ## TODO
 * homebrew support
+  * wait for review
+  * add github action
 * apt get support
+  * get a debian sponsor
+  * upload to mentors
+  * update github action  
+* switch all deps to net8 instead of net9
 * update integration docs
-* speed up dotnet builder
 
 
 ## FUTURE WORK
