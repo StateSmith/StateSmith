@@ -105,6 +105,8 @@ public class RunHandler
         SsCsxDiagramFileProvider.FileResults scanResults = GetFilesToRun();
 
         _csxRunner.RunScriptsIfNeeded(scanResults.targetCsxFiles, _runInfoStore, out bool ranFiles);
+
+        _diagramRunner.warningCount = 0;
         ranFiles |= _diagramRunner.Run(scanResults.targetDiagramFiles, _runInfoStore);
 
         if (ranFiles)
@@ -127,6 +129,12 @@ public class RunHandler
         }
 
         PrintInterstingScanInfo(scanResults);
+
+        if (_diagramRunner.warningCount > 0)
+        {
+            _runConsole.WarnMarkupLine($"\nSee {_diagramRunner.warningCount} warning(s) above");
+            _runConsole.QuietMarkupLine("Run with `--verbose` to see more info.");
+        }
     }
 
     private SsCsxDiagramFileProvider.FileResults GetFilesToRun()
