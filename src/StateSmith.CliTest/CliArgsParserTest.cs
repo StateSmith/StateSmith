@@ -55,7 +55,17 @@ public class CliArgsParserTest
     {
         Parse<RunOptions>("run --no-sim-gen").NoSimGen.Should().BeTrue();
     }
-    
+
+    [Fact]
+    public void RunOptions_Files()
+    {
+        var options = Parse<RunOptions>("run --watch file1.puml file2.plantuml f3-design.drawio");
+        // note that we can't test for a quoted file string (like "my file.puml") here as that is handled by the shell, not the parser.
+
+        options.Watch.Should().BeTrue();
+        options.Files.Should().BeEquivalentTo(["file1.puml", "file2.plantuml", "f3-design.drawio"]);
+    }
+
     private static T Parse<T>(string args) where T : class
     {
         return Parse<T>(args.Split(' '));

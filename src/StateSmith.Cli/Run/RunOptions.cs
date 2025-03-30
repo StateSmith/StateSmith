@@ -68,6 +68,9 @@ public class RunOptions
     [Option('v', "verbose", HelpText = "Enables verbose info printing.")]
     public bool Verbose { get; set; } = false;
 
+    [Value(0, MetaName = "Optional files", HelpText = "Specific files to process. Overrides other options for matching files.")]
+    public IList<string> Files { get; set; } = new List<string>();
+
     public RunHandlerOptions GetRunHandlerOptions(string currentDirectory)
     {
         return new RunHandlerOptions(currentDirectory: currentDirectory)
