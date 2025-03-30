@@ -210,10 +210,35 @@ public class SsCsxDiagramFileProvider
         return !isEmptyFile;
     }
 
-    public void SetSpecificFiles(IList<string> filesPaths)
+    public void SetSpecificFiles(IList<string> readonlyFilePaths, string searchDirectory)
     {
         // remove empty file path strings
-        specificFilePaths = filesPaths.Where(filePath => !string.IsNullOrWhiteSpace(filePath)).ToList();
+        var paths = readonlyFilePaths.Where(filePath => !string.IsNullOrWhiteSpace(filePath)).ToList();
+
+        // windows shells don't typically expand globs (without super verbose syntax), so we need to do it ourselves
+        bool needsGlobbing = false;
+        foreach (var path in paths)
+        {
+            if (path.Contains('*'))
+            {
+                needsGlobbing = true;
+                matcher.AddInclude(path);
+            }
+            else
+            {
+                specificFilePaths.Add(path);
+            }
+        }
+
+        if (needsGlobbing)
+        {
+            PatternMatchingResult result = matcher.Execute(new DirectoryInfoWrapper(new DirectoryInfo(searchDirectory)));
+
+            foreach (var file in result.Files)
+            {
+                specificFilePaths.Add(file.Path);
+            }
+        }
     }
 
     public class FileResults

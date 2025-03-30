@@ -53,7 +53,7 @@ public class RunUi
                 return 1;
             }
 
-            runHandler.Finder.SetSpecificFiles(opts.SpecificFiles);
+            runHandler.Finder.SetSpecificFiles(opts.SpecificFiles, currentDirectory);
             runHandler.Run();
             return 0;
         }

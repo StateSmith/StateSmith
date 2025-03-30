@@ -10,7 +10,9 @@ Test/interim releases are not documented here.
 
 ## [0.18.?]
 ## Added
-- `run` - Allow specifying exact input files instead of relying on directory scanning.
+- `run` - Allow specifying input file pattern(s) instead of relying on directory scanning or manifest.
+  - ex: `ss.cli run sm1.plantuml`, `ss.cli run **.plantuml **.drawio*`
+  - globbing is cross-platform
   - https://github.com/StateSmith/StateSmith/issues/422
 
 ### Changed (minor)
