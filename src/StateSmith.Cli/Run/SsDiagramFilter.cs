@@ -1,7 +1,5 @@
 using StateSmith.Runner;
-using System;
 using System.IO;
-using System.Text.RegularExpressions;
 
 namespace StateSmith.Cli.Run;
 
@@ -10,22 +8,15 @@ namespace StateSmith.Cli.Run;
 /// </summary>
 public class SsDiagramFilter
 {
-    DiagramFileAssociator fileAssociator;
-
-    public SsDiagramFilter(DiagramFileAssociator fileAssociator)
-    {
-        this.fileAssociator = fileAssociator;
-    }
-
     public bool IsTargetDiagramFile(string path, string fileText)
     {
         string lowerCaseFileExtension = Path.GetExtension(path).ToLower();
 
-        if (fileAssociator.IsDrawIoFile(path) || fileAssociator.IsYedExtension(lowerCaseFileExtension))
+        if (DiagramFileAssociator.IsDrawIoFile(path) || DiagramFileAssociator.IsYedExtension(lowerCaseFileExtension))
         {
             return IsSsDrawioYedFileContents(fileText);
         }
-        else if (fileAssociator.IsPlantUmlExtension(lowerCaseFileExtension))
+        else if (DiagramFileAssociator.IsPlantUmlExtension(lowerCaseFileExtension))
         {
             return IsSsPlantUmlFileContents(fileText);
         }

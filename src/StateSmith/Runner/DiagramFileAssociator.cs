@@ -4,12 +4,12 @@ using System.IO;
 
 namespace StateSmith.Runner;
 
-public class DiagramFileAssociator
+public static class DiagramFileAssociator
 {
     private const string DrawioSvgExtension = ".drawio.svg";
-    protected static readonly HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
-    protected static readonly HashSet<string> YedFileExtensions = new() { ".graphml" };
-    protected static readonly HashSet<string> DrawIoFileEndings = new() { DrawioSvgExtension, ".drawio", ".dio" };
+    private static readonly HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
+    private static readonly HashSet<string> YedFileExtensions = new() { ".graphml" };
+    private static readonly HashSet<string> DrawIoFileEndings = new() { DrawioSvgExtension, ".drawio", ".dio" };
 
     public static List<string> GetAllDiagramExtensions()
     {
@@ -20,17 +20,22 @@ public class DiagramFileAssociator
         return allExtensions;
     }
 
-    public bool IsPlantUmlExtension(string lowerCaseFileExtension)
+    public static bool IsPlantUmlExtension(string lowerCaseFileExtension)
     {
         return PlantUmlFileExtensions.Contains(lowerCaseFileExtension);
     }
 
-    public bool IsPlantUmlFile(string filePath)
+    public static bool IsPlantUmlFile(string filePath)
     {
         return IsPlantUmlExtension(Path.GetExtension(filePath));
     }
 
-    public bool IsYedExtension(string lowerCaseFileExtension)
+    public static bool IsYedFile(string filePath)
+    {
+        return IsYedExtension(Path.GetExtension(filePath).ToLower());
+    }
+
+    public static bool IsYedExtension(string lowerCaseFileExtension)
     {
         return YedFileExtensions.Contains(lowerCaseFileExtension);
     }
@@ -40,7 +45,7 @@ public class DiagramFileAssociator
         return filePath.EndsWith(DrawioSvgExtension, StringComparison.OrdinalIgnoreCase);
     }
 
-    public bool IsDrawIoFile(string filePath)
+    public static bool IsDrawIoFile(string filePath)
     {
         foreach (var matchingEnding in DrawIoFileEndings)
         {
@@ -53,7 +58,7 @@ public class DiagramFileAssociator
         return false;
     }
 
-    public string GetHelpMessage()
+    public static string GetHelpMessage()
     {
         var helpMessage = 
                   $"  - draw.io supports: {string.Join(", ", DrawIoFileEndings)}\n"

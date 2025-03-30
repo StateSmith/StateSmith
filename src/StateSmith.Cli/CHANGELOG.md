@@ -8,6 +8,17 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.18.?]
+## Added
+- `run` - Allow specifying exact input files instead of relying on directory scanning.
+  - https://github.com/StateSmith/StateSmith/issues/422
+
+### Changed (minor)
+- `ss.cli run --verbose` now prints all parsed CLI args.
+- `ss.cli run` - minor console message tweaks.
+
+---
+
 ## [0.17.5]
 ### Contributors
 - @emmby

@@ -3,6 +3,7 @@ using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace StateSmith.Cli.Run;
 
@@ -32,13 +33,17 @@ public class DiagramRunner
     {
         bool ranFiles = false;
 
+        if (targetDiagramFiles.Count == 0)
+        {
+            _runConsole.MarkupLine("No diagrams found (that aren't already run by .csx).", filter: IsVerbose);
+        }
+
         foreach (var diagramFile in targetDiagramFiles)
         {
             RunDiagramFileIfNeeded(diagramFile, runInfoStore, out var diagramRan);
             ranFiles |= diagramRan;
         }
 
-        _runConsole.WriteLine("\nFinished running diagrams.");
         return ranFiles;
     }
 
@@ -117,6 +122,7 @@ public class DiagramRunner
             return; //!!!!!!!!!!! NOTE the return here.
         }
 
+        // note that this cast above is OK because we registered the LoggingCodeFileWriter above
         LoggingCodeFileWriter loggingCodeFileWriter = (LoggingCodeFileWriter)smRunner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<ICodeFileWriter>();
 
         try

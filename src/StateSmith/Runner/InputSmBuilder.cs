@@ -85,23 +85,21 @@ public class InputSmBuilder
 
         var fileExtension = Path.GetExtension(diagramFile).ToLower();
 
-        DiagramFileAssociator fileAssociator = new();
-
-        if (fileAssociator.IsYedExtension(fileExtension))
+        if (DiagramFileAssociator.IsYedExtension(fileExtension))
         {
             ConvertYedFileNodesToVertices(diagramFile);
         }
-        else if (fileAssociator.IsPlantUmlExtension(fileExtension))
+        else if (DiagramFileAssociator.IsPlantUmlExtension(fileExtension))
         {
             ConvertPlantUmlFileNodesToVertices(diagramFile);
         }
-        else if (fileAssociator.IsDrawIoFile(diagramFile)) // needs full diagram file name to support double extension like: `my_file.drawio.svg`
+        else if (DiagramFileAssociator.IsDrawIoFile(diagramFile)) // needs full diagram file name to support double extension like: `my_file.drawio.svg`
         {
             ConvertDrawIoFileNodesToVertices(diagramFile);
         }
         else
         {
-            throw new ArgumentException($"Unsupported file extension `{fileExtension}`. \n" + fileAssociator.GetHelpMessage());
+            throw new ArgumentException($"Unsupported file extension `{fileExtension}`. \n" + DiagramFileAssociator.GetHelpMessage());
         }
     }
 

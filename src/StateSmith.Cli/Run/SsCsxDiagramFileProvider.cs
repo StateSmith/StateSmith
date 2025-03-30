@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Extensions.FileSystemGlobbing;
 using Microsoft.Extensions.FileSystemGlobbing.Abstractions;
+using Spectre.Console;
 using StateSmith.Runner;
 
 namespace StateSmith.Cli.Run;
@@ -10,14 +12,15 @@ namespace StateSmith.Cli.Run;
 /// <summary>
 /// Finds StateSmith .csx files, and also StateSmith diagrams.
 /// </summary>
-public class SsCsxDiagramFileFinder
+public class SsCsxDiagramFileProvider
 {
     const string InlineIgnoreThisFileToken = "statesmith.cli-ignore-this-file";
 
     Matcher matcher;
     private bool hasIncludePatterns;
+    private IList<string> specificFilePaths = new List<string>();
 
-    public SsCsxDiagramFileFinder()
+    public SsCsxDiagramFileProvider()
     {
         matcher = new();
     }
@@ -79,13 +82,33 @@ public class SsCsxDiagramFileFinder
         }
     }
 
-    public ScanResults Scan(string searchDirectory)
+    /// <summary>
+    /// Will provide files if explicitly set, otherwise will search for files.
+    /// </summary>
+    /// <param name="searchDirectory"></param>
+    /// <returns></returns>
+    public FileResults GetOrFindFiles(string searchDirectory)
     {
-        ScanResults scanResults = new(searchDirectory);
+        FileResults fileResults = new(searchDirectory);
 
+        if (specificFilePaths.Count > 0)
+        {
+            GetSpecificFileResults(specificFilePaths, fileResults);
+        }
+        else
+        {
+            ScanForFiles(fileResults);
+        }
+
+        return fileResults;
+    }
+
+    private void ScanForFiles(FileResults scanResults)
+    {
+        string searchDirectory = scanResults.searchDirectory;
         PatternMatchingResult result = matcher.Execute(new DirectoryInfoWrapper(new DirectoryInfo(searchDirectory)));
 
-        SsDiagramFilter diagramFilter = new(new());   // todolow - get diagram filter from constructor
+        SsDiagramFilter diagramFilter = new();   // todolow - get diagram filter from constructor
         SsCsxFilter ssCsxFilter = new();
 
         foreach (var file in result.Files)
@@ -95,7 +118,7 @@ public class SsCsxDiagramFileFinder
             // we need to inspect file contents for rest of checks
             var fileText = File.ReadAllText(fullPath);
 
-            if (fileText.Contains(SsCsxDiagramFileFinder.InlineIgnoreThisFileToken))
+            if (fileText.Contains(InlineIgnoreThisFileToken))
             {
                 scanResults.ignoredFiles.Add(file.Path);
                 continue;
@@ -122,8 +145,38 @@ public class SsCsxDiagramFileFinder
                 }
             }
         }
+    }
 
-        return scanResults;
+    private static void GetSpecificFileResults(IList<string> filePaths, FileResults fileResults)
+    {
+        string searchDirectory = fileResults.searchDirectory;
+
+        foreach (var filePath in filePaths)
+        {
+            // we may have empty strings in the list if user mixed files with options
+            if (string.IsNullOrWhiteSpace(filePath))
+            {
+                continue;
+            }
+
+            string relativePath = filePath;
+
+            // scan results are relative to searchDirectory, so we need to make sure file path is relative
+            if (Path.IsPathRooted(relativePath))
+            {
+                relativePath = Path.GetRelativePath(searchDirectory, filePath);
+            }
+
+            if (SsCsxFilter.IsScriptFile(relativePath))
+            {
+                fileResults.targetCsxFiles.Add(relativePath);
+            }
+            else
+            {
+                fileResults.targetDiagramFiles.Add(relativePath);
+                // don't worry about checking if diagram type is supported here. That happens later.
+            }
+        }
     }
 
     /// <summary>
@@ -157,7 +210,13 @@ public class SsCsxDiagramFileFinder
         return !isEmptyFile;
     }
 
-    public class ScanResults
+    public void SetSpecificFiles(IList<string> filesPaths)
+    {
+        // remove empty file path strings
+        specificFilePaths = filesPaths.Where(filePath => !string.IsNullOrWhiteSpace(filePath)).ToList();
+    }
+
+    public class FileResults
     {
         public string searchDirectory;
 
@@ -190,7 +249,9 @@ public class SsCsxDiagramFileFinder
         public List<string> AbsoluteCsxFiles => targetCsxFiles.Select(relPath => Path.Combine(searchDirectory, relPath)).ToList();
         public List<string> AbsoluteDiagramFiles => targetDiagramFiles.Select(relPath => Path.Combine(searchDirectory, relPath)).ToList();
 
-        public ScanResults(string searchDirectory)
+        public bool HasTargetFiles => targetCsxFiles.Count > 0 || targetDiagramFiles.Count > 0;
+
+        public FileResults(string searchDirectory)
         {
             this.searchDirectory = searchDirectory;
         }

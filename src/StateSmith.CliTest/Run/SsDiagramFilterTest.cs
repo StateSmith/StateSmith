@@ -6,7 +6,7 @@ namespace StateSmith.CliTest.Run;
 
 public class SsDiagramFilterTest
 {
-    readonly SsDiagramFilter diagramFilter = new(new());
+    readonly SsDiagramFilter diagramFilter = new();
 
     private const string PlantUmlMatch = """
             @startuml RocketController

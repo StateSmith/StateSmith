@@ -34,11 +34,11 @@ public class TestScan
     [Fact]
     public void IntegrationTest_BrokenSvg_341()
     {
-        SsCsxDiagramFileFinder finder = new();
+        SsCsxDiagramFileProvider finder = new();
         finder.AddDefaultIncludePatternIfNone();
         finder.SetAsRecursive();
 
-        var scanResults = finder.Scan(examples1Dir);
+        var scanResults = finder.GetOrFindFiles(examples1Dir);
         scanResults.brokenDrawioSvgFiles.Should().BeEquivalentTo(
             "broken-svg.drawio.svg"
         );
@@ -47,11 +47,11 @@ public class TestScan
     [Fact]
     public void IntegrationTest()
     {
-        SsCsxDiagramFileFinder finder = new();
+        SsCsxDiagramFileProvider finder = new();
         finder.AddDefaultIncludePatternIfNone();
         finder.AddExcludePattern("a/a3");
 
-        var scanResults = finder.Scan(examples1Dir);
+        var scanResults = finder.GetOrFindFiles(examples1Dir);
         scanResults.targetCsxFiles.Should().BeEquivalentTo(
             "yes.csx"
         );
@@ -72,11 +72,11 @@ public class TestScan
     [Fact]
     public void IntegrationTestRecursive()
     {
-        SsCsxDiagramFileFinder finder = new();
+        SsCsxDiagramFileProvider finder = new();
         finder.AddExcludePattern("a/a3");
         finder.SetAsRecursive();
 
-        var scanResults = finder.Scan(examples1Dir);
+        var scanResults = finder.GetOrFindFiles(examples1Dir);
         scanResults.targetCsxFiles.Should().BeEquivalentTo(
             "a/a1/yes-a1a.csx",
             "a/a1/yes-a1b.csx",
