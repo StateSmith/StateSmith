@@ -30,6 +30,8 @@ If you don't want to use one of the methods above, you can always download the b
 
 Let's create our first state machine. We'll use PlantUML to get started quickly. Later you can try one of our other supported diagraming formats.
 
+Create a file named `lightbulb.puml` with the following contents:
+
 <table>
 <tr><td>
 <pre>
@@ -46,7 +48,7 @@ Let's create our first state machine. We'll use PlantUML to get started quickly.
 
 ## Generate the JavaScript Code
 
-Now run `statesmith` to generate code for this state machine.
+Now run `statesmith` to generate code for this state machine. We use JavaScript for this quickstart, but you can also try other supported languages.
 
 ```
 % statesmith --lang=js lightbulb.puml
