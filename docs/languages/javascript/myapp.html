@@ -1,5 +1,7 @@
 <html>
 <head>
+    <!-- Load Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
 
     <!-- Load your state machine here -->
     <script src="lightbulb.js"></script>
@@ -9,12 +11,12 @@
         // The callback for the Off state. You can call it whatever you want
         // as long as it agrees with what you said in lightbulb.puml
         function enter_off() {
-            document.querySelector('#bulb').textContent = "off";
+            document.querySelector('#bulb').textContent = "light_off";
         }
 
         // The callback for the On state.
         function enter_on() {
-            document.querySelector('#bulb').textContent = "on";
+            document.querySelector('#bulb').textContent = "lightbulb";
         }
 
         // Instantiate the state machine but don't start it yet.
@@ -26,8 +28,8 @@
 <!-- Otherwise document.querySelector('#bulb') will return null. -->
 <!-- Starting the state machine runs the event loop to respond to events. -->
 <body onload="statemachine.start()">
-    <h1>Lightbulb example</h1>
-    <p>Light: <span id="bulb"></span> </p>
+    <h1>A lightbulb</h1>
+    <p><span style="font-size: 64px" class="material-symbols-outlined" id="bulb"></span> </p>
 
     <!-- This button shows how to dispatch events to the state machine. -->
     <button onclick="statemachine.dispatchEvent(lightbulb.EventId.SWITCH)">Toggle switch</button>
