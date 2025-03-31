@@ -5,3 +5,10 @@ include $(shell git rev-parse --show-toplevel)/docs/build/docs.mk
 all: \
 	gen/lightbulb.sim.html \
 	gen/lightbulb.js
+
+# Copy myapp.html to the gen directory so that
+# the relative paths are the same for people following
+# the tutorial in the docs as they are for us.
+gen/myapp.html: myapp.html
+	@mkdir -p gen
+	@cp $< $@

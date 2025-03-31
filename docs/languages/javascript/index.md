@@ -42,11 +42,11 @@ This page will:
 Create a new file called `myapp.html` and add the following
 
 ```html
-{% include_relative myapp.html %}
+{% include_relative gen/myapp.html %}
 ```
 
 Now open this `myapp.html` in your browser. Notice that the page updates every time you click the Switch button!
 
-<iframe height="200" width="600" src="myapp.html"></iframe>
+<iframe height="200" width="600" src="gen/myapp.html"></iframe>
 
 Congratulations! You've now written your first app using a StateSmith state machine!
