@@ -60,7 +60,7 @@ add the following contents to a new file `myapp.c`. This code will:
 {% include_relative myapp.c %}
 ```
 
-To run your app, compile it with the C compiler of your choice. Here we use Gnu CC
+To run your app, compile it with the C compiler of your choice. Here we use Gnu CC with the `implicit-function-declaration` error disabled (more on that in the next section).
 
 
 ```
