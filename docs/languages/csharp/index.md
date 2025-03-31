@@ -67,8 +67,7 @@ But first, use `dotnet new console` to create a new c# console project.
 % dotnet new console
 ```
 
-Then create the `LightbulbCallback.cs` file:
-
+Your state machine needs a callback object that contains the `EnterOn()` and `EnterOff()` functions you referenced in your diagram. StateSmith assumes this callback is in a file named `LightbulbCallback.cs` (this can be changed via [settings](/advanced/settings.html)), so create that file with the following contents:
 
 ```c#
 // LightbulbCallback.cs
