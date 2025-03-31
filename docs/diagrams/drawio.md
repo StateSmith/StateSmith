@@ -14,7 +14,8 @@ StateSmith can work with regular draw.io diagrams, but we recommend loading our 
 2. Download [StateSmith-drawio.plugin js file](https://github.com/StateSmith/StateSmith-drawio-plugin/releases).
 3. Add [plugin to draw.io](https://youtu.be/04EShKOB96c?si=riFi3U9YcWOBYARH&t=112).
 
-> We recommend using the draw.io app. However, adventurous users may choose to use the draw.io VS Code plug-in instead.
+{: .note }
+> We recommend using the draw.io app. However, adventurous users may choose to use the [draw.io VS Code plug-in](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio) instead.
 > It provides a convenient workflow for VS Code users but has some bugs that prevent us from recommending it
 > for new users. 
 
