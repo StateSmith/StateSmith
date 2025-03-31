@@ -9,12 +9,14 @@
     <!-- Define the callbacks you used in lightbulb.puml and instantiate the state machine -->
     <script>
         // The callback for the Off state. You can call it whatever you want
-        // as long as it agrees with what you said in lightbulb.puml
+        // as long as it agrees with what you said in lightbulb.puml.
+        // "light_off" will be rendered as a lightbulb off icon by Material Icons.
         function enter_off() {
             document.querySelector('#bulb').textContent = "light_off";
         }
 
         // The callback for the On state.
+        // "lightbulb" will be rendered as a lightbulb icon by Material Icons.
         function enter_on() {
             document.querySelector('#bulb').textContent = "lightbulb";
         }
