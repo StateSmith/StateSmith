@@ -82,14 +82,12 @@ Congratulations! You've now written your first app using a StateSmith state mach
 
 The previous code works, but it causes some errors in the compiler. We had to disable the `implicit-function-declaration` warning in `gcc` to get it to compile.
 
-Let's fix this with the `.inc.h` technique that is commonly used in situations like this but may be less familiar to many C developers, which is why we didn't start with it.
+Let's fix this with the `.inc.h` technique that is commonly used in situations like this.
 
 Generate the state machine as before, but rename the `.c` file to `.inc.h`:
 
 ```
 % statesmith --lang=c99 lightbulb.puml
-```
-```
 % mv lightbulb.c lightbulb.inc.h
 ```
 
