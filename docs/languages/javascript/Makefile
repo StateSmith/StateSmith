@@ -11,5 +11,5 @@ all: \
 # the relative paths are the same for people following
 # the tutorial in the docs as they are for us.
 gen/myapp.html: myapp.html
-	@mkdir -p gen
+	@mkdir -p $(@D)
 	@cp $< $@
