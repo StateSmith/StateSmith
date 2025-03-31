@@ -54,17 +54,20 @@ Take a look at the generated files on the disk. They should look pretty similar 
 
 ## Using the State Machine in your own app
 
-To write an app that will use your new state machine,
-add the following contents to a new file `MyApp.java`. This code will:
+To write an app that will use your new state machine, you will:
 
 1. Implement a callback class that defines the `enter_on()` and `enter_off()` methods you referenced in `Lightbulb.puml`.
 2. Instantiate the state machine with an instance of that callback.
 3. Start an event loop that tickles the state machine with every tick of the loop.
 
+Your state machine needs a callback object that contains the `enter_on()` and `enter_off()` functions you referenced in your diagram. StateSmith assumes this callback is in a file named `LightbulbCallback.java` (this can be changed via [settings](/advanced/settings.html)), so create that file with the following contents:
+
 ```java
 // LightbulbCallback.java
 {% include_relative LightbulbCallback.java %}
 ```
+
+And create a `MyApp.java` file that will contain your main method and start your state machine.
 
 ```java
 // MyApp.java
