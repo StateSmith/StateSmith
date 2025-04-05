@@ -1,4 +1,4 @@
-public class LightbulbCallback {
+public class LightbulbDelegate {
 
     public void enter_on() {
         System.out.println("Lightbulb is on.");
