@@ -167,7 +167,7 @@ public class JavaGilVisitor : CSharpSyntaxWalker
         iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
         sb.AppendLineIfNotBlank(renderConfigJava.ClassCode);  // append class code after open brace token
 
-        // Add a member field for LightbulbDelegate to the generated Java class
+        // Add a member field for the delegate to the generated Java class
         sb.AppendLine("    private {node.Identifier.Text}Delegate delegate;");
 
         // Add a constructor with a parameter to the generated Java class
