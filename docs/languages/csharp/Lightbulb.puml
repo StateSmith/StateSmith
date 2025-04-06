@@ -7,6 +7,6 @@ On -> Off : Switch
 ' such as entering or exiting a state.
 ' You can call these functions whatever you want.
 ' You will define these functions in your callback.
-Off: enter / callback.EnterOff();
-On: enter / callback.EnterOn();
+Off: enter / this.EnterOff();
+On: enter / this.EnterOn();
 @enduml

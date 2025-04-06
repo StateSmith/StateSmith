@@ -4,8 +4,7 @@ public class Program
     
     public static void Main()
     {
-        LightbulbCallback callback = new LightbulbCallback();
-        Lightbulb bulb = new Lightbulb(callback);
+        Lightbulb bulb = new Lightbulb();
         bulb.Start();
 
         Console.WriteLine("Press <enter> to toggle the light switch.");

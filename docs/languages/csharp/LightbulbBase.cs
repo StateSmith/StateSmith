@@ -1,4 +1,4 @@
-public class LightbulbCallback
+public class LightbulbBase
 {
     public void EnterOn()
     {
