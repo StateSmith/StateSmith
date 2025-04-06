@@ -1,4 +1,4 @@
-public class LightbulbDelegate {
+public class LightbulbBase {
 
     public void enter_on() {
         System.out.println("Lightbulb is on.");

@@ -161,29 +161,27 @@ public class JavaGilVisitor : CSharpSyntaxWalker
         // handle identifier specially so that it doesn't put base list on newline
         iterableChildSyntaxList.Remove(node.Identifier);
         sb.Append(node.Identifier.Text);
-        MaybeOutputBaseList();
+        MaybeOutputBaseList(node);
         VisitTrailingTrivia(node.Identifier);
 
         iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
         sb.AppendLineIfNotBlank(renderConfigJava.ClassCode);  // append class code after open brace token
 
-        // Add a member field for the delegate to the generated Java class
-        sb.AppendLine($"    private {node.Identifier.Text}Delegate delegate;");
 
-        // Add a constructor with a parameter to the generated Java class
-        sb.AppendLine($"    public {node.Identifier.Text}({node.Identifier.Text}Delegate delegate) {{");
-        sb.AppendLine("        this.delegate = delegate;");
-        sb.AppendLine("    }");
 
         iterableChildSyntaxList.VisitRest();
     }
 
-    private void MaybeOutputBaseList()
+    private void MaybeOutputBaseList(ClassDeclarationSyntax node)
     {
         var extends = renderConfigJava.Extends.Trim();
         if (extends.Length > 0)
         {
             sb.Append(" extends " + extends);
+        }
+        else
+        {
+            sb.Append($" extends {node.Identifier.Text}Base");
         }
 
         var implements = renderConfigJava.Implements.Trim();
