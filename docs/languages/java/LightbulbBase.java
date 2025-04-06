@@ -1,5 +1,4 @@
 public class LightbulbBase {
-
     public void enterOn() {
         System.out.println("Lightbulb is on.");
     }
