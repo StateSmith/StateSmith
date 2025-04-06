@@ -7,10 +7,7 @@ layout: default
 # Generating Python State Machines
 
 {: .warning }
-> TODO depends on default callbacks.
-> I decided to use callbacks instead of inheritance because inheritance restricts
-> the user to just the default constructor, whereas callbacks allow the user
-> to construct the object however they need
+> TODO depends on https://github.com/StateSmith/StateSmith/pull/456
 
 
 ## Prerequisites
@@ -57,15 +54,15 @@ Take a look at the generated files on the disk. They should look pretty similar 
 
 To write an app that will use your new state machine, you will:
 
-1. Implement a callback class that defines the `enter_on()` and `enter_off()` methods you referenced in `lightbulb.puml`.
-2. Instantiate the state machine with an instance of the callback.
+1. Implement a base class that defines the `enter_on()` and `enter_off()` methods you referenced in `lightbulb.puml`.
+2. Instantiate the state machine.
 3. Start an event loop that tickles the state machine with every tick of the loop.
 
-Your state machine needs a callback object that contains the `enter_on()` and `enter_off()` functions you referenced in your diagram. StateSmith assumes this callback is in a file named `lightbulb_callback.py` (this can be changed via [settings](/advanced/settings.html)), so create that file with the following contents:
+Your state machine needs a base class that contains the `enter_on()` and `enter_off()` functions you referenced in your diagram. StateSmith assumes this base class is in a file named `lightbulb_base.py` (this can be changed via [settings](/advanced/settings.html)), so create that file with the following contents:
 
 ```python
-// lightbulb_callback.py
-{% include_relative lightbulb_callback.py %}
+// lightbulb_base.py
+{% include_relative lightbulb_base.py %}
 ```
 
 And create a `myapp.py` file that will contain your main method and start your state machine.
