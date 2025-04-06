@@ -1,4 +1,4 @@
-class LightbulbCallback:
+class LightbulbBase:
     def enter_on(self):
         print("Lightbulb is on.")
 

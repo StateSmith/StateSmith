@@ -1,9 +1,7 @@
-from lightbulb_callback import LightbulbCallback
-from lightbulb import lightbulb
+from lightbulb import Lightbulb
 
 def main():
-    callback = LightbulbCallback()
-    bulb = lightbulb(callback)
+    bulb = Lightbulb()
     bulb.start()
 
     print("Press <enter> to toggle the light switch.")
@@ -11,7 +9,7 @@ def main():
 
     while True:
         input()
-        bulb.dispatchEvent(lightbulb.EventId.SWITCH)
+        bulb.dispatchEvent(Lightbulb.EventId.SWITCH)
 
 
 if __name__ == "__main__":
