@@ -1,7 +1,6 @@
 
 public class Program
 {
-    
     public static void Main()
     {
         Lightbulb bulb = new Lightbulb();

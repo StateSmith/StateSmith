@@ -1,11 +1,10 @@
-#include <iostream>
 #pragma once
 
-using namespace std;
+#include <stdio.h>
 
 /* Implement a class for your statemachine that contains your callbacks */
 class LightbulbBase {
 public:
-    void enterOn() { cout << "Lightbulb is on." << endl; }
-    void enterOff() { cout << "Lightbulb is off." << endl; }
+    void enterOn() { printf("Lightbulb is on.\n"); }
+    void enterOff() { printf("Lightbulb is off.\n"); }
 };

@@ -3,8 +3,6 @@
 /* Include the generated state machine */
 #include "Lightbulb.hpp"
 
-using namespace std;
-
 /* 
  * Instantiate the state machine with an instance of your callback.
  */

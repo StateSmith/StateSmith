@@ -7,7 +7,6 @@ public class LightbulbBase
 
     public void EnterOff()
     {
-
         Console.WriteLine("Lightbulb is off");
     }
 }
