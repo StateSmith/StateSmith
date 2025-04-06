@@ -1,0 +1,1 @@
+Page moved to https://github.com/StateSmith/StateSmith/wiki/draw.io

@@ -53,6 +53,11 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
         sb.AppendLineIfNotBlank(renderConfigPython.Imports, optionalTrailer: "\n");
 
+        string className = transpilerHelper.root.DescendantNodes()
+            .OfType<ClassDeclarationSyntax>().Where(cds => cds.Identifier.Text != GilCreationHelper.GilClassName_FileTop)
+            .FirstOrDefault()?.Identifier.Text;
+        sb.AppendLine($"from {className.ToLower()}_base import {className}Base");
+
         this.Visit(transpilerHelper.root);
     }
 
@@ -73,8 +78,12 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         }
         else
         {
-            // this is main state machine class. It has extends and class code.
-            sb.Append($"({renderConfigPython.Extends.Trim()}):");
+            // If no base class is specified, inherit from a default base class named "{node.Identifier.Text}Base"
+            string baseClass = string.IsNullOrWhiteSpace(renderConfigPython.Extends)
+                ? $"{node.Identifier.Text}Base"
+                : renderConfigPython.Extends;
+
+            sb.Append($"({baseClass.Trim()}):");
             VisitTrailingTrivia(node.Identifier);
 
             if (!string.IsNullOrWhiteSpace(renderConfigPython.ClassCode))

@@ -217,7 +217,7 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         // handle identifier specially so that it doesn't put base list on newline
         iterableChildSyntaxList.Remove(node.Identifier);
         sb.Append(node.Identifier.Text);
-        MaybeOutputBaseList();
+        MaybeOutputBaseList(node);
         VisitTrailingTrivia(node.Identifier);
 
         iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
@@ -226,11 +226,17 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         iterableChildSyntaxList.VisitRest();
     }
 
-    private void MaybeOutputBaseList()
+    private void MaybeOutputBaseList(ClassDeclarationSyntax node)
     {
         var baseList = renderConfigCSharp.BaseList.Trim();
         if (baseList.Length > 0)
+        {
             sb.Append(" : " + baseList);
+        }
+        else
+        {
+            sb.Append($" : {node.Identifier.Text}Base");
+        }
     }
 
     // to ignore GIL attributes

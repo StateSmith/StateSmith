@@ -1,0 +1,13 @@
+@startuml
+[*] -> Off
+Off -> On : INCREASE / this.vars.count++
+On -> Off : DECREASE / this.vars.count--
+
+On : enter / {
+On : \twindow.alert("ON count: " + this.vars.count);
+On : }
+
+Off : enter / {
+Off : \twindow.alert("OFF count: " + this.vars.count);
+Off : }
+@enduml
