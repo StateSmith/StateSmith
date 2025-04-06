@@ -1,10 +1,10 @@
 public class LightbulbBase {
 
-    public void enter_on() {
+    public void enterOn() {
         System.out.println("Lightbulb is on.");
     }
     
-    public void enter_off() {
+    public void enterOff() {
         System.out.println("Lightbulb is off.");
     }
 }

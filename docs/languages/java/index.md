@@ -53,11 +53,11 @@ Take a look at the generated files on the disk. They should look pretty similar 
 
 To write an app that will use your new state machine, you will:
 
-1. Implement a base class that defines the `enter_on()` and `enter_off()` methods you referenced in `Lightbulb.puml`.
+1. Implement a base class that defines the `enterOn()` and `enterOff()` methods you referenced in `Lightbulb.puml`.
 2. Instantiate the state machine.
 3. Start an event loop that tickles the state machine with every tick of the loop.
 
-Your state machine needs a base class that contains the `enter_on()` and `enter_off()` functions you referenced in your diagram. StateSmith assumes this base class is in a file named `LightbulbBase.java` (this can be changed via [settings](/advanced/settings.html)), so create that file with the following contents:
+Your state machine needs a base class that contains the `enterOn()` and `enterOff()` functions you referenced in your diagram. StateSmith assumes this base class is in a file named `LightbulbBase.java` (this can be changed via [settings](/advanced/settings.html)), so create that file with the following contents:
 
 ```java
 // LightbulbBase.java
