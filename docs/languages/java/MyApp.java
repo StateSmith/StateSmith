@@ -11,6 +11,5 @@ public class MyApp {
             System.in.read();
             bulb.dispatchEvent(Lightbulb.EventId.SWITCH);
         }
-        
     }
 }
