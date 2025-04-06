@@ -1,14 +1,14 @@
+#include <stdio.h>
+
 /* Include the generated state machine */
 #include "Lightbulb.hpp"
-#include "LightbulbCallback.hpp"
 
 using namespace std;
 
 /* 
  * Instantiate the state machine with an instance of your callback.
  */
-LightbulbCallback callback;
-Lightbulb bulb(callback);
+Lightbulb bulb;
 
 int main() {
   printf("Press <enter> to toggle the light switch.\n");
