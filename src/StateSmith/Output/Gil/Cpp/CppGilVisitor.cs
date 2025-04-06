@@ -86,6 +86,13 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
         sb.AppendLine("#include <stdint.h>");
         sb.AppendLineIfNotBlank(renderConfigCpp.HFileIncludes);
+
+        // Dynamically include the base class header file if no base class is specified
+        if (string.IsNullOrWhiteSpace(renderConfigCpp.BaseClassCode))
+        {
+            sb.AppendLine($"#include \"{cppObjs.outputInfo.BaseFileName}Base.hpp\"");
+        }
+
         sb.AppendLine();
     }
 
@@ -393,7 +400,13 @@ public class CppGilVisitor : CSharpSyntaxWalker
     {
         var baseList = renderConfigCpp.BaseClassCode.Trim();
         if (baseList.Length > 0)
+        {
             sb.Append(" : " + baseList);
+        }
+        else
+        {
+            sb.Append($" : {cppObjs.outputInfo.BaseFileName}Base");
+        }
     }
 
     // to ignore GIL attributes
