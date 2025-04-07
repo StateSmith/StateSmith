@@ -6,7 +6,7 @@ On -> Off : Switch
 ' Use actions to call functions on various triggers, 
 ' such as entering or exiting a state.
 ' You can call these functions whatever you want.
-' You will define these functions in your app.
+' You will define these functions in LightbulbBase.
 Off: enter / self.enter_off();
 On: enter / self.enter_on();
 @enduml
