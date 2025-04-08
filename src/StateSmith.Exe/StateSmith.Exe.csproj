@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net9.0;net8.0;net7.0;net6.0</TargetFrameworks>
+    <Version>0.17.4</Version>
+    <Company>Adam Fraser-Kruck</Company>
+    <Product>StateSmith</Product>
+    <Authors>Mike Burton</Authors>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>Nullable</WarningsAsErrors>
+
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>statesmith</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+    <PackageProjectUrl>https://github.com/StateSmith/StateSmith</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/StateSmith/StateSmith</RepositoryUrl>    
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Description>StateSmith - a cross platform, free/open source tool for generating state machines in multiple languages. The generated code is human readable, has zero dependencies and is suitable for use with tiny bare metal microcontrollers, kernels, computers... It avoids dynamic memory allocations for the safety or performance inclined.</Description>
+    <PackageReadmeFile>NUGET_README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\StateSmith\StateSmith.csproj" />
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+    <PackageReference Include="NuGet.Protocol" Version="6.6.1" />
+    <PackageReference Include="Spectre.Console" Version="0.47.0" />
+  </ItemGroup>
+
+  <!-- Nuget readme stuff -->
+  <ItemGroup>
+    <!-- <None Include="packageIcon.png" Pack="true" PackagePath="\" /> -->   <!-- todo_low add when we have a logo -->
+    <None Include="NUGET_README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

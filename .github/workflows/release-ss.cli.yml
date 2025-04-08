@@ -1,4 +1,4 @@
-name: Release ss.cli on cli-v*.*.* tags
+name: Release ss.cli on v*.*.* tags
 
 # TODO - prevent release if tests fail
 # https://github.com/StateSmith/StateSmith/issues/447
@@ -6,12 +6,14 @@ name: Release ss.cli on cli-v*.*.* tags
 on:
   push:
     tags:
-      - "cli-v*.*.*"
+      - "v*.*.*"
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:  
+      # Put secrets in env so we can test for their existence
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
     steps:
       - uses: actions/checkout@v4
           
@@ -25,7 +27,7 @@ jobs:
             9.0.x
 
       - name: Extract SemVer from GITHUB_REF
-        run: echo "semver=${GITHUB_REF#refs/tags/cli-v}" >> $GITHUB_ENV
+        run: echo "semver=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
 
       - name: Print SemVer
         run: echo "Current tag $semver"
@@ -33,7 +35,8 @@ jobs:
       - name: Install dependencies
         run: dotnet restore src/StateSmith.sln
 
-      - name: Build And Publish Nuget
+      - if: env.NUGET_API_KEY != ''
+        name: Build And Publish Nuget
         run: |
           dotnet pack src/StateSmith.Cli/StateSmith.Cli.csproj -c Release -p:Version=$semver
           dotnet nuget push src/StateSmith.Cli/nupkg/StateSmith.Cli.$semver.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
@@ -58,13 +61,55 @@ jobs:
             )
             (
               cd $staging
-              tar zcf $publish/statesmith-${arch}.tar.gz ss.cli$extension
+              tar zcf $publish/statesmith-$semver-${arch}.tar.gz ss.cli$extension
             )
             rm -rf $staging
           done
 
+
+      - name: Create statesmith deb package
+        run: |
+            mkdir -p .debpkg/usr/bin
+            mkdir -p .debpkg/usr/lib/statesmith
+            dotnet publish -c Release --framework net9.0 --no-self-contained --use-current-runtime -p:Version=$semver -o .debpkg/usr/lib/statesmith src/StateSmith.Cli
+            echo -e "#!/bin/bash\n/usr/bin/dotnet /usr/lib/statesmith/StateSmith.Cli \"\$@\"" > .debpkg/usr/bin/ss.cli
+            cat <<EOF > .debpkg/usr/bin/ss.cli
+              #!/bin/bash
+              DOTNET_ROOT="/usr/lib/dotnet"
+              exec "/usr/bin/dotnet" "/usr/lib/statesmith/StateSmith.Cli.dll" "\$@"
+            EOF
+            chmod +x .debpkg/usr/bin/ss.cli
+  
+      - uses: jiro4989/build-deb-action@v4
+        with:
+            package: statesmith
+            package_root: .debpkg
+            maintainer: Adam Fraser-Kruck
+            version: ${{ github.ref }} # refs/tags/v*.*.*
+            depends: 'dotnet-runtime-8.0 (>= 8.0), git'
+            desc: 'A state machine code generation tool suitable for bare metal, embedded and more.'
+            homepage: 'https://github.com/StateSmith'
+        id: build-deb
+  
+      # Check a created deb file
+      - name: Check a path of deb file
+        run: ls ${{ steps.build-deb.outputs.file_name }}
+  
+      - name: Update Homebrew formula
+        uses: dawidd6/action-homebrew-bump-formula@v4
+        if: false
+        with:
+          # Required, custom GitHub access token with the 'public_repo' and 'workflow' scopes
+          formula: statesmith
+          token: ${{secrets.TOKEN}}
+          user_name: Adam Fraser-Kruck
+          user_email: adamfk@gmail.com
+      
+
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: /tmp/publish/*.tar.gz
+          files: |
+            ${{ steps.build-deb.outputs.file_name }}
+            /tmp/publish/*.tar.gz
   
