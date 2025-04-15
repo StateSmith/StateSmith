@@ -59,6 +59,7 @@ statemachine_defn:
     EOF
     ;
 
+// Note that this parse rule matches any LEXER token (not specifically any character)
 any_text:
     .*?
     ;
@@ -526,6 +527,7 @@ fragment IDENTIFIER_NON_DIGIT :  [$a-zA-Z_] ;
 SS_IDENTIFIER  :  (LITTLE_E | IDENTIFIER_NON_DIGIT)   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
 LITTLE_E: 'e';
 
+
 fragment NOT_NL_CR: ~[\n\r];
 LINE_COMMENT: '//' NOT_NL_CR*;
 STAR_COMMENT: '/*' .*? '*/' ;
@@ -578,3 +580,9 @@ OTHER_SYMBOLS:
     [~!%^&*=:;?|\\@#$];  //don't include braces/parenthesis as those need to be grouped
 
 HWS : [ \t]+ ;
+
+// This is needed for parse rule `any_text` to support special characters.
+// See https://github.com/StateSmith/StateSmith/issues/455
+UNICODE_LETTER:
+    [\p{L}]
+    ;

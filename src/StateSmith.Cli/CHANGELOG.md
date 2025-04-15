@@ -8,6 +8,10 @@ Test/interim releases are not documented here.
 
 ---
 
+TODO: note SS lib upgrade
+
+---
+
 ## [0.18.?]
 ## Added
 - `run` - Allow specifying input file pattern(s) instead of relying on directory scanning or manifest.

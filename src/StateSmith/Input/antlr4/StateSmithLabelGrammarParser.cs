@@ -43,7 +43,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		TRIPLE_SINGLE_QUOTE_STRING=25, DOUBLE_QUOTE_STRING=26, SINGLE_QUOTE_STRING=27, 
 		BACKTICK_STRING=28, DIGIT=29, DOUBLE_QUOTE=30, SINGLE_QUOTE=31, BACKTICK=32, 
 		PERIOD=33, COMMA=34, PLUS=35, DASH=36, COLON=37, GT=38, LT=39, FORWARD_SLASH=40, 
-		OTHER_SYMBOLS=41, HWS=42;
+		OTHER_SYMBOLS=41, HWS=42, UNICODE_LETTER=43;
 	public const int
 		RULE_optional_any_space = 0, RULE_ohs = 1, RULE_some_ws = 2, RULE_node = 3, 
 		RULE_statemachine_name = 4, RULE_statemachine_defn = 5, RULE_any_text = 6, 
@@ -93,7 +93,8 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		"CPP_RAW_STRING2", "TRIPLE_DOUBLE_QUOTE_STRING", "TRIPLE_SINGLE_QUOTE_STRING", 
 		"DOUBLE_QUOTE_STRING", "SINGLE_QUOTE_STRING", "BACKTICK_STRING", "DIGIT", 
 		"DOUBLE_QUOTE", "SINGLE_QUOTE", "BACKTICK", "PERIOD", "COMMA", "PLUS", 
-		"DASH", "COLON", "GT", "LT", "FORWARD_SLASH", "OTHER_SYMBOLS", "HWS"
+		"DASH", "COLON", "GT", "LT", "FORWARD_SLASH", "OTHER_SYMBOLS", "HWS", 
+		"UNICODE_LETTER"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -4622,7 +4623,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', ',', '\x216', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
+		'\x5964', '\x3', '-', '\x216', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
 		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x4', '\x5', '\t', '\x5', '\x4', 
 		'\x6', '\t', '\x6', '\x4', '\a', '\t', '\a', '\x4', '\b', '\t', '\b', 
 		'\x4', '\t', '\t', '\t', '\x4', '\n', '\t', '\n', '\x4', '\v', '\t', '\v', 

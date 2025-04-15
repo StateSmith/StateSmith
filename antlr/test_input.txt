@@ -1,10 +1,2 @@
-@startuml system
-
-skin rose
-mainframe my little test state machine
-
-
-[*] -> ACTIVE : POWER_BUTTON
-ACTIVE -> IDLE : POWER_BUTTON
-
-@enduml
+$NOTES
+Special chars: ë, Ш
