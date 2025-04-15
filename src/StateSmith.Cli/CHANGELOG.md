@@ -18,6 +18,8 @@ Test/interim releases are not documented here.
 ### Changed (minor)
 - `ss.cli run --verbose` now prints all parsed CLI args.
 - `ss.cli run` - minor console message tweaks.
+- Released binary files use .zip extension for Windows. Other OS still use .tar.gz.
+  - https://github.com/StateSmith/StateSmith/issues/449
 
 ---
 

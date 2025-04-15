@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+### NOTE! See .github\workflows\release-ss.cli.yml for potentially updated build script/instructions.
+### This script is more for manual testing and building. It may be outdated.
+
+
 import os
 import shutil
 import glob
