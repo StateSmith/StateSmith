@@ -1,8 +1,11 @@
+using Newtonsoft.Json;
+using NuGet.Protocol;
 using Spectre.Console;
 using StateSmith.Cli.Manifest;
 using StateSmith.Cli.Utils;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace StateSmith.Cli.Run;
 
@@ -30,9 +33,28 @@ public class RunUi
 
         SetRunHandlerFromOptions();
 
+        if (opts.Verbose)
+        {
+            _console.MarkupLine("[yellow]Run verb CLI options:[/]");
+            _console.WriteLine(opts.ToJson(Formatting.Indented));
+        }
+
         if (opts.Menu)
         {
             AskWhatToDo("What did you want to do?");
+            return 0;
+        }
+
+        if (opts.SpecificFiles.Count > 0)
+        {
+            if (opts.Here || opts.IncludePatterns.Any() || opts.ExcludePatterns.Any() || opts.Recursive || opts.Up)
+            {
+                _console.MarkupLine($"[red]Error:[/] Can't use scanning options like '-h', '-i', '-x', '-r', '-u' when you specify files to target: {string.Join(",", opts.SpecificFiles)}");
+                return 1;
+            }
+
+            runHandler.Finder.SetSpecificFiles(opts.SpecificFiles, currentDirectory);
+            runHandler.Run();
             return 0;
         }
 
@@ -94,18 +116,16 @@ public class RunUi
 
     private void AskWhatToDo(string? title = null)
     {
-        const string findAndRunCsxFiles = "[cyan]Run Here.[/] Find and run StateSmith csx files here. No manifest used or created.";
+        const string findAndRunCsxFiles = "[cyan]Run Here.[/] Find and run StateSmith diagrams & csx files here. No manifest used or created.";
         const string findAndRunCsxFilesRecursively = "[cyan]Run Here Recursively.[/] Find and run StateSmith csx files here recursively. No manifest used or created.";
-        const string searchUpForManifest = "[cyan]Search Upwards For Manifest[/] and use that.";
-        //const string autoCreateManifestFile = "[cyan]Create Manifest From Scan.[/] Recursively finds StateSmith csx files in this directory and stores in manifest.";
-        const string blankManifest = "[cyan]Create Default Manifest[/] file here. Useful for filtering files in large directories.";
+        const string searchUpForManifest = "[cyan]Search Upwards For Manifest[/] and use that. May be deprecated.";
+        const string blankManifest = "[cyan]Create Default Manifest[/] file here. Useful for filtering files in large directories. May be deprecated.";
         string choice = _console.Prompt(new SelectionPrompt<string>()
-            .Title(title ?? $"No valid manifest ({ManifestPersistance.ManifestFileName}) found. What did you want to do?")
+            .Title(title ?? $"[red]Missing info to run:[/][grey] no files argument, no `--here` argument, no manifest found.[/]\nTry: [green]ss.cli run --help[/]\nWhat did you want to do?")
             .AddChoices(new[] {
                 findAndRunCsxFilesRecursively,
                 findAndRunCsxFiles,
                 searchUpForManifest,
-                //autoCreateManifestFile,
                 blankManifest,
             }));
 
@@ -123,10 +143,6 @@ public class RunUi
             case searchUpForManifest:
                 SearchUpForManifestAndRun();
                 break;
-            //case autoCreateManifestFile:
-            //    runHandler.Finder.SetAsRecursive();
-            //    runHandler.ScanAndCreateManifest();
-            //    break;
             case blankManifest:
                 CreateBlankManifestAskIfOverwrite(new ManifestPersistance(this.currentDirectory));
                 break;

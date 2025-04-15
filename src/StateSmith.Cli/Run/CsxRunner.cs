@@ -41,7 +41,7 @@ public class CsxRunner
 
         if (csxScripts.Count == 0)
         {
-            _runConsole.MarkupLine("No .csx scripts found to run.");
+            _runConsole.MarkupLine("No .csx scripts found.", filter: IsVerbose);
             return;
         }
 
@@ -69,23 +69,11 @@ public class CsxRunner
 
         _runConsole.QuietMarkupLine($"Running StateSmith .csx scripts with `{DotnetScriptProgram.Name}` version: " + versionString, filter: IsVerbose);
 
-        bool anyScriptsRan = false;
-
         foreach (var csxShortPath in csxScripts)
         {
             RunScriptIfNeeded(csxShortPath, runInfoStore, out bool scriptRan);
-            anyScriptsRan |= scriptRan;
+            ranFiles |= scriptRan;
             //_console.WriteLine(); // already lots of newlines in RunScriptIfNeeded
-        }
-
-        if (!anyScriptsRan)
-        {
-            _runConsole.WriteLine("No scripts needed to be run.");
-        }
-        else
-        {
-            _runConsole.WriteLine("Finished running scripts.");
-            ranFiles = true;
         }
     }
 

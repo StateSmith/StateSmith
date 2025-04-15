@@ -23,6 +23,7 @@ public class RunOptions
 
     [Option('x', "exclude", HelpText = "Glob patterns to exclude")]
     public IEnumerable<string> ExcludePatterns { get; set; } = new List<string>();
+    // note: we don't put this in a SetName because it's not mutually exclusive with -r
 
     [Option('i', "include", SetName = "include", HelpText = "Glob patterns to include. ex: `**/src/*.csx`. Can't use with -r.")]
     public IEnumerable<string> IncludePatterns { get; set; } = new List<string>();
@@ -67,6 +68,9 @@ public class RunOptions
 
     [Option('v', "verbose", HelpText = "Enables verbose info printing.")]
     public bool Verbose { get; set; } = false;
+
+    [Value(0, MetaName = "Optional specific files", HelpText = "Use when you want to target specific files without directory scanning.")]
+    public IList<string> SpecificFiles { get; set; } = new List<string>();
 
     public RunHandlerOptions GetRunHandlerOptions(string currentDirectory)
     {

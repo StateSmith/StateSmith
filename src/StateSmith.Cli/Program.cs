@@ -65,7 +65,6 @@ public class Program
         finally
         {
             _console.WriteLine("");
-            _console.WriteLine("");
         }
 
         Environment.ExitCode = resultCode;

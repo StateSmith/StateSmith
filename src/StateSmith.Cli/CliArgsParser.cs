@@ -1,6 +1,5 @@
 using CommandLine;
 using CommandLine.Text;
-using Spectre.Console;
 using StateSmith.Cli.Create;
 using StateSmith.Cli.Run;
 using StateSmith.Cli.Setup;

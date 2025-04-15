@@ -8,6 +8,9 @@ namespace StateSmith.Cli.Run;
 
 public class DiagramRunner
 {
+    // PUBLIC VAR! Feel free to clear it.
+    public int warningCount = 0;
+
     private RunConsole _runConsole;
     private DiagramOptions _diagramOptions;
 
@@ -32,13 +35,17 @@ public class DiagramRunner
     {
         bool ranFiles = false;
 
+        if (targetDiagramFiles.Count == 0)
+        {
+            _runConsole.MarkupLine("No diagrams found (that aren't already run by .csx).", filter: IsVerbose);
+        }
+
         foreach (var diagramFile in targetDiagramFiles)
         {
             RunDiagramFileIfNeeded(diagramFile, runInfoStore, out var diagramRan);
             ranFiles |= diagramRan;
         }
 
-        _runConsole.WriteLine("\nFinished running diagrams.");
         return ranFiles;
     }
 
@@ -103,6 +110,7 @@ public class DiagramRunner
 
         if (smRunner.PreDiagramBasedSettingsException != null)
         {
+            warningCount++;
             _runConsole.ErrorMarkupLine("\nFailed while trying to read diagram for settings.\n");
             smRunner.PrintAndThrowIfPreDiagramSettingsException();   // need to do this before we check the transpiler ID
             throw new Exception("Should not get here.");
@@ -112,11 +120,13 @@ public class DiagramRunner
 
         if (runnerSettings.transpilerId == TranspilerId.NotYetSet)
         {
-            _runConsole.MarkupLine($"Ignoring diagram as no language specified `--lang` and no transpiler ID found in diagram.");
+            _runConsole.WarnMarkupLine($"Ignoring diagram as no language specified `--lang` and no transpiler ID found in diagram.");
+            warningCount++;
             diagramRan = false;
             return; //!!!!!!!!!!! NOTE the return here.
         }
 
+        // note that this cast above is OK because we registered the LoggingCodeFileWriter above
         LoggingCodeFileWriter loggingCodeFileWriter = (LoggingCodeFileWriter)smRunner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<ICodeFileWriter>();
 
         try

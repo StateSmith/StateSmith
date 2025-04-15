@@ -55,7 +55,43 @@ public class CliArgsParserTest
     {
         Parse<RunOptions>("run --no-sim-gen").NoSimGen.Should().BeTrue();
     }
-    
+
+    [Fact]
+    public void RunOptions_Files()
+    {
+        var options = Parse<RunOptions>("run --watch file1.puml file2.plantuml f3-design.drawio");
+        // note that we can't test for a quoted file string (like "my file.puml") here as that is handled by the shell, not the parser.
+
+        options.Watch.Should().BeTrue();
+        options.SpecificFiles.Should().BeEquivalentTo(["file1.puml", "file2.plantuml", "f3-design.drawio"]);
+
+        // extra space at the end causes an empty string to be added to the list. Maybe won't happen with a real shell.
+        options = Parse<RunOptions>("run --watch file1.puml ");
+        options.Watch.Should().BeTrue();
+        options.SpecificFiles.Should().BeEquivalentTo(["file1.puml", ""]);
+    }
+
+    [Fact]
+    public void RunOptions_FilesInFrontOfOptions()
+    {
+        var options = Parse<RunOptions>("run file1.puml file2.plantuml f3-design.drawio --watch");
+        options.Watch.Should().BeTrue();
+        options.SpecificFiles.Should().BeEquivalentTo(["file1.puml", "file2.plantuml", "f3-design.drawio"]);
+
+        // extra space at the end causes an empty string to be added to the list. Maybe won't happen with a real shell.
+        options = Parse<RunOptions>("run file1.puml file2.plantuml f3-design.drawio --watch ");
+        options.Watch.Should().BeTrue();
+        options.SpecificFiles.Should().BeEquivalentTo(["file1.puml", "file2.plantuml", "f3-design.drawio", ""]); // Note extra blank string
+    }
+
+    [Fact]
+    public void RunOptions_FilesInMiddleOfOptions()
+    {
+        var options = Parse<RunOptions>("run file1.puml --watch file2.plantuml");
+        options.Watch.Should().BeTrue();
+        options.SpecificFiles.Should().BeEquivalentTo(["file1.puml", "file2.plantuml"]);
+    }
+
     private static T Parse<T>(string args) where T : class
     {
         return Parse<T>(args.Split(' '));

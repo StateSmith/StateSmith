@@ -40,7 +40,7 @@ public class WatchRunner
         _searchDirectory = searchDirectory;
     }
 
-    public void Run(SsCsxDiagramFileFinder.ScanResults scanResults)
+    public void Run(SsCsxDiagramFileProvider.FileResults scanResults)
     {
         _runHandlerOptions.Rebuild = false; // we don't want constant builds
 

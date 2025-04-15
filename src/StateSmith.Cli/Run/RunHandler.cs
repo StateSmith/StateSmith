@@ -3,13 +3,14 @@ using StateSmith.Cli.Manifest;
 using StateSmith.Common;
 using StateSmith.Runner;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace StateSmith.Cli.Run;
 
 public class RunHandler
 {
-    public SsCsxDiagramFileFinder Finder;
+    public SsCsxDiagramFileProvider Finder;
 
     private string _manifestDirectory;
     private string _SearchDirectory => _manifestDirectory;
@@ -25,7 +26,7 @@ public class RunHandler
 
     public RunHandler(IAnsiConsole console, string dirOrManifestPath, DiagramOptions diagramOptions, RunHandlerOptions runHandlerOptions)
     {
-        Finder = new SsCsxDiagramFileFinder();
+        Finder = new SsCsxDiagramFileProvider();
 
         _console = console;
         _runHandlerOptions = runHandlerOptions;
@@ -92,7 +93,7 @@ public class RunHandler
 
     private void Watch()
     {
-        SsCsxDiagramFileFinder.ScanResults scanResults = ScanForFiles();
+        SsCsxDiagramFileProvider.FileResults scanResults = GetFilesToRun();
         PrintInterstingScanInfo(scanResults);
 
         var watchRunner = new WatchRunner(_runConsole, _csxRunner, _diagramRunner, _runInfoStore, _runHandlerOptions, _runInfoDataBase, searchDirectory: _SearchDirectory);
@@ -101,28 +102,51 @@ public class RunHandler
 
     private void ExecuteNormalRun()
     {
-        SsCsxDiagramFileFinder.ScanResults scanResults = ScanForFiles();
+        SsCsxDiagramFileProvider.FileResults scanResults = GetFilesToRun();
 
         _csxRunner.RunScriptsIfNeeded(scanResults.targetCsxFiles, _runInfoStore, out bool ranFiles);
+
+        _diagramRunner.warningCount = 0;
         ranFiles |= _diagramRunner.Run(scanResults.targetDiagramFiles, _runInfoStore);
 
         if (ranFiles)
         {
             _runInfoDataBase.PersistRunInfo(_runInfoStore, printMessage: true);
         }
+        else
+        {
+            if (!IsVerbose)
+            {
+                if (scanResults.HasTargetFiles)
+                {
+                    _runConsole.MarkupLine($"Code gen for {scanResults.targetDiagramFiles.Count} diagram(s) and {scanResults.targetCsxFiles.Count} .csx script(s) [green]already up to date[/]. Run with `--verbose` for more info.");
+                }
+                else
+                {
+                    _runConsole.MarkupLine("No diagram or .csx files found to run. Run with `--verbose` for more info.");
+                }
+            }
+        }
 
         PrintInterstingScanInfo(scanResults);
+
+        if (_diagramRunner.warningCount > 0)
+        {
+            _runConsole.WarnMarkupLine($"\nSee {_diagramRunner.warningCount} warning(s) above");
+            _runConsole.QuietMarkupLine("Run with `--verbose` to see more info.");
+        }
     }
 
-    private SsCsxDiagramFileFinder.ScanResults ScanForFiles()
+    private SsCsxDiagramFileProvider.FileResults GetFilesToRun()
     {
-        return Finder.Scan(searchDirectory: _SearchDirectory);
+        return Finder.GetOrFindFiles(searchDirectory: _SearchDirectory);
     }
 
-    private void PrintInterstingScanInfo(SsCsxDiagramFileFinder.ScanResults scanResults)
+    private void PrintInterstingScanInfo(SsCsxDiagramFileProvider.FileResults scanResults)
     {
         bool spacerPrinted = false;
 
+        // local helper method
         void PrintSpacerIfNeeded()
         {
             if (!spacerPrinted)
