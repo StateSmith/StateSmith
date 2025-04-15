@@ -38,6 +38,9 @@ jobs:
           dotnet pack src/StateSmith.Cli/StateSmith.Cli.csproj -c Release -p:Version=$semver
           dotnet nuget push src/StateSmith.Cli/nupkg/StateSmith.Cli.$semver.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
 
+      - name: Ensure zip is installed
+        run: sudo apt-get install -y zip
+
       - name: Build Binaries
         run: |
           staging="/tmp/staging"
@@ -58,7 +61,11 @@ jobs:
             )
             (
               cd $staging
-              tar zcf $publish/statesmith-${arch}.tar.gz ss.cli$extension
+              if [[ $arch == "win"* ]]; then
+                zip -9 $publish/statesmith-${arch}.zip ss.cli$extension
+              else
+                tar zcf $publish/statesmith-${arch}.tar.gz ss.cli$extension
+              fi
             )
             rm -rf $staging
           done
@@ -66,5 +73,5 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: /tmp/publish/*.tar.gz
+          files: /tmp/publish/*
   

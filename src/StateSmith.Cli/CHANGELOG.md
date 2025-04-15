@@ -12,7 +12,7 @@ TODO: note SS lib upgrade
 
 ---
 
-## [0.18.?]
+## [0.18.0]
 ## Added
 - `run` - Allow specifying input file pattern(s) instead of relying on directory scanning or manifest.
   - ex: `ss.cli run sm1.plantuml`, `ss.cli run **.plantuml **.drawio*`
@@ -22,6 +22,8 @@ TODO: note SS lib upgrade
 ### Changed (minor)
 - `ss.cli run --verbose` now prints all parsed CLI args.
 - `ss.cli run` - minor console message tweaks.
+- Released binary files use .zip extension for Windows. Other OS still use .tar.gz.
+  - https://github.com/StateSmith/StateSmith/issues/449
 
 ---
 
