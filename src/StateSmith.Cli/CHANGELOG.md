@@ -8,7 +8,11 @@ Test/interim releases are not documented here.
 
 ---
 
-TODO: note SS lib upgrade
+## [0.18.1]
+### Upgrade StateSmith library version to `0.17.4`
+#### Fixed (minor)
+- Grammar - allow non-ASCII characters in notes shapes.
+  - https://github.com/StateSmith/StateSmith/issues/455
 
 ---
 
