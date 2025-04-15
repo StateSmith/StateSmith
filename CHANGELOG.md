@@ -29,6 +29,15 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+---
+
+## [0.17.?]
+### Fixed (minor)
+- Grammar - allow non-ASCII characters in notes shapes.
+  - https://github.com/StateSmith/StateSmith/issues/455
+
+---
+
 ## [0.17.3]
 ### Contributors
 - @WXrock
