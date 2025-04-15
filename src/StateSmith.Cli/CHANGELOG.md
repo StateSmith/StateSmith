@@ -8,7 +8,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## [0.18.?]
+## [0.18.0]
 ## Added
 - `run` - Allow specifying input file pattern(s) instead of relying on directory scanning or manifest.
   - ex: `ss.cli run sm1.plantuml`, `ss.cli run **.plantuml **.drawio*`
