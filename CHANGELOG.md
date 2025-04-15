@@ -31,7 +31,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## [0.17.?]
+## [0.17.4]
 ### Fixed (minor)
 - Grammar - allow non-ASCII characters in notes shapes.
   - https://github.com/StateSmith/StateSmith/issues/455
