@@ -518,4 +518,56 @@ public class Antlr4Test : CommonTestHelper
         var node = (NotesNode)ParseNodeWithNoErrors("$NOTES " + input);
         node.notes.Should().Be(input);
     }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/455
+    /// </summary>
+    [Fact]
+    public void NotesNodeWithNonAsciiChars_455()
+    {
+        var input = "ë, Ш";
+        var node = (NotesNode)ParseNodeWithNoErrors("$NOTES " + input);
+        node.notes.Should().Be(input);
+    }
+
+    /// <summary>
+    /// Test workaround for
+    /// https://github.com/StateSmith/StateSmith/issues/455
+    /// </summary>
+    [Fact]
+    public void NotesNodeWithTripleQuotedNonAsciiChars_455()
+    {
+        // triple quoted work around
+        {
+            var input = """
+            '''
+            ë, Ш
+            '''
+            """;
+            var node = (NotesNode)ParseNodeWithNoErrors("$NOTES " + input);
+            node.notes.Should().Be(input);
+        }
+
+        // backtick workaround
+        {
+            var input = """
+            `
+            ë, Ш
+            `
+            """;
+            var node = (NotesNode)ParseNodeWithNoErrors("$NOTES " + input);
+            node.notes.Should().Be(input);
+        }
+
+        // comment workaround
+        {
+            var input = """
+            /*
+            ë, Ш
+            */
+            """;
+            var node = (NotesNode)ParseNodeWithNoErrors("$NOTES " + input);
+            node.notes.Should().Be(input);
+        }
+    }
 }
