@@ -285,6 +285,29 @@ public class TriggerMapProcessorTests
         ExpectParseRuleMatchers("ANY", "UP_PRESS, UP_HELD, OP1, OP2, OP3, OP10, ESC, OK");
     }
 
+    [Fact]
+    public void TestRegexExpanding_AnyTrigger()
+    {
+        var eventList = "do, do_stuff, UP_PRESS, UP_HELD".Split(", ");
+
+        var input = """
+            UPx => UP_*                    // UP_PRESS, UP_HELD
+            ANY_EVENT => *                 // any event (includes 'do')
+            ANY_TRIGGER => *, enter, exit  // any trigger (includes 'do')
+            ANY_REGULAR => /...+/          // any regular event (excludes 'do' because it is only 2 chars long)
+            ANY_REGULAR2 => /(?!do$).*/    // any regular event (excludes 'do' because of regex negative lookahead)
+            """;
+
+        matches = TriggerMapParser.MatchLines(input);
+        TriggerMapper.PrepareMappings(matches, eventList);
+
+        ExpectParseRuleMatchers("UPx", "UP_PRESS, UP_HELD");
+        ExpectParseRuleMatchers("ANY_EVENT", "do, do_stuff, UP_PRESS, UP_HELD");
+        ExpectParseRuleMatchers("ANY_TRIGGER", "enter, exit, do, do_stuff, UP_PRESS, UP_HELD");
+        ExpectParseRuleMatchers("ANY_REGULAR", "do_stuff, UP_PRESS, UP_HELD");
+        ExpectParseRuleMatchers("ANY_REGULAR2", "do_stuff, UP_PRESS, UP_HELD");
+    }
+
     private static void ExpectParseFailWithMessage(string input, string ExpectedWildcardPattern)
     {
         Action a = () => TriggerMapParser.MatchLines(input);
