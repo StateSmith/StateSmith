@@ -1065,6 +1065,44 @@ public class ParsingTests
         configInner.Children.Count.Should().Be(0);
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/460
+    /// </summary>
+    [Fact]
+    public void RedeclaredNodeAllowed_460()
+    {
+        // before improvement for #460, below PANIC would end up nested in MENU state instead of root state machine.
+        // Same with initial state `[*] --> MENU`
+        var plantUmlText = """
+            @startuml SomeName
+            state MENU {
+                [*] -> MENU__DISARM_SYSTEM
+                state MENU__DISARM_SYSTEM
+                state DISARM_SYSTEM
+                state ARM_SYSTEM
+                state CONFIG {
+                    [*] -> CONFIG__CHANGE_CODE
+                    state CONFIG__CHANGE_CODE
+                }
+            }
+
+            state CONFIG {
+                state SECRET_MENU
+            }
+            state PANIC
+            [*] --> MENU
+
+            @enduml
+            """;
+
+        InputSmBuilder inputSmBuilder = new();
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
+        inputSmBuilder.FinishRunning();
+
+        StateMachine root = inputSmBuilder.GetStateMachine();
+        root.ChildWithDiagramId("PANIC").As<State>().Parent.Should().Be(root);
+    }
+
     private DiagramNode GetNodeById(string id)
     {
         return translator.GetDiagramNode(id);

@@ -33,7 +33,7 @@ Test/interim releases are not documented here.
 
 ## [0.17.????]
 ### Added
-- PlantUML Grammar - improve parser error message when node redeclared inside another node.
+- PlantUML Grammar - allow node redeclaration at root level to add detail.
   - https://github.com/StateSmith/StateSmith/issues/460
 
 ---
