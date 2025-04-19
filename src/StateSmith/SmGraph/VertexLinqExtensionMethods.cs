@@ -150,6 +150,9 @@ public static class VertexLinqExtensionMethods
         return (T)vertex.Child(name);
     }
 
+    /// <summary>
+    /// Throws if more than 1 child of type T is found.
+    /// </summary>
     public static T ChildType<T>(this Vertex vertex) where T : Vertex
     {
         var list = vertex.Children.OfType<T>().ToList();

@@ -31,6 +31,13 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.17.????]
+### Added
+- PlantUML Grammar - improve parser error message when node redeclared inside another node.
+  - https://github.com/StateSmith/StateSmith/issues/460
+
+---
+
 ## [0.17.4]
 ### Fixed (minor)
 - Grammar - allow non-ASCII characters in notes shapes.

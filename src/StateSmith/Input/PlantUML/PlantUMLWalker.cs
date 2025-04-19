@@ -16,11 +16,17 @@ public class PlantUMLWalker : PlantUMLBaseListener
     public List<DiagramEdge> edges = new();
     public DiagramNode root = new();
     public Dictionary<DiagramNode, string> nodeStereoTypeLookup = new();
+
+    /// <summary>
+    /// Nodes in this map are usually states, but could also be choice points or other things.
+    /// This doesn't include initial states or history states.
+    /// </summary>
     public Dictionary<string, DiagramNode> nodeMap = new();
     public List<KeptComment> keptCommentBlocks = new();
     public string? filepath;
+    Stack<DiagramNode> nodeStack = new();
 
-    private DiagramNode currentNode;
+    private DiagramNode CurrentEnclosingNode => nodeStack.Peek();
 
     // used to check if a state already contains an initial state
     private Dictionary<DiagramNode, DiagramNode> nodeInitialStateMap = new();
@@ -30,7 +36,7 @@ public class PlantUMLWalker : PlantUMLBaseListener
 
     public PlantUMLWalker()
     {
-        currentNode = root;
+        nodeStack.Push(root);
     }
 
     public override void EnterState_explicit([NotNull] PlantUMLParser.State_explicitContext context)
@@ -44,20 +50,41 @@ public class PlantUMLWalker : PlantUMLBaseListener
             label = label.Substring(1, label.Length - 2);   // remove quotes
         }
 
-        var node = GetOrAddNode(pumlId, context.identifier());
+        if (nodeMap.TryGetValue(pumlId, out var node))
+        {
+            CheckNodeRedeclaration(pumlId, node, context);
+        }
+        else
+        {
+            node = AddNode(pumlId);
+        }
+
         HandleStereotype(node, context.stereotype());
-        currentNode = node;
+        nodeStack.Push(node);
         node.label = label;
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/460
+    /// </summary>
+    private void CheckNodeRedeclaration(string pumlId, DiagramNode existingNode, PlantUMLParser.State_explicitContext context)
+    {
+        bool parentsMatch = existingNode.parent == CurrentEnclosingNode;
+        if (parentsMatch)
+            return;
+
+        // Parents don't match. That's OK if current enclosing node is the root node.
+        // In this case, we are adding detail to an existing state, but not trying to shove it into a different parent.
+        if (CurrentEnclosingNode.parent != null)
+        {
+            ThrowValidationFailure($"PlantUML node '{pumlId}' cannot be re-declared inside another node '{CurrentEnclosingNode.id}'." +
+                "https://github.com/StateSmith/StateSmith/issues/460", context);
+        }
     }
 
     public override void ExitState_explicit([NotNull] PlantUMLParser.State_explicitContext context)
     {
-        currentNode = currentNode.parent.ThrowIfNull();
-    }
-
-    private DiagramNode GetCurrentNode()
-    {
-        return currentNode;
+        nodeStack.Pop();
     }
 
     private DiagramNode GetOrAddHistoryState(PlantUMLParser.History_stateContext historyStateContext, DiagramNode parentNode)
@@ -70,7 +97,7 @@ public class PlantUMLWalker : PlantUMLBaseListener
                 id = MakeId(historyStateContext)
             };
             nodeHistoryStateMap.Add(parentNode, historyState);
-            AddNode(parentNode: parentNode, historyState);
+            LinkParentChildNodes(parentNode: parentNode, historyState);
         }
 
         return historyState;
@@ -78,15 +105,15 @@ public class PlantUMLWalker : PlantUMLBaseListener
 
     private DiagramNode GetOrAddInitialState(PlantUMLParser.Start_end_stateContext startEndContext)
     {
-        if (!nodeInitialStateMap.TryGetValue(currentNode, out var initialState))
+        if (!nodeInitialStateMap.TryGetValue(CurrentEnclosingNode, out var initialState))
         {
             initialState = new DiagramNode
             {
                 label = SmGraph.VertexParseStrings.InitialStateString,
                 id = MakeId(startEndContext)
             };
-            nodeInitialStateMap.Add(currentNode, initialState);
-            AddNode(parentNode: GetCurrentNode(), initialState);
+            nodeInitialStateMap.Add(CurrentEnclosingNode, initialState);
+            LinkParentChildNodes(parentNode: CurrentEnclosingNode, initialState);
         }
 
         return initialState;
@@ -97,10 +124,10 @@ public class PlantUMLWalker : PlantUMLBaseListener
         return $"line_{vertexContext.Start.Line}_column_{vertexContext.Start.Column}";
     }
 
-    private void AddNode(DiagramNode parentNode, DiagramNode state)
+    private void LinkParentChildNodes(DiagramNode parentNode, DiagramNode childNode)
     {
-        parentNode.children.Add(state);
-        state.parent = parentNode;
+        parentNode.children.Add(childNode);
+        childNode.parent = parentNode;
     }
 
     /// <summary>
@@ -110,17 +137,23 @@ public class PlantUMLWalker : PlantUMLBaseListener
     /// <returns></returns>
     private DiagramNode GetOrAddNode(string pumlId, ParserRuleContext context)
     {
-        if (!nodeMap.TryGetValue(pumlId, out var state))
+        if (!nodeMap.TryGetValue(pumlId, out var node))
         {
-            state = new DiagramNode
-            {
-                label = pumlId,
-                id = pumlId,
-            };
-            nodeMap.Add(pumlId, state);
-            AddNode(parentNode: GetCurrentNode(), state);
+            node = AddNode(pumlId);
         }
 
+        return node;
+    }
+
+    private DiagramNode AddNode(string pumlId)
+    {
+        DiagramNode state = new()
+        {
+            label = pumlId,
+            id = pumlId,
+        };
+        nodeMap.Add(pumlId, state);
+        LinkParentChildNodes(parentNode: CurrentEnclosingNode, state);
         return state;
     }
 
@@ -251,7 +284,7 @@ public class PlantUMLWalker : PlantUMLBaseListener
         }
         else if(vertexContext.history_state() != null)
         {
-            node = GetOrAddHistoryState(vertexContext.history_state(), GetCurrentNode());
+            node = GetOrAddHistoryState(vertexContext.history_state(), CurrentEnclosingNode);
         }
         else
         {

@@ -324,15 +324,15 @@ public class ParsingTests
         DiagramNode root = translator.Root;
 
         DiagramNode initial = root.children[1];
-        DiagramNode Foo = GetVertexById("Foo");
-        DiagramNode Foo1 = GetVertexById("Foo1");
+        DiagramNode Foo = GetNodeById("Foo");
+        DiagramNode Foo1 = GetNodeById("Foo1");
 
-        DiagramNode Somp = GetVertexById("Somp");
-        DiagramNode entry1 = GetVertexById("entry1");
-        DiagramNode entry2 = GetVertexById("entry2");
-        DiagramNode exitA = GetVertexById("exitA");
-        DiagramNode sin = GetVertexById("sin");
-        DiagramNode sin2 = GetVertexById("sin2");
+        DiagramNode Somp = GetNodeById("Somp");
+        DiagramNode entry1 = GetNodeById("entry1");
+        DiagramNode entry2 = GetNodeById("entry2");
+        DiagramNode exitA = GetNodeById("exitA");
+        DiagramNode sin = GetNodeById("sin");
+        DiagramNode sin2 = GetNodeById("sin2");
 
         entry1.label.Should().Be("entry : entry1");
         entry2.label.Should().Be("entry : entry2");
@@ -515,13 +515,13 @@ public class ParsingTests
 
         for (int i = 1; i <= 7; i++)
         {
-            GetVertexById("BetweenNotes" + i);
+            GetNodeById("BetweenNotes" + i);
         }
 
         Action a;
-        a = () => GetVertexById("DontFindMe1");
+        a = () => GetNodeById("DontFindMe1");
         a.Should().Throw<Exception>();
-        a = () => GetVertexById("DontFindMe2");
+        a = () => GetNodeById("DontFindMe2");
         a.Should().Throw<Exception>();
     }
 
@@ -699,7 +699,7 @@ public class ParsingTests
             @enduml
             """);
 
-        GetVertexById("title");
+        GetNodeById("title");
     }
 
     /// <summary>
@@ -716,7 +716,7 @@ public class ParsingTests
             @enduml
             """);
 
-        GetVertexById("title");
+        GetNodeById("title");
     }
 
     //###############################################################################################
@@ -813,7 +813,7 @@ public class ParsingTests
             @enduml
             """);
 
-        GetVertexById("mainframe");
+        GetNodeById("mainframe");
     }
 
     /// <summary>
@@ -858,7 +858,7 @@ public class ParsingTests
             @enduml
             """);
 
-        GetVertexById("skin");
+        GetNodeById("skin");
     }
 
     //###############################################################################################
@@ -976,10 +976,96 @@ public class ParsingTests
         }
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/460
+    /// </summary>
+    [Fact]
+    public void RedeclaredNodeInsideAnotherNode_Explicit_460()
+    {
+        // The below doesn't make sense because CONFIG is redeclared from root to MENU.
+        var plantUmlText = """
+            @startuml SomeName
+            state CONFIG
+            
+            state MENU {
+                state CONFIG
+            }
 
+            [*] --> CONFIG
+            @enduml
+            """;
 
+        var action = () => ParseAssertNoError("foo.puml", plantUmlText);
 
-    private DiagramNode GetVertexById(string id)
+        action.Should().Throw<Exception>()
+            .WithMessage("*'CONFIG' cannot be re-declared inside another node 'MENU'*https://github.com/StateSmith/StateSmith/issues/460*");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/460
+    /// </summary>
+    [Fact]
+    public void RedeclaredNodeInsideAnotherNode_Implicit_460()
+    {
+        // The below doesn't make sense because CONFIG is redeclared from root to MENU.
+        var plantUmlText = """
+            @startuml SomeName
+            [*] --> CONFIG
+            
+            state MENU {
+                state CONFIG
+            }
+            @enduml
+            """;
+
+        var action = () => ParseAssertNoError("foo.puml", plantUmlText);
+
+        action.Should().Throw<Exception>()
+            .WithMessage("*'CONFIG' cannot be re-declared inside another node 'MENU'*https://github.com/StateSmith/StateSmith/issues/460*");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/460
+    /// </summary>
+    [Fact]
+    public void RedeclaredNodeAtRootLevel_460()
+    {
+        var plantUmlText = """
+            @startuml SomeName
+            state MENU {
+                state CONFIG
+            }
+
+            state CONFIG {
+                state CONFIG_INNER
+            }
+
+            [*] --> CONFIG
+
+            @enduml
+            """;
+
+        InputSmBuilder inputSmBuilder = new();
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
+        inputSmBuilder.FinishRunning();
+
+        StateMachine root = inputSmBuilder.GetStateMachine();
+        root.Children.Count.Should().Be(2); // MENU and initial state
+        root.ChildType<InitialState>(); // requires only 1
+        var menu = root.ChildType<State>(); // requires only 1
+
+        menu.Name.Should().Be("MENU");
+        var config = menu.ChildType<State>();
+        config.Name.Should().Be("CONFIG");
+        menu.Children.Count.Should().Be(1);
+
+        config.Children.Count.Should().Be(1);
+        var configInner = config.ChildType<State>();
+        configInner.Name.Should().Be("CONFIG_INNER");
+        configInner.Children.Count.Should().Be(0);
+    }
+
+    private DiagramNode GetNodeById(string id)
     {
         return translator.GetDiagramNode(id);
     }
