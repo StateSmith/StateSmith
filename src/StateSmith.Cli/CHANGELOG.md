@@ -8,6 +8,14 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.18.2]
+### Upgrade StateSmith library version to `0.17.5`
+#### Added
+- PlantUML Grammar - allow node redeclaration at root level to add detail.
+  - https://github.com/StateSmith/StateSmith/issues/460
+
+---
+
 ## [0.18.1]
 ### Upgrade StateSmith library version to `0.17.4`
 #### Fixed (minor)
