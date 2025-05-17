@@ -92,6 +92,25 @@ public class DiagramRunner
         RunDiagramFile(diagramRelPath, diagramAbsolutePath, out diagramRan, runInfoStore);
     }
 
+    /// <summary>
+    /// CLI option --config-files is relative to the current directory, but the runner settings
+    /// are relative to the diagram file. So we need to use absolute paths for the config files.
+    /// </summary>
+    public static void ApplyConfigFiles(RunnerSettings runnerSettings, RunHandlerOptions runHandlerOptions)
+    {
+        foreach (var configFilePath in runHandlerOptions.ConfigFiles)
+        {
+            var path = configFilePath;
+
+            if (!Path.IsPathFullyQualified(configFilePath))
+            {
+                path = Path.GetFullPath(configFilePath, runHandlerOptions.CurrentDirectory);
+            }
+
+            runnerSettings.configFiles.Add(path);
+        }
+    }
+
     public void RunDiagramFile(string shortPath, string absolutePath, out bool diagramRan, RunInfoStore runInfoStore)
     {
         string callerFilePath = CurrentDirectory + "/";  // Slash needed for fix of https://github.com/StateSmith/StateSmith/issues/345
@@ -100,6 +119,7 @@ public class DiagramRunner
         runnerSettings.simulation.enableGeneration = !_diagramOptions.NoSimGen; // enabled by default
         runnerSettings.propagateExceptions = _runHandlerOptions.PropagateExceptions;
         runnerSettings.dumpErrorsToFile = _runHandlerOptions.DumpErrorsToFile;
+        ApplyConfigFiles(runnerSettings, _runHandlerOptions);
 
         var info = new DiagramRunInfo(absolutePath: absolutePath);
         runInfoStore.diagramRuns[absolutePath] = info; // will overwrite if already exists

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace StateSmith.Cli.Run;
 
 public class RunHandlerOptions
@@ -16,6 +18,11 @@ public class RunHandlerOptions
     public bool DumpErrorsToFile;
     public bool Rebuild;
     public bool Watch;
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/428
+    /// </summary>
+    public IEnumerable<string> ConfigFiles = new List<string>();
 
     public readonly string CurrentDirectory;
 

@@ -3,6 +3,7 @@
 using StateSmith.Output;
 using StateSmith.Output.Algos.Balanced1;
 using System;
+using System.Collections.Generic;
 
 namespace StateSmith.Runner;
 
@@ -111,6 +112,12 @@ public class RunnerSettings
     /// See https://github.com/StateSmith/StateSmith/issues/281
     /// </summary>
     public SimulationSettings simulation = new();
+
+    /// <summary>
+    /// Relative to diagram file.
+    /// https://github.com/StateSmith/StateSmith/issues/428
+    /// </summary>
+    public List<string> configFiles = new();
 
     public RunnerSettings(string diagramFile, string? outputDirectory = null, AlgorithmId algorithmId = default, TranspilerId transpilerId = default)
     {

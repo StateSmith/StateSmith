@@ -56,6 +56,37 @@ public class CliArgsParserTest
         Parse<RunOptions>("run --no-sim-gen").NoSimGen.Should().BeTrue();
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/428
+    /// </summary>
+    [Fact]
+    public void RunOptions_ConfigFiles()
+    {
+        var options = Parse<RunOptions>("run --config-files base.toml sub.toml");
+        options.ConfigFiles.Should().BeEquivalentTo(["base.toml", "sub.toml"]);
+
+        options = Parse<RunOptions>("run --config-files base.toml");
+        options.ConfigFiles.Should().BeEquivalentTo(["base.toml"]);
+
+        options = Parse<RunOptions>("run a.puml b.drawio --config-files base.toml --watch");
+        options.Watch.Should().BeTrue();
+        options.SpecificFiles.Should().BeEquivalentTo(["a.puml", "b.drawio"]);
+        options.ConfigFiles.Should().BeEquivalentTo(["base.toml"]);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/428
+    /// </summary>
+    [Fact]
+    public void RunOptions_ConfigFiles_Blank()
+    {
+        Action act = () => Parse<RunOptions>("run --config-files");
+        act.Should().Throw<ArgumentException>();
+
+        act = () => Parse<RunOptions>("run --config-files -v");
+        act.Should().Throw<ArgumentException>();
+    }
+
     [Fact]
     public void RunOptions_Files()
     {

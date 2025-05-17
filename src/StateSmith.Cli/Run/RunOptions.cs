@@ -69,6 +69,9 @@ public class RunOptions
     [Option('v', "verbose", HelpText = "Enables verbose info printing.")]
     public bool Verbose { get; set; } = false;
 
+    [Option("config-files", HelpText = "External toml config file(s) to use for settings. Paths relative to current terminal directory. https://github.com/StateSmith/StateSmith/issues/428")]
+    public IList<string> ConfigFiles { get; set; } = new List<string>();
+
     [Value(0, MetaName = "Optional specific files", HelpText = "Use when you want to target specific files without directory scanning.")]
     public IList<string> SpecificFiles { get; set; } = new List<string>();
 
@@ -82,6 +85,7 @@ public class RunOptions
             DumpErrorsToFile = DumpErrorsToFile,
             Rebuild = Rebuild,
             Watch = Watch,
+            ConfigFiles = ConfigFiles,
         };
     }
 
