@@ -5,12 +5,11 @@ using System.IO;
 
 namespace StateSmithTest.Output.Java;
 
-public class RenderConfigJava_Test()
+public class SimpleJava_Test()
 {
     [Fact]
-    public void RenderConfigGeneral()
+    public void SimpleJavaSmCompiles()
     {
-        // TODO remove renderconfig? rename class?
         var plantUmlText = """"
             @startuml MySm
             [*] -> Off
