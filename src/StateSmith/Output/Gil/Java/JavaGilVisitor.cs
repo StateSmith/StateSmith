@@ -169,9 +169,10 @@ public class JavaGilVisitor : CSharpSyntaxWalker
 
         // Add the parameterized constructor
         string className = node.Identifier.Text;
+        sb.AppendLine($"    private {className}Delegate delegate;");
         sb.AppendLine($"    public {className}({className}Delegate delegate)");
         sb.AppendLine("    {");
-        sb.AppendLine("        // TODO: constructor body");
+        sb.AppendLine("        this.delegate = delegate;");
         sb.AppendLine("    }");
         sb.AppendLine();
 

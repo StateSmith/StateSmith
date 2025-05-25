@@ -69,6 +69,7 @@ public class SimpleJava_Test()
         string debugMessage = $"Debug paths: generatedFile.fileName='{javaPath}', args='{Path.GetFileName(javaPath)}', workDir='{Path.GetDirectoryName(javaPath)}'.\n";
         Xunit.Assert.True(process.ExitCode == 0, $"{debugMessage}javac failed with exit code {process.ExitCode}. StdOut: '{stdOut}'. StdErr: '{stdErr}'.");
 
+        // Only delete on successful completion of test, to aid debugging
         Directory.Delete(tmpDir, true);
     }
 }
