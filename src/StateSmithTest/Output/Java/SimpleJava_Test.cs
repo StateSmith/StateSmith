@@ -99,7 +99,7 @@ public class SimpleJava_Test(ITestOutputHelper output)
     }    
 
     private class NoDelegateConfig : IRenderConfigJava {
-        string IRenderConfigJava.NoDelegate => "true";
+        string IRenderConfig.NoDelegate => "true";
     };
 
     private static void SuccessfullyCompiles(string tmpDirname, string[] filePaths) {

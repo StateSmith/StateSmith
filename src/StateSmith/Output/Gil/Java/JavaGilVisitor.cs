@@ -168,7 +168,7 @@ public class JavaGilVisitor : CSharpSyntaxWalker
         sb.AppendLineIfNotBlank(renderConfigJava.ClassCode);  // append class code after open brace token
 
         // Add the parameterized constructor
-        if( renderConfigJava.NoDelegate != "true" ) { // TODO better boolean handling
+        if( renderConfig.NoDelegate != "true" ) { // TODO better boolean handling
             string className = node.Identifier.Text;
             sb.AppendLine($"    private {className}Delegate delegate;");
             sb.AppendLine($"    public {className}({className}Delegate delegate)");

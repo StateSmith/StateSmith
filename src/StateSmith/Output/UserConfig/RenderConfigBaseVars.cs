@@ -38,6 +38,8 @@ public class RenderConfigBaseVars
 
     public string TriggerMap = "";
 
+    public string NoDelegate = "";
+
     public RenderConfigBaseVars()
     {
         
@@ -65,6 +67,7 @@ public class RenderConfigBaseVars
         VariableDeclarations = Process(config.VariableDeclarations);
         EventCommaList = Process(config.EventCommaList);
         TriggerMap = Process(config.TriggerMap);
+        NoDelegate = Process(config.NoDelegate);
     }
 
     public void CopyFrom(RenderConfigBaseVars otherConfig)
@@ -81,6 +84,7 @@ public class RenderConfigBaseVars
         SmartAppend(ref DefaultAnyExpTemplate, otherConfig.DefaultAnyExpTemplate);
         SmartAppend(ref EventCommaList, otherConfig.EventCommaList);
         SmartAppend(ref TriggerMap, otherConfig.TriggerMap);
+        SmartAppend(ref NoDelegate, otherConfig.NoDelegate);
 
         ErasePureCommentVarDecls();
     }
