@@ -16,7 +16,7 @@ public class SimpleJava_Test(ITestOutputHelper output)
     public void SimpleJavaSmCompiles()
     {
         var plantUmlText = """"
-            @startuml MySm
+            @startuml Lightbulb
             [*] -> Off
             Off -> On : Switch
             On -> Off : Switch
@@ -26,7 +26,7 @@ public class SimpleJava_Test(ITestOutputHelper output)
             @enduml
             """";
 
-        var className = "MySm";
+        var className = "Lightbulb";
         var tmpDir = Directory.CreateTempSubdirectory().FullName;
         var javaPath = Path.Combine(tmpDir, $"{className}.java");
         var diagramPath = Path.Combine(tmpDir, Path.GetRandomFileName() + ".plantuml");
@@ -49,16 +49,16 @@ public class SimpleJava_Test(ITestOutputHelper output)
         // Add a simple Main app with the delegate class for validation
         var mainText = """
             public class MyApp {
-                static MySmDelegate delegate = new MySmDelegate();
-                static MySm bulb = new MySm(delegate);
+                static LightbulbDelegate delegate = new LightbulbDelegate();
+                static Lightbulb bulb = new Lightbulb(delegate);
 
                 public static void main(String args[]) {
                     bulb.start();
-                    bulb.dispatchEvent(MySm.EventId.SWITCH);
+                    bulb.dispatchEvent(Lightbulb.EventId.SWITCH);
                 }
             }
 
-            class MySmDelegate {
+            class LightbulbDelegate {
                 public void enterOn() {System.out.println("On");}
                 public void enterOff() {System.out.println("Off");}
             }
@@ -77,14 +77,14 @@ public class SimpleJava_Test(ITestOutputHelper output)
     public void CanDisableDelegate()
     {
         var plantUmlText = """"
-            @startuml MySm
+            @startuml Lightbulb
             [*] -> Off
             Off -> On : Switch
             On -> Off : Switch
             @enduml
             """";
 
-        var className = "MySm";
+        var className = "Lightbulb";
         var tmpDir = Directory.CreateTempSubdirectory().FullName;
         var javaPath = Path.Combine(tmpDir, $"{className}.java");
         var diagramPath = Path.Combine(tmpDir, Path.GetRandomFileName() + ".plantuml");
