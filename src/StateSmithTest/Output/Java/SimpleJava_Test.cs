@@ -2,6 +2,7 @@ using Xunit;
 using StateSmith.Runner;
 using System.Diagnostics;
 using System.IO;
+using System;
 
 namespace StateSmithTest.Output.Java;
 
@@ -45,18 +46,26 @@ public class SimpleJava_Test()
         var delegatePath = Path.Combine(tmpDir,$"{className}Delegate.java");
         File.WriteAllText(delegatePath, delegateText);
 
+        SuccessfullyCompiles(tmpDir, [javaPath, delegatePath]);
+
+        // Only delete on successful completion of test, to aid debugging
+        Directory.Delete(tmpDir, true);
+    }
+
+    private static void SuccessfullyCompiles(string tmpDirname, string[] filePaths) {
+
         // Compile the generated Java code
         var process = new Process
         {
             StartInfo = new ProcessStartInfo
             {
                 FileName = "javac",
-                Arguments = $"{Path.GetFileName(javaPath)} {Path.GetFileName(delegatePath)}",
+                Arguments = String.Join(' ', filePaths),
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 UseShellExecute = false,
                 CreateNoWindow = true,
-                WorkingDirectory = tmpDir
+                WorkingDirectory = tmpDirname
             }
         };
 
@@ -66,10 +75,7 @@ public class SimpleJava_Test()
         string stdOut = process.StandardOutput.ReadToEnd();
         string stdErr = process.StandardError.ReadToEnd();
 
-        string debugMessage = $"Debug paths: generatedFile.fileName='{javaPath}', args='{Path.GetFileName(javaPath)}', workDir='{Path.GetDirectoryName(javaPath)}'.\n";
+        string debugMessage = $"Debug paths: args='{String.Join(' ', filePaths)}', workDir='{tmpDirname}'.\n";
         Xunit.Assert.True(process.ExitCode == 0, $"{debugMessage}javac failed with exit code {process.ExitCode}. StdOut: '{stdOut}'. StdErr: '{stdErr}'.");
-
-        // Only delete on successful completion of test, to aid debugging
-        Directory.Delete(tmpDir, true);
     }
 }
