@@ -20,6 +20,9 @@ public class SimpleJava_Test(ITestOutputHelper output)
             [*] -> Off
             Off -> On : Switch
             On -> Off : Switch
+
+            Off: enter / delegate.enterOff();
+            On: enter / delegate.enterOn();
             @enduml
             """";
 
@@ -43,12 +46,27 @@ public class SimpleJava_Test(ITestOutputHelper output)
         bool constructorExists = System.Text.RegularExpressions.Regex.IsMatch(generatedCode, expectedConstructorPattern);
         Xunit.Assert.True(constructorExists, $"Generated Java code for class '{className}' does not contain the expected constructor: 'public {className}({className}Delegate delegate)'.\nActual code:\n{generatedCode}"); // Changed to Xunit.Assert
 
-        // Generate the empty delegate class
-        var delegateText = $"public class {className}Delegate {{}}";
-        var delegatePath = Path.Combine(tmpDir,$"{className}Delegate.java");
-        File.WriteAllText(delegatePath, delegateText);
+        // Add a simple Main app with the delegate class for validation
+        var mainText = """
+            public class MyApp {
+                static MySmDelegate delegate = new MySmDelegate();
+                static MySm bulb = new MySm(delegate);
 
-        SuccessfullyCompiles(tmpDir, [javaPath, delegatePath]);
+                public static void main(String args[]) {
+                    bulb.start();
+                    bulb.dispatchEvent(MySm.EventId.SWITCH);
+                }
+            }
+
+            class MySmDelegate {
+                public void enterOn() {System.out.println("On");}
+                public void enterOff() {System.out.println("Off");}
+            }
+        """;
+        var mainPath = Path.Combine(tmpDir,"MyApp.java");
+        File.WriteAllText(mainPath, mainText);
+
+        SuccessfullyCompiles(tmpDir, [javaPath, mainPath]);
 
         // Only delete on successful completion of test, to aid debugging
         Directory.Delete(tmpDir, true);
