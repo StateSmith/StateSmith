@@ -1,13 +1,17 @@
 using Xunit;
+using Xunit.Abstractions;
 using StateSmith.Runner;
 using System.Diagnostics;
 using System.IO;
 using System;
+using StateSmith.Output.UserConfig;
 
 namespace StateSmithTest.Output.Java;
 
-public class SimpleJava_Test()
+public class SimpleJava_Test(ITestOutputHelper output)
 {
+    private readonly ITestOutputHelper output = output;
+
     [Fact]
     public void SimpleJavaSmCompiles()
     {
@@ -26,15 +30,13 @@ public class SimpleJava_Test()
 
         File.WriteAllText(diagramPath, plantUmlText);
         SmRunner smRunner = new(diagramPath: diagramPath, renderConfig: null, transpilerId: StateSmith.Runner.TranspilerId.Java, algorithmId: AlgorithmId.Default);
+        smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>( new XUnitConsolePrinter(output));
         smRunner.Run();
 
         // Read the generated Java file content
         string generatedCode = File.ReadAllText(javaPath);
 
-        // Construct the expected constructor signature
         // It should be public <ClassName>(<ClassName>Delegate delegate)
-        // For example: public MySm(MySmDelegate delegate)
-        // A simple string contains might be too brittle. Let's try with a regex that's a bit flexible.
         string expectedConstructorPattern = $@"public\s+{className}\s*\(\s*{className}Delegate\s+delegate\s*\)";
 
         // Assert that the constructor exists
@@ -51,6 +53,54 @@ public class SimpleJava_Test()
         // Only delete on successful completion of test, to aid debugging
         Directory.Delete(tmpDir, true);
     }
+
+
+    [Fact]
+    public void CanDisableDelegate()
+    {
+        var plantUmlText = """"
+            @startuml MySm
+            [*] -> Off
+            Off -> On : Switch
+            On -> Off : Switch
+            @enduml
+            """";
+
+        var className = "MySm";
+        var tmpDir = Directory.CreateTempSubdirectory().FullName;
+        var javaPath = Path.Combine(tmpDir, $"{className}.java");
+        var diagramPath = Path.Combine(tmpDir, Path.GetRandomFileName() + ".plantuml");
+
+
+        File.WriteAllText(diagramPath, plantUmlText);
+        IRenderConfigJava config = new NoDelegateConfig();
+        SmRunner smRunner = new(diagramPath: diagramPath, renderConfig: config, transpilerId: StateSmith.Runner.TranspilerId.Java);
+        smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>( new XUnitConsolePrinter(output));
+        smRunner.Run();
+
+        // Read the generated Java file content
+        string generatedCode = File.ReadAllText(javaPath);
+
+        string unexpectedConstructorPattern = $@"public\s+{className}\s*\(\s*{className}Delegate\s+delegate\s*\)";
+
+        // Assert that the constructor does not exist
+        bool constructorExists = System.Text.RegularExpressions.Regex.IsMatch(generatedCode, unexpectedConstructorPattern);
+        Xunit.Assert.False(constructorExists, $"Generated Java code for class '{className}' does not contain the expected constructor: 'public {className}({className}Delegate delegate)'.\nActual code:\n{generatedCode}"); // Changed to Xunit.Assert
+
+        // Generate the empty delegate class
+        var delegateText = $"public class {className}Delegate {{}}";
+        var delegatePath = Path.Combine(tmpDir,$"{className}Delegate.java");
+        File.WriteAllText(delegatePath, delegateText);
+
+        SuccessfullyCompiles(tmpDir, [javaPath, delegatePath]);
+
+        // Only delete on successful completion of test, to aid debugging
+        Directory.Delete(tmpDir, true);
+    }    
+
+    private class NoDelegateConfig : IRenderConfigJava {
+        string IRenderConfigJava.NoDelegate => "true";
+    };
 
     private static void SuccessfullyCompiles(string tmpDirname, string[] filePaths) {
 

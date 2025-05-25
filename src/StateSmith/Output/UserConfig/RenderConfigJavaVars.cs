@@ -7,6 +7,7 @@ public class RenderConfigJavaVars
     public string Extends = "";
     public string Implements = "";
     public string ClassCode = "";
+    public string NoDelegate = "";
 
     public void SetFrom(IRenderConfigJava config, bool autoDeIndentAndTrim)
     {
@@ -26,5 +27,6 @@ public class RenderConfigJavaVars
         Extends = Process(config.Extends);
         Implements = Process(config.Implements);
         ClassCode = Process(config.ClassCode);
+        NoDelegate = Process(config.NoDelegate);
     }
 }
