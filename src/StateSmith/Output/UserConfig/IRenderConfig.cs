@@ -49,7 +49,7 @@ public interface IRenderConfig
     /// <summary>
     /// Disables generation of statemachine delegates
     /// </summary>
-    string NoDelegate => ""; // TODO bool?
+    string NoDelegate => ""; // TODO when I make this a bool, SmRunner sees the correct value but GilToJava always sees false
 }
 
 public class DummyIRenderConfig : IRenderConfig
