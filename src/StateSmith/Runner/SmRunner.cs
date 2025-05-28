@@ -37,6 +37,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private ExceptionDispatchInfo? preDiagramBasedSettingsException = null;
 
+    // TODO duplicate this but specify the configs directly
+    // Ultimately, modify this to use the specified configs constructor
     /// <summary>
     /// Constructor. Will attempt to read settings from the diagram file.
     /// </summary>
