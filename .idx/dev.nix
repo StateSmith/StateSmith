@@ -6,12 +6,12 @@
 
   # Use https://search.nixos.org/packages to find packages
   packages = [
-    pkgs.dotnet-sdk_8
+    pkgs.dotnetCorePackages.dotnet_9.sdk
     pkgs.temurin-bin-21
-     pkgs.python311
-     pkgs.python311Packages.pip
-     pkgs.gcc
-     pkgs.typescript
+    pkgs.python311
+    pkgs.python311Packages.pip
+    pkgs.gcc
+    pkgs.typescript
     # pkgs.go
     # pkgs.nodejs_20
     # pkgs.nodePackages.nodemon
