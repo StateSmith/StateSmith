@@ -158,10 +158,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
             // TODO it would be nice to write "Reading toml settings from: {tomlPath}" to console
             // but that doesn't seem to be a pattern in SmRunner. SmRunnerInternal has an
             // IConsolePrinter, but SmRunner doesn't. Should I just grab one from DI?
-            string toml = File.ReadAllText(tomlPath);
             try
             {
-                new TomlReader(renderConfigAllVars, settings).Read(toml);
+                new TomlReader(renderConfigAllVars, settings).Read(File.ReadAllText(tomlPath));
             } catch (IOException e)
             {
                 throw new IOException($"Failed to read toml settings file: {tomlPath}", e);
