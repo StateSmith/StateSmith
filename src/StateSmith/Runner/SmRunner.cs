@@ -152,8 +152,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
         var renderConfigAllVars = new RenderConfigAllVars();
 
         // if there's a toml file with the same diagram name, read its settings
-        string tomlPath = Path.ChangeExtension(this.callerFilePath, ".toml");
-        if(File.Exists(tomlPath))
+        string tomlPath = Path.ChangeExtension(this.settings.DiagramPath, ".toml");
+        if (File.Exists(tomlPath))
         {
             // TODO it would be nice to write "Reading toml settings from: {tomlPath}" to console
             // but that doesn't seem to be a pattern in SmRunner. SmRunnerInternal has an
@@ -161,7 +161,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
             try
             {
                 new TomlReader(renderConfigAllVars, settings).Read(File.ReadAllText(tomlPath));
-            } catch (IOException e)
+            }
+            catch (IOException e)
             {
                 throw new IOException($"Failed to read toml settings file: {tomlPath}", e);
             }
