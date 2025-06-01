@@ -79,6 +79,8 @@ public class SmRunnerTests
         string tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
         Directory.CreateDirectory(tempDir);
 
+        // The test will set this string in the config
+        // and the test will verify that it is used in the generated Java file.
         string fileTopString = "BigPurpleDinosaur";
 
         File.WriteAllText(
