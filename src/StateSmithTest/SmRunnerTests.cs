@@ -3,7 +3,6 @@ using StateSmith.Runner;
 using System.IO;
 using System.Text.RegularExpressions;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace StateSmithTest.SmRunnerTest;
 
@@ -109,7 +108,7 @@ public class SmRunnerTests
         string javaContent = File.ReadAllText(javaPath);
         javaContent.Should().Contain(fileTopString);
 
-        Directory.Delete(tempDir, true);
+        Directory.Delete(tempDir, true); // Delete on success
     }
 
 
