@@ -3,11 +3,14 @@ using StateSmith.Runner;
 using System.IO;
 using System.Text.RegularExpressions;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace StateSmithTest.SmRunnerTest;
 
-public class SmRunnerTests
+public class SmRunnerTests(ITestOutputHelper testOutput)
 {
+    private ITestOutputHelper testOutput = testOutput;
+
     [Fact]
     public void TestOkFilePrintBaseDefault()
     {
@@ -99,8 +102,7 @@ public class SmRunnerTests
         );
 
         SmRunner runner = new(diagramPath: Path.Combine(tempPath, "lightbulb.puml"), outputDirectory: tempPath);
-        StringBuilderConsolePrinter fakeConsole = new();
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(fakeConsole);
+        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(new XUnitConsolePrinter(testOutput));
         runner.Run();
 
         var javaPath = Path.Combine(tempPath, "lightbulb.java");
