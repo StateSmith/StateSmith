@@ -159,7 +159,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
             // but that doesn't seem to be a pattern in SmRunner. SmRunnerInternal has an
             // IConsolePrinter, but SmRunner doesn't. Should I just grab one from DI?
             string toml = File.ReadAllText(tomlPath);
-            // this may throw IOException if the file is not readable
             try
             {
                 new TomlReader(renderConfigAllVars, settings).Read(toml);
