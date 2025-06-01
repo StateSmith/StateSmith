@@ -1,9 +1,5 @@
-using StateSmith.Common;
-using StateSmith.Input.DrawIo;
-using StateSmith.Input.Settings;
 using StateSmith.Output;
 using StateSmith.Runner;
-using StateSmith.Output.UserConfig.AutoVars;
 using System;
 using System.Collections.Generic;
 using System.IO;
