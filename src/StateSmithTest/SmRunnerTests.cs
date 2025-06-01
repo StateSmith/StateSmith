@@ -78,12 +78,7 @@ public class SmRunnerTests
     {
         string tempPath = Path.GetTempPath();
         string fileTopString = "this string should appear at the top of the file";
-        File.WriteAllText(
-            Path.Combine(tempPath, "lightbulb.toml"),
-            $"""
-            RenderConfig.FileTop = "{fileTopString}"
-            """
-        );
+
         File.WriteAllText(
             Path.Combine(tempPath, "lightbulb.puml"),
             """
@@ -91,17 +86,28 @@ public class SmRunnerTests
             [*] --> on
             on --> off
             off --> on
+            @enduml
+            """
+        );
+
+        File.WriteAllText(
+            Path.Combine(tempPath, "lightbulb.toml"),
+            $"""
+            SmRunnerSettings.transpilerId = "Java"
+            RenderConfig.FileTop = "{fileTopString}"
             """
         );
 
         SmRunner runner = new(diagramPath: Path.Combine(tempPath, "lightbulb.puml"), outputDirectory: tempPath);
-        runner.Settings.filePathPrintBase = tempPath;
         StringBuilderConsolePrinter fakeConsole = new();
         runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(fakeConsole);
         runner.Run();
 
-        string output = fakeConsole.sb.ToString();
-        output.Should().Contain(fileTopString);
+        var javaPath = Path.Combine(tempPath, "lightbulb.java");
+        Assert.True(File.Exists(javaPath), "Java file should be created");
+        string javaContent = File.ReadAllText(javaPath);
+        javaContent.Should().Contain(fileTopString);
+
         Directory.Delete(tempPath, true);
     }
 
