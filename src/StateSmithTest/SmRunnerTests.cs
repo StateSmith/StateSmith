@@ -77,14 +77,11 @@ public class SmRunnerTests
     public void TestReadConfigFromTomlFile()
     {
         string tempPath = Path.GetTempPath();
+        string fileTopString = "this string should appear at the top of the file";
         File.WriteAllText(
             Path.Combine(tempPath, "lightbulb.toml"),
-            """
-            [SmRunnerSettings]
-            transpilerId = "Java"
-
-            [Java]
-            RenderConfig.Java.Package = "com.example.lightbulb"
+            $"""
+            RenderConfig.FileTop = "{fileTopString}"
             """
         );
         File.WriteAllText(
@@ -104,7 +101,7 @@ public class SmRunnerTests
         runner.Run();
 
         string output = fakeConsole.sb.ToString();
-        output.Should().Contain("com.example.lightbulb");
+        output.Should().Contain(fileTopString);
         Directory.Delete(tempPath, true);
     }
 
