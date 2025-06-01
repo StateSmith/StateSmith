@@ -155,9 +155,18 @@ public class SmRunner : SmRunner.IExperimentalAccess
         string tomlPath = Path.ChangeExtension(this.callerFilePath, ".toml");
         if(File.Exists(tomlPath))
         {
+            // TODO it would be nice to write "Reading toml settings from: {tomlPath}" to console
+            // but that doesn't seem to be a pattern in SmRunner. SmRunnerInternal has an
+            // IConsolePrinter, but SmRunner doesn't. Should I just grab one from DI?
             string toml = File.ReadAllText(tomlPath);
             // this may throw IOException if the file is not readable
-            new TomlReader(renderConfigAllVars, settings).Read(toml);
+            try
+            {
+                new TomlReader(renderConfigAllVars, settings).Read(toml);
+            } catch (IOException e)
+            {
+                throw new IOException($"Failed to read toml settings file: {tomlPath}", e);
+            }
         }
 
         ReadRenderConfigObjectToVars(renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
