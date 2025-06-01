@@ -104,7 +104,7 @@ public class SmRunnerTests
         runner.Run();
 
         var javaPath = Path.Combine(tempPath, "lightbulb.java");
-        Assert.True(File.Exists(javaPath), "Java file should be created");
+        Assert.True(File.Exists(javaPath), $"Java file {javaPath} should be created");
         string javaContent = File.ReadAllText(javaPath);
         javaContent.Should().Contain(fileTopString);
 
