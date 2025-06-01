@@ -3,6 +3,7 @@ using StateSmith.Input.DrawIo;
 using StateSmith.Input.Settings;
 using StateSmith.Output;
 using StateSmith.Runner;
+using StateSmith.Output.UserConfig.AutoVars;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -99,13 +100,6 @@ public class DiagramRunner
 
         var info = new DiagramRunInfo(absolutePath: absolutePath);
         runInfoStore.diagramRuns[absolutePath] = info; // will overwrite if already exists
-
-        // if there's a toml file with the same diagram name, read its settings
-        string tomlPath = Path.ChangeExtension(absolutePath, ".toml");
-        try {
-            string toml = File.ReadAllText(tomlPath);            
-            new TomlReader( renderConfigAllVars, runnerSettings ).Read(toml);
-        } catch( IOException ignored ) {}
 
         // the constructor will attempt to read diagram settings from the diagram file
         SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);

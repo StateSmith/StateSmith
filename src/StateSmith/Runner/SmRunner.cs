@@ -6,9 +6,11 @@ using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using StateSmith.SmGraph;
 using System;
+using System.IO;
 using System.Runtime.ExceptionServices;
 using System.Threading;
 using StateSmith.Output.UserConfig.AutoVars;
+using StateSmith.Input.Settings;
 
 namespace StateSmith.Runner;
 
@@ -148,6 +150,15 @@ public class SmRunner : SmRunner.IExperimentalAccess
     private void SetupDependencyInjectionAndRenderConfigs()
     {
         var renderConfigAllVars = new RenderConfigAllVars();
+
+        // if there's a toml file with the same diagram name, read its settings
+        string tomlPath = Path.ChangeExtension(this.callerFilePath, ".toml");
+        if(File.Exists(tomlPath))
+        {
+            string toml = File.ReadAllText(tomlPath);
+            // this may throw IOException if the file is not readable
+            new TomlReader(renderConfigAllVars, settings).Read(toml);
+        }
 
         ReadRenderConfigObjectToVars(renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 
