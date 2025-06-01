@@ -73,6 +73,42 @@ public class SmRunnerTests
             """);
     }
 
+    [Fact]
+    public void TestReadConfigFromTomlFile()
+    {
+        string tempPath = Path.GetTempPath();
+        File.WriteAllText(
+            Path.Combine(tempPath, "lightbulb.toml"),
+            """
+            [SmRunnerSettings]
+            transpilerId = "Java"
+
+            [Java]
+            RenderConfig.Java.Package = "com.example.lightbulb"
+            """
+        );
+        File.WriteAllText(
+            Path.Combine(tempPath, "lightbulb.puml"),
+            """
+            @startuml
+            [*] --> on
+            on --> off
+            off --> on
+            """
+        );
+
+        SmRunner runner = new(diagramPath: Path.Combine(tempPath, "lightbulb.puml"), outputDirectory: tempPath);
+        runner.Settings.filePathPrintBase = tempPath;
+        StringBuilderConsolePrinter fakeConsole = new();
+        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(fakeConsole);
+        runner.Run();
+
+        string output = fakeConsole.sb.ToString();
+        output.Should().Contain("com.example.lightbulb");
+        Directory.Delete(tempPath, true);
+    }
+
+
     // todo_low - add test for when state machine name is specified
 
     // todo_low - add test for when exception is thrown
