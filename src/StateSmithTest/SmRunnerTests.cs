@@ -7,10 +7,8 @@ using Xunit.Abstractions;
 
 namespace StateSmithTest.SmRunnerTest;
 
-public class SmRunnerTests(ITestOutputHelper testOutput)
+public class SmRunnerTests
 {
-    private ITestOutputHelper testOutput = testOutput;
-
     [Fact]
     public void TestOkFilePrintBaseDefault()
     {
@@ -104,7 +102,6 @@ public class SmRunnerTests(ITestOutputHelper testOutput)
         );
 
         SmRunner runner = new(diagramPath: Path.Combine(tempDir, "lightbulb.puml"), outputDirectory: tempDir);
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(new XUnitConsolePrinter(testOutput));
         runner.Run();
 
         var javaPath = Path.Combine(tempDir, "lightbulb.java");
