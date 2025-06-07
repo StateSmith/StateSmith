@@ -57,6 +57,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         diServiceProvider = DiServiceProvider.CreateDefault();
         SetupDependencyInjectionAndRenderConfigs();
+        // TODO move into SetupDependencyInjectionAndRenderConfigs?
+        diServiceProvider.Build();
     }
 
     /// <summary>
@@ -107,7 +109,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         {
             SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
 
-            PrepareBeforeRun(); // finalizes dependency injection
+            PrepareBeforeRun();
             SmRunnerInternal smRunnerInternal = scope.ServiceProvider.GetService<SmRunnerInternal>();
             smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
 
@@ -262,7 +264,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     internal void PrepareBeforeRun()
     {
-        diServiceProvider.BuildIfNeeded();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
         OutputInfo outputInfo = diServiceProvider.GetInstanceOf<OutputInfo>();
         outputInfo.outputDirectory = settings.outputDirectory.ThrowIfNull();

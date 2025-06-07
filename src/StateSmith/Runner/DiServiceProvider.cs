@@ -152,10 +152,11 @@ public class DiServiceProvider : IDisposable
 
     private void ThrowIfAlreadyBuilt()
     {
-        if (IsAlreadyBuilt())
-        {
-            throw new InvalidOperationException("Can't add after built");
-        }
+        // TODO do nothing
+        // if (IsAlreadyBuilt())
+        // {
+        //     throw new InvalidOperationException("Can't add after built");
+        // }
     }
 
     private bool IsAlreadyBuilt()
