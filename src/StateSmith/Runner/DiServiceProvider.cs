@@ -165,18 +165,18 @@ public class DiServiceProvider : IDisposable
 
     private static void AddDefaults(IServiceCollection services)
     {
-        // TODO move renderConfig elsewhere?
-        // TODO get renderconfig from scope
-        var renderConfigAllVars = new RenderConfigAllVars();
-        services.AddScoped(sp => renderConfigAllVars);
-        services.AddScoped(sp => renderConfigAllVars.Base);
-        services.AddScoped(sp => renderConfigAllVars.C);
-        services.AddScoped(sp => renderConfigAllVars.Cpp);
-        services.AddScoped(sp => renderConfigAllVars.CSharp);
-        services.AddScoped(sp => renderConfigAllVars.JavaScript);
-        services.AddScoped(sp => renderConfigAllVars.Java);
-        services.AddScoped(sp => renderConfigAllVars.Python);
-        services.AddScoped(sp => renderConfigAllVars.TypeScript);
+        // TODO move scoped declarations elsewhere?
+        // RenderConfigAllVars is essentially a singleton in the scope.
+        // RenderConfigAllVars.Base, .C, .Cpp, etc. are all obtained from that singleton
+        services.AddScoped<RenderConfigAllVars,RenderConfigAllVars>();
+        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().Base);
+        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().C);
+        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().Cpp);
+        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().CSharp);
+        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().JavaScript);
+        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().Java);
+        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().Python);
+        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().TypeScript);
 
 
         services.AddSingleton(new DrawIoSettings());
