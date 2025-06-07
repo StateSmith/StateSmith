@@ -98,8 +98,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void Run()
     {
-        // TODO finalize the DI in the constructor
-        // TODO remove all the "staging" aspects of DiServiceProvider - BuildIfNeeded, ThrowIfAlreadyBuilt
         // TODO remove SmRunner direct use of DiServiceProvider, use IServiceProvider instead
         // TODO move DI finalization out of SmRunner
         
