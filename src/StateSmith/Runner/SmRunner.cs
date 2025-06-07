@@ -98,6 +98,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
         // TODO document why we use a scope
         // TODO move config changes that affect DI into the scope
         // TODO finalize the DI in the constructor
+        // TODO remove all the "staging" aspects of DiServiceProvider - BuildIfNeeded, ThrowIfAlreadyBuilt
+        // TODO remove SmRunner direct use of DiServiceProvider, use IServiceProvider instead
         // TODO move DI finalization out of SmRunner
         diServiceProvider.BuildIfNeeded(); // TODO remove internal access to host
         IServiceScopeFactory serviceScopeFactory = diServiceProvider.host.ThrowIfNull().Services.GetRequiredService<IServiceScopeFactory>();
