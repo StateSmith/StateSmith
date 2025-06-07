@@ -27,11 +27,13 @@ public class TestHelper
 
     public static (SmRunner, CapturingCodeFileWriter) CaptureSmRun(string diagramPath, IRenderConfig? renderConfig = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, IConsolePrinter? iConsolePrinter = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
-        SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath);
-        runner.GetExperimentalAccess().Settings.propagateExceptions = true;
         var fakeFileSystem = new CapturingCodeFileWriter();
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(fakeFileSystem);
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
+        SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceCollectionOverrides: (services) =>
+        {
+            services.AddSingleton<ICodeFileWriter>(fakeFileSystem);
+            services.AddSingleton<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
+        });
+        runner.GetExperimentalAccess().Settings.propagateExceptions = true;
         runner.Run();
 
         return (runner, fakeFileSystem);
