@@ -176,6 +176,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             // Also (less importantly), we want to read settings from the diagram so that the user can
             // override them in a .csx file (if they choose) before running the code generator.
             // https://github.com/StateSmith/StateSmith/issues/349
+            // TODO it is no longer true that DI is not set up. Can this be cleaned up?
             try
             {
                 // Note that this may throw if the diagram is invalid.
