@@ -94,19 +94,18 @@ public class SmRunner : SmRunner.IExperimentalAccess
     public ExceptionDispatchInfo? PreDiagramBasedSettingsException => preDiagramBasedSettingsException;
 
     /// <summary>
-    /// Runs StateSmith. Will cause the Dependency Injection settings to be finalized.
+    /// Runs StateSmith.
     /// </summary>
     public void Run()
     {
         // TODO remove SmRunner direct use of DiServiceProvider, use IServiceProvider instead
         // TODO move DI finalization out of SmRunner
         
-        // TODO remove internal access to host
-        IServiceScopeFactory serviceScopeFactory = diServiceProvider.host.ThrowIfNull().Services.GetRequiredService<IServiceScopeFactory>();
 
         // We use a scope to resolve dependencies that can't be finalized at 
         // startup but instead depend on information that arrives later, such
         // as configuration information from the diagram file.
+        IServiceScopeFactory serviceScopeFactory = diServiceProvider.GetRequiredService<IServiceScopeFactory>();
         using (IServiceScope scope = serviceScopeFactory.CreateScope())
         {
             SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future

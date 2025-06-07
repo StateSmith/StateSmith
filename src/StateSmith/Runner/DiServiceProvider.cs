@@ -26,8 +26,7 @@ namespace StateSmith.Runner;
 /// </summary>
 public class DiServiceProvider : IDisposable
 {
-    // TODO temporarily made public
-    public IHost? host;
+    private IHost? host;
     private readonly IHostBuilder hostBuilder;
 
     public DiServiceProvider()
@@ -201,6 +200,11 @@ public class DiServiceProvider : IDisposable
     public T GetInstanceOf<T>()
     {
         return ActivatorUtilities.GetServiceOrCreateInstance<T>(host.ThrowIfNull().Services);
+    }
+
+    public T GetRequiredService<T>()
+    {
+        return host.ThrowIfNull().Services.GetRequiredService<T>();
     }
 
     /// <summary>
