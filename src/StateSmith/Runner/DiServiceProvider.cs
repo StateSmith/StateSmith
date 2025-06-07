@@ -165,18 +165,22 @@ public class DiServiceProvider : IDisposable
 
     private static void AddDefaults(IServiceCollection services)
     {
+        // TODO move renderConfig elsewhere?
+        // TODO get renderconfig from scope
         var renderConfigAllVars = new RenderConfigAllVars();
+        services.AddScoped(sp => renderConfigAllVars);
+        services.AddScoped(sp => renderConfigAllVars.Base);
+        services.AddScoped(sp => renderConfigAllVars.C);
+        services.AddScoped(sp => renderConfigAllVars.Cpp);
+        services.AddScoped(sp => renderConfigAllVars.CSharp);
+        services.AddScoped(sp => renderConfigAllVars.JavaScript);
+        services.AddScoped(sp => renderConfigAllVars.Java);
+        services.AddScoped(sp => renderConfigAllVars.Python);
+        services.AddScoped(sp => renderConfigAllVars.TypeScript);
+
+
         services.AddSingleton(new DrawIoSettings());
         services.AddSingleton(new CodeStyleSettings());
-        services.AddSingleton(renderConfigAllVars);
-        services.AddSingleton(renderConfigAllVars.Base);
-        services.AddSingleton(renderConfigAllVars.C);
-        services.AddSingleton(renderConfigAllVars.Cpp);
-        services.AddSingleton(renderConfigAllVars.CSharp);
-        services.AddSingleton(renderConfigAllVars.JavaScript);
-        services.AddSingleton(renderConfigAllVars.Java);
-        services.AddSingleton(renderConfigAllVars.Python);
-        services.AddSingleton(renderConfigAllVars.TypeScript);
         services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
         services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
         services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));
