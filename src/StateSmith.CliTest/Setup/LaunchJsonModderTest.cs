@@ -20,7 +20,7 @@ public class LaunchJsonModderTest
                         "program": "dotnet",
                         "args": [
                             "exec",
-                            "C:/Users/user/.dotnet/tools/.store/dotnet-script/1.5.0/dotnet-script/1.5.0/tools/net8.0/any/dotnet-script.dll",
+                            "C:/Users/user/.dotnet/tools/.store/dotnet-script/1.5.0/dotnet-script/1.5.0/tools/net9.0/any/dotnet-script.dll",
                             "${file}"
                         ],
                         "cwd": "${workspaceRoot}",

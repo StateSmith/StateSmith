@@ -17,7 +17,7 @@ public class InMemoryMetaDataProvider : IRoslynMetadataProvider
 {
     public IEnumerable<MetadataReference> GetSystemReferences()
     {
-        return ReferenceAssemblies.Net80;
+        return ReferenceAssemblies.Net90;
     }
 }
 
