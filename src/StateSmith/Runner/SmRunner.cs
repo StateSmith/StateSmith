@@ -9,6 +9,7 @@ using System;
 using System.Runtime.ExceptionServices;
 using System.Threading;
 using StateSmith.Output.UserConfig.AutoVars;
+using System.Collections.Generic;
 
 namespace StateSmith.Runner;
 
@@ -43,9 +44,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     /// <param name="settings"></param>
     /// <param name="renderConfig"></param>
+    /// <param name="serviceCollectionOverrides">Optional dependency injection overrides</param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
     /// <param name="enablePDBS">User code should leave unspecified for now.</param>
-    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
+    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, Action<IServiceCollection> serviceCollectionOverrides = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
 
@@ -55,7 +57,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.callerFilePath = callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
-        diServiceProvider = DiServiceProvider.CreateDefault();
+        diServiceProvider = DiServiceProvider.CreateDefault(serviceCollectionOverrides);
         SetupDependencyInjectionAndRenderConfigs();
         // TODO move into SetupDependencyInjectionAndRenderConfigs?
         diServiceProvider.Build();
@@ -76,8 +78,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
         string? outputDirectory = null,
         AlgorithmId algorithmId = AlgorithmId.Default,
         TranspilerId transpilerId = TranspilerId.Default,
+        Action<IServiceCollection> serviceCollectionOverrides = null,
         [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null, bool enablePDBS = true)
-    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, callerFilePath: callingFilePath, enablePDBS: enablePDBS)
+    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceCollectionOverrides, callerFilePath: callingFilePath, enablePDBS: enablePDBS)
     {
     }
 

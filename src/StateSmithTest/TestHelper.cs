@@ -8,6 +8,7 @@ using StateSmithTest.Output;
 using System;
 using System.IO;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest;
 
@@ -48,10 +49,12 @@ public class TestHelper
 
         try
         {
-            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId);
+            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceCollectionOverrides:(services)=>
+            { 
+                services.AddSingleton<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
+                services.AddSingleton<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
+            });
             postConstruct?.Invoke(smRunner);
-            smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
-            smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
             smRunner.Settings.propagateExceptions = propagateExceptions;
             preRun?.Invoke(smRunner);
             smRunner.Run();

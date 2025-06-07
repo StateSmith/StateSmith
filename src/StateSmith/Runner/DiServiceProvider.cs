@@ -4,6 +4,7 @@ using StateSmith.Input.DrawIo;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using StateSmith.Input.Expansions;
 using StateSmith.SmGraph;
 using StateSmith.Output.UserConfig;
@@ -34,14 +35,14 @@ public class DiServiceProvider : IDisposable
         hostBuilder = Host.CreateDefaultBuilder();
     }
 
-    public static DiServiceProvider CreateDefault()
+    public static DiServiceProvider CreateDefault(Action<IServiceCollection> serviceCollectionOverrides = null)
     {
         DiServiceProvider sp = new();
-        sp.SetupAsDefault();
+        sp.SetupAsDefault(serviceCollectionOverrides);
         return sp;
     }
 
-    public void SetupAsDefault()
+    public void SetupAsDefault(Action<IServiceCollection> serviceCollectionOverrides = null)
     {
         hostBuilder.ConfigureServices((services) =>
         {
@@ -106,6 +107,9 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<UserExpansionScriptBases>();
             services.AddSingleton<SmDesignDescriber>();
             services.AddSingleton<SimWebGenerator>();
+
+            // Merge the overrides into the service collection.
+            serviceCollectionOverrides?.Invoke(services);
         });
     }
 
