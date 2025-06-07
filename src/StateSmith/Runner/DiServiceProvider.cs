@@ -115,20 +115,17 @@ public class DiServiceProvider : IDisposable
 
     public void AddConfiguration(Action<IServiceCollection> services)
     {
-        ThrowIfAlreadyBuilt();
         hostBuilder.ConfigureServices(services);
     }
 
     // only for test code
     internal void AddSingleton(InputSmBuilder obj)
     {
-        ThrowIfAlreadyBuilt();
         hostBuilder.ConfigureServices(services => { services.AddSingleton(obj); });
     }
 
     public void AddSingletonT<TService>(TService implementationObj) where TService : class
     {
-        ThrowIfAlreadyBuilt();
         hostBuilder.ConfigureServices(services => { services.AddSingleton(implementationObj); });
     }
 
@@ -136,7 +133,6 @@ public class DiServiceProvider : IDisposable
     where TService : class
     where TImplementation : class, TService
     {
-        ThrowIfAlreadyBuilt();
         hostBuilder.ConfigureServices(services => { services.AddSingleton<TService, TImplementation>(); });
     }
 
@@ -146,26 +142,6 @@ public class DiServiceProvider : IDisposable
     public void Build()
     {
         host = hostBuilder.Build(); // this will throw an exception if already built
-    }
-
-    public void BuildIfNeeded()
-    {
-        if (!IsAlreadyBuilt())
-            Build();
-    }
-
-    private void ThrowIfAlreadyBuilt()
-    {
-        // TODO do nothing
-        // if (IsAlreadyBuilt())
-        // {
-        //     throw new InvalidOperationException("Can't add after built");
-        // }
-    }
-
-    private bool IsAlreadyBuilt()
-    {
-        return host != null;
     }
 
     private static void AddDefaults(IServiceCollection services)
@@ -224,7 +200,6 @@ public class DiServiceProvider : IDisposable
     /// <returns></returns>
     public T GetInstanceOf<T>()
     {
-        BuildIfNeeded();
         return ActivatorUtilities.GetServiceOrCreateInstance<T>(host.ThrowIfNull().Services);
     }
 
@@ -235,7 +210,6 @@ public class DiServiceProvider : IDisposable
     /// <returns></returns>
     internal ConvertableType GetServiceOrCreateInstance()
     {
-        BuildIfNeeded();
         return new ConvertableType(host.ThrowIfNull());
     }
 
