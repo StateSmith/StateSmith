@@ -190,7 +190,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         }
 
         AlgoOrTranspilerUpdated();
-        diServiceProvider.Build();
+        diServiceProvider.Build(); // TODO move this higher so DI is available during the prediagram settings reading
     }
 
     // TODO move DI out of SmRunner
