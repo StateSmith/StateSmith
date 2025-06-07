@@ -34,14 +34,14 @@ public class DiServiceProvider : IDisposable
         hostBuilder = Host.CreateDefaultBuilder();
     }
 
-    public static DiServiceProvider CreateDefault(Action<IServiceCollection> serviceCollectionOverrides = null)
+    public static DiServiceProvider CreateDefault(Action<IServiceCollection> serviceOverrides = null)
     {
         DiServiceProvider sp = new();
-        sp.SetupAsDefault(serviceCollectionOverrides);
+        sp.SetupAsDefault(serviceOverrides);
         return sp;
     }
 
-    public void SetupAsDefault(Action<IServiceCollection> serviceCollectionOverrides = null)
+    public void SetupAsDefault(Action<IServiceCollection> serviceOverrides = null)
     {
         hostBuilder.ConfigureServices((services) =>
         {
@@ -108,7 +108,7 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<SimWebGenerator>();
 
             // Merge the overrides into the service collection.
-            serviceCollectionOverrides?.Invoke(services);
+            serviceOverrides?.Invoke(services);
         });
     }
 

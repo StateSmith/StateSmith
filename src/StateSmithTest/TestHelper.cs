@@ -28,7 +28,7 @@ public class TestHelper
     public static (SmRunner, CapturingCodeFileWriter) CaptureSmRun(string diagramPath, IRenderConfig? renderConfig = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, IConsolePrinter? iConsolePrinter = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         var fakeFileSystem = new CapturingCodeFileWriter();
-        SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceCollectionOverrides: (services) =>
+        SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceOverrides: (services) =>
         {
             services.AddSingleton<ICodeFileWriter>(fakeFileSystem);
             services.AddSingleton<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
@@ -51,7 +51,7 @@ public class TestHelper
 
         try
         {
-            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceCollectionOverrides:(services)=>
+            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceOverrides:(services)=>
             { 
                 services.AddSingleton<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
                 services.AddSingleton<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());

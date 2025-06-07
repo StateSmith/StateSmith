@@ -20,7 +20,7 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void NormalBehaviorHasToStringFunctions()
     {
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId:TranspilerId.CSharp, serviceCollectionOverrides: (services) =>
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId:TranspilerId.CSharp, serviceOverrides: (services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
@@ -35,7 +35,7 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void RemoveEventIdToString()
     {
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceCollectionOverrides: (services) =>
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceOverrides: (services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
@@ -51,7 +51,7 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void RemoveStateIdToString()
     {
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceCollectionOverrides: (services) =>
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceOverrides: (services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });

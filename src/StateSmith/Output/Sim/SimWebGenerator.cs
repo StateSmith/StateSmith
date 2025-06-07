@@ -65,7 +65,7 @@ public class SimWebGenerator
         this.codeFileWriter = codeFileWriter;
 
         var enablePreDiagramBasedSettings = false;  // need to stop it from trying to read diagram early as fake diagram path is used
-        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceCollectionOverrides: (services)=>
+        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceOverrides: (services)=>
         {
             services.AddSingleton<IExpander>(trackingExpander);
             services.AddSingleton<ICodeFileWriter>(fileCapturer);

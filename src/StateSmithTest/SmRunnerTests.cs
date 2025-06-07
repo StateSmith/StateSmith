@@ -16,7 +16,7 @@ public class SmRunnerTests
         string tempPath = Path.GetTempPath();
         StringBuilderConsolePrinter fakeConsole = new();
 
-        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceCollectionOverrides: (services) =>
+        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceOverrides: (services) =>
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
         });
@@ -54,7 +54,7 @@ public class SmRunnerTests
         string tempPath = Path.GetTempPath();
         StringBuilderConsolePrinter fakeConsole = new();
 
-        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceCollectionOverrides: (services) =>
+        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceOverrides: (services) =>
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
         });
