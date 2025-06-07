@@ -98,8 +98,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void Run()
     {
-        // TODO document why we use a scope
-        // TODO move config changes that affect DI into the scope
         // TODO finalize the DI in the constructor
         // TODO remove all the "staging" aspects of DiServiceProvider - BuildIfNeeded, ThrowIfAlreadyBuilt
         // TODO remove SmRunner direct use of DiServiceProvider, use IServiceProvider instead
@@ -107,6 +105,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
         
         // TODO remove internal access to host
         IServiceScopeFactory serviceScopeFactory = diServiceProvider.host.ThrowIfNull().Services.GetRequiredService<IServiceScopeFactory>();
+
+        // We use a scope to resolve dependencies that can't be finalized at 
+        // startup but instead depend on information that arrives later, such
+        // as configuration information from the diagram file.
         using (IServiceScope scope = serviceScopeFactory.CreateScope())
         {
             SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
