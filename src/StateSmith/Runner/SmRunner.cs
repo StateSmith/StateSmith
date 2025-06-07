@@ -59,8 +59,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         diServiceProvider = DiServiceProvider.CreateDefault(serviceCollectionOverrides);
         SetupDependencyInjectionAndRenderConfigs();
-        // TODO move into SetupDependencyInjectionAndRenderConfigs?
-        diServiceProvider.Build();
     }
 
     /// <summary>
@@ -193,6 +191,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         }
 
         AlgoOrTranspilerUpdated();
+        diServiceProvider.Build();
     }
 
     // TODO move DI out of SmRunner
