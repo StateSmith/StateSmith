@@ -22,6 +22,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <summary>
     /// Dependency Injection Service Provider
     /// </summary>
+    /// TODO probably remove DiServiceProvider, should just use MS DI classes directly
     readonly DiServiceProvider diServiceProvider;
 
     readonly RunnerSettings settings;
@@ -94,32 +95,43 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void Run()
     {
-        SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
-
-        PrepareBeforeRun(); // finalizes dependency injection
-        SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
-        smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
-
-        // Wrap in try finally so that we can ensure that the service provider is disposed which will
-        // dispose of objects that it created.
-        try
+        // TODO document why we use a scope
+        // TODO move config changes that affect DI into the scope
+        // TODO finalize the DI in the constructor
+        // TODO move DI finalization out of SmRunner
+        diServiceProvider.BuildIfNeeded(); // TODO remove internal access to host
+        IServiceScopeFactory serviceScopeFactory = diServiceProvider.host.ThrowIfNull().Services.GetRequiredService<IServiceScopeFactory>();
+        using (IServiceScope scope = serviceScopeFactory.CreateScope())
         {
-            PrintAndThrowIfPreDiagramSettingsException();
+            SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
 
-            if (settings.transpilerId == TranspilerId.NotYetSet)
-                throw new ArgumentException("TranspilerId must be set before running code generation");
+            PrepareBeforeRun(); // finalizes dependency injection
+            SmRunnerInternal smRunnerInternal = scope.ServiceProvider.GetService<SmRunnerInternal>();
+            smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
 
-            smRunnerInternal.Run();
-        }
-        finally
-        {
-            diServiceProvider.Dispose();
+            // Wrap in try finally so that we can ensure that the service provider is disposed which will
+            // dispose of objects that it created.
+            // TODO remove
+            try
+            {
+                PrintAndThrowIfPreDiagramSettingsException();
+
+                if (settings.transpilerId == TranspilerId.NotYetSet)
+                    throw new ArgumentException("TranspilerId must be set before running code generation");
+
+                smRunnerInternal.Run();
+            }
+            finally
+            {
+                diServiceProvider.Dispose();
+            }
+
+            if (smRunnerInternal.exception != null)
+            {
+                throw new FinishedWithFailureException();
+            }
         }
 
-        if (smRunnerInternal.exception != null)
-        {
-            throw new FinishedWithFailureException();
-        }
     }
 
     /// <summary>
@@ -175,10 +187,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
         AlgoOrTranspilerUpdated();
     }
 
+    // TODO move DI out of SmRunner
     internal static void SetupDiProvider(DiServiceProvider di, RenderConfigAllVars renderConfigAllVars, RunnerSettings settings, IRenderConfig iRenderConfig)
     {
         di.AddConfiguration((services) =>
         {
+            // Singleton configuration
             services.AddSingleton(settings.drawIoSettings);
             services.AddSingleton(settings.smDesignDescriber);
             services.AddSingleton(settings.style);
@@ -198,6 +212,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton<ExpansionsPrep>();
             services.AddSingleton<FilePathPrinter>(new FilePathPrinter(settings.filePathPrintBase.ThrowIfNull()));
             services.AddSingleton(settings.algoBalanced1);
+
+            // Scoped configuration
+            // TODO move to a separate configuration for clarity
+            services.AddScoped<SmRunnerInternal>();
         });
     }
 

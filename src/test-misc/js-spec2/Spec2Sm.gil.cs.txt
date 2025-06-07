@@ -285,8 +285,8 @@ public class Spec2Sm
         public T7__DH1__BUILD_HistoryId T7__DH1__BUILD_history;
         public T7__DEEP_HISTORY2__T7__state_0_HistoryId T7__DEEP_HISTORY2__T7__state_0_history;
         public T7__DEEP_HISTORY3__T7__state_0_HistoryId T7__DEEP_HISTORY3__T7__state_0_history;
-        public string ____GilData_FieldEchoStringVoid0;//"count: 0,"
-        public string ____GilData_FieldEchoStringVoid1;//"auto_var_1: 0,"
+        public string ____GilData_FieldEchoStringVoid2;//"count: 0,"
+        public string ____GilData_FieldEchoStringVoid3;//"auto_var_1: 0,"
     }
     
     // Variables. Can be used for inputs, outputs, user variables...

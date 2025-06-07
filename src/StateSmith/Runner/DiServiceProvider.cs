@@ -25,7 +25,8 @@ namespace StateSmith.Runner;
 /// </summary>
 public class DiServiceProvider : IDisposable
 {
-    private IHost? host;
+    // TODO temporarily made public
+    public IHost? host;
     private readonly IHostBuilder hostBuilder;
 
     public DiServiceProvider()
