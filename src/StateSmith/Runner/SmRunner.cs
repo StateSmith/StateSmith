@@ -102,6 +102,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         // TODO move DI finalization out of SmRunner
         
 
+        // TODO remove the scoping, I don't think it is needed anymore.
         // We use a scope to resolve dependencies that can't be finalized at 
         // startup but instead depend on information that arrives later, such
         // as configuration information from the diagram file.

@@ -145,6 +145,7 @@ public class DiServiceProvider : IDisposable
 
     private static void AddDefaults(IServiceCollection services)
     {
+        // TODO undo the scoping, I don't think we need this
         // TODO move scoped declarations elsewhere?
         // RenderConfigAllVars is essentially a singleton in the scope.
         // RenderConfigAllVars.Base, .C, .Cpp, etc. are all obtained from that singleton
