@@ -25,11 +25,18 @@ public class TomlReader
         this.smRunnerSettings = smRunnerSettings;
     }
 
+    /// <summary>
+    /// Throws.
+    /// </summary>
+    /// <param name="toml"></param>
+    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="TomlException"></exception>
     public void Read(string toml)
     {
         var model = Toml.ToModel(toml);
+        var topLevelKeys = model.Keys;
 
-        foreach (var key in model.Keys)
+        foreach (var key in topLevelKeys)
         {
             switch (key)
             {

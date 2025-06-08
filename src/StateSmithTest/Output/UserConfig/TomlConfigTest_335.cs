@@ -56,6 +56,51 @@ public class TomlConfigTest_335
         }
     }
 
+    [Fact]
+    public void BadToml_UnterminatedString()
+    {
+        var toml = """"
+            [RenderConfig]
+            CFileExtension = ".inc
+
+            [RenderConfig.CSharp]
+            NameSpace = "MyNamespace"
+            UseNullable = false
+            """";
+
+        var exception = Assert.Throws<TomlException>(() => Toml.ToModel(toml));
+        exception.Message.ShouldBeShowDiff("""
+            (5,14) : error : Unexpected token found `MyNamespace` while expecting token `newline`
+            (6,20) : error : Expecting `=` after a key instead of <eof>
+            (2,23) : error : Invalid newline in a string
+            (3,1) : error : Invalid newline in a string
+            (4,22) : error : Invalid newline in a string
+            (5,26) : error : Invalid newline in a string
+            (6,19) : error : Invalid End-Of-File found on string literal
+
+            """, outputCleanActual: true);
+    }
+
+    [Fact]
+    public void BadToml_MissingStringQuotes()
+    {
+        var toml = """"
+            [RenderConfig]
+            CFileExtension = .inc
+
+            [RenderConfig.CSharp]
+            NameSpace = "MyNamespace"
+            UseNullable = false
+            """";
+
+        var exception = Assert.Throws<TomlException>(() => Toml.ToModel(toml));
+        exception.Message.ShouldBeShowDiff("""
+            (2,18) : error : Unexpected token `.` for a value
+            (2,19) : error : Unexpected token found `inc` while expecting token `newline`
+
+            """, outputCleanActual: true);
+    }
+
     /// <summary>
     /// Check to see if Tomlyn can parse inline tables.
     /// https://toml.io/en/v1.0.0#inline-table
