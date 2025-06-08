@@ -7,7 +7,6 @@ using StateSmith.Common;
 using StateSmith.SmGraph;
 using System;
 using System.Runtime.ExceptionServices;
-using System.Threading;
 using StateSmith.Output.UserConfig.AutoVars;
 
 namespace StateSmith.Runner;
