@@ -34,7 +34,7 @@ public class AlgoTranspilerCustomizer
 
             case AlgorithmId.Balanced2:
                 sp.AddSingletonT<EventHandlerBuilder, EventHandlerBuilder2>();
-                sp.AddSingletonT<IGilAlgo, AlgoBalanced2>();
+                // sp.AddSingletonT<IGilAlgo, AlgoBalanced2>();
                 break;
 
             default: throw new ArgumentException("Unknown algorithmId: " + algorithmId);

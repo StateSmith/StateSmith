@@ -83,7 +83,9 @@ public class DiServiceProvider : IDisposable
             services.AddTransient<HistoryProcessor>();
 
             services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
-            services.AddSingleton<IGilAlgo, AlgoBalanced1>();
+            // services.AddSingleton<IGilAlgo, AlgoBalanced1>();
+            services.AddSingleton<IGilAlgoFactory>(); // TODO remove this class and once builder is finalized at the beginning
+
             services.AddSingleton<IGilTranspiler, GilToC99>();
 #if SS_SINGLE_FILE_APPLICATION
             services.AddSingleton<IRoslynMetadataProvider, InMemoryMetaDataProvider>();
@@ -224,3 +226,32 @@ public class DiServiceProvider : IDisposable
     }
 }
 
+
+
+
+public class IGilAlgoFactory
+{
+    private IServiceProvider serviceProvider;
+
+    public IGilAlgoFactory(IServiceProvider serviceProvider)
+    {
+        this.serviceProvider = serviceProvider;
+    }
+
+    // TODO c# getter conventions?
+    public IGilAlgo Get(AlgorithmId algorithmId)
+    {
+        switch (algorithmId)
+        {
+            case AlgorithmId.Balanced1:
+                return ActivatorUtilities.GetServiceOrCreateInstance<AlgoBalanced1>(serviceProvider);
+
+            case AlgorithmId.Default:
+            case AlgorithmId.Balanced2:
+                return ActivatorUtilities.GetServiceOrCreateInstance<AlgoBalanced2>(serviceProvider);
+
+            default:
+                throw new NotSupportedException($"AlgorithmId '{algorithmId}' is not supported.");
+        }
+    }
+}
