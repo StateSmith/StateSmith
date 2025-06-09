@@ -18,6 +18,11 @@ using StateSmith.Output.Gil;
 using StateSmith.Output.Algos.Balanced2;
 using StateSmith.Output.UserConfig.AutoVars;
 using StateSmith.Output.Gil.Cpp;
+using StateSmith.Output.Gil.Python;
+using StateSmith.Output.Gil.TypeScript;
+using StateSmith.Output.Gil.JavaScript;
+using StateSmith.Output.Gil.Java;
+using StateSmith.Output.Gil.CSharp;
 
 namespace StateSmith.Runner;
 
@@ -83,22 +88,10 @@ public class DiServiceProvider : IDisposable
             services.AddTransient<HistoryProcessor>();
 
             services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
-            services.AddSingleton<IGilAlgo>( (sp) =>
+            services.AddSingleton<IGilAlgo>((sp) =>
             {
-                // TODO add AlgorithmId as a singleton
                 var algorithmId = sp.GetRequiredService<RunnerSettings>().algorithmId;
-                switch (algorithmId)
-                {
-                    case AlgorithmId.Balanced1:
-                        return ActivatorUtilities.GetServiceOrCreateInstance<AlgoBalanced1>(sp);
-
-                    case AlgorithmId.Default:
-                    case AlgorithmId.Balanced2:
-                        return ActivatorUtilities.GetServiceOrCreateInstance<AlgoBalanced2>(sp);
-
-                    default:
-                        throw new NotSupportedException($"AlgorithmId '{algorithmId}' is not supported.");
-                }
+                return (IGilAlgo) ActivatorUtilities.GetServiceOrCreateInstance(sp, IGILALGO_TYPES[algorithmId].ThrowIfNull($"AlgorithmId '{algorithmId}' is not supported."));
             });
 
             services.AddSingleton<IGilTranspiler, GilToC99>();
@@ -166,7 +159,7 @@ public class DiServiceProvider : IDisposable
         // TODO move scoped declarations elsewhere?
         // RenderConfigAllVars is essentially a singleton in the scope.
         // RenderConfigAllVars.Base, .C, .Cpp, etc. are all obtained from that singleton
-        services.AddScoped<RenderConfigAllVars,RenderConfigAllVars>();
+        services.AddScoped<RenderConfigAllVars, RenderConfigAllVars>();
         services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().Base);
         services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().C);
         services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().Cpp);
@@ -197,7 +190,7 @@ public class DiServiceProvider : IDisposable
         {
             this.host = host;
         }
-        
+
         public static implicit operator StateMachineProvider(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<StateMachineProvider>(me.host.Services);
         public static implicit operator SmRunnerInternal(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmRunnerInternal>(me.host.Services);
         public static implicit operator DrawIoToSmDiagramConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoToSmDiagramConverter>(me.host.Services);
@@ -239,4 +232,25 @@ public class DiServiceProvider : IDisposable
     {
         host?.Dispose();
     }
+
+    // TODO move
+    Dictionary<TranspilerId, Type> IGILTRANSPILER_TYPES = new Dictionary<TranspilerId, Type> {
+        { TranspilerId.Default, typeof(GilToC99)},
+        { TranspilerId.Cpp, typeof(GilToCpp)},
+        { TranspilerId.C99, typeof(GilToC99)},
+        { TranspilerId.CSharp, typeof(GilToCSharp)},
+        { TranspilerId.JavaScript, typeof(GilToJavaScript)},
+        { TranspilerId.Java, typeof(GilToJava)},
+        { TranspilerId.Python, typeof(GilToPython)},
+        { TranspilerId.TypeScript, typeof(GilToTypeScript)}
+    };
+
+    Dictionary<AlgorithmId, Type> IGILALGO_TYPES = new Dictionary<AlgorithmId, Type>
+    {
+        { AlgorithmId.Default, typeof(AlgoBalanced2) },
+        { AlgorithmId.Balanced1, typeof(AlgoBalanced1) },
+        { AlgorithmId.Balanced2, typeof(AlgoBalanced2) }
+    };
+
 }
+
