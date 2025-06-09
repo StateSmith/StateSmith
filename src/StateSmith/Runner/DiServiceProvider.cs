@@ -83,8 +83,22 @@ public class DiServiceProvider : IDisposable
             services.AddTransient<HistoryProcessor>();
 
             services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
-            // services.AddSingleton<IGilAlgo, AlgoBalanced1>();
-            services.AddSingleton<IGilAlgoFactory>(); // TODO remove this class and once builder is finalized at the beginning
+            services.AddSingleton<IGilAlgo>( (sp) =>
+            {
+                var algorithmId = sp.GetRequiredService<RunnerSettings>().algorithmId;
+                switch (algorithmId)
+                {
+                    case AlgorithmId.Balanced1:
+                        return ActivatorUtilities.GetServiceOrCreateInstance<AlgoBalanced1>(sp);
+
+                    case AlgorithmId.Default:
+                    case AlgorithmId.Balanced2:
+                        return ActivatorUtilities.GetServiceOrCreateInstance<AlgoBalanced2>(sp);
+
+                    default:
+                        throw new NotSupportedException($"AlgorithmId '{algorithmId}' is not supported.");
+                }
+            });
 
             services.AddSingleton<IGilTranspiler, GilToC99>();
 #if SS_SINGLE_FILE_APPLICATION
@@ -223,35 +237,5 @@ public class DiServiceProvider : IDisposable
     public void Dispose()
     {
         host?.Dispose();
-    }
-}
-
-
-
-
-public class IGilAlgoFactory
-{
-    private IServiceProvider serviceProvider;
-
-    public IGilAlgoFactory(IServiceProvider serviceProvider)
-    {
-        this.serviceProvider = serviceProvider;
-    }
-
-    // TODO c# getter conventions?
-    public IGilAlgo Get(AlgorithmId algorithmId)
-    {
-        switch (algorithmId)
-        {
-            case AlgorithmId.Balanced1:
-                return ActivatorUtilities.GetServiceOrCreateInstance<AlgoBalanced1>(serviceProvider);
-
-            case AlgorithmId.Default:
-            case AlgorithmId.Balanced2:
-                return ActivatorUtilities.GetServiceOrCreateInstance<AlgoBalanced2>(serviceProvider);
-
-            default:
-                throw new NotSupportedException($"AlgorithmId '{algorithmId}' is not supported.");
-        }
     }
 }

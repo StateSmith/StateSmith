@@ -9,7 +9,7 @@ namespace StateSmith.Output;
 
 public class GilAlgoCodeGen : ICodeGenRunner
 {
-    protected readonly IGilAlgoFactory gilAlgoFactory;
+    protected readonly IGilAlgo gilAlgo;
     protected readonly IGilTranspiler transpiler;
     protected readonly IStateMachineProvider stateMachineProvider; // todo - pass to Run() instead.
     protected readonly ExpansionsPrep expansionsPrep;
@@ -17,9 +17,9 @@ public class GilAlgoCodeGen : ICodeGenRunner
     protected readonly RunnerSettings runnerSettings;
     protected readonly IConsolePrinter consolePrinter;
 
-    public GilAlgoCodeGen(IGilAlgoFactory gilAlgoFactory, IGilTranspiler transpiler, IStateMachineProvider stateMachineProvider, ExpansionsPrep expansionsPrep, IOutputInfo outputInfo, RunnerSettings runnerSettings, IConsolePrinter consolePrinter)
+    public GilAlgoCodeGen(IGilAlgo gilAlgo, IGilTranspiler transpiler, IStateMachineProvider stateMachineProvider, ExpansionsPrep expansionsPrep, IOutputInfo outputInfo, RunnerSettings runnerSettings, IConsolePrinter consolePrinter)
     {
-        this.gilAlgoFactory = gilAlgoFactory;
+        this.gilAlgo = gilAlgo;
         this.transpiler = transpiler;
         this.stateMachineProvider = stateMachineProvider;
         this.expansionsPrep = expansionsPrep;
@@ -34,7 +34,7 @@ public class GilAlgoCodeGen : ICodeGenRunner
 
         var sm = stateMachineProvider.GetStateMachine();
 
-        var gilCode = gilAlgoFactory.Get(runnerSettings.algorithmId).GenerateGil(sm);
+        var gilCode = gilAlgo.GenerateGil(sm);
 
         TryTranspiling(sm, gilCode);
     }
