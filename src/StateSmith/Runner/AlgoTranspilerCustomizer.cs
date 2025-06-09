@@ -27,19 +27,6 @@ public class AlgoTranspilerCustomizer
             algorithmId = AlgorithmId.Balanced2;
         }
 
-        switch (algorithmId)
-        {
-            case AlgorithmId.Balanced1:
-                break;
-
-            case AlgorithmId.Balanced2:
-                sp.AddSingletonT<EventHandlerBuilder, EventHandlerBuilder2>();
-                // sp.AddSingletonT<IGilAlgo, AlgoBalanced2>();
-                break;
-
-            default: throw new ArgumentException("Unknown algorithmId: " + algorithmId);
-        }
-
         algoBalanced1Settings.outputSwitchDefault = false;  // default to false. Needed because of default case below.
 
         switch (transpilerId)
