@@ -91,10 +91,28 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<IGilAlgo>((sp) =>
             {
                 var algorithmId = sp.GetRequiredService<RunnerSettings>().algorithmId;
-                return (IGilAlgo) ActivatorUtilities.GetServiceOrCreateInstance(sp, IGILALGO_TYPES[algorithmId].ThrowIfNull($"AlgorithmId '{algorithmId}' is not supported."));
+                Type t = IGILALGO_TYPES[algorithmId].ThrowIfNull($"{algorithmId.GetType()} '{algorithmId}' is not supported.");
+                return (IGilAlgo)ActivatorUtilities.GetServiceOrCreateInstance(sp, t);
             });
 
-            services.AddSingleton<IGilTranspiler, GilToC99>();
+            services.AddSingleton<IGilTranspiler>((sp) =>
+            {
+                var transpilerId = sp.GetRequiredService<RunnerSettings>().transpilerId;
+                Console.WriteLine($"BOOGA Using transpiler: {transpilerId}");
+                Type t = IGILTRANSPILER_TYPES[transpilerId].ThrowIfNull($"{transpilerId.GetType()} '{transpilerId}' is not supported.");
+                Console.WriteLine($"BOOGA Using transpiler type: {t}");
+                return (IGilTranspiler)ActivatorUtilities.GetServiceOrCreateInstance(sp, t);
+            });
+
+            // TODO necessary?
+            services.AddSingleton<GilToC99>();
+            services.AddSingleton<GilToCpp>();
+            services.AddSingleton<GilToCSharp>();
+            services.AddSingleton<GilToJavaScript>();
+            services.AddSingleton<GilToJava>();
+            services.AddSingleton<GilToPython>();
+            services.AddSingleton<GilToTypeScript>();
+
 #if SS_SINGLE_FILE_APPLICATION
             services.AddSingleton<IRoslynMetadataProvider, InMemoryMetaDataProvider>();
 #else
