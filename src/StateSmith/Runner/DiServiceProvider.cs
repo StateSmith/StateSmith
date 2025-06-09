@@ -1,3 +1,4 @@
+
 #nullable enable
 
 using StateSmith.Input.DrawIo;
@@ -29,8 +30,18 @@ namespace StateSmith.Runner;
 /// <summary>
 /// Dependency Injection Service Provider
 /// </summary>
+
 public class DiServiceProvider : IDisposable
 {
+    // Helper to resolve a service by id from a type map
+    private static TService ResolveServiceFromRunnerSettings<TService, TId>(IServiceProvider sp, Func<RunnerSettings, TId> idSelector, IReadOnlyDictionary<TId, Type> typeMap)
+    {
+        var settings = sp.GetRequiredService<RunnerSettings>();
+        var id = idSelector(settings);
+        Type t = typeMap[id].ThrowIfNull($"{id.GetType()} '{id}' is not supported.");
+        return (TService)ActivatorUtilities.GetServiceOrCreateInstance(sp, t);
+    }
+
     private IHost? host;
     private readonly IHostBuilder hostBuilder;
 
@@ -88,21 +99,13 @@ public class DiServiceProvider : IDisposable
             services.AddTransient<HistoryProcessor>();
 
             services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
-            services.AddSingleton<IGilAlgo>((sp) =>
-            {
-                var algorithmId = sp.GetRequiredService<RunnerSettings>().algorithmId;
-                Type t = IGILALGO_TYPES[algorithmId].ThrowIfNull($"{algorithmId.GetType()} '{algorithmId}' is not supported.");
-                return (IGilAlgo)ActivatorUtilities.GetServiceOrCreateInstance(sp, t);
-            });
+            services.AddSingleton<IGilAlgo>(sp =>
+                ResolveServiceFromRunnerSettings<IGilAlgo, AlgorithmId>(sp, rs => rs.algorithmId, IGILALGO_TYPES)
+            );
 
-            services.AddSingleton<IGilTranspiler>((sp) =>
-            {
-                var transpilerId = sp.GetRequiredService<RunnerSettings>().transpilerId;
-                Console.WriteLine($"BOOGA Using transpiler: {transpilerId}");
-                Type t = IGILTRANSPILER_TYPES[transpilerId].ThrowIfNull($"{transpilerId.GetType()} '{transpilerId}' is not supported.");
-                Console.WriteLine($"BOOGA Using transpiler type: {t}");
-                return (IGilTranspiler)ActivatorUtilities.GetServiceOrCreateInstance(sp, t);
-            });
+            services.AddSingleton<IGilTranspiler>(sp =>
+                ResolveServiceFromRunnerSettings<IGilTranspiler, TranspilerId>(sp, rs => rs.transpilerId, IGILTRANSPILER_TYPES)
+            );
 
             // TODO necessary?
             services.AddSingleton<GilToC99>();
