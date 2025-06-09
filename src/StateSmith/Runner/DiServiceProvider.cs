@@ -85,6 +85,7 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
             services.AddSingleton<IGilAlgo>( (sp) =>
             {
+                // TODO add AlgorithmId as a singleton
                 var algorithmId = sp.GetRequiredService<RunnerSettings>().algorithmId;
                 switch (algorithmId)
                 {
