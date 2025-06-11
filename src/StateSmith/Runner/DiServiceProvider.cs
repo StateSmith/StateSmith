@@ -108,7 +108,11 @@ public class DiServiceProvider : IDisposable
             );
 
             services.AddSingleton<IExpansionVarsPathProvider>(sp =>
-                ResolveServiceFromRunnerSettings<IExpansionVarsPathProvider, TranspilerId>(sp, rs => rs.transpilerId, IGILTRANSPILER_EXPANSION_PATH_PROVIDERS)
+                ResolveServiceFromRunnerSettings<IExpansionVarsPathProvider, TranspilerId>(sp, rs => rs.transpilerId, IEXPANSIONVARSPATHPROVIDER_TYPES)
+            );
+
+            services.AddSingleton<NameMangler>(sp =>
+                ResolveServiceFromRunnerSettings<NameMangler, TranspilerId>(sp, rs => rs.transpilerId, NAMEMANGLER_TYPES)
             );
 
             // TODO necessary?
@@ -270,7 +274,7 @@ public class DiServiceProvider : IDisposable
         { TranspilerId.TypeScript, typeof(GilToTypeScript)}
     };
 
-    Dictionary<TranspilerId, Type> IGILTRANSPILER_EXPANSION_PATH_PROVIDERS = new Dictionary<TranspilerId, Type>
+    Dictionary<TranspilerId, Type> IEXPANSIONVARSPATHPROVIDER_TYPES = new Dictionary<TranspilerId, Type>
     {
         { TranspilerId.Default, typeof(CExpansionVarsPathProvider) },
         { TranspilerId.Cpp, typeof(CppExpansionVarsPathProvider) },
@@ -280,6 +284,18 @@ public class DiServiceProvider : IDisposable
         { TranspilerId.Java, typeof(CSharpExpansionVarsPathProvider) },
         { TranspilerId.Python, typeof(PythonExpansionVarsPathProvider) },
         { TranspilerId.TypeScript, typeof(CSharpExpansionVarsPathProvider) }
+    };
+
+    Dictionary<TranspilerId,Type> NAMEMANGLER_TYPES = new Dictionary<TranspilerId, Type>
+    {
+        { TranspilerId.Default, typeof(NameMangler) },
+        { TranspilerId.Cpp, typeof(CamelCaseNameMangler) },
+        { TranspilerId.C99, typeof(NameMangler) },
+        { TranspilerId.CSharp, typeof(PascalFuncCamelVarNameMangler) },
+        { TranspilerId.JavaScript, typeof(CamelCaseNameMangler) },
+        { TranspilerId.Java, typeof(CamelCaseNameMangler) },
+        { TranspilerId.Python, typeof(CamelCaseNameMangler) },
+        { TranspilerId.TypeScript, typeof(CamelCaseNameMangler) }
     };
 
     Dictionary<AlgorithmId, Type> IGILALGO_TYPES = new Dictionary<AlgorithmId, Type>
