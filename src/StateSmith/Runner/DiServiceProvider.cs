@@ -107,6 +107,10 @@ public class DiServiceProvider : IDisposable
                 ResolveServiceFromRunnerSettings<IGilTranspiler, TranspilerId>(sp, rs => rs.transpilerId, IGILTRANSPILER_TYPES)
             );
 
+            services.AddSingleton<IExpansionVarsPathProvider>(sp =>
+                ResolveServiceFromRunnerSettings<IExpansionVarsPathProvider, TranspilerId>(sp, rs => rs.transpilerId, IGILTRANSPILER_EXPANSION_PATH_PROVIDERS)
+            );
+
             // TODO necessary?
             services.AddSingleton<GilToC99>();
             services.AddSingleton<GilToCpp>();
@@ -264,6 +268,18 @@ public class DiServiceProvider : IDisposable
         { TranspilerId.Java, typeof(GilToJava)},
         { TranspilerId.Python, typeof(GilToPython)},
         { TranspilerId.TypeScript, typeof(GilToTypeScript)}
+    };
+
+    Dictionary<TranspilerId, Type> IGILTRANSPILER_EXPANSION_PATH_PROVIDERS = new Dictionary<TranspilerId, Type>
+    {
+        { TranspilerId.Default, typeof(CExpansionVarsPathProvider) },
+        { TranspilerId.Cpp, typeof(CppExpansionVarsPathProvider) },
+        { TranspilerId.C99, typeof(CExpansionVarsPathProvider) },
+        { TranspilerId.CSharp, typeof(CSharpExpansionVarsPathProvider) },
+        { TranspilerId.JavaScript, typeof(CSharpExpansionVarsPathProvider) },
+        { TranspilerId.Java, typeof(CSharpExpansionVarsPathProvider) },
+        { TranspilerId.Python, typeof(PythonExpansionVarsPathProvider) },
+        { TranspilerId.TypeScript, typeof(CSharpExpansionVarsPathProvider) }
     };
 
     Dictionary<AlgorithmId, Type> IGILALGO_TYPES = new Dictionary<AlgorithmId, Type>

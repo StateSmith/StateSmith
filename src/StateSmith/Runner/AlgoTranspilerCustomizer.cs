@@ -36,7 +36,7 @@ public class AlgoTranspilerCustomizer
                 {
                     // TODO remove. causes spec2 tests to fail
                     sp.AddSingletonT<IGilTranspiler, GilToC99>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
+                    // sp.AddSingletonT<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
                     algoBalanced1Settings.outputSwitchDefault = true;
                 }
                 break;
@@ -44,7 +44,7 @@ public class AlgoTranspilerCustomizer
             case TranspilerId.Cpp:
                 {
                     // sp.AddSingletonT<IGilTranspiler, GilToCpp>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CppExpansionVarsPathProvider>();
+                    // sp.AddSingletonT<IExpansionVarsPathProvider, CppExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
                     algoBalanced1Settings.varsStructAsClass = true;
@@ -61,7 +61,7 @@ public class AlgoTranspilerCustomizer
             case TranspilerId.CSharp:
                 {
                     // sp.AddSingletonT<IGilTranspiler, GilToCSharp>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
+                    // sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
                 }
@@ -70,7 +70,7 @@ public class AlgoTranspilerCustomizer
             case TranspilerId.JavaScript:
                 {
                     // sp.AddSingletonT<IGilTranspiler, GilToJavaScript>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();    // todo - rename to something common
+                    // sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();    // todo - rename to something common
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     sp.AddSingletonT<IAutoVarsParser, JsAutoVarsParser>();
                     algoBalanced1Settings.skipClassIndentation = false;
@@ -80,7 +80,7 @@ public class AlgoTranspilerCustomizer
             case TranspilerId.Java:
                 {
                     // sp.AddSingletonT<IGilTranspiler, GilToJava>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
+                    // sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
 
@@ -95,7 +95,7 @@ public class AlgoTranspilerCustomizer
             case TranspilerId.Python:
                 {
                     // sp.AddSingletonT<IGilTranspiler, GilToPython>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, PythonExpansionVarsPathProvider>();
+                    // sp.AddSingletonT<IExpansionVarsPathProvider, PythonExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     sp.AddSingletonT<IAutoVarsParser, PythonAutoVarsParser>();
 
@@ -121,7 +121,7 @@ public class AlgoTranspilerCustomizer
             case TranspilerId.TypeScript:
                 {
                     // sp.AddSingletonT<IGilTranspiler, GilToTypeScript>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
+                    // sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     sp.AddSingletonT<IAutoVarsParser, TypeScriptAutoVarsParser>();
                     algoBalanced1Settings.varsStructAsClass = true;
