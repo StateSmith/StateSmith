@@ -15,8 +15,9 @@ public class EnumBuilderTests
         sm.AddChild(new State("S1"));
         sm.AddChild(new State("S2"));
 
-        sm._events.Add("EV1");
-        sm._events.Add("EV2");
+        sm._eventMapping = new();
+        sm._eventMapping.AddEventValueMapping("EV1", "0");
+        sm._eventMapping.AddEventValueMapping("EV2", "1");
 
         OutputFile file = new(new CodeStyleSettings(), new());
         EnumBuilder enumBuilder = new(new NameMangler(sm), new StateMachineProvider(sm), new());
