@@ -4,6 +4,7 @@ using Xunit;
 using FluentAssertions;
 using System.Collections.Generic;
 using System;
+using StateSmith.Runner;
 
 namespace StateSmithTest;
 
@@ -25,6 +26,9 @@ public class EventCommaListProcessorTests_470
 
         TestParseElement(name: "someEVENT", id: "SYSTEM_EV1", input: "someEVENT=SYSTEM_EV1");
         TestParseElement(name: "someEVENT", id: "SYSTEM_EV1", input: "someEVENT=>SYSTEM_EV1");
+
+        TestParseElement(name: "ev1", id: "System.EV1", input: "ev1 = System.EV1");
+        TestParseElement(name: "ev1", id: "System::EV1", input: "ev1 = System::EV1");
     }
 
     [Fact]
@@ -94,23 +98,22 @@ public class EventCommaListProcessorTests_470
     public void TestMapping_InvalidSyntax()
     {
         Action act;
-
         // missing comma separator     
-        act = () => EventCommaListProcessor.ParseStringToEventMapping(new(), "ev1 ev2");
+        act = () => ParseStringToEventMapping("ev1 ev2");
         act.Should().Throw<ArgumentException>()
             .WithMessage("""Failed processing user RenderConfig.EventCommaList string: `ev1 ev2`*Mapping so far: `{}`*""")
             .WithInnerException<ArgumentException>()
             .WithMessage("Failed parsing event mapping item*`ev1 ev2`*");
 
         // first parses successfully then missing comma separator
-        act = () => EventCommaListProcessor.ParseStringToEventMapping(new(), "ev1, ev2 ev3");
+        act = () => ParseStringToEventMapping("ev1, ev2 ev3");
         act.Should().Throw<ArgumentException>()
             .WithMessage("""Failed*`ev1, ev2 ev3`*Mapping*`{"ev1":""}`*""")
             .WithInnerException<ArgumentException>()
             .WithMessage("Failed parsing event mapping item*`ev2 ev3`*");
 
         // test error message with newlines
-        act = () => EventCommaListProcessor.ParseStringToEventMapping(new(), """
+        act = () => ParseStringToEventMapping("""
             ev1 = 22
             ev2 => SYS2;
             """.ConvertLineEndingsToN());
@@ -123,12 +126,19 @@ public class EventCommaListProcessorTests_470
             .WithMessage("Failed parsing event mapping item*`ev2 => SYS2;`*");
     }
 
+    private static EventMapping ParseStringToEventMapping(string input)
+    {
+        EventMapping mapping = new();
+        EventCommaListProcessor.ParseStringToEventMapping(mapping, input, AlgorithmId.Balanced2);
+        return mapping;
+    }
+
     [Fact]
     public void TestMapping_Invalid_RepeatedEvent()
     {
         Action act;
 
-        act = () => EventCommaListProcessor.ParseStringToEventMapping(new(), "ev1, ev1");
+        act = () => ParseStringToEventMapping("ev1, ev1");
         act.Should().Throw<ArgumentException>()
             .WithMessage("""Failed processing user RenderConfig.EventCommaList string: `ev1, ev1`*Mapping so far: `{"ev1":""}`*""")
             .WithInnerException<ArgumentException>()
@@ -141,7 +151,7 @@ public class EventCommaListProcessorTests_470
     {
         Action act;
 
-        act = () => EventCommaListProcessor.ParseStringToEventMapping(new(), "ev1=1, ev2=1");
+        act = () => ParseStringToEventMapping("ev1=1, ev2=1");
         act.Should().Throw<ArgumentException>()
             .WithMessage("""Failed*`ev1=1, ev2=1`*Mapping*`{"ev1":"1","ev2":"1"}`*""")
             .WithInnerException<ArgumentException>()
@@ -156,7 +166,7 @@ public class EventCommaListProcessorTests_470
     {
         Action act;
 
-        act = () => EventCommaListProcessor.ParseStringToEventMapping(new(), "ev1=1, ev2");
+        act = () => ParseStringToEventMapping("ev1=1, ev2");
         act.Should().Throw<ArgumentException>()
             .WithMessage("""Failed*`ev1=1, ev2`*""")
             .WithInnerException<ArgumentException>()
@@ -169,14 +179,14 @@ public class EventCommaListProcessorTests_470
         Action act;
 
         // reserve ENTER
-        act = () => EventCommaListProcessor.ParseStringToEventMapping(new(), "enter, ev2");
+        act = () => ParseStringToEventMapping("enter, ev2");
         act.Should().Throw<ArgumentException>()
             .WithMessage("""Failed*`enter, ev2`*""")
             .WithInnerException<ArgumentException>()
             .WithMessage("Invalid event mapping for `enter`. That is a reserved trigger and not an event.");
 
         // reserve EXIT
-        act = () => EventCommaListProcessor.ParseStringToEventMapping(new(), "ev1, exit");
+        act = () => ParseStringToEventMapping("ev1, exit");
         act.Should().Throw<ArgumentException>()
             .WithMessage("""Failed*`ev1, exit`*""")
             .WithInnerException<ArgumentException>()
@@ -199,8 +209,7 @@ public class EventCommaListProcessorTests_470
 
     private static void AssertEventMapping(string input, Dictionary<string, string> expected)
     {
-        EventMapping mapping = new();
-        EventCommaListProcessor.ParseStringToEventMapping(mapping, input);
+        EventMapping mapping = ParseStringToEventMapping(input);
         mapping.UnsanitizedMap.Should().BeEquivalentTo(expected);
     }
 }

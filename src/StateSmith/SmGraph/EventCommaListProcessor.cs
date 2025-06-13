@@ -6,6 +6,8 @@ using StateSmith.Output.UserConfig;
 using System.Text.Json;
 using System.Collections.Generic;
 using System.Linq;
+using StateSmith.Runner;
+using System.Text;
 
 namespace StateSmith.SmGraph;
 
@@ -16,7 +18,7 @@ public class EventCommaListProcessor
 {
     private readonly EventMapping mappingToPopulate;
     private readonly RenderConfigBaseVars renderConfig;
-
+    private readonly RunnerSettings runnerSettings;
     private static Regex parsingRegex = new Regex(@"
             ^  # start of string
 
@@ -35,21 +37,25 @@ public class EventCommaListProcessor
                 \s*  # optional whitespace
 
                 (?<eventValue>
-                    # we allow numbers and words here so users can use external values like `EV1 = SYSTEM_EV1`
-                    \w+
+                    # we allow words, numbers and '.' and ':' so users can use external values.
+                    # examples: `SYSTEM_EV1` `System::Ev1`, `System.Ev1`
+                    \w+         # start with a word character
+                    [\w.:]*     
                 )
             )?
 
             $ # end of string
             ", RegexOptions.IgnorePatternWhitespace);
 
-    public EventCommaListProcessor(EventMapping mappingToPopulate, RenderConfigBaseVars renderConfig)
+    // Needed for dependency injection
+    public EventCommaListProcessor(EventMapping mappingToPopulate, RenderConfigBaseVars renderConfig, RunnerSettings runnerSettings)
     {
         this.mappingToPopulate = mappingToPopulate;
         this.renderConfig = renderConfig;
+        this.runnerSettings = runnerSettings;
     }
 
-    public static void ParseStringToEventMapping(EventMapping mappingToPopulate, string eventCommaList)
+    public static void ParseStringToEventMapping(EventMapping mappingToPopulate, string eventCommaList, AlgorithmId algorithmId)
     {
         // split the input string by commas and trim whitespace
         var mappingElements = eventCommaList.Split(new char[] { ',', '\r', '\n' }, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
@@ -70,12 +76,25 @@ public class EventCommaListProcessor
             {
                 ValidateAllImplicitOrExplicitValues(mappingToPopulate);
                 ValidateNoDuplicateValues(mappingToPopulate);
+                ValidateWontFeckUpAlgorithm1(mappingToPopulate, algorithmId);
             }
         }
         catch (ArgumentException e)
         {
             throw new ArgumentException($"Failed processing user RenderConfig.{nameof(RenderConfigBaseVars.EventCommaList)} string: `{eventCommaList}`. "
                 + $"Mapping so far: `{JsonSerializer.Serialize(mappingToPopulate.UnsanitizedMap)}`. Info: https://github.com/StateSmith/StateSmith/issues/470", e);
+        }
+    }
+
+    /// <summary>
+    /// Algorithm Balanced1 uses an array of function pointers for events. Would need to worry about issues like `EV1 = -1` which would cause array index out of bounds.
+    /// For now, just disallow. Contact maintainers if you need to use this algorithm with custom mapped event IDs.
+    /// </summary>
+    private static void ValidateWontFeckUpAlgorithm1(EventMapping mappingToPopulate, AlgorithmId algorithmId)
+    {
+        if (mappingToPopulate.HasAnExplicitValue() && algorithmId == AlgorithmId.Balanced1)
+        {
+            throw new ArgumentException($"Algorithm {nameof(AlgorithmId.Balanced1)} may not be safe to use with custom mapped event IDs. Use another algorithm or contact maintainers. Info: https://github.com/StateSmith/StateSmith/issues/470");
         }
     }
 
@@ -137,6 +156,6 @@ public class EventCommaListProcessor
 
     public void Process()
     {
-        ParseStringToEventMapping(mappingToPopulate, renderConfig.EventCommaList);
+        ParseStringToEventMapping(mappingToPopulate, renderConfig.EventCommaList, runnerSettings.algorithmId);
     }
 }

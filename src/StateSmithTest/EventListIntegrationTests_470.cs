@@ -33,6 +33,42 @@ public class EventListIntegrationTests_470
     }
 
     [Fact]
+    public void Success_Algo1AllowedWithoutExplicitValues()
+    {
+        var plantUml = """
+            @startuml MySm
+            [*] -> S1
+
+            /'! $CONFIG : toml
+                RenderConfig.EventCommaList = "EV1, do"
+            '/
+            @enduml
+            """;
+        TestHelper.RunSmRunnerForPlantUmlString(plantUml);
+    }
+
+    [Fact]
+    public void Fail_Algo1WithExplicitValues()
+    {
+        var plantUml = """
+            @startuml MySm
+            [*] -> S1
+            
+            /'! $CONFIG : toml
+                RenderConfig.EventCommaList = "EV1 = 1, EV2 = 2"
+                SmRunnerSettings.algorithmId = "Balanced1"
+            '/
+            @enduml
+            """;
+
+        Action action = () => TestHelper.RunSmRunnerForPlantUmlString(plantUml);
+        action.Should().Throw<ArgumentException>()
+            .WithMessage("""Failed * RenderConfig.EventCommaList string: `EV1 = 1, EV2 = 2`. Mapping so far: `{"EV1":"1","EV2":"2"}`. Info: https://github.com/StateSmith/StateSmith/issues/470""")
+            .WithInnerException<ArgumentException>()
+            .WithMessage("Algorithm Balanced1 may not be safe to use with custom mapped event IDs. Use another algorithm or contact maintainers. Info: https://github.com/StateSmith/StateSmith/issues/470");
+    }
+
+    [Fact]
     public void Fail_DefaultDoNotAllowed()
     {
         var plantUml = """
@@ -131,9 +167,9 @@ public class EventListIntegrationTests_470
             /'! $CONFIG : toml
                 RenderConfig.EventCommaList = """
                     EV1 = EXTERNAL_SYS1,
-                    ev2 = EXTERNAL_SYS2,
+                    ev2 = External.SYS2,
                     do = 0,
-                    ev3 = EXTERNAL_SYS3
+                    ev3 = External::SYS3
                     """
             '/
             @enduml
@@ -143,8 +179,8 @@ public class EventListIntegrationTests_470
 
         string code = fakeFileSystem.GetCapturesForFileName("MySm.h").Single().code;
         code.Should().Contain("MySm_EventId_EV1 = EXTERNAL_SYS1,");
-        code.Should().Contain("MySm_EventId_EV2 = EXTERNAL_SYS2,");
+        code.Should().Contain("MySm_EventId_EV2 = External.SYS2,");
         code.Should().Contain("MySm_EventId_DO = 0,");
-        code.Should().Contain("MySm_EventId_EV3 = EXTERNAL_SYS3");
+        code.Should().Contain("MySm_EventId_EV3 = External::SYS3");
     }
 }

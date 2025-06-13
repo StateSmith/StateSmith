@@ -33,6 +33,19 @@ public class EventMapping
         return IsExplicitEventValue(eventValue);
     }
 
+    public bool HasAnExplicitValue()
+    {
+        foreach (var eventName in OrderedSanitizedEvents)
+        {
+            if (EventHasExplicitValue(eventName))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static bool IsExplicitEventValue(string eventValue)
     {
         return string.IsNullOrWhiteSpace(eventValue) == false;

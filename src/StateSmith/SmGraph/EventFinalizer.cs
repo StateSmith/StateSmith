@@ -66,7 +66,7 @@ public class EventFinalizer
             mapping.DefaultSortEventOrdering();
         }
 
-        // FIXME - double check that state machine events match event mapping. Actually better to make state machine use EventMapping.
+        // FIXME - make state machine use EventMapping.
 
         bool alreadyExplicitlyDefined = EventMapping.IsExplicitEventValue(mapping.UnsanitizedMap.First().Value);
         if (alreadyExplicitlyDefined)
@@ -76,7 +76,7 @@ public class EventFinalizer
             return;
         }
 
-        // we need assign explicit values to all events
+        // we need to assign explicit values to all events
         int nextValue = 0;
         foreach (var eventName in mapping.OrderedSanitizedEvents)
         {
