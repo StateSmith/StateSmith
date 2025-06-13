@@ -41,10 +41,16 @@ public class EventListIntegrationTests_470
 
             /'! $CONFIG : toml
                 RenderConfig.EventCommaList = "EV1, do"
+                SmRunnerSettings.algorithmId = "Balanced1"
             '/
             @enduml
             """;
-        TestHelper.RunSmRunnerForPlantUmlString(plantUml);
+
+        var fakeFileSystem = TestHelper.CaptureSmRunnerFilesForPlantUmlString(plantUml, transpilerId: StateSmith.Runner.TranspilerId.C99);
+
+        string code = fakeFileSystem.GetCapturesForFileName("MySm.h").Single().code;
+        code.Should().Contain("MySm_EventId_EV1 = 0,");
+        code.Should().Contain("MySm_EventId_DO = 1");
     }
 
     [Fact]
