@@ -25,20 +25,18 @@ public class EnumBuilder
     {
         file.AppendIndented($"public enum {mangler.SmEventEnumType}");
         file.StartCodeBlock();
-        List<string> nonDoEvents = GetNonDoEvents(out var hadDoEvent);
-
-        int enumOffset = 0;
-
-        if (hadDoEvent)
+        
+        EventMapping eventMapping = GetSm()._eventMapping.ThrowIfNull();
+        foreach (var eventName in eventMapping.OrderedSanitizedEvents)
         {
-            enumOffset = 1;
-            file.AppendIndentedLine($"{mangler.SmEventEnumValue(TriggerHelper.TRIGGER_DO)} = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.");
-        }
+            var value = eventMapping.GetEventValue(eventName);
+            file.AppendIndented($"{mangler.SmEventEnumValue(eventName)} = {value},");
 
-        for (int i = 0; i < nonDoEvents.Count; i++)
-        {
-            string evt = nonDoEvents[i];
-            file.AppendIndentedLine($"{mangler.SmEventEnumValue(evt)} = {i + enumOffset},");
+            if (TriggerHelper.IsDoEvent(eventName))
+            {
+                file.AppendWithoutIndent($" // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.");
+            }
+            file.FinishLine();
         }
 
         file.FinishCodeBlock("");
@@ -46,20 +44,13 @@ public class EnumBuilder
 
         if (settings.outputEnumMemberCount)
         {
-            OutputEventIdCount(file, nonDoEvents.Count + enumOffset);
+            OutputEventIdCount(file, eventMapping.OrderedSanitizedEvents.Count);
         }
     }
 
     StateMachine GetSm()
     {
         return stateMachineProvider.GetStateMachine();
-    }
-
-    private List<string> GetNonDoEvents(out bool hadDoEvent)
-    {
-        var nonDoEvents = GetSm().GetEventListCopy();
-        hadDoEvent = nonDoEvents.RemoveAll((e) => TriggerHelper.IsDoEvent(e)) > 0;
-        return nonDoEvents;
     }
 
     protected void OutputEventIdCount(OutputFile file, int count)

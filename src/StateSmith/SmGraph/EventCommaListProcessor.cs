@@ -75,15 +75,15 @@ public class EventCommaListProcessor
         catch (ArgumentException e)
         {
             throw new ArgumentException($"Failed processing user RenderConfig.{nameof(RenderConfigBaseVars.EventCommaList)} string: `{eventCommaList}`. "
-                + $"Mapping so far: `{JsonSerializer.Serialize(mappingToPopulate.Map)}`. Info: https://github.com/StateSmith/StateSmith/issues/470", e);
+                + $"Mapping so far: `{JsonSerializer.Serialize(mappingToPopulate.UnsanitizedMap)}`. Info: https://github.com/StateSmith/StateSmith/issues/470", e);
         }
     }
 
     private static void ValidateAllImplicitOrExplicitValues(EventMapping mapping)
     {
-        bool startingExplicitness = EventMapping.IsExplicitEventValue(mapping.Map.First().Value);
+        bool startingExplicitness = EventMapping.IsExplicitEventValue(mapping.UnsanitizedMap.First().Value);
 
-        foreach (var keyValuePair in mapping.Map)
+        foreach (var keyValuePair in mapping.UnsanitizedMap)
         {
             var eventName = keyValuePair.Key;
             var eventValue = keyValuePair.Value;
@@ -104,7 +104,7 @@ public class EventCommaListProcessor
         // throw exception if multiple events map to the same value
         var valueToEventMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
-        foreach (var keyValuePair in mapping.Map)
+        foreach (var keyValuePair in mapping.UnsanitizedMap)
         {
             var eventName = keyValuePair.Key;
             var eventValue = keyValuePair.Value;

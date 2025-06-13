@@ -2,6 +2,7 @@
 
 using StateSmith.Common;
 using StateSmith.SmGraph.Validation;
+using System;
 using System.Linq;
 
 namespace StateSmith.SmGraph;
@@ -52,6 +53,8 @@ public class EventFinalizer
 
     public static void FinalizeEventMapping(StateMachine stateMachine, EventMapping mapping)
     {
+        stateMachine._eventMapping = mapping;
+
         if (mapping.IsEmpty)
         {
             // we need to populate from state machine events
@@ -59,12 +62,13 @@ public class EventFinalizer
             {
                 mapping.AddEventValueMapping(ev);
             }
-            // FIXME - need to sort? put do event first if it exists?
+
+            mapping.DefaultSortEventOrdering();
         }
 
-        // FIXME - double check that state machine events match event mapping
+        // FIXME - double check that state machine events match event mapping. Actually better to make state machine use EventMapping.
 
-        bool alreadyExplicitlyDefined = EventMapping.IsExplicitEventValue(mapping.Map.First().Value);
+        bool alreadyExplicitlyDefined = EventMapping.IsExplicitEventValue(mapping.UnsanitizedMap.First().Value);
         if (alreadyExplicitlyDefined)
         {
             // If the first event is explicitly defined, then all events must be explicitly defined.
@@ -73,9 +77,11 @@ public class EventFinalizer
         }
 
         // we need assign explicit values to all events
-        foreach (var keyValuePair in mapping.Map)
+        int nextValue = 0;
+        foreach (var eventName in mapping.OrderedSanitizedEvents)
         {
-            // FIXME finish here.
+            mapping.UpdateValue(eventName, nextValue.ToString());
+            nextValue++;
         }
     }
 }

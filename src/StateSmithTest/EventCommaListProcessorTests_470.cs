@@ -163,6 +163,26 @@ public class EventCommaListProcessorTests_470
             .WithMessage("Mapping for event `ev2` must specify a value because other events have a specified value.*");
     }
 
+    [Fact]
+    public void TestMapping_Invalid_ReservedNames()
+    {
+        Action act;
+
+        // reserve ENTER
+        act = () => EventCommaListProcessor.ParseStringToEventMapping(new(), "enter, ev2");
+        act.Should().Throw<ArgumentException>()
+            .WithMessage("""Failed*`enter, ev2`*""")
+            .WithInnerException<ArgumentException>()
+            .WithMessage("Invalid event mapping for `enter`. That is a reserved trigger and not an event.");
+
+        // reserve EXIT
+        act = () => EventCommaListProcessor.ParseStringToEventMapping(new(), "ev1, exit");
+        act.Should().Throw<ArgumentException>()
+            .WithMessage("""Failed*`ev1, exit`*""")
+            .WithInnerException<ArgumentException>()
+            .WithMessage("Invalid event mapping for `exit`.*");
+    }
+
     private void TestParseElement(string name, string id, string input)
     {
         EventCommaListProcessor.ParseEventElement(input, out string eventName, out string eventId);
@@ -181,6 +201,6 @@ public class EventCommaListProcessorTests_470
     {
         EventMapping mapping = new();
         EventCommaListProcessor.ParseStringToEventMapping(mapping, input);
-        mapping.Map.Should().BeEquivalentTo(expected);
+        mapping.UnsanitizedMap.Should().BeEquivalentTo(expected);
     }
 }

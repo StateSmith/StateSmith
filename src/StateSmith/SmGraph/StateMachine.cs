@@ -14,9 +14,11 @@ namespace StateSmith.SmGraph;
 public class StateMachine : NamedVertex
 {
     /// <summary>
-    /// Prefer using <see cref="GetEventListCopy"/> if possible. This field is populated near the end of the transformation pipeline. <see cref="EventFinalizer"/>.
+    /// Prefer using <see cref="GetEventSet"/> if possible. This field is populated near the end of the transformation pipeline. <see cref="EventFinalizer"/>.
     /// </summary>
-    public HashSet<string> _events = new();
+    internal HashSet<string> _events = new();
+
+    internal EventMapping? _eventMapping;
 
     public List<HistoryVertex> historyStates = new();
     public string variables = "";

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using StateSmith.Common;
 
 #nullable enable
 
@@ -13,18 +14,22 @@ namespace StateSmith.SmGraph;
 /// </summary>
 public class EventMapping
 {
-    public IReadOnlyDictionary<string, string> Map => _map;
-    public bool IsEmpty => _map.Count == 0;
+    public IReadOnlyDictionary<string, string> UnsanitizedMap => _unsanitizedEventMap;
+    public bool IsEmpty => _unsanitizedEventMap.Count == 0;
+
+    public IReadOnlyList<string> OrderedSanitizedEvents => _eventOrder;
+
+    private readonly List<string> _eventOrder = new();
 
     /// <summary>
-    /// Case insensitive dictionary.
-    /// Prefer using readonly field <see cref="Map"/> when possible.
+    /// Case insensitive dictionary. Contains original user casing. Not sanitized.
+    /// Prefer using readonly field <see cref="UnsanitizedMap"/> when possible.
     /// </summary>
-    private readonly Dictionary<string, string> _map = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, string> _unsanitizedEventMap = new(StringComparer.OrdinalIgnoreCase);
 
     public bool EventHasExplicitValue(string eventName)
     {
-        string eventValue = Map[eventName];
+        string eventValue = UnsanitizedMap[eventName];
         return IsExplicitEventValue(eventValue);
     }
 
@@ -33,13 +38,52 @@ public class EventMapping
         return string.IsNullOrWhiteSpace(eventValue) == false;
     }
 
+    public bool ContainsEvent(string eventName)
+    {
+        return _unsanitizedEventMap.ContainsKey(eventName);
+    }
+
+    public string GetEventValue(string eventName)
+    {
+        return _unsanitizedEventMap[eventName];
+    }
+
+    public void UpdateValue(string eventName, string value)
+    {
+        if (!UnsanitizedMap.ContainsKey(eventName))
+        {
+            throw new ArgumentException($"Event `{eventName}` has not been mapped. You must add it first.");
+        }
+
+        _unsanitizedEventMap[eventName] = value;
+    }
+
     public void AddEventValueMapping(string eventName, string id = "")
     {
-        if (Map.ContainsKey(eventName))
+        if (UnsanitizedMap.ContainsKey(eventName))
         {
             throw new ArgumentException($"Event `{eventName}` has already been mapped. Each event can only be specified once.");
         }
 
-        _map[eventName] = id;
+        if (!TriggerHelper.IsEvent(eventName))
+        {
+            throw new ArgumentException($"Invalid event mapping for `{eventName}`. That is a reserved trigger and not an event.");
+        }
+
+        _unsanitizedEventMap[eventName] = id;
+        _eventOrder.Add(TriggerHelper.SanitizeTriggerName(eventName));
+    }
+
+    /// <summary>
+    /// Only do if there's no user specified events
+    /// </summary>
+    public void DefaultSortEventOrdering()
+    {
+        _eventOrder.Sort((a, b) =>
+            {
+                if (a == TriggerHelper.TRIGGER_DO) return -1; // put DO first
+                if (b == TriggerHelper.TRIGGER_DO) return 1; // put DO first
+                return string.Compare(a, b, StringComparison.OrdinalIgnoreCase);
+            });
     }
 }
