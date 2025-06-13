@@ -28,6 +28,7 @@ public class TestHelper
     {
         SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath);
         runner.GetExperimentalAccess().Settings.propagateExceptions = true;
+        runner.GetExperimentalAccess().Settings.dumpGilCodeOnError = true;
         var fakeFileSystem = new CapturingCodeFileWriter();
         runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(fakeFileSystem);
         runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
@@ -40,6 +41,20 @@ public class TestHelper
     {
         var (_, fakeFileSystem) = CaptureSmRun(diagramPath, renderConfig, transpilerId, algorithmId, callerFilePath: callerFilePath);
         return fakeFileSystem;
+    }
+
+    public static CapturingCodeFileWriter CaptureSmRunnerFilesForPlantUmlString(string plantUmlText, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default)
+    {
+        string tempFilePath = WritePlantUmlTempFile(plantUmlText);
+
+        try
+        {
+            return CaptureSmRunnerFiles(tempFilePath, transpilerId: transpilerId, algorithmId: algorithmId);
+        }
+        finally
+        {
+            File.Delete(tempFilePath);
+        }
     }
 
     public static void CaptureRunSmRunnerForPlantUmlString(string? plantUmlText = null, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default)

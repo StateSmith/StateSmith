@@ -49,6 +49,8 @@ AutoExpandedVars  = "stuff..."
     - [JavaScript Inheritance Example](#javascript-inheritance-example)
     - [JavaScript Interface/Composition Example](#javascript-interfacecomposition-example)
   - [RenderConfig.TriggerMap](#renderconfigtriggermap)
+  - [RenderConfig.EventCommaList](#renderconfigeventcommalist)
+    - [Experimental Feature](#experimental-feature)
 - [RenderConfig.C](#renderconfigc)
   - [RenderConfig.C.HFileTop](#renderconfigchfiletop)
   - [RenderConfig.C.IncludeGuardLabel](#renderconfigcincludeguardlabel)
@@ -344,6 +346,40 @@ Then in your diagram you add a state behavior like `UPx / count++` and it will e
 TriggerMap = """
     UPx => UP_PRESS, UP_HELD
     DOWNx => DOWN_PRESS, DOWN_HELD
+    """
+```
+
+## RenderConfig.EventCommaList
+Type: `string`
+Info: https://github.com/StateSmith/StateSmith/issues/470
+
+Allows you to specify which events are allowed in your diagram. If you don't specify any events, StateSmith will auto accept any events found in your diagram.
+
+```toml
+[RenderConfig]
+EventCommaList = """
+    do, ev1, ev2
+    """
+```
+
+### Experimental Feature
+The above will continue to be supported. Below event listing features are experimental.
+
+You can also specify the event enumeration ID value that you want for most languages (not yet Java, but it could be done). This is primarily useful if you want to have multiple state machines all share the same event IDs.
+
+```toml
+[RenderConfig]
+EventCommaList = """
+    do = 0, ev1 = 1, ev2 = 2
+    """
+```
+
+You can even reference external defined values, but we may replace that with fully user defined external enumerations instead.
+
+```toml
+[RenderConfig]
+EventCommaList = """
+    ev1 = MY_SYSTEM_EV1, ev2 = MY_SYSTEM_EV2   # EXPERIMENTAL!!!
     """
 ```
 

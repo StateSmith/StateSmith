@@ -47,6 +47,10 @@ public class DiServiceProvider : IDisposable
             AddDefaults(services);
 
             services.AddSingleton<DiServiceProvider>(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
+            
+            services.AddSingleton<EventMapping>();
+            services.AddSingleton<EventCommaListProcessor>();
+            
             services.AddSingleton<SmRunnerInternal>();
             services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<IExpander, Expander>();

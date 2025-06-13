@@ -8,6 +8,11 @@ Test/interim releases are not documented here.
 
 ---
 
+## WIP
+lib updates for #470
+
+---
+
 ## [0.18.2]
 ### Upgrade StateSmith library version to `0.17.5`
 #### Added

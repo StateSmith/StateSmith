@@ -17,6 +17,7 @@ public class StandardSmTransformer : SmTransformer
         /// </summary>
         Standard_TomlConfig,
         Standard_SupportRenderConfigVerticesAndRemove,
+        Standard_PostConfig,
         Standard_SupportParentAlias,
         Standard_SupportEntryExit,
         Standard_SupportPrefixingModder,
@@ -40,16 +41,24 @@ public class StandardSmTransformer : SmTransformer
         /// https://github.com/StateSmith/StateSmith/issues/161
         /// </summary>
         Standard_TriggerMapping,
-        Standard_AddUsedEventsToSm,
+        Standard_EventFinalization,
         Standard_FinalValidation,
     };
 
     // this ctor used for Dependency Injection
-    public StandardSmTransformer(TomlConfigVerticesProcessor tomlConfigVerticesProcessor, RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor, StateNameConflictResolver nameConflictResolver, TriggerMapProcessor triggerMapProcessor)
+    public StandardSmTransformer(TomlConfigVerticesProcessor tomlConfigVerticesProcessor,
+        RenderConfigVerticesProcessor renderConfigVerticesProcessor,
+        HistoryProcessor historyProcessor,
+        StateNameConflictResolver nameConflictResolver,
+        TriggerMapProcessor triggerMapProcessor,
+        EventCommaListProcessor eventCommaListProcessor,
+        EventMapping eventMapping
+    )
     {
         AddStep(TransformationId.Standard_RemoveNotesVertices, (sm) => NotesProcessor.Process(sm));
         AddStep(TransformationId.Standard_TomlConfig, (sm) => tomlConfigVerticesProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportRenderConfigVerticesAndRemove, (sm) => renderConfigVerticesProcessor.Process());
+        AddStep(TransformationId.Standard_PostConfig, (sm) => PostConfig(sm, eventCommaListProcessor));
         AddStep(TransformationId.Standard_SupportParentAlias, (sm) => ParentAliasStateProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportEntryExit, (sm) => EntryExitProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportPrefixingModder, (sm) => PrefixingModder.Process(sm)); // must happen before name conflict resolution
@@ -61,8 +70,13 @@ public class StandardSmTransformer : SmTransformer
         AddStep(TransformationId.Standard_Validation1, (sm) => Validate(sm));
         AddStep(TransformationId.Standard_DefaultUnspecifiedEventsAsDoEvent, (sm) => DefaultToDoEventVisitor.Process(sm));
         AddStep(TransformationId.Standard_TriggerMapping, (sm) => triggerMapProcessor.Process(sm));
-        AddStep(TransformationId.Standard_AddUsedEventsToSm, (sm) => AddUsedEventsToSmClass.Process(sm));
+        AddStep(TransformationId.Standard_EventFinalization, (sm) => EventFinalizer.Process(sm, eventMapping));
         AddStep(TransformationId.Standard_FinalValidation, (sm) => Validate(sm));
+    }
+
+    private void PostConfig(StateMachine sm, EventCommaListProcessor eventCommaListProcessor)
+    {
+        eventCommaListProcessor.Process();
     }
 
     private void AddStep(TransformationId id, Action<StateMachine> action)

@@ -322,4 +322,17 @@ public class StringUtils
         while (char.IsWhiteSpace(sb[^1]))
             sb.Length--;
     }
+
+    /// <summary>
+    /// Will fail if match not found.
+    /// </summary>
+    /// <param name="sb"></param>
+    /// <param name="toFindAndKeep"></param>
+    public static void RemoveEndCharsUntilX(StringBuilder sb, char toFindAndKeep)
+    {
+        while (sb[sb.Length - 1] != toFindAndKeep)
+        {
+            sb.Length--;
+        }
+    }
 }

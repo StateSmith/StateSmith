@@ -31,6 +31,13 @@ Test/interim releases are not documented here.
 
 ---
 
+## WIP
+### Added
+- Ability to specify allowed events, their order, and their enumeration values.
+  - https://github.com/StateSmith/StateSmith/issues/470
+
+---
+
 ## [0.17.5]
 ### Added
 - PlantUML Grammar - allow node redeclaration at root level to add detail.
