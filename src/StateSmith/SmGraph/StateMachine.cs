@@ -1,9 +1,8 @@
-using StateSmith.Common;
+#nullable enable
+
 using StateSmith.SmGraph.Visitors;
 using System.Collections.Generic;
 using System.Linq;
-
-#nullable enable
 
 namespace StateSmith.SmGraph;
 
@@ -15,9 +14,10 @@ namespace StateSmith.SmGraph;
 public class StateMachine : NamedVertex
 {
     /// <summary>
-    /// Prefer using <see cref="GetEventListCopy"/> if possible. This field is populated near the end of the transformation pipeline. <see cref="AddUsedEventsToSmClass"/>.
+    /// Prefer using <see cref="GetEventListCopy"/> if possible. This field is populated near the end of the transformation pipeline. <see cref="EventFinalizer"/>.
     /// </summary>
     public HashSet<string> _events = new();
+
     public List<HistoryVertex> historyStates = new();
     public string variables = "";
 

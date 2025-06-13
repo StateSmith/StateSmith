@@ -81,15 +81,15 @@ public static class TriggerHelper
     /// </summary>
     /// <param name="sm"></param>
     /// <param name="behavior"></param>
-    /// <param name="triggerName">Can be unsanitized</param>
+    /// <param name="triggerName">Can be un-sanitized</param>
     /// <exception cref="BehaviorValidationException"></exception>
-    public static void MaybeAddEventToSm(StateMachine sm, Behavior behavior, string triggerName)
+    public static bool MaybeAddEventToSm(StateMachine sm, Behavior behavior, string triggerName)
     {
         var eventSet = sm._events;
-        MaybeAddEventToSet(eventSet, behavior, triggerName);
+        return MaybeAddEventToSet(eventSet, behavior, triggerName);
     }
 
-    public static void MaybeAddEventToSet(HashSet<string> eventSet, Behavior behavior, string triggerName)
+    public static bool MaybeAddEventToSet(HashSet<string> eventSet, Behavior behavior, string triggerName)
     {
         string cleanTrigger = SanitizeTriggerName(triggerName);
 
@@ -100,10 +100,10 @@ public static class TriggerHelper
 
         if (InnerIsEnterExitTrigger(cleanTrigger))
         {
-            return;
+            return false;
         }
 
-        eventSet.Add(cleanTrigger);
+        return eventSet.Add(cleanTrigger);
     }
 
     /// <summary>
