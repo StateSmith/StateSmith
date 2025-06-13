@@ -280,6 +280,7 @@ export class RocketSm extends RocketSmBase implements IRocketSm
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     public static stateIdToString(id: StateId): string 
     {
         switch (id)
@@ -294,6 +295,7 @@ export class RocketSm extends RocketSmBase implements IRocketSm
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     public static eventIdToString(id: EventId): string 
     {
         switch (id)
@@ -301,6 +303,18 @@ export class RocketSm extends RocketSmBase implements IRocketSm
             case EventId.EV1: return "EV1";
             case EventId.EV2: return "EV2";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    public static isEventIdValid(id: EventId): boolean 
+    {
+        switch (id)
+        {
+            case EventId.EV1: return true;
+            case EventId.EV2: return true;
+            default: return false;
         }
     }
 }

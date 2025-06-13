@@ -3,6 +3,7 @@
 
 #pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md
 #include <stdint.h>
+#include <stdbool.h> // required for `is_event_id_valid()`, and `consume_event` flags.
 
 typedef enum Ex1_EventId
 {
@@ -46,7 +47,12 @@ void Ex1_dispatch_event(Ex1* sm, Ex1_EventId event_id);
 
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Ex1_event_id_to_string(Ex1_EventId id);
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool Ex1_is_event_id_valid(Ex1_EventId id);
 
 // Generated state machine
 struct Ex1

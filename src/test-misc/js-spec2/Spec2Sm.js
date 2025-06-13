@@ -12554,6 +12554,7 @@ export class Spec2Sm
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static stateIdToString(id)
     {
         switch (id)
@@ -12737,6 +12738,7 @@ export class Spec2Sm
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static eventIdToString(id)
     {
         switch (id)
@@ -12757,6 +12759,31 @@ export class Spec2Sm
             case Spec2Sm.EventId.EVOPEN: return "EVOPEN";
             case Spec2Sm.EventId.EVSTEP: return "EVSTEP";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    static isEventIdValid(id)
+    {
+        switch (id)
+        {
+            case Spec2Sm.EventId.DO: return true;
+            case Spec2Sm.EventId.EV1: return true;
+            case Spec2Sm.EventId.EV10: return true;
+            case Spec2Sm.EventId.EV2: return true;
+            case Spec2Sm.EventId.EV3: return true;
+            case Spec2Sm.EventId.EV4: return true;
+            case Spec2Sm.EventId.EV5: return true;
+            case Spec2Sm.EventId.EV6: return true;
+            case Spec2Sm.EventId.EV7: return true;
+            case Spec2Sm.EventId.EV8: return true;
+            case Spec2Sm.EventId.EV9: return true;
+            case Spec2Sm.EventId.EVBACK: return true;
+            case Spec2Sm.EventId.EVCLOSE: return true;
+            case Spec2Sm.EventId.EVOPEN: return true;
+            case Spec2Sm.EventId.EVSTEP: return true;
+            default: return false;
         }
     }
 }

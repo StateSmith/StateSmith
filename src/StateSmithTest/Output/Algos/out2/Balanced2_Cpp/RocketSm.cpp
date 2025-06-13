@@ -256,6 +256,7 @@ void RocketSm::S1_exit()
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * RocketSm::stateIdToString(StateId id)
 {
     switch (id)
@@ -270,6 +271,7 @@ char const * RocketSm::stateIdToString(StateId id)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * RocketSm::eventIdToString(EventId id)
 {
     switch (id)
@@ -277,5 +279,17 @@ char const * RocketSm::eventIdToString(EventId id)
         case EventId::EV1: return "EV1";
         case EventId::EV2: return "EV2";
         default: return "?";
+    }
+}
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool RocketSm::isEventIdValid(EventId id)
+{
+    switch (id)
+    {
+        case EventId::EV1: return true;
+        case EventId::EV2: return true;
+        default: return false;
     }
 }

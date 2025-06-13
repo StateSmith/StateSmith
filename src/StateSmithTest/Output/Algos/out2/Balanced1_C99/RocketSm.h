@@ -3,6 +3,7 @@
 
 #pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md
 #include <stdint.h>
+#include <stdbool.h> // required for `is_event_id_valid()`, and `consume_event` flags.
 
 typedef enum RocketSm_EventId
 {
@@ -48,10 +49,16 @@ void RocketSm_start(RocketSm* sm);
 void RocketSm_dispatch_event(RocketSm* sm, RocketSm_EventId event_id);
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * RocketSm_state_id_to_string(RocketSm_StateId id);
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * RocketSm_event_id_to_string(RocketSm_EventId id);
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool RocketSm_is_event_id_valid(RocketSm_EventId id);
 
 // Generated state machine
 struct RocketSm

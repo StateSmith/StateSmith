@@ -216,6 +216,7 @@ public class RocketSm
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     public static String stateIdToString(StateId id)
     {
         switch (id)
@@ -229,12 +230,24 @@ public class RocketSm
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     public static String eventIdToString(EventId id)
     {
         switch (id)
         {
             case DO: return "DO";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    public static boolean isEventIdValid(EventId id)
+    {
+        switch (id)
+        {
+            case DO: return true;
+            default: return false;
         }
     }
 }

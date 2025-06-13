@@ -308,6 +308,7 @@ private void S2_1_exit()
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 public static string state_id_to_string(StateId id)
 {
     switch (id)
@@ -323,12 +324,24 @@ public static string state_id_to_string(StateId id)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 public static string event_id_to_string(EventId id)
 {
     switch (id)
     {
         case EventId.T1: return "T1";
         default: return "?";
+    }
+}
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+public static bool is_event_id_valid(EventId id)
+{
+    switch (id)
+    {
+        case EventId.T1: return true;
+        default: return false;
     }
 }
 

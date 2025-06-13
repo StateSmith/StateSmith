@@ -2717,6 +2717,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static stateIdToString(id)
     {
         switch (id)
@@ -2749,6 +2750,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static eventIdToString(id)
     {
         switch (id)
@@ -2762,6 +2764,24 @@ evaluateGuard = null;
             case SpaceControlUiSm.EventId.RIGHT: return "RIGHT";
             case SpaceControlUiSm.EventId.UP: return "UP";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    static isEventIdValid(id)
+    {
+        switch (id)
+        {
+            case SpaceControlUiSm.EventId.DO: return true;
+            case SpaceControlUiSm.EventId.DOWN: return true;
+            case SpaceControlUiSm.EventId.ESC: return true;
+            case SpaceControlUiSm.EventId.LEFT: return true;
+            case SpaceControlUiSm.EventId.PG_DOWN: return true;
+            case SpaceControlUiSm.EventId.PG_UP: return true;
+            case SpaceControlUiSm.EventId.RIGHT: return true;
+            case SpaceControlUiSm.EventId.UP: return true;
+            default: return false;
         }
     }
 }

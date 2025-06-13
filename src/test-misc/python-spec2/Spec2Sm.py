@@ -11871,6 +11871,7 @@ class Spec2Sm(Spec2SmBase):
     
     
     # Thread safe.
+    # There is a setting available to disable generating this function.
     @staticmethod
     def stateIdToString(id):
         match id:
@@ -12052,6 +12053,7 @@ class Spec2Sm(Spec2SmBase):
     
     
     # Thread safe.
+    # There is a setting available to disable generating this function.
     @staticmethod
     def eventIdToString(id):
         match id:
@@ -12071,4 +12073,27 @@ class Spec2Sm(Spec2SmBase):
             case Spec2Sm.EventId.EVOPEN: return "EVOPEN"
             case Spec2Sm.EventId.EVSTEP: return "EVSTEP"
             case _: return "?"
+    
+    
+    # Thread safe.
+    # There is a setting available to disable generating this function.
+    @staticmethod
+    def isEventIdValid(id):
+        match id:
+            case Spec2Sm.EventId.DO: return True
+            case Spec2Sm.EventId.EV1: return True
+            case Spec2Sm.EventId.EV10: return True
+            case Spec2Sm.EventId.EV2: return True
+            case Spec2Sm.EventId.EV3: return True
+            case Spec2Sm.EventId.EV4: return True
+            case Spec2Sm.EventId.EV5: return True
+            case Spec2Sm.EventId.EV6: return True
+            case Spec2Sm.EventId.EV7: return True
+            case Spec2Sm.EventId.EV8: return True
+            case Spec2Sm.EventId.EV9: return True
+            case Spec2Sm.EventId.EVBACK: return True
+            case Spec2Sm.EventId.EVCLOSE: return True
+            case Spec2Sm.EventId.EVOPEN: return True
+            case Spec2Sm.EventId.EVSTEP: return True
+            case _: return False
     

@@ -189,6 +189,7 @@ class RocketSm():
     
     
     # Thread safe.
+    # There is a setting available to disable generating this function.
     @staticmethod
     def stateIdToString(id):
         match id:
@@ -200,9 +201,19 @@ class RocketSm():
     
     
     # Thread safe.
+    # There is a setting available to disable generating this function.
     @staticmethod
     def eventIdToString(id):
         match id:
             case RocketSm.EventId.DO: return "DO"
             case _: return "?"
+    
+    
+    # Thread safe.
+    # There is a setting available to disable generating this function.
+    @staticmethod
+    def isEventIdValid(id):
+        match id:
+            case RocketSm.EventId.DO: return True
+            case _: return False
     

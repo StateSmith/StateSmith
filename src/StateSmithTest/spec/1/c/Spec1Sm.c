@@ -2,7 +2,6 @@
 // Algorithm: Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 #include "Spec1Sm.h"
-#include <stdbool.h> // required for `consume_event` flag
 #include <string.h> // for memset
 #include "../../lang-helpers/c/helper.h"
 
@@ -459,6 +458,7 @@ static void T111_exit(Spec1Sm* sm)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Spec1Sm_state_id_to_string(Spec1Sm_StateId id)
 {
     switch (id)
@@ -475,6 +475,7 @@ char const * Spec1Sm_state_id_to_string(Spec1Sm_StateId id)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Spec1Sm_event_id_to_string(Spec1Sm_EventId id)
 {
     switch (id)
@@ -482,5 +483,17 @@ char const * Spec1Sm_event_id_to_string(Spec1Sm_EventId id)
         case Spec1Sm_EventId_EV1: return "EV1";
         case Spec1Sm_EventId_EV2: return "EV2";
         default: return "?";
+    }
+}
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool Spec1Sm_is_event_id_valid(Spec1Sm_EventId id)
+{
+    switch (id)
+    {
+        case Spec1Sm_EventId_EV1: return true;
+        case Spec1Sm_EventId_EV2: return true;
+        default: return false;
     }
 }

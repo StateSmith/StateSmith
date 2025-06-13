@@ -279,6 +279,7 @@ public void userCodeMethod() {
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     public static String stateIdToString(StateId id)
     {
         switch (id)
@@ -293,6 +294,7 @@ public void userCodeMethod() {
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     public static String eventIdToString(EventId id)
     {
         switch (id)
@@ -300,6 +302,18 @@ public void userCodeMethod() {
             case EV1: return "EV1";
             case EV2: return "EV2";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    public static boolean isEventIdValid(EventId id)
+    {
+        switch (id)
+        {
+            case EV1: return true;
+            case EV2: return true;
+            default: return false;
         }
     }
 }
