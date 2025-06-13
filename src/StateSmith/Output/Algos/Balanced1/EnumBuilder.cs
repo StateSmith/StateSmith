@@ -1,8 +1,9 @@
 using StateSmith.SmGraph;
-using System.Collections.Generic;
 using System.Linq;
 using StateSmith.Common;
 using StateSmith.Runner;
+using StateSmith.Output.Gil;
+using System.Globalization;
 
 #nullable enable
 
@@ -25,18 +26,12 @@ public class EnumBuilder
     {
         file.AppendIndented($"public enum {mangler.SmEventEnumType}");
         file.StartCodeBlock();
-        
+
+        int i = 0;
         EventMapping eventMapping = GetSm()._eventMapping.ThrowIfNull();
         foreach (var eventName in eventMapping.OrderedSanitizedEvents)
         {
-            var value = eventMapping.GetEventValue(eventName);
-            file.AppendIndented($"{mangler.SmEventEnumValue(eventName)} = {value},");
-
-            if (TriggerHelper.IsDoEvent(eventName))
-            {
-                file.AppendWithoutIndent($" // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.");
-            }
-            file.FinishLine();
+            AppendEventEnumMember(file, ref i, eventMapping, eventName);
         }
 
         file.FinishCodeBlock("");
@@ -46,6 +41,47 @@ public class EnumBuilder
         {
             OutputEventIdCount(file, eventMapping.OrderedSanitizedEvents.Count);
         }
+    }
+
+    private void AppendEventEnumMember(OutputFile file, ref int i, EventMapping eventMapping, string eventName)
+    {
+        string enumValueText = GenerateEnumValueText(i, eventMapping, eventName);
+        i++;
+
+        file.AppendIndented($"{mangler.SmEventEnumValue(eventName)} = {enumValueText},");
+
+        if (TriggerHelper.IsDoEvent(eventName))
+        {
+            file.AppendWithoutIndent($" // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.");
+        }
+        file.FinishLine();
+    }
+
+    private static string GenerateEnumValueText(int i, EventMapping eventMapping, string eventName)
+    {
+        string enumValueText;
+
+        // This may be a number or an external user specified value like "SYSTEM_EV1" or "SystemIds::Ev1".
+        // https://github.com/StateSmith/StateSmith/issues/470
+        var maybeExternalValue = eventMapping.GetEventValue(eventName);
+
+        // We could always use the post-processor, but I'd like to avoid it if possible.
+        // Would like some better testing before enabling this everywhere. Will maybe remove in the future.
+        bool isSimpleNumber = int.TryParse(maybeExternalValue, NumberStyles.None, CultureInfo.InvariantCulture, out var _);
+        if (isSimpleNumber)
+        {
+            enumValueText = maybeExternalValue; // it's a number, so we can use it directly.
+        }
+        else
+        {
+            // Event value is an external user specified value. We need to use the post-processor
+            // because the transpiler wants to see valid C# enum values.
+            enumValueText = $"{PostProcessor.AddCommentToReplaceNextWordWith(maybeExternalValue)}{i}";
+            // We use `i` above because transpiler still wants to see valid and unique enum values.
+            // The `i` gets replaced by the post-processor with the actual value from the event mapping.
+        }
+
+        return enumValueText;
     }
 
     StateMachine GetSm()

@@ -94,6 +94,17 @@ public class JavaGilVisitor : CSharpSyntaxWalker
         // we want to output `ROOT,` instead of `ROOT ,`. The comma is handled by the parent node.
         VisitLeadingTrivia(node.Identifier);
         sb.Append(node.Identifier.Text);
+
+        // NOTE: Java enums are like objects. We can't easily do `enum EventId { EV1 = 0, EV2 = 1 }` like most other languages.
+        // They need a special declaration like `EV1(0), EV2(1)...` and a field and a contstructor... kinda a pain.
+        // May want to use int instead?
+
+        //if (node.EqualsValue != null)
+        //{
+        //    sb.Append('(');
+        //    Visit(node.EqualsValue.Value);
+        //    sb.Append(')');
+        //}
     }
 
     public override void VisitIdentifierName(IdentifierNameSyntax node)
