@@ -35,6 +35,8 @@ Test/interim releases are not documented here.
 ### Added
 - Ability to specify allowed events, their order, and their enumeration values.
   - https://github.com/StateSmith/StateSmith/issues/470
+- Code generated helper method to check if an event ID is valid.
+  - https://github.com/StateSmith/StateSmith/issues/473
 
 ---
 

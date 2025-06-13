@@ -13,12 +13,12 @@ public enum AlgorithmId
     Default,
 
     /// <summary>
-    /// Previous default. See <see cref="AlgoBalanced1"/>, <see cref="AlgoBalanced1Settings"/>, <see cref="AlgoStateIdToString"/>, <see cref="AlgoEventIdToString"/>
+    /// Previous default. See <see cref="AlgoBalanced1"/>, <see cref="AlgoBalanced1Settings"/>, <see cref="AlgoStateIdToString"/>, <see cref="AlgoEventIdFuncGenerator"/>
     /// </summary>
     Balanced1,
 
     /// <summary>
-    /// Default for now. Derived from <see cref="Balanced1"/>. See <see cref="AlgoBalanced2"/>, <see cref="AlgoBalanced1Settings"/>, <see cref="AlgoStateIdToString"/>, <see cref="AlgoEventIdToString"/>
+    /// Default for now. Derived from <see cref="Balanced1"/>. See <see cref="AlgoBalanced2"/>, <see cref="AlgoBalanced1Settings"/>, <see cref="AlgoStateIdToString"/>, <see cref="AlgoEventIdFuncGenerator"/>
     /// </summary>
     Balanced2,
 }

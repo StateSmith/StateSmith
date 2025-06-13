@@ -68,7 +68,7 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetService<DiagramToSmConverter>()!); // need to use lambda or else another `DiagramToSmConverter` is created.
             services.AddSingleton<AlgoBalanced1Settings>();
             services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
-            services.AddSingleton<IAlgoEventIdToString, AlgoEventIdToString>();
+            services.AddSingleton<IAlgoEventIdFuncGenerator, AlgoEventIdFuncGenerator>();
             services.AddSingleton<GilToC99Customizer>();
             services.AddSingleton<IGilToC99Customizer>((s) => s.GetService<GilToC99Customizer>()!); // need to use lambda or else another `DiagramToSmConverter` is created.
             services.AddSingleton<CppGilHelpers>();

@@ -48,7 +48,7 @@ public class EventListIntegrationTests_470
 
         var fakeFileSystem = TestHelper.CaptureSmRunnerFilesForPlantUmlString(plantUml, transpilerId: StateSmith.Runner.TranspilerId.C99);
 
-        string code = fakeFileSystem.GetCapturesForFileName("MySm.h").Single().code;
+        string code = fakeFileSystem.GetSoleCaptureWithName("MySm.h").code;
         code.Should().Contain("MySm_EventId_EV1 = 0,");
         code.Should().Contain("MySm_EventId_DO = 1");
     }
@@ -129,7 +129,7 @@ public class EventListIntegrationTests_470
 
         var fakeFileSystem = TestHelper.CaptureSmRunnerFilesForPlantUmlString(plantUml, transpilerId: StateSmith.Runner.TranspilerId.C99);
 
-        string code = fakeFileSystem.GetCapturesForFileName("MySm.h").Single().code;
+        string code = fakeFileSystem.GetSoleCaptureWithName("MySm.h").code;
         code.Should().Contain("MySm_EventId_EV1 = 0,");
         code.Should().Contain("MySm_EventId_EV2 = 1,");
         code.Should().Contain("MySm_EventId_DO = 2, // The `do` event is special");
@@ -156,7 +156,7 @@ public class EventListIntegrationTests_470
 
         var fakeFileSystem = TestHelper.CaptureSmRunnerFilesForPlantUmlString(plantUml, transpilerId: StateSmith.Runner.TranspilerId.C99);
 
-        string code = fakeFileSystem.GetCapturesForFileName("MySm.h").Single().code;
+        string code = fakeFileSystem.GetSoleCaptureWithName("MySm.h").code;
         code.Should().Contain("MySm_EventId_EV1 = 100,");
         code.Should().Contain("MySm_EventId_EV2 = 200,");
         code.Should().Contain("MySm_EventId_DO = 0,");
@@ -183,7 +183,7 @@ public class EventListIntegrationTests_470
 
         var fakeFileSystem = TestHelper.CaptureSmRunnerFilesForPlantUmlString(plantUml, transpilerId: StateSmith.Runner.TranspilerId.C99);
 
-        string code = fakeFileSystem.GetCapturesForFileName("MySm.h").Single().code;
+        string code = fakeFileSystem.GetSoleCaptureWithName("MySm.h").code;
         code.Should().Contain("MySm_EventId_EV1 = EXTERNAL_SYS1,");
         code.Should().Contain("MySm_EventId_EV2 = External.SYS2,");
         code.Should().Contain("MySm_EventId_DO = 0,");

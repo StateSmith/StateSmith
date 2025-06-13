@@ -117,9 +117,12 @@ AutoExpandedVars  = "stuff..."
   - [SmRunnerSettings.outputStateSmithVersionInfo](#smrunnersettingsoutputstatesmithversioninfo)
   - [SmRunnerSettings.propagateExceptions](#smrunnersettingspropagateexceptions)
   - [SmRunnerSettings.dumpErrorsToFile](#smrunnersettingsdumperrorstofile)
-- [SmRunnerSettings.smDesignDescriber](#smrunnersettingssmdesigndescriber)
-- [SmRunnerSettings.algoBalanced1](#smrunnersettingsalgobalanced1)
-- [SmRunnerSettings.simulation](#smrunnersettingssimulation)
+  - [SmRunnerSettings.smDesignDescriber](#smrunnersettingssmdesigndescriber)
+  - [SmRunnerSettings.algoBalanced1](#smrunnersettingsalgobalanced1)
+    - [SmRunnerSettings.algoBalanced1.outputEventIdIsValidFunction](#smrunnersettingsalgobalanced1outputeventidisvalidfunction)
+    - [SmRunnerSettings.algoBalanced1.outputEventIdToStringFunction](#smrunnersettingsalgobalanced1outputeventidtostringfunction)
+    - [SmRunnerSettings.algoBalanced1.outputStateIdToStringFunction](#smrunnersettingsalgobalanced1outputstateidtostringfunction)
+  - [SmRunnerSettings.simulation](#smrunnersettingssimulation)
 - [...more](#more)
 
 <br>
@@ -1326,7 +1329,7 @@ dumpErrorsToFile = true
 <br>
 <br>
 
-# SmRunnerSettings.smDesignDescriber
+## SmRunnerSettings.smDesignDescriber
 Info: https://github.com/StateSmith/StateSmith/issues/200
 
 Outputs a markdown file that describes the design of the state machine.
@@ -1348,18 +1351,50 @@ beforeTransformations = false
 afterTransformations  = true
 ```
 
-# SmRunnerSettings.algoBalanced1
-Info: https://github.com/StateSmith/StateSmith/issues/181
-
+## SmRunnerSettings.algoBalanced1
 You can customize the output of the `Balanced1` and `Balanced2` algorithms with the below settings. `Balanced2` is a variant of `Balanced1`.
+
+The below settings allow disabling code generation of some utility functions. They are enabled by default.
 
 ```toml
 [SmRunnerSettings.algoBalanced1]
+outputEventIdIsValidFunction = false
 outputEventIdToStringFunction = false
 outputStateIdToStringFunction = false
 ```
 
-# SmRunnerSettings.simulation
+### SmRunnerSettings.algoBalanced1.outputEventIdIsValidFunction
+Info: https://github.com/StateSmith/StateSmith/issues/473
+
+Defaults to true. You can disable like below.
+
+```toml
+SmRunnerSettings.algoBalanced1.outputEventIdIsValidFunction = false
+```
+
+### SmRunnerSettings.algoBalanced1.outputEventIdToStringFunction
+Info: https://github.com/StateSmith/StateSmith/issues/181
+
+Defaults to true. You can disable like below.
+
+```toml
+SmRunnerSettings.algoBalanced1.outputEventIdToStringFunction = false
+```
+
+### SmRunnerSettings.algoBalanced1.outputStateIdToStringFunction
+Info: https://github.com/StateSmith/StateSmith/issues/181
+
+Defaults to true. You can disable like below.
+
+```toml
+SmRunnerSettings.algoBalanced1.outputStateIdToStringFunction = false
+```
+
+<br>
+<br>
+
+
+## SmRunnerSettings.simulation
 Info: to be documented
 
 When StateSmith is from `StateSmith.Cli`, it generates a simulation file by default. You can pass CLI argument `--no-sim-gen` to disable this feature or use the below settings.

@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 
 namespace StateSmith.Output.Algos.Balanced1;
@@ -16,6 +16,9 @@ public abstract class AbstractMangler : NameMangler
 
     /// <summary><inheritdoc/></summary>
     public override string SmEventIdToStringFuncName => MangleFuncName(base.SmEventIdToStringFuncName);
+
+    /// <summary><inheritdoc/></summary>
+    public override string SmEventIdIsValidFuncName => MangleFuncName(base.SmEventIdIsValidFuncName);
 
     /// <summary><inheritdoc/></summary>
     public override string SmStateIdToStringFuncName => MangleFuncName(base.SmStateIdToStringFuncName);

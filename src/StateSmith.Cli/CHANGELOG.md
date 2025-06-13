@@ -10,6 +10,7 @@ Test/interim releases are not documented here.
 
 ## WIP
 lib updates for #470
+lib updates for #473
 
 ---
 

@@ -48,6 +48,11 @@ public class NameMangler
     public virtual string SmEventIdToStringFuncName => "event_id_to_string";
 
     /// <summary>
+    /// The name of the function that checks if an event ID is valid.
+    /// </summary>
+    public virtual string SmEventIdIsValidFuncName => "is_event_id_valid";
+
+    /// <summary>
     /// Stringifies an event ID for <see cref="SmEventIdToStringFuncName"/>.
     /// </summary>
     public virtual string SmEventIdToString(string eventId) => SmEventEnumValue(eventId);
