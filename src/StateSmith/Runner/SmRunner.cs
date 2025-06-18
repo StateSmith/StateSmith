@@ -217,7 +217,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<ExpansionsPrep>();
-            services.AddSingleton<FilePathPrinter>(new FilePathPrinter(settings.filePathPrintBase.ThrowIfNull()));
+            services.AddSingleton<FilePathPrinter>( (sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase.ThrowIfNull()));
             services.AddSingleton(settings.algoBalanced1);
 
             // Scoped configuration
