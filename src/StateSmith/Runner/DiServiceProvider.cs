@@ -286,7 +286,7 @@ public class DiServiceProvider : IDisposable
         { TranspilerId.TypeScript, typeof(CSharpExpansionVarsPathProvider) }
     };
 
-    Dictionary<TranspilerId,Type> NAMEMANGLER_TYPES = new Dictionary<TranspilerId, Type>
+    Dictionary<TranspilerId, Type> NAMEMANGLER_TYPES = new Dictionary<TranspilerId, Type>
     {
         { TranspilerId.Default, typeof(NameMangler) },
         { TranspilerId.Cpp, typeof(CamelCaseNameMangler) },
@@ -303,6 +303,18 @@ public class DiServiceProvider : IDisposable
         { AlgorithmId.Default, typeof(AlgoBalanced2) },
         { AlgorithmId.Balanced1, typeof(AlgoBalanced1) },
         { AlgorithmId.Balanced2, typeof(AlgoBalanced2) }
+    };
+    
+    Dictionary<TranspilerId, Type> IAUTOVARSPARSER_TYPES = new Dictionary<TranspilerId, Type>
+    {
+        { TranspilerId.Default, typeof(CLikeAutoVarsParser) },
+        { TranspilerId.Cpp, typeof(CLikeAutoVarsParser) },
+        { TranspilerId.C99, typeof(CLikeAutoVarsParser) },
+        { TranspilerId.CSharp, typeof(CLikeAutoVarsParser) },
+        { TranspilerId.JavaScript, typeof(JsAutoVarsParser) },
+        { TranspilerId.Java, typeof(CLikeAutoVarsParser) },
+        { TranspilerId.Python, typeof(PythonAutoVarsParser) },
+        { TranspilerId.TypeScript, typeof(TypeScriptAutoVarsParser) }
     };
 
 }

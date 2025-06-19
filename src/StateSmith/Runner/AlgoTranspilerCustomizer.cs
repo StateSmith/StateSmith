@@ -72,7 +72,7 @@ public class AlgoTranspilerCustomizer
                     // sp.AddSingletonT<IGilTranspiler, GilToJavaScript>();
                     // sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();    // todo - rename to something common
                     // sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
-                    sp.AddSingletonT<IAutoVarsParser, JsAutoVarsParser>();
+                    // sp.AddSingletonT<IAutoVarsParser, JsAutoVarsParser>();
                     algoBalanced1Settings.skipClassIndentation = false;
                 }
                 break;
@@ -97,7 +97,7 @@ public class AlgoTranspilerCustomizer
                     // sp.AddSingletonT<IGilTranspiler, GilToPython>();
                     // sp.AddSingletonT<IExpansionVarsPathProvider, PythonExpansionVarsPathProvider>();
                     // sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
-                    sp.AddSingletonT<IAutoVarsParser, PythonAutoVarsParser>();
+                    // sp.AddSingletonT<IAutoVarsParser, PythonAutoVarsParser>();
 
                     algoBalanced1Settings.skipClassIndentation = false;
                     algoBalanced1Settings.outputEnumMemberCount = false;
@@ -123,7 +123,7 @@ public class AlgoTranspilerCustomizer
                     // sp.AddSingletonT<IGilTranspiler, GilToTypeScript>();
                     // sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     // sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
-                    sp.AddSingletonT<IAutoVarsParser, TypeScriptAutoVarsParser>();
+                    // sp.AddSingletonT<IAutoVarsParser, TypeScriptAutoVarsParser>();
                     algoBalanced1Settings.varsStructAsClass = true;
                     algoBalanced1Settings.skipClassIndentation = false;
                     //style.BracesOnNewLines = false; // todolow - it would be nice to support this
