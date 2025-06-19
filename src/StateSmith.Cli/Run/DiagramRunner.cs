@@ -105,8 +105,10 @@ public class DiagramRunner
         runInfoStore.diagramRuns[absolutePath] = info; // will overwrite if already exists
 
         // the constructor will attempt to read diagram settings from the diagram file
-        SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);
-        smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter, LoggingCodeFileWriter>();
+        SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath, serviceOverrides: (services) =>
+        {
+            services.AddSingleton<ICodeFileWriter, LoggingCodeFileWriter>();
+        });
 
         if (smRunner.PreDiagramBasedSettingsException != null)
         {
