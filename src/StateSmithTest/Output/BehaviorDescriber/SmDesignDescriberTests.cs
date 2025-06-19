@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Text;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.Output.SmDescriberTest;
 
@@ -261,10 +262,12 @@ public class SmDesignDescriberTests
 
         private static SmRunner SetupSmRunner(out DiServiceProvider di, string diagramFile)
         {
-            SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + diagramFile);
+            SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + diagramFile, serviceOverrides: (services) =>
+            {
+                services.AddSingleton<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
+            });
             smRunner.Settings.propagateExceptions = true; // for testing
             di = smRunner.GetExperimentalAccess().DiServiceProvider;
-            di.AddSingletonT<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
 
             return smRunner;
         }
