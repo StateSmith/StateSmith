@@ -119,14 +119,6 @@ public class DiServiceProvider : IDisposable
                 ResolveServiceFromRunnerSettings<IAutoVarsParser, TranspilerId>(sp, rs => rs.transpilerId, IAUTOVARSPARSER_TYPES)
             );
 
-            // TODO necessary?
-            services.AddSingleton<GilToC99>();
-            services.AddSingleton<GilToCpp>();
-            services.AddSingleton<GilToCSharp>();
-            services.AddSingleton<GilToJavaScript>();
-            services.AddSingleton<GilToJava>();
-            services.AddSingleton<GilToPython>();
-            services.AddSingleton<GilToTypeScript>();
 
 #if SS_SINGLE_FILE_APPLICATION
             services.AddSingleton<IRoslynMetadataProvider, InMemoryMetaDataProvider>();
