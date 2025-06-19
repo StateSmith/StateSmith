@@ -222,6 +222,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
             // Scoped configuration
             // TODO move to a separate configuration for clarity
+            // TODO remove scoping, it's no longer needed. Perhaps we can use a factory instead or transient services.
             services.AddScoped<SmRunnerInternal>();
         });
     }
