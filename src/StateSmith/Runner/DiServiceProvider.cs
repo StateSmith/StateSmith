@@ -115,6 +115,10 @@ public class DiServiceProvider : IDisposable
                 ResolveServiceFromRunnerSettings<NameMangler, TranspilerId>(sp, rs => rs.transpilerId, NAMEMANGLER_TYPES)
             );
 
+            services.AddSingleton<IAutoVarsParser>(sp =>
+                ResolveServiceFromRunnerSettings<IAutoVarsParser, TranspilerId>(sp, rs => rs.transpilerId, IAUTOVARSPARSER_TYPES)
+            );
+
             // TODO necessary?
             services.AddSingleton<GilToC99>();
             services.AddSingleton<GilToCpp>();
