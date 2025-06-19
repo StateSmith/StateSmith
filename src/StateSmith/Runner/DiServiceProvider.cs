@@ -146,22 +146,26 @@ public class DiServiceProvider : IDisposable
         });
     }
 
+    // TODO remove
     public void AddConfiguration(Action<IServiceCollection> services)
     {
         hostBuilder.ConfigureServices(services);
     }
 
+    // TODO remove
     // only for test code
     internal void AddSingleton(InputSmBuilder obj)
     {
         hostBuilder.ConfigureServices(services => { services.AddSingleton(obj); });
     }
 
+    // TODO remove
     public void AddSingletonT<TService>(TService implementationObj) where TService : class
     {
         hostBuilder.ConfigureServices(services => { services.AddSingleton(implementationObj); });
     }
 
+    // TODO remove
     public void AddSingletonT<TService, TImplementation>()
     where TService : class
     where TImplementation : class, TService
