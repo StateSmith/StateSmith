@@ -134,7 +134,7 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<IRoslynMetadataProvider, FileMetadataProvider>();
 #endif
             services.AddSingleton<RoslynCompiler>();
-            services.AddSingleton<NameMangler>();
+            services.AddSingleton<NameMangler>(); // TODO remove
             services.AddSingleton<PseudoStateHandlerBuilder>();
             services.AddSingleton<EnumBuilder>();
             services.AddSingleton<EventHandlerBuilder>();
@@ -143,7 +143,6 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<StateNameConflictResolver>();
             services.AddSingleton<StandardFileHeaderPrinter>();
 
-            services.AddSingleton<IAutoVarsParser, CLikeAutoVarsParser>();
             services.AddSingleton<TriggerMapProcessor>();
 
             services.AddSingleton<UserExpansionScriptBases>();
