@@ -50,10 +50,9 @@ public interface IConfigServiceProviderBuilder : IServiceProviderBuilder<IConfig
 }
 
 /// <summary>
-/// Dependency Injection Service Provider
+/// Provides a default implementation of <see cref="IConfigServiceProviderBuilder"/> that sets up a service provider with common services used by StateSmith.
+/// This builder can be used to configure additional services or override existing ones.
 /// </summary>
-
-
 public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProviderBuilder
 {
     private IHost? host;
