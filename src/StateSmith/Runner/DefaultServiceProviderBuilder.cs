@@ -42,8 +42,7 @@ public interface IConfigServiceProviderBuilder : IServiceProviderBuilder
     // TODO remove serviceOverrides from CreateDefault
     public static IConfigServiceProviderBuilder CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
-        DefaultServiceProviderBuilder sp = new();
-        sp.SetupAsDefault(serviceOverrides); // TODO replace with WithServices
+        DefaultServiceProviderBuilder sp = new(serviceOverrides);
         return sp;
     }
 
@@ -61,13 +60,14 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
     private IHost? host;
     private readonly IHostBuilder hostBuilder;
 
-    public DefaultServiceProviderBuilder()
+    public DefaultServiceProviderBuilder(Action<IServiceCollection>? serviceOverrides = null)
     {
         hostBuilder = Host.CreateDefaultBuilder();
+        SetupAsDefault(serviceOverrides);
     }
 
-    // TODO remove or make private
-    public void SetupAsDefault(Action<IServiceCollection>? serviceOverrides = null)
+    // TODO remove
+    private void SetupAsDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
         WithServices((services) =>
         {
