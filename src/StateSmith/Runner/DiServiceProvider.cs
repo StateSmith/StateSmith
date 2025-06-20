@@ -127,12 +127,6 @@ public class DiServiceProvider : IDisposable
 #endif
             services.AddSingleton<RoslynCompiler>();
 
-            // TODO remove. When I remove this, the service provider gets into an infinite recursion
-            // because it keeps trying to resolve NameMangler over and over. I need some way to 
-            // terminate the recursion. One way is to make NameMangler into an interface and 
-            // move everything in it into a subclass.
-            // services.AddSingleton<NameMangler>(); // TODO remove
-
             services.AddSingleton<PseudoStateHandlerBuilder>();
             services.AddSingleton<EnumBuilder>();
             services.AddSingleton<EventHandlerBuilder>();
