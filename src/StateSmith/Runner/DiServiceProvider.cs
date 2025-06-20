@@ -217,16 +217,6 @@ public class DiServiceProvider : IDisposable
     }
 
 
-    /// <summary>
-    /// Should ideally only be used by code that sets up Service Provider and can't use dependency injection.
-    /// Otherwise, it can hide dependencies. See https://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/ .
-    /// </summary>
-    /// <returns></returns>
-    internal ConvertableType GetServiceOrCreateInstance()
-    {
-        return new ConvertableType(host.ThrowIfNull());
-    }
-
     public void Dispose()
     {
         host?.Dispose();

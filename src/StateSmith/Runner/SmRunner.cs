@@ -92,7 +92,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// Publicly exposed so that users can customize transformation behavior.
     /// Accessing this member will cause the Dependency Injection settings to be finalized.
     /// </summary>
-    public SmTransformer SmTransformer => diServiceProvider.GetServiceOrCreateInstance();
+    public SmTransformer SmTransformer => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(diServiceProvider.ServiceProvider);
 
     /// <summary>
     /// This API is experimental and may change in the future.
@@ -145,7 +145,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         if (PreDiagramBasedSettingsException != null)
         {
             // We use SmRunnerInternal to print the exception so that it is consistent with the rest of the code.
-            SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
+            SmRunnerInternal smRunnerInternal = ActivatorUtilities.GetServiceOrCreateInstance<SmRunnerInternal>(diServiceProvider.ServiceProvider);
             smRunnerInternal.OutputExceptionDetail(PreDiagramBasedSettingsException.SourceException);
             if (settings.propagateExceptions)
             {
@@ -279,7 +279,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     DiServiceProvider IExperimentalAccess.DiServiceProvider => diServiceProvider;
     IServiceProvider IExperimentalAccess.IServiceProvider => serviceProvider;
     RunnerSettings IExperimentalAccess.Settings => settings;
-    InputSmBuilder IExperimentalAccess.InputSmBuilder => diServiceProvider.GetServiceOrCreateInstance();
+    InputSmBuilder IExperimentalAccess.InputSmBuilder => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(diServiceProvider.ServiceProvider);
 
     /// <summary>
     /// The API in this experimental access may break often. It will eventually stabilize after enough use and feedback.
