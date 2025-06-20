@@ -184,7 +184,6 @@ public class DiServiceProvider : IDisposable
 
         services.AddSingleton(new DrawIoSettings());
         services.AddSingleton(new CodeStyleSettings());
-        services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
         services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
         services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));
         services.AddSingleton(new SmDesignDescriberSettings());
