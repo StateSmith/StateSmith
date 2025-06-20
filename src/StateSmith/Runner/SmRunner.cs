@@ -25,7 +25,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     /// TODO probably remove DiServiceProvider, should just use MS DI classes directly
     [Obsolete("Use IServiceProvider instead.")]
-    readonly IConfigServiceProviderBuilder diServiceProvider;
+    readonly IConfigServiceProviderBuilder serviceProviderBuilder;
 
     // TODO remove ? once it's guaranteed to be non-null
     private IServiceProvider? serviceProvider;
@@ -62,7 +62,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.callerFilePath = callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
-        diServiceProvider = IConfigServiceProviderBuilder.CreateDefault(serviceOverrides);
+        serviceProviderBuilder = IConfigServiceProviderBuilder.CreateDefault(serviceOverrides);
         SetupDependencyInjectionAndRenderConfigs();
     }
 
@@ -128,7 +128,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         finally
         {
             // TODO remove this once IHost lifecycle is managed outside of SmRunner.
-            diServiceProvider.Dispose();
+            serviceProviderBuilder.Dispose();
         }
 
         if (smRunnerInternal.exception != null)
@@ -165,7 +165,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         ReadRenderConfigObjectToVars(renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 
-        SetupDiProvider(diServiceProvider, renderConfigAllVars, settings, iRenderConfig);
+        SetupDiProvider(serviceProviderBuilder, renderConfigAllVars, settings, iRenderConfig);
 
         // we disable early diagram settings reading for the simulator and some tests
         if (enablePreDiagramBasedSettings)
@@ -189,7 +189,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         }
 
         AlgoOrTranspilerUpdated();
-        serviceProvider = diServiceProvider.Build(); // TODO move this higher so DI is available during the prediagram settings reading
+        serviceProvider = serviceProviderBuilder.Build(); // TODO move this higher so DI is available during the prediagram settings reading
     }
 
     // TODO move DI out of SmRunner
