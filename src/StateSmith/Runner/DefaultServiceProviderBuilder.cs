@@ -166,12 +166,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
         return this;
     }
 
-    public IServiceProvider Build()
-    {
-        host = hostBuilder.Build();
-        return host.Services;
-    }
-
     public IConfigServiceProviderBuilder WithRunnerSettings(RunnerSettings settings)
     {
         WithServices(services =>
@@ -213,6 +207,12 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
         });
 
         return this;
+    }
+
+    public IServiceProvider Build()
+    {
+        host = hostBuilder.Build();
+        return host.Services;
     }
 
     public void Dispose()
