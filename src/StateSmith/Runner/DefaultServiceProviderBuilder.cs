@@ -41,7 +41,7 @@ public interface IConfigServiceProviderBuilder : IServiceProviderBuilder
     // TODO remove serviceOverrides from CreateDefault
     public static IConfigServiceProviderBuilder CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
-        DiServiceProvider sp = new();
+        DefaultServiceProviderBuilder sp = new();
         sp.SetupAsDefault(serviceOverrides); // TODO replace with WithServices
         return sp;
     }
@@ -55,8 +55,7 @@ public interface IConfigServiceProviderBuilder : IServiceProviderBuilder
 /// </summary>
 
 
-// TODO rename ConfigServiceProviderBuilder, or DefaultServiceProviderBuilder or something
-public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
+public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProviderBuilder
 {
     // Helper to resolve a service by id from a type map
     private static TService ResolveServiceFromRunnerSettings<TService, TId>(IServiceProvider sp, Func<RunnerSettings, TId> idSelector, IReadOnlyDictionary<TId, Type> typeMap)
@@ -70,7 +69,7 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
     private IHost? host;
     private readonly IHostBuilder hostBuilder;
 
-    public DiServiceProvider()
+    public DefaultServiceProviderBuilder()
     {
         hostBuilder = Host.CreateDefaultBuilder();
     }
@@ -86,7 +85,7 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
             services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));
             services.AddSingleton(new SmDesignDescriberSettings());
 
-            services.AddSingleton<DiServiceProvider>(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
+            services.AddSingleton<DefaultServiceProviderBuilder>(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
             services.AddSingleton<SmRunnerInternal>();
             services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<IExpander, Expander>();
