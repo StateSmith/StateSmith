@@ -172,13 +172,12 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
     {
         WithServices(services =>
         {
-            services.AddSingleton<RunnerSettings>(settings);
+            services.AddSingleton(settings);
             services.AddSingleton(settings.drawIoSettings);
             services.AddSingleton(settings.smDesignDescriber);
             services.AddSingleton(settings.style);
             services.AddSingleton<OutputInfo>(); // TODO This seems like it doesn't belong here
             services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
-            services.AddSingleton(settings); // TODO is this duplicative of settings above?
             services.AddSingleton<FilePathPrinter>((sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase.ThrowIfNull())); // TODO replace getrequiredservice with settings
             services.AddSingleton(settings.algoBalanced1);
         });
