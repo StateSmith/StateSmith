@@ -21,10 +21,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
     public RunnerSettings Settings => settings;
 
     /// <summary>
-    /// Dependency Injection Service Provider
+    /// Dependency Injection ServiceProvider Builder.
+    /// We can't use the IServiceProvider directly because we need to add the 
+    /// dependencies that are based on RenderConfig and RunnerSettings.
     /// </summary>
-    /// TODO probably remove DiServiceProvider, should just use MS DI classes directly
-    [Obsolete("Use IServiceProvider instead.")]
     readonly IConfigServiceProviderBuilder serviceProviderBuilder;
 
     // TODO remove ? once it's guaranteed to be non-null
