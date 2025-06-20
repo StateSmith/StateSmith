@@ -207,8 +207,8 @@ public class SmDesignDescriberTests
 
         public Tester(bool captureToBuffer = true, string diagramFile = "Ex564.drawio")
         {
-            smRunner = SetupSmRunner(out var diServiceProvider, diagramFile);
-            describer = diServiceProvider.GetInstanceOf<SmDesignDescriber>();
+            smRunner = SetupSmRunner(out var iServiceProvider, diagramFile);
+            describer = iServiceProvider.GetRequiredService<SmDesignDescriber>();
             if (captureToBuffer)
                 describer.SetTextWriter(new StringWriter(sb));
         }
@@ -260,14 +260,14 @@ public class SmDesignDescriberTests
             smRunner.Run();
         }
 
-        private static SmRunner SetupSmRunner(out DiServiceProvider di, string diagramFile)
+        private static SmRunner SetupSmRunner(out IServiceProvider di, string diagramFile)
         {
             SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + diagramFile, serviceOverrides: (services) =>
             {
                 services.AddSingleton<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
             });
             smRunner.Settings.propagateExceptions = true; // for testing
-            di = smRunner.GetExperimentalAccess().DiServiceProvider;
+            di = smRunner.GetExperimentalAccess().IServiceProvider;
 
             return smRunner;
         }

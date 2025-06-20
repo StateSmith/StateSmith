@@ -130,7 +130,7 @@ public class DiagramRunner
         }
 
         // note that this cast above is OK because we registered the LoggingCodeFileWriter above
-        LoggingCodeFileWriter loggingCodeFileWriter = (LoggingCodeFileWriter)smRunner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<ICodeFileWriter>();
+        LoggingCodeFileWriter loggingCodeFileWriter = (LoggingCodeFileWriter)smRunner.GetExperimentalAccess().IServiceProvider.GetRequiredService<ICodeFileWriter>();
 
         try
         {

@@ -74,13 +74,13 @@ public class SimWebGenerator
         runner.Settings.propagateExceptions = true;
 
         // Registering DI services must be done before accessing `runner.SmTransformer`.
-        DiServiceProvider simDiServiceProvider = runner.GetExperimentalAccess().DiServiceProvider;
+        IServiceProvider simIServiceProvider = runner.GetExperimentalAccess().IServiceProvider;
         AdjustTransformationPipeline();
-        PreventCertainDiagramSpecifiedSettings(simDiServiceProvider.GetInstanceOf<RenderConfigBaseVars>());
+        PreventCertainDiagramSpecifiedSettings(simIServiceProvider.GetRequiredService<RenderConfigBaseVars>());
 
-        stateMachineProvider = simDiServiceProvider.GetInstanceOf<StateMachineProvider>();
+        stateMachineProvider = simIServiceProvider.GetRequiredService<StateMachineProvider>();
 
-        nameMangler = simDiServiceProvider.GetInstanceOf<INameMangler>();
+        nameMangler = simIServiceProvider.GetRequiredService<INameMangler>();
 
         SetupGilHistoryRegex();
     }

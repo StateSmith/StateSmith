@@ -271,6 +271,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     public IExperimentalAccess GetExperimentalAccess() => this;
     DiServiceProvider IExperimentalAccess.DiServiceProvider => diServiceProvider;
+    IServiceProvider IExperimentalAccess.IServiceProvider => diServiceProvider.GetRequiredService<IServiceProvider>();
     RunnerSettings IExperimentalAccess.Settings => settings;
     InputSmBuilder IExperimentalAccess.InputSmBuilder => diServiceProvider.GetServiceOrCreateInstance();
 
@@ -279,10 +280,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public interface IExperimentalAccess
     {
-        /// <summary>
-        /// Dependency Injection Service Provider
-        /// </summary>
+        [Obsolete("Use IServiceProvider instead.")]
         DiServiceProvider DiServiceProvider { get; }
+
+        IServiceProvider IServiceProvider { get; }
 
         RunnerSettings Settings { get; }
         InputSmBuilder InputSmBuilder { get; }
