@@ -76,8 +76,6 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
         hostBuilder = Host.CreateDefaultBuilder();
     }
 
-    public IServiceProvider ServiceProvider => host.ThrowIfNull().Services;
-
     // TODO remove or make private
     public void SetupAsDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
@@ -249,8 +247,6 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
 
         return this;
     }
-
-
 
     public void Dispose()
     {
