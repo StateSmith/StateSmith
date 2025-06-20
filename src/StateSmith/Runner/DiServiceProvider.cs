@@ -38,7 +38,7 @@ public class DiServiceProvider : IDisposable
     {
         var settings = sp.GetRequiredService<RunnerSettings>();
         var id = idSelector(settings);
-        Type t = typeMap[id].ThrowIfNull($"{id.GetType()} '{id}' is not supported.");
+        Type t = typeMap[id].ThrowIfNull($"{id?.GetType()} '{id}' is not supported.");
         return (TService)ActivatorUtilities.GetServiceOrCreateInstance(sp, t);
     }
 
@@ -50,7 +50,7 @@ public class DiServiceProvider : IDisposable
         hostBuilder = Host.CreateDefaultBuilder();
     }
 
-    public static DiServiceProvider CreateDefault(Action<IServiceCollection> serviceOverrides = null)
+    public static DiServiceProvider CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
         DiServiceProvider sp = new();
         sp.SetupAsDefault(serviceOverrides);
@@ -59,7 +59,7 @@ public class DiServiceProvider : IDisposable
 
     public IServiceProvider ServiceProvider => host.ThrowIfNull().Services;
 
-    public void SetupAsDefault(Action<IServiceCollection> serviceOverrides = null)
+    public void SetupAsDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
         hostBuilder.ConfigureServices((services) =>
         {
@@ -174,14 +174,14 @@ public class DiServiceProvider : IDisposable
     {
         // RenderConfigAllVars.Base, .C, .Cpp, etc. are all obtained from RenderConfigAllVars.
         services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
-        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().Base);
-        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().C);
-        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().Cpp);
-        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().CSharp);
-        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().JavaScript);
-        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().Java);
-        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().Python);
-        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().TypeScript);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Base);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().C);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Cpp);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().CSharp);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().JavaScript);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Java);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Python);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
 
 
         services.AddSingleton(new DrawIoSettings());

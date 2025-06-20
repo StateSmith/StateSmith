@@ -52,7 +52,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
     /// <param name="enablePDBS">User code should leave unspecified for now.</param>
     /// // TODO replace serviceOverrides with an IServiceProvider. That way we can use the same IServiceProvider in test helpers like GilTestHelper
-    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, Action<IServiceCollection> serviceOverrides = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
+    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, Action<IServiceCollection>? serviceOverrides = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
 
@@ -76,12 +76,13 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
     /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
     /// <param name="enablePDBS">User could should leave unspecified for now.</param>
+    /// <param name="serviceOverrides">Optional dependency injection overrides</param>
     public SmRunner(string diagramPath,
         IRenderConfig? renderConfig = null,
         string? outputDirectory = null,
         AlgorithmId algorithmId = AlgorithmId.Default,
         TranspilerId transpilerId = TranspilerId.Default,
-        Action<IServiceCollection> serviceOverrides = null,
+        Action<IServiceCollection>? serviceOverrides = null,
         [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null, bool enablePDBS = true)
     : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceOverrides, callerFilePath: callingFilePath, enablePDBS: enablePDBS)
     {
@@ -109,7 +110,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
 
         PrepareBeforeRun();
-        SmRunnerInternal smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>();
+        SmRunnerInternal smRunnerInternal = serviceProvider!.GetRequiredService<SmRunnerInternal>();
         smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
 
         // Wrap in try finally so that we can ensure that the service provider is disposed which will
@@ -267,7 +268,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     internal void PrepareBeforeRun()
     {
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
-        OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
+        OutputInfo outputInfo = serviceProvider!.GetRequiredService<OutputInfo>();
         outputInfo.outputDirectory = settings.outputDirectory.ThrowIfNull();
     }
 
