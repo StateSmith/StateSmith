@@ -13,6 +13,7 @@ using System.Diagnostics.CodeAnalysis;
 using StateSmith.Common;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmith.Runner;
 
@@ -62,8 +63,10 @@ public class InputSmBuilder
     {
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
 
-        sp = DiServiceProvider.CreateDefault();
-        sp.AddSingleton(this);
+        sp = DiServiceProvider.CreateDefault(serviceOverrides: (services) =>
+        {
+            services.AddSingleton(this);
+        });
         setupAction?.Invoke(sp);
         sp.Build();
         diagramToSmConverter = sp.GetServiceOrCreateInstance();

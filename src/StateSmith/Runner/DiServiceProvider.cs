@@ -152,26 +152,12 @@ public class DiServiceProvider : IDisposable
         hostBuilder.ConfigureServices(services);
     }
 
-    // TODO remove
-    // only for test code
-    internal void AddSingleton(InputSmBuilder obj)
-    {
-        hostBuilder.ConfigureServices(services => { services.AddSingleton(obj); });
-    }
-
-    // TODO remove
+    [Obsolete("This method is deprecated. Use SmRunner(serviceOverrides) instead.")]
     public void AddSingletonT<TService>(TService implementationObj) where TService : class
     {
         hostBuilder.ConfigureServices(services => { services.AddSingleton(implementationObj); });
     }
 
-    // TODO remove
-    public void AddSingletonT<TService, TImplementation>()
-    where TService : class
-    where TImplementation : class, TService
-    {
-        hostBuilder.ConfigureServices(services => { services.AddSingleton<TService, TImplementation>(); });
-    }
 
     /// <summary>
     /// Can only be done once. Limitation of lib.
