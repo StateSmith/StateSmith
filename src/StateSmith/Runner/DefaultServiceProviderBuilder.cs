@@ -42,8 +42,7 @@ public interface IConfigServiceProviderBuilder : IServiceProviderBuilder
     // TODO remove serviceOverrides from CreateDefault
     public static IConfigServiceProviderBuilder CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
-        DefaultServiceProviderBuilder sp = new(serviceOverrides);
-        return sp;
+        return new DefaultServiceProviderBuilder(serviceOverrides);
     }
 
     public abstract IConfigServiceProviderBuilder WithRunnerSettings(RunnerSettings settings);
@@ -63,12 +62,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
     public DefaultServiceProviderBuilder(Action<IServiceCollection>? serviceOverrides = null)
     {
         hostBuilder = Host.CreateDefaultBuilder();
-        SetupAsDefault(serviceOverrides);
-    }
 
-    // TODO remove
-    private void SetupAsDefault(Action<IServiceCollection>? serviceOverrides = null)
-    {
         WithServices((services) =>
         {
             services.AddSingleton(new DrawIoSettings());
@@ -134,11 +128,11 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             );
 
 
-#if SS_SINGLE_FILE_APPLICATION
+        #if SS_SINGLE_FILE_APPLICATION
             services.AddSingleton<IRoslynMetadataProvider, InMemoryMetaDataProvider>();
-#else
+        #else
             services.AddSingleton<IRoslynMetadataProvider, FileMetadataProvider>();
-#endif
+        #endif
             services.AddSingleton<RoslynCompiler>();
 
             services.AddSingleton<PseudoStateHandlerBuilder>();
@@ -162,7 +156,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
         WithRenderConfig(null, null);
     }
 
-    // TODO remove
     public IServiceProviderBuilder WithServices(Action<IServiceCollection> services)
     {
         hostBuilder.ConfigureServices(services);
