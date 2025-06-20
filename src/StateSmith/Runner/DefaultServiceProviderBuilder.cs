@@ -68,8 +68,8 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton(new DrawIoSettings());
             services.AddSingleton(new CodeStyleSettings());
             services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
-            services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));
             services.AddSingleton(new SmDesignDescriberSettings());
+            services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
 
             services.AddSingleton<DefaultServiceProviderBuilder>(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
             services.AddSingleton<SmRunnerInternal>();
@@ -149,6 +149,10 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton<SmDesignDescriber>();
             services.AddSingleton<SimWebGenerator>();
 
+            services.AddSingleton<OutputInfo>(); 
+            services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
+            services.AddSingleton<FilePathPrinter>((sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase.ThrowIfNull()));
+
             // Merge the overrides into the service collection.
             serviceOverrides?.Invoke(services);
         });
@@ -176,9 +180,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton(settings.drawIoSettings);
             services.AddSingleton(settings.smDesignDescriber);
             services.AddSingleton(settings.style);
-            services.AddSingleton<OutputInfo>(); // TODO This seems like it doesn't belong here
-            services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
-            services.AddSingleton<FilePathPrinter>((sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase.ThrowIfNull())); // TODO replace getrequiredservice with settings
             services.AddSingleton(settings.algoBalanced1);
         });
 
@@ -193,10 +194,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             if (renderConfigAllVars != null)
             {
                 services.AddSingleton<RenderConfigAllVars>(renderConfigAllVars);
-            }
-            else
-            {
-                services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
             }
 
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Base);
