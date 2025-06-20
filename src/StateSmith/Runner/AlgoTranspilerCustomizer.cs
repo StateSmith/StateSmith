@@ -20,7 +20,7 @@ namespace StateSmith.Runner;
 /// </summary>
 public class AlgoTranspilerCustomizer
 {
-    public void Customize(DiServiceProvider sp, AlgorithmId algorithmId, TranspilerId transpilerId, AlgoBalanced1Settings algoBalanced1Settings, CodeStyleSettings style)
+    public void Customize(AlgorithmId algorithmId, TranspilerId transpilerId, AlgoBalanced1Settings algoBalanced1Settings, CodeStyleSettings style)
     {
         if (algorithmId == AlgorithmId.Default)
         {

@@ -251,7 +251,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void AlgoOrTranspilerUpdated()
     {
-        new AlgoTranspilerCustomizer().Customize(diServiceProvider, settings.algorithmId, settings.transpilerId, settings.algoBalanced1, settings.style);
+        new AlgoTranspilerCustomizer().Customize( settings.algorithmId, settings.transpilerId, settings.algoBalanced1, settings.style);
     }
 
     /// <summary>
