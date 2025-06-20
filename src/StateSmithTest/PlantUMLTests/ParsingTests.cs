@@ -9,6 +9,7 @@ using StateSmith.Input;
 using FluentAssertions;
 using StateSmith.Runner;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.PlantUMLTests;
 
@@ -350,7 +351,8 @@ public class ParsingTests
 
         // ensure entry and exit validation works
 
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertNodesToVertices(new List<DiagramNode> { translator.Root }, translator.Edges);
         inputSmBuilder.FinishRunning();
     }
@@ -370,7 +372,8 @@ public class ParsingTests
             c1 --> s2 : else
             @enduml
             """;
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.FinishRunning();
 
@@ -411,7 +414,8 @@ public class ParsingTests
             c3 --> S1
             @enduml
             """;
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.FinishRunning();
 
@@ -541,7 +545,8 @@ public class ParsingTests
             link: on / link stuff 2
             @enduml
             """;
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.FinishRunning();
 
@@ -929,7 +934,8 @@ public class ParsingTests
             @enduml
             """;
 
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.FinishRunning();
 

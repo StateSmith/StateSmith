@@ -94,14 +94,14 @@ public class TestHelper
         }
     }
 
-    public static InputSmBuilder CreateInputSmBuilder(Action<IServiceCollection>? serviceOverrides = null)
+    public static IServiceProvider CreateServiceProvider(Action<IServiceCollection>? serviceOverrides = null)
     {
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
 
         var sp = DiServiceProvider.CreateDefault(serviceOverrides);
         sp.Build();
 
-        return sp.GetRequiredService<InputSmBuilder>(); 
+        return sp.GetRequiredService<IServiceProvider>();
     }
 
     public static FieldInfo[] GetTypeFields<T>()

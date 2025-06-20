@@ -8,6 +8,7 @@ using StateSmith.SmGraph.TriggerMap;
 using System;
 using System.Collections.Generic;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.SmGraph.TriggerMap;
 
@@ -36,7 +37,8 @@ public class TriggerMapProcessorTests
     [Fact]
     public void IntegrationTest1()
     {
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertDiagramFileToSmVertices(TestHelper.GetThisDir() + "/" + "TriggerMap1.drawio");
         inputSmBuilder.FindSingleStateMachine();
         inputSmBuilder.FinishRunning();
@@ -58,7 +60,8 @@ public class TriggerMapProcessorTests
     [Fact]
     public void IntegrationTest2()
     {
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertDiagramFileToSmVertices(TestHelper.GetThisDir() + "/" + "TriggerMap2.drawio");
         inputSmBuilder.FindSingleStateMachine();
         inputSmBuilder.FinishRunning();

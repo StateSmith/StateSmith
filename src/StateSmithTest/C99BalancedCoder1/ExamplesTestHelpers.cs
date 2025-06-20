@@ -4,6 +4,7 @@ using System.Linq;
 using FluentAssertions;
 using StateSmith.SmGraph;
 using StateSmith.Runner;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest
 {
@@ -30,7 +31,8 @@ namespace StateSmithTest
         public static InputSmBuilder CreateCompilerForTestInputFile(string relativePath)
         {
             string filepath = TestInputDirectoryPath + relativePath;
-            InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+            IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+            InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
             inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
             return inputSmBuilder;
         }

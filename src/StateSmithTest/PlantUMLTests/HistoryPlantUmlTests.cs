@@ -3,12 +3,13 @@ using Xunit;
 using StateSmith.SmGraph;
 using FluentAssertions;
 using StateSmith.Runner;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.PlantUMLTests;
 
 public class HistoryPlantUmlTests
 {
-    private InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+    private readonly InputSmBuilder inputSmBuilder = TestHelper.CreateServiceProvider().GetRequiredService<InputSmBuilder>();
 
     [Fact]
     public void HistoryPlantumlParse_Implicit()

@@ -4,6 +4,7 @@ using StateSmith.Runner;
 using System;
 using FluentAssertions;
 using StateSmith.SmGraph.Validation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.C99BalancedCoder1;
 
@@ -64,7 +65,8 @@ state group1 {
 
     private static void CompileAndExpectException(string plantUmlText, string expectedWildcardPattern)
     {
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
 
         Action action = () => {

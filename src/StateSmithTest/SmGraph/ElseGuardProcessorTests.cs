@@ -4,6 +4,7 @@ using StateSmith.SmGraph;
 using StateSmith.Runner;
 using System;
 using StateSmith.SmGraph.Validation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.SmGraph;
 
@@ -12,7 +13,7 @@ namespace StateSmithTest.SmGraph;
 /// </summary>
 public class ElseGuardProcessorTests
 {
-    private readonly InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+    private readonly InputSmBuilder inputSmBuilder = TestHelper.CreateServiceProvider().GetRequiredService<InputSmBuilder>();
 
     [Fact]
     public void Test1()

@@ -14,7 +14,7 @@ namespace StateSmithTest;
 /// </summary>
 public class DiagramEmbeddedRenderConfigTests
 {
-    readonly InputSmBuilder runner = TestHelper.CreateInputSmBuilder();
+    readonly InputSmBuilder runner = TestHelper.CreateServiceProvider().GetRequiredService<InputSmBuilder>();
 
     [Fact]
     public void ProperConversionToVertices()

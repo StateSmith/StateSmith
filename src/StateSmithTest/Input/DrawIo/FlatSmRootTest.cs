@@ -2,6 +2,8 @@ using FluentAssertions;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace StateSmithTest.Input.DrawIo;
 
@@ -13,7 +15,8 @@ public class FlatSmRootTest
     [Fact]
     public void VertexTest()
     {
-        InputSmBuilder builder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder builder = serviceProvider.GetRequiredService<InputSmBuilder>();
         builder.ConvertDrawIoFileNodesToVertices(TestHelper.GetThisDir() + "FlatSmRoot.drawio");
         builder.FindSingleStateMachine();
         var roots = builder.GetRootVertices();

@@ -5,12 +5,13 @@ using StateSmith.Runner;
 using StateSmith.SmGraph;
 using FluentAssertions;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.SmGraph;
 
 public class NotesTests
 {
-    readonly InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+    readonly InputSmBuilder inputSmBuilder = TestHelper.CreateServiceProvider().GetRequiredService<InputSmBuilder>();
 
     private void CompileDrawioFile(string relativeFilePath)
     {

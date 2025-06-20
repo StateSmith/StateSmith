@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using System.Linq;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.Runner.ShortFqnNamer;
 
@@ -203,7 +204,8 @@ public class ShortFqnNamerTests
 
     private static void TestNestedClashX(string relativeFilePath)
     {
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertDrawIoFileNodesToVertices(TestHelper.GetThisDir() + relativeFilePath);
         inputSmBuilder.FinishRunning();
 

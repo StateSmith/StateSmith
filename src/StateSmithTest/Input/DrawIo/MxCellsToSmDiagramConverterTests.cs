@@ -4,6 +4,7 @@ using StateSmith.Runner;
 using StateSmith.SmGraph;
 using System;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.Input.DrawIo;
 
@@ -113,7 +114,8 @@ public class MxCellsToSmDiagramConverterTests
     [Fact]
     public void Notes_CheckVertices()
     {
-        InputSmBuilder builder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder builder = serviceProvider.GetRequiredService<InputSmBuilder>();
         builder.ConvertDrawIoFileNodesToVertices(TestHelper.GetThisDir() + "NotesTest.drawio");
         builder.FindSingleStateMachine();
 

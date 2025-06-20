@@ -3,6 +3,7 @@ using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace StateSmithTest.Output.Gil;
 
@@ -20,7 +21,7 @@ public class GilFileTestHelper
 
         sm.variables += "bool b;";
 
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder(serviceOverrides: (services) =>
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider(serviceOverrides: (services) =>
         {
             services.AddSingleton(new RenderConfigBaseVars()
             {
@@ -33,6 +34,7 @@ public class GilFileTestHelper
             });
         });
 
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.SetStateMachineRoot(sm);
         inputSmBuilder.FinishRunning();
 

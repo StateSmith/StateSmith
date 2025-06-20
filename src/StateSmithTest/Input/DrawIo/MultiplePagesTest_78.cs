@@ -2,6 +2,8 @@ using FluentAssertions;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace StateSmithTest.Input.DrawIo;
 
@@ -19,7 +21,8 @@ public class MultiplePagesTest_78
     [Fact]
     public void VertexTest()
     {
-        InputSmBuilder builder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder builder = serviceProvider.GetRequiredService<InputSmBuilder>();
         builder.ConvertDrawIoFileNodesToVertices(TestHelper.GetThisDir() + "MultiplePages.drawio");
         builder.FindSingleStateMachine();
         var roots = builder.GetRootVertices();

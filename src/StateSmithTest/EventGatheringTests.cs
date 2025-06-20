@@ -3,6 +3,8 @@ using Xunit;
 using FluentAssertions;
 using StateSmith.SmGraph;
 using StateSmith.Runner;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace StateSmithTest;
 
@@ -28,7 +30,8 @@ public class EventGatheringTests
     public void TestOnlyInitialTransition()
     {
         var sm = BuildTestGraph("Sm1");
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.SetStateMachineRoot(sm);
         inputSmBuilder.FinishRunning();
 
@@ -39,7 +42,8 @@ public class EventGatheringTests
     public void Test()
     {
         var sm = BuildTestGraph("Sm1");
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.SetStateMachineRoot(sm);
         var map = new NamedVertexMap(sm);
         State GetState(string stateName) => map.GetState(stateName);
@@ -62,7 +66,8 @@ public class EventGatheringTests
     public void Test2()
     {
         var sm = BuildTestGraph("Sm2");
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.SetStateMachineRoot(sm);
         var map = new NamedVertexMap(sm);
         State GetState(string stateName) => map.GetState(stateName);

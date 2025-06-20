@@ -5,13 +5,14 @@ using StateSmith.SmGraph;
 using System;
 using System.Linq;
 using StateSmith.Runner;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.SmGraph;
 
 public class OrderAndElseProcessorTests
 {
     private readonly PlantUMLToNodesEdges translator = new();
-    private readonly InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+    private readonly InputSmBuilder inputSmBuilder = TestHelper.CreateServiceProvider().GetRequiredService<InputSmBuilder>();
 
     // https://github.com/StateSmith/StateSmith/issues/59
     [Fact]

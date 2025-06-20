@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest;
 
@@ -17,7 +18,8 @@ public class SupportAlternateTriggersProcessor_Tests
     [Fact]
     public void TestEntry()
     {
-        var inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        var inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
 
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", """
             @startuml SomeSmName
@@ -46,7 +48,8 @@ public class TriggerModHelper_Tests
     [Fact]
     public void ExampleSimpleLogHelper()
     {
-        var inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        var inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.transformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1,
             new TransformationStep(id: "my simple log helper", action: (sm) =>
             {

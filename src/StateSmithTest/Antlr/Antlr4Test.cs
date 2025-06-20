@@ -6,6 +6,8 @@ using StateSmith.Output;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 // todolow look into this: https://www.antlr.org/api/Java/org/antlr/v4/runtime/TokenStreamRewriter.html
 
@@ -469,7 +471,8 @@ public class Antlr4Test : CommonTestHelper
     [Fact]
     public void StateMachineWithBehaviorsIntegrationTest()
     {
-        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertDiagramFileToSmVertices(TestHelper.GetThisDir() + "/" + "Antlr4Tests.drawio");
         inputSmBuilder.FindStateMachineByName("MySm1");
         inputSmBuilder.FinishRunning();
