@@ -29,7 +29,8 @@ namespace StateSmith.Runner;
 
 
 // TODO do I need the interfaces?
-public interface IServiceProviderBuilder
+// TODO remove IDisposable from IServiceProviderBuilder once I am no longer calling Build inside SmRunner
+public interface IServiceProviderBuilder : IDisposable
 {
     public abstract IServiceProviderBuilder WithServices(Action<IServiceCollection> services);
     public abstract IServiceProvider Build();

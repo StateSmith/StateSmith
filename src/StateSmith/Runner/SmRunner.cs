@@ -25,7 +25,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     /// TODO probably remove DiServiceProvider, should just use MS DI classes directly
     [Obsolete("Use IServiceProvider instead.")]
-    readonly DiServiceProvider diServiceProvider;
+    readonly IConfigServiceProviderBuilder diServiceProvider;
 
     // TODO remove ? once it's guaranteed to be non-null
     private IServiceProvider? serviceProvider;
@@ -189,12 +189,11 @@ public class SmRunner : SmRunner.IExperimentalAccess
         }
 
         AlgoOrTranspilerUpdated();
-        diServiceProvider.Build(); // TODO move this higher so DI is available during the prediagram settings reading
-        serviceProvider = diServiceProvider.ServiceProvider;
+        serviceProvider = diServiceProvider.Build(); // TODO move this higher so DI is available during the prediagram settings reading
     }
 
     // TODO move DI out of SmRunner
-    internal static void SetupDiProvider(DiServiceProvider di, RenderConfigAllVars renderConfigAllVars, RunnerSettings settings, IRenderConfig iRenderConfig)
+    internal static void SetupDiProvider(IConfigServiceProviderBuilder di, RenderConfigAllVars renderConfigAllVars, RunnerSettings settings, IRenderConfig iRenderConfig)
     {
         di.WithServices((services) =>
         {
