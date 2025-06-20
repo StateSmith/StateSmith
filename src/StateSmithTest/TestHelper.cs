@@ -107,8 +107,9 @@ public class TestHelper
         var drawIoConverter = sp.GetServiceOrCreateInstance();
         var stateMachineProvider = sp.GetServiceOrCreateInstance();
         var diagramFilePathProvider = sp.GetInstanceOf<DiagramFilePathProvider>();
+        var serviceProvider = sp.GetRequiredService<IServiceProvider>();
 
-        return new InputSmBuilder(transformer, diagramToSmConverter, mangler, drawIoConverter, sp, stateMachineProvider, diagramFilePathProvider);
+        return new InputSmBuilder(transformer, diagramToSmConverter, mangler, drawIoConverter, serviceProvider, stateMachineProvider, diagramFilePathProvider);
     }
 
     public static FieldInfo[] GetTypeFields<T>()

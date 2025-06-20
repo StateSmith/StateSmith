@@ -5,6 +5,7 @@ using System.Linq;
 using FluentAssertions;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.Input.DrawIo;
 
@@ -16,7 +17,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         InputSmBuilder runner = TestHelper.CreateInputSmBuilder();
 
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm.drawio.svg";
-        DrawIoToSmDiagramConverter converter = runner.sp.GetServiceOrCreateInstance();
+        DrawIoToSmDiagramConverter converter = runner.sp.GetRequiredService<DrawIoToSmDiagramConverter>();
         converter.ProcessSvg(File.OpenText(filePath));
 
         var smDiagramRoot = converter.Roots.Single();

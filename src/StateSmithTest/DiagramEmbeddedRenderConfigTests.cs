@@ -5,6 +5,7 @@ using System.Linq;
 using StateSmith.Output.UserConfig;
 using FluentAssertions;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest;
 
@@ -51,7 +52,7 @@ public class DiagramEmbeddedRenderConfigTests
         runner.FinishRunning();
 
         {
-            RenderConfigBaseVars renderConfig = runner.sp.GetServiceOrCreateInstance();
+            RenderConfigBaseVars renderConfig = runner.sp.GetRequiredService<RenderConfigBaseVars>();
 
             renderConfig.VariableDeclarations.ShouldBeShowDiff("""
             int top_level; // top level - VariableDeclarations
@@ -94,7 +95,7 @@ public class DiagramEmbeddedRenderConfigTests
         }
 
         {
-            RenderConfigCVars renderConfig = runner.sp.GetServiceOrCreateInstance();
+            RenderConfigCVars renderConfig = runner.sp.GetRequiredService<RenderConfigCVars>();
             var defaultConfig = new RenderConfigCVars();
 
             renderConfig.HFileIncludes.ShouldBeShowDiff("""
@@ -145,7 +146,7 @@ public class DiagramEmbeddedRenderConfigTests
         }
 
         {
-            var renderConfig = runner.sp.GetInstanceOf<RenderConfigCSharpVars>();
+            var renderConfig = runner.sp.GetRequiredService<RenderConfigCSharpVars>();
             var defaultConfig = new RenderConfigCSharpVars();
 
             renderConfig.Usings.ShouldBeShowDiff("""
@@ -177,7 +178,7 @@ public class DiagramEmbeddedRenderConfigTests
         }
 
         {
-            var renderConfig = runner.sp.GetInstanceOf<RenderConfigJavaScriptVars>();
+            var renderConfig = runner.sp.GetRequiredService<RenderConfigJavaScriptVars>();
             var defaultConfig = new RenderConfigJavaScriptVars();
 
             renderConfig.ExtendsSuperClass.ShouldBeShowDiff("""
