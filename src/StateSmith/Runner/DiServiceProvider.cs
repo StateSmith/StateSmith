@@ -28,7 +28,6 @@ using StateSmith.Output.Gil.CSharp;
 namespace StateSmith.Runner;
 
 
-// TODO do I need the interfaces?
 // TODO remove IDisposable from IServiceProviderBuilder once I am no longer calling Build inside SmRunner
 // TODO doc comments to explain these builders
 public interface IServiceProviderBuilder : IDisposable
@@ -56,7 +55,7 @@ public interface IConfigServiceProviderBuilder : IServiceProviderBuilder
 /// </summary>
 
 
-// TODO rename ConfigServiceProviderBuilder
+// TODO rename ConfigServiceProviderBuilder, or DefaultServiceProviderBuilder or something
 public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
 {
     // Helper to resolve a service by id from a type map
@@ -179,14 +178,6 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
         return this;
     }
 
-    // TODO remove
-    [Obsolete("This method is deprecated. Use SmRunner(serviceOverrides) instead.")]
-    public void AddSingletonT<TService>(TService implementationObj) where TService : class
-    {
-        hostBuilder.ConfigureServices(services => { services.AddSingleton(implementationObj); });
-    }
-
-
     public IServiceProvider Build()
     {
         host = hostBuilder.Build();
@@ -213,9 +204,6 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
 
     public IConfigServiceProviderBuilder WithRenderConfig(RenderConfigAllVars? renderConfigAllVars = null, IRenderConfig? iRenderConfig = null)
     {
-        // TODO do I need iRenderConfig?
-        // TODO remove ? from iRenderConfig
-
         WithServices(services =>
         {
             // RenderConfigAllVars.Base, .C, .Cpp, etc. are all obtained from RenderConfigAllVars.
