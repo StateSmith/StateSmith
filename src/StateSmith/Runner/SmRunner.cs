@@ -92,7 +92,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// Publicly exposed so that users can customize transformation behavior.
     /// Accessing this member will cause the Dependency Injection settings to be finalized.
     /// </summary>
-    public SmTransformer SmTransformer => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(diServiceProvider.ServiceProvider);
+    public SmTransformer SmTransformer => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(serviceProvider);
 
     /// <summary>
     /// This API is experimental and may change in the future.
@@ -127,6 +127,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         }
         finally
         {
+            // TODO remove this once IHost lifecycle is managed outside of SmRunner.
             diServiceProvider.Dispose();
         }
 
@@ -145,7 +146,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         if (PreDiagramBasedSettingsException != null)
         {
             // We use SmRunnerInternal to print the exception so that it is consistent with the rest of the code.
-            SmRunnerInternal smRunnerInternal = ActivatorUtilities.GetServiceOrCreateInstance<SmRunnerInternal>(diServiceProvider.ServiceProvider);
+            SmRunnerInternal smRunnerInternal = ActivatorUtilities.GetServiceOrCreateInstance<SmRunnerInternal>(serviceProvider);
             smRunnerInternal.OutputExceptionDetail(PreDiagramBasedSettingsException.SourceException);
             if (settings.propagateExceptions)
             {
@@ -189,7 +190,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         AlgoOrTranspilerUpdated();
         diServiceProvider.Build(); // TODO move this higher so DI is available during the prediagram settings reading
-        serviceProvider = diServiceProvider.ServiceProvider.GetRequiredService<IServiceProvider>();
+        serviceProvider = diServiceProvider.ServiceProvider;
     }
 
     // TODO move DI out of SmRunner
@@ -276,18 +277,15 @@ public class SmRunner : SmRunner.IExperimentalAccess
     // exists just for now to help make it clear StateSmith API that is likely to change soon.
 
     public IExperimentalAccess GetExperimentalAccess() => this;
-    DiServiceProvider IExperimentalAccess.DiServiceProvider => diServiceProvider;
     IServiceProvider IExperimentalAccess.IServiceProvider => serviceProvider;
     RunnerSettings IExperimentalAccess.Settings => settings;
-    InputSmBuilder IExperimentalAccess.InputSmBuilder => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(diServiceProvider.ServiceProvider);
+    InputSmBuilder IExperimentalAccess.InputSmBuilder => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(serviceProvider);
 
     /// <summary>
     /// The API in this experimental access may break often. It will eventually stabilize after enough use and feedback.
     /// </summary>
     public interface IExperimentalAccess
     {
-        [Obsolete("Use IServiceProvider instead.")]
-        DiServiceProvider DiServiceProvider { get; }
 
         IServiceProvider IServiceProvider { get; }
 
