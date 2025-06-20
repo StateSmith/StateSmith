@@ -101,15 +101,7 @@ public class TestHelper
         var sp = DiServiceProvider.CreateDefault(serviceOverrides);
         sp.Build();
 
-        var diagramToSmConverter = sp.GetServiceOrCreateInstance();
-        var transformer = sp.GetServiceOrCreateInstance();
-        var mangler = sp.GetInstanceOf<INameMangler>();
-        var drawIoConverter = sp.GetServiceOrCreateInstance();
-        var stateMachineProvider = sp.GetServiceOrCreateInstance();
-        var diagramFilePathProvider = sp.GetInstanceOf<DiagramFilePathProvider>();
-        var serviceProvider = sp.GetRequiredService<IServiceProvider>();
-
-        return new InputSmBuilder(transformer, diagramToSmConverter, mangler, drawIoConverter, serviceProvider, stateMachineProvider, diagramFilePathProvider);
+        return sp.GetRequiredService<InputSmBuilder>(); 
     }
 
     public static FieldInfo[] GetTypeFields<T>()
