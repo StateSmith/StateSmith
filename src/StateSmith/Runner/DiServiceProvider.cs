@@ -208,32 +208,6 @@ public class DiServiceProvider : IDisposable, IServiceProviderBuilder
         services.AddSingleton(new SmDesignDescriberSettings());
     }
 
-    /// <summary>
-    /// This class has implicit conversions that give some compile time type safety to <see cref="DiServiceProvider.GetServiceOrCreateInstance"/>.
-    /// Might remove this class.
-    /// </summary>
-    public class ConvertableType
-    {
-        public IHost host;
-
-        public ConvertableType(IHost host)
-        {
-            this.host = host;
-        }
-
-        public static implicit operator StateMachineProvider(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<StateMachineProvider>(me.host.Services);
-        public static implicit operator SmRunnerInternal(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmRunnerInternal>(me.host.Services);
-        public static implicit operator DrawIoToSmDiagramConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoToSmDiagramConverter>(me.host.Services);
-        public static implicit operator DiagramToSmConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DiagramToSmConverter>(me.host.Services);
-        public static implicit operator DrawIoSettings(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoSettings>(me.host.Services);
-        public static implicit operator SmTransformer(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(me.host.Services);
-        public static implicit operator RenderConfigBaseVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigBaseVars>(me.host.Services);
-        public static implicit operator RenderConfigCVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigCVars>(me.host.Services);
-        public static implicit operator RenderConfigCSharpVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigCSharpVars>(me.host.Services);
-        public static implicit operator InputSmBuilder(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(me.host.Services);
-    }
-
-
     public void Dispose()
     {
         host?.Dispose();
