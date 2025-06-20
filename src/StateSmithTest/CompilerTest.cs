@@ -19,7 +19,7 @@ namespace StateSmithTest
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny1.graphml";
 
-            InputSmBuilder inputSmBuilder = new();
+            InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
             inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
             inputSmBuilder.FindSingleStateMachine();
             var sm = inputSmBuilder.GetStateMachine();
@@ -156,7 +156,7 @@ namespace StateSmithTest
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/Tiny1.graphml";
 
-            InputSmBuilder inputSmBuilder = new();
+            InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
             DiagramToSmConverter diagramToSmConverter = inputSmBuilder.diagramToSmConverter;
             var expander = new Expander();
             ExpanderFileReflection expanderFileReflection = new(expander, new());

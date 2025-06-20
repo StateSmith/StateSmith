@@ -13,7 +13,7 @@ public class DrawIoSvgToSmDiagramConverterTests
     [Fact]
     public void Test()
     {
-        InputSmBuilder runner = new();
+        InputSmBuilder runner = TestHelper.CreateInputSmBuilder();
 
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm.drawio.svg";
         DrawIoToSmDiagramConverter converter = runner.sp.GetServiceOrCreateInstance();
@@ -56,7 +56,7 @@ public class DrawIoSvgToSmDiagramConverterTests
     {
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm.drawio.svg";
 
-        InputSmBuilder runner = new();
+        InputSmBuilder runner = TestHelper.CreateInputSmBuilder();
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
@@ -71,7 +71,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         File.ReadAllText(filePath).Should().NotContain("<mxGraphModel", because: "this file needs to be compressed");
         // Note that vscode extension tends to write file uncompressed, but draw.io windows app tends to write it compressed.
 
-        InputSmBuilder runner = new();
+        InputSmBuilder runner = TestHelper.CreateInputSmBuilder();
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
@@ -86,7 +86,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         File.ReadAllText(filePath).Should().Contain("<mxGraphModel", because: "this should not be compressed");
         // Note that vscode extension tends to write file uncompressed, but draw.io windows app tends to write it compressed.
 
-        InputSmBuilder runner = new();
+        InputSmBuilder runner = TestHelper.CreateInputSmBuilder();
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
@@ -101,7 +101,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         File.ReadAllText(filePath).Should().Contain("<mxGraphModel", because: "this should not be compressed");
         // Note that vscode extension tends to write file uncompressed, but draw.io windows app tends to write it compressed.
 
-        InputSmBuilder runner = new();
+        InputSmBuilder runner = TestHelper.CreateInputSmBuilder();
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
@@ -114,7 +114,7 @@ public class DrawIoSvgToSmDiagramConverterTests
     {
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm_with_image.drawio.svg";
 
-        InputSmBuilder runner = new();
+        InputSmBuilder runner = TestHelper.CreateInputSmBuilder();
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
         runner.GetStateMachine().Name.Should().Be("Design1Sm_with_image");

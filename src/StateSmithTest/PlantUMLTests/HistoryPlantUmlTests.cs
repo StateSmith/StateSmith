@@ -8,7 +8,7 @@ namespace StateSmithTest.PlantUMLTests;
 
 public class HistoryPlantUmlTests
 {
-    private InputSmBuilder inputSmBuilder = new();
+    private InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
 
     [Fact]
     public void HistoryPlantumlParse_Implicit()

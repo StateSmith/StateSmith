@@ -36,7 +36,7 @@ public class TriggerMapProcessorTests
     [Fact]
     public void IntegrationTest1()
     {
-        InputSmBuilder inputSmBuilder = new();
+        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
         inputSmBuilder.ConvertDiagramFileToSmVertices(TestHelper.GetThisDir() + "/" + "TriggerMap1.drawio");
         inputSmBuilder.FindSingleStateMachine();
         inputSmBuilder.FinishRunning();
@@ -58,7 +58,7 @@ public class TriggerMapProcessorTests
     [Fact]
     public void IntegrationTest2()
     {
-        InputSmBuilder inputSmBuilder = new();
+        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
         inputSmBuilder.ConvertDiagramFileToSmVertices(TestHelper.GetThisDir() + "/" + "TriggerMap2.drawio");
         inputSmBuilder.FindSingleStateMachine();
         inputSmBuilder.FinishRunning();

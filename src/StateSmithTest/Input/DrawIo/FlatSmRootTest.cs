@@ -13,7 +13,7 @@ public class FlatSmRootTest
     [Fact]
     public void VertexTest()
     {
-        InputSmBuilder builder = new();
+        InputSmBuilder builder = TestHelper.CreateInputSmBuilder();
         builder.ConvertDrawIoFileNodesToVertices(TestHelper.GetThisDir() + "FlatSmRoot.drawio");
         builder.FindSingleStateMachine();
         var roots = builder.GetRootVertices();

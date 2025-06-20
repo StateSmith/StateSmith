@@ -57,25 +57,6 @@ public class InputSmBuilder
         this.diagramFilePathProvider = diagramFilePathProvider;
     }
 
-    // todo_low - replace with unit testing factory helper.
-    // The factory helper could setup DI and then this class could rely on it.
-    internal InputSmBuilder(Action<DiServiceProvider>? setupAction = null)
-    {
-        SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
-
-        sp = DiServiceProvider.CreateDefault(serviceOverrides: (services) =>
-        {
-            services.AddSingleton(this);
-        });
-        setupAction?.Invoke(sp);
-        sp.Build();
-        diagramToSmConverter = sp.GetServiceOrCreateInstance();
-        transformer = sp.GetServiceOrCreateInstance();
-        mangler = sp.GetInstanceOf<INameMangler>();
-        drawIoConverter = sp.GetServiceOrCreateInstance();
-        stateMachineProvider = sp.GetServiceOrCreateInstance();
-        diagramFilePathProvider = sp.GetInstanceOf<DiagramFilePathProvider>();
-    }
 
     public bool HasStateMachine => Sm != null;
 

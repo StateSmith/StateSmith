@@ -12,7 +12,7 @@ namespace StateSmithTest.SmGraph;
 /// </summary>
 public class ElseGuardProcessorTests
 {
-    private readonly InputSmBuilder inputSmBuilder = new();
+    private readonly InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
 
     [Fact]
     public void Test1()

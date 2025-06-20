@@ -10,7 +10,7 @@ namespace StateSmithTest.SmGraph;
 
 public class NotesTests
 {
-    readonly InputSmBuilder inputSmBuilder = new();
+    readonly InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
 
     private void CompileDrawioFile(string relativeFilePath)
     {

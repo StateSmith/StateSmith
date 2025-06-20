@@ -28,7 +28,7 @@ public class EventGatheringTests
     public void TestOnlyInitialTransition()
     {
         var sm = BuildTestGraph("Sm1");
-        InputSmBuilder inputSmBuilder = new();
+        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
         inputSmBuilder.SetStateMachineRoot(sm);
         inputSmBuilder.FinishRunning();
 
@@ -39,7 +39,7 @@ public class EventGatheringTests
     public void Test()
     {
         var sm = BuildTestGraph("Sm1");
-        InputSmBuilder inputSmBuilder = new();
+        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
         inputSmBuilder.SetStateMachineRoot(sm);
         var map = new NamedVertexMap(sm);
         State GetState(string stateName) => map.GetState(stateName);
@@ -62,7 +62,7 @@ public class EventGatheringTests
     public void Test2()
     {
         var sm = BuildTestGraph("Sm2");
-        InputSmBuilder inputSmBuilder = new();
+        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
         inputSmBuilder.SetStateMachineRoot(sm);
         var map = new NamedVertexMap(sm);
         State GetState(string stateName) => map.GetState(stateName);

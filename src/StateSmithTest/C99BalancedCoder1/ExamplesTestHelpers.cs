@@ -30,7 +30,7 @@ namespace StateSmithTest
         public static InputSmBuilder CreateCompilerForTestInputFile(string relativePath)
         {
             string filepath = TestInputDirectoryPath + relativePath;
-            InputSmBuilder inputSmBuilder = new();
+            InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
             inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
             return inputSmBuilder;
         }

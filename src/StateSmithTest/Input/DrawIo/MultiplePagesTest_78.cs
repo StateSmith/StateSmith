@@ -19,7 +19,7 @@ public class MultiplePagesTest_78
     [Fact]
     public void VertexTest()
     {
-        InputSmBuilder builder = new();
+        InputSmBuilder builder = TestHelper.CreateInputSmBuilder();
         builder.ConvertDrawIoFileNodesToVertices(TestHelper.GetThisDir() + "MultiplePages.drawio");
         builder.FindSingleStateMachine();
         var roots = builder.GetRootVertices();

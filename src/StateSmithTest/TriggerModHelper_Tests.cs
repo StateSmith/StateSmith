@@ -17,7 +17,7 @@ public class SupportAlternateTriggersProcessor_Tests
     [Fact]
     public void TestEntry()
     {
-        var inputSmBuilder = new InputSmBuilder();
+        var inputSmBuilder = TestHelper.CreateInputSmBuilder();
 
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", """
             @startuml SomeSmName
@@ -46,7 +46,7 @@ public class TriggerModHelper_Tests
     [Fact]
     public void ExampleSimpleLogHelper()
     {
-        var inputSmBuilder = new InputSmBuilder();
+        var inputSmBuilder = TestHelper.CreateInputSmBuilder();
         inputSmBuilder.transformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1,
             new TransformationStep(id: "my simple log helper", action: (sm) =>
             {

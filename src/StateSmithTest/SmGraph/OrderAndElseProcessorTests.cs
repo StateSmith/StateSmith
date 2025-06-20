@@ -11,7 +11,7 @@ namespace StateSmithTest.SmGraph;
 public class OrderAndElseProcessorTests
 {
     private readonly PlantUMLToNodesEdges translator = new();
-    private readonly InputSmBuilder inputSmBuilder = new();
+    private readonly InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
 
     // https://github.com/StateSmith/StateSmith/issues/59
     [Fact]

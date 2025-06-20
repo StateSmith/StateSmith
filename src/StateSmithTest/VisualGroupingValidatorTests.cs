@@ -13,7 +13,7 @@ namespace StateSmithTest.DrawIo.Issue81;
 /// </summary>
 public class VisualGroupingValidatorTests
 {
-    readonly InputSmBuilder runner = new();
+    readonly InputSmBuilder runner = TestHelper.CreateInputSmBuilder();
     DrawIoToSmDiagramConverter converter;
 
     public VisualGroupingValidatorTests()

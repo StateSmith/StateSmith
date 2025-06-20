@@ -203,7 +203,7 @@ public class ShortFqnNamerTests
 
     private static void TestNestedClashX(string relativeFilePath)
     {
-        InputSmBuilder inputSmBuilder = new();
+        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
         inputSmBuilder.ConvertDrawIoFileNodesToVertices(TestHelper.GetThisDir() + relativeFilePath);
         inputSmBuilder.FinishRunning();
 

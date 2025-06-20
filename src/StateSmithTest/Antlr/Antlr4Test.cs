@@ -469,7 +469,7 @@ public class Antlr4Test : CommonTestHelper
     [Fact]
     public void StateMachineWithBehaviorsIntegrationTest()
     {
-        InputSmBuilder inputSmBuilder = new();
+        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder();
         inputSmBuilder.ConvertDiagramFileToSmVertices(TestHelper.GetThisDir() + "/" + "Antlr4Tests.drawio");
         inputSmBuilder.FindStateMachineByName("MySm1");
         inputSmBuilder.FinishRunning();

@@ -113,7 +113,7 @@ public class MxCellsToSmDiagramConverterTests
     [Fact]
     public void Notes_CheckVertices()
     {
-        InputSmBuilder builder = new();
+        InputSmBuilder builder = TestHelper.CreateInputSmBuilder();
         builder.ConvertDrawIoFileNodesToVertices(TestHelper.GetThisDir() + "NotesTest.drawio");
         builder.FindSingleStateMachine();
 
