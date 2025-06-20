@@ -85,12 +85,12 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton<SmFileNameProcessor>();
 
             services.AddSingleton<DiagramToSmConverter>();
-            services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetService<DiagramToSmConverter>()!); // need to use lambda or else another `DiagramToSmConverter` is created.
+            services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetRequiredService<DiagramToSmConverter>());
             services.AddSingleton<AlgoBalanced1Settings>();
             services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
             services.AddSingleton<IAlgoEventIdToString, AlgoEventIdToString>();
             services.AddSingleton<GilToC99Customizer>();
-            services.AddSingleton<IGilToC99Customizer>((s) => s.GetService<GilToC99Customizer>()!); // need to use lambda or else another `DiagramToSmConverter` is created.
+            services.AddSingleton<IGilToC99Customizer>((s) => s.GetRequiredService<GilToC99Customizer>());
             services.AddSingleton<CppGilHelpers>();
 
             services.AddTransient<AutoExpandedVarsProcessor>();
@@ -150,7 +150,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
 
             services.AddSingleton<OutputInfo>(); 
             services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
-            services.AddSingleton<FilePathPrinter>((sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase.ThrowIfNull()));
+            services.AddSingleton<FilePathPrinter>((sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase ?? ""));
 
             // Merge the overrides into the service collection.
             serviceOverrides?.Invoke(services);
