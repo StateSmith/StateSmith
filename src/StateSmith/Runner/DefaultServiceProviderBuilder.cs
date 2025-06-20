@@ -71,7 +71,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton(new SmDesignDescriberSettings());
             services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
 
-            services.AddSingleton<DefaultServiceProviderBuilder>(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
             services.AddSingleton<SmRunnerInternal>();
             services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<IExpander, Expander>();
@@ -81,7 +80,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton<ICodeFileWriter, CodeFileWriter>();
 
             services.AddSingleton<StateMachineProvider>();
-            services.AddSingleton<IStateMachineProvider>((s) => s.GetService<StateMachineProvider>()!); // need to use lambda or else another object will be created
+            services.AddSingleton<IStateMachineProvider>((s) => s.GetRequiredService<StateMachineProvider>()); 
             services.AddSingleton(new DiagramFilePathProvider());
             services.AddSingleton<SmFileNameProcessor>();
 
