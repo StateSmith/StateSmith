@@ -30,14 +30,14 @@ namespace StateSmith.Runner;
 
 // TODO remove IDisposable from IServiceProviderBuilder once I am no longer calling Build inside SmRunner
 // TODO doc comments to explain these builders
-public interface IServiceProviderBuilder : IDisposable
+public interface IServiceProviderBuilder<T> : IDisposable
 {
-    public abstract IServiceProviderBuilder WithServices(Action<IServiceCollection> services);
+    public abstract T WithServices(Action<IServiceCollection> services);
     public abstract IServiceProvider Build();
 }
 
 // TODO this name is really unwieldy to use everywhere
-public interface IConfigServiceProviderBuilder : IServiceProviderBuilder
+public interface IConfigServiceProviderBuilder : IServiceProviderBuilder<IConfigServiceProviderBuilder>
 {
     // TODO remove serviceOverrides from CreateDefault
     public static IConfigServiceProviderBuilder CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
@@ -161,7 +161,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
         WithRenderConfig(null, null);
     }
 
-    public IServiceProviderBuilder WithServices(Action<IServiceCollection> services)
+    public IConfigServiceProviderBuilder WithServices(Action<IServiceCollection> services)
     {
         hostBuilder.ConfigureServices(services);
         return this;
