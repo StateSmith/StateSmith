@@ -57,15 +57,6 @@ public interface IConfigServiceProviderBuilder : IServiceProviderBuilder
 
 public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProviderBuilder
 {
-    // Helper to resolve a service by id from a type map
-    private static TService ResolveServiceFromRunnerSettings<TService, TId>(IServiceProvider sp, Func<RunnerSettings, TId> idSelector, IReadOnlyDictionary<TId, Type> typeMap)
-    {
-        var settings = sp.GetRequiredService<RunnerSettings>();
-        var id = idSelector(settings);
-        Type t = typeMap[id].ThrowIfNull($"{id?.GetType()} '{id}' is not supported.");
-        return (TService)ActivatorUtilities.GetServiceOrCreateInstance(sp, t);
-    }
-
     private IHost? host;
     private readonly IHostBuilder hostBuilder;
 
@@ -240,7 +231,16 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
         host?.Dispose();
     }
 
-    // TODO move
+    // Helper to resolve a service by id from a type map
+    private static TService ResolveServiceFromRunnerSettings<TService, TId>(IServiceProvider sp, Func<RunnerSettings, TId> idSelector, IReadOnlyDictionary<TId, Type> typeMap)
+    {
+        var settings = sp.GetRequiredService<RunnerSettings>();
+        var id = idSelector(settings);
+        Type t = typeMap[id].ThrowIfNull($"{id?.GetType()} '{id}' is not supported.");
+        return (TService)ActivatorUtilities.GetServiceOrCreateInstance(sp, t);
+    }
+
+
     Dictionary<TranspilerId, Type> IGILTRANSPILER_TYPES = new Dictionary<TranspilerId, Type> {
         { TranspilerId.Default, typeof(GilToC99)},
         { TranspilerId.Cpp, typeof(GilToCpp)},
