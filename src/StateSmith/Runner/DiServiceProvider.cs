@@ -152,6 +152,7 @@ public class DiServiceProvider : IDisposable
         hostBuilder.ConfigureServices(services);
     }
 
+    // TODO remove
     [Obsolete("This method is deprecated. Use SmRunner(serviceOverrides) instead.")]
     public void AddSingletonT<TService>(TService implementationObj) where TService : class
     {
