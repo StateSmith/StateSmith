@@ -152,6 +152,8 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
             services.AddSingleton<FilePathPrinter>((sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase ?? ""));
 
+            services.AddSingleton<ExpansionsPrep>();
+
             // Merge the overrides into the service collection.
             serviceOverrides?.Invoke(services);
         });
@@ -208,7 +210,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             {
                 services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
             }
-            services.AddSingleton<ExpansionsPrep>(); // TODO does this belong here?
 
         });
 
