@@ -3,6 +3,7 @@ using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmith.Cli.Run;
 
