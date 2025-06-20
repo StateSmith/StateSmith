@@ -28,14 +28,23 @@ using StateSmith.Output.Gil.CSharp;
 namespace StateSmith.Runner;
 
 
+/// <summary>
+/// Defines a builder interface for creating an <see cref="IServiceProvider"/> with a fluent API.
+/// This interface allows for the configuration of services in a service collection and the construction of an <see cref="IServiceProvider"/> instance.
+/// In general it should be preferred over using the IHostBuilder directly.
+/// </summary>
+/// <typeparam name="ReturnType">Must be a subclass of <see cref="IServiceProviderBuilder{ReturnType}"/></typeparam>
 // TODO remove IDisposable from IServiceProviderBuilder once I am no longer calling Build inside SmRunner
-// TODO doc comments to explain these builders
 public interface IServiceProviderBuilder<ReturnType> : IDisposable
 {
     public abstract ReturnType WithServices(Action<IServiceCollection> services);
     public abstract IServiceProvider Build();
 }
 
+/// <summary>
+/// Defines a builder interface for creating a service provider with configuration options specific to SmRunner.
+/// This interface extends <see cref="IServiceProviderBuilder{ReturnType}"/> to include methods for configuring runner settings and render configurations.
+/// </summary>
 // TODO this name is really unwieldy to use everywhere
 public interface IConfigServiceProviderBuilder : IServiceProviderBuilder<IConfigServiceProviderBuilder>
 {
