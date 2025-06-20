@@ -27,11 +27,26 @@ using StateSmith.Output.Gil.CSharp;
 
 namespace StateSmith.Runner;
 
+
+// TODO do I need the interfaces?
+public interface IServiceProviderBuilder
+{
+    public abstract IServiceProviderBuilder WithServices(Action<IServiceCollection> services);
+    public abstract IServiceProvider Build();
+}
+
+public interface IConfigServiceProviderBuilder : IServiceProviderBuilder
+{
+    public abstract IConfigServiceProviderBuilder WithRunnerSettings(RunnerSettings settings);
+    public abstract IConfigServiceProviderBuilder WithRenderConfig(RenderConfigAllVars renderConfigAllVars, IRenderConfig iRenderConfig);
+}
+
 /// <summary>
 /// Dependency Injection Service Provider
 /// </summary>
 
-public class DiServiceProvider : IDisposable
+
+public class DiServiceProvider : IDisposable, IServiceProviderBuilder
 {
     // Helper to resolve a service by id from a type map
     private static TService ResolveServiceFromRunnerSettings<TService, TId>(IServiceProvider sp, Func<RunnerSettings, TId> idSelector, IReadOnlyDictionary<TId, Type> typeMap)
@@ -61,7 +76,7 @@ public class DiServiceProvider : IDisposable
 
     public void SetupAsDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
-        hostBuilder.ConfigureServices((services) =>
+        WithServices((services) =>
         {
             AddDefaults(services);
 
@@ -149,9 +164,10 @@ public class DiServiceProvider : IDisposable
     }
 
     // TODO remove
-    public void AddConfiguration(Action<IServiceCollection> services)
+    public IServiceProviderBuilder WithServices(Action<IServiceCollection> services)
     {
         hostBuilder.ConfigureServices(services);
+        return this;
     }
 
     // TODO remove
@@ -165,9 +181,10 @@ public class DiServiceProvider : IDisposable
     /// <summary>
     /// Can only be done once. Limitation of lib.
     /// </summary>
-    public void Build()
+    public IServiceProvider Build()
     {
         host = hostBuilder.Build(); // this will throw an exception if already built
+        return host.Services;
     }
 
     private static void AddDefaults(IServiceCollection services)
@@ -264,7 +281,7 @@ public class DiServiceProvider : IDisposable
         { AlgorithmId.Balanced1, typeof(AlgoBalanced1) },
         { AlgorithmId.Balanced2, typeof(AlgoBalanced2) }
     };
-    
+
     Dictionary<TranspilerId, Type> IAUTOVARSPARSER_TYPES = new Dictionary<TranspilerId, Type>
     {
         { TranspilerId.Default, typeof(CLikeAutoVarsParser) },

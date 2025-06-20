@@ -196,7 +196,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     // TODO move DI out of SmRunner
     internal static void SetupDiProvider(DiServiceProvider di, RenderConfigAllVars renderConfigAllVars, RunnerSettings settings, IRenderConfig iRenderConfig)
     {
-        di.AddConfiguration((services) =>
+        di.WithServices((services) =>
         {
             // Singleton configuration
             services.AddSingleton(settings.drawIoSettings);
@@ -218,10 +218,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton<ExpansionsPrep>();
             services.AddSingleton<FilePathPrinter>( (sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase.ThrowIfNull()));
             services.AddSingleton(settings.algoBalanced1);
-
-            // Scoped configuration
-            // TODO move to a separate configuration for clarity
-            // TODO remove scoping, it's no longer needed. Perhaps we can use a factory instead or transient services.
             services.AddSingleton<SmRunnerInternal>();
         });
     }
