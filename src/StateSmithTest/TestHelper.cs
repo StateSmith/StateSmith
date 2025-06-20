@@ -9,6 +9,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using StateSmith.Output.Algos.Balanced1;
 
 namespace StateSmithTest;
 
@@ -51,8 +52,8 @@ public class TestHelper
 
         try
         {
-            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceOverrides:(services)=>
-            { 
+            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceOverrides: (services) =>
+            {
                 services.AddSingleton<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
                 services.AddSingleton<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
             });
@@ -91,6 +92,23 @@ public class TestHelper
         {
             File.Delete(tempFilePath);
         }
+    }
+
+    public static InputSmBuilder CreateInputSmBuilder(Action<IServiceCollection>? serviceOverrides = null)
+    {
+        SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
+
+        var sp = DiServiceProvider.CreateDefault(serviceOverrides);
+        sp.Build();
+
+        var diagramToSmConverter = sp.GetServiceOrCreateInstance();
+        var transformer = sp.GetServiceOrCreateInstance();
+        var mangler = sp.GetInstanceOf<INameMangler>();
+        var drawIoConverter = sp.GetServiceOrCreateInstance();
+        var stateMachineProvider = sp.GetServiceOrCreateInstance();
+        var diagramFilePathProvider = sp.GetInstanceOf<DiagramFilePathProvider>();
+
+        return new InputSmBuilder(transformer, diagramToSmConverter, mangler, drawIoConverter, sp, stateMachineProvider, diagramFilePathProvider);
     }
 
     public static FieldInfo[] GetTypeFields<T>()

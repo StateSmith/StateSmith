@@ -2,6 +2,7 @@
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.Output.Gil;
 
@@ -19,20 +20,19 @@ public class GilFileTestHelper
 
         sm.variables += "bool b;";
 
-        void SetupAction(DiServiceProvider sp)
+        InputSmBuilder inputSmBuilder = TestHelper.CreateInputSmBuilder(serviceOverrides: (services) =>
         {
-            sp.AddSingletonT(new RenderConfigBaseVars()
+            services.AddSingleton(new RenderConfigBaseVars()
             {
                 VariableDeclarations = "//This is super cool!\nx: 0,"
             });
 
-            sp.AddSingletonT(new AlgoBalanced1Settings()
+            services.AddSingleton(new AlgoBalanced1Settings()
             {
                 skipClassIndentation = skipIndentation,
             });
-        }
+        });
 
-        InputSmBuilder inputSmBuilder = new(SetupAction);
         inputSmBuilder.SetStateMachineRoot(sm);
         inputSmBuilder.FinishRunning();
 
