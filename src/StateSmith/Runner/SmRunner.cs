@@ -24,7 +24,11 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// Dependency Injection Service Provider
     /// </summary>
     /// TODO probably remove DiServiceProvider, should just use MS DI classes directly
+    [Obsolete("Use IServiceProvider instead.")]
     readonly DiServiceProvider diServiceProvider;
+
+    // TODO remove ? once it's guaranteed to be non-null
+    private IServiceProvider? serviceProvider;
 
     readonly RunnerSettings settings;
 
@@ -105,7 +109,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
 
         PrepareBeforeRun();
-        SmRunnerInternal smRunnerInternal = diServiceProvider.GetRequiredService<SmRunnerInternal>();
+        SmRunnerInternal smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>();
         smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
 
         // Wrap in try finally so that we can ensure that the service provider is disposed which will
@@ -184,6 +188,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         AlgoOrTranspilerUpdated();
         diServiceProvider.Build(); // TODO move this higher so DI is available during the prediagram settings reading
+        serviceProvider = diServiceProvider.ServiceProvider.GetRequiredService<IServiceProvider>();
     }
 
     // TODO move DI out of SmRunner
@@ -262,7 +267,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     internal void PrepareBeforeRun()
     {
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
-        OutputInfo outputInfo = diServiceProvider.GetInstanceOf<OutputInfo>();
+        OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
         outputInfo.outputDirectory = settings.outputDirectory.ThrowIfNull();
     }
 
@@ -271,7 +276,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     public IExperimentalAccess GetExperimentalAccess() => this;
     DiServiceProvider IExperimentalAccess.DiServiceProvider => diServiceProvider;
-    IServiceProvider IExperimentalAccess.IServiceProvider => diServiceProvider.GetRequiredService<IServiceProvider>();
+    IServiceProvider IExperimentalAccess.IServiceProvider => serviceProvider;
     RunnerSettings IExperimentalAccess.Settings => settings;
     InputSmBuilder IExperimentalAccess.InputSmBuilder => diServiceProvider.GetServiceOrCreateInstance();
 

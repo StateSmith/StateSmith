@@ -98,10 +98,10 @@ public class TestHelper
     {
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
 
-        var sp = DiServiceProvider.CreateDefault(serviceOverrides);
-        sp.Build();
+        var di = DiServiceProvider.CreateDefault(serviceOverrides);
+        di.Build();
 
-        return sp.GetRequiredService<IServiceProvider>();
+        return di.ServiceProvider.GetRequiredService<IServiceProvider>();
     }
 
     public static FieldInfo[] GetTypeFields<T>()

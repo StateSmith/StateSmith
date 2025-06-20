@@ -57,6 +57,8 @@ public class DiServiceProvider : IDisposable
         return sp;
     }
 
+    public IServiceProvider ServiceProvider => host.ThrowIfNull().Services;
+
     public void SetupAsDefault(Action<IServiceCollection> serviceOverrides = null)
     {
         hostBuilder.ConfigureServices((services) =>
@@ -214,20 +216,6 @@ public class DiServiceProvider : IDisposable
         public static implicit operator InputSmBuilder(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(me.host.Services);
     }
 
-    /// <summary>
-    /// Should ideally only be used by code that sets up Service Provider and can't use dependency injection.
-    /// Otherwise, it can hide dependencies. See https://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/ .
-    /// </summary>
-    /// <returns></returns>
-    public T GetInstanceOf<T>()
-    {
-        return ActivatorUtilities.GetServiceOrCreateInstance<T>(host.ThrowIfNull().Services);
-    }
-
-    public T GetRequiredService<T>()
-    {
-        return host.ThrowIfNull().Services.GetRequiredService<T>();
-    }
 
     /// <summary>
     /// Should ideally only be used by code that sets up Service Provider and can't use dependency injection.
