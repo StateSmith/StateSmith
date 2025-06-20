@@ -30,9 +30,9 @@ namespace StateSmith.Runner;
 
 // TODO remove IDisposable from IServiceProviderBuilder once I am no longer calling Build inside SmRunner
 // TODO doc comments to explain these builders
-public interface IServiceProviderBuilder<T> : IDisposable
+public interface IServiceProviderBuilder<ReturnType> : IDisposable
 {
-    public abstract T WithServices(Action<IServiceCollection> services);
+    public abstract ReturnType WithServices(Action<IServiceCollection> services);
     public abstract IServiceProvider Build();
 }
 
