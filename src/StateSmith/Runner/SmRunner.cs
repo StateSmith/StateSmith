@@ -203,7 +203,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(settings.smDesignDescriber);
             services.AddSingleton(settings.style);
             services.AddSingleton<OutputInfo>();
-            services.AddSingleton<IOutputInfo>((s) => s.GetService<OutputInfo>().ThrowIfNull());
+            services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
             services.AddSingleton(renderConfigAllVars);
             services.AddSingleton(renderConfigAllVars.Base);
             services.AddSingleton(renderConfigAllVars.C);
