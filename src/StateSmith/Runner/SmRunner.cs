@@ -101,44 +101,35 @@ public class SmRunner : SmRunner.IExperimentalAccess
     {
         // TODO remove SmRunner direct use of DiServiceProvider, use IServiceProvider instead
         // TODO move DI finalization out of SmRunner
-        
 
-        // TODO remove the scoping, I don't think it is needed anymore.
-        // We use a scope to resolve dependencies that can't be finalized at 
-        // startup but instead depend on information that arrives later, such
-        // as configuration information from the diagram file.
-        IServiceScopeFactory serviceScopeFactory = diServiceProvider.GetRequiredService<IServiceScopeFactory>();
-        using (IServiceScope scope = serviceScopeFactory.CreateScope())
+        SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
+
+        PrepareBeforeRun();
+        SmRunnerInternal smRunnerInternal = diServiceProvider.GetRequiredService<SmRunnerInternal>();
+        smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
+
+        // Wrap in try finally so that we can ensure that the service provider is disposed which will
+        // dispose of objects that it created.
+        // TODO remove
+        try
         {
-            SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
+            PrintAndThrowIfPreDiagramSettingsException();
 
-            PrepareBeforeRun();
-            SmRunnerInternal smRunnerInternal = scope.ServiceProvider.GetService<SmRunnerInternal>();
-            smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
+            if (settings.transpilerId == TranspilerId.NotYetSet)
+                throw new ArgumentException("TranspilerId must be set before running code generation");
 
-            // Wrap in try finally so that we can ensure that the service provider is disposed which will
-            // dispose of objects that it created.
-            // TODO remove
-            try
-            {
-                PrintAndThrowIfPreDiagramSettingsException();
-
-                if (settings.transpilerId == TranspilerId.NotYetSet)
-                    throw new ArgumentException("TranspilerId must be set before running code generation");
-
-                smRunnerInternal.Run();
-            }
-            finally
-            {
-                diServiceProvider.Dispose();
-            }
-
-            if (smRunnerInternal.exception != null)
-            {
-                throw new FinishedWithFailureException();
-            }
+            smRunnerInternal.Run();
+        }
+        finally
+        {
+            diServiceProvider.Dispose();
         }
 
+        if (smRunnerInternal.exception != null)
+        {
+            throw new FinishedWithFailureException();
+        }
+    
     }
 
     /// <summary>
@@ -224,7 +215,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             // Scoped configuration
             // TODO move to a separate configuration for clarity
             // TODO remove scoping, it's no longer needed. Perhaps we can use a factory instead or transient services.
-            services.AddScoped<SmRunnerInternal>();
+            services.AddSingleton<SmRunnerInternal>();
         });
     }
 

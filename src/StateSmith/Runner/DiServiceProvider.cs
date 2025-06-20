@@ -170,19 +170,16 @@ public class DiServiceProvider : IDisposable
 
     private static void AddDefaults(IServiceCollection services)
     {
-        // TODO undo the scoping, I don't think we need this
-        // TODO move scoped declarations elsewhere?
-        // RenderConfigAllVars is essentially a singleton in the scope.
-        // RenderConfigAllVars.Base, .C, .Cpp, etc. are all obtained from that singleton
-        services.AddScoped<RenderConfigAllVars, RenderConfigAllVars>();
-        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().Base);
-        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().C);
-        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().Cpp);
-        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().CSharp);
-        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().JavaScript);
-        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().Java);
-        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().Python);
-        services.AddScoped(sp => sp.GetService<RenderConfigAllVars>().TypeScript);
+        // RenderConfigAllVars.Base, .C, .Cpp, etc. are all obtained from RenderConfigAllVars.
+        services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
+        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().Base);
+        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().C);
+        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().Cpp);
+        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().CSharp);
+        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().JavaScript);
+        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().Java);
+        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().Python);
+        services.AddSingleton(sp => sp.GetService<RenderConfigAllVars>().TypeScript);
 
 
         services.AddSingleton(new DrawIoSettings());
