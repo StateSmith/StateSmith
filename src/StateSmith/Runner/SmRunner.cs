@@ -52,7 +52,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
     /// <param name="enablePDBS">User code should leave unspecified for now.</param>
     /// // TODO replace serviceOverrides with an IServiceProvider. That way we can use the same IServiceProvider in test helpers like GilTestHelper
-    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, Action<IServiceCollection>? serviceOverrides = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
+    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, IConfigServiceProviderBuilder? serviceProviderBuilder = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
 
@@ -62,7 +62,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.callerFilePath = callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
-        serviceProviderBuilder = IConfigServiceProviderBuilder.CreateDefault(serviceOverrides);
+        this.serviceProviderBuilder = serviceProviderBuilder ?? IConfigServiceProviderBuilder.CreateDefault();
         SetupDependencyInjectionAndRenderConfigs();
     }
 
@@ -76,15 +76,15 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
     /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
     /// <param name="enablePDBS">User could should leave unspecified for now.</param>
-    /// <param name="serviceOverrides">Optional dependency injection overrides</param>
+    /// <param name="serviceProviderBuilder">Optional builder for the IServiceProvider</param>
     public SmRunner(string diagramPath,
         IRenderConfig? renderConfig = null,
         string? outputDirectory = null,
         AlgorithmId algorithmId = AlgorithmId.Default,
         TranspilerId transpilerId = TranspilerId.Default,
-        Action<IServiceCollection>? serviceOverrides = null,
+        IConfigServiceProviderBuilder? serviceProviderBuilder = null,
         [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null, bool enablePDBS = true)
-    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceOverrides, callerFilePath: callingFilePath, enablePDBS: enablePDBS)
+    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProviderBuilder, callerFilePath: callingFilePath, enablePDBS: enablePDBS)
     {
     }
 

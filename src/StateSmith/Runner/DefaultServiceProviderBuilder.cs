@@ -36,6 +36,7 @@ public interface IServiceProviderBuilder : IDisposable
     public abstract IServiceProvider Build();
 }
 
+// TODO this name is really unwieldy to use everywhere
 public interface IConfigServiceProviderBuilder : IServiceProviderBuilder
 {
     // TODO remove serviceOverrides from CreateDefault

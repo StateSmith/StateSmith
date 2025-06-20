@@ -20,10 +20,11 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void NormalBehaviorHasToStringFunctions()
     {
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId:TranspilerId.CSharp, serviceOverrides: (services) =>
+        var spBuilder = IConfigServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId:TranspilerId.CSharp, serviceProviderBuilder: spBuilder);
         runner.Settings.propagateExceptions = true;
         runner.Run();
 
@@ -35,10 +36,11 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void RemoveEventIdToString()
     {
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceOverrides: (services) =>
+        var spBuilder = IConfigServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProviderBuilder: spBuilder);
         runner.Settings.propagateExceptions = true;
         runner.Settings.algoBalanced1.outputEventIdToStringFunction = false; // Here's the setting you want
         runner.Run();
@@ -51,10 +53,11 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void RemoveStateIdToString()
     {
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceOverrides: (services) =>
+        var spBuilder = IConfigServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProviderBuilder: spBuilder);
         runner.Settings.propagateExceptions = true;
         runner.Settings.algoBalanced1.outputStateIdToStringFunction = false; // Here's the setting you want
         runner.Run();

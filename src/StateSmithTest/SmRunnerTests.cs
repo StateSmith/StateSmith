@@ -16,10 +16,11 @@ public class SmRunnerTests
         string tempPath = Path.GetTempPath();
         StringBuilderConsolePrinter fakeConsole = new();
 
-        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceOverrides: (services) =>
+        var spBuilder = IConfigServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
         });
+        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProviderBuilder: spBuilder);
         runner.Run();
 
         // have to modify output so that test doesn't rely on temp path because that will vary
@@ -54,10 +55,11 @@ public class SmRunnerTests
         string tempPath = Path.GetTempPath();
         StringBuilderConsolePrinter fakeConsole = new();
 
-        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceOverrides: (services) =>
+        var spBuilder = IConfigServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
         });
+        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProviderBuilder: spBuilder);
         runner.Settings.filePathPrintBase = tempPath;
         runner.Run();
 

@@ -15,12 +15,13 @@ public class Ex1
         // settings for your custom code generator
         MyCodeGenSettings myCodeGenSettings = new(outputFileName: "my_output.txt");
 
-        SmRunner runner = new(diagramPath: "Ex1.drawio.svg", serviceOverrides: (services) =>
+        var spBuilder = IConfigServiceProviderBuilder.CreateDefault((services) =>
         {
         // register your custom code generator (and any custom dependencies) for Dependency Injection
             services.AddSingleton<ICodeGenRunner, MyCodeGenRunner>();
             services.AddSingleton(myCodeGenSettings);
         });
+        SmRunner runner = new(diagramPath: "Ex1.drawio.svg", serviceProviderBuilder: spBuilder);
 
 
         // adjust settings because we are unit testing. Normally wouldn't do below.
