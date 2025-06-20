@@ -46,7 +46,8 @@ public interface IConfigServiceProviderBuilder : IServiceProviderBuilder
 /// </summary>
 
 
-public class DiServiceProvider : IDisposable, IServiceProviderBuilder
+// TODO rename ConfigServiceProviderBuilder
+public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
 {
     // Helper to resolve a service by id from a type map
     private static TService ResolveServiceFromRunnerSettings<TService, TId>(IServiceProvider sp, Func<RunnerSettings, TId> idSelector, IReadOnlyDictionary<TId, Type> typeMap)
@@ -74,11 +75,16 @@ public class DiServiceProvider : IDisposable, IServiceProviderBuilder
 
     public IServiceProvider ServiceProvider => host.ThrowIfNull().Services;
 
+    // TODO remove or make private
     public void SetupAsDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
         WithServices((services) =>
         {
-            AddDefaults(services);
+            services.AddSingleton(new DrawIoSettings());
+            services.AddSingleton(new CodeStyleSettings());
+            services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
+            services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));
+            services.AddSingleton(new SmDesignDescriberSettings());
 
             services.AddSingleton<DiServiceProvider>(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
             services.AddSingleton<SmRunnerInternal>();
@@ -161,6 +167,8 @@ public class DiServiceProvider : IDisposable, IServiceProviderBuilder
             // Merge the overrides into the service collection.
             serviceOverrides?.Invoke(services);
         });
+
+        WithRenderConfig(null, null);
     }
 
     // TODO remove
@@ -187,26 +195,47 @@ public class DiServiceProvider : IDisposable, IServiceProviderBuilder
         return host.Services;
     }
 
-    private static void AddDefaults(IServiceCollection services)
+    public IConfigServiceProviderBuilder WithRunnerSettings(RunnerSettings settings)
     {
-        // RenderConfigAllVars.Base, .C, .Cpp, etc. are all obtained from RenderConfigAllVars.
-        services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
-        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Base);
-        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().C);
-        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Cpp);
-        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().CSharp);
-        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().JavaScript);
-        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Java);
-        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Python);
-        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
-
-
-        services.AddSingleton(new DrawIoSettings());
-        services.AddSingleton(new CodeStyleSettings());
-        services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
-        services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));
-        services.AddSingleton(new SmDesignDescriberSettings());
+        WithServices(services =>
+        {
+            services.AddSingleton<RunnerSettings>(settings);
+        });   
+        
+        return this;
     }
+
+    public IConfigServiceProviderBuilder WithRenderConfig(RenderConfigAllVars? renderConfigAllVars = null, IRenderConfig? iRenderConfig = null)
+    {
+        // TODO do I need iRenderConfig?
+        // TODO remove ? from iRenderConfig
+
+        WithServices(services =>
+        {
+            // RenderConfigAllVars.Base, .C, .Cpp, etc. are all obtained from RenderConfigAllVars.
+            if (renderConfigAllVars != null)
+            {
+                services.AddSingleton<RenderConfigAllVars>(renderConfigAllVars);
+            }
+            else
+            {
+                services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
+            }
+
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Base);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().C);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Cpp);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().CSharp);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().JavaScript);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Java);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Python);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
+        });
+
+        return this;
+    }
+
+
 
     public void Dispose()
     {
