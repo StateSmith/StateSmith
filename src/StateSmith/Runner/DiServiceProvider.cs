@@ -111,8 +111,8 @@ public class DiServiceProvider : IDisposable
                 ResolveServiceFromRunnerSettings<IExpansionVarsPathProvider, TranspilerId>(sp, rs => rs.transpilerId, IEXPANSIONVARSPATHPROVIDER_TYPES)
             );
 
-            services.AddSingleton<NameMangler>(sp =>
-                ResolveServiceFromRunnerSettings<NameMangler, TranspilerId>(sp, rs => rs.transpilerId, NAMEMANGLER_TYPES)
+            services.AddSingleton<INameMangler>(sp =>
+                ResolveServiceFromRunnerSettings<INameMangler, TranspilerId>(sp, rs => rs.transpilerId, INAMEMANGLER_TYPES)
             );
 
             services.AddSingleton<IAutoVarsParser>(sp =>
@@ -131,7 +131,7 @@ public class DiServiceProvider : IDisposable
             // because it keeps trying to resolve NameMangler over and over. I need some way to 
             // terminate the recursion. One way is to make NameMangler into an interface and 
             // move everything in it into a subclass.
-            services.AddSingleton<NameMangler>(); // TODO remove
+            // services.AddSingleton<NameMangler>(); // TODO remove
 
             services.AddSingleton<PseudoStateHandlerBuilder>();
             services.AddSingleton<EnumBuilder>();
@@ -291,7 +291,7 @@ public class DiServiceProvider : IDisposable
         { TranspilerId.TypeScript, typeof(CSharpExpansionVarsPathProvider) }
     };
 
-    Dictionary<TranspilerId, Type> NAMEMANGLER_TYPES = new Dictionary<TranspilerId, Type>
+    Dictionary<TranspilerId, Type> INAMEMANGLER_TYPES = new Dictionary<TranspilerId, Type>
     {
         { TranspilerId.Default, typeof(NameMangler) },
         { TranspilerId.Cpp, typeof(CamelCaseNameMangler) },

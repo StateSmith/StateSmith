@@ -30,7 +30,7 @@ public class SimWebGenerator
     TextWriter mocksWriter = new StringWriter();
     SingleFileCapturer fileCapturer = new();
     StateMachineProvider stateMachineProvider;
-    NameMangler nameMangler;
+    INameMangler nameMangler;
     Regex historyGilRegex;
 
     /// <summary>

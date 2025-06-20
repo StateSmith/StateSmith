@@ -17,7 +17,7 @@ public class AlgoBalanced1 : IGilAlgo
     protected readonly AlgoBalanced1Settings settings;
     protected readonly EnumBuilder enumBuilder;
     protected readonly RenderConfigBaseVars renderConfig;
-    protected readonly NameMangler mangler;
+    protected readonly INameMangler mangler;
     protected readonly OutputFile file;
     protected readonly EventHandlerBuilder eventHandlerBuilder;
     protected readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
@@ -32,7 +32,7 @@ public class AlgoBalanced1 : IGilAlgo
 
     protected static string ConstMarker => ""; // todo_low - put in an attribute like [ro] that will end up as `const` for languages that support that
 
-    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigBaseVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter)
+    public AlgoBalanced1(INameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigBaseVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter)
     {
         this.mangler = mangler;
         this.file = new OutputFile(styler, new StringBuilder());

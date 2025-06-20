@@ -15,10 +15,10 @@ public class UserAddEventIdToString
     public class MyCodeFileWriter : ICodeFileWriter
     {
         StateMachineProvider smProvider;
-        NameMangler mangler;
+        INameMangler mangler;
         CodeStyleSettings codeStyle;
 
-        public MyCodeFileWriter(StateMachineProvider smProvider, NameMangler mangler, CodeStyleSettings codeStyle)
+        public MyCodeFileWriter(StateMachineProvider smProvider, INameMangler mangler, CodeStyleSettings codeStyle)
         {
             this.smProvider = smProvider;
             this.mangler = mangler;

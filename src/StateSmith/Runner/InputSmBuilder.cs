@@ -38,12 +38,12 @@ public class InputSmBuilder
     internal DiagramToSmConverter diagramToSmConverter; // todo - rework unit test code that relies on this so that it can be private https://github.com/StateSmith/StateSmith/issues/97
     internal DiServiceProvider sp; // todo - rework unit test code that relies on this so we can remove it https://github.com/StateSmith/StateSmith/issues/97
 
-    readonly NameMangler mangler;
+    readonly INameMangler mangler;
     readonly DrawIoToSmDiagramConverter drawIoConverter;
     readonly StateMachineProvider stateMachineProvider;
     readonly DiagramFilePathProvider diagramFilePathProvider;
 
-    public InputSmBuilder(SmTransformer transformer, DiagramToSmConverter diagramToSmConverter, NameMangler mangler, DrawIoToSmDiagramConverter converter, DiServiceProvider sp, StateMachineProvider stateMachineProvider, DiagramFilePathProvider diagramFilePathProvider)
+    public InputSmBuilder(SmTransformer transformer, DiagramToSmConverter diagramToSmConverter, INameMangler mangler, DrawIoToSmDiagramConverter converter, DiServiceProvider sp, StateMachineProvider stateMachineProvider, DiagramFilePathProvider diagramFilePathProvider)
     {
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
 
@@ -68,7 +68,7 @@ public class InputSmBuilder
         sp.Build();
         diagramToSmConverter = sp.GetServiceOrCreateInstance();
         transformer = sp.GetServiceOrCreateInstance();
-        mangler = sp.GetInstanceOf<NameMangler>();
+        mangler = sp.GetInstanceOf<INameMangler>();
         drawIoConverter = sp.GetServiceOrCreateInstance();
         stateMachineProvider = sp.GetServiceOrCreateInstance();
         diagramFilePathProvider = sp.GetInstanceOf<DiagramFilePathProvider>();

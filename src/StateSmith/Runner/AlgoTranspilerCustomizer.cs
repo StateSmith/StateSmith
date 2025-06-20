@@ -56,7 +56,6 @@ public class AlgoTranspilerCustomizer
 
             case TranspilerId.CSharp:
                 {
-                    sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>(); // TODO fix spec tests and remove
                     algoBalanced1Settings.skipClassIndentation = false;
                 }
                 break;

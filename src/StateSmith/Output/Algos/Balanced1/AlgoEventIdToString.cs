@@ -6,9 +6,9 @@ namespace StateSmith.Output.Algos.Balanced1;
 
 public class AlgoEventIdToString : IAlgoEventIdToString
 {
-    protected readonly NameMangler mangler;
+    protected readonly INameMangler mangler;
 
-    public AlgoEventIdToString(NameMangler mangler)
+    public AlgoEventIdToString(INameMangler mangler)
     {
         this.mangler = mangler;
     }

@@ -16,11 +16,11 @@ namespace StateSmith.SmGraph;
 /// </summary>
 public class HistoryProcessor
 {
-    readonly NameMangler mangler;
+    readonly INameMangler mangler;
     readonly IExpansionVarsPathProvider expansionVarsPathProvider;
     private StateMachine? sm;
 
-    public HistoryProcessor(NameMangler mangler, IExpansionVarsPathProvider expansionVarsPathProvider)
+    public HistoryProcessor(INameMangler mangler, IExpansionVarsPathProvider expansionVarsPathProvider)
     {
         this.mangler = mangler;
         this.expansionVarsPathProvider = expansionVarsPathProvider;
