@@ -34,8 +34,6 @@ public class AlgoTranspilerCustomizer
             case TranspilerId.Default:
             case TranspilerId.C99:
                 {
-                    // TODO remove. causes spec2 tests to fail
-                    sp.AddSingletonT<IGilTranspiler, GilToC99>();
                     algoBalanced1Settings.outputSwitchDefault = true;
                 }
                 break;
