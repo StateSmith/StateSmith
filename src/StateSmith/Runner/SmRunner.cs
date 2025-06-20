@@ -62,7 +62,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.callerFilePath = callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
-        diServiceProvider = DiServiceProvider.CreateDefault(serviceOverrides);
+        diServiceProvider = IConfigServiceProviderBuilder.CreateDefault(serviceOverrides);
         SetupDependencyInjectionAndRenderConfigs();
     }
 

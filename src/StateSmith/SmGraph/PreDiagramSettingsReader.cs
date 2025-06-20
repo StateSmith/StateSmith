@@ -28,11 +28,12 @@ public class PreDiagramSettingsReader
     /// </summary>
     public void Process()
     {
-        var di = DiServiceProvider.CreateDefault();
-        SmRunner.SetupDiProvider(di, renderConfigAllVars, smRunnerSettings, renderConfig);
+        var di = IConfigServiceProviderBuilder.CreateDefault()
+            .WithRenderConfig(renderConfigAllVars, renderConfig)
+            .WithRunnerSettings(smRunnerSettings)
+            .Build();
 
-        di.Build();
-        var inputSmBuilder = di.ServiceProvider.GetRequiredService<InputSmBuilder>();
+        var inputSmBuilder = di.GetRequiredService<InputSmBuilder>();
 
         ModifyTransformationPipeline(inputSmBuilder);
 

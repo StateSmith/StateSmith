@@ -39,6 +39,14 @@ public interface IServiceProviderBuilder : IDisposable
 
 public interface IConfigServiceProviderBuilder : IServiceProviderBuilder
 {
+    // TODO remove serviceOverrides from CreateDefault
+    public static IConfigServiceProviderBuilder CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
+    {
+        DiServiceProvider sp = new();
+        sp.SetupAsDefault(serviceOverrides); // TODO replace with WithServices
+        return sp;
+    }
+
     public abstract IConfigServiceProviderBuilder WithRunnerSettings(RunnerSettings settings);
     public abstract IConfigServiceProviderBuilder WithRenderConfig(RenderConfigAllVars renderConfigAllVars, IRenderConfig iRenderConfig);
 }
@@ -66,13 +74,6 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
     public DiServiceProvider()
     {
         hostBuilder = Host.CreateDefaultBuilder();
-    }
-
-    public static DiServiceProvider CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
-    {
-        DiServiceProvider sp = new();
-        sp.SetupAsDefault(serviceOverrides);
-        return sp;
     }
 
     public IServiceProvider ServiceProvider => host.ThrowIfNull().Services;
@@ -205,10 +206,10 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
             services.AddSingleton<OutputInfo>(); // TODO This seems like it doesn't belong here
             services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
             services.AddSingleton(settings); // TODO is this duplicative of settings above?
-            services.AddSingleton<FilePathPrinter>( (sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase.ThrowIfNull())); // TODO replace getrequiredservice with settings
+            services.AddSingleton<FilePathPrinter>((sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase.ThrowIfNull())); // TODO replace getrequiredservice with settings
             services.AddSingleton(settings.algoBalanced1);
         });
-        
+
         return this;
     }
 
@@ -238,7 +239,7 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Python);
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
 
-            if(iRenderConfig != null)
+            if (iRenderConfig != null)
             {
                 services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
             }
