@@ -30,6 +30,7 @@ namespace StateSmith.Runner;
 
 // TODO do I need the interfaces?
 // TODO remove IDisposable from IServiceProviderBuilder once I am no longer calling Build inside SmRunner
+// TODO doc comments to explain these builders
 public interface IServiceProviderBuilder : IDisposable
 {
     public abstract IServiceProviderBuilder WithServices(Action<IServiceCollection> services);
@@ -187,12 +188,9 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
     }
 
 
-    /// <summary>
-    /// Can only be done once. Limitation of lib.
-    /// </summary>
     public IServiceProvider Build()
     {
-        host = hostBuilder.Build(); // this will throw an exception if already built
+        host = hostBuilder.Build();
         return host.Services;
     }
 
@@ -201,7 +199,15 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
         WithServices(services =>
         {
             services.AddSingleton<RunnerSettings>(settings);
-        });   
+            services.AddSingleton(settings.drawIoSettings);
+            services.AddSingleton(settings.smDesignDescriber);
+            services.AddSingleton(settings.style);
+            services.AddSingleton<OutputInfo>(); // TODO This seems like it doesn't belong here
+            services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
+            services.AddSingleton(settings); // TODO is this duplicative of settings above?
+            services.AddSingleton<FilePathPrinter>( (sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase.ThrowIfNull())); // TODO replace getrequiredservice with settings
+            services.AddSingleton(settings.algoBalanced1);
+        });
         
         return this;
     }
@@ -231,6 +237,13 @@ public class DiServiceProvider : IDisposable, IConfigServiceProviderBuilder
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Java);
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Python);
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
+
+            if(iRenderConfig != null)
+            {
+                services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
+            }
+            services.AddSingleton<ExpansionsPrep>(); // TODO does this belong here?
+
         });
 
         return this;

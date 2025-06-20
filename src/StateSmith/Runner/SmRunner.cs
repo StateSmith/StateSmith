@@ -195,30 +195,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
     // TODO move DI out of SmRunner
     internal static void SetupDiProvider(IConfigServiceProviderBuilder di, RenderConfigAllVars renderConfigAllVars, RunnerSettings settings, IRenderConfig iRenderConfig)
     {
-        di.WithServices((services) =>
-        {
-            // Singleton configuration
-            services.AddSingleton(settings.drawIoSettings);
-            services.AddSingleton(settings.smDesignDescriber);
-            services.AddSingleton(settings.style);
-            services.AddSingleton<OutputInfo>();
-            services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
-            services.AddSingleton(renderConfigAllVars);
-            services.AddSingleton(renderConfigAllVars.Base);
-            services.AddSingleton(renderConfigAllVars.C);
-            services.AddSingleton(renderConfigAllVars.Cpp);
-            services.AddSingleton(renderConfigAllVars.CSharp);
-            services.AddSingleton(renderConfigAllVars.JavaScript);
-            services.AddSingleton(renderConfigAllVars.TypeScript);
-            services.AddSingleton(renderConfigAllVars.Java);
-            services.AddSingleton(renderConfigAllVars.Python);
-            services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
-            services.AddSingleton(settings); // todo_low - split settings up more
-            services.AddSingleton<ExpansionsPrep>();
-            services.AddSingleton<FilePathPrinter>( (sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase.ThrowIfNull()));
-            services.AddSingleton(settings.algoBalanced1);
-            services.AddSingleton<SmRunnerInternal>();
-        });
+        di
+            .WithRenderConfig(renderConfigAllVars, iRenderConfig)
+            .WithRunnerSettings(settings);
     }
 
     internal static void ReadRenderConfigObjectToVars(RenderConfigAllVars renderConfigAllVars, IRenderConfig iRenderConfig, bool autoDeIndentAndTrimRenderConfigItems)
