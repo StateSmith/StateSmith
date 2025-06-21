@@ -19,8 +19,6 @@ public class SharedCompilationFixture
     {
         var action = (SmRunner runner) =>
         {
-            // runner.Settings.transpilerId = TranspilerId.Python;
-            // runner.AlgoOrTranspilerUpdated();
             runner.Settings.outputGilCodeAlways = true;
 
             // NOTE!!! This runs before any other transformations so we can be confident that the code we are modifying is in the original form

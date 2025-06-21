@@ -25,13 +25,7 @@ public class SharedCompilationFixture
             System.IO.Directory.Delete(binDebugPath, recursive: true);
         }
 
-        var action = (SmRunner runner) =>
-        {
-            // runner.Settings.transpilerId = TranspilerId.CSharp;
-            // runner.AlgoOrTranspilerUpdated();
-        };
-
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, transpilerId: TranspilerId.CSharp);
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, transpilerId: TranspilerId.CSharp);
 
         SimpleProcess process = new()
         {

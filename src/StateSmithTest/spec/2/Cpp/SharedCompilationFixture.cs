@@ -15,13 +15,7 @@ public class SharedCompilationFixture
 
     public SharedCompilationFixture()
     {
-        var action = (SmRunner runner) =>
-        {
-            // runner.Settings.transpilerId = TranspilerId.Cpp;
-            // runner.AlgoOrTranspilerUpdated();
-        };
-
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, transpilerId: TranspilerId.Cpp);
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, transpilerId: TranspilerId.Cpp);
 
         // compile C code first
         new CCompilerMux().Compile(new CCompRequest()

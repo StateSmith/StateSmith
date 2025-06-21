@@ -16,14 +16,7 @@ public class SharedCompilationFixture
 
     public SharedCompilationFixture()
     {
-        var action = (SmRunner runner) =>
-        {
-            // runner.Settings.transpilerId = TranspilerId.Java;
-            // runner.AlgoOrTranspilerUpdated();
-            //runner.Settings.outputGilCodeAlways = true;
-        };
-
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, transpilerId: TranspilerId.Java);
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, transpilerId: TranspilerId.Java);
 
         SimpleProcess process;
 
