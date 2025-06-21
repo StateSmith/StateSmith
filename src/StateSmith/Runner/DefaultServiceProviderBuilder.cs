@@ -95,6 +95,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton<DiagramToSmConverter>();
             services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetRequiredService<DiagramToSmConverter>());
             services.AddSingleton<AlgoBalanced1Settings>();
+            services.AddSingleton<AlgoTranspilerCustomizer>();
             services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
             services.AddSingleton<IAlgoEventIdToString, AlgoEventIdToString>();
             services.AddSingleton<GilToC99Customizer>();

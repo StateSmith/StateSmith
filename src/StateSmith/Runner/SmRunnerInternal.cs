@@ -28,7 +28,7 @@ public class SmRunnerInternal
     readonly OutputInfo outputInfo;
     readonly SimWebGenerator simWebGenerator;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, SimWebGenerator simWebGenerator)
+    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, SimWebGenerator simWebGenerator, AlgoTranspilerCustomizer algoTranspilerCustomizer)
     {
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
@@ -42,7 +42,7 @@ public class SmRunnerInternal
 
         // TODO simplify this
         // Inject it and then call Customize() with no params
-        new AlgoTranspilerCustomizer().Customize(settings.algorithmId, settings.transpilerId, settings.algoBalanced1, settings.style);
+        algoTranspilerCustomizer.Customize(settings.algorithmId, settings.transpilerId, settings.algoBalanced1, settings.style);
 
     }
 
