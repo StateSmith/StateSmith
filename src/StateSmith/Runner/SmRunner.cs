@@ -62,6 +62,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
         this.serviceProviderBuilder = serviceProviderBuilder ?? IConfigServiceProviderBuilder.CreateDefault();
+
         SetupDependencyInjectionAndRenderConfigs();
     }
 
@@ -164,8 +165,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         ReadRenderConfigObjectToVars(renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 
-        SetupDiProvider(serviceProviderBuilder, renderConfigAllVars, settings, iRenderConfig);
-
         // we disable early diagram settings reading for the simulator and some tests
         if (enablePreDiagramBasedSettings)
         {
@@ -188,16 +187,15 @@ public class SmRunner : SmRunner.IExperimentalAccess
         }
 
         AlgoOrTranspilerUpdated();
-        serviceProvider = serviceProviderBuilder.Build(); // TODO move this higher so DI is available during the prediagram settings reading
+
+        // TODO move this higher so DI is available during the prediagram settings reading
+        serviceProvider = serviceProviderBuilder
+            .WithRenderConfig(renderConfigAllVars, iRenderConfig)
+            .WithRunnerSettings(settings)
+            .Build();
+
     }
 
-    // TODO move DI out of SmRunner
-    internal static void SetupDiProvider(IConfigServiceProviderBuilder di, RenderConfigAllVars renderConfigAllVars, RunnerSettings settings, IRenderConfig iRenderConfig)
-    {
-        di
-            .WithRenderConfig(renderConfigAllVars, iRenderConfig)
-            .WithRunnerSettings(settings);
-    }
 
     internal static void ReadRenderConfigObjectToVars(RenderConfigAllVars renderConfigAllVars, IRenderConfig iRenderConfig, bool autoDeIndentAndTrimRenderConfigItems)
     {
