@@ -39,6 +39,11 @@ public class SmRunnerInternal
         this.smDesignDescriber = smDesignDescriber;
         this.outputInfo = outputInfo;
         this.simWebGenerator = simWebGenerator;
+
+        // TODO simplify this
+        // Inject it and then call Customize() with no params
+        new AlgoTranspilerCustomizer().Customize(settings.algorithmId, settings.transpilerId, settings.algoBalanced1, settings.style);
+
     }
 
     public void Run()

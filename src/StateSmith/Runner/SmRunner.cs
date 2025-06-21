@@ -186,11 +186,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
             }
         }
 
-        // TODO simplify this
-        // Can I inject it and then call Customize() with no params?
-        // We're not currently injecting into SmRunner, so can I move it to SmRunnerInternal?
-        new AlgoTranspilerCustomizer().Customize(settings.algorithmId, settings.transpilerId, settings.algoBalanced1, settings.style);
-
         // TODO move this higher so DI is available during the prediagram settings reading
         serviceProvider = serviceProviderBuilder
             .WithRenderConfig(renderConfigAllVars, iRenderConfig)
