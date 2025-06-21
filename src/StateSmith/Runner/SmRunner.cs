@@ -186,7 +186,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
             }
         }
 
-        AlgoOrTranspilerUpdated();
+        // TODO simplify this
+        new AlgoTranspilerCustomizer().Customize(settings.algorithmId, settings.transpilerId, settings.algoBalanced1, settings.style);
 
         // TODO move this higher so DI is available during the prediagram settings reading
         serviceProvider = serviceProviderBuilder
@@ -221,16 +222,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         if (iRenderConfig is IRenderConfigPython rcp)
             renderConfigAllVars.Python.SetFrom(rcp, autoDeIndentAndTrimRenderConfigItems);
-    }
-
-    /// <summary>
-    /// You only need to call this if you adjust the algorithm or transpiler id after constructing a <see cref="SmRunner"/>.
-    /// Will put in some defaults appropriate for algorithm and transpiler.
-    /// </summary>
-    /// TODO remove and replace with a dynamic way to get the relevant settings?
-    private void AlgoOrTranspilerUpdated()
-    {
-        new AlgoTranspilerCustomizer().Customize( settings.algorithmId, settings.transpilerId, settings.algoBalanced1, settings.style);
     }
 
     /// <summary>
