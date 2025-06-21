@@ -18,11 +18,11 @@ public class SharedCompilationFixture
     {
         var action = (SmRunner runner) =>
         {
-            runner.Settings.transpilerId = TranspilerId.JavaScript;
-            runner.AlgoOrTranspilerUpdated();
+            // runner.Settings.transpilerId = TranspilerId.JavaScript;
+            // runner.AlgoOrTranspilerUpdated();
         };
 
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, transpilerId: TranspilerId.JavaScript);
 
         SimpleProcess process;
 

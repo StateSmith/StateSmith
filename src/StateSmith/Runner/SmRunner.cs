@@ -228,7 +228,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// Will put in some defaults appropriate for algorithm and transpiler.
     /// </summary>
     /// TODO remove and replace with a dynamic way to get the relevant settings?
-    public void AlgoOrTranspilerUpdated()
+    private void AlgoOrTranspilerUpdated()
     {
         new AlgoTranspilerCustomizer().Customize( settings.algorithmId, settings.transpilerId, settings.algoBalanced1, settings.style);
     }

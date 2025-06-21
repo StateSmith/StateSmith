@@ -23,9 +23,9 @@ public class SpecFixture
     virtual public string PostInc => "++";
     virtual public string SemiColon => ";";
 
-    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null, string semiColon = ";", string trueString = "true")
+    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null, string semiColon = ";", string trueString = "true", TranspilerId transpilerId = TranspilerId.Default)
     {
-        RunnerSettings settings = new(diagramFile: diagramFile, outputDirectory: srcDirectory);
+        RunnerSettings settings = new(diagramFile: diagramFile, outputDirectory: srcDirectory, transpilerId: transpilerId);
         settings.outputStateSmithVersionInfo = false; // too much noise in repo
 
         settings.algorithmId = Environment.GetEnvironmentVariable("STATESMITH_TEST_ALGORITHM_ID") switch
