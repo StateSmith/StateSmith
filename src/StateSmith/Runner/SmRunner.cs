@@ -51,7 +51,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="serviceOverrides">Optional dependency injection overrides</param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
     /// <param name="enablePDBS">User code should leave unspecified for now.</param>
-    /// // TODO replace serviceOverrides with an IServiceProvider. That way we can use the same IServiceProvider in test helpers like GilTestHelper
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, IConfigServiceProviderBuilder? serviceProviderBuilder = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
