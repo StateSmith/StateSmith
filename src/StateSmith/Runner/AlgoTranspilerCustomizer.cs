@@ -20,8 +20,16 @@ namespace StateSmith.Runner;
 /// </summary>
 public class AlgoTranspilerCustomizer
 {
-    // TODO move this to a more appropriate place, like the algo/balanced1 package.
-    public void Customize(AlgorithmId algorithmId, TranspilerId transpilerId, AlgoBalanced1Settings algoBalanced1Settings, CodeStyleSettings style)
+    private AlgoBalanced1Settings algoBalanced1Settings;
+    private CodeStyleSettings style;
+
+    public AlgoTranspilerCustomizer(AlgoBalanced1Settings algoBalanced1Settings, CodeStyleSettings style)
+    {
+        this.algoBalanced1Settings = algoBalanced1Settings;
+        this.style = style;
+    }
+
+    public void Customize(AlgorithmId algorithmId, TranspilerId transpilerId)
     {
         if (algorithmId == AlgorithmId.Default)
         {

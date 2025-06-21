@@ -40,10 +40,7 @@ public class SmRunnerInternal
         this.outputInfo = outputInfo;
         this.simWebGenerator = simWebGenerator;
 
-        // TODO simplify this
-        // Inject it and then call Customize() with no params
-        algoTranspilerCustomizer.Customize(settings.algorithmId, settings.transpilerId, settings.algoBalanced1, settings.style);
-
+        algoTranspilerCustomizer.Customize(settings.algorithmId, settings.transpilerId);
     }
 
     public void Run()
