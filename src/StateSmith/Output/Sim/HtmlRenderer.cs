@@ -17,7 +17,8 @@ public class HtmlRenderer
     /// <param name="mermaidCode">Mermaid图表代码</param>
     /// <param name="jsCode">JavaScript状态机代码</param>
     /// <param name="diagramEventNamesArray">图表事件名称数组</param>
-    public static void Render(StringBuilder stringBuilder, string smName, string mocksCode, string mermaidCode, string jsCode, string diagramEventNamesArray)
+    /// <param name="stateEventsMapping">状态到可用事件的映射</param>
+    public static void Render(StringBuilder stringBuilder, string smName, string mocksCode, string mermaidCode, string jsCode, string diagramEventNamesArray, string stateEventsMapping)
     {
         // 现在我们在StateSmith项目内部工作，需要限制自己使用dotnet 6功能。
         // 我们不能再使用"""原始字符串"""，所以下面进行手动字符串插值。
@@ -186,6 +187,28 @@ public class HtmlRenderer
         margin: 5px;
       }
 
+      button.event-button {
+        transition: opacity 0.3s ease, background-color 0.3s ease;
+      }
+
+      button.event-button.disabled {
+        opacity: 0.4;
+        background-color: #f0f0f0;
+        color: #999;
+        cursor: not-allowed;
+      }
+
+      button.event-button.enabled {
+        opacity: 1;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+
+      button.event-button.enabled:hover {
+        background-color: #0056b3;
+      }
+
       .dropbtn {
         border: none;
         cursor: pointer;
@@ -308,6 +331,9 @@ public class HtmlRenderer
 
         // 图表事件名称数组
         const diagramEventNamesArray = {{diagramEventNamesArray}};
+
+        // 状态到可用事件的映射
+        const stateEventsMapping = {{stateEventsMapping}};
 
         // 获取页面元素引用
         const leftPane = document.querySelector("".main"");
@@ -433,6 +459,24 @@ public class HtmlRenderer
             highlightedEdges.clear();
         }
 
+        // 更新事件按钮状态的函数
+        function updateEventButtonStates(currentStateName) {
+            const availableEvents = stateEventsMapping[currentStateName] || [];
+            
+            diagramEventNamesArray.forEach(eventName => {
+                const button = document.getElementById('button_' + eventName);
+                if (button) {
+                    // do事件始终保持启用状态，因为它是状态机运行的核心事件
+                    const isDoEvent = eventName.toLowerCase() === 'do';
+                    const isAvailable = isDoEvent || availableEvents.includes(eventName);
+                    
+                    button.classList.remove('enabled', 'disabled');
+                    button.classList.add(isAvailable ? 'enabled' : 'disabled');
+                    button.disabled = !isAvailable;
+                }
+            });
+        }
+
         // 模拟器使用跟踪器回调来执行状态高亮和日志记录等操作。
         // 在您自己的应用程序中使用{{smName}}.js时，您不需要此功能，
         // 尽管您可以选择实现跟踪器用于调试目的。
@@ -445,6 +489,9 @@ public class HtmlRenderer
                   panOnScreen(e);
                 }
                 sm.tracer.log('➡️ Entered ' + mermaidName);
+                
+                // 更新事件按钮状态
+                updateEventButtonStates(mermaidName);
             },
             // 退出状态时的回调
             exitState: (mermaidName) => {
@@ -464,12 +511,16 @@ public class HtmlRenderer
         diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
             button.id = 'button_' + diagramEventName;
+            button.className = 'event-button';
             button.innerText = diagramEventName;
             button.addEventListener('click', () => {
-                clearHighlightedEdges();
-                sm.tracer?.log('<span class=""dispatched""><span class=""trigger"">' + diagramEventName + '</span> DISPATCHED</span>', true);
-                const fsmEventName = diagramEventName.toUpperCase();
-                sm.dispatchEvent({{smName}}.EventId[fsmEventName]); 
+                // 只有在按钮启用时才处理点击事件
+                if (!button.disabled) {
+                    clearHighlightedEdges();
+                    sm.tracer?.log('<span class=""dispatched""><span class=""trigger"">' + diagramEventName + '</span> DISPATCHED</span>', true);
+                    const fsmEventName = diagramEventName.toUpperCase();
+                    sm.dispatchEvent({{smName}}.EventId[fsmEventName]); 
+                }
             });
             document.getElementById('buttons').appendChild(button);
         });
@@ -477,6 +528,10 @@ public class HtmlRenderer
         // 记录启动日志并启动状态机
         sm.tracer?.log('<span class=""dispatched"">START</span>', true);
         sm.start();
+
+        // 初始化事件按钮状态
+        const initialStateName = {{smName}}.stateIdToString(sm.stateId);
+        updateEventButtonStates(initialStateName);
 
         // 将元素平移到屏幕可见区域的函数
         function panOnScreen(element) {
@@ -509,6 +564,7 @@ public class HtmlRenderer
         htmlTemplate = htmlTemplate.Replace("{{mocksCode}}", mocksCode);
         htmlTemplate = htmlTemplate.Replace("{{smName}}", smName);
         htmlTemplate = htmlTemplate.Replace("{{diagramEventNamesArray}}", diagramEventNamesArray);
+        htmlTemplate = htmlTemplate.Replace("{{stateEventsMapping}}", stateEventsMapping);
         stringBuilder.AppendLine(htmlTemplate);
     }
 }

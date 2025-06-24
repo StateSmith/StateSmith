@@ -13,6 +13,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace StateSmith.Output.Sim;
 
@@ -77,6 +78,12 @@ public class SimWebGenerator
     /// 我们希望在模拟器中向用户显示他们的原始事件名称，而不是经过清理的名称
     /// </summary>
     HashSet<string> diagramEventNames = new(StringComparer.OrdinalIgnoreCase);
+
+    /// <summary>
+    /// 状态到可用事件的映射
+    /// 键是状态名称，值是该状态可以处理的事件名称集合
+    /// </summary>
+    Dictionary<string, HashSet<string>> stateToAvailableEvents = new(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>
     /// 行为跟踪器，用于跟踪行为的原始表示
@@ -205,12 +212,53 @@ public class SimWebGenerator
     {
         sm.VisitRecursively((Vertex vertex) =>
         {
+            // 收集所有事件名称
             foreach (var behavior in vertex.Behaviors)
             {
                 foreach (var trigger in behavior.Triggers)
                 {
                     if (TriggerHelper.IsEvent(trigger))
                         diagramEventNames.Add(trigger);
+                }
+            }
+
+            // 收集每个状态的可用事件
+            if (vertex is State state)
+            {
+                var availableEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                
+                // 收集直接在该状态定义的事件
+                foreach (var behavior in state.Behaviors)
+                {
+                    foreach (var trigger in behavior.Triggers)
+                    {
+                        if (TriggerHelper.IsEvent(trigger))
+                        {
+                            availableEvents.Add(trigger);
+                        }
+                    }
+                }
+
+                // 收集从父状态继承的事件
+                var currentVertex = state.Parent;
+                while (currentVertex != null)
+                {
+                    foreach (var behavior in currentVertex.Behaviors)
+                    {
+                        foreach (var trigger in behavior.Triggers)
+                        {
+                            if (TriggerHelper.IsEvent(trigger))
+                            {
+                                availableEvents.Add(trigger);
+                            }
+                        }
+                    }
+                    currentVertex = currentVertex.Parent;
+                }
+
+                if (availableEvents.Count > 0)
+                {
+                    stateToAvailableEvents[state.Name] = availableEvents;
                 }
             }
         });
@@ -236,6 +284,9 @@ public class SimWebGenerator
         // 将事件名称组织为JavaScript数组格式
         string diagramEventNamesArray = OrganizeEventNamesIntoJsArray(diagramEventNames);
 
+        // 将状态事件映射组织为JavaScript对象格式
+        string stateEventsMapping = OrganizeStateEventsIntoJsObject();
+
         // 构建HTML内容
         var sb = new StringBuilder();
         HtmlRenderer.Render(sb,
@@ -243,7 +294,8 @@ public class SimWebGenerator
             mocksCode: mocksWriter.ToString(),
             mermaidCode: mermaidCodeWriter.ToString(),
             jsCode: fileCapturer.CapturedCode,
-            diagramEventNamesArray: diagramEventNamesArray);
+            diagramEventNamesArray: diagramEventNamesArray,
+            stateEventsMapping: stateEventsMapping);
             
         // 写入HTML文件
         codeFileWriter.WriteFile(path, code: sb.ToString());
@@ -439,5 +491,31 @@ public class SimWebGenerator
         // 可以被重写以覆盖守卫评估（例如在模拟器中）
         evaluateGuard = null;
     ";
+    }
+
+    /// <summary>
+    /// 将状态到可用事件的映射转换为JavaScript对象格式
+    /// </summary>
+    /// <returns>JavaScript对象格式的字符串</returns>
+    private string OrganizeStateEventsIntoJsObject()
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine("{");
+        
+        foreach (var kvp in stateToAvailableEvents)
+        {
+            var stateName = kvp.Key;
+            var events = kvp.Value;
+            
+            sb.Append($"    '{stateName}': [");
+            foreach (var eventName in events.OrderBy(e => e, StringComparer.OrdinalIgnoreCase))
+            {
+                sb.Append($"'{eventName}', ");
+            }
+            sb.AppendLine("],");
+        }
+        
+        sb.AppendLine("}");
+        return sb.ToString();
     }
 }
