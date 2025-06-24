@@ -16,77 +16,133 @@ using System.Text.RegularExpressions;
 
 namespace StateSmith.Output.Sim;
 
+/// <summary>
+/// 模拟器Web生成器
+/// 负责生成状态机的Web模拟器页面，包括HTML、JavaScript和Mermaid图表
+/// </summary>
 public class SimWebGenerator
 {
+    /// <summary>
+    /// 获取运行器设置
+    /// </summary>
     public RunnerSettings RunnerSettings => runner.Settings;
 
+    /// <summary>
+    /// 代码文件写入器
+    /// </summary>
     private readonly ICodeFileWriter codeFileWriter;
+    
+    /// <summary>
+    /// Mermaid边缘跟踪器，用于跟踪图表中的边缘
+    /// </summary>
     MermaidEdgeTracker mermaidEdgeTracker = new();
+    
+    /// <summary>
+    /// 跟踪扩展器，用于跟踪代码扩展
+    /// </summary>
     TrackingExpander trackingExpander = new();
+    
+    /// <summary>
+    /// Mermaid代码写入器
+    /// </summary>
     TextWriter mermaidCodeWriter = new StringWriter();
+    
+    /// <summary>
+    /// 模拟代码写入器
+    /// </summary>
     TextWriter mocksWriter = new StringWriter();
+    
+    /// <summary>
+    /// 单文件捕获器，用于捕获生成的代码
+    /// </summary>
     SingleFileCapturer fileCapturer = new();
+    
+    /// <summary>
+    /// 状态机提供器
+    /// </summary>
     StateMachineProvider stateMachineProvider;
+    
+    /// <summary>
+    /// 名称修饰器，用于处理命名冲突
+    /// </summary>
     NameMangler nameMangler;
+    
+    /// <summary>
+    /// 历史GIL正则表达式，用于匹配历史相关的GIL代码
+    /// </summary>
     Regex historyGilRegex;
 
     /// <summary>
-    /// We want to show the user their original event names in the simulator.
-    /// Not the sanitized names.
+    /// 图表事件名称集合
+    /// 我们希望在模拟器中向用户显示他们的原始事件名称，而不是经过清理的名称
     /// </summary>
     HashSet<string> diagramEventNames = new(StringComparer.OrdinalIgnoreCase);
 
+    /// <summary>
+    /// 行为跟踪器，用于跟踪行为的原始表示
+    /// </summary>
     BehaviorTracker behaviorTracker = new();
 
+    /// <summary>
+    /// 状态机运行器
+    /// </summary>
     SmRunner runner;
 
+    /// <summary>
+    /// 构造函数
+    /// </summary>
+    /// <param name="codeFileWriter">代码文件写入器</param>
+    /// <param name="mainRunnerSettings">主运行器设置</param>
     public SimWebGenerator(ICodeFileWriter codeFileWriter, RunnerSettings mainRunnerSettings)
     {
-        // NOTE! we need mainRunnerSettings so that we can use the same algorithm as the main runner.
-        // This needs to happen during construction because of dependency injection.
+        // 注意！我们需要mainRunnerSettings，这样我们就可以使用与主运行器相同的算法。
+        // 这需要在构造期间发生，因为依赖注入的缘故。
 
-        // Internally, the `SimWebGenerator` uses a `SmRunner` to transform the input diagram into a simulation web page.
-        // To customize the transformation/code generation process, we register custom DI services with the `SmRunner`.
+        // 在内部，`SimWebGenerator`使用`SmRunner`将输入图表转换为模拟网页。
+        // 为了自定义转换/代码生成过程，我们向`SmRunner`注册自定义DI服务。
 
         this.codeFileWriter = codeFileWriter;
         DiServiceProvider simDiServiceProvider;
 
-        var enablePreDiagramBasedSettings = false;  // need to stop it from trying to read diagram early as fake diagram path is used
+        var enablePreDiagramBasedSettings = false;  // 需要阻止它尝试过早读取图表，因为使用了假的图表路径
         runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, enablePDBS: enablePreDiagramBasedSettings);
         runner.Settings.propagateExceptions = true;
 
-        // Registering DI services must be done before accessing `runner.SmTransformer`.
+        // 注册DI服务必须在访问`runner.SmTransformer`之前完成。
         simDiServiceProvider = runner.GetExperimentalAccess().DiServiceProvider;
         simDiServiceProvider.AddSingletonT<IExpander>(trackingExpander);
         simDiServiceProvider.AddSingletonT<ICodeFileWriter>(fileCapturer);
-        simDiServiceProvider.AddSingletonT<IConsolePrinter>(new DiscardingConsolePrinter());   // we want regular SmRunner console output to be discarded
-        AdjustTransformationPipeline();
+        simDiServiceProvider.AddSingletonT<IConsolePrinter>(new DiscardingConsolePrinter());   // 我们希望常规SmRunner控制台输出被丢弃
+        AdjustTransformationPipeline(); // 调整转换管道
         PreventCertainDiagramSpecifiedSettings(simDiServiceProvider.GetInstanceOf<RenderConfigBaseVars>());
 
         stateMachineProvider = simDiServiceProvider.GetInstanceOf<StateMachineProvider>();
 
         nameMangler = simDiServiceProvider.GetInstanceOf<NameMangler>();
 
-        SetupGilHistoryRegex();
+        SetupGilHistoryRegex(); // 设置GIL历史正则表达式
     }
 
     /// <summary>
-    /// Prevent user diagram settings that could mess up the generated simulation.
+    /// 防止用户图表设置干扰生成的模拟
+    /// 阻止可能破坏生成模拟的用户图表设置
     /// https://github.com/StateSmith/StateSmith/issues/337
     /// </summary>
+    /// <param name="renderConfigBaseVars">渲染配置基础变量</param>
     private void PreventCertainDiagramSpecifiedSettings(RenderConfigBaseVars renderConfigBaseVars)
     {
         DiagramBasedSettingsPreventer.Process(runner.SmTransformer, action: (readRenderConfigAllVars, _) =>
         {
-            // copy only the settings that are safe to copy for the simulation
+            // 只复制对模拟安全的设置
             renderConfigBaseVars.TriggerMap = readRenderConfigAllVars.Base.TriggerMap;
         });
     }
 
     /// <summary>
-    /// GIL is Generic Intermediary Language. It is used by history vertices and other special cases.
+    /// 设置GIL历史正则表达式
+    /// GIL是通用中间语言（Generic Intermediary Language）。它被历史顶点和其他特殊情况使用。
     /// </summary>
-    /// <exception cref="InvalidOperationException"></exception>
+    /// <exception cref="InvalidOperationException">当预期的配置不匹配时抛出异常</exception>
     [MemberNotNull(nameof(historyGilRegex))]
     private void SetupGilHistoryRegex()
     {
@@ -99,43 +155,52 @@ public class SimWebGenerator
         if (GilCreationHelper.GilExpansionMarkerFuncName != "$gil")
             throw new InvalidOperationException("Expected GilExpansionMarkerFuncName to be '$gil' for regex below");
 
-        // want to match: `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;)`
+        // 希望匹配：`$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;)`
         historyGilRegex = new(@"(?x)
         \$gil\(
             \s*
             this\.vars\.
-            (?<varName>\w+)_history         # e.g. Running_history
+            (?<varName>\w+)_history         # 例如：Running_history
             \s* = \s*
-            \w+ [.] (?<storedStateName>\w+);   # e.g. Running_HistoryId.SETUPCHECK__START
+            \w+ [.] (?<storedStateName>\w+);   # 例如：Running_HistoryId.SETUPCHECK__START
         \)
     ");
     }
 
+    /// <summary>
+    /// 调整转换管道
+    /// 配置状态机转换过程中的各个步骤顺序和处理逻辑
+    /// </summary>
     private void AdjustTransformationPipeline()
     {
-        // Note! For `MermaidEdgeTracker` to function correctly, both below transformations must occur in the same `SmRunner`.
-        // This allows us to easily map an SS behavior to its corresponding mermaid edge ID.
+        // 注意！为了让`MermaidEdgeTracker`正确工作，下面的两个转换必须在同一个`SmRunner`中发生。
+        // 这允许我们轻松地将SS行为映射到其对应的mermaid边缘ID。
 
         const string GenMermaidCodeStepId = "gen-mermaid-code";
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportHistory, new TransformationStep(id: GenMermaidCodeStepId, GenerateMermaidCode));
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, V1LoggingTransformationStep);
         
-        // collect diagram names after trigger mapping completes
+        // 在触发器映射完成后收集图表名称
         runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, CollectDiagramNames);
 
-        // We to generate mermaid diagram before history support (to avoid a ton of transitions being shown), but AFTER name conflict resolution.
-        // See https://github.com/StateSmith/StateSmith/issues/302
-        // Validate that this is true.
+        // 我们需要在历史支持之前生成mermaid图表（以避免显示大量转换），但要在名称冲突解决之后。
+        // 参见 https://github.com/StateSmith/StateSmith/issues/302
+        // 验证这是正确的。
         int historyIndex = runner.SmTransformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_SupportHistory);
         int nameConflictIndex = runner.SmTransformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_NameConflictResolution);
         int mermaidIndex = runner.SmTransformer.GetMatchIndex(GenMermaidCodeStepId);
         if (mermaidIndex <= nameConflictIndex || mermaidIndex >= historyIndex)
             throw new Exception("Mermaid generation must occur after name conflict resolution and before history support.");
 
-        // show default 'do' events in mermaid diagram
+        // 在mermaid图表中显示默认的'do'事件
          runner.SmTransformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, (StateMachine sm) => { DefaultToDoEventVisitor.Process(sm); });
     }
 
+    /// <summary>
+    /// 收集图表名称
+    /// 遍历状态机收集所有事件触发器的名称
+    /// </summary>
+    /// <param name="sm">状态机对象</param>
     private void CollectDiagramNames(StateMachine sm)
     {
         sm.VisitRecursively((Vertex vertex) =>
@@ -151,19 +216,27 @@ public class SimWebGenerator
         });
     }
 
+    /// <summary>
+    /// 生成模拟器HTML文件
+    /// </summary>
+    /// <param name="diagramPath">图表文件路径</param>
+    /// <param name="outputDir">输出目录</param>
     public void Generate(string diagramPath, string outputDir)
     {
         runner.Settings.DiagramPath = diagramPath;
-        runner.Run();
+        runner.Run(); // 运行状态机转换
         var smName = stateMachineProvider.GetStateMachine().Name;
 
+        // 确保输出目录存在
         if (Directory.Exists(outputDir) == false)
             Directory.CreateDirectory(outputDir);
 
         string path = Path.Combine(outputDir, $"{smName}.sim.html");
 
+        // 将事件名称组织为JavaScript数组格式
         string diagramEventNamesArray = OrganizeEventNamesIntoJsArray(diagramEventNames);
 
+        // 构建HTML内容
         var sb = new StringBuilder();
         HtmlRenderer.Render(sb,
             smName: smName,
@@ -171,14 +244,22 @@ public class SimWebGenerator
             mermaidCode: mermaidCodeWriter.ToString(),
             jsCode: fileCapturer.CapturedCode,
             diagramEventNamesArray: diagramEventNamesArray);
+            
+        // 写入HTML文件
         codeFileWriter.WriteFile(path, code: sb.ToString());
     }
 
+    /// <summary>
+    /// 将事件名称组织为JavaScript数组格式
+    /// </summary>
+    /// <param name="unOrderedEventNames">无序的事件名称集合</param>
+    /// <returns>JavaScript数组格式的字符串</returns>
     private static string OrganizeEventNamesIntoJsArray(HashSet<string> unOrderedEventNames)
     {
         string? doEvent = null;
         List<string> eventNames = new();
 
+        // 分离do事件和其他事件
         foreach (var name in unOrderedEventNames)
         {
             if (TriggerHelper.IsDoEvent(name))
@@ -191,15 +272,16 @@ public class SimWebGenerator
             }
         }
 
-        // sort non-do events
-        eventNames.Sort(StringComparer.OrdinalIgnoreCase);  // case-insensitive sort
+        // 对非do事件进行排序
+        eventNames.Sort(StringComparer.OrdinalIgnoreCase);  // 不区分大小写的排序
 
-        // put do event first
+        // 将do事件放在第一位
         if (doEvent != null)
         {
             eventNames.Insert(0, doEvent);
         }
 
+        // 构建JavaScript数组字符串
         var diagramEventNamesArray = "[";
         foreach (var name in eventNames)
         {
@@ -209,6 +291,10 @@ public class SimWebGenerator
         return diagramEventNamesArray;
     }
 
+    /// <summary>
+    /// 生成Mermaid代码
+    /// </summary>
+    /// <param name="sm">状态机对象</param>
     void GenerateMermaidCode(StateMachine sm)
     {
         var visitor = new MermaidGenerator(mermaidEdgeTracker);
@@ -217,39 +303,55 @@ public class SimWebGenerator
     }
 
 
+    /// <summary>
+    /// V1日志转换步骤
+    /// 为模拟添加日志记录和跟踪功能
+    /// </summary>
+    /// <param name="sm">状态机对象</param>
     void V1LoggingTransformationStep(StateMachine sm)
     {
         sm.VisitRecursively((Vertex vertex) =>
         {
             foreach (var behavior in vertex.Behaviors)
             {
-                behaviorTracker.RecordOriginalBehavior(behavior);
-                V1ModBehaviorsForSimulation(vertex, behavior);
+                behaviorTracker.RecordOriginalBehavior(behavior); // 记录原始行为
+                V1ModBehaviorsForSimulation(vertex, behavior); // 修改行为以适应模拟
             }
 
-            V1AddEntryExitTracing(sm, vertex);
-            V1AddEdgeTracing(vertex);
+            V1AddEntryExitTracing(sm, vertex); // 添加进入/退出跟踪
+            V1AddEdgeTracing(vertex); // 添加边缘跟踪
         });
     }
 
+    /// <summary>
+    /// 添加边缘跟踪
+    /// 为转换行为添加边缘转换跟踪代码
+    /// </summary>
+    /// <param name="vertex">顶点对象</param>
     void V1AddEdgeTracing(Vertex vertex)
     {
         foreach (var b in vertex.TransitionBehaviors())
         {
             if (mermaidEdgeTracker.ContainsEdge(b))
             {
-                // Note: most history behaviors will not be shown in the mermaid diagram
+                // 注意：大多数历史行为不会在mermaid图表中显示
                 var domId = "edge" + mermaidEdgeTracker.GetEdgeId(b);
-                // NOTE! Avoid single quotes in ss guard/action code until bug fixed: https://github.com/StateSmith/StateSmith/issues/282
+                // 注意！在修复bug之前避免在ss守卫/动作代码中使用单引号：https://github.com/StateSmith/StateSmith/issues/282
                 b.actionCode += $"this.tracer?.edgeTransition(\"{domId}\");";
             }
         }
     }
 
+    /// <summary>
+    /// 添加进入/退出跟踪
+    /// 为状态添加进入和退出时的跟踪代码
+    /// </summary>
+    /// <param name="sm">状态机对象</param>
+    /// <param name="vertex">顶点对象</param>
     void V1AddEntryExitTracing(StateMachine sm, Vertex vertex)
     {
-        // we purposely don't want to trace the entry/exit of the state machine itself.
-        // That's why we use `State` instead of `NamedVertex`.
+        // 我们故意不想跟踪状态机本身的进入/退出。
+        // 这就是为什么我们使用`State`而不是`NamedVertex`。
         if (vertex is State state)
         {
             var mermaidName = state.Name;
@@ -258,6 +360,12 @@ public class SimWebGenerator
         }
     }
 
+    /// <summary>
+    /// 修改行为以适应模拟
+    /// 将原始行为代码转换为适合模拟器的格式
+    /// </summary>
+    /// <param name="vertex">顶点对象</param>
+    /// <param name="behavior">行为对象</param>
     void V1ModBehaviorsForSimulation(Vertex vertex, Behavior behavior)
     {
         if (behavior.HasActionCode())
@@ -267,14 +375,14 @@ public class SimWebGenerator
             if (historyGilMatch.Success)
             {
                 // TODO https://github.com/StateSmith/StateSmith/issues/323
-                // show history var updating
+                // 显示历史变量更新
                 // var historyVarName = historyGilMatch.Groups["varName"].Value;
                 // var storedStateName = historyGilMatch.Groups["storedStateName"].Value;
                 // behavior.actionCode += $"this.tracer?.log('📝 History({historyVarName}) = {storedStateName}');";
             }
             else
             {
-                // we don't want to execute the action, just log it.
+                // 我们不想执行动作，只是记录它。
                 behavior.actionCode = $"this.tracer?.log(\"⚡ FSM would execute action: \" + {FsmCodeToJsString(behavior.actionCode)});";
             }
         }
@@ -283,7 +391,7 @@ public class SimWebGenerator
         {
             if (behavior.HasGuardCode())
             {
-                // we want the history vertex to work as is without prompting the user to evaluate those guards.
+                // 我们希望历史顶点按原样工作，而不提示用户评估这些守卫。
                 behavior.actionCode += $"this.tracer?.log(\"🕑 History: transitioning to {Vertex.Describe(behavior.TransitionTarget)}.\");";
             }
             else
@@ -299,22 +407,36 @@ public class SimWebGenerator
                 var originalBehaviorUml = behaviorTracker.GetOriginalUmlOrCurrent(behavior);
                 var confirmCode = $"this.evaluateGuard(\"{Vertex.Describe(behavior.OwningVertex)}\",{FsmCodeToJsString(originalBehaviorUml)})";
                 behavior.guardCode = $"{logCode} || {confirmCode}";
-                // NOTE! logCode doesn't return a value, so the confirm code will always be evaluated.
+                // 注意！logCode不返回值，所以确认代码总是会被评估。
             }
         }
     }
 
+    /// <summary>
+    /// 将FSM代码转换为JavaScript字符串
+    /// 处理换行符和引号转义
+    /// </summary>
+    /// <param name="code">要转换的代码</param>
+    /// <returns>JavaScript字符串格式的代码</returns>
     static string FsmCodeToJsString(string code)
     {
-        code = code.ReplaceLineEndings("\\n");  // need to escape newlines for fsm code that spans multiple lines
+        code = code.ReplaceLineEndings("\\n");  // 需要为跨多行的fsm代码转义换行符
         return "\"" + code.Replace("\"", "\\\"") + "\"";
     }
 
+    /// <summary>
+    /// 模拟器渲染配置
+    /// 为JavaScript代码生成提供特定于模拟器的配置
+    /// </summary>
     public class SimRenderConfig : IRenderConfigJavaScript
     {
+        /// <summary>
+        /// 生成的JavaScript类代码
+        /// 包含用于守卫评估的回调函数
+        /// </summary>
         string IRenderConfigJavaScript.ClassCode => @"        
-        // Null by default.
-        // May be overridden to override guard evaluation (eg. in a simulator)
+        // 默认为null。
+        // 可以被重写以覆盖守卫评估（例如在模拟器中）
         evaluateGuard = null;
     ";
     }
