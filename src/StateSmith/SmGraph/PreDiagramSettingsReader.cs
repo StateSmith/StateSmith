@@ -29,6 +29,7 @@ public class PreDiagramSettingsReader
     public void Process()
     {
         // TODO use the IServiceProvider from SmRunnerInternal once it's fully pre-constructed
+        // TODO actually, it's not needed at all, you just need to inject the InputSmBuilder
         var di = IConfigServiceProviderBuilder.CreateDefault()
             .WithRenderConfig(renderConfigAllVars, renderConfig)
             .WithRunnerSettings(smRunnerSettings)
