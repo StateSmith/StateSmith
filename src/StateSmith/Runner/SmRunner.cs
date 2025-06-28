@@ -169,6 +169,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         // TODO move this higher so DI is available during the prediagram settings reading
         serviceProvider = serviceProviderBuilder
+            // TODO remove renderConfigAllVars from here, it is always(?) initialized using iRenderConfig
             .WithRenderConfig(renderConfigAllVars, iRenderConfig)
             .WithRunnerSettings(settings)
             .Build();
