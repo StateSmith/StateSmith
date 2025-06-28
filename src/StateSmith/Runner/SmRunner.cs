@@ -195,6 +195,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             catch (Exception e)
             {
                 // NOTE! we can't print or log this exception here because dependency injection is not yet set up
+                // TODO remove this try catch and preDiagramBasedsettingsException once we have DI set up
                 preDiagramBasedSettingsException = ExceptionDispatchInfo.Capture(e);
             }
         }
