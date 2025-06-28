@@ -16,6 +16,10 @@ namespace StateSmith.Runner;
 /// <summary>
 /// Builds a single state machine and runs code generation.
 /// </summary>
+/// TODO add a static constructor
+/// TODO remove SmRunnerInternal by using injection in static constructor
+/// TODO use scopes to remove two stages for dependency injection
+/// TODO add test case for two smrunners at same time (to make sure singletons are not shared between them)
 public class SmRunner : SmRunner.IExperimentalAccess
 {
     public RunnerSettings Settings => settings;
