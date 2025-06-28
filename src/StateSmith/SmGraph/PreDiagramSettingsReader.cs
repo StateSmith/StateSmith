@@ -28,6 +28,7 @@ public class PreDiagramSettingsReader
     /// </summary>
     public void Process()
     {
+        // TODO use the IServiceProvider from SmRunnerInternal once it's fully pre-constructed
         var di = IConfigServiceProviderBuilder.CreateDefault()
             .WithRenderConfig(renderConfigAllVars, renderConfig)
             .WithRunnerSettings(smRunnerSettings)
