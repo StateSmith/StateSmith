@@ -167,6 +167,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
     {
         var renderConfigAllVars = new RenderConfigAllVars();
 
+        // TODO move this higher so DI is available during the prediagram settings reading
+        serviceProvider = serviceProviderBuilder
+            .WithRenderConfig(renderConfigAllVars, iRenderConfig)
+            .WithRunnerSettings(settings)
+            .Build();
+
         ReadRenderConfigObjectToVars(renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 
         // we disable early diagram settings reading for the simulator and some tests
@@ -191,11 +197,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
             }
         }
 
-        // TODO move this higher so DI is available during the prediagram settings reading
-        serviceProvider = serviceProviderBuilder
-            .WithRenderConfig(renderConfigAllVars, iRenderConfig)
-            .WithRunnerSettings(settings)
-            .Build();
 
     }
 
