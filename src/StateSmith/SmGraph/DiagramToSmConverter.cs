@@ -294,3 +294,8 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
         state.nameIsGloballyUnique = stateNode.stateNameIsGlobal;
     }
 }
+
+// TODO replace with a scope
+public class PreDiagramSettingsDiagramToSmConverter : DiagramToSmConverter
+{
+}

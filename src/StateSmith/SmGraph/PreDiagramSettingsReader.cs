@@ -4,6 +4,7 @@ using StateSmith.Output.UserConfig;
 using StateSmith.Output.UserConfig.AutoVars;
 using StateSmith.Runner;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace StateSmith.SmGraph;
 
@@ -14,13 +15,15 @@ public class PreDiagramSettingsReader
 {
     RenderConfigAllVars renderConfigAllVars;
     RunnerSettings smRunnerSettings;
-    IRenderConfig renderConfig;
+    IRenderConfig renderConfig; // TODO remove
+    IServiceProvider sp;
 
-    public PreDiagramSettingsReader(RenderConfigAllVars renderConfigAllVars, RunnerSettings smRunnerSettings, IRenderConfig renderConfig)
+    public PreDiagramSettingsReader(RenderConfigAllVars renderConfigAllVars, RunnerSettings smRunnerSettings, IRenderConfig renderConfig, IServiceProvider sp)
     {
         this.renderConfigAllVars = renderConfigAllVars;
         this.smRunnerSettings = smRunnerSettings;
         this.renderConfig = renderConfig;
+        this.sp = sp;
     }
 
     /// <summary>
@@ -28,16 +31,10 @@ public class PreDiagramSettingsReader
     /// </summary>
     public void Process()
     {
-        // TODO use the IServiceProvider from SmRunnerInternal once it's fully pre-constructed
-        // TODO actually, it's not needed at all, you just need to inject the InputSmBuilder
-        var di = IConfigServiceProviderBuilder.CreateDefault()
-            .WithRenderConfig(renderConfigAllVars, renderConfig)
-            .WithRunnerSettings(smRunnerSettings)
-            .Build();
+        // TODO inject this
+        var inputSmBuilder = sp.GetRequiredService<PreDiagramSettingsInputSmBuilder>();
 
-        var inputSmBuilder = di.GetRequiredService<PreDiagramSettingsInputSmBuilder>();
-
-        SmRunnerInternal.SetupAndFindStateMachine(inputSmBuilder, smRunnerSettings);
+        SmRunnerInternal.SetupAndFindStateMachine(inputSmBuilder, smRunnerSettings); // TODO do we need this anymore?
         inputSmBuilder.FinishRunning();
     }
 }

@@ -177,6 +177,14 @@ public class InputSmBuilder
     [MemberNotNull(nameof(Sm))]
     public void FindSingleStateMachine()
     {
+
+        // TODO remove
+        Console.WriteLine($"BOOGA StateMachines count: {diagramToSmConverter.rootVertices.OfType<StateMachine>().Count()}");
+        foreach (var sm in diagramToSmConverter.rootVertices.OfType<StateMachine>())
+        {
+            Console.WriteLine($"BOOGA StateMachine: {sm.ToString()}");
+        }
+
         var tempSm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis. Maybe avoid action below.
         var action = () => { tempSm = diagramToSmConverter.rootVertices.OfType<StateMachine>().Single(); };
         action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {diagramToSmConverter.rootVertices.OfType<StateMachine>().Count()}.", e));
@@ -231,7 +239,7 @@ public class InputSmBuilder
 /// </summary>
 public class PreDiagramSettingsInputSmBuilder : InputSmBuilder
 {
-    public PreDiagramSettingsInputSmBuilder(PreSettingsSmTransformer transformer, DiagramToSmConverter diagramToSmConverter, INameMangler mangler, DrawIoToSmDiagramConverter converter, IServiceProvider sp, StateMachineProvider stateMachineProvider, DiagramFilePathProvider diagramFilePathProvider)
+    public PreDiagramSettingsInputSmBuilder(PreSettingsSmTransformer transformer, PreDiagramSettingsDiagramToSmConverter diagramToSmConverter, INameMangler mangler, DrawIoToSmDiagramConverter converter, IServiceProvider sp, StateMachineProvider stateMachineProvider, DiagramFilePathProvider diagramFilePathProvider)
         : base(transformer, diagramToSmConverter, mangler, converter, sp, stateMachineProvider, diagramFilePathProvider)
     {
     }
