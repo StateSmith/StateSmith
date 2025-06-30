@@ -209,6 +209,10 @@ public class HtmlRenderer
         background-color: #0056b3;
       }
 
+      button.event-button.hidden {
+        display: none;
+      }
+
       .dropbtn {
         border: none;
         cursor: pointer;
@@ -273,6 +277,10 @@ public class HtmlRenderer
                   <div class='dropdown-item'>
                     <input type='checkbox' id='timestamps' name='timestamps' value='Timestamps'>
                     <label for='timestamps'>Timestamps</label>
+                  </div>
+                  <div class='dropdown-item'>
+                    <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents' value='Hide Unused'>
+                    <label for='hideIrrelevantEvents'>Hide Unused</label>
                   </div>
                 </div>
               </div>            
@@ -375,6 +383,13 @@ public class HtmlRenderer
           }
         });
 
+        // 设置隐藏无关事件复选框的状态和事件监听器
+        document.getElementById('hideIrrelevantEvents').addEventListener('change', function() {
+          // 当复选框状态改变时，更新当前状态的事件按钮显示
+          const currentStateName = {{smName}}.stateIdToString(sm.stateId);
+          updateEventButtonStates(currentStateName);
+        });
+
         // 为下拉菜单按钮添加点击事件监听器
         document.getElementById('dropbtn').addEventListener('click', myFunction);
 
@@ -462,6 +477,7 @@ public class HtmlRenderer
         // 更新事件按钮状态的函数
         function updateEventButtonStates(currentStateName) {
             const availableEvents = stateEventsMapping[currentStateName] || [];
+            const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
             
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
@@ -470,9 +486,18 @@ public class HtmlRenderer
                     const isDoEvent = eventName.toLowerCase() === 'do';
                     const isAvailable = isDoEvent || availableEvents.includes(eventName);
                     
-                    button.classList.remove('enabled', 'disabled');
-                    button.classList.add(isAvailable ? 'enabled' : 'disabled');
-                    button.disabled = !isAvailable;
+                    // 清除所有状态类
+                    button.classList.remove('enabled', 'disabled', 'hidden');
+                    
+                    if (hideIrrelevantEvents && !isAvailable) {
+                        // 如果选中了隐藏无关事件且该事件不可用，则隐藏按钮
+                        button.classList.add('hidden');
+                        button.disabled = true;
+                    } else {
+                        // 否则显示按钮并设置相应状态
+                        button.classList.add(isAvailable ? 'enabled' : 'disabled');
+                        button.disabled = !isAvailable;
+                    }
                 }
             });
         }

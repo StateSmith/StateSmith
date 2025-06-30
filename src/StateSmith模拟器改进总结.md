@@ -11,6 +11,8 @@
 
 实现了基于当前状态的事件动态显示功能，根据当前状态对无关事件进行淡化处理，让可用事件更加明显。
 
+增加了"Hide Unused"复选框功能，允许用户选择完全隐藏无关事件，使界面更加简洁。
+
 ## 具体修改
 
 ### 1. SimWebGenerator.cs 修改
@@ -76,6 +78,11 @@ button.event-button.enabled {
 button.event-button.enabled:hover {
     background-color: #0056b3;
 }
+
+/* 隐藏无关事件的样式 */
+button.event-button.hidden {
+    display: none;
+}
 ```
 
 #### 2.3 添加JavaScript功能
@@ -91,6 +98,7 @@ const stateEventsMapping = {{stateEventsMapping}};
 // 更新事件按钮状态的函数
 function updateEventButtonStates(currentStateName) {
     const availableEvents = stateEventsMapping[currentStateName] || [];
+    const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
     
     diagramEventNamesArray.forEach(eventName => {
         const button = document.getElementById('button_' + eventName);
@@ -99,12 +107,40 @@ function updateEventButtonStates(currentStateName) {
             const isDoEvent = eventName.toLowerCase() === 'do';
             const isAvailable = isDoEvent || availableEvents.includes(eventName);
             
-            button.classList.remove('enabled', 'disabled');
-            button.classList.add(isAvailable ? 'enabled' : 'disabled');
-            button.disabled = !isAvailable;
+            // 清除所有状态类
+            button.classList.remove('enabled', 'disabled', 'hidden');
+            
+            if (hideIrrelevantEvents && !isAvailable) {
+                // 如果选中了隐藏无关事件且该事件不可用，则隐藏按钮
+                button.classList.add('hidden');
+                button.disabled = true;
+            } else {
+                // 否则显示按钮并设置相应状态
+                button.classList.add(isAvailable ? 'enabled' : 'disabled');
+                button.disabled = !isAvailable;
+            }
         }
     });
 }
+```
+
+##### 新增设置选项
+在设置下拉菜单中添加了第二个复选框：
+```html
+<div class='dropdown-item'>
+  <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents' value='Hide Unused'>
+  <label for='hideIrrelevantEvents'>Hide Unused</label>
+</div>
+```
+
+##### 新增事件监听器
+```javascript
+// 设置隐藏无关事件复选框的状态和事件监听器
+document.getElementById('hideIrrelevantEvents').addEventListener('change', function() {
+  // 当复选框状态改变时，更新当前状态的事件按钮显示
+  const currentStateName = {{smName}}.stateIdToString(sm.stateId);
+  updateEventButtonStates(currentStateName);
+});
 ```
 
 ##### 修改事件按钮创建
@@ -136,32 +172,23 @@ updateEventButtonStates(initialStateName);
 - 无关事件被淡化处理（透明度降低，颜色变灰）
 - 可用事件突出显示（蓝色背景，完全不透明）
 
-### 2. do事件特殊处理
+### 2. 新增：隐藏无关事件功能
+- **Hide Unused复选框**：用户可以选择完全隐藏无关事件
+- **两种显示模式**：
+  - 默认模式（复选框未选中）：无关事件淡化显示
+  - 简洁模式（复选框选中）：无关事件完全隐藏
+- **实时切换**：用户可以随时在两种模式间切换
+- **界面简洁**：在复杂状态机中显著减少视觉干扰
+
+### 3. do事件特殊处理
 - `do`事件始终保持启用状态
 - 解决了状态机启动时需要do事件但图表中未明确显示的问题
 
-### 3. 视觉反馈
-- 平滑的CSS过渡效果
-- 清晰的颜色区分（启用/禁用状态）
-- 鼠标悬停效果
 
 ### 4. 交互保护
 - 禁用的按钮无法被点击
 - 保持原有的功能完整性
 
-## 技术实现
-
-### 数据流
-1. `SimWebGenerator`收集状态机的状态和事件信息
-2. 建立状态到可用事件的映射关系
-3. 将映射转换为JavaScript对象格式
-4. 传递给HTML模板进行渲染
-5. 前端JavaScript根据当前状态动态更新按钮状态
-
-### 兼容性
-- 保持与现有StateSmith功能的完全兼容
-- 不影响原有的模拟器功能
-- 向后兼容现有的状态机定义
 
 ## 测试验证
 
@@ -169,22 +196,24 @@ updateEventButtonStates(initialStateName);
 - 成功生成包含状态事件映射的模拟器
 - 事件按钮根据当前状态正确更新
 - do事件始终保持可用状态
+- Hide Unused复选框功能正常工作
+- 两种显示模式切换正常
 - 视觉效果符合预期
 
 ## 使用方法
 
 使用CLI工具生成模拟器：
 ```bash
-dotnet StateSmith.Cli/bin/Debug/net8.0/StateSmith.Cli.dll run your_state_machine.puml
+dotnet run --project StateSmith.Cli --framework net8.0 -- run your_state_machine.puml
 ```
 
 生成的`.sim.html`文件将包含新的智能事件过滤功能。
 
-## 改进效果
+### 操作说明
+1. 打开生成的模拟器HTML文件
+2. 点击右上角的"settings"图标
+3. 可以看到两个复选框选项：
+   - **Timestamps**：控制是否显示时间戳
+   - **Hide Unused**：控制是否隐藏无关事件
+4. 选中"Hide Unused"复选框可完全隐藏当前状态下不可用的事件
 
-1. **提升用户体验**：用户可以更容易地识别当前状态下可用的事件
-2. **减少操作错误**：无关事件被淡化，减少误操作
-3. **保持功能完整性**：do事件始终可用，确保状态机正常运行
-4. **视觉直观**：清晰的视觉反馈帮助用户理解状态机的当前状态
-
-这些修改显著改善了StateSmith Web模拟器的可用性，特别是对于具有大量事件的复杂状态机。 
