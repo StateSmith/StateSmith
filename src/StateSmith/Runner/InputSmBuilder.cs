@@ -63,6 +63,7 @@ public class InputSmBuilder
     /// <summary>
     /// Step 1. Figures out how to parse file based on file name.
     /// </summary>
+    /// TODO inject the right converter object based on filetype instead of using if/else
     public void ConvertDiagramFileToSmVertices(string diagramFile)
     {
         diagramFilePathProvider.SetDiagramFilePath(diagramFile);
