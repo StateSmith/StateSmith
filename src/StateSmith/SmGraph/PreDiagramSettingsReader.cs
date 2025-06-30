@@ -35,7 +35,7 @@ public class PreDiagramSettingsReader
             .WithRunnerSettings(smRunnerSettings)
             .Build();
 
-        var inputSmBuilder = di.GetRequiredService<InputSmBuilder>();
+        var inputSmBuilder = di.GetRequiredService<PreDiagramSettingsInputSmBuilder>();
 
         ModifyTransformationPipeline(inputSmBuilder);
 

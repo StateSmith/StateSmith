@@ -86,3 +86,14 @@ public class StandardSmTransformer : SmTransformer
         }
     }
 }
+
+/// <summary>
+/// A marker class for a transformer that runs before the settings are applied.
+/// </summary>
+public class PreSettingsSmTransformer : StandardSmTransformer
+{
+    public PreSettingsSmTransformer(TomlConfigVerticesProcessor tomlConfigVerticesProcessor, RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor, StateNameConflictResolver nameConflictResolver, TriggerMapProcessor triggerMapProcessor)
+        : base(tomlConfigVerticesProcessor, renderConfigVerticesProcessor, historyProcessor, nameConflictResolver, triggerMapProcessor)
+    {
+    }
+}
