@@ -73,10 +73,10 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
 
         WithServices((services) =>
         {
-            services.AddSingleton(new DrawIoSettings());
-            services.AddSingleton(new CodeStyleSettings());
+            services.AddSingleton<DrawIoSettings>();
+            services.AddSingleton<CodeStyleSettings>();
             services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
-            services.AddSingleton(new SmDesignDescriberSettings());
+            services.AddSingleton<SmDesignDescriberSettings>();
             services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
 
             services.AddSingleton<SmRunnerInternal>();
@@ -91,7 +91,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
 
             services.AddSingleton<StateMachineProvider>();
             services.AddSingleton<IStateMachineProvider>((s) => s.GetRequiredService<StateMachineProvider>()); 
-            services.AddSingleton(new DiagramFilePathProvider());
+            services.AddSingleton<DiagramFilePathProvider>();
             services.AddSingleton<SmFileNameProcessor>();
 
             services.AddSingleton<DiagramToSmConverter>();
