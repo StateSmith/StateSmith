@@ -367,9 +367,8 @@ public class HtmlRenderer
 
         // Set up hide irrelevant events checkbox state and event listener
         document.getElementById('hideIrrelevantEvents').addEventListener('change', function() {
-          // When checkbox state changes, update event button display for current state
-          const currentStateName = {{smName}}.stateIdToString(sm.stateId);
-          updateEventButtonStates(currentStateName);
+          // When checkbox state changes, only update button visibility, not availability
+          updateButtonVisibility();
         });
 
         // Add click event listener for dropdown menu button
@@ -452,10 +451,9 @@ public class HtmlRenderer
             highlightedEdges.clear();
         }
 
-        // Function to update event button states
+        // Function to update event button states (availability and visibility)
         function updateEventButtonStates(currentStateName) {
             const availableEvents = stateEventsMapping[currentStateName] || [];
-            const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
             
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
@@ -464,17 +462,36 @@ public class HtmlRenderer
                     const isDoEvent = eventName.toLowerCase() === 'do';
                     const isAvailable = isDoEvent || availableEvents.includes(eventName);
                     
-                    // Clear all state classes
-                    button.classList.remove('enabled', 'disabled', 'hidden');
+                    // Clear state classes but preserve hidden state
+                    button.classList.remove('enabled', 'disabled');
                     
-                    if (hideIrrelevantEvents && !isAvailable) {
-                        // If hide irrelevant events is checked and this event is not available, hide the button
-                        button.classList.add('hidden');
-                        button.disabled = true;
+                    // Set button state and disabled property based on availability
+                    button.classList.add(isAvailable ? 'enabled' : 'disabled');
+                    button.disabled = !isAvailable;
+                }
+            });
+            
+            // Update visibility based on checkbox state
+            updateButtonVisibility();
+        }
+
+        // Function to update button visibility based on Hide Unused checkbox
+        function updateButtonVisibility() {
+            const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
+            
+            diagramEventNamesArray.forEach(eventName => {
+                const button = document.getElementById('button_' + eventName);
+                if (button) {
+                    if (hideIrrelevantEvents) {
+                        // Hide buttons that are currently disabled (unavailable)
+                        if (button.disabled) {
+                            button.classList.add('hidden');
+                        } else {
+                            button.classList.remove('hidden');
+                        }
                     } else {
-                        // Otherwise show the button and set appropriate state
-                        button.classList.add(isAvailable ? 'enabled' : 'disabled');
-                        button.disabled = !isAvailable;
+                        // Show all buttons when checkbox is unchecked
+                        button.classList.remove('hidden');
                     }
                 }
             });

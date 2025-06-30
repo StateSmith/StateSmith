@@ -95,10 +95,9 @@ const stateEventsMapping = {{stateEventsMapping}};
 
 ##### updateEventButtonStates函数
 ```javascript
-// 更新事件按钮状态的函数
+// 更新事件按钮状态的函数（可用性和可见性）
 function updateEventButtonStates(currentStateName) {
     const availableEvents = stateEventsMapping[currentStateName] || [];
-    const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
     
     diagramEventNamesArray.forEach(eventName => {
         const button = document.getElementById('button_' + eventName);
@@ -107,17 +106,39 @@ function updateEventButtonStates(currentStateName) {
             const isDoEvent = eventName.toLowerCase() === 'do';
             const isAvailable = isDoEvent || availableEvents.includes(eventName);
             
-            // 清除所有状态类
-            button.classList.remove('enabled', 'disabled', 'hidden');
+            // 清除状态类但保留隐藏状态
+            button.classList.remove('enabled', 'disabled');
             
-            if (hideIrrelevantEvents && !isAvailable) {
-                // 如果选中了隐藏无关事件且该事件不可用，则隐藏按钮
-                button.classList.add('hidden');
-                button.disabled = true;
+            // 根据可用性设置按钮状态和禁用属性
+            button.classList.add(isAvailable ? 'enabled' : 'disabled');
+            button.disabled = !isAvailable;
+        }
+    });
+    
+    // 根据复选框状态更新可见性
+    updateButtonVisibility();
+}
+```
+
+##### updateButtonVisibility函数
+```javascript
+// 根据Hide Unused复选框更新按钮可见性的函数
+function updateButtonVisibility() {
+    const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
+    
+    diagramEventNamesArray.forEach(eventName => {
+        const button = document.getElementById('button_' + eventName);
+        if (button) {
+            if (hideIrrelevantEvents) {
+                // 隐藏当前被禁用的按钮（不可用的）
+                if (button.disabled) {
+                    button.classList.add('hidden');
+                } else {
+                    button.classList.remove('hidden');
+                }
             } else {
-                // 否则显示按钮并设置相应状态
-                button.classList.add(isAvailable ? 'enabled' : 'disabled');
-                button.disabled = !isAvailable;
+                // 取消选中复选框时显示所有按钮
+                button.classList.remove('hidden');
             }
         }
     });
@@ -137,9 +158,8 @@ function updateEventButtonStates(currentStateName) {
 ```javascript
 // 设置隐藏无关事件复选框的状态和事件监听器
 document.getElementById('hideIrrelevantEvents').addEventListener('change', function() {
-  // 当复选框状态改变时，更新当前状态的事件按钮显示
-  const currentStateName = {{smName}}.stateIdToString(sm.stateId);
-  updateEventButtonStates(currentStateName);
+  // 当复选框状态改变时，只更新按钮可见性，不重新计算可用性
+  updateButtonVisibility();
 });
 ```
 
@@ -173,10 +193,11 @@ updateEventButtonStates(initialStateName);
 - 可用事件突出显示（蓝色背景，完全不透明）
 
 ### 2. 新增：隐藏无关事件功能
-- **Hide Unused复选框**：用户可以选择完全隐藏无关事件
-- **两种显示模式**：
-  - 默认模式（复选框未选中）：无关事件淡化显示
-  - 简洁模式（复选框选中）：无关事件完全隐藏
+- **Hide Unused复选框**：用户可以选择完全隐藏当前被禁用的事件
+- **智能隐藏逻辑**：
+  - 复选框选中时：隐藏所有当前处于禁用状态（半透明/灰色）的按钮
+  - 复选框未选中时：显示所有按钮，但保持启用/禁用的视觉区别
+- **不重新计算状态**：复选框的切换不会重新计算事件的可用性，只是基于当前按钮的启用/禁用状态进行显示/隐藏
 
 
 ### 3. do事件特殊处理
