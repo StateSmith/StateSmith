@@ -123,7 +123,7 @@ public class RunnerSettings
         this.transpilerId = transpilerId;
     }
 
-    internal RunnerSettings() : this(diagramFile: "")
+    public RunnerSettings() : this(diagramFile: "")
     {
     }
 

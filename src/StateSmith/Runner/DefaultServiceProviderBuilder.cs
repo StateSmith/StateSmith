@@ -75,7 +75,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
         {
             services.AddSingleton<DrawIoSettings>();
             services.AddSingleton<CodeStyleSettings>();
-            services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
+            services.AddSingleton<RunnerSettings>();
             services.AddSingleton<SmDesignDescriberSettings>();
             services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
 
