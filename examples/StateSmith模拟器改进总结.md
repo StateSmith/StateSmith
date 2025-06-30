@@ -177,17 +177,14 @@ updateEventButtonStates(initialStateName);
 - **两种显示模式**：
   - 默认模式（复选框未选中）：无关事件淡化显示
   - 简洁模式（复选框选中）：无关事件完全隐藏
-- **实时切换**：用户可以随时在两种模式间切换
-- **界面简洁**：在复杂状态机中显著减少视觉干扰
+
 
 ### 3. do事件特殊处理
 - `do`事件始终保持启用状态
-- 解决了状态机启动时需要do事件但图表中未明确显示的问题
 
 
 ### 4. 交互保护
 - 禁用的按钮无法被点击
-- 保持原有的功能完整性
 
 
 ## 测试验证
@@ -204,7 +201,8 @@ updateEventButtonStates(initialStateName);
 
 使用CLI工具生成模拟器：
 ```bash
-dotnet run --project StateSmith.Cli --framework net8.0 -- run your_state_machine.puml
+cd src
+dotnet run --project StateSmith.Cli --framework net9.0 -- run your_state_machine.puml
 ```
 
 生成的`.sim.html`文件将包含新的智能事件过滤功能。
