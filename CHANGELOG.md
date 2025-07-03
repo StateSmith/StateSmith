@@ -31,6 +31,14 @@ Test/interim releases are not documented here.
 
 ---
 
+## [WIP]
+### Added
+- StateSmith Grammar - allow `#ifdef` and other C/C++ preprocessor directives in user action code.
+  - https://github.com/StateSmith/StateSmith/issues/478
+  - Also relaxes grammar around a number of StateSmith keywords: `$NOTES`, `$CONFIG`, `$ORTHO`, `$choice`, `$STATEMACHINE`.
+
+---
+
 ## [0.17.5]
 ### Added
 - PlantUML Grammar - allow node redeclaration at root level to add detail.
