@@ -8,6 +8,15 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.18.3]
+### Upgrade StateSmith library version to `0.17.6`
+#### Added
+- StateSmith Grammar - allow `#ifdef` and other C/C++ preprocessor directives in user action code.
+  - https://github.com/StateSmith/StateSmith/issues/478
+  - Also relaxes grammar around a number of StateSmith keywords: `$NOTES`, `$CONFIG`, `$ORTHO`, `$choice`, `$STATEMACHINE`.
+
+---
+
 ## [0.18.2]
 ### Upgrade StateSmith library version to `0.17.5`
 #### Added
