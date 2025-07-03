@@ -163,6 +163,32 @@
         margin: 5px;
       }
 
+      button.event-button {
+        transition: opacity 0.3s ease, background-color 0.3s ease;
+      }
+
+      button.event-button.disabled {
+        opacity: 0.4;
+        background-color: #f0f0f0;
+        color: #999;
+        cursor: not-allowed;
+      }
+
+      button.event-button.enabled {
+        opacity: 1;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+
+      button.event-button.enabled:hover {
+        background-color: #0056b3;
+      }
+
+      button.event-button.hidden {
+        display: none;
+      }
+
       .dropbtn {
         border: none;
         cursor: pointer;
@@ -478,6 +504,10 @@ MENU.(InitialState) --> MAIN_MENU_INNER
                   <div class='dropdown-item'>
                     <input type='checkbox' id='timestamps' name='timestamps' value='Timestamps'>
                     <label for='timestamps'>Timestamps</label>
+                  </div>
+                  <div class='dropdown-item'>
+                    <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents' value='Hide Unused'>
+                    <label for='hideIrrelevantEvents'>Hide Unused</label>
                   </div>
                 </div>
               </div>            
@@ -2799,12 +2829,40 @@ evaluateGuard = null;
             center: true
         });
 
-        const diagramEventNamesArray = ['do', 'DOWN', 'ESC', 'LEFT', 'PG_DOWN', 'PG_UP', 'RIGHT', 'UP', ];
+        const diagramEventNamesArray = ['do', 'down', 'esc', 'left', 'pg_down', 'pg_up', 'right', 'up', ];
 
+        // Mapping from state to available events
+        const stateEventsMapping = {
+    'SPLASH_SCREEN': ['right', ],
+    'MENU': ['esc', ],
+    'MAIN_MENU_INNER': ['esc', 'pg_down', 'pg_up', ],
+    'DRINK': ['down', 'esc', 'pg_down', 'pg_up', 'right', 'up', ],
+    'FOOD': ['down', 'esc', 'pg_down', 'pg_up', 'right', 'up', ],
+    'SYSTEM_INFO': ['down', 'esc', 'pg_down', 'pg_up', 'right', 'up', ],
+    'ESC_CATCHER_1': ['esc', ],
+    'DRINK_MENU': ['esc', 'left', 'right', ],
+    'FOOD_MENU': ['esc', 'left', ],
+    'EAT_BURRITO': ['down', 'esc', 'left', 'right', ],
+    'EAT_SLUDGE': ['down', 'esc', 'left', 'right', 'up', ],
+    'EAT_MRE': ['esc', 'left', 'right', 'up', ],
+    'EVENT_EATER_2': ['esc', 'left', ],
+    'COOKING_FOOD1': ['do', 'esc', 'left', ],
+    'COOKING_FOOD': ['do', 'esc', 'left', ],
+    'SYSTEM_INFO_MENU': ['esc', 'left', 'pg_down', 'pg_up', ],
+    'BURRITO_COUNT': ['down', 'esc', 'left', 'pg_down', 'pg_up', 'up', ],
+    'DISTANCE': ['down', 'esc', 'left', 'pg_down', 'pg_up', 'up', ],
+    'SELF_DESTRUCT_OPTION': ['down', 'esc', 'left', 'pg_down', 'pg_up', 'right', 'up', ],
+    'SELF_DESTRUCT': ['esc', 'left', 'pg_down', 'pg_up', ],
+    'SD_1': ['do', 'esc', 'left', 'pg_down', 'pg_up', ],
+}
+;
+
+        // Get page element references
         const leftPane = document.querySelector(".main");
         const rightPane = document.querySelector(".sidebar");
         const gutter = document.querySelector(".gutter");
 
+        // Function to resize panes
         function resizer(e) {          
           window.addEventListener('mousemove', mousemove);
           window.addEventListener('mouseup', mouseup);          
@@ -2826,8 +2884,10 @@ evaluateGuard = null;
           }                  
         }
 
+        // Add mouse down event listener for the resizer
         gutter.addEventListener('mousedown', resizer);
 
+        // Set the state of the timestamp checkbox
         document.getElementById('timestamps').checked = document.querySelector('table.console').classList.contains('timestamps');
         document.getElementById('timestamps').addEventListener('change', function() {
           if(this.checked) {
@@ -2837,6 +2897,14 @@ evaluateGuard = null;
           }
         });
 
+        // Set up hide irrelevant events checkbox state and event listener
+        document.getElementById('hideIrrelevantEvents').addEventListener('change', function() {
+          // When checkbox state changes, update event button display for current state
+          const currentStateName = SpaceControlUiSm.stateIdToString(sm.stateId);
+          updateEventButtonStates(currentStateName);
+        });
+
+        // Add click event listener for dropdown menu button
         document.getElementById('dropbtn').addEventListener('click', myFunction);
 
         /* When the user clicks on the button, 
@@ -2858,7 +2926,6 @@ evaluateGuard = null;
             }
           }
         }
-
 
 
 
@@ -2917,6 +2984,35 @@ evaluateGuard = null;
             highlightedEdges.clear();
         }
 
+        // Function to update event button states
+        function updateEventButtonStates(currentStateName) {
+            const availableEvents = stateEventsMapping[currentStateName] || [];
+            const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
+            
+            diagramEventNamesArray.forEach(eventName => {
+                const button = document.getElementById('button_' + eventName);
+                if (button) {
+                    // do event always remains enabled as it is the core event for state machine operation
+                    const isDoEvent = eventName.toLowerCase() === 'do';
+                    // Use case-insensitive comparison to match events
+                    const isAvailable = isDoEvent || availableEvents.some(event => event.toLowerCase() === eventName.toLowerCase());
+                    
+                    // Clear all state classes
+                    button.classList.remove('enabled', 'disabled', 'hidden');
+                    
+                    if (hideIrrelevantEvents && !isAvailable) {
+                        // If hide irrelevant events is checked and this event is not available, hide the button
+                        button.classList.add('hidden');
+                        button.disabled = true;
+                    } else {
+                        // Otherwise show the button and set appropriate state
+                        button.classList.add(isAvailable ? 'enabled' : 'disabled');
+                        button.disabled = !isAvailable;
+                    }
+                }
+            });
+        }
+
         // The simulator uses a tracer callback to perform operations such as 
         // state highlighting and logging. You do not need this functionality
         // when using SpaceControlUiSm.js in your own applications, although you may
@@ -2929,6 +3025,9 @@ evaluateGuard = null;
                   panOnScreen(e);
                 }
                 sm.tracer.log('➡️ Entered ' + mermaidName);
+                
+                // Update event button states
+                updateEventButtonStates(mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
@@ -2945,12 +3044,16 @@ evaluateGuard = null;
         diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
             button.id = 'button_' + diagramEventName;
+            button.className = 'event-button';
             button.innerText = diagramEventName;
             button.addEventListener('click', () => {
-                clearHighlightedEdges();
-                sm.tracer?.log('<span class="dispatched"><span class="trigger">' + diagramEventName + '</span> DISPATCHED</span>', true);
-                const fsmEventName = diagramEventName.toUpperCase();
-                sm.dispatchEvent(SpaceControlUiSm.EventId[fsmEventName]); 
+                // Only handle click events when button is enabled
+                if (!button.disabled) {
+                    clearHighlightedEdges();
+                    sm.tracer?.log('<span class="dispatched"><span class="trigger">' + diagramEventName + '</span> DISPATCHED</span>', true);
+                    const fsmEventName = diagramEventName.toUpperCase();
+                    sm.dispatchEvent(SpaceControlUiSm.EventId[fsmEventName]); 
+                }
             });
             document.getElementById('buttons').appendChild(button);
         });
@@ -2958,6 +3061,9 @@ evaluateGuard = null;
         sm.tracer?.log('<span class="dispatched">START</span>', true);
         sm.start();
 
+        // Initialize event button states
+        const initialStateName = SpaceControlUiSm.stateIdToString(sm.stateId);
+        updateEventButtonStates(initialStateName);
 
         function panOnScreen(element) {
           if(!element) return;

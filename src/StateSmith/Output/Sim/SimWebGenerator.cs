@@ -13,6 +13,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace StateSmith.Output.Sim;
 
@@ -36,10 +37,21 @@ public class SimWebGenerator
     /// </summary>
     HashSet<string> diagramEventNames = new(StringComparer.OrdinalIgnoreCase);
 
+    /// <summary>
+    /// Mapping from state to available events
+    /// Key is state name, value is the set of event names that the state can handle
+    /// </summary>
+    Dictionary<string, HashSet<string>> stateToAvailableEvents = new(StringComparer.OrdinalIgnoreCase);
+
     BehaviorTracker behaviorTracker = new();
 
     SmRunner runner;
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="codeFileWriter">Code file writer</param>
+    /// <param name="mainRunnerSettings">Main runner settings</param>
     public SimWebGenerator(ICodeFileWriter codeFileWriter, RunnerSettings mainRunnerSettings)
     {
         // NOTE! we need mainRunnerSettings so that we can use the same algorithm as the main runner.
@@ -74,6 +86,7 @@ public class SimWebGenerator
     /// Prevent user diagram settings that could mess up the generated simulation.
     /// https://github.com/StateSmith/StateSmith/issues/337
     /// </summary>
+    /// <param name="renderConfigBaseVars">Render configuration base variables</param>
     private void PreventCertainDiagramSpecifiedSettings(RenderConfigBaseVars renderConfigBaseVars)
     {
         DiagramBasedSettingsPreventer.Process(runner.SmTransformer, action: (readRenderConfigAllVars, _) =>
@@ -148,8 +161,49 @@ public class SimWebGenerator
                         diagramEventNames.Add(trigger);
                 }
             }
+
+            // Collect available events for each state
+            if (vertex is State state)
+            {
+                var availableEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                
+                // Collect events defined directly in this state
+                foreach (var behavior in state.Behaviors)
+                {
+                    foreach (var trigger in behavior.Triggers)
+                    {
+                        if (TriggerHelper.IsEvent(trigger))
+                        {
+                            availableEvents.Add(trigger);
+                        }
+                    }
+                }
+
+                // Collect events inherited from parent states
+                var currentVertex = state.Parent;
+                while (currentVertex != null)
+                {
+                    foreach (var behavior in currentVertex.Behaviors)
+                    {
+                        foreach (var trigger in behavior.Triggers)
+                        {
+                            if (TriggerHelper.IsEvent(trigger))
+                            {
+                                availableEvents.Add(trigger);
+                            }
+                        }
+                    }
+                    currentVertex = currentVertex.Parent;
+                }
+
+                if (availableEvents.Count > 0)
+                {
+                    stateToAvailableEvents[state.Name] = availableEvents;
+                }
+            }
         });
     }
+
 
     public void Generate(string diagramPath, string outputDir)
     {
@@ -164,13 +218,19 @@ public class SimWebGenerator
 
         string diagramEventNamesArray = OrganizeEventNamesIntoJsArray(diagramEventNames);
 
+        // Organize state event mapping into JavaScript object format
+        string stateEventsMapping = OrganizeStateEventsIntoJsObject();
+
+        // Build HTML content
         var sb = new StringBuilder();
         HtmlRenderer.Render(sb,
             smName: smName,
             mocksCode: mocksWriter.ToString(),
             mermaidCode: mermaidCodeWriter.ToString(),
             jsCode: fileCapturer.CapturedCode,
-            diagramEventNamesArray: diagramEventNamesArray);
+            diagramEventNamesArray: diagramEventNamesArray,
+            stateEventsMapping: stateEventsMapping);
+            
         codeFileWriter.WriteFile(path, code: sb.ToString());
     }
 
@@ -317,5 +377,31 @@ public class SimWebGenerator
         // May be overridden to override guard evaluation (eg. in a simulator)
         evaluateGuard = null;
     ";
+    }
+
+    /// <summary>
+    /// Convert state-to-available-events mapping to JavaScript object format
+    /// </summary>
+    /// <returns>String in JavaScript object format</returns>
+    private string OrganizeStateEventsIntoJsObject()
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine("{");
+        
+        foreach (var kvp in stateToAvailableEvents)
+        {
+            var stateName = kvp.Key;
+            var events = kvp.Value;
+            
+            sb.Append($"    '{stateName}': [");
+            foreach (var eventName in events.OrderBy(e => e, StringComparer.OrdinalIgnoreCase))
+            {
+                sb.Append($"'{eventName}', ");
+            }
+            sb.AppendLine("],");
+        }
+        
+        sb.AppendLine("}");
+        return sb.ToString();
     }
 }

@@ -1,0 +1,98 @@
+@startuml electromagnet
+
+
+skinparam backgroundColor #FFFFFF
+skinparam state {
+  BackgroundColor #E8F4FD
+  BorderColor #1E88E5
+  ArrowColor #1565C0
+  FontColor #0D47A1
+}
+
+[*] --> System_Initialization
+
+state System_Initialization {
+  System_Initialization : enter / system_init_enter();
+}
+
+state Adc_Calibration {
+  Adc_Calibration : enter / adc_calibration_enter();
+  Adc_Calibration : do / adc_calibration_do();
+}
+
+state System_Run {
+  System_Run : do / system_running_do();
+  
+  [*] --> Standby
+  
+  state Electricity_Control_Mode {
+    [*] --> Initialization_Of_Pid
+    
+    state Initialization_Of_Pid {
+      Initialization_Of_Pid : enter / pid_init_enter();
+    }
+    
+    state Electricity_Control {
+      Electricity_Control : enter / current_control_enter();
+      Electricity_Control : do / current_control_do();
+      Electricity_Control : exit / current_control_exit();
+    }
+    
+    state Parameter_Adjustments {
+      Parameter_Adjustments : enter / parameter_adjust_enter();
+    }
+    
+    state Change_Of_Objective {
+      Change_Of_Objective : enter / target_change_enter();
+    }
+    
+    Initialization_Of_Pid --> Electricity_Control
+    Electricity_Control --> Parameter_Adjustments : needed_referral
+    Electricity_Control --> Change_Of_Objective : target_current_change
+    Parameter_Adjustments --> Electricity_Control
+    Change_Of_Objective --> Electricity_Control 
+  }
+  
+  state Standby {
+    Standby : enter / system_pause_enter();
+    Standby : exit / system_pause_exit();
+  }
+  
+  Electricity_Control_Mode --> Standby : get_on_standby
+  Standby --> Electricity_Control_Mode : power_control
+}
+
+state System_Error {
+  System_Error : enter / system_error_enter();
+  System_Error : exit / system_error_exit();
+}
+
+state System_Stop {
+  System_Stop : enter / system_stop_enter();
+  System_Stop : do / system_stop_do();
+}
+
+' State_Conversion
+System_Initialization --> Adc_Calibration
+Adc_Calibration --> System_Run : adc_calibration_complete
+Adc_Calibration --> System_Error : calibration_failed
+System_Run --> System_Error : control_anomaly
+System_Run --> System_Stop : stop_the_request
+
+'######################## StateSmith config ########################
+' The below special comment block sets the StateSmith configuration.
+' More info: https://github.com/StateSmith/StateSmith/issues/335
+' Feel free to remove or modify it as needed.
+
+/'! $CONFIG : toml
+
+[RenderConfig.C]
+CFileExtension = ".c"
+CFileIncludes = """
+    #include "electromagnet_state_machine.h"
+    """
+[SmRunnerSettings]
+transpilerId = "C99"
+'/
+
+@enduml 
