@@ -31,7 +31,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## [WIP]
+## [0.17.6]
 ### Added
 - StateSmith Grammar - allow `#ifdef` and other C/C++ preprocessor directives in user action code.
   - https://github.com/StateSmith/StateSmith/issues/478
