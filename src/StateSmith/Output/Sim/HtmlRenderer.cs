@@ -176,26 +176,24 @@ public class HtmlRenderer
 
       button.event-button {
         transition: opacity 0.3s ease, background-color 0.3s ease;
-      }
-
-      button.event-button.disabled {
-        opacity: 0.4;
-        background-color: #f0f0f0;
-        color: #999;
-        cursor: not-allowed;
-      }
-
-      button.event-button.enabled {
         opacity: 1;
         background-color: #007bff;
         color: white;
         cursor: pointer;
       }
 
-      button.event-button.enabled:hover {
+      button.event-button:disabled {
+        opacity: 0.4;
+        background-color: #f0f0f0;
+        color: #999;
+        cursor: not-allowed;
+      }
+
+      button.event-button:not(:disabled):hover {
         background-color: #0056b3;
       }
 
+      /* 隐藏无关事件的样式 */
       button.event-button.hidden {
         display: none;
       }
@@ -462,11 +460,7 @@ public class HtmlRenderer
                     const isDoEvent = eventName.toLowerCase() === 'do';
                     const isAvailable = isDoEvent || availableEvents.includes(eventName);
                     
-                    // Clear state classes but preserve hidden state
-                    button.classList.remove('enabled', 'disabled');
-                    
-                    // Set button state and disabled property based on availability
-                    button.classList.add(isAvailable ? 'enabled' : 'disabled');
+                    // Only set disabled property, CSS :disabled pseudo-class handles styling
                     button.disabled = !isAvailable;
                 }
             });
@@ -482,17 +476,8 @@ public class HtmlRenderer
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
                 if (button) {
-                    if (hideIrrelevantEvents) {
-                        // Hide buttons that are currently disabled (unavailable)
-                        if (button.disabled) {
-                            button.classList.add('hidden');
-                        } else {
-                            button.classList.remove('hidden');
-                        }
-                    } else {
-                        // Show all buttons when checkbox is unchecked
-                        button.classList.remove('hidden');
-                    }
+                    // Toggle hidden class based on checkbox state and button disabled state
+                    button.classList.toggle('hidden', hideIrrelevantEvents && button.disabled);
                 }
             });
         }
