@@ -88,12 +88,12 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton<ICodeFileWriter, CodeFileWriter>();
 
             services.AddSingleton<StateMachineProvider>();
-            services.AddSingleton<IStateMachineProvider>((s) => s.GetRequiredService<StateMachineProvider>()); 
+            services.AddSingleton<IStateMachineProvider>((s) => s.GetRequiredService<StateMachineProvider>()); // TODO AddSingleton<IStateMachineProvider,StateMachineProvider>()?
             services.AddSingleton<DiagramFilePathProvider>();
             services.AddSingleton<SmFileNameProcessor>();
 
             services.AddSingleton<DiagramToSmConverter>();
-            services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetRequiredService<DiagramToSmConverter>());
+            services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetRequiredService<DiagramToSmConverter>()); // TODO AddSingleton<IDiagramVerticesProvider,DiagramToSmConverter>()?
             services.AddSingleton<AlgoBalanced1Settings>();
             services.AddSingleton<AlgoTranspilerCustomizer>();
             services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
