@@ -54,10 +54,8 @@ public class StandardSmTransformer : SmTransformer
             step.action(sm);
 
             // TODO clean this up
-            Console.WriteLine($"BOOGA step.Id: {step.Id}");
             if (onlyPreDiagramSettings && step.Id == TransformationId.Standard_SupportRenderConfigVerticesAndRemove.ToString())
             {
-                Console.WriteLine("FOOGA");
                 break;
             }
         }
