@@ -32,7 +32,7 @@ public class PreDiagramSettingsReader
     public void Process()
     {
         // TODO inject this
-        var inputSmBuilder = sp.GetRequiredService<PreDiagramSettingsInputSmBuilder>();
+        var inputSmBuilder = sp.GetRequiredService<InputSmBuilder>();
 
         SmRunnerInternal.SetupAndFindStateMachine(inputSmBuilder, smRunnerSettings); // TODO do we need this anymore?
         inputSmBuilder.FinishRunning();

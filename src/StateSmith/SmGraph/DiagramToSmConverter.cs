@@ -295,7 +295,7 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
     }
 }
 
-// TODO replace with a scope
-public class PreDiagramSettingsDiagramToSmConverter : DiagramToSmConverter
-{
-}
+// // TODO replace with a scope
+// public class PreDiagramSettingsDiagramToSmConverter : DiagramToSmConverter
+// {
+// }

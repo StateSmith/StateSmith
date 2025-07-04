@@ -44,12 +44,32 @@ public class StandardSmTransformer : SmTransformer
         Standard_FinalValidation,
     };
 
+    // TODO update name, maybe make private, expose setter
+    public bool onlyPreDiagramSettings = false;
+
+    public override void RunTransformationPipeline(StateMachine sm)
+    {
+        foreach (var step in transformationPipeline)
+        {
+            step.action(sm);
+
+            // TODO clean this up
+            Console.WriteLine($"BOOGA step.Id: {step.Id}");
+            if (onlyPreDiagramSettings && step.Id == TransformationId.Standard_SupportRenderConfigVerticesAndRemove.ToString())
+            {
+                Console.WriteLine("FOOGA");
+                break;
+            }
+        }
+    }
+
     // this ctor used for Dependency Injection
     public StandardSmTransformer(TomlConfigVerticesProcessor tomlConfigVerticesProcessor, RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor, StateNameConflictResolver nameConflictResolver, TriggerMapProcessor triggerMapProcessor)
     {
         AddStep(TransformationId.Standard_RemoveNotesVertices, (sm) => NotesProcessor.Process(sm));
         AddStep(TransformationId.Standard_TomlConfig, (sm) => tomlConfigVerticesProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportRenderConfigVerticesAndRemove, (sm) => renderConfigVerticesProcessor.Process());
+
         AddStep(TransformationId.Standard_SupportParentAlias, (sm) => ParentAliasStateProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportEntryExit, (sm) => EntryExitProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportPrefixingModder, (sm) => PrefixingModder.Process(sm)); // must happen before name conflict resolution
@@ -87,31 +107,31 @@ public class StandardSmTransformer : SmTransformer
     }
 }
 
-/// <summary>
-/// A marker class for a transformer that runs before the settings are applied.
-/// </summary>
-public class PreSettingsSmTransformer : StandardSmTransformer
-{
-    public PreSettingsSmTransformer(TomlConfigVerticesProcessor tomlConfigVerticesProcessor, RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor, StateNameConflictResolver nameConflictResolver, TriggerMapProcessor triggerMapProcessor)
-        : base(tomlConfigVerticesProcessor, renderConfigVerticesProcessor, historyProcessor, nameConflictResolver, triggerMapProcessor)
-    {
-        // Remove everything not needed for diagram settings reading.
-        // We don't actually want to validate the diagram, just read the settings.
-        // Why? Because it is slower and also we don't want to mess up designs that require special transformers.
-        // If a user adds special transformers, they won't be added here as this is a brand new SmRunner and DI setup.
-        // https://github.com/StateSmith/StateSmith/issues/349
+// /// <summary>
+// /// A marker class for a transformer that runs before the settings are applied.
+// /// </summary>
+// public class PreSettingsSmTransformer : StandardSmTransformer
+// {
+//     public PreSettingsSmTransformer(TomlConfigVerticesProcessor tomlConfigVerticesProcessor, RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor, StateNameConflictResolver nameConflictResolver, TriggerMapProcessor triggerMapProcessor)
+//         : base(tomlConfigVerticesProcessor, renderConfigVerticesProcessor, historyProcessor, nameConflictResolver, triggerMapProcessor)
+//     {
+//         // Remove everything not needed for diagram settings reading.
+//         // We don't actually want to validate the diagram, just read the settings.
+//         // Why? Because it is slower and also we don't want to mess up designs that require special transformers.
+//         // If a user adds special transformers, they won't be added here as this is a brand new SmRunner and DI setup.
+//         // https://github.com/StateSmith/StateSmith/issues/349
 
-        RemoveAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportRenderConfigVerticesAndRemove);
+//         RemoveAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportRenderConfigVerticesAndRemove);
         
-        // ensure that remove above didn't remove the toml config processor
-        if (!HasMatch(StandardSmTransformer.TransformationId.Standard_TomlConfig))
-        {
-            throw new System.InvalidOperationException("Programming error. Standard_TomlConfig must be present.");
-        }
+//         // ensure that remove above didn't remove the toml config processor
+//         if (!HasMatch(StandardSmTransformer.TransformationId.Standard_TomlConfig))
+//         {
+//             throw new System.InvalidOperationException("Programming error. Standard_TomlConfig must be present.");
+//         }
 
-        if (transformationPipeline.Count != 3)
-        {
-            throw new System.InvalidOperationException("Programming error. Expected only 3 steps in the pipeline.");
-        }        
-    }
-}
+//         if (transformationPipeline.Count != 3)
+//         {
+//             throw new System.InvalidOperationException("Programming error. Expected only 3 steps in the pipeline.");
+//         }        
+//     }
+// }

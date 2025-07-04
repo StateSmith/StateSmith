@@ -233,14 +233,14 @@ public class InputSmBuilder
 }
 
 
-/// <summary>
-/// Marker class for pre-diagram settings.
-/// Not needed when we have AddKeyedSingleton in the DI container in net8+
-/// </summary>
-public class PreDiagramSettingsInputSmBuilder : InputSmBuilder
-{
-    public PreDiagramSettingsInputSmBuilder(PreSettingsSmTransformer transformer, PreDiagramSettingsDiagramToSmConverter diagramToSmConverter, INameMangler mangler, DrawIoToSmDiagramConverter converter, IServiceProvider sp, StateMachineProvider stateMachineProvider, DiagramFilePathProvider diagramFilePathProvider)
-        : base(transformer, diagramToSmConverter, mangler, converter, sp, stateMachineProvider, diagramFilePathProvider)
-    {
-    }
-}
+// /// <summary>
+// /// Marker class for pre-diagram settings.
+// /// Not needed when we have AddKeyedSingleton in the DI container in net8+
+// /// </summary>
+// public class PreDiagramSettingsInputSmBuilder : InputSmBuilder
+// {
+//     public PreDiagramSettingsInputSmBuilder(PreSettingsSmTransformer transformer, PreDiagramSettingsDiagramToSmConverter diagramToSmConverter, INameMangler mangler, DrawIoToSmDiagramConverter converter, IServiceProvider sp, StateMachineProvider stateMachineProvider, DiagramFilePathProvider diagramFilePathProvider)
+//         : base(transformer, diagramToSmConverter, mangler, converter, sp, stateMachineProvider, diagramFilePathProvider)
+//     {
+//     }
+// }

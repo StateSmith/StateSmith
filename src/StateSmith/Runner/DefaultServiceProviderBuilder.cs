@@ -102,9 +102,10 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton<IGilToC99Customizer>((s) => s.GetRequiredService<GilToC99Customizer>());
             services.AddSingleton<CppGilHelpers>();
 
-            services.AddSingleton<PreDiagramSettingsInputSmBuilder>();
-            services.AddSingleton<PreDiagramSettingsDiagramToSmConverter>();
-            services.AddSingleton<PreSettingsSmTransformer>(); // TOOD rename for consistency
+            // TODO cleanup
+            // services.AddSingleton<PreDiagramSettingsInputSmBuilder>();
+            // services.AddSingleton<PreDiagramSettingsDiagramToSmConverter>();
+            // services.AddSingleton<PreSettingsSmTransformer>(); // TOOD rename for consistency
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<DefaultExpansionsProcessor>();
