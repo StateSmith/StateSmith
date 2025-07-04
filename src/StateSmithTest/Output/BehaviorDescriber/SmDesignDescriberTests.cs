@@ -432,24 +432,6 @@ public class SmDesignDescriberTests
                 INC_ERR / { err++; }
 
 
-            Vertex: \<RenderConfig>
-            -----------------------------------------
-            - Parent: ROOT
-            - Type: RenderConfigVertex
-            - Diagram Id: gO1ZRfetmGtumTaL4_i4-146
-
-
-            Vertex: \<Config>(TriggerMap)
-            -----------------------------------------
-            - Parent: \<RenderConfig>
-            - Type: ConfigOptionVertex
-            - Diagram Id: gO1ZRfetmGtumTaL4_i4-148
-
-            ### Option Content:
-                // some comment
-                ANY => * /* wildcard */
-
-
             Vertex: PRE_HEAT
             -----------------------------------------
             - Parent: RUNNING
@@ -483,6 +465,28 @@ public class SmDesignDescriberTests
                 TransitionTo(PRE_HEAT)
 
             """;
+            
+            // TODO remove. I believe this is safe to remove because
+            // it's only being used by SimWebGenerator, which does not need/expect
+            // RenderConfig nodes to be output during the settings pass.
+
+            // Vertex: \<RenderConfig>
+            // -----------------------------------------
+            // - Parent: ROOT
+            // - Type: RenderConfigVertex
+            // - Diagram Id: gO1ZRfetmGtumTaL4_i4-146
+
+
+            // Vertex: \<Config>(TriggerMap)
+            // -----------------------------------------
+            // - Parent: \<RenderConfig>
+            // - Type: ConfigOptionVertex
+            // - Diagram Id: gO1ZRfetmGtumTaL4_i4-148
+
+            // ### Option Content:
+            //     // some comment
+            //     ANY => * /* wildcard */
+
 
     private const string ExpectedAfterTransformations = """
             AFTER TRANSFORMATIONS
