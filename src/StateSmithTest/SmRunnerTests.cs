@@ -16,7 +16,7 @@ public class SmRunnerTests
         string tempPath = Path.GetTempPath();
         StringBuilderConsolePrinter fakeConsole = new();
 
-        var spBuilder = IConfigServiceProviderBuilder.CreateDefault((services) =>
+        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
         });
@@ -55,7 +55,7 @@ public class SmRunnerTests
         string tempPath = Path.GetTempPath();
         StringBuilderConsolePrinter fakeConsole = new();
 
-        var spBuilder = IConfigServiceProviderBuilder.CreateDefault((services) =>
+        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
         });

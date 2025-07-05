@@ -29,7 +29,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// We can't use the IServiceProvider directly because we need to add the 
     /// dependencies that are based on RenderConfig and RunnerSettings.
     /// </summary>
-    readonly IConfigServiceProviderBuilder serviceProviderBuilder;
+    readonly IServiceProviderBuilder serviceProviderBuilder;
 
     // TODO remove ? once it's guaranteed to be non-null
     private IServiceProvider? serviceProvider;
@@ -55,7 +55,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="serviceOverrides">Optional dependency injection overrides</param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
     /// <param name="enablePDBS">User code should leave unspecified for now.</param>
-    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, IConfigServiceProviderBuilder? serviceProviderBuilder = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
+    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProviderBuilder? serviceProviderBuilder = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
 
@@ -65,7 +65,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.callerFilePath = callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
-        this.serviceProviderBuilder = serviceProviderBuilder ?? IConfigServiceProviderBuilder.CreateDefault();
+        this.serviceProviderBuilder = serviceProviderBuilder ?? DefaultServiceProviderBuilder.CreateDefault();
 
         SetupDependencyInjectionAndRenderConfigs();
     }
@@ -86,7 +86,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         string? outputDirectory = null,
         AlgorithmId algorithmId = AlgorithmId.Default,
         TranspilerId transpilerId = TranspilerId.Default,
-        IConfigServiceProviderBuilder? serviceProviderBuilder = null,
+        IServiceProviderBuilder? serviceProviderBuilder = null,
         [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null, bool enablePDBS = true)
     : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProviderBuilder, callerFilePath: callingFilePath, enablePDBS: enablePDBS)
     {

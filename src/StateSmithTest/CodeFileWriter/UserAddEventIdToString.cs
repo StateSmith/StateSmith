@@ -80,7 +80,7 @@ public class UserAddEventIdToString
     [Fact]
     public void ExampleCustomCodeGen()
     {
-        var spBuilder = IConfigServiceProviderBuilder.CreateDefault((services) =>
+        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             // register our custom code file writer
             services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();

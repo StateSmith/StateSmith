@@ -35,33 +35,24 @@ namespace StateSmith.Runner;
 /// </summary>
 /// <typeparam name="ReturnType">Must be a subclass of <see cref="IServiceProviderBuilder{ReturnType}"/></typeparam>
 // TODO remove IDisposable from IServiceProviderBuilder once I am no longer calling Build inside SmRunner
-public interface IServiceProviderBuilder<ReturnType> : IDisposable
+public interface IServiceProviderBuilder : IDisposable
 {
-    public abstract ReturnType WithServices(Action<IServiceCollection> services);
+    public abstract IServiceProviderBuilder WithServices(Action<IServiceCollection> services);
     public abstract IServiceProvider Build();
 }
 
 /// <summary>
-/// Defines a builder interface for creating a service provider with configuration options specific to SmRunner.
-/// This interface extends <see cref="IServiceProviderBuilder{ReturnType}"/> to include methods for configuring runner settings and render configurations.
+/// Provides a default implementation of <see cref="DefaultServiceProviderBuilder"/> that sets up a service provider with common services used by StateSmith.
+/// This builder can be used to configure additional services or override existing ones.
 /// </summary>
-// TODO this name is really unwieldy to use everywhere
-// TODO remove this interface
-public interface IConfigServiceProviderBuilder : IServiceProviderBuilder<IConfigServiceProviderBuilder>
+public class DefaultServiceProviderBuilder : IDisposable, IServiceProviderBuilder
 {
     // TODO remove serviceOverrides from CreateDefault
-    public static IConfigServiceProviderBuilder CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
+    public static DefaultServiceProviderBuilder CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
         return new DefaultServiceProviderBuilder(serviceOverrides);
     }
-}
 
-/// <summary>
-/// Provides a default implementation of <see cref="IConfigServiceProviderBuilder"/> that sets up a service provider with common services used by StateSmith.
-/// This builder can be used to configure additional services or override existing ones.
-/// </summary>
-public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProviderBuilder
-{
     private IHost? host;
     private readonly IHostBuilder hostBuilder;
 
@@ -183,7 +174,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
         });
     }
 
-    public IConfigServiceProviderBuilder WithServices(Action<IServiceCollection> services)
+    public IServiceProviderBuilder WithServices(Action<IServiceCollection> services)
     {
         hostBuilder.ConfigureServices(services);
         return this;
