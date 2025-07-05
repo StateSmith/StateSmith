@@ -64,7 +64,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.callerFilePath = callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
-        this.serviceProvider = serviceProvider ?? DefaultServiceProviderBuilder.CreateDefault();
+        this.serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
 
         SetupDependencyInjectionAndRenderConfigs();
     }

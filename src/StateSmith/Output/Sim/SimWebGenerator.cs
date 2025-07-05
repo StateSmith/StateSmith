@@ -65,7 +65,7 @@ public class SimWebGenerator
         this.codeFileWriter = codeFileWriter;
 
         var enablePreDiagramBasedSettings = false;  // need to stop it from trying to read diagram early as fake diagram path is used
-        var sp = DefaultServiceProviderBuilder.CreateDefault((services)=>
+        var sp = RunnerServiceProviderFactory.CreateDefault((services)=>
         {
             services.AddSingleton<IExpander>(trackingExpander);
             services.AddSingleton<ICodeFileWriter>(fileCapturer);

@@ -27,11 +27,10 @@ using StateSmith.Output.Gil.CSharp;
 namespace StateSmith.Runner;
 
 /// <summary>
-/// Provides a default implementation of <see cref="DefaultServiceProviderBuilder"/> that sets up a service provider with common services used by StateSmith.
+/// Provides a default implementation of <see cref="RunnerServiceProviderFactory"/> that sets up a service provider with common services used by StateSmith.
 /// This builder can be used to configure additional services or override existing ones.
 /// </summary>
-/// // TODO rename, factory?
-public class DefaultServiceProviderBuilder 
+public class RunnerServiceProviderFactory 
 {
     public static IServiceProvider CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
     {

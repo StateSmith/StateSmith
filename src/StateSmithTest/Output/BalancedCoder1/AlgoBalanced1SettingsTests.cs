@@ -20,7 +20,7 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void NormalBehaviorHasToStringFunctions()
     {
-        var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
@@ -37,7 +37,7 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void RemoveEventIdToString()
     {
-        var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
@@ -55,7 +55,7 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void RemoveStateIdToString()
     {
-        var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });

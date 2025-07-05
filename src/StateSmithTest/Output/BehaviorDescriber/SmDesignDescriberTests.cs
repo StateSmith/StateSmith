@@ -262,7 +262,7 @@ public class SmDesignDescriberTests
 
         private static SmRunner SetupSmRunner(out IServiceProvider di, string diagramFile)
         {
-            var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
+            var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
             {
                 services.AddSingleton<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
             });
