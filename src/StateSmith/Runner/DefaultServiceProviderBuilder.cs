@@ -73,12 +73,14 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
 
         WithServices((services) =>
         {
-            services.AddSingleton<DrawIoSettings>();
-            services.AddSingleton<CodeStyleSettings>();
+            // RunnerSettings
             services.AddSingleton<RunnerSettings>();
-            services.AddSingleton<SmDesignDescriberSettings>();
-            services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
+            services.AddSingleton<DrawIoSettings>((sp)=>sp.GetRequiredService<RunnerSettings>().drawIoSettings);
+            services.AddSingleton<CodeStyleSettings>((sp)=>sp.GetRequiredService<RunnerSettings>().style);
+            services.AddSingleton<SmDesignDescriberSettings>((sp)=>sp.GetRequiredService<RunnerSettings>().smDesignDescriber);
+            services.AddSingleton<AlgoBalanced1Settings>((sp) => sp.GetRequiredService<RunnerSettings>().algoBalanced1);
 
+            services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
             services.AddSingleton<SmRunnerInternal>();
             services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<IExpander, Expander>();
@@ -94,7 +96,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
 
             services.AddSingleton<DiagramToSmConverter>();
             services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetRequiredService<DiagramToSmConverter>());
-            services.AddSingleton<AlgoBalanced1Settings>();
             services.AddSingleton<AlgoTranspilerCustomizer>();
             services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
             services.AddSingleton<IAlgoEventIdToString, AlgoEventIdToString>();
@@ -180,11 +181,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
     {
         WithServices(services =>
         {
-            services.AddSingleton(settings);
-            services.AddSingleton(settings.drawIoSettings);
-            services.AddSingleton(settings.smDesignDescriber);
-            services.AddSingleton(settings.style);
-            services.AddSingleton(settings.algoBalanced1);
+            services.AddSingleton<RunnerSettings>(settings);
         });
 
         return this;
