@@ -36,7 +36,6 @@ namespace StateSmith.Runner;
 /// <typeparam name="ReturnType">Must be a subclass of <see cref="IServiceProviderBuilder{ReturnType}"/></typeparam>
 public interface IServiceProviderBuilder
 {
-    public abstract IServiceProviderBuilder WithServices(Action<IServiceCollection> services);
     public abstract IServiceProvider Build();
 }
 
@@ -166,13 +165,6 @@ public class DefaultServiceProviderBuilder : IServiceProviderBuilder
         // Merge the overrides into the service collection.
         serviceOverrides?.Invoke(services);
     }
-
-    public IServiceProviderBuilder WithServices(Action<IServiceCollection> moreservices)
-    {
-        moreservices.Invoke(this.services);
-        return this;
-    }
-
 
     public IServiceProvider Build()
     {
