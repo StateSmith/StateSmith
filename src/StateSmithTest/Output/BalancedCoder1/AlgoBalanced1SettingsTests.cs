@@ -20,62 +20,53 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void NormalBehaviorHasToStringFunctions()
     {
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        using var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
 
-        using (spBuilder)
-        {
-            SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId:TranspilerId.CSharp, serviceProvider: spBuilder.Build());
-            runner.Settings.propagateExceptions = true;
-            runner.Run();
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId:TranspilerId.CSharp, serviceProvider: spBuilder.Build());
+        runner.Settings.propagateExceptions = true;
+        runner.Run();
 
-            capturedFile.LastCode.Should().Contain("public static string StateIdToString(");
-            capturedFile.LastCode.Should().Contain("public static string EventIdToString(");            
-        }
+        capturedFile.LastCode.Should().Contain("public static string StateIdToString(");
+        capturedFile.LastCode.Should().Contain("public static string EventIdToString(");            
     }
 
     // https://github.com/StateSmith/StateSmith/issues/181
     [Fact]
     public void RemoveEventIdToString()
     {
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        using var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
 
-        using (spBuilder)
-        {
-            SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: spBuilder.Build());
-            runner.Settings.propagateExceptions = true;
-            runner.Settings.algoBalanced1.outputEventIdToStringFunction = false; // Here's the setting you want
-            runner.Run();
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: spBuilder.Build());
+        runner.Settings.propagateExceptions = true;
+        runner.Settings.algoBalanced1.outputEventIdToStringFunction = false; // Here's the setting you want
+        runner.Run();
 
-            capturedFile.LastCode.Should().Contain("public static string StateIdToString");
-            capturedFile.LastCode.Should().NotContain("public static string EventIdToString(");
-        }
+        capturedFile.LastCode.Should().Contain("public static string StateIdToString");
+        capturedFile.LastCode.Should().NotContain("public static string EventIdToString(");
     }
 
     // https://github.com/StateSmith/StateSmith/issues/181
     [Fact]
     public void RemoveStateIdToString()
     {
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        using var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
 
-        using (spBuilder)
-        {
-            SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: spBuilder.Build());
-            runner.Settings.propagateExceptions = true;
-            runner.Settings.algoBalanced1.outputStateIdToStringFunction = false; // Here's the setting you want
-            runner.Run();
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: spBuilder.Build());
+        runner.Settings.propagateExceptions = true;
+        runner.Settings.algoBalanced1.outputStateIdToStringFunction = false; // Here's the setting you want
+        runner.Run();
 
-            capturedFile.LastCode.Should().NotContain("public static string StateIdToString");
-            capturedFile.LastCode.Should().Contain("public static string EventIdToString(");
-        }
+        capturedFile.LastCode.Should().NotContain("public static string StateIdToString");
+        capturedFile.LastCode.Should().Contain("public static string EventIdToString(");
     }
 
 }

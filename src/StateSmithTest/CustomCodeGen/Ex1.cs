@@ -15,32 +15,29 @@ public class Ex1
         // settings for your custom code generator
         MyCodeGenSettings myCodeGenSettings = new(outputFileName: "my_output.txt");
 
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        using var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
         // register your custom code generator (and any custom dependencies) for Dependency Injection
             services.AddSingleton<ICodeGenRunner, MyCodeGenRunner>();
             services.AddSingleton(myCodeGenSettings);
         });
 
-        using (spBuilder)
-        {
-            SmRunner runner = new(diagramPath: "Ex1.drawio.svg", serviceProvider: spBuilder.Build());
+        SmRunner runner = new(diagramPath: "Ex1.drawio.svg", serviceProvider: spBuilder.Build());
 
-            // adjust settings because we are unit testing. Normally wouldn't do below.
-            runner.Settings.propagateExceptions = true;
-            runner.Settings.outputDirectory = Path.GetTempPath();
+        // adjust settings because we are unit testing. Normally wouldn't do below.
+        runner.Settings.propagateExceptions = true;
+        runner.Settings.outputDirectory = Path.GetTempPath();
 
-            // run StateSmith with your custom code generator!!!
-            runner.Run();
+        // run StateSmith with your custom code generator!!!
+        runner.Run();
 
-            // Test that we saw the expected output from your custom code generator.
-            string expectedFilePath = Path.GetTempPath() + "/" + "my_output.txt";
-            File.ReadAllText(expectedFilePath).ShouldBeShowDiff("""
-                State machine name: Ex1
-                Child count: 3
+        // Test that we saw the expected output from your custom code generator.
+        string expectedFilePath = Path.GetTempPath() + "/" + "my_output.txt";
+        File.ReadAllText(expectedFilePath).ShouldBeShowDiff("""
+            State machine name: Ex1
+            Child count: 3
 
-                """);
-        }
+            """);        
     }
 
     /// <summary>

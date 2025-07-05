@@ -79,29 +79,26 @@ public class UserAddEventIdToString
     [Fact]
     public void ExampleCustomCodeGen()
     {
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        using var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             // register our custom code file writer
             services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();
         });
 
-        using (spBuilder)
-        {
-            SmRunner runner = new(diagramPath: "Ex2.drawio.svg", serviceProvider: spBuilder.Build());
+        SmRunner runner = new(diagramPath: "Ex2.drawio.svg", serviceProvider: spBuilder.Build());
 
-            // adjust settings because we are unit testing. Normally wouldn't do below.
-            runner.Settings.propagateExceptions = true;
-            runner.Settings.outputStateSmithVersionInfo = false;
+        // adjust settings because we are unit testing. Normally wouldn't do below.
+        runner.Settings.propagateExceptions = true;
+        runner.Settings.outputStateSmithVersionInfo = false;
 
-            // run StateSmith with our custom code file writer
-            runner.Run();
+        // run StateSmith with our custom code file writer
+        runner.Run();
 
-            // Test that we saw the expected output from your custom code generator.
-            var cCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex2.c");
-            var hCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex2.h");
+        // Test that we saw the expected output from your custom code generator.
+        var cCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex2.c");
+        var hCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex2.h");
 
-            cCode.Should().Contain("_event_id_to_string");
-            hCode.Should().Contain("_event_id_to_string");
-        }
+        cCode.Should().Contain("_event_id_to_string");
+        hCode.Should().Contain("_event_id_to_string");
     }
 }

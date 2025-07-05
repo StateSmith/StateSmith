@@ -87,30 +87,28 @@ public class UserRemoveStateIdFuncAddCoverage
     [Fact]
     public void ExampleCustomCodeGen()
     {
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        using var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             // register our custom code file writer
             services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();
         });
-        using (spBuilder)
-        {
-            SmRunner runner = new(diagramPath: "Ex1.drawio.svg", algorithmId: AlgorithmId.Balanced1, serviceProvider: spBuilder.Build());
+    
+        SmRunner runner = new(diagramPath: "Ex1.drawio.svg", algorithmId: AlgorithmId.Balanced1, serviceProvider: spBuilder.Build());
 
-            // adjust settings because we are unit testing. Normally wouldn't do below.
-            runner.Settings.propagateExceptions = true;
-            runner.Settings.outputStateSmithVersionInfo = false;
+        // adjust settings because we are unit testing. Normally wouldn't do below.
+        runner.Settings.propagateExceptions = true;
+        runner.Settings.outputStateSmithVersionInfo = false;
 
-            // run StateSmith with our custom code file writer
-            runner.Run();
+        // run StateSmith with our custom code file writer
+        runner.Run();
 
-            // Test that we saw the expected output from your custom code generator.
-            var cCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex1.c");
-            var hCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex1.h");
+        // Test that we saw the expected output from your custom code generator.
+        var cCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex1.c");
+        var hCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex1.h");
 
-            cCode.Should().NotContain("state_id_to_string");
-            hCode.Should().NotContain("state_id_to_string");
+        cCode.Should().NotContain("state_id_to_string");
+        hCode.Should().NotContain("state_id_to_string");
 
-            cCode.Should().Contain("// LCOV_EXCLUDE_START");
-        }
+        cCode.Should().Contain("// LCOV_EXCLUDE_START");
     }
 }
