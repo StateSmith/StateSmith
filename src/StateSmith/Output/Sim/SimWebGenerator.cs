@@ -75,14 +75,13 @@ public class SimWebGenerator
         runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProvider: sp, enablePDBS: enablePreDiagramBasedSettings);
         runner.Settings.propagateExceptions = true;
 
-        // Registering DI services must be done before accessing `runner.SmTransformer`.
-        IServiceProvider simIServiceProvider = runner.GetExperimentalAccess().IServiceProvider;
+        IServiceProvider serviceProvider = runner.GetExperimentalAccess().IServiceProvider;
         AdjustTransformationPipeline();
-        PreventCertainDiagramSpecifiedSettings(simIServiceProvider.GetRequiredService<RenderConfigBaseVars>());
+        PreventCertainDiagramSpecifiedSettings(serviceProvider.GetRequiredService<RenderConfigBaseVars>());
 
-        stateMachineProvider = simIServiceProvider.GetRequiredService<StateMachineProvider>();
+        stateMachineProvider = serviceProvider.GetRequiredService<StateMachineProvider>();
 
-        nameMangler = simIServiceProvider.GetRequiredService<INameMangler>();
+        nameMangler = serviceProvider.GetRequiredService<INameMangler>();
 
         SetupGilHistoryRegex();
     }
