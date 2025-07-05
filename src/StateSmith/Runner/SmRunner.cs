@@ -204,23 +204,3 @@ public class SmRunner : SmRunner.IExperimentalAccess
         InputSmBuilder InputSmBuilder { get; }
     }
 }
-
-
-// TODO move
-/// <summary>
-/// This context object stores the runtime configuration for a given run
-/// of SmRunner.
-/// </summary>
-public class RunnerContext
-{
-    public RunnerSettings runnerSettings;
-    public RenderConfigAllVars renderConfigAllVars;
-    public IRenderConfig renderConfig;
-
-    public RunnerContext()
-    {
-        runnerSettings = new();
-        renderConfigAllVars = new();
-        renderConfig = new DummyIRenderConfig();
-    }
-}
