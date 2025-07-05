@@ -82,7 +82,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
 
             // RenderConfig
             // TODO can I generate RenderConfigAllVars from iRenderConfig?
-            services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
+            services.AddSingleton<RenderConfigAllVars>();
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Base);
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().C);
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Cpp);
