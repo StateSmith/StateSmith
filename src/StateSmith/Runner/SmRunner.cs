@@ -169,8 +169,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
             // override them in a .csx file (if they choose) before running the code generator.
             // https://github.com/StateSmith/StateSmith/issues/349
             // TODO update comment
-            // TODO fix casting
-            bool previousSetting = ((StandardSmTransformer)SmTransformer).onlyPreDiagramSettings;
             try
             {
                 // TODO fix casting
@@ -186,11 +184,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
                 // NOTE! we can't print or log this exception here because dependency injection is not yet set up
                 // TODO remove this try catch and preDiagramBasedsettingsException once we have DI set up
                 preDiagramBasedSettingsException = ExceptionDispatchInfo.Capture(e);
-            }
-            finally
-            {
-                // TODO fix casting
-                ((StandardSmTransformer)SmTransformer).onlyPreDiagramSettings = previousSetting;
             }
         }
 
