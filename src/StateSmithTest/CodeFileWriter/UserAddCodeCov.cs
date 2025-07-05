@@ -91,7 +91,7 @@ public class UserRemoveStateIdFuncAddCoverage
         {
             // register our custom code file writer
             services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();
-        }).Build();
+        });
     
         SmRunner runner = new(diagramPath: "Ex1.drawio.svg", algorithmId: AlgorithmId.Balanced1, serviceProvider: sp);
 

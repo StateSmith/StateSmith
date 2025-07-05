@@ -83,7 +83,7 @@ public class UserAddEventIdToString
         {
             // register our custom code file writer
             services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();
-        }).Build();
+        });
 
         SmRunner runner = new(diagramPath: "Ex2.drawio.svg", serviceProvider: sp);
 

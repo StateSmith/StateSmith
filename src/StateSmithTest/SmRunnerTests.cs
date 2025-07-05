@@ -19,7 +19,7 @@ public class SmRunnerTests
         var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
-        }).Build();
+        });
 
         SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProvider: sp);
         runner.Run();
@@ -59,7 +59,7 @@ public class SmRunnerTests
         var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
-        }).Build();
+        });
 
         SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProvider: sp);
         runner.Settings.filePathPrintBase = tempPath;

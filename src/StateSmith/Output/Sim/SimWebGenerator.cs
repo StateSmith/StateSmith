@@ -70,7 +70,7 @@ public class SimWebGenerator
             services.AddSingleton<IExpander>(trackingExpander);
             services.AddSingleton<ICodeFileWriter>(fileCapturer);
             services.AddSingleton<IConsolePrinter>(new DiscardingConsolePrinter());   // we want regular SmRunner console output to be discarded            
-        }).Build();
+        });
 
         runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProvider: sp, enablePDBS: enablePreDiagramBasedSettings);
         runner.Settings.propagateExceptions = true;

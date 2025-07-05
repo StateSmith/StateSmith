@@ -265,7 +265,7 @@ public class SmDesignDescriberTests
             var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
             {
                 services.AddSingleton<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
-            }).Build();
+            });
 
             SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + diagramFile, serviceProvider: sp);
             smRunner.Settings.propagateExceptions = true; // for testing

@@ -2,7 +2,6 @@
 #nullable enable
 
 using StateSmith.Input.DrawIo;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -27,34 +26,17 @@ using StateSmith.Output.Gil.CSharp;
 
 namespace StateSmith.Runner;
 
-
-/// <summary>
-/// Defines a builder interface for creating an <see cref="IServiceProvider"/> with a fluent API.
-/// This interface allows for the configuration of services in a service collection and the construction of an <see cref="IServiceProvider"/> instance.
-/// In general it should be preferred over using the IHostBuilder directly.
-/// </summary>
-/// <typeparam name="ReturnType">Must be a subclass of <see cref="IServiceProviderBuilder{ReturnType}"/></typeparam>
-public interface IServiceProviderBuilder
-{
-    public abstract IServiceProvider Build();
-}
-
 /// <summary>
 /// Provides a default implementation of <see cref="DefaultServiceProviderBuilder"/> that sets up a service provider with common services used by StateSmith.
 /// This builder can be used to configure additional services or override existing ones.
 /// </summary>
-public class DefaultServiceProviderBuilder : IServiceProviderBuilder
+/// // TODO rename, factory?
+public class DefaultServiceProviderBuilder 
 {
-    // TODO remove serviceOverrides from CreateDefault
-    public static DefaultServiceProviderBuilder CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
+    public static IServiceProvider CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
-        return new DefaultServiceProviderBuilder(serviceOverrides);
-    }
+        ServiceCollection services = new();
 
-    ServiceCollection services = new ServiceCollection();
-
-    public DefaultServiceProviderBuilder(Action<IServiceCollection>? serviceOverrides = null)
-    {
         // RunnerContext
         services.AddSingleton<RunnerContext>();
         services.AddSingleton<RunnerSettings>((sp) => sp.GetRequiredService<RunnerContext>().runnerSettings);
@@ -164,12 +146,10 @@ public class DefaultServiceProviderBuilder : IServiceProviderBuilder
 
         // Merge the overrides into the service collection.
         serviceOverrides?.Invoke(services);
-    }
 
-    public IServiceProvider Build()
-    {
         return services.BuildServiceProvider();
     }
+
 
     // Helper to resolve a service by id from a type map
     private static TService ResolveServiceFromRunnerSettings<TService, TId>(IServiceProvider sp, Func<RunnerSettings, TId> idSelector, IReadOnlyDictionary<TId, Type> typeMap)
@@ -181,7 +161,7 @@ public class DefaultServiceProviderBuilder : IServiceProviderBuilder
     }
 
 
-    Dictionary<TranspilerId, Type> IGILTRANSPILER_TYPES = new Dictionary<TranspilerId, Type> {
+    static Dictionary<TranspilerId, Type> IGILTRANSPILER_TYPES = new Dictionary<TranspilerId, Type> {
         { TranspilerId.Default, typeof(GilToC99)},
         { TranspilerId.Cpp, typeof(GilToCpp)},
         { TranspilerId.C99, typeof(GilToC99)},
@@ -192,7 +172,7 @@ public class DefaultServiceProviderBuilder : IServiceProviderBuilder
         { TranspilerId.TypeScript, typeof(GilToTypeScript)}
     };
 
-    Dictionary<TranspilerId, Type> IEXPANSIONVARSPATHPROVIDER_TYPES = new Dictionary<TranspilerId, Type>
+    static Dictionary<TranspilerId, Type> IEXPANSIONVARSPATHPROVIDER_TYPES = new Dictionary<TranspilerId, Type>
     {
         { TranspilerId.Default, typeof(CExpansionVarsPathProvider) },
         { TranspilerId.Cpp, typeof(CppExpansionVarsPathProvider) },
@@ -204,7 +184,7 @@ public class DefaultServiceProviderBuilder : IServiceProviderBuilder
         { TranspilerId.TypeScript, typeof(CSharpExpansionVarsPathProvider) }
     };
 
-    Dictionary<TranspilerId, Type> INAMEMANGLER_TYPES = new Dictionary<TranspilerId, Type>
+    static Dictionary<TranspilerId, Type> INAMEMANGLER_TYPES = new Dictionary<TranspilerId, Type>
     {
         { TranspilerId.Default, typeof(NameMangler) },
         { TranspilerId.Cpp, typeof(CamelCaseNameMangler) },
@@ -216,14 +196,14 @@ public class DefaultServiceProviderBuilder : IServiceProviderBuilder
         { TranspilerId.TypeScript, typeof(CamelCaseNameMangler) }
     };
 
-    Dictionary<AlgorithmId, Type> IGILALGO_TYPES = new Dictionary<AlgorithmId, Type>
+    static Dictionary<AlgorithmId, Type> IGILALGO_TYPES = new Dictionary<AlgorithmId, Type>
     {
         { AlgorithmId.Default, typeof(AlgoBalanced2) },
         { AlgorithmId.Balanced1, typeof(AlgoBalanced1) },
         { AlgorithmId.Balanced2, typeof(AlgoBalanced2) }
     };
 
-    Dictionary<TranspilerId, Type> IAUTOVARSPARSER_TYPES = new Dictionary<TranspilerId, Type>
+    static Dictionary<TranspilerId, Type> IAUTOVARSPARSER_TYPES = new Dictionary<TranspilerId, Type>
     {
         { TranspilerId.Default, typeof(CLikeAutoVarsParser) },
         { TranspilerId.Cpp, typeof(CLikeAutoVarsParser) },
@@ -234,6 +214,5 @@ public class DefaultServiceProviderBuilder : IServiceProviderBuilder
         { TranspilerId.Python, typeof(PythonAutoVarsParser) },
         { TranspilerId.TypeScript, typeof(TypeScriptAutoVarsParser) }
     };
-
 }
 

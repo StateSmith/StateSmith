@@ -23,7 +23,7 @@ public class AlgoBalanced1SettingsTests
         var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
-        }).Build();
+        });
 
         SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId:TranspilerId.CSharp, serviceProvider: sp);
         runner.Settings.propagateExceptions = true;
@@ -40,7 +40,7 @@ public class AlgoBalanced1SettingsTests
         var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
-        }).Build();
+        });
 
         SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: sp);
         runner.Settings.propagateExceptions = true;
@@ -58,7 +58,7 @@ public class AlgoBalanced1SettingsTests
         var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
-        }).Build();
+        });
 
         SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: sp);
         runner.Settings.propagateExceptions = true;

@@ -33,7 +33,7 @@ public class TestHelper
         {
             services.AddSingleton<ICodeFileWriter>(fakeFileSystem);
             services.AddSingleton<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
-        }).Build();
+        });
 
         SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceProvider: sp);
         runner.GetExperimentalAccess().Settings.propagateExceptions = true;
@@ -58,7 +58,7 @@ public class TestHelper
             {
                 services.AddSingleton<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
                 services.AddSingleton<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
-            }).Build();
+            });
 
             SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceProvider: sp);
             postConstruct?.Invoke(smRunner);
@@ -102,7 +102,7 @@ public class TestHelper
     {
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
 
-        var di = DefaultServiceProviderBuilder.CreateDefault(serviceOverrides).Build();
+        var di = DefaultServiceProviderBuilder.CreateDefault(serviceOverrides);
 
         return di.GetRequiredService<IServiceProvider>();
     }

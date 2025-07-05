@@ -109,7 +109,7 @@ public class DiagramRunner
         var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter, LoggingCodeFileWriter>();
-        }).Build();
+        });
         
         SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath, serviceProvider: sp);
 

@@ -20,7 +20,7 @@ public class Ex1
         // register your custom code generator (and any custom dependencies) for Dependency Injection
             services.AddSingleton<ICodeGenRunner, MyCodeGenRunner>();
             services.AddSingleton(myCodeGenSettings);
-        }).Build();
+        });
 
         SmRunner runner = new(diagramPath: "Ex1.drawio.svg", serviceProvider: sp);
 
