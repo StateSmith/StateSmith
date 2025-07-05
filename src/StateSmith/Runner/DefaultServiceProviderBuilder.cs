@@ -46,6 +46,7 @@ public interface IServiceProviderBuilder<ReturnType> : IDisposable
 /// This interface extends <see cref="IServiceProviderBuilder{ReturnType}"/> to include methods for configuring runner settings and render configurations.
 /// </summary>
 // TODO this name is really unwieldy to use everywhere
+// TODO remove this interface
 public interface IConfigServiceProviderBuilder : IServiceProviderBuilder<IConfigServiceProviderBuilder>
 {
     // TODO remove serviceOverrides from CreateDefault
@@ -53,8 +54,6 @@ public interface IConfigServiceProviderBuilder : IServiceProviderBuilder<IConfig
     {
         return new DefaultServiceProviderBuilder(serviceOverrides);
     }
-
-    public abstract IConfigServiceProviderBuilder WithRenderConfig(IRenderConfig iRenderConfig);
 }
 
 /// <summary>
@@ -84,6 +83,8 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
 
             // RenderConfig
             // TODO can I generate RenderConfigAllVars from iRenderConfig?
+            services.AddSingleton<IRenderConfig>((sp) => sp.GetRequiredService<RunnerContext>().renderConfig);
+            services.AddSingleton((sp)=>new ExpansionConfigReaderObjectProvider(sp.GetRequiredService<IRenderConfig>()));
             services.AddSingleton<RenderConfigAllVars>((sp) => sp.GetRequiredService<RunnerContext>().renderConfigAllVars);
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Base);
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().C);
@@ -180,8 +181,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             // Merge the overrides into the service collection.
             serviceOverrides?.Invoke(services);
         });
-
-        WithRenderConfig(null);
     }
 
     public IConfigServiceProviderBuilder WithServices(Action<IServiceCollection> services)
@@ -190,19 +189,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
         return this;
     }
 
-    public IConfigServiceProviderBuilder WithRenderConfig(IRenderConfig? iRenderConfig = null)
-    {
-        WithServices(services =>
-        {
-            if (iRenderConfig != null)
-            {
-                services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
-            }
-
-        });
-
-        return this;
-    }
 
     public IServiceProvider Build()
     {

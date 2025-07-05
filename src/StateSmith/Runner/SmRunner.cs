@@ -167,13 +167,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
     {
 
         // TODO move this higher so DI is available during the prediagram settings reading
-        serviceProvider = serviceProviderBuilder
-            // TODO remove renderConfigAllVars from here, it is always(?) initialized using iRenderConfig
-            .WithRenderConfig(iRenderConfig)
-            .Build();
+        serviceProvider = serviceProviderBuilder.Build();
 
+        // Initialize the RunnerContext with the settings for this run
         var context = serviceProvider.GetRequiredService<RunnerContext>();
         context.runnerSettings = settings;
+        context.renderConfig = iRenderConfig;
 
         ReadRenderConfigObjectToVars(context.renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 
@@ -284,10 +283,12 @@ public class RunnerContext
 {
     public RunnerSettings runnerSettings;
     public RenderConfigAllVars renderConfigAllVars;
+    public IRenderConfig renderConfig;
 
     public RunnerContext()
     {
         runnerSettings = new();
         renderConfigAllVars = new();
+        renderConfig = new DummyIRenderConfig();
     }
 }
