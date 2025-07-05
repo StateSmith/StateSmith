@@ -96,7 +96,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
 
         PrepareBeforeRun();
-        SmRunnerInternal smRunnerInternal = serviceProvider!.GetRequiredService<SmRunnerInternal>();
+        SmRunnerInternal smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>();
         smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
 
         if (settings.transpilerId == TranspilerId.NotYetSet)
@@ -180,7 +180,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     internal void PrepareBeforeRun()
     {
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
-        OutputInfo outputInfo = serviceProvider!.GetRequiredService<OutputInfo>();
+        OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
         outputInfo.outputDirectory = settings.outputDirectory.ThrowIfNull();
     }
 
