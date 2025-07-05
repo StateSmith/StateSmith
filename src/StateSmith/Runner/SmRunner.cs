@@ -171,8 +171,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
         serviceProvider = serviceProviderBuilder
             // TODO remove renderConfigAllVars from here, it is always(?) initialized using iRenderConfig
             .WithRenderConfig(renderConfigAllVars, iRenderConfig)
-            .WithRunnerSettings(settings)
             .Build();
+
+        serviceProvider.GetRequiredService<RunnerContext>().runnerSettings = settings;
 
         ReadRenderConfigObjectToVars(renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 

@@ -54,7 +54,6 @@ public interface IConfigServiceProviderBuilder : IServiceProviderBuilder<IConfig
         return new DefaultServiceProviderBuilder(serviceOverrides);
     }
 
-    public abstract IConfigServiceProviderBuilder WithRunnerSettings(RunnerSettings settings);
     public abstract IConfigServiceProviderBuilder WithRenderConfig(RenderConfigAllVars renderConfigAllVars, IRenderConfig iRenderConfig);
 }
 
@@ -188,20 +187,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
     public IConfigServiceProviderBuilder WithServices(Action<IServiceCollection> services)
     {
         hostBuilder.ConfigureServices(services);
-        return this;
-    }
-
-    public IConfigServiceProviderBuilder WithRunnerSettings(RunnerSettings settings)
-    {
-        WithServices(services =>
-        {
-            RunnerContext context = new()
-            {
-                runnerSettings = settings
-            };
-            services.AddSingleton(context);
-        });
-
         return this;
     }
 
