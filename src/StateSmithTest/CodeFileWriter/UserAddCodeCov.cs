@@ -87,7 +87,7 @@ public class UserRemoveStateIdFuncAddCoverage
     [Fact]
     public void ExampleCustomCodeGen()
     {
-        using var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             // register our custom code file writer
             services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();

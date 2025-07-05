@@ -44,8 +44,7 @@ public interface IServiceProviderBuilder
 /// Provides a default implementation of <see cref="DefaultServiceProviderBuilder"/> that sets up a service provider with common services used by StateSmith.
 /// This builder can be used to configure additional services or override existing ones.
 /// </summary>
-// TODO remove IDisposable once I am no longer calling Build inside SmRunner
-public class DefaultServiceProviderBuilder : IDisposable, IServiceProviderBuilder
+public class DefaultServiceProviderBuilder : IServiceProviderBuilder
 {
     // TODO remove serviceOverrides from CreateDefault
     public static DefaultServiceProviderBuilder CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
@@ -178,11 +177,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IServiceProviderBuilde
     public IServiceProvider Build()
     {
         return services.BuildServiceProvider();
-    }
-
-    public void Dispose()
-    {
-        // TODO remove
     }
 
     // Helper to resolve a service by id from a type map

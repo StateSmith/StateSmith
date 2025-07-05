@@ -15,7 +15,7 @@ public class Ex1
         // settings for your custom code generator
         MyCodeGenSettings myCodeGenSettings = new(outputFileName: "my_output.txt");
 
-        using var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
         // register your custom code generator (and any custom dependencies) for Dependency Injection
             services.AddSingleton<ICodeGenRunner, MyCodeGenRunner>();
