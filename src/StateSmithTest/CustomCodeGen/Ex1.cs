@@ -15,14 +15,14 @@ public class Ex1
         // settings for your custom code generator
         MyCodeGenSettings myCodeGenSettings = new(outputFileName: "my_output.txt");
 
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
         // register your custom code generator (and any custom dependencies) for Dependency Injection
             services.AddSingleton<ICodeGenRunner, MyCodeGenRunner>();
             services.AddSingleton(myCodeGenSettings);
-        });
+        }).Build();
 
-        SmRunner runner = new(diagramPath: "Ex1.drawio.svg", serviceProvider: spBuilder.Build());
+        SmRunner runner = new(diagramPath: "Ex1.drawio.svg", serviceProvider: sp);
 
         // adjust settings because we are unit testing. Normally wouldn't do below.
         runner.Settings.propagateExceptions = true;

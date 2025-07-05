@@ -20,12 +20,12 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void NormalBehaviorHasToStringFunctions()
     {
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
-        });
+        }).Build();
 
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId:TranspilerId.CSharp, serviceProvider: spBuilder.Build());
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId:TranspilerId.CSharp, serviceProvider: sp);
         runner.Settings.propagateExceptions = true;
         runner.Run();
 
@@ -37,12 +37,12 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void RemoveEventIdToString()
     {
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
-        });
+        }).Build();
 
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: spBuilder.Build());
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: sp);
         runner.Settings.propagateExceptions = true;
         runner.Settings.algoBalanced1.outputEventIdToStringFunction = false; // Here's the setting you want
         runner.Run();
@@ -55,12 +55,12 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void RemoveStateIdToString()
     {
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(capturedFile);
-        });
+        }).Build();
 
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: spBuilder.Build());
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: sp);
         runner.Settings.propagateExceptions = true;
         runner.Settings.algoBalanced1.outputStateIdToStringFunction = false; // Here's the setting you want
         runner.Run();

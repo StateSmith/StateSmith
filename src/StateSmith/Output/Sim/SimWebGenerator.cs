@@ -65,15 +65,14 @@ public class SimWebGenerator
         this.codeFileWriter = codeFileWriter;
 
         var enablePreDiagramBasedSettings = false;  // need to stop it from trying to read diagram early as fake diagram path is used
-        IServiceProviderBuilder spBuilder = DefaultServiceProviderBuilder.CreateDefault((services)=>
+        var sp = DefaultServiceProviderBuilder.CreateDefault((services)=>
         {
             services.AddSingleton<IExpander>(trackingExpander);
             services.AddSingleton<ICodeFileWriter>(fileCapturer);
             services.AddSingleton<IConsolePrinter>(new DiscardingConsolePrinter());   // we want regular SmRunner console output to be discarded            
-        });
+        }).Build();
 
-        // TODO call spBuilder.dispose
-        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProvider: spBuilder.Build(), enablePDBS: enablePreDiagramBasedSettings);
+        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProvider: sp, enablePDBS: enablePreDiagramBasedSettings);
         runner.Settings.propagateExceptions = true;
 
         // Registering DI services must be done before accessing `runner.SmTransformer`.

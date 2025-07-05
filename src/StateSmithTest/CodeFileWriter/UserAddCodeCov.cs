@@ -87,13 +87,13 @@ public class UserRemoveStateIdFuncAddCoverage
     [Fact]
     public void ExampleCustomCodeGen()
     {
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             // register our custom code file writer
             services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();
-        });
+        }).Build();
     
-        SmRunner runner = new(diagramPath: "Ex1.drawio.svg", algorithmId: AlgorithmId.Balanced1, serviceProvider: spBuilder.Build());
+        SmRunner runner = new(diagramPath: "Ex1.drawio.svg", algorithmId: AlgorithmId.Balanced1, serviceProvider: sp);
 
         // adjust settings because we are unit testing. Normally wouldn't do below.
         runner.Settings.propagateExceptions = true;

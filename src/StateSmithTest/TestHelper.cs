@@ -29,14 +29,13 @@ public class TestHelper
     public static (SmRunner, CapturingCodeFileWriter) CaptureSmRun(string diagramPath, IRenderConfig? renderConfig = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, IConsolePrinter? iConsolePrinter = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         var fakeFileSystem = new CapturingCodeFileWriter();
-        var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+        var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
         {
             services.AddSingleton<ICodeFileWriter>(fakeFileSystem);
             services.AddSingleton<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
-        });
+        }).Build();
 
-        // TODO call spBuilder.dispose
-        SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceProvider: spBuilder.Build());
+        SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceProvider: sp);
         runner.GetExperimentalAccess().Settings.propagateExceptions = true;
         runner.Run();
 
@@ -55,14 +54,13 @@ public class TestHelper
 
         try
         {
-            var spBuilder = DefaultServiceProviderBuilder.CreateDefault((services) =>
+            var sp = DefaultServiceProviderBuilder.CreateDefault((services) =>
             {
                 services.AddSingleton<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
                 services.AddSingleton<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
-            });
+            }).Build();
 
-            // TODO call spBuilder.dispose
-            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceProvider: spBuilder.Build());
+            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceProvider: sp);
             postConstruct?.Invoke(smRunner);
             smRunner.Settings.propagateExceptions = propagateExceptions;
             preRun?.Invoke(smRunner);
