@@ -36,7 +36,7 @@ public class InputSmBuilder
 
     protected StateMachine? Sm { get; set; }
 
-    internal DiagramToSmConverter diagramToSmConverter; // todo - rework unit test code that relies on this so that it can be private https://github.com/StateSmith/StateSmith/issues/97
+    private DiagramToSmConverter diagramToSmConverter;
     internal IServiceProvider sp; // todo - rework unit test code that relies on this so we can remove it https://github.com/StateSmith/StateSmith/issues/97
 
     readonly INameMangler mangler;

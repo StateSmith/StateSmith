@@ -18,7 +18,7 @@ namespace StateSmithTest
         {
             IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
             inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
-            diagramToSmConverter = inputSmBuilder.diagramToSmConverter;
+            diagramToSmConverter = serviceProvider.GetRequiredService<DiagramToSmConverter>();
             inputSmBuilder.sp.GetRequiredService<RunnerSettings>().nameConflictResolution = RunnerSettings.NameConflictResolution.Manual; // required for old duplicate state name detection
         }
 

@@ -160,7 +160,7 @@ namespace StateSmithTest
 
             IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
             InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
-            DiagramToSmConverter diagramToSmConverter = inputSmBuilder.diagramToSmConverter;
+            DiagramToSmConverter diagramToSmConverter = serviceProvider.GetRequiredService<DiagramToSmConverter>();
             var expander = new Expander();
             ExpanderFileReflection expanderFileReflection = new(expander, new());
             Tiny1Expansions userExpansions = new Tiny1Expansions();

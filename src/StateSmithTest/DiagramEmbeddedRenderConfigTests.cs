@@ -6,6 +6,7 @@ using StateSmith.Output.UserConfig;
 using FluentAssertions;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace StateSmithTest;
 
@@ -14,15 +15,17 @@ namespace StateSmithTest;
 /// </summary>
 public class DiagramEmbeddedRenderConfigTests
 {
-    readonly InputSmBuilder runner = TestHelper.CreateServiceProvider().GetRequiredService<InputSmBuilder>();
+    readonly IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
 
     [Fact]
     public void ProperConversionToVertices()
     {
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "RenderConfig1.drawio";
+        var runner = serviceProvider.GetRequiredService <InputSmBuilder>();
         runner.ConvertDiagramFileToSmVertices(filePath);
 
-        var renderConfig = (RenderConfigVertex)runner.diagramToSmConverter.rootVertices[1];
+        var diagramToSmConverter = serviceProvider.GetRequiredService<DiagramToSmConverter>();
+        var renderConfig = (RenderConfigVertex)diagramToSmConverter.rootVertices[1];
 
         ConfigOptionVertex vertex;
 
@@ -48,6 +51,7 @@ public class DiagramEmbeddedRenderConfigTests
     public void CopyDataFromDiagramRenderConfig()
     {
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "RenderConfig1.drawio";
+        var runner = serviceProvider.GetRequiredService <InputSmBuilder>();
         runner.ConvertDiagramFileToSmVertices(filePath);
         runner.FinishRunning();
 
