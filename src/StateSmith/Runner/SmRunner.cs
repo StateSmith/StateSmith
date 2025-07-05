@@ -37,8 +37,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     readonly string callerFilePath;
 
-    private ExceptionDispatchInfo? preDiagramBasedSettingsException = null;
-
     /// <summary>
     /// Constructor. Will attempt to read settings from the diagram file.
     /// </summary>
@@ -91,11 +89,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     public SmTransformer SmTransformer => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(serviceProvider);
 
     /// <summary>
-    /// This API is experimental and may change in the future.
-    /// </summary>
-    public ExceptionDispatchInfo? PreDiagramBasedSettingsException => preDiagramBasedSettingsException;
-
-    /// <summary>
     /// Runs StateSmith.
     /// </summary>
     public void Run()
@@ -105,8 +98,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
         PrepareBeforeRun();
         SmRunnerInternal smRunnerInternal = serviceProvider!.GetRequiredService<SmRunnerInternal>();
         smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
-
-        PrintAndThrowIfPreDiagramSettingsException();
 
         if (settings.transpilerId == TranspilerId.NotYetSet)
             throw new ArgumentException("TranspilerId must be set before running code generation");
@@ -118,25 +109,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
             throw new FinishedWithFailureException();
         }
     
-    }
-
-    /// <summary>
-    /// Experimental API. May change in the future.
-    /// </summary>
-    public void PrintAndThrowIfPreDiagramSettingsException()
-    {
-        if (PreDiagramBasedSettingsException != null)
-        {
-            // We use SmRunnerInternal to print the exception so that it is consistent with the rest of the code.
-            SmRunnerInternal smRunnerInternal = ActivatorUtilities.GetServiceOrCreateInstance<SmRunnerInternal>(serviceProvider);
-            smRunnerInternal.OutputExceptionDetail(PreDiagramBasedSettingsException.SourceException);
-            if (settings.propagateExceptions)
-            {
-                PreDiagramBasedSettingsException.Throw();
-            }
-
-            throw new FinishedWithFailureException();
-        }
     }
 
     // ------------ private methods ----------------
@@ -153,12 +125,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
         // we disable early diagram settings reading for the simulator and some tests
         if (enablePreDiagramBasedSettings)
         {
-            // Why do we do this before DiServiceProvider is set up? It is a pain to not have DI set up.
-            // A number of reasons. We need to read the settings before we can set up the DI provider.
-            // Also (less importantly), we want to read settings from the diagram so that the user can
-            // override them in a .csx file (if they choose) before running the code generator.
-            // https://github.com/StateSmith/StateSmith/issues/349
-            // TODO update comment
             try
             {
                 // TODO fix casting
@@ -171,9 +137,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
             }
             catch (Exception e)
             {
-                // NOTE! we can't print or log this exception here because dependency injection is not yet set up
-                // TODO remove this try catch and preDiagramBasedsettingsException once we have DI set up
-                preDiagramBasedSettingsException = ExceptionDispatchInfo.Capture(e);
+                var smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>(); // TODO move to a field?
+                smRunnerInternal.OutputExceptionDetail(e);
             }
         }
 
