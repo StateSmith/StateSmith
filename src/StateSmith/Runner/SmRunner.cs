@@ -113,6 +113,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     // ------------ private methods ----------------
 
+
     private void SetupRenderConfigs()
     {
         // Initialize the RunnerContext with the settings for this run
@@ -127,8 +128,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         {
             try
             {
-                // TODO fix casting
-                ((StandardSmTransformer)SmTransformer).onlyPreDiagramSettings = true;
+                serviceProvider.GetRequiredService<StandardSmTransformer>().onlyPreDiagramSettings = true;
 
                 // Note that this may throw if the diagram is invalid.
                 // TODO inject PreDiagramSettingsReader

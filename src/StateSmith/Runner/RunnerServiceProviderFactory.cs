@@ -61,7 +61,8 @@ public class RunnerServiceProviderFactory
         services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
 
         services.AddSingleton<SmRunnerInternal>();
-        services.AddSingleton<SmTransformer, StandardSmTransformer>();
+        services.AddSingleton<StandardSmTransformer>();
+        services.AddSingleton<SmTransformer>((sp) => sp.GetRequiredService<StandardSmTransformer>());
         services.AddSingleton<IExpander, Expander>();
         services.AddSingleton<InputSmBuilder>();
         services.AddSingleton<IConsolePrinter, ConsolePrinter>();
