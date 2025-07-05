@@ -274,3 +274,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
 }
 
 
+public class RunnerContext
+{
+    public RunnerSettings runnerSettings;
+
+    public RunnerContext()
+    {
+        runnerSettings = new();
+    }
+}

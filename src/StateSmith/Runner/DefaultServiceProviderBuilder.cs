@@ -73,11 +73,14 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
 
         WithServices((services) =>
         {
+            // RunnerContext
+            services.AddSingleton<RunnerContext>();
+            services.AddSingleton<RunnerSettings>((sp) => sp.GetRequiredService<RunnerContext>().runnerSettings);
+
             // RunnerSettings
-            services.AddSingleton<RunnerSettings>();
-            services.AddSingleton<DrawIoSettings>((sp)=>sp.GetRequiredService<RunnerSettings>().drawIoSettings);
-            services.AddSingleton<CodeStyleSettings>((sp)=>sp.GetRequiredService<RunnerSettings>().style);
-            services.AddSingleton<SmDesignDescriberSettings>((sp)=>sp.GetRequiredService<RunnerSettings>().smDesignDescriber);
+            services.AddSingleton<DrawIoSettings>((sp) => sp.GetRequiredService<RunnerSettings>().drawIoSettings);
+            services.AddSingleton<CodeStyleSettings>((sp) => sp.GetRequiredService<RunnerSettings>().style);
+            services.AddSingleton<SmDesignDescriberSettings>((sp) => sp.GetRequiredService<RunnerSettings>().smDesignDescriber);
             services.AddSingleton<AlgoBalanced1Settings>((sp) => sp.GetRequiredService<RunnerSettings>().algoBalanced1);
 
             // RenderConfig
@@ -192,7 +195,11 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
     {
         WithServices(services =>
         {
-            services.AddSingleton<RunnerSettings>(settings);
+            RunnerContext context = new()
+            {
+                runnerSettings = settings
+            };
+            services.AddSingleton(context);
         });
 
         return this;
