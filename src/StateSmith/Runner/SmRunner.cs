@@ -44,7 +44,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     /// <param name="settings"></param>
     /// <param name="renderConfig"></param>
-    /// <param name="serviceOverrides">Optional dependency injection overrides</param>
+    /// <param name="serviceProvider">Optional dependency injection overrides</param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
     /// <param name="enablePDBS">User code should leave unspecified for now.</param>
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
@@ -72,7 +72,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
     /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
     /// <param name="enablePDBS">User could should leave unspecified for now.</param>
-    /// <param name="serviceProviderBuilder">Optional builder for the IServiceProvider</param>
+    /// <param name="serviceProvider">Optional IServiceProvider to override bindings</param>
     public SmRunner(string diagramPath,
         IRenderConfig? renderConfig = null,
         string? outputDirectory = null,
