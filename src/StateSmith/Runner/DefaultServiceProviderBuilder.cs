@@ -54,7 +54,7 @@ public interface IConfigServiceProviderBuilder : IServiceProviderBuilder<IConfig
         return new DefaultServiceProviderBuilder(serviceOverrides);
     }
 
-    public abstract IConfigServiceProviderBuilder WithRenderConfig(RenderConfigAllVars renderConfigAllVars, IRenderConfig iRenderConfig);
+    public abstract IConfigServiceProviderBuilder WithRenderConfig(IRenderConfig iRenderConfig);
 }
 
 /// <summary>
@@ -84,7 +84,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
 
             // RenderConfig
             // TODO can I generate RenderConfigAllVars from iRenderConfig?
-            services.AddSingleton<RenderConfigAllVars>();
+            services.AddSingleton<RenderConfigAllVars>((sp) => sp.GetRequiredService<RunnerContext>().renderConfigAllVars);
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Base);
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().C);
             services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Cpp);
@@ -181,7 +181,7 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             serviceOverrides?.Invoke(services);
         });
 
-        WithRenderConfig(null, null);
+        WithRenderConfig(null);
     }
 
     public IConfigServiceProviderBuilder WithServices(Action<IServiceCollection> services)
@@ -190,16 +190,10 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
         return this;
     }
 
-    public IConfigServiceProviderBuilder WithRenderConfig(RenderConfigAllVars? renderConfigAllVars = null, IRenderConfig? iRenderConfig = null)
+    public IConfigServiceProviderBuilder WithRenderConfig(IRenderConfig? iRenderConfig = null)
     {
         WithServices(services =>
         {
-            // RenderConfigAllVars.Base, .C, .Cpp, etc. are all obtained from RenderConfigAllVars.
-            if (renderConfigAllVars != null)
-            {
-                services.AddSingleton<RenderConfigAllVars>(renderConfigAllVars);
-            }
-
             if (iRenderConfig != null)
             {
                 services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));

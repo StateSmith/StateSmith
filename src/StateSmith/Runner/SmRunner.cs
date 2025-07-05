@@ -165,17 +165,17 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private void SetupDependencyInjectionAndRenderConfigs()
     {
-        var renderConfigAllVars = new RenderConfigAllVars();
 
         // TODO move this higher so DI is available during the prediagram settings reading
         serviceProvider = serviceProviderBuilder
             // TODO remove renderConfigAllVars from here, it is always(?) initialized using iRenderConfig
-            .WithRenderConfig(renderConfigAllVars, iRenderConfig)
+            .WithRenderConfig(iRenderConfig)
             .Build();
 
-        serviceProvider.GetRequiredService<RunnerContext>().runnerSettings = settings;
+        var context = serviceProvider.GetRequiredService<RunnerContext>();
+        context.runnerSettings = settings;
 
-        ReadRenderConfigObjectToVars(renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
+        ReadRenderConfigObjectToVars(context.renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 
         // we disable early diagram settings reading for the simulator and some tests
         if (enablePreDiagramBasedSettings)
@@ -195,7 +195,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
                 // Note that this may throw if the diagram is invalid.
                 // TODO inject PreDiagramSettingsReader
-                PreDiagramSettingsReader preDiagramSettingsReader = new(renderConfigAllVars, settings, iRenderConfig, serviceProvider);
+                PreDiagramSettingsReader preDiagramSettingsReader = new(context.renderConfigAllVars, settings, iRenderConfig, serviceProvider);
                 preDiagramSettingsReader.Process();
             }
             catch (Exception e)
@@ -275,12 +275,19 @@ public class SmRunner : SmRunner.IExperimentalAccess
 }
 
 
+// TODO move
+/// <summary>
+/// This context object stores the runtime configuration for a given run
+/// of SmRunner.
+/// </summary>
 public class RunnerContext
 {
     public RunnerSettings runnerSettings;
+    public RenderConfigAllVars renderConfigAllVars;
 
     public RunnerContext()
     {
         runnerSettings = new();
+        renderConfigAllVars = new();
     }
 }
