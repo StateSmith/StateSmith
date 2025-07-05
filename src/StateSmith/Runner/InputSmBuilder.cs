@@ -209,7 +209,7 @@ public class InputSmBuilder
         Sm = stateMachine;
         stateMachineProvider.SetStateMachine(Sm);
         mangler.SetStateMachine(GetStateMachine());
-        ActivatorUtilities.GetServiceOrCreateInstance<OutputInfo>(sp).baseFileName = mangler.BaseFileName;
+        sp.GetRequiredService<OutputInfo>().baseFileName = mangler.BaseFileName;
     }
 
     //------------------------------------------------------------------------
