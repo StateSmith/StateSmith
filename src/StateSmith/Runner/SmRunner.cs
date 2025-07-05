@@ -29,10 +29,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// We can't use the IServiceProvider directly because we need to add the 
     /// dependencies that are based on RenderConfig and RunnerSettings.
     /// </summary>
-    readonly IServiceProviderBuilder serviceProviderBuilder;
 
     // TODO remove ? once it's guaranteed to be non-null
-    private IServiceProvider? serviceProvider;
+    private IServiceProvider serviceProvider;
 
     readonly RunnerSettings settings;
 
@@ -55,7 +54,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="serviceOverrides">Optional dependency injection overrides</param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
     /// <param name="enablePDBS">User code should leave unspecified for now.</param>
-    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProviderBuilder? serviceProviderBuilder = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
+    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
 
@@ -65,7 +64,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.callerFilePath = callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
-        this.serviceProviderBuilder = serviceProviderBuilder ?? DefaultServiceProviderBuilder.CreateDefault();
+        this.serviceProvider = serviceProvider ?? DefaultServiceProviderBuilder.CreateDefault().Build();
 
         SetupDependencyInjectionAndRenderConfigs();
     }
@@ -86,9 +85,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
         string? outputDirectory = null,
         AlgorithmId algorithmId = AlgorithmId.Default,
         TranspilerId transpilerId = TranspilerId.Default,
-        IServiceProviderBuilder? serviceProviderBuilder = null,
+        IServiceProvider? serviceProvider = null,
         [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null, bool enablePDBS = true)
-    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProviderBuilder, callerFilePath: callingFilePath, enablePDBS: enablePDBS)
+    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath, enablePDBS: enablePDBS)
     {
     }
 
@@ -132,7 +131,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         finally
         {
             // TODO remove this once IHost lifecycle is managed outside of SmRunner.
-            serviceProviderBuilder.Dispose();
+            // serviceProviderBuilder.Dispose();
         }
 
         if (smRunnerInternal.exception != null)
@@ -165,10 +164,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private void SetupDependencyInjectionAndRenderConfigs()
     {
-
-        // TODO move this higher so DI is available during the prediagram settings reading
-        serviceProvider = serviceProviderBuilder.Build();
-
         // Initialize the RunnerContext with the settings for this run
         var context = serviceProvider.GetRequiredService<RunnerContext>();
         context.runnerSettings = settings;

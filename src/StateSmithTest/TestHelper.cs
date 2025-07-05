@@ -34,7 +34,9 @@ public class TestHelper
             services.AddSingleton<ICodeFileWriter>(fakeFileSystem);
             services.AddSingleton<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
         });
-        SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceProviderBuilder: spBuilder);
+
+        // TODO call spBuilder.dispose
+        SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceProvider: spBuilder.Build());
         runner.GetExperimentalAccess().Settings.propagateExceptions = true;
         runner.Run();
 
@@ -58,7 +60,9 @@ public class TestHelper
                 services.AddSingleton<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
                 services.AddSingleton<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
             });
-            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceProviderBuilder: spBuilder);
+
+            // TODO call spBuilder.dispose
+            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceProvider: spBuilder.Build());
             postConstruct?.Invoke(smRunner);
             smRunner.Settings.propagateExceptions = propagateExceptions;
             preRun?.Invoke(smRunner);

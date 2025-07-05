@@ -20,7 +20,9 @@ public class SmRunnerTests
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
         });
-        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProviderBuilder: spBuilder);
+
+        // TODO call spBuilder.dispose
+        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProvider: spBuilder.Build());
         runner.Run();
 
         // have to modify output so that test doesn't rely on temp path because that will vary
@@ -59,7 +61,9 @@ public class SmRunnerTests
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
         });
-        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProviderBuilder: spBuilder);
+
+        // TODO call spBuilder.dispose
+        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProvider: spBuilder.Build());
         runner.Settings.filePathPrintBase = tempPath;
         runner.Run();
 

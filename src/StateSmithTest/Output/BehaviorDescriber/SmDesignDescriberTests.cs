@@ -266,7 +266,9 @@ public class SmDesignDescriberTests
             {
                 services.AddSingleton<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
             });
-            SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + diagramFile, serviceProviderBuilder: spBuilder);
+
+            // TODO call spBuilder.dispose()
+            SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + diagramFile, serviceProvider: spBuilder.Build());
             smRunner.Settings.propagateExceptions = true; // for testing
             di = smRunner.GetExperimentalAccess().IServiceProvider;
 

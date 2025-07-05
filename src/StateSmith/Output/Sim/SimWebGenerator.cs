@@ -71,7 +71,9 @@ public class SimWebGenerator
             services.AddSingleton<ICodeFileWriter>(fileCapturer);
             services.AddSingleton<IConsolePrinter>(new DiscardingConsolePrinter());   // we want regular SmRunner console output to be discarded            
         });
-        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProviderBuilder: spBuilder, enablePDBS: enablePreDiagramBasedSettings);
+
+        // TODO call spBuilder.dispose
+        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProvider: spBuilder.Build(), enablePDBS: enablePreDiagramBasedSettings);
         runner.Settings.propagateExceptions = true;
 
         // Registering DI services must be done before accessing `runner.SmTransformer`.
