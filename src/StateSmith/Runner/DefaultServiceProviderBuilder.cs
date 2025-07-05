@@ -53,143 +53,136 @@ public class DefaultServiceProviderBuilder : IDisposable, IServiceProviderBuilde
         return new DefaultServiceProviderBuilder(serviceOverrides);
     }
 
-    private IHost? host;
-    private readonly IHostBuilder hostBuilder;
+    ServiceCollection services = new ServiceCollection();
 
     public DefaultServiceProviderBuilder(Action<IServiceCollection>? serviceOverrides = null)
     {
-        hostBuilder = Host.CreateDefaultBuilder();
+        // RunnerContext
+        services.AddSingleton<RunnerContext>();
+        services.AddSingleton<RunnerSettings>((sp) => sp.GetRequiredService<RunnerContext>().runnerSettings);
 
-        WithServices((services) =>
-        {
-            // RunnerContext
-            services.AddSingleton<RunnerContext>();
-            services.AddSingleton<RunnerSettings>((sp) => sp.GetRequiredService<RunnerContext>().runnerSettings);
+        // RunnerSettings
+        services.AddSingleton<DrawIoSettings>((sp) => sp.GetRequiredService<RunnerSettings>().drawIoSettings);
+        services.AddSingleton<CodeStyleSettings>((sp) => sp.GetRequiredService<RunnerSettings>().style);
+        services.AddSingleton<SmDesignDescriberSettings>((sp) => sp.GetRequiredService<RunnerSettings>().smDesignDescriber);
+        services.AddSingleton<AlgoBalanced1Settings>((sp) => sp.GetRequiredService<RunnerSettings>().algoBalanced1);
 
-            // RunnerSettings
-            services.AddSingleton<DrawIoSettings>((sp) => sp.GetRequiredService<RunnerSettings>().drawIoSettings);
-            services.AddSingleton<CodeStyleSettings>((sp) => sp.GetRequiredService<RunnerSettings>().style);
-            services.AddSingleton<SmDesignDescriberSettings>((sp) => sp.GetRequiredService<RunnerSettings>().smDesignDescriber);
-            services.AddSingleton<AlgoBalanced1Settings>((sp) => sp.GetRequiredService<RunnerSettings>().algoBalanced1);
+        // RenderConfig
+        // TODO can I generate RenderConfigAllVars from iRenderConfig?
+        services.AddSingleton<IRenderConfig>((sp) => sp.GetRequiredService<RunnerContext>().renderConfig);
+        services.AddSingleton((sp) => new ExpansionConfigReaderObjectProvider(sp.GetRequiredService<IRenderConfig>()));
+        services.AddSingleton<RenderConfigAllVars>((sp) => sp.GetRequiredService<RunnerContext>().renderConfigAllVars);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Base);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().C);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Cpp);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().CSharp);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().JavaScript);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Java);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Python);
+        services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
 
-            // RenderConfig
-            // TODO can I generate RenderConfigAllVars from iRenderConfig?
-            services.AddSingleton<IRenderConfig>((sp) => sp.GetRequiredService<RunnerContext>().renderConfig);
-            services.AddSingleton((sp)=>new ExpansionConfigReaderObjectProvider(sp.GetRequiredService<IRenderConfig>()));
-            services.AddSingleton<RenderConfigAllVars>((sp) => sp.GetRequiredService<RunnerContext>().renderConfigAllVars);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Base);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().C);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Cpp);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().CSharp);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().JavaScript);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Java);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Python);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
+        services.AddSingleton<SmRunnerInternal>();
+        services.AddSingleton<SmTransformer, StandardSmTransformer>();
+        services.AddSingleton<IExpander, Expander>();
+        services.AddSingleton<InputSmBuilder>();
+        services.AddSingleton<IConsolePrinter, ConsolePrinter>();
+        services.AddSingleton<ExceptionPrinter>();
+        services.AddSingleton<ICodeFileWriter, CodeFileWriter>();
 
-            services.AddSingleton<SmRunnerInternal>();
-            services.AddSingleton<SmTransformer, StandardSmTransformer>();
-            services.AddSingleton<IExpander, Expander>();
-            services.AddSingleton<InputSmBuilder>();
-            services.AddSingleton<IConsolePrinter, ConsolePrinter>();
-            services.AddSingleton<ExceptionPrinter>();
-            services.AddSingleton<ICodeFileWriter, CodeFileWriter>();
+        services.AddSingleton<StateMachineProvider>();
+        services.AddSingleton<IStateMachineProvider>((s) => s.GetRequiredService<StateMachineProvider>());
+        services.AddSingleton<DiagramFilePathProvider>();
+        services.AddSingleton<SmFileNameProcessor>();
 
-            services.AddSingleton<StateMachineProvider>();
-            services.AddSingleton<IStateMachineProvider>((s) => s.GetRequiredService<StateMachineProvider>());
-            services.AddSingleton<DiagramFilePathProvider>();
-            services.AddSingleton<SmFileNameProcessor>();
+        services.AddSingleton<DiagramToSmConverter>();
+        services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetRequiredService<DiagramToSmConverter>());
+        services.AddSingleton<AlgoTranspilerCustomizer>();
+        services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
+        services.AddSingleton<IAlgoEventIdToString, AlgoEventIdToString>();
+        services.AddSingleton<GilToC99Customizer>();
+        services.AddSingleton<IGilToC99Customizer>((s) => s.GetRequiredService<GilToC99Customizer>());
+        services.AddSingleton<CppGilHelpers>();
 
-            services.AddSingleton<DiagramToSmConverter>();
-            services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetRequiredService<DiagramToSmConverter>());
-            services.AddSingleton<AlgoTranspilerCustomizer>();
-            services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
-            services.AddSingleton<IAlgoEventIdToString, AlgoEventIdToString>();
-            services.AddSingleton<GilToC99Customizer>();
-            services.AddSingleton<IGilToC99Customizer>((s) => s.GetRequiredService<GilToC99Customizer>());
-            services.AddSingleton<CppGilHelpers>();
+        services.AddTransient<AutoExpandedVarsProcessor>();
+        services.AddTransient<DefaultExpansionsProcessor>();
+        services.AddTransient<TomlConfigVerticesProcessor>();
+        services.AddTransient<RenderConfigVerticesProcessor>();
+        services.AddTransient<MxCellsToSmDiagramConverter>();
+        services.AddTransient<DrawIoToSmDiagramConverter>();
+        services.AddTransient<VisualGroupingValidator>();
+        services.AddTransient<DynamicVarsResolver>();
+        services.AddTransient<ExpansionConfigReader>();
 
-            services.AddTransient<AutoExpandedVarsProcessor>();
-            services.AddTransient<DefaultExpansionsProcessor>();
-            services.AddTransient<TomlConfigVerticesProcessor>();
-            services.AddTransient<RenderConfigVerticesProcessor>();
-            services.AddTransient<MxCellsToSmDiagramConverter>();
-            services.AddTransient<DrawIoToSmDiagramConverter>();
-            services.AddTransient<VisualGroupingValidator>();
-            services.AddTransient<DynamicVarsResolver>();
-            services.AddTransient<ExpansionConfigReader>();
+        services.AddTransient<HistoryProcessor>();
 
-            services.AddTransient<HistoryProcessor>();
+        services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
+        services.AddSingleton<IGilAlgo>(sp =>
+            ResolveServiceFromRunnerSettings<IGilAlgo, AlgorithmId>(sp, rs => rs.algorithmId, IGILALGO_TYPES)
+        );
 
-            services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
-            services.AddSingleton<IGilAlgo>(sp =>
-                ResolveServiceFromRunnerSettings<IGilAlgo, AlgorithmId>(sp, rs => rs.algorithmId, IGILALGO_TYPES)
-            );
+        services.AddSingleton<IGilTranspiler>(sp =>
+            ResolveServiceFromRunnerSettings<IGilTranspiler, TranspilerId>(sp, rs => rs.transpilerId, IGILTRANSPILER_TYPES)
+        );
 
-            services.AddSingleton<IGilTranspiler>(sp =>
-                ResolveServiceFromRunnerSettings<IGilTranspiler, TranspilerId>(sp, rs => rs.transpilerId, IGILTRANSPILER_TYPES)
-            );
+        services.AddSingleton<IExpansionVarsPathProvider>(sp =>
+            ResolveServiceFromRunnerSettings<IExpansionVarsPathProvider, TranspilerId>(sp, rs => rs.transpilerId, IEXPANSIONVARSPATHPROVIDER_TYPES)
+        );
 
-            services.AddSingleton<IExpansionVarsPathProvider>(sp =>
-                ResolveServiceFromRunnerSettings<IExpansionVarsPathProvider, TranspilerId>(sp, rs => rs.transpilerId, IEXPANSIONVARSPATHPROVIDER_TYPES)
-            );
+        services.AddSingleton<INameMangler>(sp =>
+            ResolveServiceFromRunnerSettings<INameMangler, TranspilerId>(sp, rs => rs.transpilerId, INAMEMANGLER_TYPES)
+        );
 
-            services.AddSingleton<INameMangler>(sp =>
-                ResolveServiceFromRunnerSettings<INameMangler, TranspilerId>(sp, rs => rs.transpilerId, INAMEMANGLER_TYPES)
-            );
-
-            services.AddSingleton<IAutoVarsParser>(sp =>
-                ResolveServiceFromRunnerSettings<IAutoVarsParser, TranspilerId>(sp, rs => rs.transpilerId, IAUTOVARSPARSER_TYPES)
-            );
+        services.AddSingleton<IAutoVarsParser>(sp =>
+            ResolveServiceFromRunnerSettings<IAutoVarsParser, TranspilerId>(sp, rs => rs.transpilerId, IAUTOVARSPARSER_TYPES)
+        );
 
 
-        #if SS_SINGLE_FILE_APPLICATION
-            services.AddSingleton<IRoslynMetadataProvider, InMemoryMetaDataProvider>();
-        #else
-            services.AddSingleton<IRoslynMetadataProvider, FileMetadataProvider>();
-        #endif
-            services.AddSingleton<RoslynCompiler>();
+#if SS_SINGLE_FILE_APPLICATION
+        services.AddSingleton<IRoslynMetadataProvider, InMemoryMetaDataProvider>();
+#else
+        services.AddSingleton<IRoslynMetadataProvider, FileMetadataProvider>();
+#endif
+        services.AddSingleton<RoslynCompiler>();
 
-            services.AddSingleton<PseudoStateHandlerBuilder>();
-            services.AddSingleton<EnumBuilder>();
-            services.AddSingleton<EventHandlerBuilder>();
-            services.AddSingleton<EventHandlerBuilder2>();
+        services.AddSingleton<PseudoStateHandlerBuilder>();
+        services.AddSingleton<EnumBuilder>();
+        services.AddSingleton<EventHandlerBuilder>();
+        services.AddSingleton<EventHandlerBuilder2>();
 
-            services.AddSingleton<StateNameConflictResolver>();
-            services.AddSingleton<StandardFileHeaderPrinter>();
+        services.AddSingleton<StateNameConflictResolver>();
+        services.AddSingleton<StandardFileHeaderPrinter>();
 
-            services.AddSingleton<TriggerMapProcessor>();
+        services.AddSingleton<TriggerMapProcessor>();
 
-            services.AddSingleton<UserExpansionScriptBases>();
-            services.AddSingleton<SmDesignDescriber>();
-            services.AddSingleton<SimWebGenerator>();
+        services.AddSingleton<UserExpansionScriptBases>();
+        services.AddSingleton<SmDesignDescriber>();
+        services.AddSingleton<SimWebGenerator>();
 
-            services.AddSingleton<OutputInfo>(); 
-            services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
-            services.AddSingleton<FilePathPrinter>((sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase ?? ""));
+        services.AddSingleton<OutputInfo>();
+        services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
+        services.AddSingleton<FilePathPrinter>((sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase ?? ""));
 
-            services.AddSingleton<ExpansionsPrep>();
+        services.AddSingleton<ExpansionsPrep>();
 
-            // Merge the overrides into the service collection.
-            serviceOverrides?.Invoke(services);
-        });
+        // Merge the overrides into the service collection.
+        serviceOverrides?.Invoke(services);
     }
 
-    public IServiceProviderBuilder WithServices(Action<IServiceCollection> services)
+    public IServiceProviderBuilder WithServices(Action<IServiceCollection> moreservices)
     {
-        hostBuilder.ConfigureServices(services);
+        moreservices.Invoke(this.services);
         return this;
     }
 
 
     public IServiceProvider Build()
     {
-        host = hostBuilder.Build();
-        return host.Services;
+        return services.BuildServiceProvider();
     }
 
     public void Dispose()
     {
-        host?.Dispose();
+        // TODO remove
     }
 
     // Helper to resolve a service by id from a type map
