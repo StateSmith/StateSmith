@@ -18,24 +18,17 @@ namespace StateSmith.Runner;
 /// </summary>
 /// TODO add a static constructor
 /// TODO remove SmRunnerInternal by using injection in static constructor
-/// TODO use scopes to remove two stages for dependency injection
 /// TODO add test case for two smrunners at same time (to make sure singletons are not shared between them)
 public class SmRunner : SmRunner.IExperimentalAccess
 {
     public RunnerSettings Settings => settings;
 
-    /// <summary>
-    /// Dependency Injection ServiceProvider Builder.
-    /// We can't use the IServiceProvider directly because we need to add the 
-    /// dependencies that are based on RenderConfig and RunnerSettings.
-    /// </summary>
-
-    // TODO remove ? once it's guaranteed to be non-null
     private IServiceProvider serviceProvider;
 
     readonly RunnerSettings settings;
 
     private readonly IRenderConfig iRenderConfig;
+    
     private readonly bool enablePreDiagramBasedSettings;
 
     /// <summary>
@@ -107,9 +100,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void Run()
     {
-        // TODO remove SmRunner direct use of DiServiceProvider, use IServiceProvider instead
-        // TODO move DI finalization out of SmRunner
-
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
 
         PrepareBeforeRun();
@@ -218,9 +208,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
     }
 
     /// <summary>
-    /// Finalizes dependency injection settings.
-    /// TODO fix summary
+    /// Finalizes settings.
     /// exists just for testing. can be removed in the future.
+    /// // TODO remove
     /// </summary>
     internal void PrepareBeforeRun()
     {
