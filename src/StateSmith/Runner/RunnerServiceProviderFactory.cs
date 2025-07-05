@@ -149,7 +149,6 @@ public class RunnerServiceProviderFactory
         return services.BuildServiceProvider();
     }
 
-
     // Helper to resolve a service by id from a type map
     private static TService ResolveServiceFromRunnerSettings<TService, TId>(IServiceProvider sp, Func<RunnerSettings, TId> idSelector, IReadOnlyDictionary<TId, Type> typeMap)
     {
@@ -158,7 +157,6 @@ public class RunnerServiceProviderFactory
         Type t = typeMap[id].ThrowIfNull($"{id?.GetType()} '{id}' is not supported.");
         return (TService)ActivatorUtilities.GetServiceOrCreateInstance(sp, t);
     }
-
 
     static Dictionary<TranspilerId, Type> IGILTRANSPILER_TYPES = new Dictionary<TranspilerId, Type> {
         { TranspilerId.Default, typeof(GilToC99)},
