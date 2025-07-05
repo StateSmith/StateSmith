@@ -59,7 +59,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         this.serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
 
-        SetupDependencyInjectionAndRenderConfigs();
+        SetupRenderConfigs();
     }
 
     /// <summary>
@@ -141,7 +141,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     // ------------ private methods ----------------
 
-    private void SetupDependencyInjectionAndRenderConfigs()
+    private void SetupRenderConfigs()
     {
         // Initialize the RunnerContext with the settings for this run
         var context = serviceProvider.GetRequiredService<RunnerContext>();
