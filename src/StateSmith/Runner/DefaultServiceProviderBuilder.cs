@@ -80,7 +80,18 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton<SmDesignDescriberSettings>((sp)=>sp.GetRequiredService<RunnerSettings>().smDesignDescriber);
             services.AddSingleton<AlgoBalanced1Settings>((sp) => sp.GetRequiredService<RunnerSettings>().algoBalanced1);
 
+            // RenderConfig
+            // TODO can I generate RenderConfigAllVars from iRenderConfig?
             services.AddSingleton<RenderConfigAllVars, RenderConfigAllVars>();
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Base);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().C);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Cpp);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().CSharp);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().JavaScript);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Java);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Python);
+            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
+
             services.AddSingleton<SmRunnerInternal>();
             services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<IExpander, Expander>();
@@ -196,15 +207,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             {
                 services.AddSingleton<RenderConfigAllVars>(renderConfigAllVars);
             }
-
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Base);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().C);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Cpp);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().CSharp);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().JavaScript);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Java);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Python);
-            services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
 
             if (iRenderConfig != null)
             {
