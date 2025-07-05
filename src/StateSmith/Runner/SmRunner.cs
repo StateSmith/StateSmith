@@ -116,23 +116,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
         SmRunnerInternal smRunnerInternal = serviceProvider!.GetRequiredService<SmRunnerInternal>();
         smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
 
-        // Wrap in try finally so that we can ensure that the service provider is disposed which will
-        // dispose of objects that it created.
-        // TODO remove
-        try
-        {
-            PrintAndThrowIfPreDiagramSettingsException();
+        PrintAndThrowIfPreDiagramSettingsException();
 
-            if (settings.transpilerId == TranspilerId.NotYetSet)
-                throw new ArgumentException("TranspilerId must be set before running code generation");
+        if (settings.transpilerId == TranspilerId.NotYetSet)
+            throw new ArgumentException("TranspilerId must be set before running code generation");
 
-            smRunnerInternal.Run();
-        }
-        finally
-        {
-            // TODO remove this once IHost lifecycle is managed outside of SmRunner.
-            // serviceProviderBuilder.Dispose();
-        }
+        smRunnerInternal.Run();
 
         if (smRunnerInternal.exception != null)
         {
