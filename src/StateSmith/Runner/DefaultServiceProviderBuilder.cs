@@ -88,12 +88,12 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton<ICodeFileWriter, CodeFileWriter>();
 
             services.AddSingleton<StateMachineProvider>();
-            services.AddSingleton<IStateMachineProvider>((s) => s.GetRequiredService<StateMachineProvider>()); // TODO AddSingleton<IStateMachineProvider,StateMachineProvider>()?
+            services.AddSingleton<IStateMachineProvider>((s) => s.GetRequiredService<StateMachineProvider>());
             services.AddSingleton<DiagramFilePathProvider>();
             services.AddSingleton<SmFileNameProcessor>();
 
             services.AddSingleton<DiagramToSmConverter>();
-            services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetRequiredService<DiagramToSmConverter>()); // TODO AddSingleton<IDiagramVerticesProvider,DiagramToSmConverter>()?
+            services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetRequiredService<DiagramToSmConverter>());
             services.AddSingleton<AlgoBalanced1Settings>();
             services.AddSingleton<AlgoTranspilerCustomizer>();
             services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
@@ -101,11 +101,6 @@ public class DefaultServiceProviderBuilder : IDisposable, IConfigServiceProvider
             services.AddSingleton<GilToC99Customizer>();
             services.AddSingleton<IGilToC99Customizer>((s) => s.GetRequiredService<GilToC99Customizer>());
             services.AddSingleton<CppGilHelpers>();
-
-            // TODO cleanup
-            // services.AddSingleton<PreDiagramSettingsInputSmBuilder>();
-            // services.AddSingleton<PreDiagramSettingsDiagramToSmConverter>();
-            // services.AddSingleton<PreSettingsSmTransformer>(); // TOOD rename for consistency
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<DefaultExpansionsProcessor>();
