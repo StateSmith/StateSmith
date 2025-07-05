@@ -34,8 +34,7 @@ namespace StateSmith.Runner;
 /// In general it should be preferred over using the IHostBuilder directly.
 /// </summary>
 /// <typeparam name="ReturnType">Must be a subclass of <see cref="IServiceProviderBuilder{ReturnType}"/></typeparam>
-// TODO remove IDisposable from IServiceProviderBuilder once I am no longer calling Build inside SmRunner
-public interface IServiceProviderBuilder : IDisposable
+public interface IServiceProviderBuilder
 {
     public abstract IServiceProviderBuilder WithServices(Action<IServiceCollection> services);
     public abstract IServiceProvider Build();
@@ -45,6 +44,7 @@ public interface IServiceProviderBuilder : IDisposable
 /// Provides a default implementation of <see cref="DefaultServiceProviderBuilder"/> that sets up a service provider with common services used by StateSmith.
 /// This builder can be used to configure additional services or override existing ones.
 /// </summary>
+// TODO remove IDisposable once I am no longer calling Build inside SmRunner
 public class DefaultServiceProviderBuilder : IDisposable, IServiceProviderBuilder
 {
     // TODO remove serviceOverrides from CreateDefault
