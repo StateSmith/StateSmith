@@ -93,7 +93,7 @@ public class UserRemoveStateIdFuncAddCoverage
             services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();
         });
     
-        SmRunner runner = new(diagramPath: "Ex1.drawio.svg", algorithmId: AlgorithmId.Balanced1, serviceProvider: sp);
+        SmRunner runner = SmRunner.Create(diagramPath: "Ex1.drawio.svg", algorithmId: AlgorithmId.Balanced1, serviceProvider: sp);
 
         // adjust settings because we are unit testing. Normally wouldn't do below.
         runner.Settings.propagateExceptions = true;

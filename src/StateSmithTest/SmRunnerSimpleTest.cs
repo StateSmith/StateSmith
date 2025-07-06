@@ -34,7 +34,7 @@ public class SmRunnerTest
     [Fact]
     public void Test1()
     {
-        var runner = new SmRunner(diagramPath: "SomeDiagram.drawio", serviceProvider: serviceProvider);
+        var runner = SmRunner.Create(diagramPath: "SomeDiagram.drawio", serviceProvider: serviceProvider);
         runner.Settings.DiagramPath.Should().Be(ThisDir + dirSep + "SomeDiagram.drawio");
         runner.Settings.outputDirectory.Should().Be(ThisDir + dirSep);
         runner.Settings.filePathPrintBase.Should().Be(ThisDir + dirSep);
@@ -43,28 +43,28 @@ public class SmRunnerTest
     [Fact]
     public void OutputDirTest0()
     {
-        var runner = new SmRunner(diagramPath: "SomeDiagram.drawio", outputDirectory: ThisDir, serviceProvider: serviceProvider);
+        var runner = SmRunner.Create(diagramPath: "SomeDiagram.drawio", outputDirectory: ThisDir, serviceProvider: serviceProvider);
         runner.Settings.outputDirectory.Should().Be(ThisDir + dirSep);
     }
 
     [Fact]
     public void OutputDirTest1()
     {
-        var runner = new SmRunner(diagramPath: "SomeDiagram.drawio", outputDirectory: ".", serviceProvider: serviceProvider);
+        var runner = SmRunner.Create(diagramPath: "SomeDiagram.drawio", outputDirectory: ".", serviceProvider: serviceProvider);
         runner.Settings.outputDirectory.Should().Be(ThisDir + dirSep + "." + dirSep);
     }
 
     [Fact]
     public void OutputDirTest2()
     {
-        var runner = new SmRunner(diagramPath: "SomeDiagram.drawio", outputDirectory: "..", serviceProvider: serviceProvider);
+        var runner = SmRunner.Create(diagramPath: "SomeDiagram.drawio", outputDirectory: "..", serviceProvider: serviceProvider);
         runner.Settings.outputDirectory.Should().Be(ThisDir + dirSep + ".." + dirSep);
     }
 
     [Fact]
     public void PrintBaseDir0()
     {
-        var runner = new SmRunner(diagramPath: "SomeDiagram.drawio", serviceProvider: serviceProvider);
+        var runner = SmRunner.Create(diagramPath: "SomeDiagram.drawio", serviceProvider: serviceProvider);
         runner.Settings.filePathPrintBase = ThisDir;
         runner.PrepareBeforeRun();
         runner.Settings.filePathPrintBase.Should().Be(ThisDir + dirSep);
@@ -73,7 +73,7 @@ public class SmRunnerTest
     [Fact]
     public void PrintBaseDir1()
     {
-        var runner = new SmRunner(diagramPath: "SomeDiagram.drawio", serviceProvider: serviceProvider);
+        var runner = SmRunner.Create(diagramPath: "SomeDiagram.drawio", serviceProvider: serviceProvider);
         runner.Settings.filePathPrintBase = ".";
         runner.PrepareBeforeRun();
         runner.Settings.filePathPrintBase.Should().Be(Path.GetFullPath(GetThisDir()) + dirSep + "." + dirSep);
@@ -82,7 +82,7 @@ public class SmRunnerTest
     [Fact]
     public void PrintBaseDir2()
     {
-        var runner = new SmRunner(diagramPath: "SomeDiagram.drawio", serviceProvider: serviceProvider);
+        var runner = SmRunner.Create(diagramPath: "SomeDiagram.drawio", serviceProvider: serviceProvider);
         runner.Settings.filePathPrintBase = "..";
         runner.PrepareBeforeRun();
         runner.Settings.filePathPrintBase.Should().Be(Path.GetFullPath(GetThisDir()) + dirSep + ".." + dirSep);

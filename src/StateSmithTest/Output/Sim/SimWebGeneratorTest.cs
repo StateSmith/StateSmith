@@ -55,7 +55,7 @@ public class SimWebGenerator_IntegrationTests
         string expectedOutputFilePath = diagramDirPath + "PlantEx2.sim.html";
         DeleteIfFileExists(expectedOutputFilePath);
 
-        SmRunner smRunner = new(diagramPath: diagramDirPath + "PlantEx2.puml");
+        SmRunner smRunner = SmRunner.Create(diagramPath: diagramDirPath + "PlantEx2.puml");
         smRunner.Settings.simulation.enableGeneration = true;
         smRunner.Settings.propagateExceptions = true;   // just for testing here
         smRunner.Settings.outputStateSmithVersionInfo = false; // avoid git noise

@@ -22,7 +22,7 @@ public class Ex1
             services.AddSingleton(myCodeGenSettings);
         });
 
-        SmRunner runner = new(diagramPath: "Ex1.drawio.svg", serviceProvider: sp);
+        SmRunner runner = SmRunner.Create(diagramPath: "Ex1.drawio.svg", serviceProvider: sp);
 
         // adjust settings because we are unit testing. Normally wouldn't do below.
         runner.Settings.propagateExceptions = true;

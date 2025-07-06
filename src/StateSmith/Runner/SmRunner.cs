@@ -18,6 +18,18 @@ namespace StateSmith.Runner;
 /// TODO add test case for two smrunners at same time (to make sure singletons are not shared between them)
 public class SmRunner : SmRunner.IExperimentalAccess
 {
+    public static SmRunner Create(string diagramPath,
+        IRenderConfig? renderConfig = null,
+        string? outputDirectory = null,
+        AlgorithmId algorithmId = AlgorithmId.Default,
+        TranspilerId transpilerId = TranspilerId.Default,
+        IServiceProvider? serviceProvider = null,
+        [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
+    {
+        // TODO switch to injection
+        return new(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath);
+    }
+
     public static SmRunner Create(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         var sp = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
@@ -86,13 +98,13 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
     /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
     /// <param name="serviceProvider">Optional IServiceProvider to override bindings</param>
-    public SmRunner(string diagramPath,
+    private SmRunner(string diagramPath,
         IRenderConfig? renderConfig = null,
         string? outputDirectory = null,
         AlgorithmId algorithmId = AlgorithmId.Default,
         TranspilerId transpilerId = TranspilerId.Default,
         IServiceProvider? serviceProvider = null,
-        [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
+        string? callingFilePath = null)
     : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath)
     {
     }

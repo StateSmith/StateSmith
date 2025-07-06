@@ -35,7 +35,7 @@ public class TestHelper
             services.AddSingleton<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
         });
 
-        SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceProvider: sp);
+        SmRunner runner = SmRunner.Create(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceProvider: sp);
         runner.GetExperimentalAccess().Settings.propagateExceptions = true;
         runner.Run();
 
@@ -60,7 +60,7 @@ public class TestHelper
                 services.AddSingleton<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
             });
 
-            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceProvider: sp);
+            SmRunner smRunner = SmRunner.Create(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceProvider: sp);
             postConstruct?.Invoke(smRunner);
             smRunner.Settings.propagateExceptions = propagateExceptions;
             preRun?.Invoke(smRunner);
@@ -86,7 +86,7 @@ public class TestHelper
 
         try
         {
-            SmRunner smRunner = new(outputDirectory: outputDir, diagramPath: tempFilePath, transpilerId: transpilerId, algorithmId: algorithmId);
+            SmRunner smRunner = SmRunner.Create(outputDirectory: outputDir, diagramPath: tempFilePath, transpilerId: transpilerId, algorithmId: algorithmId);
             smRunner.Settings.outputStateSmithVersionInfo = false; // too much git noise
             smRunner.Settings.propagateExceptions = true;
             //smRunner.Settings.outputGilCodeAlways = true;

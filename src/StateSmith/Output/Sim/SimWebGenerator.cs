@@ -75,7 +75,7 @@ public class SimWebGenerator
             services.RemoveAll<PreDiagramSettingsReader>();
         });
 
-        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProvider: sp);
+        runner = SmRunner.Create(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProvider: sp);
         runner.Settings.propagateExceptions = true;
 
         IServiceProvider serviceProvider = runner.GetExperimentalAccess().IServiceProvider;

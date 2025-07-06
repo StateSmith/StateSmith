@@ -130,7 +130,7 @@ public class ShortFqnNamerTests
 
     private static void RunWithSettings(Action<StateMachine> testMethod, RunnerSettings.NameConflictResolution resolutionSetting, string DiagramPath)
     {
-        SmRunner runner = new(diagramPath: DiagramPath);
+        SmRunner runner = SmRunner.Create(diagramPath: DiagramPath);
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_NameConflictResolution, (TransformationStep)HierachicalGraphToSmConverter.Convert);
         runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)testMethod);
 
@@ -148,7 +148,7 @@ public class ShortFqnNamerTests
 
     private void Run(string diagramPath, Action<StateMachine>? testMethod = null)
     {
-        SmRunner runner = new(diagramPath: diagramPath);
+        SmRunner runner = SmRunner.Create(diagramPath: diagramPath);
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)HierachicalGraphToSmConverter.Convert);
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)Rename);
 
@@ -164,7 +164,7 @@ public class ShortFqnNamerTests
     [Fact]
     public void TestGraphConverter()
     {
-        SmRunner runner = new(diagramPath: "HierachicalGraphConverterEx1.drawio");
+        SmRunner runner = SmRunner.Create(diagramPath: "HierachicalGraphConverterEx1.drawio");
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)HierachicalGraphToSmConverter.Convert);
         runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)Test);
         runner.Settings.propagateExceptions = true; // for unit testing

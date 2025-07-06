@@ -16,7 +16,7 @@ public class GilToCSharpTests
     [Fact]
     public void DontRequireNameSpace()
     {
-        SmRunner runner = new(diagramPath: "CSharpNoNameSpaceExampleSm.drawio.svg", new DefaultCSharpRenderConfig(), transpilerId: TranspilerId.CSharp);
+        SmRunner runner = SmRunner.Create(diagramPath: "CSharpNoNameSpaceExampleSm.drawio.svg", new DefaultCSharpRenderConfig(), transpilerId: TranspilerId.CSharp);
         runner.Settings.outputDirectory = Path.GetTempPath();
         runner.GetExperimentalAccess().Settings.propagateExceptions = true;
         runner.Settings.outputStateSmithVersionInfo = false;

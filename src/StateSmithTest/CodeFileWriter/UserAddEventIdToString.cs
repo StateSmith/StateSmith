@@ -85,7 +85,7 @@ public class UserAddEventIdToString
             services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();
         });
 
-        SmRunner runner = new(diagramPath: "Ex2.drawio.svg", serviceProvider: sp);
+        SmRunner runner = SmRunner.Create(diagramPath: "Ex2.drawio.svg", serviceProvider: sp);
 
         // adjust settings because we are unit testing. Normally wouldn't do below.
         runner.Settings.propagateExceptions = true;
