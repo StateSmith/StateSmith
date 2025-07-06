@@ -68,6 +68,7 @@ public class RunnerServiceProviderFactory
         services.AddSingleton<IConsolePrinter, ConsolePrinter>();
         services.AddSingleton<ExceptionPrinter>();
         services.AddSingleton<ICodeFileWriter, CodeFileWriter>();
+        services.AddSingleton<PreDiagramSettingsReader>();
 
         services.AddSingleton<StateMachineProvider>();
         services.AddSingleton<IStateMachineProvider>((s) => s.GetRequiredService<StateMachineProvider>());
