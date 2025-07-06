@@ -1,8 +1,6 @@
 #nullable enable
 
 using StateSmith.Runner;
-using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace StateSmith.SmGraph;
 
@@ -11,8 +9,8 @@ namespace StateSmith.SmGraph;
 /// </summary>
 public class PreDiagramSettingsReader
 {
-    RunnerSettings smRunnerSettings;
-    InputSmBuilder inputSmBuilder;
+    readonly RunnerSettings smRunnerSettings;
+    readonly InputSmBuilder inputSmBuilder;
 
     public PreDiagramSettingsReader(RunnerSettings smRunnerSettings, InputSmBuilder inputSmBuilder)
     {

@@ -5,6 +5,7 @@ using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using System;
+using StateSmith.SmGraph;
 using StateSmith.Output.UserConfig.AutoVars;
 
 namespace StateSmith.Runner;
