@@ -88,26 +88,27 @@ public class SmRunner : SmRunner.IExperimentalAccess
         SetupRenderConfigs();
     }
 
-    /// <summary>
-    /// A convenience constructor. Will attempt to read settings from the diagram file.
-    /// </summary>
-    /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
-    /// <param name="renderConfig"></param>
-    /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
-    /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
-    /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
-    /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
-    /// <param name="serviceProvider">Optional IServiceProvider to override bindings</param>
-    private SmRunner(string diagramPath,
-        IRenderConfig? renderConfig = null,
-        string? outputDirectory = null,
-        AlgorithmId algorithmId = AlgorithmId.Default,
-        TranspilerId transpilerId = TranspilerId.Default,
-        IServiceProvider? serviceProvider = null,
-        string? callingFilePath = null)
-    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath)
-    {
-    }
+    // TODO re-enable for legacy CSX
+    // /// <summary>
+    // /// A convenience constructor. Will attempt to read settings from the diagram file.
+    // /// </summary>
+    // /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
+    // /// <param name="renderConfig"></param>
+    // /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
+    // /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
+    // /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
+    // /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    // /// <param name="serviceProvider">Optional IServiceProvider to override bindings</param>
+    // private SmRunner(string diagramPath,
+    //     IRenderConfig? renderConfig = null,
+    //     string? outputDirectory = null,
+    //     AlgorithmId algorithmId = AlgorithmId.Default,
+    //     TranspilerId transpilerId = TranspilerId.Default,
+    //     IServiceProvider? serviceProvider = null,
+    //     string? callingFilePath = null)
+    // : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath)
+    // {
+    // }
 
     /// <summary>
     /// Publicly exposed so that users can customize transformation behavior.
