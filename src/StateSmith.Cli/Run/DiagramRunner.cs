@@ -113,13 +113,6 @@ public class DiagramRunner
         
         SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath, serviceProvider: sp);
 
-        if (smRunner.PreDiagramBasedSettingsException != null)
-        {
-            warningCount++;
-            _runConsole.ErrorMarkupLine("\nFailed while trying to read diagram for settings.\n");
-            smRunner.PrintAndThrowIfPreDiagramSettingsException();   // need to do this before we check the transpiler ID
-            throw new Exception("Should not get here.");
-        }
 
         _runConsole.WriteLine($"Running diagram: `{shortPath}`");
 
