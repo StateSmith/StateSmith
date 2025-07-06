@@ -13,16 +13,12 @@ namespace StateSmith.SmGraph;
 /// </summary>
 public class PreDiagramSettingsReader
 {
-    RenderConfigAllVars renderConfigAllVars;
     RunnerSettings smRunnerSettings;
-    IRenderConfig renderConfig; // TODO remove
     IServiceProvider sp;
 
-    public PreDiagramSettingsReader(RenderConfigAllVars renderConfigAllVars, RunnerSettings smRunnerSettings, IRenderConfig renderConfig, IServiceProvider sp)
+    public PreDiagramSettingsReader(RunnerSettings smRunnerSettings, IServiceProvider sp)
     {
-        this.renderConfigAllVars = renderConfigAllVars;
         this.smRunnerSettings = smRunnerSettings;
-        this.renderConfig = renderConfig;
         this.sp = sp;
     }
 
