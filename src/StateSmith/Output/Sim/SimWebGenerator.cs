@@ -16,6 +16,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace StateSmith.Output.Sim;
 
@@ -64,15 +65,17 @@ public class SimWebGenerator
 
         this.codeFileWriter = codeFileWriter;
 
-        var enablePreDiagramBasedSettings = false;  // need to stop it from trying to read diagram early as fake diagram path is used
         var sp = RunnerServiceProviderFactory.CreateDefault((services)=>
         {
             services.AddSingleton<IExpander>(trackingExpander);
             services.AddSingleton<ICodeFileWriter>(fileCapturer);
             services.AddSingleton<IConsolePrinter>(new DiscardingConsolePrinter());   // we want regular SmRunner console output to be discarded            
+
+            // need to stop it from trying to read diagram early as fake diagram path is used
+            services.RemoveAll<PreDiagramSettingsReader>();
         });
 
-        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProvider: sp, enablePDBS: enablePreDiagramBasedSettings);
+        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProvider: sp);
         runner.Settings.propagateExceptions = true;
 
         IServiceProvider serviceProvider = runner.GetExperimentalAccess().IServiceProvider;

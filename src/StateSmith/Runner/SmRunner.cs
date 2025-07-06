@@ -26,8 +26,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private readonly IRenderConfig iRenderConfig;
     
-    private readonly bool enablePreDiagramBasedSettings;
-
     /// <summary>
     /// The path to the file that called a <see cref="SmRunner"/> constructor. Allows for convenient relative path
     /// figuring for regular C# projects and C# scripts (.csx).
@@ -41,14 +39,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="renderConfig"></param>
     /// <param name="serviceProvider">Optional dependency injection overrides</param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
-    /// <param name="enablePDBS">User code should leave unspecified for now.</param>
-    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
+    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
 
         this.settings = settings;
         this.iRenderConfig = renderConfig ?? new DummyIRenderConfig();
-        this.enablePreDiagramBasedSettings = enablePDBS;
         this.callerFilePath = callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
@@ -66,7 +62,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
     /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
     /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
-    /// <param name="enablePDBS">User could should leave unspecified for now.</param>
     /// <param name="serviceProvider">Optional IServiceProvider to override bindings</param>
     public SmRunner(string diagramPath,
         IRenderConfig? renderConfig = null,
@@ -74,8 +69,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
         AlgorithmId algorithmId = AlgorithmId.Default,
         TranspilerId transpilerId = TranspilerId.Default,
         IServiceProvider? serviceProvider = null,
-        [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null, bool enablePDBS = true)
-    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath, enablePDBS: enablePDBS)
+        [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
+    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath)
     {
     }
 
@@ -94,7 +89,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         PrepareBeforeRun();
         SmRunnerInternal smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>();
-        smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
+        smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = serviceProvider.GetService<PreDiagramSettingsReader>() != null;
 
         if (settings.transpilerId == TranspilerId.NotYetSet)
             throw new ArgumentException("TranspilerId must be set before running code generation");
@@ -120,26 +115,20 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         ReadRenderConfigObjectToVars(context.renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 
-        // we disable early diagram settings reading for the simulator and some tests
-        if (enablePreDiagramBasedSettings)
+        try
         {
-            try
-            {
-                serviceProvider.GetRequiredService<StandardSmTransformer>().onlyPreDiagramSettings = true;
+            serviceProvider.GetRequiredService<StandardSmTransformer>().onlyPreDiagramSettings = true;
 
-                // Note that this may throw if the diagram is invalid.
-                PreDiagramSettingsReader preDiagramSettingsReader = serviceProvider.GetRequiredService<PreDiagramSettingsReader>();
-                preDiagramSettingsReader.Process();
-            }
-            catch (Exception e)
-            {
-                var smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>(); // TODO move to a field?
-                smRunnerInternal.OutputExceptionDetail(e); // TODO why is this needed?
-                throw;
-            }
+            // Note that this may throw if the diagram is invalid.
+            PreDiagramSettingsReader? preDiagramSettingsReader = serviceProvider.GetService<PreDiagramSettingsReader>();
+            preDiagramSettingsReader?.Process();
         }
-
-
+        catch (Exception e)
+        {
+            var smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>(); // TODO move to a field?
+            smRunnerInternal.OutputExceptionDetail(e);
+            throw;
+        }
     }
 
 
