@@ -55,8 +55,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private IServiceProvider serviceProvider;
 
+    // TODO replace with context
     readonly RunnerSettings settings;
 
+    // TODO replace with context
     private readonly IRenderConfig iRenderConfig;
     
     /// <summary>
@@ -72,14 +74,34 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="settings"></param>
     /// <param name="renderConfig"></param>
     /// <param name="serviceProvider">Dependency injection service provider</param>
-    public SmRunner(RunnerSettings settings, IRenderConfig renderConfig, IServiceProvider serviceProvider)
+    public SmRunner(RunnerSettings settings, IRenderConfig renderConfig, IServiceProvider serviceProvider, IRenderConfig ignored)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
 
         this.settings = settings;
         this.iRenderConfig = renderConfig ?? new DummyIRenderConfig();
-        this.serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
+        this.serviceProvider = serviceProvider;
     }
+
+    /// Constructor. Will attempt to read settings from the diagram file.
+    /// </summary>
+    /// <param name="settings"></param>
+    /// <param name="renderConfig"></param>
+    /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
+    /// <param name="enablePDBS">User code should leave unspecified for now.</param>
+    // [Obsolete("This constructor is obsolete. Use SmRunner.Create() instead.")]    /// <summary>
+    // public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
+    // {
+    //     SmRunnerInternal.AppUseDecimalPeriod();
+
+    //     this.settings = settings;
+    //     this.iRenderConfig = renderConfig ?? new DummyIRenderConfig();
+    //     this.callerFilePath = callerFilePath.ThrowIfNull();
+    //     SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
+
+    //     this.serviceProvider = RunnerServiceProviderFactory.CreateDefault();
+    //     SetupRenderConfigs();
+    // }
 
     // TODO re-enable for legacy CSX
     // /// <summary>
