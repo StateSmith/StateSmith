@@ -19,7 +19,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         InputSmBuilder runner = serviceProvider.GetRequiredService<InputSmBuilder>();
 
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm.drawio.svg";
-        DrawIoToSmDiagramConverter converter = runner.sp.GetRequiredService<DrawIoToSmDiagramConverter>();
+        DrawIoToSmDiagramConverter converter = serviceProvider.GetRequiredService<DrawIoToSmDiagramConverter>();
         converter.ProcessSvg(File.OpenText(filePath));
 
         var smDiagramRoot = converter.Roots.Single();

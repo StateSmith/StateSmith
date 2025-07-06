@@ -45,7 +45,7 @@ public class GilFileTestHelper
         //PseudoStateHandlerBuilder pseudoStateHandlerBuilder = new();
         //EventHandlerBuilder eventHandlerBuilder = new(new(), pseudoStateHandlerBuilder, mangler);
 
-        AlgoBalanced1 builder = ActivatorUtilities.GetServiceOrCreateInstance<AlgoBalanced1>(inputSmBuilder.sp);
+        AlgoBalanced1 builder = ActivatorUtilities.GetServiceOrCreateInstance<AlgoBalanced1>(serviceProvider);
         return builder.GenerateGil(sm);
     }
 }

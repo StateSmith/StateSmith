@@ -19,7 +19,7 @@ namespace StateSmithTest
             IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
             inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
             diagramToSmConverter = serviceProvider.GetRequiredService<DiagramToSmConverter>();
-            inputSmBuilder.sp.GetRequiredService<RunnerSettings>().nameConflictResolution = RunnerSettings.NameConflictResolution.Manual; // required for old duplicate state name detection
+            serviceProvider.GetRequiredService<RunnerSettings>().nameConflictResolution = RunnerSettings.NameConflictResolution.Manual; // required for old duplicate state name detection
         }
 
         public void ExpectBehaviorValidationException(string exceptionMessagePart, Action? additionalAction = null)

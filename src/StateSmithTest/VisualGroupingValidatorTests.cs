@@ -14,12 +14,12 @@ namespace StateSmithTest.DrawIo.Issue81;
 /// </summary>
 public class VisualGroupingValidatorTests
 {
-    readonly InputSmBuilder runner = TestHelper.CreateServiceProvider().GetRequiredService<InputSmBuilder>();
+    readonly IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
     DrawIoToSmDiagramConverter converter;
 
     public VisualGroupingValidatorTests()
     {
-        converter = runner.sp.GetRequiredService<DrawIoToSmDiagramConverter>();
+        converter = serviceProvider.GetRequiredService<DrawIoToSmDiagramConverter>();
     }
 
     [Fact]
@@ -46,7 +46,7 @@ public class VisualGroupingValidatorTests
 
     private DrawIoSettings GetDrawIoSettings()
     {
-        return runner.sp.GetRequiredService<DrawIoSettings>();
+        return serviceProvider.GetRequiredService<DrawIoSettings>();
     }
 
     [Fact]

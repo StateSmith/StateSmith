@@ -56,7 +56,7 @@ public class DiagramEmbeddedRenderConfigTests
         runner.FinishRunning();
 
         {
-            RenderConfigBaseVars renderConfig = runner.sp.GetRequiredService<RenderConfigBaseVars>();
+            RenderConfigBaseVars renderConfig = serviceProvider.GetRequiredService<RenderConfigBaseVars>();
 
             renderConfig.VariableDeclarations.ShouldBeShowDiff("""
             int top_level; // top level - VariableDeclarations
@@ -99,7 +99,7 @@ public class DiagramEmbeddedRenderConfigTests
         }
 
         {
-            RenderConfigCVars renderConfig = runner.sp.GetRequiredService<RenderConfigCVars>();
+            RenderConfigCVars renderConfig = serviceProvider.GetRequiredService<RenderConfigCVars>();
             var defaultConfig = new RenderConfigCVars();
 
             renderConfig.HFileIncludes.ShouldBeShowDiff("""
@@ -150,7 +150,7 @@ public class DiagramEmbeddedRenderConfigTests
         }
 
         {
-            var renderConfig = runner.sp.GetRequiredService<RenderConfigCSharpVars>();
+            var renderConfig = serviceProvider.GetRequiredService<RenderConfigCSharpVars>();
             var defaultConfig = new RenderConfigCSharpVars();
 
             renderConfig.Usings.ShouldBeShowDiff("""
@@ -182,7 +182,7 @@ public class DiagramEmbeddedRenderConfigTests
         }
 
         {
-            var renderConfig = runner.sp.GetRequiredService<RenderConfigJavaScriptVars>();
+            var renderConfig = serviceProvider.GetRequiredService<RenderConfigJavaScriptVars>();
             var defaultConfig = new RenderConfigJavaScriptVars();
 
             renderConfig.ExtendsSuperClass.ShouldBeShowDiff("""
