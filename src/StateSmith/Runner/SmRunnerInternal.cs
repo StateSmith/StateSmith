@@ -26,9 +26,9 @@ public class SmRunnerInternal
     readonly FilePathPrinter filePathPrinter;
     readonly SmDesignDescriber smDesignDescriber;
     readonly OutputInfo outputInfo;
-    readonly SimWebGenerator? simWebGenerator;
+    readonly SimWebGenerator simWebGenerator;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, AlgoTranspilerCustomizer algoTranspilerCustomizer, SimWebGenerator? simWebGenerator = null)
+    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, SimWebGenerator simWebGenerator, AlgoTranspilerCustomizer algoTranspilerCustomizer)
     {
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
@@ -70,7 +70,7 @@ public class SmRunnerInternal
             smDesignDescriber.DescribeAfterTransformations();
             codeGenRunner.Run();
 
-            if (settings.simulation.enableGeneration && simWebGenerator != null)
+            if (settings.simulation.enableGeneration)
             {
                 simWebGenerator.RunnerSettings.propagateExceptions = settings.propagateExceptions;
                 simWebGenerator.RunnerSettings.outputStateSmithVersionInfo = settings.outputStateSmithVersionInfo;
@@ -168,8 +168,6 @@ public class SmRunnerInternal
         var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
         var tmp = settings.DiagramPath;
         settings.DiagramPath = PathUtils.EnsurePathAbsolute(settings.DiagramPath, relativeDirectory);
-        Console.WriteLine($"BOOGA SmRunnerInternal.ResolveFilePaths callingFilePath({callingFilePath}) before({tmp}) after({settings.DiagramPath})");
-        // throw new ArgumentException();
 
         settings.outputDirectory ??= Path.GetDirectoryName(settings.DiagramPath).ThrowIfNull();
         settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);

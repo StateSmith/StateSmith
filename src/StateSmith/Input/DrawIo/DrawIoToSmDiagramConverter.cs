@@ -22,8 +22,6 @@ public class DrawIoToSmDiagramConverter
 
     public void ProcessFile(string filePath)
     {
-        Console.WriteLine($"BOOGA DrawIoToSmDiagramConverter.ProcessFile({filePath})");
-        // throw new ArgumentException();
         using StreamReader fileReader = File.OpenText(filePath);
 
         if (filePath.EndsWith(".svg", System.StringComparison.OrdinalIgnoreCase))

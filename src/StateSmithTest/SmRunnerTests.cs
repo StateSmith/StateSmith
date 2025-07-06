@@ -61,7 +61,6 @@ public class SmRunnerTests
         var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
-            services.RemoveAll<SimWebGenerator>();
         });
 
         SmRunner runner = SmRunner.Create(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProvider: sp);
