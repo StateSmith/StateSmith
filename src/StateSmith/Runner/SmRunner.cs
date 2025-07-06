@@ -71,15 +71,13 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     /// <param name="settings"></param>
     /// <param name="renderConfig"></param>
-    /// <param name="serviceProvider">Optional dependency injection overrides</param>
-    /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
-    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
+    /// <param name="serviceProvider">Dependency injection service provider</param>
+    public SmRunner(RunnerSettings settings, IRenderConfig renderConfig, IServiceProvider serviceProvider)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
 
         this.settings = settings;
         this.iRenderConfig = renderConfig ?? new DummyIRenderConfig();
-        this.callerFilePath = callerFilePath;
         this.serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
     }
 
