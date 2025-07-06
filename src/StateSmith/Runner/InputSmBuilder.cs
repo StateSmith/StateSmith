@@ -37,14 +37,14 @@ public class InputSmBuilder
     protected StateMachine? Sm { get; set; }
 
     private DiagramToSmConverter diagramToSmConverter;
-    private IServiceProvider sp; // TODO remove?
+    private OutputInfo outputInfo;
 
     readonly INameMangler mangler;
     readonly DrawIoToSmDiagramConverter drawIoConverter;
     readonly StateMachineProvider stateMachineProvider;
     readonly DiagramFilePathProvider diagramFilePathProvider;
 
-    public InputSmBuilder(SmTransformer transformer, DiagramToSmConverter diagramToSmConverter, INameMangler mangler, DrawIoToSmDiagramConverter converter, IServiceProvider sp, StateMachineProvider stateMachineProvider, DiagramFilePathProvider diagramFilePathProvider)
+    public InputSmBuilder(SmTransformer transformer, DiagramToSmConverter diagramToSmConverter, INameMangler mangler, DrawIoToSmDiagramConverter converter, StateMachineProvider stateMachineProvider, DiagramFilePathProvider diagramFilePathProvider, OutputInfo outputInfo)
     {
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
 
@@ -52,9 +52,9 @@ public class InputSmBuilder
         this.diagramToSmConverter = diagramToSmConverter;
         this.mangler = mangler;
         this.drawIoConverter = converter;
-        this.sp = sp;
         this.stateMachineProvider = stateMachineProvider;
         this.diagramFilePathProvider = diagramFilePathProvider;
+        this.outputInfo = outputInfo;
     }
 
 
@@ -209,7 +209,7 @@ public class InputSmBuilder
         Sm = stateMachine;
         stateMachineProvider.SetStateMachine(Sm);
         mangler.SetStateMachine(GetStateMachine());
-        sp.GetRequiredService<OutputInfo>().baseFileName = mangler.BaseFileName;
+        outputInfo.baseFileName = mangler.BaseFileName;
     }
 
     //------------------------------------------------------------------------
