@@ -26,8 +26,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
         IServiceProvider? serviceProvider = null,
         [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
     {
-        // TODO switch to injection
-        return new(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath);
+        // return new(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath);
+        return Create(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath);
     }
 
     public static SmRunner Create(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
@@ -44,7 +44,13 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         SmRunner smRunner = sp.GetRequiredService<SmRunner>();
 
-        smRunner.callerFilePath = callerFilePath!; // callerPath is set automatically if it's null
+        // TODO debugging
+        // smRunner.Settings.filePathPrintBase = settings.outputDirectory;
+
+        smRunner.callerFilePath = callerFilePath.ThrowIfNull(); // callerPath is set automatically if it's null
+
+        SmRunnerInternal.ResolveFilePaths(context.runnerSettings, callerFilePath);
+        smRunner.SetupRenderConfigs();
 
         return smRunner;
     }
@@ -85,7 +91,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         this.serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
 
-        SetupRenderConfigs();
+        // SetupRenderConfigs();
     }
 
     // TODO re-enable for legacy CSX

@@ -4,6 +4,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Xunit;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using StateSmith.Output.Sim;
 
 
 namespace StateSmithTest.SmRunnerTest;
@@ -59,10 +61,12 @@ public class SmRunnerTests
         var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
         {
             services.AddSingleton<IConsolePrinter>(fakeConsole);
+            services.RemoveAll<SimWebGenerator>();
         });
 
         SmRunner runner = SmRunner.Create(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProvider: sp);
         runner.Settings.filePathPrintBase = tempPath;
+        runner.Settings.simulation.enableGeneration = false; // TODO needed? why needed?
         runner.Run();
 
         // have to modify output so that test doesn't rely on temp path because that will vary
