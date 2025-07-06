@@ -96,23 +96,45 @@ public class RunnerServiceProviderFactory
 
         services.AddTransient<HistoryProcessor>();
 
+        // Some of the singletons are determined from the RunnerSettings,
+        // so set up the proper mappings based on the settings
+        foreach (var type in IGILALGO_TYPES.Values)
+        {
+            services.AddSingleton(type);
+        }
         services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
         services.AddSingleton<IGilAlgo>(sp =>
             ResolveServiceFromRunnerSettings<IGilAlgo, AlgorithmId>(sp, rs => rs.algorithmId, IGILALGO_TYPES)
         );
 
+        foreach (var type in IGILTRANSPILER_TYPES.Values)
+        {
+            services.AddSingleton(type);
+        }
         services.AddSingleton<IGilTranspiler>(sp =>
             ResolveServiceFromRunnerSettings<IGilTranspiler, TranspilerId>(sp, rs => rs.transpilerId, IGILTRANSPILER_TYPES)
         );
 
+        foreach (var type in IEXPANSIONVARSPATHPROVIDER_TYPES.Values)
+        {
+            services.AddSingleton(type);
+        }
         services.AddSingleton<IExpansionVarsPathProvider>(sp =>
             ResolveServiceFromRunnerSettings<IExpansionVarsPathProvider, TranspilerId>(sp, rs => rs.transpilerId, IEXPANSIONVARSPATHPROVIDER_TYPES)
         );
 
+        foreach (var type in INAMEMANGLER_TYPES.Values)
+        {
+            services.AddSingleton(type);
+        }
         services.AddSingleton<INameMangler>(sp =>
             ResolveServiceFromRunnerSettings<INameMangler, TranspilerId>(sp, rs => rs.transpilerId, INAMEMANGLER_TYPES)
         );
 
+        foreach (var type in IAUTOVARSPARSER_TYPES.Values)
+        {
+            services.AddSingleton(type);
+        }
         services.AddSingleton<IAutoVarsParser>(sp =>
             ResolveServiceFromRunnerSettings<IAutoVarsParser, TranspilerId>(sp, rs => rs.transpilerId, IAUTOVARSPARSER_TYPES)
         );
@@ -157,7 +179,7 @@ public class RunnerServiceProviderFactory
         var settings = sp.GetRequiredService<RunnerSettings>();
         var id = idSelector(settings);
         Type t = typeMap[id].ThrowIfNull($"{id?.GetType()} '{id}' is not supported.");
-        return (TService)ActivatorUtilities.GetServiceOrCreateInstance(sp, t);
+        return (TService)sp.GetRequiredService(t);
     }
 
     static Dictionary<TranspilerId, Type> IGILTRANSPILER_TYPES = new Dictionary<TranspilerId, Type> {
