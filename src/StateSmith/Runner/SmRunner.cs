@@ -127,9 +127,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
                 serviceProvider.GetRequiredService<StandardSmTransformer>().onlyPreDiagramSettings = true;
 
                 // Note that this may throw if the diagram is invalid.
-                var inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
-                SmRunnerInternal.SetupAndFindStateMachine(inputSmBuilder, settings);
-                inputSmBuilder.FinishRunning();
+                // TODO inject PreDiagramSettingsReader
+                PreDiagramSettingsReader preDiagramSettingsReader = new(settings, GetExperimentalAccess().InputSmBuilder);
+                preDiagramSettingsReader.Process();
             }
             catch (Exception e)
             {
