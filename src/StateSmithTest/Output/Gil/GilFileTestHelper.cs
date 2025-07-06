@@ -4,6 +4,7 @@ using StateSmith.Runner;
 using StateSmith.SmGraph;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using StateSmith.Output;
 
 namespace StateSmithTest.Output.Gil;
 
@@ -21,18 +22,9 @@ public class GilFileTestHelper
 
         sm.variables += "bool b;";
 
-        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider(serviceOverrides: (services) =>
-        {
-            services.AddSingleton(new RenderConfigBaseVars()
-            {
-                VariableDeclarations = "//This is super cool!\nx: 0,"
-            });
-
-            services.AddSingleton(new AlgoBalanced1Settings()
-            {
-                skipClassIndentation = skipIndentation,
-            });
-        });
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        serviceProvider.GetRequiredService<RenderConfigBaseVars>().VariableDeclarations = "//This is super cool!\nx: 0,";
+        serviceProvider.GetRequiredService<AlgoBalanced1Settings>().skipClassIndentation = skipIndentation;
 
         InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.SetStateMachineRoot(sm);
@@ -45,7 +37,7 @@ public class GilFileTestHelper
         //PseudoStateHandlerBuilder pseudoStateHandlerBuilder = new();
         //EventHandlerBuilder eventHandlerBuilder = new(new(), pseudoStateHandlerBuilder, mangler);
 
-        AlgoBalanced1 builder = ActivatorUtilities.GetServiceOrCreateInstance<AlgoBalanced1>(serviceProvider);
+        IGilAlgo builder = serviceProvider.GetRequiredService<IGilAlgo>();
         return builder.GenerateGil(sm);
     }
 }
