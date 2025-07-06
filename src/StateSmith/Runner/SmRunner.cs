@@ -78,7 +78,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// Publicly exposed so that users can customize transformation behavior.
     /// Accessing this member will cause the Dependency Injection settings to be finalized.
     /// </summary>
-    public SmTransformer SmTransformer => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(serviceProvider);
+    public SmTransformer SmTransformer => serviceProvider.GetRequiredService<SmTransformer>();
 
     /// <summary>
     /// Runs StateSmith.
@@ -176,7 +176,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     public IExperimentalAccess GetExperimentalAccess() => this;
     IServiceProvider IExperimentalAccess.IServiceProvider => serviceProvider;
     RunnerSettings IExperimentalAccess.Settings => settings;
-    InputSmBuilder IExperimentalAccess.InputSmBuilder => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(serviceProvider);
+    InputSmBuilder IExperimentalAccess.InputSmBuilder => serviceProvider.GetRequiredService<InputSmBuilder>();
 
     /// <summary>
     /// The API in this experimental access may break often. It will eventually stabilize after enough use and feedback.
