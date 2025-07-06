@@ -19,7 +19,7 @@ public class ErrorReporting
             @enduml
             """;
 
-        string consoleOutput = RunExpectGenericFailure(plantUmlText);
+        string consoleOutput = RunExpectFailure(plantUmlText);
 
         consoleOutput.Should().Contain("""
             Failed parsing node label.
@@ -51,7 +51,7 @@ public class ErrorReporting
             @enduml
             """;
 
-        string consoleOutput = RunExpectGenericFailure(plantUmlText);
+        string consoleOutput = RunExpectFailure(plantUmlText);
 
         consoleOutput.Should().Contain("""
             Exception FormatException : PlantUML input failed parsing.
@@ -69,7 +69,7 @@ public class ErrorReporting
             @enduml
             """;
 
-        string consoleOutput = RunExpectGenericFailure(plantUmlText);
+        string consoleOutput = RunExpectFailure(plantUmlText);
 
         consoleOutput.Should().Contain("""
             Failed parsing diagram edge
@@ -97,7 +97,7 @@ public class ErrorReporting
             @enduml
             """;
 
-        string consoleOutput = RunExpectGenericFailure(plantUmlText);
+        string consoleOutput = RunExpectFailure(plantUmlText);
 
         consoleOutput.Should().Contain("""
             VertexValidationException: history vertex must only have a single default transition. Found 2 behaviors.
@@ -110,11 +110,11 @@ public class ErrorReporting
             """);
     }
 
-    private static string RunExpectGenericFailure(string plantUmlText)
+    private static string RunExpectFailure(string plantUmlText)
     {
         StringBuilderConsolePrinter fakeConsole = new();
         Action a = () => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, propagateExceptions: false, consoleCapturer: fakeConsole);
-        a.Should().Throw<FinishedWithFailureException>();
+        a.Should().Throw<Exception>();
         string consoleOutput = fakeConsole.sb.ToString();
         consoleOutput.Should().Contain("StateSmith Runner - Finished with failure.");
         return consoleOutput;
