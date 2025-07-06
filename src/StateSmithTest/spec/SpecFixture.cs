@@ -36,7 +36,7 @@ public class SpecFixture
         };
 
         //settings.outputGilCodeAlways = true;
-        SmRunner runner = new(settings, renderConfig);
+        SmRunner runner = SmRunner.Create(settings, renderConfig);
 
         smRunnerAction?.Invoke(runner);
 

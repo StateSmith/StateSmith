@@ -111,7 +111,7 @@ public class DiagramRunner
             services.AddSingleton<ICodeFileWriter, LoggingCodeFileWriter>();
         });
         
-        SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath, serviceProvider: sp);
+        SmRunner smRunner = SmRunner.Create(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath, serviceProvider: sp);
 
 
         _runConsole.WriteLine($"Running diagram: `{shortPath}`");

@@ -18,6 +18,25 @@ namespace StateSmith.Runner;
 /// TODO add test case for two smrunners at same time (to make sure singletons are not shared between them)
 public class SmRunner : SmRunner.IExperimentalAccess
 {
+    public static SmRunner Create(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
+    {
+        var sp = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
+
+        // Set the context for the SmRunner
+        var context = sp.GetRequiredService<RunnerContext>();
+        context.runnerSettings = settings;
+        if (renderConfig != null)
+        {
+            context.renderConfig = renderConfig;
+        }
+
+        SmRunner smRunner = sp.GetRequiredService<SmRunner>();
+
+        smRunner.callerFilePath = callerFilePath!; // callerPath is set automatically if it's null
+
+        return smRunner;
+    }
+
     public RunnerSettings Settings => settings;
 
     private IServiceProvider serviceProvider;
@@ -29,8 +48,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <summary>
     /// The path to the file that called a <see cref="SmRunner"/> constructor. Allows for convenient relative path
     /// figuring for regular C# projects and C# scripts (.csx).
+    /// May be null during construction but is expected to be non-null at the time of Run
     /// </summary>
-    readonly string callerFilePath;
+    private string? callerFilePath;
 
     /// <summary>
     /// Constructor. Will attempt to read settings from the diagram file.
@@ -45,8 +65,11 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         this.settings = settings;
         this.iRenderConfig = renderConfig ?? new DummyIRenderConfig();
-        this.callerFilePath = callerFilePath.ThrowIfNull();
-        SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
+        this.callerFilePath = callerFilePath;
+        if (this.callerFilePath != null)
+        {
+            SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
+        }
 
         this.serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
 
@@ -165,6 +188,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     internal void PrepareBeforeRun()
     {
+        this.callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
         OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
         outputInfo.outputDirectory = settings.outputDirectory.ThrowIfNull();

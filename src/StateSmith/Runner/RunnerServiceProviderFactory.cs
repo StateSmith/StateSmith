@@ -60,6 +60,7 @@ public class RunnerServiceProviderFactory
         services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Python);
         services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
 
+        services.AddSingleton<SmRunner>();
         services.AddSingleton<SmRunnerInternal>();
         services.AddSingleton<StandardSmTransformer>();
         services.AddSingleton<SmTransformer>((sp) => sp.GetRequiredService<StandardSmTransformer>());
