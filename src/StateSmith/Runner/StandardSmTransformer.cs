@@ -53,7 +53,9 @@ public class StandardSmTransformer : SmTransformer
         {
             step.action(sm);
 
-            // TODO clean this up
+            // TODO clean this up. One altnerative would be to split the pre and post steps into separate
+            // lists and run them separately. Another alternative would be to take a hard look at SmTransformer,
+            // it's a thin wrapper around a list with one Run command and a few convenience list operations.
             if (onlyPreDiagramSettings && step.Id == TransformationId.Standard_SupportRenderConfigVerticesAndRemove.ToString())
             {
                 break;
