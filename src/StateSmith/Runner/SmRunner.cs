@@ -132,7 +132,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
                 // Note that this may throw if the diagram is invalid.
                 // TODO inject PreDiagramSettingsReader
-                PreDiagramSettingsReader preDiagramSettingsReader = new(settings, serviceProvider);
+                PreDiagramSettingsReader preDiagramSettingsReader = new(settings, GetExperimentalAccess().InputSmBuilder);
                 preDiagramSettingsReader.Process();
             }
             catch (Exception e)

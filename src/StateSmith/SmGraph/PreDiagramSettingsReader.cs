@@ -1,7 +1,5 @@
 #nullable enable
 
-using StateSmith.Output.UserConfig;
-using StateSmith.Output.UserConfig.AutoVars;
 using StateSmith.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,12 +12,12 @@ namespace StateSmith.SmGraph;
 public class PreDiagramSettingsReader
 {
     RunnerSettings smRunnerSettings;
-    IServiceProvider sp;
+    InputSmBuilder inputSmBuilder;
 
-    public PreDiagramSettingsReader(RunnerSettings smRunnerSettings, IServiceProvider sp)
+    public PreDiagramSettingsReader(RunnerSettings smRunnerSettings, InputSmBuilder inputSmBuilder)
     {
         this.smRunnerSettings = smRunnerSettings;
-        this.sp = sp;
+        this.inputSmBuilder = inputSmBuilder;
     }
 
     /// <summary>
@@ -27,9 +25,6 @@ public class PreDiagramSettingsReader
     /// </summary>
     public void Process()
     {
-        // TODO inject this
-        var inputSmBuilder = sp.GetRequiredService<InputSmBuilder>();
-
         SmRunnerInternal.SetupAndFindStateMachine(inputSmBuilder, smRunnerSettings); // TODO do we need this anymore?
         inputSmBuilder.FinishRunning();
     }
