@@ -34,6 +34,8 @@ public class RunnerServiceProviderFactory
 {
     public static IServiceProvider CreateDefault(Action<IServiceCollection>? serviceOverrides = null)
     {
+        // TODO consider splitting this configuration block between static singletons
+        // vs singletons that depend on runtime config from RunnerContext
         ServiceCollection services = new();
 
         // RunnerContext
