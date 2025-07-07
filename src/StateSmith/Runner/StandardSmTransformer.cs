@@ -58,6 +58,11 @@ public class StandardSmTransformer : SmTransformer
             // it's a thin wrapper around a list with one Run command and a few convenience list operations.
             if (onlyPreDiagramSettings && step.Id == TransformationId.Standard_SupportRenderConfigVerticesAndRemove.ToString())
             {
+                // Skip everything not needed for diagram settings reading.
+                // We don't actually want to validate the diagram, just read the settings.
+                // Why? Because it is slower and also we don't want to mess up designs that require special transformers.
+                // If a user adds special transformers, they won't be run here.
+                // https://github.com/StateSmith/StateSmith/issues/349
                 break;
             }
         }
