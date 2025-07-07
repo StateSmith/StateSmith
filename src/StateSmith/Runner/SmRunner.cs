@@ -82,13 +82,14 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.serviceProvider = serviceProvider;
     }
 
-    /// Constructor. Will attempt to read settings from the diagram file.
+    /// <summary>
+    /// Legacy constructor provided for backward compatibility with older CSX scripts
     /// </summary>
     /// <param name="settings"></param>
     /// <param name="renderConfig"></param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
     /// <param name="enablePDBS">User code should leave unspecified for now.</param>
-     /// <summary>
+    /// <summary>
     [Obsolete("This constructor is obsolete. Use SmRunner.Create() instead.")]   
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
@@ -104,21 +105,23 @@ public class SmRunner : SmRunner.IExperimentalAccess
     }
 
     /// <summary>
-    /// A convenience constructor. Will attempt to read settings from the diagram file.
+    /// Legacy constructor provided for backward compatibility with older CSX scripts
     /// </summary>
     /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
     /// <param name="renderConfig"></param>
     /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
     /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
     /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
-    /// <param name="callerFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
     public SmRunner(string diagramPath,
         IRenderConfig? renderConfig = null,
         string? outputDirectory = null,
         AlgorithmId algorithmId = AlgorithmId.Default,
         TranspilerId transpilerId = TranspilerId.Default,
         string? callingFilePath = null)
+#pragma warning disable CS0618 // Type or member is obsolete
     : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, callerFilePath: callingFilePath)
+#pragma warning restore CS0618 // Type or member is obsolete
     {
     }
 
