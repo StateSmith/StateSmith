@@ -23,7 +23,7 @@ public class PreDiagramSettingsReader
     /// </summary>
     public void Process()
     {
-        SmRunnerInternal.SetupAndFindStateMachine(inputSmBuilder, smRunnerSettings); // TODO do we need this anymore?
+        SmRunnerInternal.SetupAndFindStateMachine(inputSmBuilder, smRunnerSettings);
         inputSmBuilder.FinishRunning();
     }
 }
