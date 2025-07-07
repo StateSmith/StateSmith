@@ -17,6 +17,17 @@ namespace StateSmith.Runner;
 /// TODO add test case for two smrunners at same time (to make sure singletons are not shared between them)
 public class SmRunner : SmRunner.IExperimentalAccess
 {
+    /// <summary>
+    /// Convenience method to create a new instance of SmRunner without constructing a separate RunnerSettings object.
+    /// </summary>
+    /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
+    /// <param name="renderConfig"></param>
+    /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
+    /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
+    /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
+    /// <param name="serviceProvider">Optional. Provides a way to override registered dependency injection services.</param>
+    /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    /// <returns></returns>
     public static SmRunner Create(string diagramPath,
         IRenderConfig? renderConfig = null,
         string? outputDirectory = null,
@@ -28,6 +39,14 @@ public class SmRunner : SmRunner.IExperimentalAccess
         return Create(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath);
     }
 
+    /// <summary>
+    /// Factory method to create a new SmRunner instance.
+    /// </summary>
+    /// <param name="settings"></param>
+    /// <param name="renderConfig"></param>
+    /// <param name="serviceProvider">Optional. Provides a way to override registered dependency injection services.</param>
+    /// <param name="callerFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    /// <returns></returns>
     public static SmRunner Create(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         var sp = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
