@@ -230,7 +230,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <summary>
     /// Finalizes settings.
     /// exists just for testing. can be removed in the future.
-    /// // TODO remove
     /// </summary>
     internal void PrepareBeforeRun()
     {
