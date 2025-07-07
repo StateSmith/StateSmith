@@ -1051,7 +1051,8 @@ public class ParsingTests
             @enduml
             """;
 
-        InputSmBuilder inputSmBuilder = new();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.FinishRunning();
 
@@ -1101,7 +1102,8 @@ public class ParsingTests
             @enduml
             """;
 
-        InputSmBuilder inputSmBuilder = new();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices("foo.puml", plantUmlText);
         inputSmBuilder.FinishRunning();
 
