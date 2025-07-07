@@ -193,7 +193,7 @@ public class HtmlRenderer
         background-color: #0056b3;
       }
 
-      /* 隐藏无关事件的样式 */
+      /* Style for hiding irrelevant events */
       button.event-button.hidden {
         display: none;
       }

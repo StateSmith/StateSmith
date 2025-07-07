@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Linq;
 
@@ -167,20 +168,8 @@ public class SimWebGenerator
             {
                 var availableEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 
-                // Collect events defined directly in this state
-                foreach (var behavior in state.Behaviors)
-                {
-                    foreach (var trigger in behavior.Triggers)
-                    {
-                        if (TriggerHelper.IsEvent(trigger))
-                        {
-                            availableEvents.Add(trigger);
-                        }
-                    }
-                }
-
-                // Collect events inherited from parent states
-                var currentVertex = state.Parent;
+                // Collect events from this state and all its ancestors
+                Vertex? currentVertex = state;
                 while (currentVertex != null)
                 {
                     foreach (var behavior in currentVertex.Behaviors)
@@ -385,23 +374,18 @@ public class SimWebGenerator
     /// <returns>String in JavaScript object format</returns>
     private string OrganizeStateEventsIntoJsObject()
     {
-        var sb = new StringBuilder();
-        sb.AppendLine("{");
+        // Convert to a dictionary with sorted event arrays for consistent output
+        var sortedStateEvents = stateToAvailableEvents.ToDictionary(
+            kvp => kvp.Key,
+            kvp => kvp.Value.OrderBy(e => e, StringComparer.OrdinalIgnoreCase).ToArray()
+        );
         
-        foreach (var kvp in stateToAvailableEvents)
+        var options = new JsonSerializerOptions
         {
-            var stateName = kvp.Key;
-            var events = kvp.Value;
-            
-            sb.Append($"    '{stateName}': [");
-            foreach (var eventName in events.OrderBy(e => e, StringComparer.OrdinalIgnoreCase))
-            {
-                sb.Append($"'{eventName}', ");
-            }
-            sb.AppendLine("],");
-        }
+            WriteIndented = true,
+            PropertyNamingPolicy = null // Keep original property names
+        };
         
-        sb.AppendLine("}");
-        return sb.ToString();
+        return JsonSerializer.Serialize(sortedStateEvents, options);
     }
 }
