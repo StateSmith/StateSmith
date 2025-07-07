@@ -4,7 +4,7 @@ namespace StateSmith.Output.Sim;
 
 public class HtmlRenderer
 {
-    public static void Render(StringBuilder stringBuilder, string smName, string mocksCode, string mermaidCode, string jsCode, string diagramEventNamesArray)
+    public static void Render(StringBuilder stringBuilder, string smName, string mocksCode, string mermaidCode, string jsCode, string diagramEventNamesArray, string stateEventsMapping)
     {
         // Now that we are working inside the StateSmith project, we need to restrict ourselves to dotnet 6 features.
         // We can't use """raw strings""" anymore so we do manual string interpolation below string.
@@ -174,6 +174,30 @@ public class HtmlRenderer
         margin: 5px;
       }
 
+      button.event-button {
+        transition: opacity 0.3s ease, background-color 0.3s ease;
+        opacity: 1;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+
+      button.event-button:disabled {
+        opacity: 0.4;
+        background-color: #f0f0f0;
+        color: #999;
+        cursor: not-allowed;
+      }
+
+      button.event-button:not(:disabled):hover {
+        background-color: #0056b3;
+      }
+
+      /* Style for hiding irrelevant events */
+      button.event-button.hidden {
+        display: none;
+      }
+
       .dropbtn {
         border: none;
         cursor: pointer;
@@ -239,6 +263,10 @@ public class HtmlRenderer
                     <input type='checkbox' id='timestamps' name='timestamps' value='Timestamps'>
                     <label for='timestamps'>Timestamps</label>
                   </div>
+                  <div class='dropdown-item'>
+                    <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents' value='Hide Unused'>
+                    <label for='hideIrrelevantEvents'>Hide Unused</label>
+                  </div>
                 </div>
               </div>            
           </div>
@@ -292,10 +320,15 @@ public class HtmlRenderer
 
         const diagramEventNamesArray = {{diagramEventNamesArray}};
 
+        // Mapping from state to available events
+        const stateEventsMapping = {{stateEventsMapping}};
+
+        // Get page element references
         const leftPane = document.querySelector("".main"");
         const rightPane = document.querySelector("".sidebar"");
         const gutter = document.querySelector("".gutter"");
 
+        // Function to resize panes
         function resizer(e) {          
           window.addEventListener('mousemove', mousemove);
           window.addEventListener('mouseup', mouseup);          
@@ -317,8 +350,10 @@ public class HtmlRenderer
           }                  
         }
 
+        // Add mouse down event listener for the resizer
         gutter.addEventListener('mousedown', resizer);
 
+        // Set the state of the timestamp checkbox
         document.getElementById('timestamps').checked = document.querySelector('table.console').classList.contains('timestamps');
         document.getElementById('timestamps').addEventListener('change', function() {
           if(this.checked) {
@@ -328,6 +363,13 @@ public class HtmlRenderer
           }
         });
 
+        // Set up hide irrelevant events checkbox state and event listener
+        document.getElementById('hideIrrelevantEvents').addEventListener('change', function() {
+          // When checkbox state changes, only update button visibility, not availability
+          updateButtonVisibility();
+        });
+
+        // Add click event listener for dropdown menu button
         document.getElementById('dropbtn').addEventListener('click', myFunction);
 
         /* When the user clicks on the button, 
@@ -349,7 +391,6 @@ public class HtmlRenderer
             }
           }
         }
-
 
 {{mocksCode}}
 
@@ -408,6 +449,39 @@ public class HtmlRenderer
             highlightedEdges.clear();
         }
 
+        // Function to update event button states (availability and visibility)
+        function updateEventButtonStates(currentStateName) {
+            const availableEvents = stateEventsMapping[currentStateName] || [];
+            
+            diagramEventNamesArray.forEach(eventName => {
+                const button = document.getElementById('button_' + eventName);
+                if (button) {
+                    // do event always remains enabled as it is the core event for state machine operation
+                    const isDoEvent = eventName.toLowerCase() === 'do';
+                    const isAvailable = isDoEvent || availableEvents.includes(eventName);
+                    
+                    // Only set disabled property, CSS :disabled pseudo-class handles styling
+                    button.disabled = !isAvailable;
+                }
+            });
+            
+            // Update visibility based on checkbox state
+            updateButtonVisibility();
+        }
+
+        // Function to update button visibility based on Hide Unused checkbox
+        function updateButtonVisibility() {
+            const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
+            
+            diagramEventNamesArray.forEach(eventName => {
+                const button = document.getElementById('button_' + eventName);
+                if (button) {
+                    // Toggle hidden class based on checkbox state and button disabled state
+                    button.classList.toggle('hidden', hideIrrelevantEvents && button.disabled);
+                }
+            });
+        }
+
         // The simulator uses a tracer callback to perform operations such as 
         // state highlighting and logging. You do not need this functionality
         // when using {{smName}}.js in your own applications, although you may
@@ -420,6 +494,9 @@ public class HtmlRenderer
                   panOnScreen(e);
                 }
                 sm.tracer.log('➡️ Entered ' + mermaidName);
+                
+                // Update event button states
+                updateEventButtonStates(mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
@@ -436,12 +513,16 @@ public class HtmlRenderer
         diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
             button.id = 'button_' + diagramEventName;
+            button.className = 'event-button';
             button.innerText = diagramEventName;
             button.addEventListener('click', () => {
-                clearHighlightedEdges();
-                sm.tracer?.log('<span class=""dispatched""><span class=""trigger"">' + diagramEventName + '</span> DISPATCHED</span>', true);
-                const fsmEventName = diagramEventName.toUpperCase();
-                sm.dispatchEvent({{smName}}.EventId[fsmEventName]); 
+                // Only handle click events when button is enabled
+                if (!button.disabled) {
+                    clearHighlightedEdges();
+                    sm.tracer?.log('<span class=""dispatched""><span class=""trigger"">' + diagramEventName + '</span> DISPATCHED</span>', true);
+                    const fsmEventName = diagramEventName.toUpperCase();
+                    sm.dispatchEvent({{smName}}.EventId[fsmEventName]); 
+                }
             });
             document.getElementById('buttons').appendChild(button);
         });
@@ -449,6 +530,9 @@ public class HtmlRenderer
         sm.tracer?.log('<span class=""dispatched"">START</span>', true);
         sm.start();
 
+        // Initialize event button states
+        const initialStateName = {{smName}}.stateIdToString(sm.stateId);
+        updateEventButtonStates(initialStateName);
 
         function panOnScreen(element) {
           if(!element) return;
@@ -471,12 +555,12 @@ public class HtmlRenderer
 
   </body>
 </html>";
-
         htmlTemplate = htmlTemplate.Replace("{{mermaidCode}}", mermaidCode);
         htmlTemplate = htmlTemplate.Replace("{{jsCode}}", jsCode);
         htmlTemplate = htmlTemplate.Replace("{{mocksCode}}", mocksCode);
         htmlTemplate = htmlTemplate.Replace("{{smName}}", smName);
         htmlTemplate = htmlTemplate.Replace("{{diagramEventNamesArray}}", diagramEventNamesArray);
+        htmlTemplate = htmlTemplate.Replace("{{stateEventsMapping}}", stateEventsMapping);
         stringBuilder.AppendLine(htmlTemplate);
     }
 }
