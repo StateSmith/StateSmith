@@ -60,7 +60,16 @@ public class RunnerServiceProviderFactory
         services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().Python);
         services.AddSingleton(sp => sp.GetRequiredService<RenderConfigAllVars>().TypeScript);
 
-        services.AddSingleton<SmRunner>();
+        // TODO in theory, Microsoft DI should pick the constructor with the most params
+        // that it can inject. For some reason it's not picking the right one, even if I
+        // extend the number of params in my desired constructor. So force it here,
+        // until the SmRunner Obsolete constructors are removed.
+        // services.AddSingleton<SmRunner>();
+        services.AddSingleton<SmRunner>((sp) => new SmRunner(
+            sp.GetRequiredService<RunnerSettings>(),
+            sp.GetRequiredService<IRenderConfig>(),
+            sp
+        ));
         services.AddSingleton<SmRunnerInternal>();
         services.AddSingleton<StandardSmTransformer>();
         services.AddSingleton<SmTransformer>((sp) => sp.GetRequiredService<StandardSmTransformer>());
