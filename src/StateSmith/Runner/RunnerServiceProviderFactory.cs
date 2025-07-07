@@ -67,11 +67,13 @@ public class RunnerServiceProviderFactory
         // extend the number of params in my desired constructor. So force it here,
         // until the SmRunner Obsolete constructors are removed.
         // services.AddSingleton<SmRunner>();
+#pragma warning disable CS0618 // Type or member is obsolete
         services.AddSingleton<SmRunner>((sp) => new SmRunner(
             sp.GetRequiredService<RunnerSettings>(),
             sp.GetRequiredService<IRenderConfig>(),
             sp
         ));
+#pragma warning restore CS0618 // Type or member is obsolete
         services.AddSingleton<SmRunnerInternal>();
         services.AddSingleton<StandardSmTransformer>();
         services.AddSingleton<SmTransformer>((sp) => sp.GetRequiredService<StandardSmTransformer>());

@@ -87,11 +87,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
     private string? callerFilePath;
 
     /// <summary>
-    /// Constructor. Will attempt to read settings from the diagram file.
+    /// Constructor. Mostly intended to be used by DI.
     /// </summary>
     /// <param name="settings"></param>
     /// <param name="renderConfig"></param>
     /// <param name="serviceProvider">Dependency injection service provider</param>
+    [Obsolete("This constructor is obsolete. Use SmRunner.Create() instead.")]
     public SmRunner(RunnerSettings settings, IRenderConfig renderConfig, IServiceProvider serviceProvider)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
@@ -107,9 +108,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="settings"></param>
     /// <param name="renderConfig"></param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
-    /// <param name="enablePDBS">User code should leave unspecified for now.</param>
-    /// <summary>
-    [Obsolete("This constructor is obsolete. Use SmRunner.Create() instead.")]   
+    [Obsolete("This constructor is intended for use by factory methods. Use SmRunner.Create() instead.")]   
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
