@@ -59,10 +59,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
             context.renderConfig = renderConfig;
         }
 
+        // Create and initialize the SmRunner.
+        // TODO consider ways to make the initialization unnecessary.
         SmRunner smRunner = sp.GetRequiredService<SmRunner>();
-
         smRunner.callerFilePath = callerFilePath.ThrowIfNull(); // callerPath is set automatically if it's null
-
         SmRunnerInternal.ResolveFilePaths(context.runnerSettings, callerFilePath);
         smRunner.SetupRenderConfigs();
 
@@ -73,10 +73,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private IServiceProvider serviceProvider;
 
-    // TODO replace with context
+    // TODO replace with RunnerContext
     readonly RunnerSettings settings;
 
-    // TODO replace with context
+    // TODO replace with RunnerContext
     private readonly IRenderConfig iRenderConfig;
     
     /// <summary>
