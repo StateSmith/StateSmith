@@ -165,26 +165,24 @@
 
       button.event-button {
         transition: opacity 0.3s ease, background-color 0.3s ease;
-      }
-
-      button.event-button.disabled {
-        opacity: 0.4;
-        background-color: #f0f0f0;
-        color: #999;
-        cursor: not-allowed;
-      }
-
-      button.event-button.enabled {
         opacity: 1;
         background-color: #007bff;
         color: white;
         cursor: pointer;
       }
 
-      button.event-button.enabled:hover {
+      button.event-button:disabled {
+        opacity: 0.4;
+        background-color: #f0f0f0;
+        color: #999;
+        cursor: not-allowed;
+      }
+
+      button.event-button:not(:disabled):hover {
         background-color: #0056b3;
       }
 
+      /* Style for hiding irrelevant events */
       button.event-button.hidden {
         display: none;
       }
@@ -1206,17 +1204,51 @@ evaluateGuard = null;
             center: true
         });
 
-        const diagramEventNamesArray = ['dim1', 'dim2', 'err', 'inc1', 'inc2', 'incite_reset', ];
+        const diagramEventNamesArray = ['DIM1', 'DIM2', 'ERR', 'INC1', 'INC2', 'INCITE_RESET', ];
 
         // Mapping from state to available events
         const stateEventsMapping = {
-    'NORMAL': ['dim1', 'dim2', 'err', 'inc1', 'inc2', 'incite_reset', ],
-    'OFF': ['dim1', 'dim2', 'err', 'inc1', 'inc2', 'incite_reset', ],
-    'BLUE': ['dim1', 'dim2', 'err', 'inc1', 'inc2', 'incite_reset', ],
-    'YELLOW': ['dim1', 'dim2', 'err', 'inc1', 'inc2', 'incite_reset', ],
-    'RED': ['dim1', 'dim2', 'err', 'inc1', 'inc2', 'incite_reset', ],
-}
-;
+  "NORMAL": [
+    "DIM1",
+    "DIM2",
+    "ERR",
+    "INC1",
+    "INC2",
+    "INCITE_RESET"
+  ],
+  "OFF": [
+    "DIM1",
+    "DIM2",
+    "ERR",
+    "INC1",
+    "INC2",
+    "INCITE_RESET"
+  ],
+  "BLUE": [
+    "DIM1",
+    "DIM2",
+    "ERR",
+    "INC1",
+    "INC2",
+    "INCITE_RESET"
+  ],
+  "YELLOW": [
+    "DIM1",
+    "DIM2",
+    "ERR",
+    "INC1",
+    "INC2",
+    "INCITE_RESET"
+  ],
+  "RED": [
+    "DIM1",
+    "DIM2",
+    "ERR",
+    "INC1",
+    "INC2",
+    "INCITE_RESET"
+  ]
+};
 
         // Get page element references
         const leftPane = document.querySelector(".main");
@@ -1260,9 +1292,8 @@ evaluateGuard = null;
 
         // Set up hide irrelevant events checkbox state and event listener
         document.getElementById('hideIrrelevantEvents').addEventListener('change', function() {
-          // When checkbox state changes, update event button display for current state
-          const currentStateName = TriggerMap.stateIdToString(sm.stateId);
-          updateEventButtonStates(currentStateName);
+          // When checkbox state changes, only update button visibility, not availability
+          updateButtonVisibility();
         });
 
         // Add click event listener for dropdown menu button
@@ -1345,31 +1376,35 @@ evaluateGuard = null;
             highlightedEdges.clear();
         }
 
-        // Function to update event button states
+        // Function to update event button states (availability and visibility)
         function updateEventButtonStates(currentStateName) {
             const availableEvents = stateEventsMapping[currentStateName] || [];
-            const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
             
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
                 if (button) {
                     // do event always remains enabled as it is the core event for state machine operation
                     const isDoEvent = eventName.toLowerCase() === 'do';
-                    // Use case-insensitive comparison to match events
-                    const isAvailable = isDoEvent || availableEvents.some(event => event.toLowerCase() === eventName.toLowerCase());
+                    const isAvailable = isDoEvent || availableEvents.includes(eventName);
                     
-                    // Clear all state classes
-                    button.classList.remove('enabled', 'disabled', 'hidden');
-                    
-                    if (hideIrrelevantEvents && !isAvailable) {
-                        // If hide irrelevant events is checked and this event is not available, hide the button
-                        button.classList.add('hidden');
-                        button.disabled = true;
-                    } else {
-                        // Otherwise show the button and set appropriate state
-                        button.classList.add(isAvailable ? 'enabled' : 'disabled');
-                        button.disabled = !isAvailable;
-                    }
+                    // Only set disabled property, CSS :disabled pseudo-class handles styling
+                    button.disabled = !isAvailable;
+                }
+            });
+            
+            // Update visibility based on checkbox state
+            updateButtonVisibility();
+        }
+
+        // Function to update button visibility based on Hide Unused checkbox
+        function updateButtonVisibility() {
+            const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
+            
+            diagramEventNamesArray.forEach(eventName => {
+                const button = document.getElementById('button_' + eventName);
+                if (button) {
+                    // Toggle hidden class based on checkbox state and button disabled state
+                    button.classList.toggle('hidden', hideIrrelevantEvents && button.disabled);
                 }
             });
         }

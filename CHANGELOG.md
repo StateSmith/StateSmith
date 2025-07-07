@@ -31,6 +31,17 @@ Test/interim releases are not documented here.
 
 ---
 
+## [WIP]
+### Contributors
+- @LinFei83
+  - https://github.com/StateSmith/StateSmith/pull/481
+
+### Added
+- Simulator - Dynamic event visibility based on active state (@LinFei83)
+  - https://github.com/StateSmith/StateSmith/issues/472
+
+---
+
 ## [0.17.6]
 ### Added
 - StateSmith Grammar - allow `#ifdef` and other C/C++ preprocessor directives in user action code.
