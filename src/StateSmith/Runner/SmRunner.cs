@@ -63,6 +63,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
         // TODO consider ways to make the initialization unnecessary.
         SmRunner smRunner = sp.GetRequiredService<SmRunner>();
         smRunner.callerFilePath = callerFilePath.ThrowIfNull(); // callerPath is set automatically if it's null
+
+        // These calls need to happen after the callerFilePath is set, because DI doesn't have a way
+        // to automatically set the [CallerFilePath] magic itself.
         SmRunnerInternal.ResolveFilePaths(context.runnerSettings, callerFilePath);
         smRunner.SetupRenderConfigs();
 
