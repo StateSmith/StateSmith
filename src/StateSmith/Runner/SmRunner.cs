@@ -72,21 +72,22 @@ public class SmRunner : SmRunner.IExperimentalAccess
         return smRunner;
     }
 
-    public RunnerSettings Settings => settings;
+
+    public RunnerSettings Settings => context.runnerSettings;
 
     private readonly IServiceProvider serviceProvider;
 
-    // TODO replace with RunnerContext
-    readonly RunnerSettings settings;
-
-    // TODO replace with RunnerContext
-    private readonly IRenderConfig iRenderConfig;
+    /// <summary>
+    /// The context that holds the dynamic configuration (settings, renderconfig) for this run of the runner.
+    /// </summary>
+    private readonly RunnerContext context;
     
     /// <summary>
     /// The path to the file that called a <see cref="SmRunner"/> constructor. Allows for convenient relative path
     /// figuring for regular C# projects and C# scripts (.csx).
     /// May be null during construction but is expected to be non-null at the time of Run
     /// </summary>
+    /// // TODO move callerFilePath to RunnerContext?
     private string? callerFilePath;
 
     /// <summary>
@@ -99,10 +100,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
     public SmRunner(RunnerSettings settings, IRenderConfig renderConfig, IServiceProvider serviceProvider)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
-
-        this.settings = settings;
-        this.iRenderConfig = renderConfig ?? new DummyIRenderConfig();
         this.serviceProvider = serviceProvider;
+        this.context = serviceProvider.GetRequiredService<RunnerContext>();
+        this.context.runnerSettings = settings;
+        this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
     }
 
     /// <summary>
@@ -115,13 +116,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
-
-        this.settings = settings;
-        this.iRenderConfig = renderConfig ?? new DummyIRenderConfig();
+        this.serviceProvider = RunnerServiceProviderFactory.CreateDefault();
+        this.context = serviceProvider.GetRequiredService<RunnerContext>();
+        this.context.runnerSettings = settings;
+        this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
         this.callerFilePath = callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
-
-        this.serviceProvider = RunnerServiceProviderFactory.CreateDefault();
         SetupRenderConfigs();
     }
 
@@ -163,7 +163,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         SmRunnerInternal smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>();
         smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = serviceProvider.GetService<PreDiagramSettingsReader>() != null;
 
-        if (settings.transpilerId == TranspilerId.NotYetSet)
+        if (context.runnerSettings.transpilerId == TranspilerId.NotYetSet)
             throw new ArgumentException("TranspilerId must be set before running code generation");
 
         smRunnerInternal.Run();
@@ -180,12 +180,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private void SetupRenderConfigs()
     {
-        // Initialize the RunnerContext with the settings for this run
-        var context = serviceProvider.GetRequiredService<RunnerContext>();
-        context.runnerSettings = settings;
-        context.renderConfig = iRenderConfig;
-
-        ReadRenderConfigObjectToVars(context.renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
+        // RunnerContext is already initialized in the constructor
+        ReadRenderConfigObjectToVars(context.renderConfigAllVars, context.renderConfig, context.runnerSettings.autoDeIndentAndTrimRenderConfigItems);
 
         try
         {
@@ -237,16 +233,16 @@ public class SmRunner : SmRunner.IExperimentalAccess
     internal void PrepareBeforeRun()
     {
         this.callerFilePath.ThrowIfNull();
-        SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
-        OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
-        outputInfo.outputDirectory = settings.outputDirectory.ThrowIfNull();
+    SmRunnerInternal.ResolveFilePaths(context.runnerSettings, callerFilePath);
+    OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
+    outputInfo.outputDirectory = context.runnerSettings.outputDirectory.ThrowIfNull();
     }
 
     // ----------- experimental access  -------------
     // exists just for now to help make it clear StateSmith API that is likely to change soon.
 
     public IExperimentalAccess GetExperimentalAccess() => this;
-    RunnerSettings IExperimentalAccess.Settings => settings;
+    RunnerSettings IExperimentalAccess.Settings => context.runnerSettings;
     InputSmBuilder IExperimentalAccess.InputSmBuilder => serviceProvider.GetRequiredService<InputSmBuilder>();
 
     /// <summary>
