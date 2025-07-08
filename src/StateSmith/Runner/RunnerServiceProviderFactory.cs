@@ -108,6 +108,10 @@ public class RunnerServiceProviderFactory
         services.AddTransient<DynamicVarsResolver>();
         services.AddTransient<ExpansionConfigReader>();
 
+        // For deferred resolution of the service where needed
+        services.AddTransient<Func<MxCellsToSmDiagramConverter>>((sp) => new Func<MxCellsToSmDiagramConverter>(() => sp.GetRequiredService<MxCellsToSmDiagramConverter>()));
+
+
         services.AddTransient<HistoryProcessor>();
 
         // Some of the singletons are determined from the RunnerSettings,

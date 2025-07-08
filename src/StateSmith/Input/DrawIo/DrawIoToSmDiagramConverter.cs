@@ -11,12 +11,12 @@ public class DrawIoToSmDiagramConverter
     public List<DiagramEdge> Edges = new();
     public List<DiagramNode> Roots = new();
     private readonly IConsolePrinter consolePrinter;
+    private readonly Func<MxCellsToSmDiagramConverter> mxCellsToSmDiagramConverterProvider;
 
-    public IServiceProvider serviceProvider { get; }
 
-    public DrawIoToSmDiagramConverter(IServiceProvider serviceProvider, IConsolePrinter consolePrinter)
+    public DrawIoToSmDiagramConverter(Func<MxCellsToSmDiagramConverter> mxCellsToSmDiagramConverterProvider, IConsolePrinter consolePrinter)
     {
-        this.serviceProvider = serviceProvider;
+        this.mxCellsToSmDiagramConverterProvider = mxCellsToSmDiagramConverterProvider;
         this.consolePrinter = consolePrinter;
     }
 
@@ -68,7 +68,7 @@ public class DrawIoToSmDiagramConverter
         mxCellParser.Parse();
 
         // we need a new converter for each diagram
-        var converter = serviceProvider.GetRequiredService<MxCellsToSmDiagramConverter>();
+        var converter = mxCellsToSmDiagramConverterProvider();
         converter.Process(mxCellParser.mxCells);
 
         Edges.AddRange(converter.edges);
