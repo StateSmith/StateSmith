@@ -262,14 +262,13 @@ public class SmDesignDescriberTests
 
         private static SmRunner SetupSmRunner(out IServiceProvider di, string diagramFile)
         {
-            var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+            di = RunnerServiceProviderFactory.CreateDefault((services) =>
             {
                 services.AddSingleton<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
             });
 
-            SmRunner smRunner = SmRunner.Create(diagramPath: TestHelper.GetThisDir() + diagramFile, serviceProvider: sp);
+            SmRunner smRunner = SmRunner.Create(diagramPath: TestHelper.GetThisDir() + diagramFile, serviceProvider: di);
             smRunner.Settings.propagateExceptions = true; // for testing
-            di = smRunner.GetExperimentalAccess().IServiceProvider;
 
             return smRunner;
         }

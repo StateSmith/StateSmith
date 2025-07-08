@@ -243,7 +243,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     // exists just for now to help make it clear StateSmith API that is likely to change soon.
 
     public IExperimentalAccess GetExperimentalAccess() => this;
-    IServiceProvider IExperimentalAccess.IServiceProvider => serviceProvider;
     RunnerSettings IExperimentalAccess.Settings => settings;
     InputSmBuilder IExperimentalAccess.InputSmBuilder => serviceProvider.GetRequiredService<InputSmBuilder>();
 
@@ -252,9 +251,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public interface IExperimentalAccess
     {
-
-        IServiceProvider IServiceProvider { get; }
-
         RunnerSettings Settings { get; }
         InputSmBuilder InputSmBuilder { get; }
     }
