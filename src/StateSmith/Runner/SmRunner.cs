@@ -74,7 +74,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     public RunnerSettings Settings => settings;
 
-    private IServiceProvider serviceProvider;
+    private readonly IServiceProvider serviceProvider;
 
     // TODO replace with RunnerContext
     readonly RunnerSettings settings;
