@@ -15,6 +15,11 @@ public class RunnerContext
     public RenderConfigAllVars renderConfigAllVars;
     public IRenderConfig renderConfig;
 
+    /// The path to the file that called a <see cref="SmRunner"/> constructor. Allows for convenient relative path
+    /// figuring for regular C# projects and C# scripts (.csx).
+    /// May be null during construction but is expected to be non-null at the time of Run
+    public string? callerFilePath;
+
     public RunnerContext()
     {
         runnerSettings = new();

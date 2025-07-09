@@ -58,15 +58,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
         {
             context.renderConfig = renderConfig;
         }
+        context.callerFilePath = callerFilePath.ThrowIfNull();
+
 
         // Create and initialize the SmRunner.
         // TODO consider ways to make the initialization unnecessary.
         SmRunner smRunner = sp.GetRequiredService<SmRunner>();
-        smRunner.callerFilePath = callerFilePath.ThrowIfNull(); // callerPath is set automatically if it's null
-
-        // These calls need to happen after the callerFilePath is set, because DI doesn't have a way
-        // to automatically set the [CallerFilePath] magic itself.
-        SmRunnerInternal.ResolveFilePaths(context.runnerSettings, callerFilePath);
         smRunner.SetupRenderConfigs();
 
         return smRunner;
@@ -82,13 +79,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     private readonly RunnerContext context;
     
-    /// <summary>
-    /// The path to the file that called a <see cref="SmRunner"/> constructor. Allows for convenient relative path
-    /// figuring for regular C# projects and C# scripts (.csx).
-    /// May be null during construction but is expected to be non-null at the time of Run
-    /// </summary>
-    /// // TODO move callerFilePath to RunnerContext?
-    private string? callerFilePath;
 
     /// <summary>
     /// Constructor. Mostly intended to be used by DI.
@@ -99,11 +89,13 @@ public class SmRunner : SmRunner.IExperimentalAccess
     [Obsolete("This constructor is obsolete. Use SmRunner.Create() instead.")]
     public SmRunner(RunnerSettings settings, IRenderConfig renderConfig, IServiceProvider serviceProvider)
     {
+        // TODO is context being set twice? once here and once in factory?
         SmRunnerInternal.AppUseDecimalPeriod();
         this.serviceProvider = serviceProvider;
         this.context = serviceProvider.GetRequiredService<RunnerContext>();
-        this.context.runnerSettings = settings;
-        this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
+    this.context.runnerSettings = settings;
+    this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
+    SmRunnerInternal.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
     }
 
     /// <summary>
@@ -120,9 +112,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.context = serviceProvider.GetRequiredService<RunnerContext>();
         this.context.runnerSettings = settings;
         this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
-        this.callerFilePath = callerFilePath.ThrowIfNull();
-        SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
-        SetupRenderConfigs();
+    this.context.callerFilePath = callerFilePath.ThrowIfNull();
+    SmRunnerInternal.ResolveFilePaths(settings, this.context.callerFilePath);
+    SetupRenderConfigs();
     }
 
     /// <summary>
@@ -232,8 +224,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     internal void PrepareBeforeRun()
     {
-        this.callerFilePath.ThrowIfNull();
-    SmRunnerInternal.ResolveFilePaths(context.runnerSettings, callerFilePath);
+    this.context.callerFilePath.ThrowIfNull();
+    SmRunnerInternal.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
     OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
     outputInfo.outputDirectory = context.runnerSettings.outputDirectory.ThrowIfNull();
     }
