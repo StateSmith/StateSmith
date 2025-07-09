@@ -60,13 +60,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         }
         context.callerFilePath = callerFilePath.ThrowIfNull();
 
-
-        // Create and initialize the SmRunner.
-        // TODO consider ways to make the initialization unnecessary.
-        SmRunner smRunner = sp.GetRequiredService<SmRunner>();
-        smRunner.SetupRenderConfigs();
-
-        return smRunner;
+        return sp.GetRequiredService<SmRunner>();
     }
 
 
@@ -83,19 +77,16 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <summary>
     /// Constructor. Mostly intended to be used by DI.
     /// </summary>
-    /// <param name="settings"></param>
-    /// <param name="renderConfig"></param>
+    /// <param name="context">This context object stores the runtime configuration for a given run </param>
     /// <param name="serviceProvider">Dependency injection service provider</param>
-    [Obsolete("This constructor is obsolete. Use SmRunner.Create() instead.")]
-    public SmRunner(RunnerSettings settings, IRenderConfig renderConfig, IServiceProvider serviceProvider)
+    [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
+    public SmRunner(RunnerContext context, IServiceProvider serviceProvider)
     {
-        // TODO is context being set twice? once here and once in factory?
         SmRunnerInternal.AppUseDecimalPeriod();
         this.serviceProvider = serviceProvider;
-        this.context = serviceProvider.GetRequiredService<RunnerContext>();
-    this.context.runnerSettings = settings;
-    this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
-    SmRunnerInternal.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
+        this.context = context;
+        SmRunnerInternal.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
+        SetupRenderConfigs();
     }
 
     /// <summary>
@@ -112,9 +103,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.context = serviceProvider.GetRequiredService<RunnerContext>();
         this.context.runnerSettings = settings;
         this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
-    this.context.callerFilePath = callerFilePath.ThrowIfNull();
-    SmRunnerInternal.ResolveFilePaths(settings, this.context.callerFilePath);
-    SetupRenderConfigs();
+        this.context.callerFilePath = callerFilePath.ThrowIfNull();
+        SmRunnerInternal.ResolveFilePaths(settings, this.context.callerFilePath);
+        SetupRenderConfigs();
     }
 
     /// <summary>

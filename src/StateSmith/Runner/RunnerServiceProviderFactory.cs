@@ -69,8 +69,7 @@ public class RunnerServiceProviderFactory
         // services.AddSingleton<SmRunner>();
 #pragma warning disable CS0618 // Type or member is obsolete
         services.AddSingleton<SmRunner>((sp) => new SmRunner(
-            sp.GetRequiredService<RunnerSettings>(),
-            sp.GetRequiredService<IRenderConfig>(),
+            sp.GetRequiredService<RunnerContext>(),
             sp
         ));
 #pragma warning restore CS0618 // Type or member is obsolete
