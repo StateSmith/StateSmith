@@ -16,6 +16,43 @@ namespace StateSmith.Runner;
 /// TODO remove SmRunnerInternal by using injection in static constructor
 public class SmRunner : SmRunner.IExperimentalAccess
 {
+    public static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
+    {
+        var relativeDirectory = System.IO.Path.GetDirectoryName(callingFilePath).ThrowIfNull();
+        var tmp = settings.DiagramPath;
+        settings.DiagramPath = StateSmith.Common.PathUtils.EnsurePathAbsolute(settings.DiagramPath, relativeDirectory);
+
+        settings.outputDirectory ??= System.IO.Path.GetDirectoryName(settings.DiagramPath).ThrowIfNull();
+        settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
+
+        settings.filePathPrintBase ??= relativeDirectory;
+        settings.filePathPrintBase = ProcessDirPath(settings.filePathPrintBase, relativeDirectory);
+
+        settings.smDesignDescriber.outputDirectory ??= settings.outputDirectory;
+        settings.smDesignDescriber.outputDirectory = ProcessDirPath(settings.smDesignDescriber.outputDirectory, relativeDirectory);
+
+        if (settings.simulation.enableGeneration)
+        {
+            settings.simulation.outputDirectory ??= settings.outputDirectory;
+            settings.simulation.outputDirectory = ProcessDirPath(settings.simulation.outputDirectory, relativeDirectory);
+        }
+    }
+
+    private static string ProcessDirPath(string dirPath, string relativeDirectory)
+    {
+        var resultPath = StateSmith.Common.PathUtils.EnsurePathAbsolute(dirPath, relativeDirectory);
+        resultPath = StateSmith.Common.PathUtils.EnsureDirEndingSeperator(resultPath);
+        return resultPath;
+    }
+    /// <summary>
+    /// Force application number parsing to use periods for decimal points instead of commas.
+    /// Fix for https://github.com/StateSmith/StateSmith/issues/159
+    /// </summary>
+    public static void AppUseDecimalPeriod()
+    {
+        System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+        System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+    }
     /// <summary>
     /// Convenience method to create a new instance of SmRunner without constructing a separate RunnerSettings object.
     /// </summary>
@@ -81,10 +118,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
     [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
     public SmRunner(RunnerContext context, IServiceProvider serviceProvider)
     {
-        SmRunnerInternal.AppUseDecimalPeriod();
+    SmRunner.AppUseDecimalPeriod();
         this.serviceProvider = serviceProvider;
         this.context = context;
-        SmRunnerInternal.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
+    SmRunner.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
         SetupRenderConfigs();
     }
 
@@ -98,13 +135,13 @@ public class SmRunner : SmRunner.IExperimentalAccess
     [Obsolete("This constructor is intended for use by legacy CSX scripts. Use SmRunner.Create() instead.")]   
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, IServiceProvider? serviceProvider = null)
     {
-        SmRunnerInternal.AppUseDecimalPeriod();
+    SmRunner.AppUseDecimalPeriod();
         this.serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
         this.context = this.serviceProvider.GetRequiredService<RunnerContext>();
         this.context.runnerSettings = settings;
         this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
         this.context.callerFilePath = callerFilePath.ThrowIfNull();
-        SmRunnerInternal.ResolveFilePaths(settings, this.context.callerFilePath);
+    SmRunner.ResolveFilePaths(settings, this.context.callerFilePath);
         SetupRenderConfigs();
     }
 
@@ -143,7 +180,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void Run()
     {
-        SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
+    SmRunner.AppUseDecimalPeriod(); // done here as well to be cautious for the future
 
         PrepareBeforeRun();
         SmRunnerInternal smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>();
@@ -219,7 +256,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     internal void PrepareBeforeRun()
     {
     this.context.callerFilePath.ThrowIfNull();
-    SmRunnerInternal.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
+    SmRunner.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
     OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
     outputInfo.outputDirectory = context.runnerSettings.outputDirectory.ThrowIfNull();
     }

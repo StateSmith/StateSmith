@@ -46,7 +46,7 @@ public class InputSmBuilder
 
     public InputSmBuilder(SmTransformer transformer, DiagramToSmConverter diagramToSmConverter, INameMangler mangler, DrawIoToSmDiagramConverter converter, StateMachineProvider stateMachineProvider, DiagramFilePathProvider diagramFilePathProvider, OutputInfo outputInfo)
     {
-        SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
+    SmRunner.AppUseDecimalPeriod(); // done here as well to help with unit tests
 
         this.transformer = transformer;
         this.diagramToSmConverter = diagramToSmConverter;

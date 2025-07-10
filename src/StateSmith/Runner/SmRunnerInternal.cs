@@ -45,7 +45,7 @@ public class SmRunnerInternal
 
     public void Run()
     {
-        AppUseDecimalPeriod();   // done here as well to help with unit tests
+    SmRunner.AppUseDecimalPeriod();   // done here as well to help with unit tests
 
         try
         {
@@ -153,42 +153,5 @@ public class SmRunnerInternal
         );
     }
 
-    /// <summary>
-    /// Force application number parsing to use periods for decimal points instead of commas.
-    /// Fix for https://github.com/StateSmith/StateSmith/issues/159
-    /// </summary>
-    public static void AppUseDecimalPeriod()
-    {
-        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
-    }
 
-    public static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
-    {
-        var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
-        var tmp = settings.DiagramPath;
-        settings.DiagramPath = PathUtils.EnsurePathAbsolute(settings.DiagramPath, relativeDirectory);
-
-        settings.outputDirectory ??= Path.GetDirectoryName(settings.DiagramPath).ThrowIfNull();
-        settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
-
-        settings.filePathPrintBase ??= relativeDirectory;
-        settings.filePathPrintBase = ProcessDirPath(settings.filePathPrintBase, relativeDirectory);
-
-        settings.smDesignDescriber.outputDirectory ??= settings.outputDirectory;
-        settings.smDesignDescriber.outputDirectory = ProcessDirPath(settings.smDesignDescriber.outputDirectory, relativeDirectory);
-
-        if (settings.simulation.enableGeneration)
-        {
-            settings.simulation.outputDirectory ??= settings.outputDirectory;
-            settings.simulation.outputDirectory = ProcessDirPath(settings.simulation.outputDirectory, relativeDirectory);
-        }
-    }
-
-    private static string ProcessDirPath(string dirPath, string relativeDirectory)
-    {
-        var resultPath = PathUtils.EnsurePathAbsolute(dirPath, relativeDirectory);
-        resultPath = PathUtils.EnsureDirEndingSeperator(resultPath);
-        return resultPath;
-    }
 }

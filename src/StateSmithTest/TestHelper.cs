@@ -100,7 +100,7 @@ public class TestHelper
 
     public static IServiceProvider CreateServiceProvider(Action<IServiceCollection>? serviceOverrides = null)
     {
-        SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
+    SmRunner.AppUseDecimalPeriod(); // done here as well to help with unit tests
         return RunnerServiceProviderFactory.CreateDefault(serviceOverrides);
     }
 
