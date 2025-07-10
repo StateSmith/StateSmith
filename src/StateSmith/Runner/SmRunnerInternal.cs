@@ -19,16 +19,14 @@ public class SmRunnerInternal
     public System.Exception? exception;
     internal bool preDiagramBasedSettingsAlreadyApplied;
     readonly ICodeGenRunner codeGenRunner;
-    readonly ExceptionPrinter exceptionPrinter;
     readonly IConsolePrinter consolePrinter;
     readonly FilePathPrinter filePathPrinter;
     readonly Func<SmRunner> smRunnerProvider;
 
-    public SmRunnerInternal(ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter)
+    public SmRunnerInternal(IConsolePrinter consolePrinter, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter)
     {
         this.smRunnerProvider = smRunnerProvider;
         this.codeGenRunner = codeGenRunner;
-        this.exceptionPrinter = exceptionPrinter; // TODO one of these two causes a circular dependency
         this.consolePrinter = consolePrinter; // TODO one of these two causes a circular dependency
         this.filePathPrinter = filePathPrinter;
     }
@@ -98,6 +96,7 @@ public class SmRunnerInternal
         // var smRunner = smRunnerProvider();
         // TODO this causes a circular dependency 
         var settings = smRunner.context.runnerSettings;
+        var exceptionPrinter = smRunner.exceptionPrinter;
 
         exceptionPrinter.PrintException(e);
 
