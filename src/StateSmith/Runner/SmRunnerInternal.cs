@@ -24,9 +24,8 @@ public class SmRunnerInternal
     readonly IConsolePrinter consolePrinter;
     readonly FilePathPrinter filePathPrinter;
     readonly Func<SmRunner> smRunnerProvider;
-    readonly SimWebGenerator simWebGenerator;
 
-    public SmRunnerInternal(ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, RunnerSettings settings, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter, SimWebGenerator simWebGenerator)
+    public SmRunnerInternal(ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, RunnerSettings settings, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter)
     {
         this.smRunnerProvider = smRunnerProvider;
         this.codeGenRunner = codeGenRunner;
@@ -34,8 +33,6 @@ public class SmRunnerInternal
         this.exceptionPrinter = exceptionPrinter; // TODO one of these two causes a circular dependency
         this.consolePrinter = consolePrinter; // TODO one of these two causes a circular dependency
         this.filePathPrinter = filePathPrinter;
-        this.simWebGenerator = simWebGenerator;
-
     }
 
     public void Run()
@@ -74,6 +71,7 @@ public class SmRunnerInternal
 
             if (settings.simulation.enableGeneration)
             {
+                var simWebGenerator = smRunner.simWebGeneratorProvider();
                 simWebGenerator.RunnerSettings.propagateExceptions = settings.propagateExceptions;
                 simWebGenerator.RunnerSettings.outputStateSmithVersionInfo = settings.outputStateSmithVersionInfo;
                 simWebGenerator.Generate(diagramPath: settings.DiagramPath, outputDir: settings.simulation.outputDirectory.ThrowIfNull());
