@@ -240,7 +240,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         catch (Exception e)
         {
             var smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>(); // TODO move to a field?
-            smRunnerInternal.OutputExceptionDetail(e);
+            smRunnerInternal.OutputExceptionDetail(this, e);
             throw;
         }
     }

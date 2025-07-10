@@ -18,18 +18,16 @@ public class SmRunnerInternal
 {
     public System.Exception? exception;
     internal bool preDiagramBasedSettingsAlreadyApplied;
-    readonly RunnerSettings settings;
     readonly ICodeGenRunner codeGenRunner;
     readonly ExceptionPrinter exceptionPrinter;
     readonly IConsolePrinter consolePrinter;
     readonly FilePathPrinter filePathPrinter;
     readonly Func<SmRunner> smRunnerProvider;
 
-    public SmRunnerInternal(ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, RunnerSettings settings, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter)
+    public SmRunnerInternal(ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter)
     {
         this.smRunnerProvider = smRunnerProvider;
         this.codeGenRunner = codeGenRunner;
-        this.settings = settings; // TODO circular dependency
         this.exceptionPrinter = exceptionPrinter; // TODO one of these two causes a circular dependency
         this.consolePrinter = consolePrinter; // TODO one of these two causes a circular dependency
         this.filePathPrinter = filePathPrinter;
@@ -41,7 +39,7 @@ public class SmRunnerInternal
         var smDesignDescriber = smRunner.smDesignDescriber;
         var outputInfo = smRunner.outputInfo;
         var inputSmBuilder = smRunner.inputSmBuilder;
-        // var settings = smRunner.context.runnerSettings;
+        var settings = smRunner.context.runnerSettings;
 
         // TODO better way to do this?
         SmRunner.AppUseDecimalPeriod();   // done here as well to help with unit tests
@@ -84,7 +82,7 @@ public class SmRunnerInternal
             exception = e;
 
             // print error detail before rethrowing https://github.com/StateSmith/StateSmith/issues/375
-            OutputExceptionDetail(e);
+            OutputExceptionDetail(smRunner, e);
 
             if (settings.propagateExceptions)
             {
@@ -95,9 +93,11 @@ public class SmRunnerInternal
         consolePrinter.WriteLine();
     }
 
-    public void OutputExceptionDetail(Exception e)
+    public void OutputExceptionDetail(SmRunner smRunner, Exception e)
     {
-        // var settings = smRunnerProvider().context.runnerSettings;
+        // var smRunner = smRunnerProvider();
+        // TODO this causes a circular dependency 
+        var settings = smRunner.context.runnerSettings;
 
         exceptionPrinter.PrintException(e);
 
@@ -146,7 +146,7 @@ public class SmRunnerInternal
 
     private void OutputCompilingDiagramMessage()
     {
-        // var settings = smRunnerProvider().context.runnerSettings;
+        var settings = smRunnerProvider().context.runnerSettings;
 
         string filePath = settings.DiagramPath;
         filePath = filePathPrinter.PrintPath(filePath);
