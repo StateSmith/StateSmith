@@ -109,6 +109,16 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// The context that holds the dynamic configuration (settings, renderconfig) for this run of the runner.
     /// </summary>
     private readonly RunnerContext context;
+
+    private readonly InputSmBuilder inputSmBuilder;
+    private readonly ExceptionPrinter exceptionPrinter;
+    private readonly IConsolePrinter consolePrinter;
+    private readonly Func<SimWebGenerator> simWebGeneratorProvider;
+    private readonly AlgoTranspilerCustomizer algoTranspilerCustomizer;
+    private readonly SmDesignDescriber smDesignDescriber;
+    private readonly OutputInfo outputInfo;
+    // private readonly FilePathPrinter filePathPrinter; 
+    // private readonly ICodeGenRunner codeGenRunner; 
     
 
     /// <summary>
@@ -119,10 +129,21 @@ public class SmRunner : SmRunner.IExperimentalAccess
     [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
     public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter,  Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo/*, FilePathPrinter filePathPrinter, ICodeGenRunner codeGenRunner*/) // TODO filePathPrinter and codeGenRunner cause tests to fail
     {
-    SmRunner.AppUseDecimalPeriod();
-        this.serviceProvider = serviceProvider;
+        AppUseDecimalPeriod();
+        
         this.context = context;
-    SmRunner.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
+        this.serviceProvider = serviceProvider;
+        this.inputSmBuilder = inputSmBuilder;
+        this.exceptionPrinter = exceptionPrinter;
+        this.consolePrinter = consolePrinter;
+        this.simWebGeneratorProvider = simWebGeneratorProvider;
+        this.algoTranspilerCustomizer = algoTranspilerCustomizer;
+        this.smDesignDescriber = smDesignDescriber;
+        this.outputInfo = outputInfo;
+        // this.filePathPrinter = filePathPrinter;
+        // this.codeGenRunner = codeGenRunner;
+
+        ResolveFilePaths(context.runnerSettings, context.callerFilePath);
         SetupRenderConfigs();
     }
 
