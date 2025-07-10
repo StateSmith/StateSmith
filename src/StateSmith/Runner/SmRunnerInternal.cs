@@ -19,15 +19,13 @@ public class SmRunnerInternal
     public System.Exception? exception;
     internal bool preDiagramBasedSettingsAlreadyApplied;
     readonly ICodeGenRunner codeGenRunner;
-    readonly IConsolePrinter consolePrinter;
     readonly FilePathPrinter filePathPrinter;
-    readonly Func<SmRunner> smRunnerProvider;
+    readonly Func<SmRunner> smRunnerProvider; // TODO remove
 
     public SmRunnerInternal(IConsolePrinter consolePrinter, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter)
     {
         this.smRunnerProvider = smRunnerProvider;
         this.codeGenRunner = codeGenRunner;
-        this.consolePrinter = consolePrinter; // TODO one of these two causes a circular dependency
         this.filePathPrinter = filePathPrinter;
     }
 
@@ -38,6 +36,7 @@ public class SmRunnerInternal
         var outputInfo = smRunner.outputInfo;
         var inputSmBuilder = smRunner.inputSmBuilder;
         var settings = smRunner.context.runnerSettings;
+        var consolePrinter = smRunner.consolePrinter;
 
         // TODO better way to do this?
         SmRunner.AppUseDecimalPeriod();   // done here as well to help with unit tests
@@ -97,6 +96,7 @@ public class SmRunnerInternal
         // TODO this causes a circular dependency 
         var settings = smRunner.context.runnerSettings;
         var exceptionPrinter = smRunner.exceptionPrinter;
+        var consolePrinter = smRunner.consolePrinter;
 
         exceptionPrinter.PrintException(e);
 
@@ -145,7 +145,9 @@ public class SmRunnerInternal
 
     private void OutputCompilingDiagramMessage()
     {
+        // TODO remove
         var settings = smRunnerProvider().context.runnerSettings;
+        var consolePrinter = smRunnerProvider().consolePrinter;
 
         string filePath = settings.DiagramPath;
         filePath = filePathPrinter.PrintPath(filePath);
