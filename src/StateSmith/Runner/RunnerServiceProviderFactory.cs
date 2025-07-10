@@ -70,7 +70,17 @@ public class RunnerServiceProviderFactory
 #pragma warning disable CS0618 // Type or member is obsolete
         services.AddSingleton<SmRunner>((sp) => new SmRunner(
             sp.GetRequiredService<RunnerContext>(),
-            sp
+            sp.GetRequiredService<IServiceProvider>(),
+            sp.GetRequiredService<InputSmBuilder>(),
+            sp.GetRequiredService<ExceptionPrinter>(),
+            sp.GetRequiredService<IConsolePrinter>(),
+            sp.GetRequiredService<Func<SimWebGenerator>>(),
+            sp.GetRequiredService<AlgoTranspilerCustomizer>(),
+            sp.GetRequiredService<SmDesignDescriber>(),
+            sp.GetRequiredService<OutputInfo>()//,
+            // sp.GetRequiredService<FilePathPrinter>()
+
+            // sp.GetRequiredService<ICodeGenRunner>()//,
         ));
 #pragma warning restore CS0618 // Type or member is obsolete
         services.AddSingleton<SmRunnerInternal>();
@@ -176,7 +186,8 @@ public class RunnerServiceProviderFactory
 
         services.AddSingleton<UserExpansionScriptBases>();
         services.AddSingleton<SmDesignDescriber>();
-        services.AddSingleton<SimWebGenerator>();
+        services.AddSingleton<SimWebGenerator>(); // TODO remove
+        services.AddSingleton<Func<SimWebGenerator>>((sp) => new Func<SimWebGenerator>(() => sp.GetRequiredService<SimWebGenerator>()));
 
         services.AddSingleton<OutputInfo>();
         services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());

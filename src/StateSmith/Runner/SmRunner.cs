@@ -7,6 +7,7 @@ using StateSmith.Common;
 using System;
 using StateSmith.SmGraph;
 using StateSmith.Output.UserConfig.AutoVars;
+using StateSmith.Output.Sim;
 
 namespace StateSmith.Runner;
 
@@ -116,7 +117,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="context">This context object stores the runtime configuration for a given run </param>
     /// <param name="serviceProvider">Dependency injection service provider</param>
     [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
-    public SmRunner(RunnerContext context, IServiceProvider serviceProvider)
+    public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter,  Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo/*, FilePathPrinter filePathPrinter, ICodeGenRunner codeGenRunner*/) // TODO filePathPrinter and codeGenRunner cause tests to fail
     {
     SmRunner.AppUseDecimalPeriod();
         this.serviceProvider = serviceProvider;
