@@ -18,7 +18,6 @@ public class SmRunnerInternal
 {
     public System.Exception? exception;
     internal bool preDiagramBasedSettingsAlreadyApplied;
-    readonly InputSmBuilder inputSmBuilder;
     readonly RunnerSettings settings;
     readonly ICodeGenRunner codeGenRunner;
     readonly ExceptionPrinter exceptionPrinter;
@@ -27,12 +26,11 @@ public class SmRunnerInternal
     readonly Func<SmRunner> smRunnerProvider;
     readonly SimWebGenerator simWebGenerator;
 
-    public SmRunnerInternal(ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, InputSmBuilder inputSmBuilder, RunnerSettings settings, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter, SimWebGenerator simWebGenerator)
+    public SmRunnerInternal(ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, RunnerSettings settings, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter, SimWebGenerator simWebGenerator)
     {
         this.smRunnerProvider = smRunnerProvider;
-        this.inputSmBuilder = inputSmBuilder;
-        this.settings = settings;
         this.codeGenRunner = codeGenRunner;
+        this.settings = settings; // TODO circular dependency
         this.exceptionPrinter = exceptionPrinter; // TODO one of these two causes a circular dependency
         this.consolePrinter = consolePrinter; // TODO one of these two causes a circular dependency
         this.filePathPrinter = filePathPrinter;
@@ -45,6 +43,8 @@ public class SmRunnerInternal
         var smRunner = smRunnerProvider();
         var smDesignDescriber = smRunner.smDesignDescriber;
         var outputInfo = smRunner.outputInfo;
+        var inputSmBuilder = smRunner.inputSmBuilder;
+        // var settings = smRunner.context.runnerSettings;
 
         // TODO better way to do this?
         SmRunner.AppUseDecimalPeriod();   // done here as well to help with unit tests
@@ -99,6 +99,8 @@ public class SmRunnerInternal
 
     public void OutputExceptionDetail(Exception e)
     {
+        // var settings = smRunnerProvider().context.runnerSettings;
+
         exceptionPrinter.PrintException(e);
 
         consolePrinter.WriteErrorLine($"Related error info/debug settings: 'dumpErrorsToFile', 'propagateExceptions'. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md .");
@@ -146,6 +148,8 @@ public class SmRunnerInternal
 
     private void OutputCompilingDiagramMessage()
     {
+        // var settings = smRunnerProvider().context.runnerSettings;
+
         string filePath = settings.DiagramPath;
         filePath = filePathPrinter.PrintPath(filePath);
 
