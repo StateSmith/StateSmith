@@ -24,28 +24,30 @@ public class SmRunnerInternal
     readonly ExceptionPrinter exceptionPrinter;
     readonly IConsolePrinter consolePrinter;
     readonly FilePathPrinter filePathPrinter;
-    readonly SmDesignDescriber smDesignDescriber;
-    readonly OutputInfo outputInfo;
+    readonly Func<SmRunner> smRunnerProvider;
     readonly SimWebGenerator simWebGenerator;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, SimWebGenerator simWebGenerator, AlgoTranspilerCustomizer algoTranspilerCustomizer)
+    public SmRunnerInternal(ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, InputSmBuilder inputSmBuilder, RunnerSettings settings, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter, SimWebGenerator simWebGenerator)
     {
+        this.smRunnerProvider = smRunnerProvider;
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
         this.codeGenRunner = codeGenRunner;
-        this.exceptionPrinter = exceptionPrinter;
-        this.consolePrinter = consolePrinter;
+        this.exceptionPrinter = exceptionPrinter; // TODO one of these two causes a circular dependency
+        this.consolePrinter = consolePrinter; // TODO one of these two causes a circular dependency
         this.filePathPrinter = filePathPrinter;
-        this.smDesignDescriber = smDesignDescriber;
-        this.outputInfo = outputInfo;
         this.simWebGenerator = simWebGenerator;
 
-        algoTranspilerCustomizer.Customize(settings.algorithmId, settings.transpilerId);
     }
 
     public void Run()
     {
-    SmRunner.AppUseDecimalPeriod();   // done here as well to help with unit tests
+        var smRunner = smRunnerProvider();
+        var smDesignDescriber = smRunner.smDesignDescriber;
+        var outputInfo = smRunner.outputInfo;
+
+        // TODO better way to do this?
+        SmRunner.AppUseDecimalPeriod();   // done here as well to help with unit tests
 
         try
         {

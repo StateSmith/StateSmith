@@ -108,15 +108,15 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <summary>
     /// The context that holds the dynamic configuration (settings, renderconfig) for this run of the runner.
     /// </summary>
-    private readonly RunnerContext context;
+    public readonly RunnerContext context; // TODO private
 
-    private readonly InputSmBuilder inputSmBuilder;
-    private readonly ExceptionPrinter exceptionPrinter;
-    private readonly IConsolePrinter consolePrinter;
-    private readonly Func<SimWebGenerator> simWebGeneratorProvider;
-    private readonly AlgoTranspilerCustomizer algoTranspilerCustomizer;
-    private readonly SmDesignDescriber smDesignDescriber;
-    private readonly OutputInfo outputInfo;
+    public readonly InputSmBuilder inputSmBuilder; // TODO private
+    public readonly ExceptionPrinter exceptionPrinter; // TODO private
+    public readonly IConsolePrinter consolePrinter; // TODO private
+    public readonly Func<SimWebGenerator> simWebGeneratorProvider; // TODO private
+    public readonly AlgoTranspilerCustomizer algoTranspilerCustomizer; // TODO private
+    public readonly SmDesignDescriber smDesignDescriber; // TODO private
+    public readonly OutputInfo outputInfo; // TODO private
     // private readonly FilePathPrinter filePathPrinter; 
     // private readonly ICodeGenRunner codeGenRunner; 
     
@@ -130,7 +130,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter,  Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo/*, FilePathPrinter filePathPrinter, ICodeGenRunner codeGenRunner*/) // TODO filePathPrinter and codeGenRunner cause tests to fail
     {
         AppUseDecimalPeriod();
-        
+
         this.context = context;
         this.serviceProvider = serviceProvider;
         this.inputSmBuilder = inputSmBuilder;
@@ -206,6 +206,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         PrepareBeforeRun();
         SmRunnerInternal smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>();
+        algoTranspilerCustomizer.Customize(context.runnerSettings.algorithmId, context.runnerSettings.transpilerId);
         smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = serviceProvider.GetService<PreDiagramSettingsReader>() != null;
 
         if (context.runnerSettings.transpilerId == TranspilerId.NotYetSet)
