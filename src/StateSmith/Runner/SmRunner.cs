@@ -249,9 +249,35 @@ public class SmRunner : SmRunner.IExperimentalAccess
         catch (Exception e)
         {
             var smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>(); // TODO move to a field?
-            smRunnerInternal.OutputExceptionDetail(this, e);
+            OutputExceptionDetail(e);
             throw;
         }
+    }
+
+    /// <summary>
+    /// Prints exception details and optionally dumps them to a file, then outputs a failure message.
+    /// </summary>
+    public void OutputExceptionDetail(Exception e)
+    {
+        exceptionPrinter.PrintException(e);
+
+        consolePrinter.WriteErrorLine($"Related error info/debug settings: 'dumpErrorsToFile', 'propagateExceptions'. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md .");
+
+        // https://github.com/StateSmith/StateSmith/issues/82
+        if (context.runnerSettings.dumpErrorsToFile)
+        {
+            var errorDetailFilePath = context.runnerSettings.DiagramPath + ".err.txt";
+            errorDetailFilePath = System.IO.Path.GetRelativePath(System.IO.Directory.GetCurrentDirectory(), errorDetailFilePath);
+            exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
+            consolePrinter.WriteErrorLine("Exception details dumped to file: " + errorDetailFilePath);
+        }
+
+        this.consolePrinter.OutputStageMessage("Finished with failure.");
+
+        // Give stdout a chance to print the exception before exception is thrown.
+        // We sometimes would see our printed detail message info cut off by dotnet exception handling.
+        // See https://github.com/StateSmith/StateSmith/issues/375
+        System.Threading.Thread.Sleep(100);
     }
 
 
