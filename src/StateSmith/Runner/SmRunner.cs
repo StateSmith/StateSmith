@@ -256,19 +256,14 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void Run()
     {
-        // TODO dup
-        AppUseDecimalPeriod(); // done here as well to be cautious for the future
-
+        AppUseDecimalPeriod();
         PrepareBeforeRun();
+
         algoTranspilerCustomizer.Customize(context.runnerSettings.algorithmId, context.runnerSettings.transpilerId);
         preDiagramBasedSettingsAlreadyApplied = serviceProvider.GetService<PreDiagramSettingsReader>() != null;
 
         if (context.runnerSettings.transpilerId == TranspilerId.NotYetSet)
             throw new ArgumentException("TranspilerId must be set before running code generation");
-
-        // TODO better way to do this?
-        // TODO dup
-        AppUseDecimalPeriod();   // done here as well to help with unit tests
 
         try
         {
