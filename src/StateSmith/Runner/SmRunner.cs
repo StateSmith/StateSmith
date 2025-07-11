@@ -90,7 +90,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// Force application number parsing to use periods for decimal points instead of commas.
     /// Fix for https://github.com/StateSmith/StateSmith/issues/159
     /// </summary>
-    public static void AppUseDecimalPeriod()
+    private void AppUseDecimalPeriod()
     {
         System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
         System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
@@ -183,8 +183,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
     public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter, Func<ICodeGenRunner> codeGenRunnerProvider)
     {
-        AppUseDecimalPeriod();
-
         this.context = context;
         this.serviceProvider = serviceProvider;
         this.inputSmBuilder = inputSmBuilder;
@@ -211,7 +209,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     [Obsolete("This constructor is intended for use by legacy CSX scripts. Use SmRunner.Create() instead.")]   
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, IServiceProvider? serviceProvider = null)
     {
-    SmRunner.AppUseDecimalPeriod();
         this.serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
         this.context = this.serviceProvider.GetRequiredService<RunnerContext>();
         this.context.runnerSettings = settings;
@@ -256,7 +253,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void Run()
     {
-        AppUseDecimalPeriod();
         PrepareBeforeRun();
 
         algoTranspilerCustomizer.Customize(context.runnerSettings.algorithmId, context.runnerSettings.transpilerId);
@@ -401,10 +397,11 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     internal void PrepareBeforeRun()
     {
-    this.context.callerFilePath.ThrowIfNull();
-    SmRunner.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
-    OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
-    outputInfo.outputDirectory = context.runnerSettings.outputDirectory.ThrowIfNull();
+        AppUseDecimalPeriod();
+        this.context.callerFilePath.ThrowIfNull();
+        SmRunner.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
+        OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
+        outputInfo.outputDirectory = context.runnerSettings.outputDirectory.ThrowIfNull();
     }
 
     // ----------- experimental access  -------------
