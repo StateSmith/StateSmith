@@ -95,7 +95,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="settings"></param>
     /// <param name="renderConfig"></param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
-    [Obsolete("This constructor is intended for use by factory methods. Use SmRunner.Create() instead.")]   
+    [Obsolete("This constructor is intended for use by legacy CSX scripts. Use SmRunner.Create() instead.")]   
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
@@ -117,6 +117,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
     /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
     /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    [Obsolete("This constructor is intended for use by legacy CSX scripts. Use SmRunner.Create() instead.")]   
     public SmRunner(string diagramPath,
         IRenderConfig? renderConfig = null,
         string? outputDirectory = null,
