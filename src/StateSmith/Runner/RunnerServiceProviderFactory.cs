@@ -83,7 +83,6 @@ public class RunnerServiceProviderFactory
         ));
         services.AddSingleton<Func<SmRunner>>((sp) => new Func<SmRunner>(() => sp.GetRequiredService<SmRunner>()));
 #pragma warning restore CS0618 // Type or member is obsolete
-        services.AddSingleton<SmRunnerInternal>();
         services.AddSingleton<StandardSmTransformer>();
         services.AddSingleton<SmTransformer>((sp) => sp.GetRequiredService<StandardSmTransformer>());
         services.AddSingleton<IExpander, Expander>();

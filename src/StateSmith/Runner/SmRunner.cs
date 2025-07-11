@@ -14,7 +14,6 @@ namespace StateSmith.Runner;
 /// <summary>
 /// Builds a single state machine and runs code generation.
 /// </summary>
-/// TODO remove SmRunnerInternal by using injection in static constructor
 public class SmRunner : SmRunner.IExperimentalAccess
 {
 
@@ -147,6 +146,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private readonly IServiceProvider serviceProvider;
 
+    public System.Exception? exception; // TODO private?
+    internal bool preDiagramBasedSettingsAlreadyApplied;
+
+
     /// <summary>
     /// The context that holds the dynamic configuration (settings, renderconfig) for this run of the runner.
     /// </summary>
@@ -253,19 +256,68 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void Run()
     {
-    SmRunner.AppUseDecimalPeriod(); // done here as well to be cautious for the future
+        // TODO dup
+        AppUseDecimalPeriod(); // done here as well to be cautious for the future
 
         PrepareBeforeRun();
-        SmRunnerInternal smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>();
         algoTranspilerCustomizer.Customize(context.runnerSettings.algorithmId, context.runnerSettings.transpilerId);
-        smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = serviceProvider.GetService<PreDiagramSettingsReader>() != null;
+        preDiagramBasedSettingsAlreadyApplied = serviceProvider.GetService<PreDiagramSettingsReader>() != null;
 
         if (context.runnerSettings.transpilerId == TranspilerId.NotYetSet)
             throw new ArgumentException("TranspilerId must be set before running code generation");
 
-        smRunnerInternal.Run();
+        // TODO better way to do this?
+        // TODO dup
+        AppUseDecimalPeriod();   // done here as well to help with unit tests
 
-        if (smRunnerInternal.exception != null)
+        try
+        {
+            if (preDiagramBasedSettingsAlreadyApplied)
+            {
+                // we need to prevent diagram settings from being applied twice
+                DiagramBasedSettingsPreventer.Process(inputSmBuilder.transformer);
+            }
+
+            consolePrinter.WriteLine();
+            consolePrinter.WriteLine("StateSmith lib ver - " + LibVersionInfo.GetVersionInfoString());
+            OutputCompilingDiagramMessage();
+
+            var sm = SetupAndFindStateMachine(inputSmBuilder, context.runnerSettings);
+            outputInfo.baseFileName = sm.Name;
+
+            consolePrinter.OutputStageMessage($"State machine `{sm.Name}` selected.");
+            smDesignDescriber.Prepare();
+            smDesignDescriber.DescribeBeforeTransformations();
+
+            inputSmBuilder.FinishRunning();
+            smDesignDescriber.DescribeAfterTransformations();
+            codeGenRunnerProvider().Run();
+
+            if (context.runnerSettings.simulation.enableGeneration)
+            {
+                var simWebGenerator = simWebGeneratorProvider();
+                simWebGenerator.RunnerSettings.propagateExceptions = context.runnerSettings.propagateExceptions;
+                simWebGenerator.RunnerSettings.outputStateSmithVersionInfo = context.runnerSettings.outputStateSmithVersionInfo;
+                simWebGenerator.Generate(diagramPath: context.runnerSettings.DiagramPath, outputDir: context.runnerSettings.simulation.outputDirectory.ThrowIfNull());
+            }
+
+            consolePrinter.OutputStageMessage("Finished normally.");
+        }
+        catch (Exception e)
+        {
+            exception = e;
+
+            // print error detail before rethrowing https://github.com/StateSmith/StateSmith/issues/375
+            OutputExceptionDetail(e);
+
+            if (context.runnerSettings.propagateExceptions)
+            {
+                throw;
+            }
+        }
+
+        consolePrinter.WriteLine();
+        if (exception != null)
         {
             throw new FinishedWithFailureException();
         }
@@ -290,7 +342,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
         }
         catch (Exception e)
         {
-            var smRunnerInternal = serviceProvider.GetRequiredService<SmRunnerInternal>(); // TODO move to a field?
             OutputExceptionDetail(e);
             throw;
         }
