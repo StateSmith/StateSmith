@@ -4,9 +4,7 @@ using System.IO;
 using StateSmith.Output;
 using StateSmith.Common;
 using StateSmith.SmGraph;
-using System.Globalization;
 using System.Threading;
-using StateSmith.Output.Sim;
 using System;
 
 namespace StateSmith.Runner;
@@ -19,14 +17,12 @@ public class SmRunnerInternal
     public System.Exception? exception;
     internal bool preDiagramBasedSettingsAlreadyApplied;
     readonly ICodeGenRunner codeGenRunner;
-    readonly FilePathPrinter filePathPrinter;
     readonly Func<SmRunner> smRunnerProvider; // TODO remove
 
-    public SmRunnerInternal(IConsolePrinter consolePrinter, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter)
+    public SmRunnerInternal(IConsolePrinter consolePrinter, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner) 
     {
         this.smRunnerProvider = smRunnerProvider;
         this.codeGenRunner = codeGenRunner; // TODO move to SmRunner but make lazy
-        this.filePathPrinter = filePathPrinter; // TODO move to SmRunner but make lazy
     }
 
     public void Run()
@@ -146,8 +142,10 @@ public class SmRunnerInternal
     private void OutputCompilingDiagramMessage()
     {
         // TODO remove
-        var settings = smRunnerProvider().context.runnerSettings;
-        var consolePrinter = smRunnerProvider().consolePrinter;
+        var smRunner = smRunnerProvider();
+        var settings = smRunner.context.runnerSettings;
+        var consolePrinter = smRunner.consolePrinter;
+        var filePathPrinter = smRunner.filePathPrinter;
 
         string filePath = settings.DiagramPath;
         filePath = filePathPrinter.PrintPath(filePath);

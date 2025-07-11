@@ -77,8 +77,8 @@ public class RunnerServiceProviderFactory
             sp.GetRequiredService<Func<SimWebGenerator>>(),
             sp.GetRequiredService<AlgoTranspilerCustomizer>(),
             sp.GetRequiredService<SmDesignDescriber>(),
-            sp.GetRequiredService<OutputInfo>()//,
-            // sp.GetRequiredService<FilePathPrinter>()
+            sp.GetRequiredService<OutputInfo>(),
+            sp.GetRequiredService<FilePathPrinter>()
 
             // sp.GetRequiredService<ICodeGenRunner>()//,
         ));
@@ -192,7 +192,7 @@ public class RunnerServiceProviderFactory
 
         services.AddSingleton<OutputInfo>();
         services.AddSingleton<IOutputInfo>((s) => s.GetRequiredService<OutputInfo>());
-        services.AddSingleton<FilePathPrinter>((sp) => new FilePathPrinter(sp.GetRequiredService<RunnerSettings>().filePathPrintBase ?? ""));
+        services.AddSingleton<FilePathPrinter>((sp) => new FilePathPrinter(() => sp.GetRequiredService<RunnerSettings>().filePathPrintBase ?? ""));
 
         services.AddSingleton<ExpansionsPrep>();
 

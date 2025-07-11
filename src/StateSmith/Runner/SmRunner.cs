@@ -117,7 +117,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     public readonly AlgoTranspilerCustomizer algoTranspilerCustomizer; // TODO private
     public readonly SmDesignDescriber smDesignDescriber; // TODO private
     public readonly OutputInfo outputInfo; // TODO private
-    // private readonly FilePathPrinter filePathPrinter; 
+    public readonly FilePathPrinter filePathPrinter; // TODO private
     // private readonly ICodeGenRunner codeGenRunner; 
     
 
@@ -127,7 +127,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="context">This context object stores the runtime configuration for a given run </param>
     /// <param name="serviceProvider">Dependency injection service provider</param>
     [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
-    public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter,  Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo/*, FilePathPrinter filePathPrinter, ICodeGenRunner codeGenRunner*/) // TODO filePathPrinter and codeGenRunner cause tests to fail
+    public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter,  Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter/*, ICodeGenRunner codeGenRunner*/) // TODO filePathPrinter and codeGenRunner cause tests to fail
     {
         AppUseDecimalPeriod();
 
@@ -140,7 +140,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.algoTranspilerCustomizer = algoTranspilerCustomizer;
         this.smDesignDescriber = smDesignDescriber;
         this.outputInfo = outputInfo;
-        // this.filePathPrinter = filePathPrinter;
+        this.filePathPrinter = filePathPrinter;
         // this.codeGenRunner = codeGenRunner;
 
         ResolveFilePaths(context.runnerSettings, context.callerFilePath);
