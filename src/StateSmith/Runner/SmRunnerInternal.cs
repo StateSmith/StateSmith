@@ -47,9 +47,9 @@ public class SmRunnerInternal
 
             consolePrinter.WriteLine();
             consolePrinter.WriteLine("StateSmith lib ver - " + LibVersionInfo.GetVersionInfoString());
-            OutputCompilingDiagramMessage();
+            smRunner.OutputCompilingDiagramMessage();
 
-            var sm = SetupAndFindStateMachine(inputSmBuilder, settings);
+            var sm = SmRunner.SetupAndFindStateMachine(inputSmBuilder, settings);
             outputInfo.baseFileName = sm.Name;
 
             consolePrinter.OutputStageMessage($"State machine `{sm.Name}` selected.");
@@ -88,46 +88,7 @@ public class SmRunnerInternal
 
 
 
-    internal static StateMachine SetupAndFindStateMachine(InputSmBuilder inputSmBuilder, RunnerSettings settings)
-    {
-        // If the inputSmBuilder already has a state machine, then use it.
-        // Used by test code.
-        // Might also be used in future to allow compiling plantuml without a diagram file.
-        if (inputSmBuilder.HasStateMachine)
-        {
-            return inputSmBuilder.GetStateMachine();
-        }
 
-        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.DiagramPath);
-
-        if (settings.stateMachineName != null)
-        {
-            inputSmBuilder.FindStateMachineByName(settings.stateMachineName);
-        }
-        else
-        {
-            inputSmBuilder.FindSingleStateMachine();
-        }
-
-        return inputSmBuilder.GetStateMachine();
-    }
-
-    private void OutputCompilingDiagramMessage()
-    {
-        // TODO remove
-        var smRunner = smRunnerProvider();
-        var settings = smRunner.context.runnerSettings;
-        var consolePrinter = smRunner.consolePrinter;
-        var filePathPrinter = smRunner.filePathPrinter;
-
-        string filePath = settings.DiagramPath;
-        filePath = filePathPrinter.PrintPath(filePath);
-
-        consolePrinter.OutputStageMessage($"Compiling file: `{filePath}` "
-            + ((settings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{settings.stateMachineName}`")
-            + "."
-        );
-    }
 
 
 }

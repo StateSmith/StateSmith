@@ -23,7 +23,8 @@ public class PreDiagramSettingsReader
     /// </summary>
     public void Process()
     {
-        SmRunnerInternal.SetupAndFindStateMachine(inputSmBuilder, smRunnerSettings);
+        // Use SmRunner's static method instead of creating an instance
+        SmRunner.SetupAndFindStateMachine(inputSmBuilder, smRunnerSettings);
         inputSmBuilder.FinishRunning();
     }
 }

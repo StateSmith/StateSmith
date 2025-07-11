@@ -17,6 +17,48 @@ namespace StateSmith.Runner;
 /// TODO remove SmRunnerInternal by using injection in static constructor
 public class SmRunner : SmRunner.IExperimentalAccess
 {
+
+    /// <summary>
+    /// Outputs a message about the diagram file being compiled.
+    /// </summary>
+    public void OutputCompilingDiagramMessage()
+    {
+
+        string filePath = context.runnerSettings.DiagramPath;
+        filePath = filePathPrinter.PrintPath(filePath);
+
+        consolePrinter.OutputStageMessage($"Compiling file: `{filePath}` "
+            + ((context.runnerSettings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{context.runnerSettings.stateMachineName}`")
+            + "."
+        );
+    }
+
+    /// <summary>
+    /// Finds and returns the state machine from the input builder, using settings.
+    /// </summary>
+    public static StateMachine SetupAndFindStateMachine(InputSmBuilder inputSmBuilder, RunnerSettings settings)
+    {
+        // If the inputSmBuilder already has a state machine, then use it.
+        // Used by test code.
+        // Might also be used in future to allow compiling plantuml without a diagram file.
+        if (inputSmBuilder.HasStateMachine)
+        {
+            return inputSmBuilder.GetStateMachine();
+        }
+
+        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.DiagramPath);
+
+        if (settings.stateMachineName != null)
+        {
+            inputSmBuilder.FindStateMachineByName(settings.stateMachineName);
+        }
+        else
+        {
+            inputSmBuilder.FindSingleStateMachine();
+        }
+
+        return inputSmBuilder.GetStateMachine();
+    }
     public static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
     {
         var relativeDirectory = System.IO.Path.GetDirectoryName(callingFilePath).ThrowIfNull();
