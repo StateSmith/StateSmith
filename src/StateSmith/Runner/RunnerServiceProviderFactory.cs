@@ -78,9 +78,8 @@ public class RunnerServiceProviderFactory
             sp.GetRequiredService<AlgoTranspilerCustomizer>(),
             sp.GetRequiredService<SmDesignDescriber>(),
             sp.GetRequiredService<OutputInfo>(),
-            sp.GetRequiredService<FilePathPrinter>()
-
-            // sp.GetRequiredService<ICodeGenRunner>()//,
+            sp.GetRequiredService<FilePathPrinter>(),
+            sp.GetRequiredService<Func<ICodeGenRunner>>()
         ));
         services.AddSingleton<Func<SmRunner>>((sp) => new Func<SmRunner>(() => sp.GetRequiredService<SmRunner>()));
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -131,6 +130,7 @@ public class RunnerServiceProviderFactory
             services.AddSingleton(type);
         }
         services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
+        services.AddSingleton<Func<ICodeGenRunner>>((sp) => new Func<ICodeGenRunner>(() => sp.GetRequiredService<ICodeGenRunner>()));
         services.AddSingleton<IGilAlgo>(sp =>
             ResolveServiceFromRunnerSettings<IGilAlgo, AlgorithmId>(sp, rs => rs.algorithmId, IGILALGO_TYPES)
         );

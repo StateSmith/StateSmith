@@ -118,7 +118,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     public readonly SmDesignDescriber smDesignDescriber; // TODO private
     public readonly OutputInfo outputInfo; // TODO private
     public readonly FilePathPrinter filePathPrinter; // TODO private
-    // private readonly ICodeGenRunner codeGenRunner; 
+    public readonly Func<ICodeGenRunner> codeGenRunnerProvider; // TODO private
     
 
     /// <summary>
@@ -126,8 +126,17 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     /// <param name="context">This context object stores the runtime configuration for a given run </param>
     /// <param name="serviceProvider">Dependency injection service provider</param>
+    /// <param name="inputSmBuilder">The builder that will convert the input diagram into a StateMachine vertex.</param>
+    /// <param name="exceptionPrinter">Used to print exceptions.</param>
+    /// <param name="consolePrinter">Used to print messages to the console.</param>
+    /// <param name="simWebGeneratorProvider">A function that provides a SimWebGenerator instance.</param>
+    /// <param name="algoTranspilerCustomizer">Allows customization of the algorithm and transpiler settings.</param>
+    /// <param name="smDesignDescriber">Describes the state machine design.</param>
+    /// <param name="outputInfo">Holds information about the output, such as file paths and names.</param>
+    /// <param name="filePathPrinter">Used to print file paths in a consistent manner.</param>
+    /// <param name="codeGenRunnerProvider">A function that provides an ICodeGenRunner instance.</param>
     [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
-    public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter,  Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter/*, ICodeGenRunner codeGenRunner*/) // TODO filePathPrinter and codeGenRunner cause tests to fail
+    public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter, Func<ICodeGenRunner> codeGenRunnerProvider)
     {
         AppUseDecimalPeriod();
 
@@ -141,7 +150,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.smDesignDescriber = smDesignDescriber;
         this.outputInfo = outputInfo;
         this.filePathPrinter = filePathPrinter;
-        // this.codeGenRunner = codeGenRunner;
+        this.codeGenRunnerProvider = codeGenRunnerProvider;
 
         ResolveFilePaths(context.runnerSettings, context.callerFilePath);
         SetupRenderConfigs();

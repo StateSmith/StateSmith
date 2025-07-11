@@ -16,13 +16,11 @@ public class SmRunnerInternal
 {
     public System.Exception? exception;
     internal bool preDiagramBasedSettingsAlreadyApplied;
-    readonly ICodeGenRunner codeGenRunner;
     readonly Func<SmRunner> smRunnerProvider; // TODO remove
 
-    public SmRunnerInternal(IConsolePrinter consolePrinter, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner) 
+    public SmRunnerInternal(IConsolePrinter consolePrinter, Func<SmRunner> smRunnerProvider) 
     {
         this.smRunnerProvider = smRunnerProvider;
-        this.codeGenRunner = codeGenRunner; // TODO move to SmRunner but make lazy
     }
 
     public void Run()
@@ -33,6 +31,7 @@ public class SmRunnerInternal
         var inputSmBuilder = smRunner.inputSmBuilder;
         var settings = smRunner.context.runnerSettings;
         var consolePrinter = smRunner.consolePrinter;
+        var codeGenRunner = smRunner.codeGenRunnerProvider();
 
         // TODO better way to do this?
         SmRunner.AppUseDecimalPeriod();   // done here as well to help with unit tests
