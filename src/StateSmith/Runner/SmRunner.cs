@@ -15,86 +15,7 @@ namespace StateSmith.Runner;
 /// Builds a single state machine and runs code generation.
 /// </summary>
 public class SmRunner : SmRunner.IExperimentalAccess
-{
-
-    /// <summary>
-    /// Outputs a message about the diagram file being compiled.
-    /// </summary>
-    public void OutputCompilingDiagramMessage()
-    {
-
-        string filePath = context.runnerSettings.DiagramPath;
-        filePath = filePathPrinter.PrintPath(filePath);
-
-        consolePrinter.OutputStageMessage($"Compiling file: `{filePath}` "
-            + ((context.runnerSettings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{context.runnerSettings.stateMachineName}`")
-            + "."
-        );
-    }
-
-    /// <summary>
-    /// Finds and returns the state machine from the input builder, using settings.
-    /// </summary>
-    public static StateMachine SetupAndFindStateMachine(InputSmBuilder inputSmBuilder, RunnerSettings settings)
-    {
-        // If the inputSmBuilder already has a state machine, then use it.
-        // Used by test code.
-        // Might also be used in future to allow compiling plantuml without a diagram file.
-        if (inputSmBuilder.HasStateMachine)
-        {
-            return inputSmBuilder.GetStateMachine();
-        }
-
-        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.DiagramPath);
-
-        if (settings.stateMachineName != null)
-        {
-            inputSmBuilder.FindStateMachineByName(settings.stateMachineName);
-        }
-        else
-        {
-            inputSmBuilder.FindSingleStateMachine();
-        }
-
-        return inputSmBuilder.GetStateMachine();
-    }
-    public static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
-    {
-        var relativeDirectory = System.IO.Path.GetDirectoryName(callingFilePath).ThrowIfNull();
-        var tmp = settings.DiagramPath;
-        settings.DiagramPath = StateSmith.Common.PathUtils.EnsurePathAbsolute(settings.DiagramPath, relativeDirectory);
-
-        settings.outputDirectory ??= System.IO.Path.GetDirectoryName(settings.DiagramPath).ThrowIfNull();
-        settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
-
-        settings.filePathPrintBase ??= relativeDirectory;
-        settings.filePathPrintBase = ProcessDirPath(settings.filePathPrintBase, relativeDirectory);
-
-        settings.smDesignDescriber.outputDirectory ??= settings.outputDirectory;
-        settings.smDesignDescriber.outputDirectory = ProcessDirPath(settings.smDesignDescriber.outputDirectory, relativeDirectory);
-
-        if (settings.simulation.enableGeneration)
-        {
-            settings.simulation.outputDirectory ??= settings.outputDirectory;
-            settings.simulation.outputDirectory = ProcessDirPath(settings.simulation.outputDirectory, relativeDirectory);
-        }
-    }
-
-    private static string ProcessDirPath(string dirPath, string relativeDirectory)
-    {
-        var resultPath = StateSmith.Common.PathUtils.EnsurePathAbsolute(dirPath, relativeDirectory);
-        resultPath = StateSmith.Common.PathUtils.EnsureDirEndingSeperator(resultPath);
-        return resultPath;
-    }
-    /// <summary>
-    /// Force application number parsing to use periods for decimal points instead of commas.
-    /// Fix for https://github.com/StateSmith/StateSmith/issues/159
-    /// </summary>
-    private void AppUseDecimalPeriod()
-    {
-        System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-        System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-    }
+{    
     /// <summary>
     /// Convenience method to create a new instance of SmRunner without constructing a separate RunnerSettings object.
     /// </summary>
@@ -214,7 +135,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.context.runnerSettings = settings;
         this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
         this.context.callerFilePath = callerFilePath.ThrowIfNull();
-    SmRunner.ResolveFilePaths(settings, this.context.callerFilePath);
+        ResolveFilePaths(settings, this.context.callerFilePath);
         SetupRenderConfigs();
     }
 
@@ -318,6 +239,85 @@ public class SmRunner : SmRunner.IExperimentalAccess
     // ------------ private methods ----------------
 
 
+    /// <summary>
+    /// Outputs a message about the diagram file being compiled.
+    /// </summary>
+    private void OutputCompilingDiagramMessage()
+    {
+
+        string filePath = context.runnerSettings.DiagramPath;
+        filePath = filePathPrinter.PrintPath(filePath);
+
+        consolePrinter.OutputStageMessage($"Compiling file: `{filePath}` "
+            + ((context.runnerSettings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{context.runnerSettings.stateMachineName}`")
+            + "."
+        );
+    }
+
+    /// <summary>
+    /// Finds and returns the state machine from the input builder, using settings.
+    /// </summary>
+    public static StateMachine SetupAndFindStateMachine(InputSmBuilder inputSmBuilder, RunnerSettings settings)
+    {
+        // If the inputSmBuilder already has a state machine, then use it.
+        // Used by test code.
+        // Might also be used in future to allow compiling plantuml without a diagram file.
+        if (inputSmBuilder.HasStateMachine)
+        {
+            return inputSmBuilder.GetStateMachine();
+        }
+
+        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.DiagramPath);
+
+        if (settings.stateMachineName != null)
+        {
+            inputSmBuilder.FindStateMachineByName(settings.stateMachineName);
+        }
+        else
+        {
+            inputSmBuilder.FindSingleStateMachine();
+        }
+
+        return inputSmBuilder.GetStateMachine();
+    }
+    private static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
+    {
+        var relativeDirectory = System.IO.Path.GetDirectoryName(callingFilePath).ThrowIfNull();
+        settings.DiagramPath = PathUtils.EnsurePathAbsolute(settings.DiagramPath, relativeDirectory);
+
+        settings.outputDirectory ??= System.IO.Path.GetDirectoryName(settings.DiagramPath).ThrowIfNull();
+        settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
+
+        settings.filePathPrintBase ??= relativeDirectory;
+        settings.filePathPrintBase = ProcessDirPath(settings.filePathPrintBase, relativeDirectory);
+
+        settings.smDesignDescriber.outputDirectory ??= settings.outputDirectory;
+        settings.smDesignDescriber.outputDirectory = ProcessDirPath(settings.smDesignDescriber.outputDirectory, relativeDirectory);
+
+        if (settings.simulation.enableGeneration)
+        {
+            settings.simulation.outputDirectory ??= settings.outputDirectory;
+            settings.simulation.outputDirectory = ProcessDirPath(settings.simulation.outputDirectory, relativeDirectory);
+        }
+    }
+
+    private static string ProcessDirPath(string dirPath, string relativeDirectory)
+    {
+        var resultPath = PathUtils.EnsurePathAbsolute(dirPath, relativeDirectory);
+        resultPath = PathUtils.EnsureDirEndingSeperator(resultPath);
+        return resultPath;
+    }
+
+    /// <summary>
+    /// Force application number parsing to use periods for decimal points instead of commas.
+    /// Fix for https://github.com/StateSmith/StateSmith/issues/159
+    /// </summary>
+    private void AppUseDecimalPeriod()
+    {
+        System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+        System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+    }
+
     private void SetupRenderConfigs()
     {
         // RunnerContext is already initialized in the constructor
@@ -399,7 +399,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     {
         AppUseDecimalPeriod();
         this.context.callerFilePath.ThrowIfNull();
-        SmRunner.ResolveFilePaths(context.runnerSettings, context.callerFilePath);
+        ResolveFilePaths(context.runnerSettings, context.callerFilePath);
         OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
         outputInfo.outputDirectory = context.runnerSettings.outputDirectory.ThrowIfNull();
     }
