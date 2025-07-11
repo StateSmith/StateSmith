@@ -116,7 +116,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.filePathPrinter = filePathPrinter;
         this.codeGenRunnerProvider = codeGenRunnerProvider;
 
-        ResolveFilePaths(context.runnerSettings, context.callerFilePath);
         SetupRenderConfigs();
     }
 
@@ -282,7 +281,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         return inputSmBuilder.GetStateMachine();
     }
-    private static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
+    private void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
     {
         var relativeDirectory = System.IO.Path.GetDirectoryName(callingFilePath).ThrowIfNull();
         settings.DiagramPath = PathUtils.EnsurePathAbsolute(settings.DiagramPath, relativeDirectory);
@@ -322,7 +321,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private void SetupRenderConfigs()
     {
-        // RunnerContext is already initialized in the constructor
         ReadRenderConfigObjectToVars(context.renderConfigAllVars, context.renderConfig, context.runnerSettings.autoDeIndentAndTrimRenderConfigItems);
 
         try
@@ -331,6 +329,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
             // Note that this may throw if the diagram is invalid.
             PreDiagramSettingsReader? preDiagramSettingsReader = serviceProvider.GetService<PreDiagramSettingsReader>();
+            ResolveFilePaths(context.runnerSettings, context.callerFilePath); // TODO can this be done in SetupAndFindStateMachine
             preDiagramSettingsReader?.Process();
         }
         catch (Exception e)
