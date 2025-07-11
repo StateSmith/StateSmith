@@ -25,8 +25,8 @@ public class SmRunnerInternal
     public SmRunnerInternal(IConsolePrinter consolePrinter, Func<SmRunner> smRunnerProvider, ICodeGenRunner codeGenRunner, FilePathPrinter filePathPrinter)
     {
         this.smRunnerProvider = smRunnerProvider;
-        this.codeGenRunner = codeGenRunner;
-        this.filePathPrinter = filePathPrinter;
+        this.codeGenRunner = codeGenRunner; // TODO move to SmRunner but make lazy
+        this.filePathPrinter = filePathPrinter; // TODO move to SmRunner but make lazy
     }
 
     public void Run()
