@@ -12,6 +12,7 @@ namespace StateSmith.Runner;
 /// <summary>
 /// This tiny class exists apart from SmRunner so that dependency injection can be used.
 /// </summary>
+/// // TODO remove this class and use SmRunner directly.
 public class SmRunnerInternal
 {
     public System.Exception? exception;
