@@ -1,6 +1,8 @@
+using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Input.Expansions;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
+using StateSmithTest;
 using System;
 
 #nullable enable
@@ -36,7 +38,9 @@ public class SpecFixture
         };
 
         //settings.outputGilCodeAlways = true;
-        SmRunner runner = SmRunner.Create(settings, renderConfig);
+        var serviceProvider = TestHelper.CreateServiceProvider();
+        SmRunner runner = SmRunner.Create(settings, renderConfig, serviceProvider: serviceProvider);
+        var transformer = serviceProvider.GetRequiredService<SmTransformer>();
 
         smRunnerAction?.Invoke(runner);
 
@@ -46,7 +50,7 @@ public class SpecFixture
 
         if (useTracingModder)
         {
-            runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1,
+            transformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1,
                 new TransformationStep(id: TracingModderId, action: (sm) => new TracingModder(semiColon: semiColon, trueString: trueString).AddTracingBehaviors(sm)));
         }
         runner.Run();
