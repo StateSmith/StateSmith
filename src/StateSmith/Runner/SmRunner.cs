@@ -67,7 +67,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private readonly IServiceProvider serviceProvider;
 
-    private Exception? exception;
     internal bool preDiagramBasedSettingsAlreadyApplied;
 
 
@@ -182,6 +181,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         if (context.runnerSettings.transpilerId == TranspilerId.NotYetSet)
             throw new ArgumentException("TranspilerId must be set before running code generation");
 
+        Exception? exception = null; // TODO what is this for?
         try
         {
             if (preDiagramBasedSettingsAlreadyApplied)
