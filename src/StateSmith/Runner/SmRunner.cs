@@ -74,6 +74,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     private readonly RunnerContext context;
 
     private readonly InputSmBuilder inputSmBuilder;
+    private readonly SmTransformer transformer;
     private readonly ExceptionPrinter exceptionPrinter;
     private readonly IConsolePrinter consolePrinter;
     private readonly Func<SimWebGenerator> simWebGeneratorProvider;
@@ -99,7 +100,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="filePathPrinter">Used to print file paths in a consistent manner.</param>
     /// <param name="codeGenRunnerProvider">A function that provides an ICodeGenRunner instance.</param>
     [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
-    public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter, Func<ICodeGenRunner> codeGenRunnerProvider)
+    public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter, Func<ICodeGenRunner> codeGenRunnerProvider, SmTransformer transformer)
     {
         this.context = context;
         this.serviceProvider = serviceProvider;
@@ -112,6 +113,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.outputInfo = outputInfo;
         this.filePathPrinter = filePathPrinter;
         this.codeGenRunnerProvider = codeGenRunnerProvider;
+        this.transformer = transformer;
 
         ResolveFilePaths(context.runnerSettings, context.callerFilePath);
         SetupRenderConfigs();
@@ -163,7 +165,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <summary>
     /// Publicly exposed so that users can customize transformation behavior.
     /// </summary>
-    public SmTransformer SmTransformer => serviceProvider.GetRequiredService<SmTransformer>();
+    public SmTransformer SmTransformer => transformer;
 
     /// <summary>
     /// Runs StateSmith.
