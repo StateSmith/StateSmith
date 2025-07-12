@@ -25,7 +25,7 @@ public class SpecFixture
     virtual public string PostInc => "++";
     virtual public string SemiColon => ";";
 
-    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null, string semiColon = ";", string trueString = "true", TranspilerId transpilerId = TranspilerId.Default)
+    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null, string semiColon = ";", string trueString = "true", TranspilerId transpilerId = TranspilerId.Default, IServiceProvider? serviceProvider = null)
     {
         RunnerSettings settings = new(diagramFile: diagramFile, outputDirectory: srcDirectory, transpilerId: transpilerId);
         settings.outputStateSmithVersionInfo = false; // too much noise in repo
@@ -38,9 +38,9 @@ public class SpecFixture
         };
 
         //settings.outputGilCodeAlways = true;
-        var serviceProvider = TestHelper.CreateServiceProvider();
-        SmRunner runner = SmRunner.Create(settings, renderConfig, serviceProvider: serviceProvider);
-        var transformer = serviceProvider.GetRequiredService<SmTransformer>();
+        var sp = serviceProvider ?? TestHelper.CreateServiceProvider();
+        SmRunner runner = SmRunner.Create(settings, renderConfig, serviceProvider: sp);
+        var transformer = sp.GetRequiredService<SmTransformer>();
 
         smRunnerAction?.Invoke(runner);
 

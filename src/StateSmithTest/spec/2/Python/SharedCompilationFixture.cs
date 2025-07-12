@@ -1,8 +1,11 @@
 #nullable enable
 
+using System;
+using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
+using StateSmithTest;
 using StateSmithTest.Processes;
 
 namespace Spec.Spec2.Python;
@@ -17,13 +20,16 @@ public class SharedCompilationFixture
 
     public SharedCompilationFixture()
     {
+        var serviceProvider = TestHelper.CreateServiceProvider();
+        var transformerProvider = serviceProvider.GetRequiredService<Func<SmTransformer>>();
+
         var action = (SmRunner runner) =>
         {
             runner.Settings.outputGilCodeAlways = true;
 
             // NOTE!!! This runs before any other transformations so we can be confident that the code we are modifying is in the original form
             // from the diagram and not something that was added by a transformation (like history vertices).
-            runner.SmTransformer.transformationPipeline.Insert(0, new TransformationStep(action: (sm) => {
+            transformerProvider().transformationPipeline.Insert(0, new TransformationStep(action: (sm) => {
                 sm.VisitRecursively((node) =>
                 {
                     foreach (var behavior in node.Behaviors)
@@ -35,7 +41,7 @@ public class SharedCompilationFixture
             }));
         };
 
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, semiColon: "", trueString: "True", transpilerId: TranspilerId.Python);
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, semiColon: "", trueString: "True", transpilerId: TranspilerId.Python, serviceProvider: serviceProvider);
 
         SimpleProcess process;
 
