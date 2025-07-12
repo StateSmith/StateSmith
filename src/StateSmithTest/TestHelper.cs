@@ -9,10 +9,10 @@ using System;
 using System.IO;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using StateSmith.Output.Algos.Balanced1;
 
 namespace StateSmithTest;
 
+// TODO clean this up to have consistent way to override services
 public class TestHelper
 {
     public const string MinimalPlantUmlFsm = """
