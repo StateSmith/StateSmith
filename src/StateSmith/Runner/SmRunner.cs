@@ -181,7 +181,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         if (context.runnerSettings.transpilerId == TranspilerId.NotYetSet)
             throw new ArgumentException("TranspilerId must be set before running code generation");
 
-        Exception? exception = null; // TODO what is this for?
+        Exception? exception = null; // TODO what is this for? This exception handling logic seems quite complicated
         try
         {
             if (preDiagramBasedSettingsAlreadyApplied)
