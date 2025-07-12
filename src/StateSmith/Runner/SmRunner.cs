@@ -67,8 +67,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private readonly IServiceProvider serviceProvider;
 
-    internal bool preDiagramBasedSettingsAlreadyApplied;
-
 
     /// <summary>
     /// The context that holds the dynamic configuration (settings, renderconfig) for this run of the runner.
@@ -176,7 +174,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         PrepareBeforeRun();
 
         algoTranspilerCustomizer.Customize(context.runnerSettings.algorithmId, context.runnerSettings.transpilerId);
-        preDiagramBasedSettingsAlreadyApplied = serviceProvider.GetService<PreDiagramSettingsReader>() != null;
+        bool preDiagramBasedSettingsAlreadyApplied = serviceProvider.GetService<PreDiagramSettingsReader>() != null;
 
         if (context.runnerSettings.transpilerId == TranspilerId.NotYetSet)
             throw new ArgumentException("TranspilerId must be set before running code generation");
