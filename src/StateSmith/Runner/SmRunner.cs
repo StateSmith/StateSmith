@@ -73,17 +73,17 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <summary>
     /// The context that holds the dynamic configuration (settings, renderconfig) for this run of the runner.
     /// </summary>
-    public readonly RunnerContext context; // TODO private
+    private readonly RunnerContext context;
 
-    public readonly InputSmBuilder inputSmBuilder; // TODO private
-    public readonly ExceptionPrinter exceptionPrinter; // TODO private
-    public readonly IConsolePrinter consolePrinter; // TODO private
-    public readonly Func<SimWebGenerator> simWebGeneratorProvider; // TODO private
-    public readonly AlgoTranspilerCustomizer algoTranspilerCustomizer; // TODO private
-    public readonly SmDesignDescriber smDesignDescriber; // TODO private
-    public readonly OutputInfo outputInfo; // TODO private
-    public readonly FilePathPrinter filePathPrinter; // TODO private
-    public readonly Func<ICodeGenRunner> codeGenRunnerProvider; // TODO private
+    private readonly InputSmBuilder inputSmBuilder;
+    private readonly ExceptionPrinter exceptionPrinter;
+    private readonly IConsolePrinter consolePrinter;
+    private readonly Func<SimWebGenerator> simWebGeneratorProvider;
+    private readonly AlgoTranspilerCustomizer algoTranspilerCustomizer;
+    private readonly SmDesignDescriber smDesignDescriber;
+    private readonly OutputInfo outputInfo;
+    private readonly FilePathPrinter filePathPrinter;
+    private readonly Func<ICodeGenRunner> codeGenRunnerProvider;
     
 
     /// <summary>
