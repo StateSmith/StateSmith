@@ -31,6 +31,7 @@ public class SimWebGenerator
     TextWriter mocksWriter = new StringWriter();
     SingleFileCapturer fileCapturer = new();
     StateMachineProvider stateMachineProvider;
+    Func<SmTransformer> transformerProvider;
     INameMangler nameMangler;
     Regex historyGilRegex;
 
@@ -75,6 +76,8 @@ public class SimWebGenerator
             services.RemoveAll<PreDiagramSettingsReader>();
         });
 
+        transformerProvider = serviceProvider.GetRequiredService<Func<SmTransformer>>();
+
         runner = SmRunner.Create(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProvider: serviceProvider);
         runner.Settings.propagateExceptions = true;
 
@@ -95,7 +98,7 @@ public class SimWebGenerator
     /// <param name="renderConfigBaseVars">Render configuration base variables</param>
     private void PreventCertainDiagramSpecifiedSettings(RenderConfigBaseVars renderConfigBaseVars)
     {
-        DiagramBasedSettingsPreventer.Process(runner.SmTransformer, action: (readRenderConfigAllVars, _) =>
+        DiagramBasedSettingsPreventer.Process(transformerProvider(), action: (readRenderConfigAllVars, _) =>
         {
             // copy only the settings that are safe to copy for the simulation
             renderConfigBaseVars.TriggerMap = readRenderConfigAllVars.Base.TriggerMap;
@@ -136,23 +139,24 @@ public class SimWebGenerator
         // This allows us to easily map an SS behavior to its corresponding mermaid edge ID.
 
         const string GenMermaidCodeStepId = "gen-mermaid-code";
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportHistory, new TransformationStep(id: GenMermaidCodeStepId, GenerateMermaidCode));
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, V1LoggingTransformationStep);
-        
+        var transformer = transformerProvider();
+        transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportHistory, new TransformationStep(id: GenMermaidCodeStepId, GenerateMermaidCode));
+        transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, V1LoggingTransformationStep);
+
         // collect diagram names after trigger mapping completes
-        runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, CollectDiagramNames);
+        transformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, CollectDiagramNames);
 
         // We to generate mermaid diagram before history support (to avoid a ton of transitions being shown), but AFTER name conflict resolution.
         // See https://github.com/StateSmith/StateSmith/issues/302
         // Validate that this is true.
-        int historyIndex = runner.SmTransformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_SupportHistory);
-        int nameConflictIndex = runner.SmTransformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_NameConflictResolution);
-        int mermaidIndex = runner.SmTransformer.GetMatchIndex(GenMermaidCodeStepId);
+        int historyIndex = transformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_SupportHistory);
+        int nameConflictIndex = transformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_NameConflictResolution);
+        int mermaidIndex = transformer.GetMatchIndex(GenMermaidCodeStepId);
         if (mermaidIndex <= nameConflictIndex || mermaidIndex >= historyIndex)
             throw new Exception("Mermaid generation must occur after name conflict resolution and before history support.");
 
         // show default 'do' events in mermaid diagram
-         runner.SmTransformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, (StateMachine sm) => { DefaultToDoEventVisitor.Process(sm); });
+        transformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, (StateMachine sm) => { DefaultToDoEventVisitor.Process(sm); });
     }
 
     private void CollectDiagramNames(StateMachine sm)

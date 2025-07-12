@@ -85,6 +85,7 @@ public class RunnerServiceProviderFactory
 #pragma warning restore CS0618 // Type or member is obsolete
         services.AddSingleton<StandardSmTransformer>();
         services.AddSingleton<SmTransformer>((sp) => sp.GetRequiredService<StandardSmTransformer>());
+        services.AddSingleton<Func<SmTransformer>>((sp) => new Func<SmTransformer>(() => sp.GetRequiredService<SmTransformer>()));
         services.AddSingleton<IExpander, Expander>();
         services.AddSingleton<InputSmBuilder>();
         services.AddSingleton<IConsolePrinter, ConsolePrinter>();
