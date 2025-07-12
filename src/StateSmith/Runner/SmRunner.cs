@@ -65,7 +65,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     public RunnerSettings Settings => context.runnerSettings;
 
-    private readonly IServiceProvider serviceProvider;
+    private readonly IServiceProvider serviceProvider; // TODO replace all instances with Providers
 
 
     /// <summary>
@@ -162,7 +162,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     /// <summary>
     /// Publicly exposed so that users can customize transformation behavior.
-    /// Accessing this member will cause the Dependency Injection settings to be finalized.
     /// </summary>
     public SmTransformer SmTransformer => serviceProvider.GetRequiredService<SmTransformer>();
 
@@ -409,7 +408,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     public IExperimentalAccess GetExperimentalAccess() => this;
     RunnerSettings IExperimentalAccess.Settings => context.runnerSettings;
-    InputSmBuilder IExperimentalAccess.InputSmBuilder => serviceProvider.GetRequiredService<InputSmBuilder>();
+    InputSmBuilder IExperimentalAccess.InputSmBuilder => inputSmBuilder;
 
     /// <summary>
     /// The API in this experimental access may break often. It will eventually stabilize after enough use and feedback.
