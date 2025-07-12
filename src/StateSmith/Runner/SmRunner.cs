@@ -67,7 +67,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private readonly IServiceProvider serviceProvider;
 
-    public System.Exception? exception; // TODO private?
+    private Exception? exception;
     internal bool preDiagramBasedSettingsAlreadyApplied;
 
 
