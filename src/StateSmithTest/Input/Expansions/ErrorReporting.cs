@@ -3,6 +3,9 @@ using FluentAssertions;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 using System;
+using Microsoft.Extensions.DependencyInjection;
+using StateSmith.Output;
+using StateSmithTest.Output;
 
 namespace StateSmithTest.Input;
 
@@ -136,7 +139,13 @@ public class ErrorReporting
 
         // This test is more involved because it requires code injection
         StringBuilderConsolePrinter fakeConsole = new();
-        Action a = () => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, preRun: AddBadCode, propagateExceptions: false, consoleCapturer: fakeConsole);
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
+            services.AddSingleton<ICodeFileWriter>(new DiscardingCodeFileWriter());
+            services.AddSingleton<IConsolePrinter>(fakeConsole);
+        });
+        var transformerProvider = sp.GetRequiredService<Func<SmTransformer>>();
+        Action a = () => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, preRun: AddBadCode, propagateExceptions: false, consoleCapturer: fakeConsole, serviceProvider: sp);
         a.Should().Throw<FinishedWithFailureException>();
 
         string consoleOutput = fakeConsole.sb.ToString();
@@ -160,7 +169,7 @@ public class ErrorReporting
 
         void AddBadCode(SmRunner smRunner)
         {
-            smRunner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (sm) =>
+            transformerProvider().InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (sm) =>
             {
                 sm.VisitTypeRecursively((State state) =>
                 {

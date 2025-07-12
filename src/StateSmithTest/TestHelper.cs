@@ -48,13 +48,13 @@ public class TestHelper
         return fakeFileSystem;
     }
 
-    public static void CaptureRunSmRunnerForPlantUmlString(string? plantUmlText = null, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default)
+    public static void CaptureRunSmRunnerForPlantUmlString(string? plantUmlText = null, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, IServiceProvider? serviceProvider = null)
     {
         string tempFilePath = WritePlantUmlTempFile(plantUmlText, fileName);
 
         try
         {
-            var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+            var sp = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault((services) =>
             {
                 services.AddSingleton<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
                 services.AddSingleton<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());

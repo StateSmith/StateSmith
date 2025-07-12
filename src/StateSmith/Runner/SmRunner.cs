@@ -163,11 +163,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     }
 
     /// <summary>
-    /// Publicly exposed so that users can customize transformation behavior.
-    /// </summary>
-    public SmTransformer SmTransformer => transformer;
-
-    /// <summary>
     /// Runs StateSmith.
     /// </summary>
     public void Run()
