@@ -251,8 +251,6 @@ public class SmRunner
     /// <summary>
     /// Finds and returns the state machine from the input builder, using settings.
     /// </summary>
-    /// // TODO make private. If we inline PreDiagramSettingsReader then we can make it private. But we'll need
-    /// // a way for tests and SimWebGenerator to disable it.
     private static StateMachine SetupAndFindStateMachine(InputSmBuilder inputSmBuilder, RunnerSettings settings)
     {
         // If the inputSmBuilder already has a state machine, then use it.
