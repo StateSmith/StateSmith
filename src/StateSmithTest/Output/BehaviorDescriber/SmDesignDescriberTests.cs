@@ -204,10 +204,12 @@ public class SmDesignDescriberTests
         public StringBuilder sb = new();
         public SmRunner smRunner;
         public SmDesignDescriber describer;
+        private RunnerSettings settings;
 
         public Tester(bool captureToBuffer = true, string diagramFile = "Ex564.drawio")
         {
             smRunner = SetupSmRunner(out var iServiceProvider, diagramFile);
+            settings = iServiceProvider.GetRequiredService<RunnerSettings>();
             describer = iServiceProvider.GetRequiredService<SmDesignDescriber>();
             if (captureToBuffer)
                 describer.SetTextWriter(new StringWriter(sb));
@@ -215,37 +217,37 @@ public class SmDesignDescriberTests
 
         public Tester Enable()
         {
-            smRunner.Settings.smDesignDescriber.enabled = true;
+            settings.smDesignDescriber.enabled = true;
             return this;
         }
 
         public Tester EnableOutputAncestorHandlers()
         {
-            smRunner.Settings.smDesignDescriber.outputAncestorHandlers = true;
+            settings.smDesignDescriber.outputAncestorHandlers = true;
             return this;
         }
 
         public Tester Disable()
         {
-            smRunner.Settings.smDesignDescriber.enabled = false;
+            settings.smDesignDescriber.enabled = false;
             return this;
         }
 
         public Tester DisableBeforeTransformations()
         {
-            smRunner.Settings.smDesignDescriber.outputSections.beforeTransformations = false;
+            settings.smDesignDescriber.outputSections.beforeTransformations = false;
             return this;
         }
 
         public Tester DisableAfterTransformations()
         {
-            smRunner.Settings.smDesignDescriber.outputSections.afterTransformations = false;
+            settings.smDesignDescriber.outputSections.afterTransformations = false;
             return this;
         }
 
         public Tester EnableAfterTransformations()
         {
-            smRunner.Settings.smDesignDescriber.outputSections.afterTransformations = true;
+            settings.smDesignDescriber.outputSections.afterTransformations = true;
             return this;
         }
 
