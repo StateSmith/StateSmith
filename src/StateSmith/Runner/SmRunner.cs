@@ -316,8 +316,7 @@ public class SmRunner
 
     private void SetupRenderConfigs()
     {
-        // RunnerContext is already initialized in the constructor
-        ReadRenderConfigObjectToVars(context.renderConfigAllVars, context.renderConfig, context.runnerSettings.autoDeIndentAndTrimRenderConfigItems);
+        context.renderConfigAllVars.SetFrom(context.renderConfig, context.runnerSettings.autoDeIndentAndTrimRenderConfigItems);
         ((StandardSmTransformer)transformer).onlyPreDiagramSettings = true;
 
         try
@@ -356,33 +355,6 @@ public class SmRunner
         // We sometimes would see our printed detail message info cut off by dotnet exception handling.
         // See https://github.com/StateSmith/StateSmith/issues/375
         System.Threading.Thread.Sleep(100);
-    }
-
-
-    private static void ReadRenderConfigObjectToVars(RenderConfigAllVars renderConfigAllVars, IRenderConfig iRenderConfig, bool autoDeIndentAndTrimRenderConfigItems)
-    {
-        renderConfigAllVars.Base.SetFrom(iRenderConfig, autoDeIndentAndTrimRenderConfigItems);
-
-        if (iRenderConfig is IRenderConfigC ircc)
-            renderConfigAllVars.C.SetFrom(ircc, autoDeIndentAndTrimRenderConfigItems);
-
-        if (iRenderConfig is IRenderConfigCpp irccpp)
-            renderConfigAllVars.Cpp.SetFrom(irccpp, autoDeIndentAndTrimRenderConfigItems);
-
-        if (iRenderConfig is IRenderConfigCSharp irccs)
-            renderConfigAllVars.CSharp.SetFrom(irccs, autoDeIndentAndTrimRenderConfigItems);
-
-        if (iRenderConfig is IRenderConfigJavaScript rcjs)
-            renderConfigAllVars.JavaScript.SetFrom(rcjs, autoDeIndentAndTrimRenderConfigItems);
-
-        if (iRenderConfig is IRenderConfigTypeScript ts)
-            renderConfigAllVars.TypeScript.SetFrom(ts, autoDeIndentAndTrimRenderConfigItems);
-
-        if (iRenderConfig is IRenderConfigJava rcj)
-            renderConfigAllVars.Java.SetFrom(rcj, autoDeIndentAndTrimRenderConfigItems);
-
-        if (iRenderConfig is IRenderConfigPython rcp)
-            renderConfigAllVars.Python.SetFrom(rcp, autoDeIndentAndTrimRenderConfigItems);
     }
 
     /// <summary>

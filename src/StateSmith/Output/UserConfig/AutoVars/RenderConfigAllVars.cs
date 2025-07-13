@@ -54,4 +54,30 @@ public class RenderConfigAllVars
         Python = new RenderConfigPythonVars();
         Cpp = new RenderConfigCppVars();
     }
+
+    public void SetFrom(IRenderConfig iRenderConfig, bool autoDeIndentAndTrimRenderConfigItems)
+    {
+        Base.SetFrom(iRenderConfig, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigC ircc)
+            C.SetFrom(ircc, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigCpp irccpp)
+            Cpp.SetFrom(irccpp, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigCSharp irccs)
+            CSharp.SetFrom(irccs, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigJavaScript rcjs)
+            JavaScript.SetFrom(rcjs, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigTypeScript ts)
+            TypeScript.SetFrom(ts, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigJava rcj)
+            Java.SetFrom(rcj, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigPython rcp)
+            Python.SetFrom(rcp, autoDeIndentAndTrimRenderConfigItems);
+    }
 }
