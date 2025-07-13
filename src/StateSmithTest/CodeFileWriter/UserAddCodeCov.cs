@@ -93,11 +93,14 @@ public class UserRemoveStateIdFuncAddCoverage
             services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();
         });
     
-        SmRunner runner = SmRunner.Create(diagramPath: "Ex1.drawio.svg", algorithmId: AlgorithmId.Balanced1, serviceProvider: sp);
-
-        // adjust settings because we are unit testing. Normally wouldn't do below.
-        runner.Settings.propagateExceptions = true;
-        runner.Settings.outputStateSmithVersionInfo = false;
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "Ex1.drawio.svg",
+            algorithmId = AlgorithmId.Balanced1,
+            propagateExceptions = true,
+            outputStateSmithVersionInfo = false,
+        };
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
 
         // run StateSmith with our custom code file writer
         runner.Run();
