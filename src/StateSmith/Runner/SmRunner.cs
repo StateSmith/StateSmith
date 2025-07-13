@@ -199,7 +199,7 @@ public class SmRunner
                 var simWebGenerator = simWebGeneratorProvider();
                 simWebGenerator.RunnerSettings.propagateExceptions = context.runnerSettings.propagateExceptions;
                 simWebGenerator.RunnerSettings.outputStateSmithVersionInfo = context.runnerSettings.outputStateSmithVersionInfo;
-                simWebGenerator.Generate(diagramPath: context.runnerSettings.DiagramPath, outputDir: context.runnerSettings.simulation.outputDirectory.ThrowIfNull());
+                simWebGenerator.Generate(outputDir: context.runnerSettings.simulation.outputDirectory.ThrowIfNull());
             }
 
             consolePrinter.OutputStageMessage("Finished normally.");

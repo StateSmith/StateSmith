@@ -80,7 +80,7 @@ public class SimWebGenerator
 
         RunnerSettings settings = new()
         {
-            DiagramPath = "placeholder-updated-in-generate-method.txt",
+            DiagramPath = mainRunnerSettings.DiagramPath,
             propagateExceptions = true,
             transpilerId = TranspilerId.JavaScript,
             algorithmId = mainRunnerSettings.algorithmId
@@ -210,9 +210,8 @@ public class SimWebGenerator
     }
 
 
-    public void Generate(string diagramPath, string outputDir)
+    public void Generate(string outputDir)
     {
-        runner.Settings.DiagramPath = diagramPath;
         runner.Run();
         var smName = stateMachineProvider.GetStateMachine().Name;
 
