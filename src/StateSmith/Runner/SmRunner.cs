@@ -319,11 +319,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
     {
         // RunnerContext is already initialized in the constructor
         ReadRenderConfigObjectToVars(context.renderConfigAllVars, context.renderConfig, context.runnerSettings.autoDeIndentAndTrimRenderConfigItems);
+        ((StandardSmTransformer)transformer).onlyPreDiagramSettings = true;
 
         try
         {
-            serviceProvider.GetRequiredService<StandardSmTransformer>().onlyPreDiagramSettings = true;
-
             // Note that this may throw if the diagram is invalid.
             preDiagramSettingsReaderProvider()?.Process();
         }
