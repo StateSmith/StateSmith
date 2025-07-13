@@ -78,8 +78,15 @@ public class SimWebGenerator
 
         transformerProvider = serviceProvider.GetRequiredService<Func<SmTransformer>>();
 
-        runner = SmRunner.Create(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, serviceProvider: serviceProvider);
-        runner.Settings.propagateExceptions = true;
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "placeholder-updated-in-generate-method.txt",
+            propagateExceptions = true,
+            transpilerId = TranspilerId.JavaScript,
+            algorithmId = mainRunnerSettings.algorithmId
+        };
+
+        runner = SmRunner.Create(settings, renderConfig: new SimRenderConfig(), serviceProvider: serviceProvider);
 
         AdjustTransformationPipeline();
         PreventCertainDiagramSpecifiedSettings(serviceProvider.GetRequiredService<RenderConfigBaseVars>());
