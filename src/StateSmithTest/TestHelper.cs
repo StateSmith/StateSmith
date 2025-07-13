@@ -60,9 +60,15 @@ public class TestHelper
                 services.AddSingleton<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
             });
 
-            SmRunner smRunner = SmRunner.Create(diagramPath: tempFilePath, renderConfig: renderConfig, algorithmId: algorithmId, transpilerId: transpilerId, serviceProvider: sp);
+            RunnerSettings settings = new()
+            {
+                DiagramPath = tempFilePath,
+                transpilerId = transpilerId,
+                algorithmId = algorithmId,
+                propagateExceptions = propagateExceptions,
+            };
+            SmRunner smRunner = SmRunner.Create(settings, renderConfig: renderConfig, serviceProvider: sp);
             postConstruct?.Invoke(smRunner);
-            smRunner.Settings.propagateExceptions = propagateExceptions;
             preRun?.Invoke(smRunner);
             smRunner.Run();
         }
