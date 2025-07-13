@@ -154,8 +154,15 @@ public class ShortFqnNamerTests
 
     private void Run(string diagramPath, Action<StateMachine>? testMethod = null)
     {
+        RunnerSettings settings = new()
+        {
+            DiagramPath = diagramPath,
+            propagateExceptions = true,
+            outputDirectory = Path.GetTempPath(),
+            nameConflictResolution = RunnerSettings.NameConflictResolution.Manual
+        };
         var serviceProvider = TestHelper.CreateServiceProvider();
-        SmRunner runner = SmRunner.Create(diagramPath: diagramPath, serviceProvider: serviceProvider);
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: serviceProvider);
         var transformer = serviceProvider.GetRequiredService<SmTransformer>();
         transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)HierachicalGraphToSmConverter.Convert);
         transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)Rename);
@@ -163,9 +170,6 @@ public class ShortFqnNamerTests
         if (testMethod != null)
             transformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)testMethod);
 
-        runner.Settings.propagateExceptions = true; // for unit testing
-        runner.Settings.outputDirectory = Path.GetTempPath(); // for unit testing
-        runner.Settings.nameConflictResolution = RunnerSettings.NameConflictResolution.Manual;
         runner.Run();
     }
 
