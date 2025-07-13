@@ -123,7 +123,8 @@ public class SmRunner
     /// <param name="renderConfig"></param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
     /// <param name="serviceProvider">Optional dependency injection service provider, for overrides</param>
-    [Obsolete("This constructor is intended for use by legacy CSX scripts. Use SmRunner.Create() instead.")]   
+    [Obsolete("This constructor is intended for use by legacy CSX scripts. Use SmRunner.Create() instead.")]
+    // TODO add a testcase for this constructor
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, IServiceProvider? serviceProvider = null)
     {
         var serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
