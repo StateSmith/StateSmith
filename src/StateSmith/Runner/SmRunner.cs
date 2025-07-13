@@ -253,7 +253,7 @@ public class SmRunner
     /// </summary>
     /// // TODO make private. If we inline PreDiagramSettingsReader then we can make it private. But we'll need
     /// // a way for tests and SimWebGenerator to disable it.
-    public static StateMachine SetupAndFindStateMachine(InputSmBuilder inputSmBuilder, RunnerSettings settings)
+    private static StateMachine SetupAndFindStateMachine(InputSmBuilder inputSmBuilder, RunnerSettings settings)
     {
         // If the inputSmBuilder already has a state machine, then use it.
         // Used by test code.
@@ -325,7 +325,12 @@ public class SmRunner
         try
         {
             // Note that this may throw if the diagram is invalid.
-            preDiagramSettingsReaderProvider()?.Process();
+            var preDiagramSettingsReader = preDiagramSettingsReaderProvider();
+            if (preDiagramSettingsReader != null)
+            {
+                SetupAndFindStateMachine(inputSmBuilder, context.runnerSettings);
+                preDiagramSettingsReader.Process();
+            }
         }
         catch (Exception e)
         {
