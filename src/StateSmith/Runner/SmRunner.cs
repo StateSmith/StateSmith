@@ -399,7 +399,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     public IExperimentalAccess GetExperimentalAccess() => this;
     RunnerSettings IExperimentalAccess.Settings => context.runnerSettings;
-    InputSmBuilder IExperimentalAccess.InputSmBuilder => inputSmBuilder;
 
     /// <summary>
     /// The API in this experimental access may break often. It will eventually stabilize after enough use and feedback.
@@ -407,6 +406,5 @@ public class SmRunner : SmRunner.IExperimentalAccess
     public interface IExperimentalAccess
     {
         RunnerSettings Settings { get; }
-        InputSmBuilder InputSmBuilder { get; }
     }
 }
