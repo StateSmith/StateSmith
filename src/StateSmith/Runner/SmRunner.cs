@@ -251,6 +251,7 @@ public class SmRunner
     /// <summary>
     /// Finds and returns the state machine from the input builder, using settings.
     /// </summary>
+    /// // TODO make InputSmBuilder initialize itself rather than have SmRunner do it
     private static StateMachine SetupAndFindStateMachine(InputSmBuilder inputSmBuilder, RunnerSettings settings)
     {
         // If the inputSmBuilder already has a state machine, then use it.
