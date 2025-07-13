@@ -26,17 +26,13 @@ public class TestHelper
         return Path.GetDirectoryName(callerFilePath) + "/";
     }
 
+    // TODO remove
     public static (SmRunner, CapturingCodeFileWriter) CaptureSmRun(string diagramPath, IRenderConfig? renderConfig = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, IConsolePrinter? iConsolePrinter = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         var fakeFileSystem = new CapturingCodeFileWriter();
-        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
-        {
-            services.AddSingleton<ICodeFileWriter>(fakeFileSystem);
-            services.AddSingleton<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
-        });
-
+        var sp = CreateCapturingServiceProvider(fakeFileSystem, iConsolePrinter);
         SmRunner runner = SmRunner.Create(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceProvider: sp);
-        sp.GetRequiredService<RunnerSettings>().propagateExceptions = true; 
+        runner.Settings.propagateExceptions = true; // TODO move
         runner.Run();
 
         return (runner, fakeFileSystem);
@@ -113,6 +109,16 @@ public class TestHelper
     public static IServiceProvider CreateServiceProvider(Action<IServiceCollection>? serviceOverrides = null)
     {
         return RunnerServiceProviderFactory.CreateDefault(serviceOverrides);
+    }
+
+    public static IServiceProvider CreateCapturingServiceProvider(CapturingCodeFileWriter fakeFileSystem, IConsolePrinter? iConsolePrinter = null, Action<IServiceCollection>? serviceOverrides = null)
+    {
+        return RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
+            services.AddSingleton<ICodeFileWriter>(fakeFileSystem);
+            services.AddSingleton<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
+            serviceOverrides?.Invoke(services);
+        });
     }
 
     public static FieldInfo[] GetTypeFields<T>()
