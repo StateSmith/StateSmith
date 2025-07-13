@@ -332,7 +332,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <summary>
     /// Prints exception details and optionally dumps them to a file, then outputs a failure message.
     /// </summary>
-    public void OutputExceptionDetail(Exception e)
+    private void OutputExceptionDetail(Exception e)
     {
         exceptionPrinter.PrintException(e);
 
