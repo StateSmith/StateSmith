@@ -106,8 +106,8 @@ public class UserRemoveStateIdFuncAddCoverage
         runner.Run();
 
         // Test that we saw the expected output from your custom code generator.
-        var cCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex1.c");
-        var hCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex1.h");
+        var cCode = File.ReadAllText(settings.outputDirectory + "Ex1.c");
+        var hCode = File.ReadAllText(settings.outputDirectory + "Ex1.h");
 
         cCode.Should().NotContain("state_id_to_string");
         hCode.Should().NotContain("state_id_to_string");
