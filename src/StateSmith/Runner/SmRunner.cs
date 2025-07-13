@@ -238,7 +238,6 @@ public class SmRunner
     /// </summary>
     private void OutputCompilingDiagramMessage()
     {
-
         string filePath = context.runnerSettings.DiagramPath;
         filePath = filePathPrinter.PrintPath(filePath);
 
