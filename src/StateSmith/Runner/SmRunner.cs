@@ -65,8 +65,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     public RunnerSettings Settings => context.runnerSettings;
 
-    // private readonly IServiceProvider serviceProvider; // TODO replace all instances with Providers
-
 
     /// <summary>
     /// The context that holds the dynamic configuration (settings, renderconfig) for this run of the runner.
