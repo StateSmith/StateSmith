@@ -170,11 +170,6 @@ public class SmRunner
     {
         PrepareBeforeRun();
 
-        algoTranspilerCustomizer.Customize(context.runnerSettings.algorithmId, context.runnerSettings.transpilerId);
-
-        if (context.runnerSettings.transpilerId == TranspilerId.NotYetSet)
-            throw new ArgumentException("TranspilerId must be set before running code generation");
-
         Exception? exception = null; // TODO what is this for? This exception handling logic seems quite complicated
         try
         {
@@ -358,7 +353,6 @@ public class SmRunner
 
     /// <summary>
     /// Finalizes settings.
-    /// exists just for testing. can be removed in the future.
     /// </summary>
     private void PrepareBeforeRun()
     {
@@ -366,6 +360,12 @@ public class SmRunner
         this.context.callerFilePath.ThrowIfNull();
         ResolveFilePaths(context.runnerSettings, context.callerFilePath);
         outputInfo.outputDirectory = context.runnerSettings.outputDirectory.ThrowIfNull();
+
+        algoTranspilerCustomizer.Customize(context.runnerSettings.algorithmId, context.runnerSettings.transpilerId);
+
+        if (context.runnerSettings.transpilerId == TranspilerId.NotYetSet)
+            throw new ArgumentException("TranspilerId must be set before running code generation");
+
     }
 
 }
