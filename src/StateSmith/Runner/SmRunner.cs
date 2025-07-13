@@ -98,6 +98,8 @@ public class SmRunner
     /// <param name="outputInfo">Holds information about the output, such as file paths and names.</param>
     /// <param name="filePathPrinter">Used to print file paths in a consistent manner.</param>
     /// <param name="codeGenRunnerProvider">A function that provides an ICodeGenRunner instance.</param>
+    /// <param name="transformer">Instance of SmTransformer</param>
+    /// <param name="preDiagramSettingsReaderProvider">Reads settings from the diagram</param>
     [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
     public SmRunner(RunnerContext context, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter, Func<ICodeGenRunner> codeGenRunnerProvider, SmTransformer transformer, Func<PreDiagramSettingsReader?> preDiagramSettingsReaderProvider)
     {
