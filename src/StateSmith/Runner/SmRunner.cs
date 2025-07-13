@@ -396,7 +396,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
         AppUseDecimalPeriod();
         this.context.callerFilePath.ThrowIfNull();
         ResolveFilePaths(context.runnerSettings, context.callerFilePath);
-        OutputInfo outputInfo = serviceProvider.GetRequiredService<OutputInfo>();
         outputInfo.outputDirectory = context.runnerSettings.outputDirectory.ThrowIfNull();
     }
 
