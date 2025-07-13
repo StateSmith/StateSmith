@@ -316,8 +316,19 @@ public class TomlConfigTest_335
     [Fact]
     public void PlantumlIntegrationTest()
     {
-        var (smRunner, files) = TestHelper.CaptureSmRun(diagramPath: "TomlConfig1.plantuml");
-        smRunner.Settings.outputStateSmithVersionInfo.Should().BeFalse();
+        var files = new CapturingCodeFileWriter();
+        var sp = TestHelper.CreateCapturingServiceProvider(files);
+
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "TomlConfig1.plantuml",
+            propagateExceptions = true,
+            outputStateSmithVersionInfo = true
+        };
+        SmRunner smRunner = SmRunner.Create(settings, serviceProvider: sp);
+        smRunner.Run();
+
+        settings.outputStateSmithVersionInfo.Should().BeFalse();
 
         var hhFile = files.GetCapturesForFileName("TomlConfigEx.hh").Single();
         var incFile = files.GetCapturesForFileName("TomlConfigEx.inc").Single();
