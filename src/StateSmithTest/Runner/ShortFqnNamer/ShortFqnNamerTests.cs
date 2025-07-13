@@ -130,15 +130,19 @@ public class ShortFqnNamerTests
 
     private static void RunWithSettings(Action<StateMachine> testMethod, RunnerSettings.NameConflictResolution resolutionSetting, string DiagramPath)
     {
+        RunnerSettings settings = new()
+        {
+            DiagramPath = DiagramPath,
+            propagateExceptions = true,
+            outputDirectory = Path.GetTempPath(),
+            nameConflictResolution = resolutionSetting
+        };
         var serviceProvider = TestHelper.CreateServiceProvider();
-        SmRunner runner = SmRunner.Create(diagramPath: DiagramPath, serviceProvider: serviceProvider);
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: serviceProvider);
         var transformer = serviceProvider.GetRequiredService<SmTransformer>();
         transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_NameConflictResolution, (TransformationStep)HierachicalGraphToSmConverter.Convert);
         transformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)testMethod);
 
-        runner.Settings.propagateExceptions = true; // for unit testing
-        runner.Settings.outputDirectory = Path.GetTempPath(); // for unit testing
-        runner.Settings.nameConflictResolution = resolutionSetting;
         runner.Run();
     }
 
@@ -168,13 +172,17 @@ public class ShortFqnNamerTests
     [Fact]
     public void TestGraphConverter()
     {
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "HierachicalGraphConverterEx1.drawio",
+            propagateExceptions = true,
+            outputDirectory = Path.GetTempPath(),
+        };
         var serviceProvider = TestHelper.CreateServiceProvider();
-        SmRunner runner = SmRunner.Create(diagramPath: "HierachicalGraphConverterEx1.drawio", serviceProvider: serviceProvider);
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: serviceProvider);
         var transformer = serviceProvider.GetRequiredService<SmTransformer>();
         transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)HierachicalGraphToSmConverter.Convert);
         transformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)Test);
-        runner.Settings.propagateExceptions = true; // for unit testing
-        runner.Settings.outputDirectory = Path.GetTempPath(); // for unit testing
         runner.Run();
 
         static void Test(StateMachine sm)
