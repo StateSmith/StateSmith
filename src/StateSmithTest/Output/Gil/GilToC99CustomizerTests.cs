@@ -48,7 +48,16 @@ public class GilToC99CustomizerTests
     [Fact]
     public void GccIntegrationTest()
     {
-        var (smRunner, capturingWriter) = TestHelper.CaptureSmRun("ExGil1.drawio", transpilerId: TranspilerId.C99);
+        var capturingWriter = new CapturingCodeFileWriter();
+        var sp = TestHelper.CreateCapturingServiceProvider(capturingWriter);
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "ExGil1.drawio",
+            transpilerId = TranspilerId.C99,
+            propagateExceptions = true,
+        };
+        SmRunner smRunner = SmRunner.Create(settings, serviceProvider: sp);
+        smRunner.Run();
 
         // Note that draw.io file already contains the equivalent of the below
         //class ExampleRenderConfig : IRenderConfigC
