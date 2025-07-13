@@ -66,7 +66,7 @@ public class SmRunnerTest
     {
         var runner = SmRunner.Create(diagramPath: "SomeDiagram.drawio", serviceProvider: serviceProvider);
         runner.Settings.filePathPrintBase = ThisDir;
-        runner.PrepareBeforeRun();
+        Assert.Throws<FinishedWithFailureException>(() => runner.Run()); // This is because the diagram file does not exist and can be ignored.
         runner.Settings.filePathPrintBase.Should().Be(ThisDir + dirSep);
     }
 
@@ -75,7 +75,7 @@ public class SmRunnerTest
     {
         var runner = SmRunner.Create(diagramPath: "SomeDiagram.drawio", serviceProvider: serviceProvider);
         runner.Settings.filePathPrintBase = ".";
-        runner.PrepareBeforeRun();
+        Assert.Throws<FinishedWithFailureException>(() => runner.Run()); // This is because the diagram file does not exist and can be ignored.
         runner.Settings.filePathPrintBase.Should().Be(Path.GetFullPath(GetThisDir()) + dirSep + "." + dirSep);
     }
 
@@ -84,7 +84,7 @@ public class SmRunnerTest
     {
         var runner = SmRunner.Create(diagramPath: "SomeDiagram.drawio", serviceProvider: serviceProvider);
         runner.Settings.filePathPrintBase = "..";
-        runner.PrepareBeforeRun();
+        Assert.Throws<FinishedWithFailureException>(() => runner.Run()); // This is because the diagram file does not exist and can be ignored.
         runner.Settings.filePathPrintBase.Should().Be(Path.GetFullPath(GetThisDir()) + dirSep + ".." + dirSep);
     }
 

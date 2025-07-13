@@ -360,7 +360,7 @@ public class SmRunner
     /// Finalizes settings.
     /// exists just for testing. can be removed in the future.
     /// </summary>
-    internal void PrepareBeforeRun()
+    private void PrepareBeforeRun()
     {
         AppUseDecimalPeriod();
         this.context.callerFilePath.ThrowIfNull();
