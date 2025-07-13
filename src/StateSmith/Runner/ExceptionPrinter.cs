@@ -11,21 +11,15 @@ namespace StateSmith.Runner;
 
 public class ExceptionPrinter
 {
-    readonly IConsolePrinter consolePrinter; // TODO private?
+    readonly IConsolePrinter consolePrinter;
+    readonly RunnerSettings runnerSettings;
 
-    /// <summary>
-    /// Dumps exception details to a file.
-    /// Generally in the same directory as the diagram file.
-    /// To enable, you'll generally want to get the ExceptionPrinter singleton from the service provider
-    /// and set the 'dumpErrorsToFile' property to true.
-    /// </summary>
-    bool dumpErrorsToFile;
     const string SsGrammarRelatedHelpMsg = ">>>> RELATED HELP <<<<\nhttps://github.com/StateSmith/StateSmith/issues/174";
 
-    public ExceptionPrinter(IConsolePrinter consolePrinter, bool dumpErrorsToFile = false)
+    public ExceptionPrinter(IConsolePrinter consolePrinter, RunnerSettings runnerSettings)
     {
         this.consolePrinter = consolePrinter;
-        this.dumpErrorsToFile = dumpErrorsToFile;
+        this.runnerSettings = runnerSettings;
     }
 
     public void PrintException(System.Exception exception, string? dumpDetailsFilePath = null)
@@ -36,7 +30,7 @@ public class ExceptionPrinter
         consolePrinter.WriteErrorLine(message);
 
         // https://github.com/StateSmith/StateSmith/issues/82
-        if (dumpErrorsToFile && dumpDetailsFilePath != null)
+        if (runnerSettings.dumpErrorsToFile && dumpDetailsFilePath != null)
         {
             File.WriteAllText(dumpDetailsFilePath, message);
             consolePrinter.WriteErrorLine("Exception details dumped to file: " + dumpDetailsFilePath);
