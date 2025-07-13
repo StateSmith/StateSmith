@@ -307,7 +307,7 @@ public class SmRunner
     /// Force application number parsing to use periods for decimal points instead of commas.
     /// Fix for https://github.com/StateSmith/StateSmith/issues/159
     /// </summary>
-    private void AppUseDecimalPeriod()
+    private static void AppUseDecimalPeriod()
     {
         System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
         System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
