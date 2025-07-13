@@ -65,7 +65,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     public RunnerSettings Settings => context.runnerSettings;
 
-    private readonly IServiceProvider serviceProvider; // TODO replace all instances with Providers
+    // private readonly IServiceProvider serviceProvider; // TODO replace all instances with Providers
 
 
     /// <summary>
@@ -84,13 +84,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
     private readonly FilePathPrinter filePathPrinter;
     private readonly Func<ICodeGenRunner> codeGenRunnerProvider;
     private readonly Func<PreDiagramSettingsReader?> preDiagramSettingsReaderProvider;
-    
+
 
     /// <summary>
     /// Constructor. Mostly intended to be used by DI.
     /// </summary>
     /// <param name="context">This context object stores the runtime configuration for a given run </param>
-    /// <param name="serviceProvider">Dependency injection service provider</param>
     /// <param name="inputSmBuilder">The builder that will convert the input diagram into a StateMachine vertex.</param>
     /// <param name="exceptionPrinter">Used to print exceptions.</param>
     /// <param name="consolePrinter">Used to print messages to the console.</param>
@@ -101,10 +100,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="filePathPrinter">Used to print file paths in a consistent manner.</param>
     /// <param name="codeGenRunnerProvider">A function that provides an ICodeGenRunner instance.</param>
     [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
-    public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter, Func<ICodeGenRunner> codeGenRunnerProvider, SmTransformer transformer, Func<PreDiagramSettingsReader?> preDiagramSettingsReaderProvider)
+    public SmRunner(RunnerContext context, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter, Func<ICodeGenRunner> codeGenRunnerProvider, SmTransformer transformer, Func<PreDiagramSettingsReader?> preDiagramSettingsReaderProvider)
     {
         this.context = context;
-        this.serviceProvider = serviceProvider;
         this.inputSmBuilder = inputSmBuilder;
         this.exceptionPrinter = exceptionPrinter;
         this.consolePrinter = consolePrinter;
@@ -131,7 +129,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     [Obsolete("This constructor is intended for use by legacy CSX scripts. Use SmRunner.Create() instead.")]   
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, IServiceProvider? serviceProvider = null)
     {
-        this.serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
+        var serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
         this.context = this.serviceProvider.GetRequiredService<RunnerContext>();
         this.context.runnerSettings = settings;
         this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
