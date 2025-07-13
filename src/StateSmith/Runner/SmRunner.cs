@@ -170,7 +170,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
         PrepareBeforeRun();
 
         algoTranspilerCustomizer.Customize(context.runnerSettings.algorithmId, context.runnerSettings.transpilerId);
-        bool preDiagramBasedSettingsAlreadyApplied = serviceProvider.GetService<PreDiagramSettingsReader>() != null;
 
         if (context.runnerSettings.transpilerId == TranspilerId.NotYetSet)
             throw new ArgumentException("TranspilerId must be set before running code generation");
@@ -178,7 +177,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         Exception? exception = null; // TODO what is this for? This exception handling logic seems quite complicated
         try
         {
-            if (preDiagramBasedSettingsAlreadyApplied)
+            if (serviceProvider.GetService<PreDiagramSettingsReader>() != null)
             {
                 // we need to prevent diagram settings from being applied twice
                 DiagramBasedSettingsPreventer.Process(inputSmBuilder.transformer);
