@@ -7,11 +7,10 @@ namespace StateSmith.Runner;
 
 /// <summary>
 /// This context object stores the runtime configuration for a given run.
-/// Automatically computes RenderConfigAllVars from the renderConfig and runnerSettings.
+/// Automatically generates RenderConfigAllVars from the renderConfig and runnerSettings.
 /// </summary>
 public class RunnerContext
 {
-    // TODO disable setter and make it readonly?
     public RenderConfigAllVars renderConfigAllVars;
     
     public RunnerSettings runnerSettings
