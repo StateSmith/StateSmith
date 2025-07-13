@@ -354,6 +354,7 @@ public class SmRunner
     /// <summary>
     /// Finalizes settings.
     /// </summary>
+    /// // TODO move PrepareBeforeRun into constructor instead of during Run() once SmRunner.Settings is no longer exposed.
     private void PrepareBeforeRun()
     {
         AppUseDecimalPeriod();
