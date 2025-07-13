@@ -278,10 +278,10 @@ public class SmRunner
     }
     private static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
     {
-        var relativeDirectory = System.IO.Path.GetDirectoryName(callingFilePath).ThrowIfNull();
+        var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
         settings.DiagramPath = PathUtils.EnsurePathAbsolute(settings.DiagramPath, relativeDirectory);
 
-        settings.outputDirectory ??= System.IO.Path.GetDirectoryName(settings.DiagramPath).ThrowIfNull();
+        settings.outputDirectory ??= Path.GetDirectoryName(settings.DiagramPath).ThrowIfNull();
         settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
 
         settings.filePathPrintBase ??= relativeDirectory;
