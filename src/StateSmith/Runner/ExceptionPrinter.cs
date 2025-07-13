@@ -6,20 +6,21 @@ using StateSmith.Input;
 using System.Text;
 using System.IO;
 using StateSmith.SmGraph.Validation;
+using System;
 
 namespace StateSmith.Runner;
 
 public class ExceptionPrinter
 {
     readonly IConsolePrinter consolePrinter;
-    readonly RunnerSettings runnerSettings;
+    readonly Func<bool> dumpErrorsToFileProvider;
 
     const string SsGrammarRelatedHelpMsg = ">>>> RELATED HELP <<<<\nhttps://github.com/StateSmith/StateSmith/issues/174";
 
-    public ExceptionPrinter(IConsolePrinter consolePrinter, RunnerSettings runnerSettings)
+    public ExceptionPrinter(IConsolePrinter consolePrinter, Func<bool> dumpErrorsToFileProvider)
     {
         this.consolePrinter = consolePrinter;
-        this.runnerSettings = runnerSettings;
+        this.dumpErrorsToFileProvider = dumpErrorsToFileProvider;
     }
 
     public void PrintException(System.Exception exception, string? dumpDetailsFilePath = null)
@@ -30,7 +31,8 @@ public class ExceptionPrinter
         consolePrinter.WriteErrorLine(message);
 
         // https://github.com/StateSmith/StateSmith/issues/82
-        if (runnerSettings.dumpErrorsToFile && dumpDetailsFilePath != null)
+        var dumpErrorsToFile = dumpErrorsToFileProvider();
+        if (dumpErrorsToFile && dumpDetailsFilePath != null)
         {
             File.WriteAllText(dumpDetailsFilePath, message);
             consolePrinter.WriteErrorLine("Exception details dumped to file: " + dumpDetailsFilePath);

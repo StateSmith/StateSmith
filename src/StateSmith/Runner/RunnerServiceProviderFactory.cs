@@ -89,7 +89,10 @@ public class RunnerServiceProviderFactory
         services.AddSingleton<IExpander, Expander>();
         services.AddSingleton<InputSmBuilder>();
         services.AddSingleton<IConsolePrinter, ConsolePrinter>();
-        services.AddSingleton<ExceptionPrinter>();
+        services.AddSingleton<ExceptionPrinter>((sp) => new ExceptionPrinter(
+            sp.GetRequiredService<IConsolePrinter>(),
+            () => sp.GetRequiredService<RunnerSettings>().dumpErrorsToFile
+        ));
         services.AddSingleton<ICodeFileWriter, CodeFileWriter>();
         services.AddSingleton<PreDiagramSettingsReader>();
         services.AddSingleton<Func<PreDiagramSettingsReader?>>((sp) => new Func<PreDiagramSettingsReader?>(() => sp.GetService<PreDiagramSettingsReader>()));
