@@ -341,6 +341,7 @@ public class SmRunner
         consolePrinter.WriteErrorLine($"Related error info/debug settings: 'dumpErrorsToFile', 'propagateExceptions'. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md .");
 
         // https://github.com/StateSmith/StateSmith/issues/82
+        // TODO move this to ExceptionPrinter
         if (context.runnerSettings.dumpErrorsToFile)
         {
             var errorDetailFilePath = context.runnerSettings.DiagramPath + ".err.txt";
