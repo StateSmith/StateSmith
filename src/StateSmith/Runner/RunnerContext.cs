@@ -6,14 +6,41 @@ using StateSmith.Output.UserConfig.AutoVars;
 namespace StateSmith.Runner;
 
 /// <summary>
-/// This context object stores the runtime configuration for a given run
-/// of SmRunner.
+/// This context object stores the runtime configuration for a given run.
+/// Automatically computes RenderConfigAllVars from the renderConfig and runnerSettings.
 /// </summary>
 public class RunnerContext
 {
-    public RunnerSettings runnerSettings;
+    // TODO disable setter and make it readonly?
     public RenderConfigAllVars renderConfigAllVars;
-    public IRenderConfig renderConfig;
+    
+    public RunnerSettings runnerSettings
+    {
+        get => _runnerSettings;
+        set
+        {
+            var tmp = _runnerSettings.autoDeIndentAndTrimRenderConfigItems;
+            _runnerSettings = value;
+            if (tmp != value.autoDeIndentAndTrimRenderConfigItems)
+            {
+                // If the autoDeIndentAndTrimRenderConfigItems setting changes, we need to update the renderConfigAllVars
+                renderConfigAllVars.SetFrom(renderConfig, _runnerSettings.autoDeIndentAndTrimRenderConfigItems);
+            }
+        }
+    }
+
+    public IRenderConfig renderConfig
+    {
+        get => _renderConfig;
+        set
+        {
+            _renderConfig = value;
+            renderConfigAllVars.SetFrom(value, runnerSettings.autoDeIndentAndTrimRenderConfigItems);
+        }
+    }
+
+    private RunnerSettings _runnerSettings;
+    private IRenderConfig _renderConfig;
 
     /// The path to the file that called a <see cref="SmRunner"/> constructor. Allows for convenient relative path
     /// figuring for regular C# projects and C# scripts (.csx).
@@ -22,8 +49,8 @@ public class RunnerContext
 
     public RunnerContext()
     {
-        runnerSettings = new();
+        _runnerSettings = new();
         renderConfigAllVars = new();
-        renderConfig = new DummyIRenderConfig();
+        _renderConfig = new DummyIRenderConfig();
     }
 }

@@ -6,7 +6,6 @@ using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using System;
 using StateSmith.SmGraph;
-using StateSmith.Output.UserConfig.AutoVars;
 using StateSmith.Output.Sim;
 
 namespace StateSmith.Runner;
@@ -117,7 +116,7 @@ public class SmRunner
         this.preDiagramSettingsReaderProvider = preDiagramSettingsReaderProvider;
 
         ResolveFilePaths(context.runnerSettings, context.callerFilePath);
-        SetupRenderConfigs();
+        ReadDiagramRenderConfigs();
     }
 
     /// <summary>
@@ -136,7 +135,7 @@ public class SmRunner
         this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
         this.context.callerFilePath = callerFilePath.ThrowIfNull();
         ResolveFilePaths(settings, this.context.callerFilePath);
-        SetupRenderConfigs();
+        ReadDiagramRenderConfigs();
     }
 
     /// <summary>
@@ -314,9 +313,9 @@ public class SmRunner
         System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
     }
 
-    private void SetupRenderConfigs()
+    private void ReadDiagramRenderConfigs()
     {
-        context.renderConfigAllVars.SetFrom(context.renderConfig, context.runnerSettings.autoDeIndentAndTrimRenderConfigItems);
+        // TODO add a note about when this is undone. Presumably the transformer pass in Run does not have this set?
         ((StandardSmTransformer)transformer).onlyPreDiagramSettings = true;
 
         try
