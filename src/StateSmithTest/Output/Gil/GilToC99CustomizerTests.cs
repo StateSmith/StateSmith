@@ -67,8 +67,8 @@ public class GilToC99CustomizerTests
         //    string IRenderConfigC.HFileExtension => ".hpp";
         //}
 
-        var cppFile = capturingWriter.captures.GetValues(smRunner.Settings.outputDirectory + "ExGil1.cpp").Single();
-        var hppFile = capturingWriter.captures.GetValues(smRunner.Settings.outputDirectory + "ExGil1.hpp").Single();
+        var cppFile = capturingWriter.captures.GetValues(settings.outputDirectory + "ExGil1.cpp").Single();
+        var hppFile = capturingWriter.captures.GetValues(settings.outputDirectory + "ExGil1.hpp").Single();
 
         hppFile.code.Should().Contain("typedef enum __attribute__((packed)) ExGil1_StateId");
         hppFile.code.Should().Contain("typedef enum __attribute__((packed)) ExGil1_EventId");
