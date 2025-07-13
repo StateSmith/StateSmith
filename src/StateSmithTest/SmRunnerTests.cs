@@ -63,9 +63,16 @@ public class SmRunnerTests
             services.AddSingleton<IConsolePrinter>(fakeConsole);
         });
 
-        SmRunner runner = SmRunner.Create(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProvider: sp);
-        runner.Settings.filePathPrintBase = tempPath;
-        runner.Settings.simulation.enableGeneration = false; // TODO needed? why needed?
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "test-input/drawio/Design1Sm.drawio.svg",
+            outputDirectory = tempPath,
+            filePathPrintBase = tempPath,
+            simulation = {
+                enableGeneration = false, // TODO why needed?
+            },
+        };
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
         runner.Run();
 
         // have to modify output so that test doesn't rely on temp path because that will vary
