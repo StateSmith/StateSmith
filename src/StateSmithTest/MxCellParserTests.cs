@@ -171,8 +171,12 @@ public class MxCellParserTests
 
         Action a = () =>
         {
-            SmRunner smRunner = SmRunner.Create(diagramPath: tempFileName);
-            smRunner.Settings.propagateExceptions = true;
+            RunnerSettings settings = new()
+            {
+                DiagramPath = tempFileName,
+                propagateExceptions = true,
+            };
+            SmRunner smRunner = SmRunner.Create(settings);
             smRunner.Run();
         };
 
