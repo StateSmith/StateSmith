@@ -22,11 +22,13 @@ public class Ex1
             services.AddSingleton(myCodeGenSettings);
         });
 
-        SmRunner runner = SmRunner.Create(diagramPath: "Ex1.drawio.svg", serviceProvider: sp);
-
-        // adjust settings because we are unit testing. Normally wouldn't do below.
-        runner.Settings.propagateExceptions = true;
-        runner.Settings.outputDirectory = Path.GetTempPath();
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "Ex1.drawio.svg",
+            propagateExceptions = true,
+            outputDirectory = Path.GetTempPath(),
+        };
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
 
         // run StateSmith with your custom code generator!!!
         runner.Run();
