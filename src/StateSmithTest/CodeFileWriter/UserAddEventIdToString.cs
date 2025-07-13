@@ -85,18 +85,21 @@ public class UserAddEventIdToString
             services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();
         });
 
-        SmRunner runner = SmRunner.Create(diagramPath: "Ex2.drawio.svg", serviceProvider: sp);
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "Ex2.drawio.svg",
+            propagateExceptions = true,
+            outputStateSmithVersionInfo = false,
+        };
 
-        // adjust settings because we are unit testing. Normally wouldn't do below.
-        runner.Settings.propagateExceptions = true;
-        runner.Settings.outputStateSmithVersionInfo = false;
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
 
         // run StateSmith with our custom code file writer
         runner.Run();
 
         // Test that we saw the expected output from your custom code generator.
-        var cCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex2.c");
-        var hCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex2.h");
+        var cCode = File.ReadAllText(settings.outputDirectory + "Ex2.c");
+        var hCode = File.ReadAllText(settings.outputDirectory + "Ex2.h");
 
         cCode.Should().Contain("_event_id_to_string");
         hCode.Should().Contain("_event_id_to_string");
