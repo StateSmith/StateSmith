@@ -14,7 +14,7 @@ namespace StateSmith.Runner;
 /// <summary>
 /// Builds a single state machine and runs code generation.
 /// </summary>
-public class SmRunner : SmRunner.IExperimentalAccess
+public class SmRunner
 {    
     /// <summary>
     /// Convenience method to create a new instance of SmRunner without constructing a separate RunnerSettings object.
@@ -63,6 +63,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     }
 
 
+    // TODO remove
     public RunnerSettings Settings => context.runnerSettings;
 
 
@@ -394,17 +395,4 @@ public class SmRunner : SmRunner.IExperimentalAccess
         outputInfo.outputDirectory = context.runnerSettings.outputDirectory.ThrowIfNull();
     }
 
-    // ----------- experimental access  -------------
-    // exists just for now to help make it clear StateSmith API that is likely to change soon.
-
-    public IExperimentalAccess GetExperimentalAccess() => this;
-    RunnerSettings IExperimentalAccess.Settings => context.runnerSettings;
-
-    /// <summary>
-    /// The API in this experimental access may break often. It will eventually stabilize after enough use and feedback.
-    /// </summary>
-    public interface IExperimentalAccess
-    {
-        RunnerSettings Settings { get; }
-    }
 }
