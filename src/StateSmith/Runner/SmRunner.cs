@@ -325,6 +325,7 @@ public class SmRunner
         }
         catch (Exception e)
         {
+            // TODO do we still need to output here? Won't it get output when the exception is caught?
             OutputExceptionDetail(e);
             throw;
         }
