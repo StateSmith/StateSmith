@@ -40,6 +40,7 @@ public class RenderConfigAllVars
 
     /// <summary>
     /// NOTE! Field name used with reflection for toml parsing.
+    /// TODO if RenderConfigAllVars is just a copy of iRenderConfig, why do we need both?
     /// </summary>
     public readonly RenderConfigPythonVars Python;
 
