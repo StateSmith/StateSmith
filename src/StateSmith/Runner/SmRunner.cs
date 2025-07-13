@@ -63,10 +63,6 @@ public class SmRunner
     }
 
 
-    // TODO remove
-    public RunnerSettings Settings => context.runnerSettings;
-
-
     /// <summary>
     /// The context that holds the dynamic configuration (settings, renderconfig) for this run of the runner.
     /// </summary>
@@ -197,8 +193,6 @@ public class SmRunner
             if (context.runnerSettings.simulation.enableGeneration)
             {
                 var simWebGenerator = simWebGeneratorProvider();
-                simWebGenerator.RunnerSettings.propagateExceptions = context.runnerSettings.propagateExceptions;
-                simWebGenerator.RunnerSettings.outputStateSmithVersionInfo = context.runnerSettings.outputStateSmithVersionInfo;
                 simWebGenerator.Generate(outputDir: context.runnerSettings.simulation.outputDirectory.ThrowIfNull());
             }
 

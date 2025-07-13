@@ -22,8 +22,6 @@ namespace StateSmith.Output.Sim;
 
 public class SimWebGenerator
 {
-    public RunnerSettings RunnerSettings => runner.Settings;
-
     private readonly ICodeFileWriter codeFileWriter;
     MermaidEdgeTracker mermaidEdgeTracker = new();
     TrackingExpander trackingExpander = new();
