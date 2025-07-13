@@ -46,7 +46,7 @@ public class SmRunner
     /// <param name="serviceProvider">Optional. Provides a way to override registered dependency injection services.</param>
     /// <param name="callerFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
     /// <returns></returns>
-    public static SmRunner Create(RunnerSettings settings, IRenderConfig? renderConfig, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
+    public static SmRunner Create(RunnerSettings settings, IRenderConfig? renderConfig = null, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         var sp = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
 
