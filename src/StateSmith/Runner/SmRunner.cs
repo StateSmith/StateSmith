@@ -7,6 +7,7 @@ using StateSmith.Common;
 using System;
 using StateSmith.SmGraph;
 using StateSmith.Output.Sim;
+using System.IO;
 
 namespace StateSmith.Runner;
 
@@ -325,7 +326,6 @@ public class SmRunner
         }
         catch (Exception e)
         {
-            // TODO do we still need to output here? Won't it get output when the exception is caught?
             OutputExceptionDetail(e);
             throw;
         }
@@ -336,19 +336,11 @@ public class SmRunner
     /// </summary>
     private void OutputExceptionDetail(Exception e)
     {
-        exceptionPrinter.PrintException(e);
+        var optionalErrorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), context.runnerSettings.DiagramPath + ".err.txt");
+
+        exceptionPrinter.PrintException(e, dumpDetailsFilePath: optionalErrorDetailFilePath);
 
         consolePrinter.WriteErrorLine($"Related error info/debug settings: 'dumpErrorsToFile', 'propagateExceptions'. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md .");
-
-        // https://github.com/StateSmith/StateSmith/issues/82
-        // TODO move this to ExceptionPrinter
-        if (context.runnerSettings.dumpErrorsToFile)
-        {
-            var errorDetailFilePath = context.runnerSettings.DiagramPath + ".err.txt";
-            errorDetailFilePath = System.IO.Path.GetRelativePath(System.IO.Directory.GetCurrentDirectory(), errorDetailFilePath);
-            exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
-            consolePrinter.WriteErrorLine("Exception details dumped to file: " + errorDetailFilePath);
-        }
 
         this.consolePrinter.OutputStageMessage("Finished with failure.");
 

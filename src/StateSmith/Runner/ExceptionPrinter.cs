@@ -11,26 +11,36 @@ namespace StateSmith.Runner;
 
 public class ExceptionPrinter
 {
-    readonly IConsolePrinter consolePrinter;
+    readonly IConsolePrinter consolePrinter; // TODO private?
+
+    /// <summary>
+    /// Dumps exception details to a file.
+    /// Generally in the same directory as the diagram file.
+    /// To enable, you'll generally want to get the ExceptionPrinter singleton from the service provider
+    /// and set the 'dumpErrorsToFile' property to true.
+    /// </summary>
+    bool dumpErrorsToFile;
     const string SsGrammarRelatedHelpMsg = ">>>> RELATED HELP <<<<\nhttps://github.com/StateSmith/StateSmith/issues/174";
 
-    public ExceptionPrinter(IConsolePrinter consolePrinter)
+    public ExceptionPrinter(IConsolePrinter consolePrinter, bool dumpErrorsToFile = false)
     {
         this.consolePrinter = consolePrinter;
+        this.dumpErrorsToFile = dumpErrorsToFile;
     }
 
-    public void DumpExceptionDetails(System.Exception exception, string filePath)
-    {
-        StringBuilder sb = new();
-        BuildExceptionDetails(sb, exception, additionalDetail: true);
-        File.WriteAllText(filePath, sb.ToString());
-    }
-
-    public void PrintException(System.Exception exception)
+    public void PrintException(System.Exception exception, string? dumpDetailsFilePath = null)
     {
         StringBuilder sb = new();
         BuildExceptionDetails(sb, exception);
-        consolePrinter.WriteErrorLine(sb.ToString());
+        var message = sb.ToString();
+        consolePrinter.WriteErrorLine(message);
+
+        // https://github.com/StateSmith/StateSmith/issues/82
+        if (dumpErrorsToFile && dumpDetailsFilePath != null)
+        {
+            File.WriteAllText(dumpDetailsFilePath, message);
+            consolePrinter.WriteErrorLine("Exception details dumped to file: " + dumpDetailsFilePath);
+        }
     }
 
     public void BuildExceptionDetails(StringBuilder sb, System.Exception exception, bool additionalDetail = false, int depth = 0)
