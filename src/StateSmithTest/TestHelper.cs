@@ -36,7 +36,7 @@ public class TestHelper
         });
 
         SmRunner runner = SmRunner.Create(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceProvider: sp);
-        runner.GetExperimentalAccess().Settings.propagateExceptions = true;
+        sp.GetRequiredService<RunnerSettings>().propagateExceptions = true; 
         runner.Run();
 
         return (runner, fakeFileSystem);
