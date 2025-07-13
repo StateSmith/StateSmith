@@ -79,7 +79,8 @@ public class RunnerServiceProviderFactory
             sp.GetRequiredService<OutputInfo>(),
             sp.GetRequiredService<FilePathPrinter>(),
             sp.GetRequiredService<Func<ICodeGenRunner>>(),
-            sp.GetRequiredService<SmTransformer>()
+            sp.GetRequiredService<SmTransformer>(),
+            sp.GetRequiredService<Func<PreDiagramSettingsReader?>>()
         ));
         services.AddSingleton<Func<SmRunner>>((sp) => new Func<SmRunner>(() => sp.GetRequiredService<SmRunner>()));
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -92,6 +93,7 @@ public class RunnerServiceProviderFactory
         services.AddSingleton<ExceptionPrinter>();
         services.AddSingleton<ICodeFileWriter, CodeFileWriter>();
         services.AddSingleton<PreDiagramSettingsReader>();
+        services.AddSingleton<Func<PreDiagramSettingsReader?>>((sp) => new Func<PreDiagramSettingsReader?>(() => sp.GetService<PreDiagramSettingsReader>()));
 
         services.AddSingleton<StateMachineProvider>();
         services.AddSingleton<IStateMachineProvider>((s) => s.GetRequiredService<StateMachineProvider>());

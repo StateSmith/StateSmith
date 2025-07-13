@@ -83,6 +83,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     private readonly OutputInfo outputInfo;
     private readonly FilePathPrinter filePathPrinter;
     private readonly Func<ICodeGenRunner> codeGenRunnerProvider;
+    private readonly Func<PreDiagramSettingsReader?> preDiagramSettingsReaderProvider;
     
 
     /// <summary>
@@ -100,7 +101,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="filePathPrinter">Used to print file paths in a consistent manner.</param>
     /// <param name="codeGenRunnerProvider">A function that provides an ICodeGenRunner instance.</param>
     [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
-    public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter, Func<ICodeGenRunner> codeGenRunnerProvider, SmTransformer transformer)
+    public SmRunner(RunnerContext context, IServiceProvider serviceProvider, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter, Func<ICodeGenRunner> codeGenRunnerProvider, SmTransformer transformer, Func<PreDiagramSettingsReader?> preDiagramSettingsReaderProvider)
     {
         this.context = context;
         this.serviceProvider = serviceProvider;
@@ -114,6 +115,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         this.filePathPrinter = filePathPrinter;
         this.codeGenRunnerProvider = codeGenRunnerProvider;
         this.transformer = transformer;
+        this.preDiagramSettingsReaderProvider = preDiagramSettingsReaderProvider;
 
         ResolveFilePaths(context.runnerSettings, context.callerFilePath);
         SetupRenderConfigs();
@@ -177,7 +179,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         Exception? exception = null; // TODO what is this for? This exception handling logic seems quite complicated
         try
         {
-            if (serviceProvider.GetService<PreDiagramSettingsReader>() != null)
+            if (preDiagramSettingsReaderProvider() != null)
             {
                 // we need to prevent diagram settings from being applied twice
                 DiagramBasedSettingsPreventer.Process(inputSmBuilder.transformer);
@@ -323,8 +325,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             serviceProvider.GetRequiredService<StandardSmTransformer>().onlyPreDiagramSettings = true;
 
             // Note that this may throw if the diagram is invalid.
-            PreDiagramSettingsReader? preDiagramSettingsReader = serviceProvider.GetService<PreDiagramSettingsReader>();
-            preDiagramSettingsReader?.Process();
+            preDiagramSettingsReaderProvider()?.Process();
         }
         catch (Exception e)
         {
