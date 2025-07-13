@@ -25,8 +25,13 @@ public class AlgoBalanced1SettingsTests
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
 
-        SmRunner runner = SmRunner.Create(diagramPath: "ExBc1.drawio", transpilerId:TranspilerId.CSharp, serviceProvider: sp);
-        runner.Settings.propagateExceptions = true;
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "ExBc1.drawio",
+            transpilerId = TranspilerId.CSharp,
+            propagateExceptions = true,
+        };
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
         runner.Run();
 
         capturedFile.LastCode.Should().Contain("public static string StateIdToString(");
@@ -42,9 +47,14 @@ public class AlgoBalanced1SettingsTests
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
 
-        SmRunner runner = SmRunner.Create(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: sp);
-        runner.Settings.propagateExceptions = true;
-        runner.Settings.algoBalanced1.outputEventIdToStringFunction = false; // Here's the setting you want
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "ExBc1.drawio",
+            transpilerId = TranspilerId.CSharp,
+            propagateExceptions = true,
+            algoBalanced1 = { outputEventIdToStringFunction = false }
+        };
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
         runner.Run();
 
         capturedFile.LastCode.Should().Contain("public static string StateIdToString");
@@ -60,9 +70,14 @@ public class AlgoBalanced1SettingsTests
             services.AddSingleton<ICodeFileWriter>(capturedFile);
         });
 
-        SmRunner runner = SmRunner.Create(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp, serviceProvider: sp);
-        runner.Settings.propagateExceptions = true;
-        runner.Settings.algoBalanced1.outputStateIdToStringFunction = false; // Here's the setting you want
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "ExBc1.drawio",
+            transpilerId = TranspilerId.CSharp,
+            propagateExceptions = true,
+            algoBalanced1 = { outputStateIdToStringFunction = false }
+        };
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
         runner.Run();
 
         capturedFile.LastCode.Should().NotContain("public static string StateIdToString");
