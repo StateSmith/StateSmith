@@ -26,13 +26,12 @@ public class TestHelper
         return Path.GetDirectoryName(callerFilePath) + "/";
     }
 
-    // TODO remove
     public static (SmRunner, CapturingCodeFileWriter) CaptureSmRun(string diagramPath, IRenderConfig? renderConfig = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, IConsolePrinter? iConsolePrinter = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         var fakeFileSystem = new CapturingCodeFileWriter();
         var sp = CreateCapturingServiceProvider(fakeFileSystem, iConsolePrinter);
         SmRunner runner = SmRunner.Create(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceProvider: sp);
-        runner.Settings.propagateExceptions = true; // TODO move
+        sp.GetRequiredService<RunnerSettings>().propagateExceptions = true;
         runner.Run();
 
         return (runner, fakeFileSystem);
