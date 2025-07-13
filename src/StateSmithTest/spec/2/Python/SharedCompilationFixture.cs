@@ -25,7 +25,8 @@ public class SharedCompilationFixture
 
         var action = (SmRunner runner) =>
         {
-            runner.Settings.outputGilCodeAlways = true;
+            var settings = serviceProvider.GetRequiredService<RunnerSettings>();
+            settings.outputGilCodeAlways = true;
 
             // NOTE!!! This runs before any other transformations so we can be confident that the code we are modifying is in the original form
             // from the diagram and not something that was added by a transformation (like history vertices).
