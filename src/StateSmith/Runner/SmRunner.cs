@@ -276,6 +276,9 @@ public class SmRunner
 
         return inputSmBuilder.GetStateMachine();
     }
+
+    // TODO the callingFilePath introduces additional complexity, I think just to support CSX scripts.
+    // Would it be almost as good to just use the path to the diagram file?
     private static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
     {
         var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
