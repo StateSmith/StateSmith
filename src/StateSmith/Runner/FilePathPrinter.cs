@@ -14,7 +14,7 @@ public class FilePathPrinter
 
     /// <summary>
     /// </summary>
-    /// <param name="filePathPrintBase">Set to a blank string to output full absolute paths</param>
+    /// <param name="filePathPrintBaseProvider">Set to a blank string to output full absolute paths</param>
     public FilePathPrinter(Func<string> filePathPrintBaseProvider)
     {
         this.filePathPrintBaseProvider = filePathPrintBaseProvider;
