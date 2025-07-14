@@ -82,7 +82,7 @@ public class SmRunner
 
 
     /// <summary>
-    /// Constructor. Mostly intended to be used by DI.
+    /// Constructor. Mostly intended to be used by DI, you probably want to use SmRunner.Create() instead.
     /// </summary>
     /// <param name="context">This context object stores the runtime configuration for a given run </param>
     /// <param name="inputSmBuilder">The builder that will convert the input diagram into a StateMachine vertex.</param>
@@ -96,7 +96,6 @@ public class SmRunner
     /// <param name="codeGenRunnerProvider">A function that provides an ICodeGenRunner instance.</param>
     /// <param name="transformer">Instance of SmTransformer</param>
     /// <param name="preDiagramSettingsReaderProvider">Reads settings from the diagram</param>
-    [Obsolete("This constructor is meant for internal use only. Use SmRunner.Create() instead.")]
     public SmRunner(RunnerContext context, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter, Func<ICodeGenRunner> codeGenRunnerProvider, SmTransformer transformer, Func<PreDiagramSettingsReader?> preDiagramSettingsReaderProvider)
     {
         this.context = context;

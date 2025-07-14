@@ -66,7 +66,6 @@ public class RunnerServiceProviderFactory
         // that it can inject. For some reason it's not picking the right one, even though
         // it has the most params. So force it here
         // services.AddSingleton<SmRunner>();
-#pragma warning disable CS0618 // Type or member is obsolete
         services.AddSingleton<SmRunner>((sp) => new SmRunner(
             sp.GetRequiredService<RunnerContext>(),
             sp.GetRequiredService<InputSmBuilder>(),
@@ -82,7 +81,6 @@ public class RunnerServiceProviderFactory
             sp.GetRequiredService<Func<PreDiagramSettingsReader?>>()
         ));
         services.AddSingleton<Func<SmRunner>>((sp) => new Func<SmRunner>(() => sp.GetRequiredService<SmRunner>()));
-#pragma warning restore CS0618 // Type or member is obsolete
         services.AddSingleton<StandardSmTransformer>();
         services.AddSingleton<SmTransformer>((sp) => sp.GetRequiredService<StandardSmTransformer>());
         services.AddSingleton<Func<SmTransformer>>((sp) => new Func<SmTransformer>(() => sp.GetRequiredService<SmTransformer>()));
