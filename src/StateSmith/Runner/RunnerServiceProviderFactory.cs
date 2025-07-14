@@ -191,7 +191,7 @@ public class RunnerServiceProviderFactory
 
         services.AddSingleton<UserExpansionScriptBases>();
         services.AddSingleton<SmDesignDescriber>();
-        services.AddSingleton<SimWebGenerator>(); // TODO remove
+        services.AddSingleton<SimWebGenerator>();
         services.AddSingleton<Func<SimWebGenerator>>((sp) => new Func<SimWebGenerator>(() => sp.GetRequiredService<SimWebGenerator>()));
 
         services.AddSingleton<OutputInfo>();
