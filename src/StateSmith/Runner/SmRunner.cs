@@ -14,7 +14,6 @@ namespace StateSmith.Runner;
 /// Builds a single state machine and runs code generation.
 /// </summary>
 /// TODO remove SmRunnerInternal by using injection in static constructor
-/// TODO add test case for two smrunners at same time (to make sure singletons are not shared between them)
 public class SmRunner : SmRunner.IExperimentalAccess
 {
     /// <summary>
@@ -95,12 +94,13 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="settings"></param>
     /// <param name="renderConfig"></param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
+    /// <param name="serviceProvider">Optional dependency injection service provider, for overrides</param>
     [Obsolete("This constructor is intended for use by legacy CSX scripts. Use SmRunner.Create() instead.")]   
-    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
+    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, IServiceProvider? serviceProvider = null)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
-        this.serviceProvider = RunnerServiceProviderFactory.CreateDefault();
-        this.context = serviceProvider.GetRequiredService<RunnerContext>();
+        this.serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
+        this.context = this.serviceProvider.GetRequiredService<RunnerContext>();
         this.context.runnerSettings = settings;
         this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
         this.context.callerFilePath = callerFilePath.ThrowIfNull();
@@ -116,16 +116,18 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
     /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
     /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
-    /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    /// <param name="callerFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    /// <param name="serviceProvider">Optional dependency injection service provider, for overrides</param>
     [Obsolete("This constructor is intended for use by legacy CSX scripts. Use SmRunner.Create() instead.")]   
     public SmRunner(string diagramPath,
         IRenderConfig? renderConfig = null,
         string? outputDirectory = null,
         AlgorithmId algorithmId = AlgorithmId.Default,
         TranspilerId transpilerId = TranspilerId.Default,
-        string? callingFilePath = null)
+        [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null,
+        IServiceProvider? serviceProvider = null)
 #pragma warning disable CS0618 // Type or member is obsolete
-    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, callerFilePath: callingFilePath)
+    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, callerFilePath: callerFilePath, serviceProvider: serviceProvider)
 #pragma warning restore CS0618 // Type or member is obsolete
     {
     }

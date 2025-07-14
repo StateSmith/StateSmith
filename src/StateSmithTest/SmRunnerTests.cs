@@ -86,6 +86,93 @@ public class SmRunnerTests
             """);
     }
 
+
+    [Fact]
+    public void TestLegacyConstructorForCSX1()
+    {
+        string tempPath = Path.GetTempPath();
+        StringBuilderConsolePrinter fakeConsole = new();
+
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
+            services.AddSingleton<IConsolePrinter>(fakeConsole);
+        });
+
+#pragma warning disable CS0618 // Type or member is obsolete
+        SmRunner runner = new(diagramPath: "test-input/drawio/Design1Sm.drawio.svg", outputDirectory: tempPath, serviceProvider: sp);
+#pragma warning restore CS0618 // Type or member is obsolete
+        runner.Run();
+
+        // have to modify output so that test doesn't rely on temp path because that will vary
+        string output = fakeConsole.sb.ToString();
+        output = new Regex(@"(StateSmith Runner - Writing to file `).*(/[\w+.]+`)").Replace(output, "$1<snip>$2");
+        output = RemoveLibVersionInfo(output);
+
+        //output.Should().Be("");
+        output.ConvertLineEndingsToN().ShouldBeShowDiff("""
+            
+            StateSmith lib ver - <snip>
+            StateSmith Runner - Compiling file: `test-input/drawio/Design1Sm.drawio.svg` (no state machine name specified).
+            StateSmith Runner - State machine `Design1Sm_svg` selected.
+            StateSmith Runner - Writing to file `<snip>/Design1Sm_svg.h`
+            StateSmith Runner - Writing to file `<snip>/Design1Sm_svg.c`
+            StateSmith Runner - Finished normally.
+
+
+            """);
+
+        AssertFileExists(Path.Combine(tempPath, "Design1Sm_svg.h"));
+        AssertFileExists(Path.Combine(tempPath, "Design1Sm_svg.c"));
+    }
+
+
+    [Fact]
+    public void TestLegacyConstructorForCSX2()
+    {
+        string tempPath = Path.GetTempPath();
+        StringBuilderConsolePrinter fakeConsole = new();
+
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
+            services.AddSingleton<IConsolePrinter>(fakeConsole);
+        });
+
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "test-input/drawio/Design1Sm.drawio.svg",
+            outputDirectory = tempPath
+        };
+
+#pragma warning disable CS0618 // Type or member is obsolete
+        SmRunner runner = new(settings, serviceProvider: sp);
+#pragma warning restore CS0618 // Type or member is obsolete
+        runner.Run();
+
+        // have to modify output so that test doesn't rely on temp path because that will vary
+        string output = fakeConsole.sb.ToString();
+        output = new Regex(@"(StateSmith Runner - Writing to file `).*(/[\w+.]+`)").Replace(output, "$1<snip>$2");
+        output = RemoveLibVersionInfo(output);
+
+        //output.Should().Be("");
+        output.ConvertLineEndingsToN().ShouldBeShowDiff("""
+            
+            StateSmith lib ver - <snip>
+            StateSmith Runner - Compiling file: `test-input/drawio/Design1Sm.drawio.svg` (no state machine name specified).
+            StateSmith Runner - State machine `Design1Sm_svg` selected.
+            StateSmith Runner - Writing to file `<snip>/Design1Sm_svg.h`
+            StateSmith Runner - Writing to file `<snip>/Design1Sm_svg.c`
+            StateSmith Runner - Finished normally.
+
+
+            """);
+
+        AssertFileExists(Path.Combine(tempPath, "Design1Sm_svg.h"));
+        AssertFileExists(Path.Combine(tempPath, "Design1Sm_svg.c"));
+    }
+    private static void AssertFileExists(string filePath)
+    {
+        File.Exists(filePath).Should().BeTrue($"Expected file to exist: {filePath}");
+    }
     // todo_low - add test for when state machine name is specified
 
     // todo_low - add test for when exception is thrown
