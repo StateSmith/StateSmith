@@ -132,6 +132,20 @@ public class SmRunner
         this.context.runnerSettings = settings;
         this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
         this.context.callerFilePath = callerFilePath.ThrowIfNull();
+
+        this.inputSmBuilder = sp.GetRequiredService<InputSmBuilder>();
+        this.transformer = sp.GetRequiredService<SmTransformer>();
+        this.exceptionPrinter = sp.GetRequiredService<ExceptionPrinter>();
+        this.consolePrinter = sp.GetRequiredService<IConsolePrinter>();
+        this.simWebGeneratorProvider = sp.GetRequiredService<Func<SimWebGenerator>>();
+        this.algoTranspilerCustomizer = sp.GetRequiredService<AlgoTranspilerCustomizer>();
+        this.smDesignDescriber = sp.GetRequiredService<SmDesignDescriber>();
+        this.outputInfo = sp.GetRequiredService<OutputInfo>();
+        this.filePathPrinter = sp.GetRequiredService<FilePathPrinter>();
+        this.codeGenRunnerProvider = sp.GetRequiredService<Func<ICodeGenRunner>>();
+        this.transformer = sp.GetRequiredService<SmTransformer>();
+        this.preDiagramSettingsReaderProvider = sp.GetRequiredService<Func<PreDiagramSettingsReader>>();
+
         ResolveFilePaths(settings, this.context.callerFilePath);
         ReadDiagramRenderConfigs();
     }
