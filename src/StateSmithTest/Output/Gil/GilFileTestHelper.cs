@@ -2,6 +2,9 @@
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using StateSmith.Output;
 
 namespace StateSmithTest.Output.Gil;
 
@@ -19,20 +22,11 @@ public class GilFileTestHelper
 
         sm.variables += "bool b;";
 
-        void SetupAction(DiServiceProvider sp)
-        {
-            sp.AddSingletonT(new RenderConfigBaseVars()
-            {
-                VariableDeclarations = "//This is super cool!\nx: 0,"
-            });
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        serviceProvider.GetRequiredService<RenderConfigBaseVars>().VariableDeclarations = "//This is super cool!\nx: 0,";
+        serviceProvider.GetRequiredService<AlgoBalanced1Settings>().skipClassIndentation = skipIndentation;
 
-            sp.AddSingletonT(new AlgoBalanced1Settings()
-            {
-                skipClassIndentation = skipIndentation,
-            });
-        }
-
-        InputSmBuilder inputSmBuilder = new(SetupAction);
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.SetStateMachineRoot(sm);
         inputSmBuilder.FinishRunning();
 
@@ -43,7 +37,7 @@ public class GilFileTestHelper
         //PseudoStateHandlerBuilder pseudoStateHandlerBuilder = new();
         //EventHandlerBuilder eventHandlerBuilder = new(new(), pseudoStateHandlerBuilder, mangler);
 
-        AlgoBalanced1 builder = inputSmBuilder.sp.GetInstanceOf<AlgoBalanced1>();
+        IGilAlgo builder = serviceProvider.GetRequiredService<IGilAlgo>();
         return builder.GenerateGil(sm);
     }
 }

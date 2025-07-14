@@ -8,6 +8,7 @@ using StateSmith.Input.Expansions;
 using StateSmith.Runner;
 using StateSmith.Input.Antlr4;
 using StateSmith.SmGraph.Validation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest
 {
@@ -19,7 +20,8 @@ namespace StateSmithTest
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny1.graphml";
 
-            InputSmBuilder inputSmBuilder = new();
+            IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+            InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
             inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
             inputSmBuilder.FindSingleStateMachine();
             var sm = inputSmBuilder.GetStateMachine();
@@ -156,8 +158,9 @@ namespace StateSmithTest
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/Tiny1.graphml";
 
-            InputSmBuilder inputSmBuilder = new();
-            DiagramToSmConverter diagramToSmConverter = inputSmBuilder.diagramToSmConverter;
+            IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+            InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
+            DiagramToSmConverter diagramToSmConverter = serviceProvider.GetRequiredService<DiagramToSmConverter>();
             var expander = new Expander();
             ExpanderFileReflection expanderFileReflection = new(expander, new());
             Tiny1Expansions userExpansions = new Tiny1Expansions();

@@ -5,6 +5,7 @@ using StateSmith.SmGraph;
 
 namespace StateSmith.Runner;
 
+// TODO convert to use Func<StateMachine> instead of StateMachineProvider
 public class StateMachineProvider : IStateMachineProvider
 {
     StateMachine? _machine;

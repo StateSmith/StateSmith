@@ -4,6 +4,7 @@ using StateSmith.Runner;
 using System.IO;
 using System.Text.RegularExpressions;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.CodeFileWriterTests;
 
@@ -86,21 +87,27 @@ public class UserRemoveStateIdFuncAddCoverage
     [Fact]
     public void ExampleCustomCodeGen()
     {
-        SmRunner runner = new(diagramPath: "Ex1.drawio.svg", algorithmId: AlgorithmId.Balanced1);
-
-        // register our custom code file writer
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter, MyCodeFileWriter>();
-
-        // adjust settings because we are unit testing. Normally wouldn't do below.
-        runner.Settings.propagateExceptions = true;
-        runner.Settings.outputStateSmithVersionInfo = false;
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
+            // register our custom code file writer
+            services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();
+        });
+    
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "Ex1.drawio.svg",
+            algorithmId = AlgorithmId.Balanced1,
+            propagateExceptions = true,
+            outputStateSmithVersionInfo = false,
+        };
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
 
         // run StateSmith with our custom code file writer
         runner.Run();
 
         // Test that we saw the expected output from your custom code generator.
-        var cCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex1.c");
-        var hCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex1.h");
+        var cCode = File.ReadAllText(settings.outputDirectory + "Ex1.c");
+        var hCode = File.ReadAllText(settings.outputDirectory + "Ex1.h");
 
         cCode.Should().NotContain("state_id_to_string");
         hCode.Should().NotContain("state_id_to_string");

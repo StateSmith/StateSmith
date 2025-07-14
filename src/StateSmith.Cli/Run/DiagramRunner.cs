@@ -3,6 +3,7 @@ using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmith.Cli.Run;
 
@@ -105,16 +106,13 @@ public class DiagramRunner
         runInfoStore.diagramRuns[absolutePath] = info; // will overwrite if already exists
 
         // the constructor will attempt to read diagram settings from the diagram file
-        SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);
-        smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter, LoggingCodeFileWriter>();
-
-        if (smRunner.PreDiagramBasedSettingsException != null)
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
         {
-            warningCount++;
-            _runConsole.ErrorMarkupLine("\nFailed while trying to read diagram for settings.\n");
-            smRunner.PrintAndThrowIfPreDiagramSettingsException();   // need to do this before we check the transpiler ID
-            throw new Exception("Should not get here.");
-        }
+            services.AddSingleton<ICodeFileWriter, LoggingCodeFileWriter>();
+        });
+        
+        SmRunner smRunner = SmRunner.Create(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath, serviceProvider: sp);
+
 
         _runConsole.WriteLine($"Running diagram: `{shortPath}`");
 
@@ -127,7 +125,7 @@ public class DiagramRunner
         }
 
         // note that this cast above is OK because we registered the LoggingCodeFileWriter above
-        LoggingCodeFileWriter loggingCodeFileWriter = (LoggingCodeFileWriter)smRunner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<ICodeFileWriter>();
+        LoggingCodeFileWriter loggingCodeFileWriter = (LoggingCodeFileWriter)sp.GetRequiredService<ICodeFileWriter>();
 
         try
         {

@@ -44,6 +44,30 @@ public class StandardSmTransformer : SmTransformer
         Standard_FinalValidation,
     };
 
+    // TODO update name, maybe make private, expose setter
+    public bool onlyPreDiagramSettings = false;
+
+    public override void RunTransformationPipeline(StateMachine sm)
+    {
+        foreach (var step in transformationPipeline)
+        {
+            step.action(sm);
+
+            // TODO clean this up. One altnerative would be to split the pre and post steps into separate
+            // lists and run them separately. Another alternative would be to take a hard look at SmTransformer,
+            // it's a thin wrapper around a list with one Run command and a few convenience list operations.
+            if (onlyPreDiagramSettings && step.Id == TransformationId.Standard_SupportRenderConfigVerticesAndRemove.ToString())
+            {
+                // Skip everything not needed for diagram settings reading.
+                // We don't actually want to validate the diagram, just read the settings.
+                // Why? Because it is slower and also we don't want to mess up designs that require special transformers.
+                // If a user adds special transformers, they won't be run here.
+                // https://github.com/StateSmith/StateSmith/issues/349
+                break;
+            }
+        }
+    }
+
     // this ctor used for Dependency Injection
     public StandardSmTransformer(TomlConfigVerticesProcessor tomlConfigVerticesProcessor, RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor, StateNameConflictResolver nameConflictResolver, TriggerMapProcessor triggerMapProcessor)
     {

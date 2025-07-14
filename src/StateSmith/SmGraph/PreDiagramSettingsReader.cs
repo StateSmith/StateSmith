@@ -1,7 +1,5 @@
 #nullable enable
 
-using StateSmith.Output.UserConfig;
-using StateSmith.Output.UserConfig.AutoVars;
 using StateSmith.Runner;
 
 namespace StateSmith.SmGraph;
@@ -11,15 +9,13 @@ namespace StateSmith.SmGraph;
 /// </summary>
 public class PreDiagramSettingsReader
 {
-    RenderConfigAllVars renderConfigAllVars;
-    RunnerSettings smRunnerSettings;
-    IRenderConfig renderConfig;
+    readonly RunnerSettings smRunnerSettings;
+    readonly InputSmBuilder inputSmBuilder;
 
-    public PreDiagramSettingsReader(RenderConfigAllVars renderConfigAllVars, RunnerSettings smRunnerSettings, IRenderConfig renderConfig)
+    public PreDiagramSettingsReader(RunnerSettings smRunnerSettings, InputSmBuilder inputSmBuilder)
     {
-        this.renderConfigAllVars = renderConfigAllVars;
         this.smRunnerSettings = smRunnerSettings;
-        this.renderConfig = renderConfig;
+        this.inputSmBuilder = inputSmBuilder;
     }
 
     /// <summary>
@@ -27,37 +23,7 @@ public class PreDiagramSettingsReader
     /// </summary>
     public void Process()
     {
-        var di = DiServiceProvider.CreateDefault();
-        SmRunner.SetupDiProvider(di, renderConfigAllVars, smRunnerSettings, renderConfig);
-
-        di.Build();
-        var inputSmBuilder = di.GetInstanceOf<InputSmBuilder>();
-
-        ModifyTransformationPipeline(inputSmBuilder);
-
-        SmRunnerInternal.SetupAndFindStateMachine(inputSmBuilder, smRunnerSettings);
+        // Use SmRunner's static method instead of creating an instance
         inputSmBuilder.FinishRunning();
-    }
-
-    private static void ModifyTransformationPipeline(InputSmBuilder inputSmBuilder)
-    {
-        // Remove everything not needed for diagram settings reading.
-        // We don't actually want to validate the diagram, just read the settings.
-        // Why? Because it is slower and also we don't want to mess up designs that require special transformers.
-        // If a user adds special transformers, they won't be added here as this is a brand new SmRunner and DI setup.
-        // https://github.com/StateSmith/StateSmith/issues/349
-
-        inputSmBuilder.transformer.RemoveAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportRenderConfigVerticesAndRemove);
-        
-        // ensure that remove above didn't remove the toml config processor
-        if (!inputSmBuilder.transformer.HasMatch(StandardSmTransformer.TransformationId.Standard_TomlConfig))
-        {
-            throw new System.InvalidOperationException("Programming error. Standard_TomlConfig must be present.");
-        }
-
-        if (inputSmBuilder.transformer.transformationPipeline.Count != 3)
-        {
-            throw new System.InvalidOperationException("Programming error. Expected only 3 steps in the pipeline.");
-        }
     }
 }

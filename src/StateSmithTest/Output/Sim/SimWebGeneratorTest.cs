@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Common;
 using StateSmith.Output;
 using StateSmith.Output.Sim;
@@ -46,22 +47,10 @@ public class SimWebGenerator_IntegrationTests
         GenerateForDiagram(diagramName: "TriggerMap.drawio.svg", expectedOutputFileName: "TriggerMap.sim.html");
     }
 
-    /// <summary>
-    /// This test shows how a .csx file user can enable the simulation feature.
-    /// </summary>
     [Fact]
     public void SmRunner_PlantEx2()
     {
-        string expectedOutputFilePath = diagramDirPath + "PlantEx2.sim.html";
-        DeleteIfFileExists(expectedOutputFilePath);
-
-        SmRunner smRunner = new(diagramPath: diagramDirPath + "PlantEx2.puml");
-        smRunner.Settings.simulation.enableGeneration = true;
-        smRunner.Settings.propagateExceptions = true;   // just for testing here
-        smRunner.Settings.outputStateSmithVersionInfo = false; // avoid git noise
-        smRunner.Run();
-
-        AssertFileExists(expectedOutputFilePath);
+        GenerateForDiagram(diagramName: "PlantEx2.puml", expectedOutputFileName: "PlantEx2.sim.html");
     }
 
     [Fact]
@@ -79,16 +68,21 @@ public class SimWebGenerator_IntegrationTests
         }
     }
 
+    // TODO discard the generated .c and .h files, they're cluttering up git status
     private void GenerateForDiagram(string diagramName, string expectedOutputFileName)
     {
         string expectedOutputFilePath = diagramDirPath + expectedOutputFileName;
         DeleteIfFileExists(expectedOutputFilePath);
 
-        CodeFileWriter codeFileWriter = new(consolePrinter: new ConsolePrinter(), pathPrinter: new FilePathPrinter(diagramDirPath));
-        SimWebGenerator generator = new(codeFileWriter, new());
-        generator.RunnerSettings.propagateExceptions = true;
-        generator.RunnerSettings.outputStateSmithVersionInfo = false; // avoid git noise
-        generator.Generate(diagramPath: diagramDirPath + diagramName, outputDir: diagramDirPath);
+        RunnerSettings settings = new()
+        {
+            DiagramPath = diagramDirPath + diagramName,
+            propagateExceptions = true, // just for testing here
+            outputStateSmithVersionInfo = false, // avoid git noise
+            simulation = { enableGeneration = true }
+        };
+        SmRunner smRunner = SmRunner.Create(settings);
+        smRunner.Run();
 
         AssertFileExists(expectedOutputFilePath);
     }

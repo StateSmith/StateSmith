@@ -9,10 +9,10 @@ namespace StateSmith.Output;
 
 public class DynamicVarsResolver
 {
-    readonly NameMangler mangler;
+    readonly INameMangler mangler;
     readonly IStateMachineProvider stateMachineProvider;
 
-    public DynamicVarsResolver(NameMangler mangler, IStateMachineProvider stateMachineProvider)
+    public DynamicVarsResolver(INameMangler mangler, IStateMachineProvider stateMachineProvider)
     {
         this.mangler = mangler;
         this.stateMachineProvider = stateMachineProvider;

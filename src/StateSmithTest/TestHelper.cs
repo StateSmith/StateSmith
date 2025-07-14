@@ -8,9 +8,11 @@ using StateSmithTest.Output;
 using System;
 using System.IO;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest;
 
+// TODO clean this up to have consistent way to override services
 public class TestHelper
 {
     public const string MinimalPlantUmlFsm = """
@@ -26,11 +28,10 @@ public class TestHelper
 
     public static (SmRunner, CapturingCodeFileWriter) CaptureSmRun(string diagramPath, IRenderConfig? renderConfig = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, IConsolePrinter? iConsolePrinter = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
-        SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath);
-        runner.GetExperimentalAccess().Settings.propagateExceptions = true;
         var fakeFileSystem = new CapturingCodeFileWriter();
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(fakeFileSystem);
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
+        var sp = CreateCapturingServiceProvider(fakeFileSystem, iConsolePrinter);
+        SmRunner runner = SmRunner.Create(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: callerFilePath, serviceProvider: sp);
+        sp.GetRequiredService<RunnerSettings>().propagateExceptions = true;
         runner.Run();
 
         return (runner, fakeFileSystem);
@@ -42,17 +43,27 @@ public class TestHelper
         return fakeFileSystem;
     }
 
-    public static void CaptureRunSmRunnerForPlantUmlString(string? plantUmlText = null, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default)
+    public static void CaptureRunSmRunnerForPlantUmlString(string? plantUmlText = null, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, IServiceProvider? serviceProvider = null)
     {
         string tempFilePath = WritePlantUmlTempFile(plantUmlText, fileName);
 
         try
         {
-            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId);
+            var sp = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault((services) =>
+            {
+                services.AddSingleton<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
+                services.AddSingleton<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
+            });
+
+            RunnerSettings settings = new()
+            {
+                DiagramPath = tempFilePath,
+                transpilerId = transpilerId,
+                algorithmId = algorithmId,
+                propagateExceptions = propagateExceptions,
+            };
+            SmRunner smRunner = SmRunner.Create(settings, renderConfig: renderConfig, serviceProvider: sp);
             postConstruct?.Invoke(smRunner);
-            smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
-            smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
-            smRunner.Settings.propagateExceptions = propagateExceptions;
             preRun?.Invoke(smRunner);
             smRunner.Run();
         }
@@ -76,16 +87,38 @@ public class TestHelper
 
         try
         {
-            SmRunner smRunner = new(outputDirectory: outputDir, diagramPath: tempFilePath, transpilerId: transpilerId, algorithmId: algorithmId);
-            smRunner.Settings.outputStateSmithVersionInfo = false; // too much git noise
-            smRunner.Settings.propagateExceptions = true;
-            //smRunner.Settings.outputGilCodeAlways = true;
+            RunnerSettings settings = new()
+            {
+                DiagramPath = tempFilePath,
+                outputDirectory = outputDir,
+                transpilerId = transpilerId,
+                algorithmId = algorithmId,
+                propagateExceptions = true,
+                outputStateSmithVersionInfo = false, // too much git noise
+                // outputGilCodeAlways = true, 
+            };
+            SmRunner smRunner = SmRunner.Create(settings);
             smRunner.Run();
         }
         finally
         {
             File.Delete(tempFilePath);
         }
+    }
+
+    public static IServiceProvider CreateServiceProvider(Action<IServiceCollection>? serviceOverrides = null)
+    {
+        return RunnerServiceProviderFactory.CreateDefault(serviceOverrides);
+    }
+
+    public static IServiceProvider CreateCapturingServiceProvider(CapturingCodeFileWriter fakeFileSystem, IConsolePrinter? iConsolePrinter = null, Action<IServiceCollection>? serviceOverrides = null)
+    {
+        return RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
+            services.AddSingleton<ICodeFileWriter>(fakeFileSystem);
+            services.AddSingleton<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
+            serviceOverrides?.Invoke(services);
+        });
     }
 
     public static FieldInfo[] GetTypeFields<T>()

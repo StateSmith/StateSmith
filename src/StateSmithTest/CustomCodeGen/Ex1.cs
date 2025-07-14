@@ -2,6 +2,7 @@ using StateSmith.Output;
 using StateSmith.Runner;
 using System.IO;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.CustomCodeGen;
 
@@ -14,15 +15,20 @@ public class Ex1
         // settings for your custom code generator
         MyCodeGenSettings myCodeGenSettings = new(outputFileName: "my_output.txt");
 
-        SmRunner runner = new(diagramPath: "Ex1.drawio.svg");
-
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
         // register your custom code generator (and any custom dependencies) for Dependency Injection
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeGenRunner, MyCodeGenRunner>();
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT(myCodeGenSettings); // required for MyCodeGenRunner
+            services.AddSingleton<ICodeGenRunner, MyCodeGenRunner>();
+            services.AddSingleton(myCodeGenSettings);
+        });
 
-        // adjust settings because we are unit testing. Normally wouldn't do below.
-        runner.Settings.propagateExceptions = true;
-        runner.Settings.outputDirectory = Path.GetTempPath();
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "Ex1.drawio.svg",
+            propagateExceptions = true,
+            outputDirectory = Path.GetTempPath(),
+        };
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
 
         // run StateSmith with your custom code generator!!!
         runner.Run();
@@ -33,7 +39,7 @@ public class Ex1
             State machine name: Ex1
             Child count: 3
 
-            """);
+            """);        
     }
 
     /// <summary>

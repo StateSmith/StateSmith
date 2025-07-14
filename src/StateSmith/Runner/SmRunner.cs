@@ -4,271 +4,379 @@ using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
-using StateSmith.SmGraph;
 using System;
-using System.Runtime.ExceptionServices;
-using System.Threading;
-using StateSmith.Output.UserConfig.AutoVars;
+using StateSmith.SmGraph;
+using StateSmith.Output.Sim;
+using System.IO;
 
 namespace StateSmith.Runner;
 
 /// <summary>
 /// Builds a single state machine and runs code generation.
 /// </summary>
-public class SmRunner : SmRunner.IExperimentalAccess
-{
-    public RunnerSettings Settings => settings;
-
+public class SmRunner
+{    
     /// <summary>
-    /// Dependency Injection Service Provider
-    /// </summary>
-    readonly DiServiceProvider diServiceProvider;
-
-    readonly RunnerSettings settings;
-
-    private readonly IRenderConfig iRenderConfig;
-    private readonly bool enablePreDiagramBasedSettings;
-
-    /// <summary>
-    /// The path to the file that called a <see cref="SmRunner"/> constructor. Allows for convenient relative path
-    /// figuring for regular C# projects and C# scripts (.csx).
-    /// </summary>
-    readonly string callerFilePath;
-
-    private ExceptionDispatchInfo? preDiagramBasedSettingsException = null;
-
-    /// <summary>
-    /// Constructor. Will attempt to read settings from the diagram file.
-    /// </summary>
-    /// <param name="settings"></param>
-    /// <param name="renderConfig"></param>
-    /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
-    /// <param name="enablePDBS">User code should leave unspecified for now.</param>
-    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
-    {
-        SmRunnerInternal.AppUseDecimalPeriod();
-
-        this.settings = settings;
-        this.iRenderConfig = renderConfig ?? new DummyIRenderConfig();
-        this.enablePreDiagramBasedSettings = enablePDBS;
-        this.callerFilePath = callerFilePath.ThrowIfNull();
-        SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
-
-        diServiceProvider = DiServiceProvider.CreateDefault();
-        SetupDependencyInjectionAndRenderConfigs();
-    }
-
-    /// <summary>
-    /// A convenience constructor. Will attempt to read settings from the diagram file.
+    /// Convenience method to create a new instance of SmRunner without constructing a separate RunnerSettings object.
     /// </summary>
     /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
     /// <param name="renderConfig"></param>
     /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
     /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
     /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
+    /// <param name="serviceProvider">Optional. Provides a way to override registered dependency injection services.</param>
     /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
-    /// <param name="enablePDBS">User could should leave unspecified for now.</param>
+    /// <returns></returns>
+    public static SmRunner Create(string diagramPath,
+        IRenderConfig? renderConfig = null,
+        string? outputDirectory = null,
+        AlgorithmId algorithmId = AlgorithmId.Default,
+        TranspilerId transpilerId = TranspilerId.Default,
+        IServiceProvider? serviceProvider = null,
+        [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
+    {
+        return Create(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, serviceProvider, callerFilePath: callingFilePath);
+    }
+
+    /// <summary>
+    /// Factory method to create a new SmRunner instance.
+    /// </summary>
+    /// <param name="settings"></param>
+    /// <param name="renderConfig"></param>
+    /// <param name="serviceProvider">Optional. Provides a way to override registered dependency injection services.</param>
+    /// <param name="callerFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    /// <returns></returns>
+    public static SmRunner Create(RunnerSettings settings, IRenderConfig? renderConfig = null, IServiceProvider? serviceProvider = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
+    {
+        var sp = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
+
+        // Set the context for the SmRunner
+        var context = sp.GetRequiredService<RunnerContext>();
+        context.runnerSettings = settings;
+        if (renderConfig != null)
+        {
+            context.renderConfig = renderConfig;
+        }
+        context.callerFilePath = callerFilePath.ThrowIfNull();
+
+        return sp.GetRequiredService<SmRunner>();
+    }
+
+
+    /// <summary>
+    /// The context that holds the dynamic configuration (settings, renderconfig) for this run of the runner.
+    /// </summary>
+    private readonly RunnerContext context;
+
+    private readonly InputSmBuilder inputSmBuilder;
+    private readonly SmTransformer transformer;
+    private readonly ExceptionPrinter exceptionPrinter;
+    private readonly IConsolePrinter consolePrinter;
+    private readonly Func<SimWebGenerator> simWebGeneratorProvider;
+    private readonly AlgoTranspilerCustomizer algoTranspilerCustomizer;
+    private readonly SmDesignDescriber smDesignDescriber;
+    private readonly OutputInfo outputInfo;
+    private readonly FilePathPrinter filePathPrinter;
+    private readonly Func<ICodeGenRunner> codeGenRunnerProvider;
+    private readonly Func<PreDiagramSettingsReader?> preDiagramSettingsReaderProvider;
+
+
+    /// <summary>
+    /// Constructor. Mostly intended to be used by DI, you probably want to use SmRunner.Create() instead.
+    /// </summary>
+    /// <param name="context">This context object stores the runtime configuration for a given run </param>
+    /// <param name="inputSmBuilder">The builder that will convert the input diagram into a StateMachine vertex.</param>
+    /// <param name="exceptionPrinter">Used to print exceptions.</param>
+    /// <param name="consolePrinter">Used to print messages to the console.</param>
+    /// <param name="simWebGeneratorProvider">A function that provides a SimWebGenerator instance.</param>
+    /// <param name="algoTranspilerCustomizer">Allows customization of the algorithm and transpiler settings.</param>
+    /// <param name="smDesignDescriber">Describes the state machine design.</param>
+    /// <param name="outputInfo">Holds information about the output, such as file paths and names.</param>
+    /// <param name="filePathPrinter">Used to print file paths in a consistent manner.</param>
+    /// <param name="codeGenRunnerProvider">A function that provides an ICodeGenRunner instance.</param>
+    /// <param name="transformer">Instance of SmTransformer</param>
+    /// <param name="preDiagramSettingsReaderProvider">Reads settings from the diagram</param>
+    public SmRunner(RunnerContext context, InputSmBuilder inputSmBuilder, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, Func<SimWebGenerator> simWebGeneratorProvider, AlgoTranspilerCustomizer algoTranspilerCustomizer, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, FilePathPrinter filePathPrinter, Func<ICodeGenRunner> codeGenRunnerProvider, SmTransformer transformer, Func<PreDiagramSettingsReader?> preDiagramSettingsReaderProvider)
+    {
+        this.context = context;
+        this.inputSmBuilder = inputSmBuilder;
+        this.exceptionPrinter = exceptionPrinter;
+        this.consolePrinter = consolePrinter;
+        this.simWebGeneratorProvider = simWebGeneratorProvider;
+        this.algoTranspilerCustomizer = algoTranspilerCustomizer;
+        this.smDesignDescriber = smDesignDescriber;
+        this.outputInfo = outputInfo;
+        this.filePathPrinter = filePathPrinter;
+        this.codeGenRunnerProvider = codeGenRunnerProvider;
+        this.transformer = transformer;
+        this.preDiagramSettingsReaderProvider = preDiagramSettingsReaderProvider;
+
+        ResolveFilePaths(context.runnerSettings, context.callerFilePath);
+        ReadDiagramRenderConfigs();
+    }
+
+    /// <summary>
+    /// Legacy constructor provided for backward compatibility with older CSX scripts
+    /// </summary>
+    /// <param name="settings"></param>
+    /// <param name="renderConfig"></param>
+    /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
+    /// <param name="serviceProvider">Optional dependency injection service provider, for overrides</param>
+    [Obsolete("This constructor is intended for use by legacy CSX scripts. Use SmRunner.Create() instead.")]
+    // TODO remove once we can require scripts to migrate to SmRunner.Create(). This will remove the last of the
+    // mucking about with service providers from within SmRunner methods.
+    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, IServiceProvider? serviceProvider = null)
+    {
+        var sp = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
+        this.context = sp.GetRequiredService<RunnerContext>();
+        this.context.runnerSettings = settings;
+        this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
+        this.context.callerFilePath = callerFilePath.ThrowIfNull();
+
+        this.inputSmBuilder = sp.GetRequiredService<InputSmBuilder>();
+        this.transformer = sp.GetRequiredService<SmTransformer>();
+        this.exceptionPrinter = sp.GetRequiredService<ExceptionPrinter>();
+        this.consolePrinter = sp.GetRequiredService<IConsolePrinter>();
+        this.simWebGeneratorProvider = sp.GetRequiredService<Func<SimWebGenerator>>();
+        this.algoTranspilerCustomizer = sp.GetRequiredService<AlgoTranspilerCustomizer>();
+        this.smDesignDescriber = sp.GetRequiredService<SmDesignDescriber>();
+        this.outputInfo = sp.GetRequiredService<OutputInfo>();
+        this.filePathPrinter = sp.GetRequiredService<FilePathPrinter>();
+        this.codeGenRunnerProvider = sp.GetRequiredService<Func<ICodeGenRunner>>();
+        this.transformer = sp.GetRequiredService<SmTransformer>();
+        this.preDiagramSettingsReaderProvider = sp.GetRequiredService<Func<PreDiagramSettingsReader>>();
+
+        ResolveFilePaths(settings, this.context.callerFilePath);
+        ReadDiagramRenderConfigs();
+    }
+
+    /// <summary>
+    /// Legacy constructor provided for backward compatibility with older CSX scripts
+    /// </summary>
+    /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
+    /// <param name="renderConfig"></param>
+    /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
+    /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
+    /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
+    /// <param name="callerFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    /// <param name="serviceProvider">Optional dependency injection service provider, for overrides</param>
+    [Obsolete("This constructor is intended for use by legacy CSX scripts. Use SmRunner.Create() instead.")]   
     public SmRunner(string diagramPath,
         IRenderConfig? renderConfig = null,
         string? outputDirectory = null,
         AlgorithmId algorithmId = AlgorithmId.Default,
         TranspilerId transpilerId = TranspilerId.Default,
-        [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null, bool enablePDBS = true)
-    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, callerFilePath: callingFilePath, enablePDBS: enablePDBS)
+        [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null,
+        IServiceProvider? serviceProvider = null)
+#pragma warning disable CS0618 // Type or member is obsolete
+    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, callerFilePath: callerFilePath, serviceProvider: serviceProvider)
+#pragma warning restore CS0618 // Type or member is obsolete
     {
     }
 
     /// <summary>
-    /// Publicly exposed so that users can customize transformation behavior.
-    /// Accessing this member will cause the Dependency Injection settings to be finalized.
-    /// </summary>
-    public SmTransformer SmTransformer => diServiceProvider.GetServiceOrCreateInstance();
-
-    /// <summary>
-    /// This API is experimental and may change in the future.
-    /// </summary>
-    public ExceptionDispatchInfo? PreDiagramBasedSettingsException => preDiagramBasedSettingsException;
-
-    /// <summary>
-    /// Runs StateSmith. Will cause the Dependency Injection settings to be finalized.
+    /// Runs StateSmith.
     /// </summary>
     public void Run()
     {
-        SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
+        PrepareBeforeRun();
 
-        PrepareBeforeRun(); // finalizes dependency injection
-        SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
-        smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
-
-        // Wrap in try finally so that we can ensure that the service provider is disposed which will
-        // dispose of objects that it created.
+        Exception? exception = null; // TODO what is this for? This exception handling logic seems quite complicated
         try
         {
-            PrintAndThrowIfPreDiagramSettingsException();
-
-            if (settings.transpilerId == TranspilerId.NotYetSet)
-                throw new ArgumentException("TranspilerId must be set before running code generation");
-
-            smRunnerInternal.Run();
-        }
-        finally
-        {
-            diServiceProvider.Dispose();
-        }
-
-        if (smRunnerInternal.exception != null)
-        {
-            throw new FinishedWithFailureException();
-        }
-    }
-
-    /// <summary>
-    /// Experimental API. May change in the future.
-    /// </summary>
-    public void PrintAndThrowIfPreDiagramSettingsException()
-    {
-        if (PreDiagramBasedSettingsException != null)
-        {
-            // We use SmRunnerInternal to print the exception so that it is consistent with the rest of the code.
-            SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
-            smRunnerInternal.OutputExceptionDetail(PreDiagramBasedSettingsException.SourceException);
-            if (settings.propagateExceptions)
+            if (preDiagramSettingsReaderProvider() != null)
             {
-                PreDiagramBasedSettingsException.Throw();
+                // we need to prevent diagram settings from being applied twice
+                DiagramBasedSettingsPreventer.Process(inputSmBuilder.transformer);
             }
 
+            consolePrinter.WriteLine();
+            consolePrinter.WriteLine("StateSmith lib ver - " + LibVersionInfo.GetVersionInfoString());
+            OutputCompilingDiagramMessage();
+
+            var sm = SetupAndFindStateMachine(inputSmBuilder, context.runnerSettings);
+            outputInfo.baseFileName = sm.Name;
+
+            consolePrinter.OutputStageMessage($"State machine `{sm.Name}` selected.");
+            smDesignDescriber.Prepare();
+            smDesignDescriber.DescribeBeforeTransformations();
+
+            inputSmBuilder.FinishRunning();
+            smDesignDescriber.DescribeAfterTransformations();
+            codeGenRunnerProvider().Run();
+
+            if (context.runnerSettings.simulation.enableGeneration)
+            {
+                var simWebGenerator = simWebGeneratorProvider();
+                simWebGenerator.Generate(outputDir: context.runnerSettings.simulation.outputDirectory.ThrowIfNull());
+            }
+
+            consolePrinter.OutputStageMessage("Finished normally.");
+        }
+        catch (Exception e)
+        {
+            exception = e;
+
+            // print error detail before rethrowing https://github.com/StateSmith/StateSmith/issues/375
+            OutputExceptionDetail(e);
+
+            if (context.runnerSettings.propagateExceptions)
+            {
+                throw;
+            }
+        }
+
+        consolePrinter.WriteLine();
+        if (exception != null)
+        {
             throw new FinishedWithFailureException();
         }
+    
     }
 
     // ------------ private methods ----------------
 
-    private void SetupDependencyInjectionAndRenderConfigs()
+
+    /// <summary>
+    /// Outputs a message about the diagram file being compiled.
+    /// </summary>
+    private void OutputCompilingDiagramMessage()
     {
-        var renderConfigAllVars = new RenderConfigAllVars();
+        string filePath = context.runnerSettings.DiagramPath;
+        filePath = filePathPrinter.PrintPath(filePath);
 
-        ReadRenderConfigObjectToVars(renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
+        consolePrinter.OutputStageMessage($"Compiling file: `{filePath}` "
+            + ((context.runnerSettings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{context.runnerSettings.stateMachineName}`")
+            + "."
+        );
+    }
 
-        SetupDiProvider(diServiceProvider, renderConfigAllVars, settings, iRenderConfig);
-
-        // we disable early diagram settings reading for the simulator and some tests
-        if (enablePreDiagramBasedSettings)
+    /// <summary>
+    /// Finds and returns the state machine from the input builder, using settings.
+    /// </summary>
+    /// // TODO make InputSmBuilder initialize itself rather than have SmRunner do it
+    private static StateMachine SetupAndFindStateMachine(InputSmBuilder inputSmBuilder, RunnerSettings settings)
+    {
+        // If the inputSmBuilder already has a state machine, then use it.
+        // Used by test code.
+        // Might also be used in future to allow compiling plantuml without a diagram file.
+        if (inputSmBuilder.HasStateMachine)
         {
-            // Why do we do this before DiServiceProvider is set up? It is a pain to not have DI set up.
-            // A number of reasons. We need to read the settings before we can set up the DI provider.
-            // Also (less importantly), we want to read settings from the diagram so that the user can
-            // override them in a .csx file (if they choose) before running the code generator.
-            // https://github.com/StateSmith/StateSmith/issues/349
-            try
-            {
-                // Note that this may throw if the diagram is invalid.
-                PreDiagramSettingsReader preDiagramSettingsReader = new(renderConfigAllVars, settings, iRenderConfig);
-                preDiagramSettingsReader.Process();
-            }
-            catch (Exception e)
-            {
-                // NOTE! we can't print or log this exception here because dependency injection is not yet set up
-                preDiagramBasedSettingsException = ExceptionDispatchInfo.Capture(e);
-            }
+            return inputSmBuilder.GetStateMachine();
         }
 
-        AlgoOrTranspilerUpdated();
-    }
+        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.DiagramPath);
 
-    internal static void SetupDiProvider(DiServiceProvider di, RenderConfigAllVars renderConfigAllVars, RunnerSettings settings, IRenderConfig iRenderConfig)
-    {
-        di.AddConfiguration((services) =>
+        if (settings.stateMachineName != null)
         {
-            services.AddSingleton(settings.drawIoSettings);
-            services.AddSingleton(settings.smDesignDescriber);
-            services.AddSingleton(settings.style);
-            services.AddSingleton<OutputInfo>();
-            services.AddSingleton<IOutputInfo>((s) => s.GetService<OutputInfo>().ThrowIfNull());
-            services.AddSingleton(renderConfigAllVars);
-            services.AddSingleton(renderConfigAllVars.Base);
-            services.AddSingleton(renderConfigAllVars.C);
-            services.AddSingleton(renderConfigAllVars.Cpp);
-            services.AddSingleton(renderConfigAllVars.CSharp);
-            services.AddSingleton(renderConfigAllVars.JavaScript);
-            services.AddSingleton(renderConfigAllVars.TypeScript);
-            services.AddSingleton(renderConfigAllVars.Java);
-            services.AddSingleton(renderConfigAllVars.Python);
-            services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
-            services.AddSingleton(settings); // todo_low - split settings up more
-            services.AddSingleton<ExpansionsPrep>();
-            services.AddSingleton<FilePathPrinter>(new FilePathPrinter(settings.filePathPrintBase.ThrowIfNull()));
-            services.AddSingleton(settings.algoBalanced1);
-        });
+            inputSmBuilder.FindStateMachineByName(settings.stateMachineName);
+        }
+        else
+        {
+            inputSmBuilder.FindSingleStateMachine();
+        }
+
+        return inputSmBuilder.GetStateMachine();
     }
 
-    internal static void ReadRenderConfigObjectToVars(RenderConfigAllVars renderConfigAllVars, IRenderConfig iRenderConfig, bool autoDeIndentAndTrimRenderConfigItems)
+    // TODO the callingFilePath introduces additional complexity, I think just to support CSX scripts.
+    // Would it be almost as good to just use the path to the diagram file?
+    private static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
     {
-        renderConfigAllVars.Base.SetFrom(iRenderConfig, autoDeIndentAndTrimRenderConfigItems);
+        var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
+        settings.DiagramPath = PathUtils.EnsurePathAbsolute(settings.DiagramPath, relativeDirectory);
 
-        if (iRenderConfig is IRenderConfigC ircc)
-            renderConfigAllVars.C.SetFrom(ircc, autoDeIndentAndTrimRenderConfigItems);
+        settings.outputDirectory ??= Path.GetDirectoryName(settings.DiagramPath).ThrowIfNull();
+        settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
 
-        if (iRenderConfig is IRenderConfigCpp irccpp)
-            renderConfigAllVars.Cpp.SetFrom(irccpp, autoDeIndentAndTrimRenderConfigItems);
+        settings.filePathPrintBase ??= relativeDirectory;
+        settings.filePathPrintBase = ProcessDirPath(settings.filePathPrintBase, relativeDirectory);
 
-        if (iRenderConfig is IRenderConfigCSharp irccs)
-            renderConfigAllVars.CSharp.SetFrom(irccs, autoDeIndentAndTrimRenderConfigItems);
+        settings.smDesignDescriber.outputDirectory ??= settings.outputDirectory;
+        settings.smDesignDescriber.outputDirectory = ProcessDirPath(settings.smDesignDescriber.outputDirectory, relativeDirectory);
 
-        if (iRenderConfig is IRenderConfigJavaScript rcjs)
-            renderConfigAllVars.JavaScript.SetFrom(rcjs, autoDeIndentAndTrimRenderConfigItems);
+        if (settings.simulation.enableGeneration)
+        {
+            settings.simulation.outputDirectory ??= settings.outputDirectory;
+            settings.simulation.outputDirectory = ProcessDirPath(settings.simulation.outputDirectory, relativeDirectory);
+        }
+    }
 
-        if (iRenderConfig is IRenderConfigTypeScript ts)
-            renderConfigAllVars.TypeScript.SetFrom(ts, autoDeIndentAndTrimRenderConfigItems);
-
-        if (iRenderConfig is IRenderConfigJava rcj)
-            renderConfigAllVars.Java.SetFrom(rcj, autoDeIndentAndTrimRenderConfigItems);
-
-        if (iRenderConfig is IRenderConfigPython rcp)
-            renderConfigAllVars.Python.SetFrom(rcp, autoDeIndentAndTrimRenderConfigItems);
+    private static string ProcessDirPath(string dirPath, string relativeDirectory)
+    {
+        var resultPath = PathUtils.EnsurePathAbsolute(dirPath, relativeDirectory);
+        resultPath = PathUtils.EnsureDirEndingSeperator(resultPath);
+        return resultPath;
     }
 
     /// <summary>
-    /// You only need to call this if you adjust the algorithm or transpiler id after constructing a <see cref="SmRunner"/>.
-    /// Will put in some defaults appropriate for algorithm and transpiler.
+    /// Force application number parsing to use periods for decimal points instead of commas.
+    /// Fix for https://github.com/StateSmith/StateSmith/issues/159
     /// </summary>
-    public void AlgoOrTranspilerUpdated()
+    private static void AppUseDecimalPeriod()
     {
-        new AlgoTranspilerCustomizer().Customize(diServiceProvider, settings.algorithmId, settings.transpilerId, settings.algoBalanced1, settings.style);
+        System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+        System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+    }
+
+    private void ReadDiagramRenderConfigs()
+    {
+        // TODO add a note about when this is undone. Presumably the transformer pass in Run does not have this set?
+        ((StandardSmTransformer)transformer).onlyPreDiagramSettings = true;
+
+        try
+        {
+            // Note that this may throw if the diagram is invalid.
+            var preDiagramSettingsReader = preDiagramSettingsReaderProvider();
+            if (preDiagramSettingsReader != null)
+            {
+                SetupAndFindStateMachine(inputSmBuilder, context.runnerSettings);
+                preDiagramSettingsReader.Process();
+            }
+        }
+        catch (Exception e)
+        {
+            OutputExceptionDetail(e);
+            throw;
+        }
     }
 
     /// <summary>
-    /// Finalizes dependency injection settings.
-    /// exists just for testing. can be removed in the future.
+    /// Prints exception details and optionally dumps them to a file, then outputs a failure message.
     /// </summary>
-    internal void PrepareBeforeRun()
+    private void OutputExceptionDetail(Exception e)
     {
-        diServiceProvider.BuildIfNeeded();
-        SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
-        OutputInfo outputInfo = diServiceProvider.GetInstanceOf<OutputInfo>();
-        outputInfo.outputDirectory = settings.outputDirectory.ThrowIfNull();
+        var optionalErrorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), context.runnerSettings.DiagramPath + ".err.txt");
+
+        exceptionPrinter.PrintException(e, dumpDetailsFilePath: optionalErrorDetailFilePath);
+
+        consolePrinter.WriteErrorLine($"Related error info/debug settings: 'dumpErrorsToFile', 'propagateExceptions'. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md .");
+
+        this.consolePrinter.OutputStageMessage("Finished with failure.");
+
+        // Give stdout a chance to print the exception before exception is thrown.
+        // We sometimes would see our printed detail message info cut off by dotnet exception handling.
+        // See https://github.com/StateSmith/StateSmith/issues/375
+        System.Threading.Thread.Sleep(100);
     }
-
-    // ----------- experimental access  -------------
-    // exists just for now to help make it clear StateSmith API that is likely to change soon.
-
-    public IExperimentalAccess GetExperimentalAccess() => this;
-    DiServiceProvider IExperimentalAccess.DiServiceProvider => diServiceProvider;
-    RunnerSettings IExperimentalAccess.Settings => settings;
-    InputSmBuilder IExperimentalAccess.InputSmBuilder => diServiceProvider.GetServiceOrCreateInstance();
 
     /// <summary>
-    /// The API in this experimental access may break often. It will eventually stabilize after enough use and feedback.
+    /// Finalizes settings.
     /// </summary>
-    public interface IExperimentalAccess
+    /// // TODO move PrepareBeforeRun into constructor instead of during Run(). This works now but
+    /// // will break existing CSX scripts that expect to be able to modify settings after construction, is that common?
+    private void PrepareBeforeRun()
     {
-        /// <summary>
-        /// Dependency Injection Service Provider
-        /// </summary>
-        DiServiceProvider DiServiceProvider { get; }
+        AppUseDecimalPeriod();
+        this.context.callerFilePath.ThrowIfNull();
+        ResolveFilePaths(context.runnerSettings, context.callerFilePath);
+        outputInfo.outputDirectory = context.runnerSettings.outputDirectory.ThrowIfNull();
 
-        RunnerSettings Settings { get; }
-        InputSmBuilder InputSmBuilder { get; }
+        algoTranspilerCustomizer.Customize(context.runnerSettings.algorithmId, context.runnerSettings.transpilerId);
+
+        if (context.runnerSettings.transpilerId == TranspilerId.NotYetSet)
+            throw new ArgumentException("TranspilerId must be set before running code generation");
+
     }
+
 }
-
-

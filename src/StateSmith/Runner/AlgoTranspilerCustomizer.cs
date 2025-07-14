@@ -20,24 +20,20 @@ namespace StateSmith.Runner;
 /// </summary>
 public class AlgoTranspilerCustomizer
 {
-    public void Customize(DiServiceProvider sp, AlgorithmId algorithmId, TranspilerId transpilerId, AlgoBalanced1Settings algoBalanced1Settings, CodeStyleSettings style)
+    private AlgoBalanced1Settings algoBalanced1Settings;
+    private CodeStyleSettings style;
+
+    public AlgoTranspilerCustomizer(AlgoBalanced1Settings algoBalanced1Settings, CodeStyleSettings style)
+    {
+        this.algoBalanced1Settings = algoBalanced1Settings;
+        this.style = style;
+    }
+
+    public void Customize(AlgorithmId algorithmId, TranspilerId transpilerId)
     {
         if (algorithmId == AlgorithmId.Default)
         {
             algorithmId = AlgorithmId.Balanced2;
-        }
-
-        switch (algorithmId)
-        {
-            case AlgorithmId.Balanced1:
-                break;
-
-            case AlgorithmId.Balanced2:
-                sp.AddSingletonT<EventHandlerBuilder, EventHandlerBuilder2>();
-                sp.AddSingletonT<IGilAlgo, AlgoBalanced2>();
-                break;
-
-            default: throw new ArgumentException("Unknown algorithmId: " + algorithmId);
         }
 
         algoBalanced1Settings.outputSwitchDefault = false;  // default to false. Needed because of default case below.
@@ -47,17 +43,12 @@ public class AlgoTranspilerCustomizer
             case TranspilerId.Default:
             case TranspilerId.C99:
                 {
-                    sp.AddSingletonT<IGilTranspiler, GilToC99>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
                     algoBalanced1Settings.outputSwitchDefault = true;
                 }
                 break;
 
             case TranspilerId.Cpp:
                 {
-                    sp.AddSingletonT<IGilTranspiler, GilToCpp>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CppExpansionVarsPathProvider>();
-                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
                     algoBalanced1Settings.varsStructAsClass = true;
                     algoBalanced1Settings.outputSwitchDefault = true;
@@ -72,28 +63,18 @@ public class AlgoTranspilerCustomizer
 
             case TranspilerId.CSharp:
                 {
-                    sp.AddSingletonT<IGilTranspiler, GilToCSharp>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
-                    sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
                 }
                 break;
 
             case TranspilerId.JavaScript:
                 {
-                    sp.AddSingletonT<IGilTranspiler, GilToJavaScript>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();    // todo - rename to something common
-                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
-                    sp.AddSingletonT<IAutoVarsParser, JsAutoVarsParser>();
                     algoBalanced1Settings.skipClassIndentation = false;
                 }
                 break;
 
             case TranspilerId.Java:
                 {
-                    sp.AddSingletonT<IGilTranspiler, GilToJava>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
-                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
 
                     // https://github.com/StateSmith/StateSmith/issues/395
@@ -106,11 +87,6 @@ public class AlgoTranspilerCustomizer
 
             case TranspilerId.Python:
                 {
-                    sp.AddSingletonT<IGilTranspiler, GilToPython>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, PythonExpansionVarsPathProvider>();
-                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
-                    sp.AddSingletonT<IAutoVarsParser, PythonAutoVarsParser>();
-
                     algoBalanced1Settings.skipClassIndentation = false;
                     algoBalanced1Settings.outputEnumMemberCount = false;
                     algoBalanced1Settings.varsStructAsClass = true;
@@ -132,10 +108,6 @@ public class AlgoTranspilerCustomizer
 
             case TranspilerId.TypeScript:
                 {
-                    sp.AddSingletonT<IGilTranspiler, GilToTypeScript>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
-                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
-                    sp.AddSingletonT<IAutoVarsParser, TypeScriptAutoVarsParser>();
                     algoBalanced1Settings.varsStructAsClass = true;
                     algoBalanced1Settings.skipClassIndentation = false;
                     //style.BracesOnNewLines = false; // todolow - it would be nice to support this

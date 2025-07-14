@@ -15,13 +15,13 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace StateSmith.Output.Sim;
 
 public class SimWebGenerator
 {
-    public RunnerSettings RunnerSettings => runner.Settings;
-
     private readonly ICodeFileWriter codeFileWriter;
     MermaidEdgeTracker mermaidEdgeTracker = new();
     TrackingExpander trackingExpander = new();
@@ -29,7 +29,8 @@ public class SimWebGenerator
     TextWriter mocksWriter = new StringWriter();
     SingleFileCapturer fileCapturer = new();
     StateMachineProvider stateMachineProvider;
-    NameMangler nameMangler;
+    Func<SmTransformer> transformerProvider;
+    INameMangler nameMangler;
     Regex historyGilRegex;
 
     /// <summary>
@@ -62,23 +63,35 @@ public class SimWebGenerator
         // To customize the transformation/code generation process, we register custom DI services with the `SmRunner`.
 
         this.codeFileWriter = codeFileWriter;
-        DiServiceProvider simDiServiceProvider;
 
-        var enablePreDiagramBasedSettings = false;  // need to stop it from trying to read diagram early as fake diagram path is used
-        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, enablePDBS: enablePreDiagramBasedSettings);
-        runner.Settings.propagateExceptions = true;
+        var serviceProvider = RunnerServiceProviderFactory.CreateDefault((services)=>
+        {
+            services.AddSingleton<IExpander>(trackingExpander);
+            services.AddSingleton<ICodeFileWriter>(fileCapturer);
+            services.AddSingleton<IConsolePrinter>(new DiscardingConsolePrinter());   // we want regular SmRunner console output to be discarded            
 
-        // Registering DI services must be done before accessing `runner.SmTransformer`.
-        simDiServiceProvider = runner.GetExperimentalAccess().DiServiceProvider;
-        simDiServiceProvider.AddSingletonT<IExpander>(trackingExpander);
-        simDiServiceProvider.AddSingletonT<ICodeFileWriter>(fileCapturer);
-        simDiServiceProvider.AddSingletonT<IConsolePrinter>(new DiscardingConsolePrinter());   // we want regular SmRunner console output to be discarded
+            // need to stop it from trying to read diagram early as fake diagram path is used
+            services.RemoveAll<PreDiagramSettingsReader>();
+        });
+
+        transformerProvider = serviceProvider.GetRequiredService<Func<SmTransformer>>();
+
+        RunnerSettings settings = new()
+        {
+            DiagramPath = mainRunnerSettings.DiagramPath,
+            propagateExceptions = true,
+            transpilerId = TranspilerId.JavaScript,
+            algorithmId = mainRunnerSettings.algorithmId
+        };
+
+        runner = SmRunner.Create(settings, renderConfig: new SimRenderConfig(), serviceProvider: serviceProvider);
+
         AdjustTransformationPipeline();
-        PreventCertainDiagramSpecifiedSettings(simDiServiceProvider.GetInstanceOf<RenderConfigBaseVars>());
+        PreventCertainDiagramSpecifiedSettings(serviceProvider.GetRequiredService<RenderConfigBaseVars>());
 
-        stateMachineProvider = simDiServiceProvider.GetInstanceOf<StateMachineProvider>();
+        stateMachineProvider = serviceProvider.GetRequiredService<StateMachineProvider>();
 
-        nameMangler = simDiServiceProvider.GetInstanceOf<NameMangler>();
+        nameMangler = serviceProvider.GetRequiredService<INameMangler>();
 
         SetupGilHistoryRegex();
     }
@@ -90,7 +103,7 @@ public class SimWebGenerator
     /// <param name="renderConfigBaseVars">Render configuration base variables</param>
     private void PreventCertainDiagramSpecifiedSettings(RenderConfigBaseVars renderConfigBaseVars)
     {
-        DiagramBasedSettingsPreventer.Process(runner.SmTransformer, action: (readRenderConfigAllVars, _) =>
+        DiagramBasedSettingsPreventer.Process(transformerProvider(), action: (readRenderConfigAllVars, _) =>
         {
             // copy only the settings that are safe to copy for the simulation
             renderConfigBaseVars.TriggerMap = readRenderConfigAllVars.Base.TriggerMap;
@@ -131,23 +144,24 @@ public class SimWebGenerator
         // This allows us to easily map an SS behavior to its corresponding mermaid edge ID.
 
         const string GenMermaidCodeStepId = "gen-mermaid-code";
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportHistory, new TransformationStep(id: GenMermaidCodeStepId, GenerateMermaidCode));
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, V1LoggingTransformationStep);
-        
+        var transformer = transformerProvider();
+        transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportHistory, new TransformationStep(id: GenMermaidCodeStepId, GenerateMermaidCode));
+        transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, V1LoggingTransformationStep);
+
         // collect diagram names after trigger mapping completes
-        runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, CollectDiagramNames);
+        transformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, CollectDiagramNames);
 
         // We to generate mermaid diagram before history support (to avoid a ton of transitions being shown), but AFTER name conflict resolution.
         // See https://github.com/StateSmith/StateSmith/issues/302
         // Validate that this is true.
-        int historyIndex = runner.SmTransformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_SupportHistory);
-        int nameConflictIndex = runner.SmTransformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_NameConflictResolution);
-        int mermaidIndex = runner.SmTransformer.GetMatchIndex(GenMermaidCodeStepId);
+        int historyIndex = transformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_SupportHistory);
+        int nameConflictIndex = transformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_NameConflictResolution);
+        int mermaidIndex = transformer.GetMatchIndex(GenMermaidCodeStepId);
         if (mermaidIndex <= nameConflictIndex || mermaidIndex >= historyIndex)
             throw new Exception("Mermaid generation must occur after name conflict resolution and before history support.");
 
         // show default 'do' events in mermaid diagram
-         runner.SmTransformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, (StateMachine sm) => { DefaultToDoEventVisitor.Process(sm); });
+        transformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, (StateMachine sm) => { DefaultToDoEventVisitor.Process(sm); });
     }
 
     private void CollectDiagramNames(StateMachine sm)
@@ -194,9 +208,8 @@ public class SimWebGenerator
     }
 
 
-    public void Generate(string diagramPath, string outputDir)
+    public void Generate(string outputDir)
     {
-        runner.Settings.DiagramPath = diagramPath;
         runner.Run();
         var smName = stateMachineProvider.GetStateMachine().Name;
 

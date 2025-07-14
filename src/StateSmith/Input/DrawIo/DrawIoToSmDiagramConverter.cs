@@ -1,6 +1,8 @@
 using StateSmith.Runner;
 using System.Collections.Generic;
 using System.IO;
+using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmith.Input.DrawIo;
 
@@ -9,12 +11,12 @@ public class DrawIoToSmDiagramConverter
     public List<DiagramEdge> Edges = new();
     public List<DiagramNode> Roots = new();
     private readonly IConsolePrinter consolePrinter;
+    private readonly Func<MxCellsToSmDiagramConverter> mxCellsToSmDiagramConverterProvider;
 
-    public DiServiceProvider DiServiceProvider { get; }
 
-    public DrawIoToSmDiagramConverter(DiServiceProvider diServiceProvider, IConsolePrinter consolePrinter)
+    public DrawIoToSmDiagramConverter(Func<MxCellsToSmDiagramConverter> mxCellsToSmDiagramConverterProvider, IConsolePrinter consolePrinter)
     {
-        DiServiceProvider = diServiceProvider;
+        this.mxCellsToSmDiagramConverterProvider = mxCellsToSmDiagramConverterProvider;
         this.consolePrinter = consolePrinter;
     }
 
@@ -66,7 +68,7 @@ public class DrawIoToSmDiagramConverter
         mxCellParser.Parse();
 
         // we need a new converter for each diagram
-        var converter = DiServiceProvider.GetInstanceOf<MxCellsToSmDiagramConverter>();
+        var converter = mxCellsToSmDiagramConverterProvider();
         converter.Process(mxCellParser.mxCells);
 
         Edges.AddRange(converter.edges);

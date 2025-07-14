@@ -169,9 +169,16 @@ public class MxCellParserTests
         var tempFileName = Path.GetTempFileName() + ".drawio";
         File.WriteAllText(tempFileName, XmlWithMissingIdAttribute);
 
-        SmRunner smRunner = new(diagramPath: tempFileName);
-        smRunner.Settings.propagateExceptions = true;
-        Action a = () => smRunner.Run();
+        Action a = () =>
+        {
+            RunnerSettings settings = new()
+            {
+                DiagramPath = tempFileName,
+                propagateExceptions = true,
+            };
+            SmRunner smRunner = SmRunner.Create(settings);
+            smRunner.Run();
+        };
 
         a.Should().Throw<Exception>()
             .WithMessage("*failed getting attribute `id`*")

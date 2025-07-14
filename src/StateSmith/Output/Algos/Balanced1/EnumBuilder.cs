@@ -10,11 +10,11 @@ namespace StateSmith.Output.Algos.Balanced1;
 
 public class EnumBuilder
 {
-    private readonly NameMangler mangler;
+    private readonly INameMangler mangler;
     private readonly IStateMachineProvider stateMachineProvider;
     private readonly AlgoBalanced1Settings settings;
 
-    public EnumBuilder(NameMangler mangler, IStateMachineProvider stateMachineProvider, AlgoBalanced1Settings settings)
+    public EnumBuilder(INameMangler mangler, IStateMachineProvider stateMachineProvider, AlgoBalanced1Settings settings)
     {
         this.mangler = mangler;
         this.stateMachineProvider = stateMachineProvider;

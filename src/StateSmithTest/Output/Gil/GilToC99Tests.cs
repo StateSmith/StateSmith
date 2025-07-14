@@ -25,7 +25,7 @@ public class GilToC99Tests
             //outputDirectory = TestHelper.GetThisDir() // use this one when troubleshooting
         };
 
-        FilePathPrinter pathPrinter = new(outputInfo.outputDirectory);
+        FilePathPrinter pathPrinter = new(() => outputInfo.outputDirectory);
         GilToC99 gilToC = new(outputInfo, new GilToC99Customizer(renderConfigC, outputInfo), new CodeFileWriter(new StringBuilderConsolePrinter(), pathPrinter), renderConfig, renderConfigC, new());
 
         gilToC.TranspileAndOutputCode(programText);

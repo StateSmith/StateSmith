@@ -4,6 +4,8 @@ using FluentAssertions;
 using StateSmith.Output;
 using StateSmith.Runner;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
+
 
 namespace StateSmithTest.Output.BalancedCoder1;
 
@@ -18,21 +20,41 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void NormalBehaviorHasToStringFunctions()
     {
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId:TranspilerId.CSharp);
-        SetupForUnitTest(capturedFile, runner);
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
+            services.AddSingleton<ICodeFileWriter>(capturedFile);
+        });
+
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "ExBc1.drawio",
+            transpilerId = TranspilerId.CSharp,
+            propagateExceptions = true,
+        };
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
         runner.Run();
 
         capturedFile.LastCode.Should().Contain("public static string StateIdToString(");
-        capturedFile.LastCode.Should().Contain("public static string EventIdToString(");
+        capturedFile.LastCode.Should().Contain("public static string EventIdToString(");            
     }
 
     // https://github.com/StateSmith/StateSmith/issues/181
     [Fact]
     public void RemoveEventIdToString()
     {
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp);
-        SetupForUnitTest(capturedFile, runner);
-        runner.Settings.algoBalanced1.outputEventIdToStringFunction = false; // Here's the setting you want
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
+            services.AddSingleton<ICodeFileWriter>(capturedFile);
+        });
+
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "ExBc1.drawio",
+            transpilerId = TranspilerId.CSharp,
+            propagateExceptions = true,
+            algoBalanced1 = { outputEventIdToStringFunction = false }
+        };
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
         runner.Run();
 
         capturedFile.LastCode.Should().Contain("public static string StateIdToString");
@@ -43,18 +65,23 @@ public class AlgoBalanced1SettingsTests
     [Fact]
     public void RemoveStateIdToString()
     {
-        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp);
-        SetupForUnitTest(capturedFile, runner);
-        runner.Settings.algoBalanced1.outputStateIdToStringFunction = false; // Here's the setting you want
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
+            services.AddSingleton<ICodeFileWriter>(capturedFile);
+        });
+
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "ExBc1.drawio",
+            transpilerId = TranspilerId.CSharp,
+            propagateExceptions = true,
+            algoBalanced1 = { outputStateIdToStringFunction = false }
+        };
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
         runner.Run();
 
         capturedFile.LastCode.Should().NotContain("public static string StateIdToString");
         capturedFile.LastCode.Should().Contain("public static string EventIdToString(");
     }
 
-    private static void SetupForUnitTest(CapturingCodeFileWriter capturedFile, SmRunner runner)
-    {
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(capturedFile);
-        runner.Settings.propagateExceptions = true;
-    }
 }

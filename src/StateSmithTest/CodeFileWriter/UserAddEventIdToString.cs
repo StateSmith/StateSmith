@@ -5,6 +5,7 @@ using StateSmith.Runner;
 using System.IO;
 using System.Text;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.CodeFileWriterTests;
 
@@ -14,10 +15,10 @@ public class UserAddEventIdToString
     public class MyCodeFileWriter : ICodeFileWriter
     {
         StateMachineProvider smProvider;
-        NameMangler mangler;
+        INameMangler mangler;
         CodeStyleSettings codeStyle;
 
-        public MyCodeFileWriter(StateMachineProvider smProvider, NameMangler mangler, CodeStyleSettings codeStyle)
+        public MyCodeFileWriter(StateMachineProvider smProvider, INameMangler mangler, CodeStyleSettings codeStyle)
         {
             this.smProvider = smProvider;
             this.mangler = mangler;
@@ -74,26 +75,31 @@ public class UserAddEventIdToString
             File.WriteAllText(path: filePath, code);
         }
     }
-
-    // 
+    
     [Fact]
     public void ExampleCustomCodeGen()
     {
-        SmRunner runner = new(diagramPath: "Ex2.drawio.svg");
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
+            // register our custom code file writer
+            services.AddSingleton<ICodeFileWriter, MyCodeFileWriter>();
+        });
 
-        // register our custom code file writer
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter, MyCodeFileWriter>();
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "Ex2.drawio.svg",
+            propagateExceptions = true,
+            outputStateSmithVersionInfo = false,
+        };
 
-        // adjust settings because we are unit testing. Normally wouldn't do below.
-        runner.Settings.propagateExceptions = true;
-        runner.Settings.outputStateSmithVersionInfo = false;
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: sp);
 
         // run StateSmith with our custom code file writer
         runner.Run();
 
         // Test that we saw the expected output from your custom code generator.
-        var cCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex2.c");
-        var hCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex2.h");
+        var cCode = File.ReadAllText(settings.outputDirectory + "Ex2.c");
+        var hCode = File.ReadAllText(settings.outputDirectory + "Ex2.h");
 
         cCode.Should().Contain("_event_id_to_string");
         hCode.Should().Contain("_event_id_to_string");

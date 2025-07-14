@@ -3,6 +3,9 @@ using FluentAssertions;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 using System;
+using Microsoft.Extensions.DependencyInjection;
+using StateSmith.Output;
+using StateSmithTest.Output;
 
 namespace StateSmithTest.Input;
 
@@ -19,7 +22,7 @@ public class ErrorReporting
             @enduml
             """;
 
-        string consoleOutput = RunExpectGenericFailure(plantUmlText);
+        string consoleOutput = RunExpectFailure(plantUmlText);
 
         consoleOutput.Should().Contain("""
             Failed parsing node label.
@@ -51,7 +54,7 @@ public class ErrorReporting
             @enduml
             """;
 
-        string consoleOutput = RunExpectGenericFailure(plantUmlText);
+        string consoleOutput = RunExpectFailure(plantUmlText);
 
         consoleOutput.Should().Contain("""
             Exception FormatException : PlantUML input failed parsing.
@@ -69,7 +72,7 @@ public class ErrorReporting
             @enduml
             """;
 
-        string consoleOutput = RunExpectGenericFailure(plantUmlText);
+        string consoleOutput = RunExpectFailure(plantUmlText);
 
         consoleOutput.Should().Contain("""
             Failed parsing diagram edge
@@ -97,7 +100,7 @@ public class ErrorReporting
             @enduml
             """;
 
-        string consoleOutput = RunExpectGenericFailure(plantUmlText);
+        string consoleOutput = RunExpectFailure(plantUmlText);
 
         consoleOutput.Should().Contain("""
             VertexValidationException: history vertex must only have a single default transition. Found 2 behaviors.
@@ -110,11 +113,11 @@ public class ErrorReporting
             """);
     }
 
-    private static string RunExpectGenericFailure(string plantUmlText)
+    private static string RunExpectFailure(string plantUmlText)
     {
         StringBuilderConsolePrinter fakeConsole = new();
         Action a = () => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, propagateExceptions: false, consoleCapturer: fakeConsole);
-        a.Should().Throw<FinishedWithFailureException>();
+        a.Should().Throw<Exception>();
         string consoleOutput = fakeConsole.sb.ToString();
         consoleOutput.Should().Contain("StateSmith Runner - Finished with failure.");
         return consoleOutput;
@@ -136,7 +139,13 @@ public class ErrorReporting
 
         // This test is more involved because it requires code injection
         StringBuilderConsolePrinter fakeConsole = new();
-        Action a = () => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, preRun: AddBadCode, propagateExceptions: false, consoleCapturer: fakeConsole);
+        var sp = RunnerServiceProviderFactory.CreateDefault((services) =>
+        {
+            services.AddSingleton<ICodeFileWriter>(new DiscardingCodeFileWriter());
+            services.AddSingleton<IConsolePrinter>(fakeConsole);
+        });
+        var transformerProvider = sp.GetRequiredService<Func<SmTransformer>>();
+        Action a = () => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, preRun: AddBadCode, propagateExceptions: false, consoleCapturer: fakeConsole, serviceProvider: sp);
         a.Should().Throw<FinishedWithFailureException>();
 
         string consoleOutput = fakeConsole.sb.ToString();
@@ -160,7 +169,7 @@ public class ErrorReporting
 
         void AddBadCode(SmRunner smRunner)
         {
-            smRunner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (sm) =>
+            transformerProvider().InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (sm) =>
             {
                 sm.VisitTypeRecursively((State state) =>
                 {

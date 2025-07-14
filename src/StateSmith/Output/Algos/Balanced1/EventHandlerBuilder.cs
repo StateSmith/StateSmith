@@ -18,7 +18,7 @@ public class EventHandlerBuilder
     public string smAccess = "this";
 
     public const string consumeEventVarName = "consume_event";
-    protected readonly NameMangler mangler;
+    protected readonly INameMangler mangler;
     protected readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
     protected readonly WrappingExpander wrappingExpander;
     protected readonly UserExpansionScriptBases userExpansionScriptBases;
@@ -28,7 +28,7 @@ public class EventHandlerBuilder
 
     protected OutputFile File => _file.ThrowIfNull("You forgot to set file before using.");
 
-    public EventHandlerBuilder(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases, AlgoBalanced1Settings settings)
+    public EventHandlerBuilder(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, INameMangler mangler, UserExpansionScriptBases userExpansionScriptBases, AlgoBalanced1Settings settings)
     {
         this.pseudoStateHandlerBuilder = pseudoStateHandlerBuilder;
         this.mangler = mangler;

@@ -6,31 +6,37 @@ using StateSmith.Input;
 using System.Text;
 using System.IO;
 using StateSmith.SmGraph.Validation;
+using System;
 
 namespace StateSmith.Runner;
 
 public class ExceptionPrinter
 {
     readonly IConsolePrinter consolePrinter;
+    readonly Func<bool> dumpErrorsToFileProvider;
+
     const string SsGrammarRelatedHelpMsg = ">>>> RELATED HELP <<<<\nhttps://github.com/StateSmith/StateSmith/issues/174";
 
-    public ExceptionPrinter(IConsolePrinter consolePrinter)
+    public ExceptionPrinter(IConsolePrinter consolePrinter, Func<bool> dumpErrorsToFileProvider)
     {
         this.consolePrinter = consolePrinter;
+        this.dumpErrorsToFileProvider = dumpErrorsToFileProvider;
     }
 
-    public void DumpExceptionDetails(System.Exception exception, string filePath)
-    {
-        StringBuilder sb = new();
-        BuildExceptionDetails(sb, exception, additionalDetail: true);
-        File.WriteAllText(filePath, sb.ToString());
-    }
-
-    public void PrintException(System.Exception exception)
+    public void PrintException(System.Exception exception, string? dumpDetailsFilePath = null)
     {
         StringBuilder sb = new();
         BuildExceptionDetails(sb, exception);
-        consolePrinter.WriteErrorLine(sb.ToString());
+        var message = sb.ToString();
+        consolePrinter.WriteErrorLine(message);
+
+        // https://github.com/StateSmith/StateSmith/issues/82
+        var dumpErrorsToFile = dumpErrorsToFileProvider();
+        if (dumpErrorsToFile && dumpDetailsFilePath != null)
+        {
+            File.WriteAllText(dumpDetailsFilePath, message);
+            consolePrinter.WriteErrorLine("Exception details dumped to file: " + dumpDetailsFilePath);
+        }
     }
 
     public void BuildExceptionDetails(StringBuilder sb, System.Exception exception, bool additionalDetail = false, int depth = 0)

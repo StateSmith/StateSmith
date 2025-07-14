@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Text;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.Output.SmDescriberTest;
 
@@ -203,48 +204,50 @@ public class SmDesignDescriberTests
         public StringBuilder sb = new();
         public SmRunner smRunner;
         public SmDesignDescriber describer;
+        private RunnerSettings settings;
 
         public Tester(bool captureToBuffer = true, string diagramFile = "Ex564.drawio")
         {
-            smRunner = SetupSmRunner(out var diServiceProvider, diagramFile);
-            describer = diServiceProvider.GetInstanceOf<SmDesignDescriber>();
+            smRunner = SetupSmRunner(out var iServiceProvider, diagramFile);
+            settings = iServiceProvider.GetRequiredService<RunnerSettings>();
+            describer = iServiceProvider.GetRequiredService<SmDesignDescriber>();
             if (captureToBuffer)
                 describer.SetTextWriter(new StringWriter(sb));
         }
 
         public Tester Enable()
         {
-            smRunner.Settings.smDesignDescriber.enabled = true;
+            settings.smDesignDescriber.enabled = true;
             return this;
         }
 
         public Tester EnableOutputAncestorHandlers()
         {
-            smRunner.Settings.smDesignDescriber.outputAncestorHandlers = true;
+            settings.smDesignDescriber.outputAncestorHandlers = true;
             return this;
         }
 
         public Tester Disable()
         {
-            smRunner.Settings.smDesignDescriber.enabled = false;
+            settings.smDesignDescriber.enabled = false;
             return this;
         }
 
         public Tester DisableBeforeTransformations()
         {
-            smRunner.Settings.smDesignDescriber.outputSections.beforeTransformations = false;
+            settings.smDesignDescriber.outputSections.beforeTransformations = false;
             return this;
         }
 
         public Tester DisableAfterTransformations()
         {
-            smRunner.Settings.smDesignDescriber.outputSections.afterTransformations = false;
+            settings.smDesignDescriber.outputSections.afterTransformations = false;
             return this;
         }
 
         public Tester EnableAfterTransformations()
         {
-            smRunner.Settings.smDesignDescriber.outputSections.afterTransformations = true;
+            settings.smDesignDescriber.outputSections.afterTransformations = true;
             return this;
         }
 
@@ -259,13 +262,19 @@ public class SmDesignDescriberTests
             smRunner.Run();
         }
 
-        private static SmRunner SetupSmRunner(out DiServiceProvider di, string diagramFile)
+        private static SmRunner SetupSmRunner(out IServiceProvider di, string diagramFile)
         {
-            SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + diagramFile);
-            smRunner.Settings.propagateExceptions = true; // for testing
-            di = smRunner.GetExperimentalAccess().DiServiceProvider;
-            di.AddSingletonT<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
+            di = RunnerServiceProviderFactory.CreateDefault((services) =>
+            {
+                services.AddSingleton<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
+            });
 
+            RunnerSettings settings = new()
+            {
+                DiagramPath = TestHelper.GetThisDir() + diagramFile,
+                propagateExceptions = true,
+            };
+            SmRunner smRunner = SmRunner.Create(settings, serviceProvider: di);
             return smRunner;
         }
     }
@@ -428,24 +437,6 @@ public class SmDesignDescriberTests
                 INC_ERR / { err++; }
 
 
-            Vertex: \<RenderConfig>
-            -----------------------------------------
-            - Parent: ROOT
-            - Type: RenderConfigVertex
-            - Diagram Id: gO1ZRfetmGtumTaL4_i4-146
-
-
-            Vertex: \<Config>(TriggerMap)
-            -----------------------------------------
-            - Parent: \<RenderConfig>
-            - Type: ConfigOptionVertex
-            - Diagram Id: gO1ZRfetmGtumTaL4_i4-148
-
-            ### Option Content:
-                // some comment
-                ANY => * /* wildcard */
-
-
             Vertex: PRE_HEAT
             -----------------------------------------
             - Parent: RUNNING
@@ -479,6 +470,28 @@ public class SmDesignDescriberTests
                 TransitionTo(PRE_HEAT)
 
             """;
+            
+            // TODO remove. I believe this is safe to remove because
+            // it's only being used by SimWebGenerator, which does not need/expect
+            // RenderConfig nodes to be output during the settings pass.
+
+            // Vertex: \<RenderConfig>
+            // -----------------------------------------
+            // - Parent: ROOT
+            // - Type: RenderConfigVertex
+            // - Diagram Id: gO1ZRfetmGtumTaL4_i4-146
+
+
+            // Vertex: \<Config>(TriggerMap)
+            // -----------------------------------------
+            // - Parent: \<RenderConfig>
+            // - Type: ConfigOptionVertex
+            // - Diagram Id: gO1ZRfetmGtumTaL4_i4-148
+
+            // ### Option Content:
+            //     // some comment
+            //     ANY => * /* wildcard */
+
 
     private const string ExpectedAfterTransformations = """
             AFTER TRANSFORMATIONS

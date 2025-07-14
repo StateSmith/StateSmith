@@ -25,7 +25,7 @@ public class AlgoBalanced2 : AlgoBalanced1
 
     EventHandlerBuilder2 eventHandlerBuilder2;
 
-    public AlgoBalanced2(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigBaseVars renderConfig, EventHandlerBuilder2 eventHandlerBuilder2, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter) :
+    public AlgoBalanced2(INameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigBaseVars renderConfig, EventHandlerBuilder2 eventHandlerBuilder2, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter) :
         base(mangler, pseudoStateHandlerBuilder, enumBuilder, renderConfig, eventHandlerBuilder2, styler, settings, algoEventIdToString, algoStateIdToString, standardFileHeaderPrinter)
     {
         this.eventHandlerBuilder2 = eventHandlerBuilder2;

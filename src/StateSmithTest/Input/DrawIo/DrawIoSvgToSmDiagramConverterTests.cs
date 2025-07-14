@@ -5,6 +5,8 @@ using System.Linq;
 using FluentAssertions;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace StateSmithTest.Input.DrawIo;
 
@@ -13,10 +15,11 @@ public class DrawIoSvgToSmDiagramConverterTests
     [Fact]
     public void Test()
     {
-        InputSmBuilder runner = new();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder runner = serviceProvider.GetRequiredService<InputSmBuilder>();
 
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm.drawio.svg";
-        DrawIoToSmDiagramConverter converter = runner.sp.GetServiceOrCreateInstance();
+        DrawIoToSmDiagramConverter converter = serviceProvider.GetRequiredService<DrawIoToSmDiagramConverter>();
         converter.ProcessSvg(File.OpenText(filePath));
 
         var smDiagramRoot = converter.Roots.Single();
@@ -56,7 +59,8 @@ public class DrawIoSvgToSmDiagramConverterTests
     {
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm.drawio.svg";
 
-        InputSmBuilder runner = new();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder runner = serviceProvider.GetRequiredService<InputSmBuilder>();
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
@@ -71,7 +75,8 @@ public class DrawIoSvgToSmDiagramConverterTests
         File.ReadAllText(filePath).Should().NotContain("<mxGraphModel", because: "this file needs to be compressed");
         // Note that vscode extension tends to write file uncompressed, but draw.io windows app tends to write it compressed.
 
-        InputSmBuilder runner = new();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder runner = serviceProvider.GetRequiredService<InputSmBuilder>();
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
@@ -86,7 +91,8 @@ public class DrawIoSvgToSmDiagramConverterTests
         File.ReadAllText(filePath).Should().Contain("<mxGraphModel", because: "this should not be compressed");
         // Note that vscode extension tends to write file uncompressed, but draw.io windows app tends to write it compressed.
 
-        InputSmBuilder runner = new();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder runner = serviceProvider.GetRequiredService<InputSmBuilder>();
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
@@ -101,7 +107,8 @@ public class DrawIoSvgToSmDiagramConverterTests
         File.ReadAllText(filePath).Should().Contain("<mxGraphModel", because: "this should not be compressed");
         // Note that vscode extension tends to write file uncompressed, but draw.io windows app tends to write it compressed.
 
-        InputSmBuilder runner = new();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder runner = serviceProvider.GetRequiredService<InputSmBuilder>();
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
@@ -114,7 +121,8 @@ public class DrawIoSvgToSmDiagramConverterTests
     {
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm_with_image.drawio.svg";
 
-        InputSmBuilder runner = new();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder runner = serviceProvider.GetRequiredService<InputSmBuilder>();
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
         runner.GetStateMachine().Name.Should().Be("Design1Sm_with_image");

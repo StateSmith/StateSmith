@@ -19,7 +19,7 @@ public class PseudoStateHandlerBuilder
     /// <summary>
     /// needs to be set before using this class
     /// </summary>
-    public NameMangler? mangler;
+    public INameMangler? mangler;
     readonly Dictionary<PseudoStateVertex, string> functionNameMap = new();
     readonly HashList<NamedVertex, PseudoStateVertex> parentMapping = new();
 

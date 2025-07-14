@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace StateSmith.Output.Algos.Balanced1;
 
-public class NameMangler
+public class NameMangler : INameMangler
 {
     protected StateMachine? _sm;
     public StateMachine Sm => _sm.ThrowIfNull();

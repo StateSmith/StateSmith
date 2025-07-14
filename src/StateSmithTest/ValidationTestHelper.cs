@@ -3,6 +3,7 @@ using FluentAssertions;
 using StateSmith.SmGraph;
 using StateSmith.Runner;
 using StateSmith.SmGraph.Validation;
+using Microsoft.Extensions.DependencyInjection;
 
 #nullable enable
 
@@ -15,9 +16,10 @@ namespace StateSmithTest
 
         public ValidationTestHelper()
         {
-            inputSmBuilder = new InputSmBuilder();
-            diagramToSmConverter = inputSmBuilder.diagramToSmConverter;
-            inputSmBuilder.sp.GetInstanceOf<RunnerSettings>().nameConflictResolution = RunnerSettings.NameConflictResolution.Manual; // required for old duplicate state name detection
+            IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+            inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
+            diagramToSmConverter = serviceProvider.GetRequiredService<DiagramToSmConverter>();
+            serviceProvider.GetRequiredService<RunnerSettings>().nameConflictResolution = RunnerSettings.NameConflictResolution.Manual; // required for old duplicate state name detection
         }
 
         public void ExpectBehaviorValidationException(string exceptionMessagePart, Action? additionalAction = null)

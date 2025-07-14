@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
@@ -16,11 +17,12 @@ public class GilToCSharpTests
     [Fact]
     public void DontRequireNameSpace()
     {
-        SmRunner runner = new(diagramPath: "CSharpNoNameSpaceExampleSm.drawio.svg", new DefaultCSharpRenderConfig(), transpilerId: TranspilerId.CSharp);
-        runner.Settings.outputDirectory = Path.GetTempPath();
-        runner.GetExperimentalAccess().Settings.propagateExceptions = true;
-        runner.Settings.outputStateSmithVersionInfo = false;
-        //runner.GetExperimentalAccess().Settings.dumpGilCodeOnError = true;
+        var serviceProvider = TestHelper.CreateServiceProvider();
+        SmRunner runner = SmRunner.Create(diagramPath: "CSharpNoNameSpaceExampleSm.drawio.svg", new DefaultCSharpRenderConfig(), transpilerId: TranspilerId.CSharp, serviceProvider: serviceProvider);
+        var settings = serviceProvider.GetRequiredService<RunnerSettings>();
+        settings.outputDirectory = Path.GetTempPath();
+        settings.propagateExceptions = true;
+        settings.outputStateSmithVersionInfo = false;
         runner.Run();
     }
 

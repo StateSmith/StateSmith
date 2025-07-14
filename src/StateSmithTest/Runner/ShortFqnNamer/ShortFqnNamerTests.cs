@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using System.Linq;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StateSmithTest.Runner.ShortFqnNamer;
 
@@ -17,11 +18,6 @@ namespace StateSmithTest.Runner.ShortFqnNamer;
 public class ShortFqnNamerTests
 {
     bool resolveWithHighestState = true;
-
-    /// <summary>
-    /// We need to disable the pre diagram based settings parsing because these files are not state machines.
-    /// </summary>
-    const bool enablePDBS = false;
 
     [Fact]
     public void SimpleTest()
@@ -134,13 +130,19 @@ public class ShortFqnNamerTests
 
     private static void RunWithSettings(Action<StateMachine> testMethod, RunnerSettings.NameConflictResolution resolutionSetting, string DiagramPath)
     {
-        SmRunner runner = new(diagramPath: DiagramPath, enablePDBS: enablePDBS);
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_NameConflictResolution, (TransformationStep)HierachicalGraphToSmConverter.Convert);
-        runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)testMethod);
+        RunnerSettings settings = new()
+        {
+            DiagramPath = DiagramPath,
+            propagateExceptions = true,
+            outputDirectory = Path.GetTempPath(),
+            nameConflictResolution = resolutionSetting
+        };
+        var serviceProvider = TestHelper.CreateServiceProvider();
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: serviceProvider);
+        var transformer = serviceProvider.GetRequiredService<SmTransformer>();
+        transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_NameConflictResolution, (TransformationStep)HierachicalGraphToSmConverter.Convert);
+        transformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)testMethod);
 
-        runner.Settings.propagateExceptions = true; // for unit testing
-        runner.Settings.outputDirectory = Path.GetTempPath(); // for unit testing
-        runner.Settings.nameConflictResolution = resolutionSetting;
         runner.Run();
     }
 
@@ -152,27 +154,39 @@ public class ShortFqnNamerTests
 
     private void Run(string diagramPath, Action<StateMachine>? testMethod = null)
     {
-        SmRunner runner = new(diagramPath: diagramPath, enablePDBS: enablePDBS);
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)HierachicalGraphToSmConverter.Convert);
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)Rename);
+        RunnerSettings settings = new()
+        {
+            DiagramPath = diagramPath,
+            propagateExceptions = true,
+            outputDirectory = Path.GetTempPath(),
+            nameConflictResolution = RunnerSettings.NameConflictResolution.Manual
+        };
+        var serviceProvider = TestHelper.CreateServiceProvider();
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: serviceProvider);
+        var transformer = serviceProvider.GetRequiredService<SmTransformer>();
+        transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)HierachicalGraphToSmConverter.Convert);
+        transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)Rename);
 
         if (testMethod != null)
-            runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)testMethod);
+            transformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)testMethod);
 
-        runner.Settings.propagateExceptions = true; // for unit testing
-        runner.Settings.outputDirectory = Path.GetTempPath(); // for unit testing
-        runner.Settings.nameConflictResolution = RunnerSettings.NameConflictResolution.Manual;
         runner.Run();
     }
 
     [Fact]
     public void TestGraphConverter()
     {
-        SmRunner runner = new(diagramPath: "HierachicalGraphConverterEx1.drawio", enablePDBS: enablePDBS);
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)HierachicalGraphToSmConverter.Convert);
-        runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)Test);
-        runner.Settings.propagateExceptions = true; // for unit testing
-        runner.Settings.outputDirectory = Path.GetTempPath(); // for unit testing
+        RunnerSettings settings = new()
+        {
+            DiagramPath = "HierachicalGraphConverterEx1.drawio",
+            propagateExceptions = true,
+            outputDirectory = Path.GetTempPath(),
+        };
+        var serviceProvider = TestHelper.CreateServiceProvider();
+        SmRunner runner = SmRunner.Create(settings, serviceProvider: serviceProvider);
+        var transformer = serviceProvider.GetRequiredService<SmTransformer>();
+        transformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)HierachicalGraphToSmConverter.Convert);
+        transformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)Test);
         runner.Run();
 
         static void Test(StateMachine sm)
@@ -203,7 +217,8 @@ public class ShortFqnNamerTests
 
     private static void TestNestedClashX(string relativeFilePath)
     {
-        InputSmBuilder inputSmBuilder = new();
+        IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
+        InputSmBuilder inputSmBuilder = serviceProvider.GetRequiredService<InputSmBuilder>();
         inputSmBuilder.ConvertDrawIoFileNodesToVertices(TestHelper.GetThisDir() + relativeFilePath);
         inputSmBuilder.FinishRunning();
 

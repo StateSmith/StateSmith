@@ -5,6 +5,8 @@ using System.Linq;
 using StateSmith.Output.UserConfig;
 using FluentAssertions;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace StateSmithTest;
 
@@ -13,15 +15,17 @@ namespace StateSmithTest;
 /// </summary>
 public class DiagramEmbeddedRenderConfigTests
 {
-    readonly InputSmBuilder runner = new();
+    readonly IServiceProvider serviceProvider = TestHelper.CreateServiceProvider();
 
     [Fact]
     public void ProperConversionToVertices()
     {
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "RenderConfig1.drawio";
+        var runner = serviceProvider.GetRequiredService <InputSmBuilder>();
         runner.ConvertDiagramFileToSmVertices(filePath);
 
-        var renderConfig = (RenderConfigVertex)runner.diagramToSmConverter.rootVertices[1];
+        var diagramToSmConverter = serviceProvider.GetRequiredService<DiagramToSmConverter>();
+        var renderConfig = (RenderConfigVertex)diagramToSmConverter.rootVertices[1];
 
         ConfigOptionVertex vertex;
 
@@ -47,11 +51,12 @@ public class DiagramEmbeddedRenderConfigTests
     public void CopyDataFromDiagramRenderConfig()
     {
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "RenderConfig1.drawio";
+        var runner = serviceProvider.GetRequiredService <InputSmBuilder>();
         runner.ConvertDiagramFileToSmVertices(filePath);
         runner.FinishRunning();
 
         {
-            RenderConfigBaseVars renderConfig = runner.sp.GetServiceOrCreateInstance();
+            RenderConfigBaseVars renderConfig = serviceProvider.GetRequiredService<RenderConfigBaseVars>();
 
             renderConfig.VariableDeclarations.ShouldBeShowDiff("""
             int top_level; // top level - VariableDeclarations
@@ -94,7 +99,7 @@ public class DiagramEmbeddedRenderConfigTests
         }
 
         {
-            RenderConfigCVars renderConfig = runner.sp.GetServiceOrCreateInstance();
+            RenderConfigCVars renderConfig = serviceProvider.GetRequiredService<RenderConfigCVars>();
             var defaultConfig = new RenderConfigCVars();
 
             renderConfig.HFileIncludes.ShouldBeShowDiff("""
@@ -145,7 +150,7 @@ public class DiagramEmbeddedRenderConfigTests
         }
 
         {
-            var renderConfig = runner.sp.GetInstanceOf<RenderConfigCSharpVars>();
+            var renderConfig = serviceProvider.GetRequiredService<RenderConfigCSharpVars>();
             var defaultConfig = new RenderConfigCSharpVars();
 
             renderConfig.Usings.ShouldBeShowDiff("""
@@ -177,7 +182,7 @@ public class DiagramEmbeddedRenderConfigTests
         }
 
         {
-            var renderConfig = runner.sp.GetInstanceOf<RenderConfigJavaScriptVars>();
+            var renderConfig = serviceProvider.GetRequiredService<RenderConfigJavaScriptVars>();
             var defaultConfig = new RenderConfigJavaScriptVars();
 
             renderConfig.ExtendsSuperClass.ShouldBeShowDiff("""

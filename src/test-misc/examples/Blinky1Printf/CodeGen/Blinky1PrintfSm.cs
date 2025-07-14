@@ -27,8 +27,10 @@ namespace Blinky1
             settings.dumpGilCodeOnError = true;
             settings.style = new MyStyler();
 
-            SmRunner runner = new(settings, new MyGlueFile());
-            runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<NameMangler>(new MyMangler());
+            SmRunner runner = new(settings, new MyGlueFile(), serviceOverrides: (services) =>
+            {
+                services.AddSingleton<NameMangler>(new MyMangler());
+            });
             runner.Run();
         }
 
