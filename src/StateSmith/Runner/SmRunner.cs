@@ -364,7 +364,8 @@ public class SmRunner
     /// <summary>
     /// Finalizes settings.
     /// </summary>
-    /// // TODO move PrepareBeforeRun into constructor instead of during Run() once SmRunner.Settings is no longer exposed.
+    /// // TODO move PrepareBeforeRun into constructor instead of during Run(). This works now but
+    /// // will break existing CSX scripts that expect to be able to modify settings after construction, is that common?
     private void PrepareBeforeRun()
     {
         AppUseDecimalPeriod();
