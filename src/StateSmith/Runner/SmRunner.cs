@@ -127,8 +127,8 @@ public class SmRunner
     // TODO add a testcase for this constructor
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, IServiceProvider? serviceProvider = null)
     {
-        var serviceProvider = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
-        this.context = this.serviceProvider.GetRequiredService<RunnerContext>();
+        var sp = serviceProvider ?? RunnerServiceProviderFactory.CreateDefault();
+        this.context = sp.GetRequiredService<RunnerContext>();
         this.context.runnerSettings = settings;
         this.context.renderConfig = renderConfig ?? new DummyIRenderConfig();
         this.context.callerFilePath = callerFilePath.ThrowIfNull();
