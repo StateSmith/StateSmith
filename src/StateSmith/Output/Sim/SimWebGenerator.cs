@@ -136,6 +136,7 @@ public class SimWebGenerator
         
         // collect diagram names after trigger mapping completes
         runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, CollectDiagramNames);
+        runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, RecordAvailableEventsForEachState);
 
         // We to generate mermaid diagram before history support (to avoid a ton of transitions being shown), but AFTER name conflict resolution.
         // See https://github.com/StateSmith/StateSmith/issues/302
@@ -152,7 +153,7 @@ public class SimWebGenerator
 
     private void CollectDiagramNames(StateMachine sm)
     {
-        sm.VisitRecursively((Vertex vertex) =>
+        sm.VisitTypeRecursively((Vertex vertex) =>
         {
             foreach (var behavior in vertex.Behaviors)
             {
@@ -162,37 +163,42 @@ public class SimWebGenerator
                         diagramEventNames.Add(trigger);
                 }
             }
-
-            // Collect available events for each state
-            if (vertex is State state)
-            {
-                var availableEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                
-                // Collect events from this state and all its ancestors
-                Vertex? currentVertex = state;
-                while (currentVertex != null)
-                {
-                    foreach (var behavior in currentVertex.Behaviors)
-                    {
-                        foreach (var trigger in behavior.Triggers)
-                        {
-                            if (TriggerHelper.IsEvent(trigger))
-                            {
-                                availableEvents.Add(trigger);
-                            }
-                        }
-                    }
-                    currentVertex = currentVertex.Parent;
-                }
-
-                if (availableEvents.Count > 0)
-                {
-                    stateToAvailableEvents[state.Name] = availableEvents;
-                }
-            }
         });
     }
 
+    private void RecordAvailableEventsForEachState(StateMachine sm)
+    {
+        // recursively visit all named vertices (states, orthogonal states, state machines, ...)
+        sm.VisitTypeRecursively((NamedVertex namedVertex) =>
+        {
+            if (namedVertex is StateMachine)
+            {
+                // Skip the state machine vertex itself. It can have events, but is more like a pseudo state.
+                return;
+            }
+
+            var availableEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            // Collect events from this state and all its ancestors
+            Vertex? currentVertex = namedVertex;
+            while (currentVertex != null)
+            {
+                foreach (var behavior in currentVertex.Behaviors)
+                {
+                    foreach (var trigger in behavior.Triggers)
+                    {
+                        if (TriggerHelper.IsEvent(trigger))
+                        {
+                            availableEvents.Add(trigger);
+                        }
+                    }
+                }
+                currentVertex = currentVertex.Parent;
+            }
+
+            stateToAvailableEvents[namedVertex.Name] = availableEvents;
+        });
+    }
 
     public void Generate(string diagramPath, string outputDir)
     {
