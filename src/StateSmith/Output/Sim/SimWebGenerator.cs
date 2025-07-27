@@ -26,7 +26,6 @@ public class SimWebGenerator
     MermaidEdgeTracker mermaidEdgeTracker = new();
     TrackingExpander trackingExpander = new();
     TextWriter mermaidCodeWriter = new StringWriter();
-    TextWriter mocksWriter = new StringWriter();
     SingleFileCapturer fileCapturer = new();
     StateMachineProvider stateMachineProvider;
     NameMangler nameMangler;
@@ -220,7 +219,6 @@ public class SimWebGenerator
         var sb = new StringBuilder();
         HtmlRenderer.Render(sb,
             smName: smName,
-            mocksCode: mocksWriter.ToString(),
             mermaidCode: mermaidCodeWriter.ToString(),
             jsCode: fileCapturer.CapturedCode,
             diagramEventNamesArray: diagramEventNamesArray,

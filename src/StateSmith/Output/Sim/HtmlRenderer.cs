@@ -4,7 +4,7 @@ namespace StateSmith.Output.Sim;
 
 public class HtmlRenderer
 {
-    public static void Render(StringBuilder stringBuilder, string smName, string mocksCode, string mermaidCode, string jsCode, string diagramEventNamesArray, string stateEventsMapping)
+    public static void Render(StringBuilder stringBuilder, string smName, string mermaidCode, string jsCode, string diagramEventNamesArray, string stateEventsMapping)
     {
         // Now that we are working inside the StateSmith project, we need to restrict ourselves to dotnet 6 features.
         // We can't use """raw strings""" anymore so we do manual string interpolation below string.
@@ -198,38 +198,54 @@ public class HtmlRenderer
         display: none;
       }
 
-      .dropbtn {
+
+
+      /* ----------------------------- Dropdown related start ----------------------------- */
+      
+      .dropdown-button {
         border: none;
         cursor: pointer;
       }
-
-      .dropbtn:hover, .dropbtn:focus {
+      
+      .dropdown-button:hover, .dropdown-button:focus {
         background-color: #f1f1f1;
       }
-
+      
       .dropdown {
         position: relative;
         display: inline-block;
         margin-left: auto;
       }
-
+      
       .dropdown-content {
         display: none;
         position: absolute;
         right: 0;
         background-color: #f1f1f1;
-        min-width: 160px;
+        min-width: 250px;
         overflow: auto;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
       }
-
+      
       .dropdown-content .dropdown-item {
+        display: block;
         padding: 12px 16px;
         font-weight: normal;
       }
 
-      .show {display: block;}
+      .dropdown-content .dropdown-item:hover {
+        background-color: #ddd;
+        cursor: pointer;
+      }
+
+      .show {
+        display: block;
+      }
+
+      /* ----------------------------- Dropdown related end ----------------------------- */
+
+
 
       .transition.active {
         stroke: #fff5ad !important;
@@ -254,32 +270,34 @@ public class HtmlRenderer
     </div>
 
     <div class=""pane sidebar"">
-        <div id=""buttons"">
-            <div class=""titlebar"">Events            
-              <div class='dropdown'>
-                <span id='dropbtn' class='titlebar-icon dropbtn'>settings</span>
-                <div id='myDropdown' class='dropdown-content'>
-                  <div class='dropdown-item'>
-                    <input type='checkbox' id='timestamps' name='timestamps' value='Timestamps'>
-                    <label for='timestamps'>Timestamps</label>
-                  </div>
-                  <div class='dropdown-item'>
-                    <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents' value='Hide Unused'>
-                    <label for='hideIrrelevantEvents'>Hide Unused</label>
-                  </div>
-                </div>
-              </div>            
+      <div id=""buttons"">
+        <div class=""titlebar"">Events
+          <div class='dropdown'>
+            <span id='dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <div id='myDropdown' class='dropdown-content'>
+              <label class='dropdown-item' for='hideIrrelevantEvents'
+                title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
+                <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents'>
+                Hide ignored event buttons
+              </label>
+              <label class='dropdown-item' for='timestamps'
+                title='Controls whether timestamps are shown along side event dispatches.'>
+                <input type='checkbox' id='timestamps' name='timestamps'>
+                Timestamps
+              </label>
+            </div>
           </div>
         </div>
-
-        <div class=""history"">
-          <table class=""console"">
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-
-        <div class=""gutter""></div>
+      </div>
+    
+      <div class=""history"">
+        <table class=""console"">
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    
+      <div class=""gutter""></div>
     </div>
     </div>
 
@@ -346,12 +364,42 @@ public class HtmlRenderer
           function mouseup() {
             window.removeEventListener('mousemove', mousemove);
             window.removeEventListener('mouseup', mouseup);
-            
           }                  
         }
 
         // Add mouse down event listener for the resizer
         gutter.addEventListener('mousedown', resizer);
+
+
+
+        //------------------- drop down functionality start -------------------
+        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownDiv = document.getElementById('myDropdown');
+
+        dropdownButton.addEventListener('click', toggleDropdown);
+
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function toggleDropdown(event) {
+          dropdownDiv.classList.toggle('show');
+          event.stopPropagation(); // Prevent click from causing the window click handler to close the dropdown
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+          const isClickedOutsideDropdownDiv = !dropdownDiv.contains(event.target);
+
+          if (isClickedOutsideDropdownDiv) {
+            dropdownDiv.classList.remove('show');
+          }
+        }
+
+        // Close the dropdown if the user presses Escape
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+            dropdownDiv.classList.remove('show');
+          }
+        });
 
         // Set the state of the timestamp checkbox
         document.getElementById('timestamps').checked = document.querySelector('table.console').classList.contains('timestamps');
@@ -369,30 +417,9 @@ public class HtmlRenderer
           updateButtonVisibility();
         });
 
-        // Add click event listener for dropdown menu button
-        document.getElementById('dropbtn').addEventListener('click', myFunction);
+        //------------------- drop down functionality end -------------------
 
-        /* When the user clicks on the button, 
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-          document.getElementById('myDropdown').classList.toggle('show');
-        }
 
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(event) {
-          if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName('dropdown-content');
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-              var openDropdown = dropdowns[i];
-              if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-              }
-            }
-          }
-        }
-
-{{mocksCode}}
 
         // Convert a date to a string in the format HH:MM:SS.sss
         function formatTime(date) {
@@ -551,7 +578,6 @@ public class HtmlRenderer
 </html>";
         htmlTemplate = htmlTemplate.Replace("{{mermaidCode}}", mermaidCode);
         htmlTemplate = htmlTemplate.Replace("{{jsCode}}", jsCode);
-        htmlTemplate = htmlTemplate.Replace("{{mocksCode}}", mocksCode);
         htmlTemplate = htmlTemplate.Replace("{{smName}}", smName);
         htmlTemplate = htmlTemplate.Replace("{{diagramEventNamesArray}}", diagramEventNamesArray);
         htmlTemplate = htmlTemplate.Replace("{{stateEventsMapping}}", stateEventsMapping);
