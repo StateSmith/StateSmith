@@ -456,9 +456,7 @@ public class HtmlRenderer
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
                 if (button) {
-                    // do event always remains enabled as it is the core event for state machine operation
-                    const isDoEvent = eventName.toLowerCase() === 'do';
-                    const isAvailable = isDoEvent || availableEvents.includes(eventName);
+                    const isAvailable = availableEvents.includes(eventName);
                     
                     // Only set disabled property, CSS :disabled pseudo-class handles styling
                     button.disabled = !isAvailable;
@@ -528,11 +526,7 @@ public class HtmlRenderer
         });
 
         sm.tracer?.log('<span class=""dispatched"">START</span>', true);
-        sm.start();
-
-        // Initialize event button states
-        const initialStateName = {{smName}}.stateIdToString(sm.stateId);
-        updateEventButtonStates(initialStateName);
+        sm.start(); // This will cause `updateEventButtonStates()` to be called.
 
         function panOnScreen(element) {
           if(!element) return;
