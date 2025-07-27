@@ -69,7 +69,12 @@ public class SimWebGenerator_IntegrationTests
     {
         GenerateForDiagram(diagramName: "SpaceControlUiSm.drawio", expectedOutputFileName: "SpaceControlUiSm.sim.html");
     }
-    
+
+    [Fact]
+    public void ElectromagnetSm()
+    {
+        GenerateForDiagram(diagramName: "electromagnet.puml", expectedOutputFileName: "electromagnet.sim.html");
+    }
 
     private static void DeleteIfFileExists(string expectedOutputFile)
     {
