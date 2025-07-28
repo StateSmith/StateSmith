@@ -24,6 +24,7 @@ public class AlgoBalanced1 : IGilAlgo
     protected readonly IAlgoEventIdToString algoEventIdToString;
     protected readonly IAlgoStateIdToString algoStateIdToString;
     protected readonly StandardFileHeaderPrinter standardFileHeaderPrinter;
+    private readonly GilCreationHelper gilCreationHelper;
 
     protected StateMachine? _sm;
     protected const string AlgoWikiLink = "https://github.com/StateSmith/StateSmith/wiki/Algorithms";
@@ -44,6 +45,7 @@ public class AlgoBalanced1 : IGilAlgo
         this.algoEventIdToString = algoEventIdToString;
         this.algoStateIdToString = algoStateIdToString;
         this.standardFileHeaderPrinter = standardFileHeaderPrinter;
+        this.gilCreationHelper = new GilCreationHelper();
     }
 
     public string GenerateGil(StateMachine sm)
@@ -189,7 +191,7 @@ public class AlgoBalanced1 : IGilAlgo
 
                     foreach (var line in StringUtils.SplitIntoLinesOrEmpty(renderConfig.VariableDeclarations.Trim()))
                     {
-                        file.AppendIndentedLine(GilCreationHelper.WrapRawCodeAsField(line));
+                        file.AppendIndentedLine(gilCreationHelper.WrapRawCodeAsField(line));
                     }
                 }
                 file.FinishCodeBlock();
