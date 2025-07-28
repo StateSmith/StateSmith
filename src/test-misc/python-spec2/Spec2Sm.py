@@ -10861,7 +10861,7 @@ class Spec2Sm(Spec2SmBase):
         # uml: 2. EV1 [trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", True)] / { count += 1 # shouldn't run */ }
         if self.trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", True):
             # Step 1: execute action `count += 1 # shouldn't run */`
-            self.vars.count += 1 
+            self.vars.count += 1 # shouldn
         # end of behavior for TEST8_S1
         
         # No ancestor handles this event.
