@@ -243,7 +243,7 @@ public class RenderConfigC_Test
             var code = fakeFs.GetCapturesForFileName(hFileName).Single().code.ConvertLineEndingsToN();
             Matcher(code).Should().BeTrue();
 
-            File.WriteAllText(outDir + "/" + hFileName, code);
+            //File.WriteAllText(outDir + "/" + hFileName, code);
         }
     }
 }
