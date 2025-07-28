@@ -31,7 +31,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## [WIP]
+## [0.18.0]
 ### Contributors
 - @LinFei83
   - https://github.com/StateSmith/StateSmith/pull/481
