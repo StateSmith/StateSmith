@@ -8,6 +8,20 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.19.0]
+### Upgrade StateSmith library version to `0.18.0`
+#### Contributors
+- @LinFei83
+  - https://github.com/StateSmith/StateSmith/pull/481
+
+#### Added
+- Simulator - Dynamic event visibility based on active state (@LinFei83).
+  - https://github.com/StateSmith/StateSmith/issues/472
+- Simulator - Slight improvements to drop down settings menu.
+  - https://github.com/StateSmith/StateSmith/pull/487
+
+---
+
 ## [0.18.3]
 ### Upgrade StateSmith library version to `0.17.6`
 #### Added
