@@ -66,6 +66,7 @@ public class SimWebGenerator
         var enablePreDiagramBasedSettings = false;  // need to stop it from trying to read diagram early as fake diagram path is used
         runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, enablePDBS: enablePreDiagramBasedSettings);
         runner.Settings.propagateExceptions = true;
+        runner.Settings.stateMachineName = mainRunnerSettings.stateMachineName;  // copy over the state machine name
 
         // Registering DI services must be done before accessing `runner.SmTransformer`.
         simDiServiceProvider = runner.GetExperimentalAccess().DiServiceProvider;
