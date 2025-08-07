@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '22'  # stick to 22 for now. 23 has some bumps causing TypeScript tests to fail: https://github.com/nodejs/node/issues/55417
 
-      - run: npm install -g typescript
+      - run: npm install -g typescript@5.6.3
           
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v4
