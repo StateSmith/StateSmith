@@ -1163,6 +1163,71 @@ public class ParsingTests
 
     //###############################################################################################
     // End of tests for https://github.com/StateSmith/StateSmith/issues/492
-    //###############################################################################################    
+    //###############################################################################################
+
+    //###############################################################################################
+    // Start of tests for https://github.com/StateSmith/StateSmith/issues/494
+    //###############################################################################################
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/494
+    /// Verify that all content between
+    /// ' <StateSmith:ignore>
+    ///     ... and
+    /// ' </StateSmith:ignore>
+    /// is ignored by the parser.
+    /// </summary>
+    [Fact]
+    public void StateSmithIgnoreComment()
+    {
+        ParseAssertNoError("""
+            ' <StateSmith:ignore>
+            legend top left
+                Some Legend
+            end legend
+            mainframe Some Title
+            ' </StateSmith:ignore>
+
+            @startuml IgnoreCommentBeforeStartUml
+            [*] -> a
+            a -> b
+            @enduml
+            """);
+        translator.Root.id.Should().Be("IgnoreCommentBeforeStartUml");
+
+        ParseAssertNoError("""
+            @startuml IgnoreCommentAfterStartUml
+            ' <StateSmith:ignore>
+            legend top left
+                Some Legend
+            end legend
+            mainframe Some Title
+            ' </StateSmith:ignore>
+
+            [*] -> a
+            a -> b
+            @enduml
+            """);
+        translator.Root.id.Should().Be("IgnoreCommentAfterStartUml");
+
+        ParseAssertNoError("""
+            @startuml IgnoreCommentWithWhitespaces
+                    '       <StateSmith:ignore>
+            legend top left
+                Some Legend
+            end legend
+            mainframe Some Title
+                    '    </StateSmith:ignore>
+
+            [*] -> a
+            a -> b
+            @enduml
+            """);
+        translator.Root.id.Should().Be("IgnoreCommentWithWhitespaces");
+    }
+
+    //###############################################################################################
+    // End of tests for https://github.com/StateSmith/StateSmith/issues/494
+    //###############################################################################################
 }
 
