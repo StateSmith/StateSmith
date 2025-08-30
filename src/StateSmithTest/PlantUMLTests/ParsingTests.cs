@@ -1119,5 +1119,50 @@ public class ParsingTests
         AssertEdge(diagramEdge, source, target);
         diagramEdge.label.Should().Be(label);
     }
+
+    //###############################################################################################
+    // Start of tests for https://github.com/StateSmith/StateSmith/issues/492
+    //###############################################################################################
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/492
+    /// Verify that PlantUML '!theme' directive lines are ignored by the parser.
+    /// </summary>
+    [Fact]
+    public void IgnoreThemeDirective()
+    {
+        ParseAssertNoError("""
+            @startuml TestWithBuiltInTheme
+            !theme amiga
+            @enduml
+            """);
+        translator.Root.id.Should().Be("TestWithBuiltInTheme");
+
+        ParseAssertNoError("""
+            @startuml TestWithLocalTheme
+            !theme local_theme from /path/to/themes/folder
+            @enduml
+            """);
+        translator.Root.id.Should().Be("TestWithLocalTheme");
+
+        ParseAssertNoError("""
+            @startuml TestWithURLTheme
+            !theme amiga from https://raw.githubusercontent.com/plantuml/plantuml/master/src/main/resources/themes/puml-theme-amiga.puml
+            @enduml
+            """);
+        translator.Root.id.Should().Be("TestWithURLTheme");
+
+        ParseAssertNoError("""
+            !theme amiga
+            @startuml ThemeAboveStartUml
+            [*] -> a
+            @enduml
+            """);
+        translator.Root.id.Should().Be("ThemeAboveStartUml");
+    }
+
+    //###############################################################################################
+    // End of tests for https://github.com/StateSmith/StateSmith/issues/492
+    //###############################################################################################    
 }
 
