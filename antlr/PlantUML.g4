@@ -344,7 +344,7 @@ THEME_DIRECTIVE:
     (START_OF_INPUT | LINE_ENDER)
     HWS*
     '!theme'
-    HWS* ~[\r\n]*
+    HWS ~[\r\n]*
     -> skip
     ;
 

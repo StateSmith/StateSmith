@@ -1151,6 +1151,14 @@ public class ParsingTests
             @enduml
             """);
         translator.Root.id.Should().Be("TestWithURLTheme");
+
+        ParseAssertNoError("""
+            !theme amiga
+            @startuml ThemeAboveStartUml
+            [*] -> a
+            @enduml
+            """);
+        translator.Root.id.Should().Be("ThemeAboveStartUml");
     }
 
     //###############################################################################################
