@@ -1,22 +1,31 @@
-# Install dotnet SDK 9 (cross platform)
-Cross platform [install instructions here](https://dotnet.microsoft.com/en-us/download/dotnet/9.0). Below info has addtional tips for a few OS.
+# Install dotnet 9 SDK 9 [cross platform]
+You need to download/install a dotnet 9 SDK because you will be compiling C#.
 
-### Ubuntu 24.04 [x64]
+You do NOT need to download/install asp.net.
 
-[quick snippet](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet9&pivots=os-linux-ubuntu-2404):
+### Do you already have one?
+Try running the command `dotnet --list-sdks`. If you see a 9.x.x, you can skip the rest of this page :)
+
+```bash
+$ dotnet --list-sdks
+9.0.110 [/usr/lib/dotnet/sdk]
+```
+
+### Windows
+Direct [x64 installer link](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-9.0.305-windows-x64-installer).
+
+### Ubuntu
+Here's a quick snippet for Ubuntu [x64 24.04/22.04](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet9&pivots=os-linux-ubuntu-2404):
 ```bash
 sudo add-apt-repository ppa:dotnet/backports
 sudo apt-get update && sudo apt-get install -y dotnet-sdk-9.0
 ```
 
-### Windows [x64]
-Direct [link](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-9.0.305-windows-x64-installer).
+### macOS
+Download [installer or binaries here](https://dotnet.microsoft.com/en-us/download/dotnet/9.0).
 
-
-### Any OS/ARCH
-Follow [instructions here](https://dotnet.microsoft.com/en-us/download/dotnet/9.0).
-
-
+### More OS & ARCH Links
+If the above didn't apply/work, check [out this link here](https://dotnet.microsoft.com/en-us/download/dotnet/9.0).
 
 <br>
 

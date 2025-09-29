@@ -12,16 +12,20 @@ git clone the StateSmith project
 git clone https://github.com/StateSmith/StateSmith.git
 ```
 
-or [download a zip](https://github.com/StateSmith/StateSmith/archive/refs/heads/main.zip) of the project
+or [download a zip](https://github.com/StateSmith/StateSmith/archive/refs/heads/main.zip) of the project.
 
 ## Build All StateSmith Projects
-You can easily build both the StateSmith library, CLI and tests with a single command.
+You can easily build all StateSmith C# projects with a single command.
 
-`cd` to the `StateSmith/src` directory.
+The `src` directory contains 4 StateSmith C# Projects
+* `src/StateSmith` - the core lib
+* `src/StateSmithTest` - tests for the core lib
+* `src/StateSmith.Cli` - the `ss.cli` CLI tool
+* `src/StateSmith.CliTest` - tests for the `ss.cli` CLI tool
 
-Run command `dotnet build` to build. This works because there is a C# solution file (StateSmith.sln) in the `src` directory. It links 
+`cd` to the `src` directory and run command `dotnet build` to build. This works because there is a C# solution file (StateSmith.sln) in the `src` directory.
 
- You might need to run it a few times for everything to get resolved. It should be good after that.
+ You might need to run it twice for everything to get resolved. It should be good after that.
 
 ```shell
 StateSmith/src$ dotnet build
@@ -77,7 +81,22 @@ StateSmith.Cli net9.0 failed with 1 error(s) (0.4s)
 
 Remove the error and get a clean build again.
 
+
+# dotnet versions
+You should be aware that the StateSmith lib and `ss.cli` tool support the old and unsupported `net6.0` and `net7.0` versions. We will eventually drop these versions after warning community via discord. Probably in 2026. Why keep them? Because early embedded developers adopted StateSmith and probably don't care to update their dotnet version.
+
+Why does this matter? Well our production code can only use features available in dotnet6.0 (which corresponds to C#10).
+
+However, the test projects will typically use the latest stable dotnet version so that we can make use of helpful features like [raw string literals](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/raw-string).
+
+How can you ensure you don't accidentally use C#11+ features in production code? Easy! Just run `dotnet build` in `src` directory once in a while and it will check all versions.
+
+Why even bring this up? Because as you'll see soon, you'll often be running `dotnet run --framework=net9.0` in the `src/StateSmith.Cli` directory. This will build all dependencies and run the project, but won't check for net6 compatibility in `ss.cli` code.
+
+No worries if you forget as the github CI/CD will catch it.
+
 <br><br>
+
 
 # Build Tips
 
@@ -89,6 +108,13 @@ There are 4 StateSmith C# Projects
 * `src/StateSmith.CliTest` - tests for the `ss.cli` CLI tool
 
 If you want to focus on just one, cd into that directory and run `dotnet build`
+
+
+
+
+<!-- 
+
+I think this below part can be deleted. No longer needed.
 
 ## Specify dotnet framework
 A bit useful for `ss.cli` development.
@@ -105,5 +131,6 @@ You can simplify this by specifying a single framework to use.
 src/StateSmith.Cli$ dotnet build --framework=net6.0
 ```
 
-⚠️ NOTE! Use `net6.0` to ensure that your changes will work for all users. We will drop unsupported dotnet versions after warning community via discord.
+⚠️ NOTE! Use `net6.0` to ensure that your changes will work for all users and doesn't use features not available in net6.0.
 
+-->
