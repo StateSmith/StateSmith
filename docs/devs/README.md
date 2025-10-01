@@ -10,3 +10,5 @@ Recommended Reading Order:
 After those, it depends on what your goals are:
 * If you want to work on the StateSmith core lib, see the the `lib-*.md` files.
 * If you want to improve `ss.cli`, see the other `ss.cli-*.md` files.
+
+There is also info on using vscode IDE.
