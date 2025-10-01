@@ -9,8 +9,8 @@
             "preLaunchTask": "build",
             
             // NOTE the net9.0 version. Update if yours is different.
-            "program": "${workspaceFolder}/StateSmith.Cli/bin/Debug/net9.0/StateSmith.Cli.dll",
-            "cwd": "${workspaceFolder}/StateSmith.Cli",
+            "program": "${workspaceFolder}/src/StateSmith.Cli/bin/Debug/net9.0/StateSmith.Cli.dll",
+            "cwd": "${workspaceFolder}/src/StateSmith.Cli",
             "args": [], // NOTE! you can add args like: ["run", "--here"]
 
             // If you try and use regular "internalConsole", you'll get an exception "Cannot show selection prompt since the current terminal isn't interactive" if ss.cli tries to show a prompt.
