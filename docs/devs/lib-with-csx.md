@@ -1,4 +1,4 @@
-Let's say you want to use a custom built StateSmith lib with one of our C# script .csx files.
+Let's say you want to use a custom built StateSmith lib with one of your C# script .csx files.
 
 How would you do it?
 
