@@ -3,7 +3,7 @@
 Join us on [discord](https://discord.com/invite/rNxNGQXWsU) or [github discussions](https://github.com/StateSmith/StateSmith/discussions).
 
 ## Let's grow a community!
-StateSmith is pretty decent right now. The internals have been heavily refactored and are ready for contributors to start hacking on and improving.  I'll be shifting my focus from developing features on my own to supporting contributors.
+StateSmith is pretty decent right now. The internals have been heavily refactored and are ready for contributors to start hacking on and improving.
 
 ## Next steps
-https://github.com/StateSmith/StateSmith/wiki/Contributing
+https://github.com/StateSmith/StateSmith/tree/main/docs/devs
