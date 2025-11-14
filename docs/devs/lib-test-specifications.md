@@ -61,19 +61,6 @@ node -v # Should print "v22.20.0".
 npm -v # Should print "10.9.3".
 ```
 
-## TypeScript
-![Supported Versions](https://img.shields.io/badge/Supported_Versions-v5\.6\.3_--_v5\.8\.3-blue)
-
-Install `typescript`.
-
-```bash
-# Download and install TypeScript:
-npm install -g typescript@5.8.3
-
-# Verify installation
-tsc -v # Should print "Version 5.8.3"
-```
-
 
 <br><br>
 
