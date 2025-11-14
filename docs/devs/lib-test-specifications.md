@@ -7,7 +7,7 @@ You don't need to run the specification tests and install *all* of these unless 
 > ℹ️ **Windows** users should install and use `WSL2`, it greatly simplifies the setup and documentation maintenance.
 
 ## C/C++
-Install `gcc` and `g++`.[^footnot_gcc]
+Install the latest `gcc` and `g++`.[^footnot_gcc]
 
 ```bash
 # Linux/WSL:
@@ -17,34 +17,42 @@ sudo apt-get install gcc g++
 brew install gcc
 ```
 
-## Python 3
-![Supported Versions](https://img.shields.io/badge/Supported_Versions-v3\.10_--_v3\.15-blue)
+## Python
+![Supported Versions](https://img.shields.io/badge/Supported_Versions->=_v3\.10-blue)
 
 Install `Python`.[^footnote_python]
 
 ```bash
+# Download and install uv:
 curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Download and install Python:
+uv python install 3.15
+
+# Activate Python
+uv python pin 3.15
+
+# Verify installation
+python3 --version # Should print e.g. "Python 3.15.0a1"
 ```
 
 ## Java
-![Supported Versions](https://img.shields.io/badge/Supported_Versions-v21-blue)
+![Supported Versions](https://img.shields.io/badge/Supported_Versions->=_v5-blue)
 
 Install `java-jdk`.
 
 ```bash
 # Linux/WSL:
-sudo apt-get install openjdk-21-jdk-headless
+sudo apt-get install openjdk-25-jdk-headless
 
 # MacOS:
-brew install openjdk@21
+brew install openjdk@25
 ```
 
-## JavaScript
-![Supported Versions](https://img.shields.io/badge/Supported_Versions-v20\.x_--_v25\.x\.x-blue)
+## JavaScript (Node.js)
+![Supported Versions](https://img.shields.io/badge/Supported_Versions->=_v20\.0\.0-blue)
 
-Install `nodejs`.
-
-This documentation uses the current LTS, but feel free to use a more recent version.[^footnote_javascript]
+Install `Node.js`.[^footnote_javascript]
 
 ```bash
 # Download and install nvm:
@@ -54,11 +62,11 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
 
 # Download and install Node.js:
-nvm install 22
+nvm install 24
 
 # Verify installation
-node -v # Should print "v22.20.0".
-npm -v # Should print "10.9.3".
+node -v # Should print e.g. "v24.10.0".
+npm -v # Should print e.g. "11.6.1".
 ```
 
 
@@ -196,8 +204,8 @@ Then use git to see if any of the example projects generated new code.
 
 -->
 
-[^footnot_gcc]: It may be enough to install `gcc`, but depending on the system `g++` is missing and may need to be installed alongside (e.g. Ubuntu in `WSL2`). MacOS appears to have them installed by default, but usually symlinked to the `clang` compiler, which should be ironed out by installing the `gcc` homebrew package.
+[^footnot_gcc]: It may be enough to install `gcc`, but depending on the system `g++` is missing and may need to be installed alongside (e.g. Ubuntu in `WSL2`). MacOS appears to have both installed by default, but they are usually symlinked to the `clang` compiler, which can be fixed by installing the `gcc` homebrew package.
 
-[^footnote_python]: Python installation instructions from [here](https://github.com/astral-sh/uv). `uv` is a modern python manager with similar benefits to using `nvm` for nodejs. If `uv python pin` does not work, you may manually override the existing symlink. Run `which python3` to get the absolute path of the python symlink, and then override the symlink with e.g. `sudo ln -fs /home/your-user/.local/bin/python3.15 $(which python3)`.
+[^footnote_python]: Python installation instructions from [here](https://github.com/astral-sh/uv). `uv` is a modern python manager with similar benefits to using `nvm` for Node.js. If `uv python pin` does not work, you can try to manually override the existing symlink by running `sudo ln -fs ~/.local/bin/python3.15 $(which python3)`.
 
-[^footnote_javascript]: NodeJs installation instructions from [here](https://nodejs.org/en/download#debian-and-ubuntu-based-linux-distributions).
+[^footnote_javascript]: Node.js installation instructions from [here](https://nodejs.org/en/download#debian-and-ubuntu-based-linux-distributions). Node.js and dependency versions which the project currently uses in its tests can be found [here](./../../src/test-misc/ts-spec2/package.json).
