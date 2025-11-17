@@ -17,6 +17,9 @@ Then <u>INSIDE WSL2</u>, install `gcc`.
 ## Python 3
 Install Python 3
 
+## Berry
+Install Berry
+
 ## Java
 Install a java JDK.
 
@@ -81,6 +84,11 @@ src/StateSmith$ dotnet test --filter Spec.
 You can run just the specification tests for python like this:
 ```
 src/StateSmith$ dotnet test --filter Spec2.Python
+```
+
+You can run just the specification tests for berry like this:
+```
+src/StateSmith$ dotnet test --filter Spec2.Berry
 ```
 
 ## Run *all* tests for *all* projects
