@@ -76,6 +76,10 @@ public class AlgoTests
                 if (transpilerId == TranspilerId.TypeScript && algoId != AlgorithmId.Balanced2)
                     continue;
 
+                // Berry only supports Balanced2 for now while the transpiler matures.
+                if (transpilerId == TranspilerId.Berry && algoId != AlgorithmId.Balanced2)
+                    continue;
+
                 // Cpp only supports Balanced2 right now. See https://github.com/StateSmith/StateSmith/issues/411
                 if (transpilerId == TranspilerId.Cpp && algoId != AlgorithmId.Balanced2)
                     continue;
@@ -143,6 +147,13 @@ public class AlgoTests
             ClassCode = """
                 def userCodeMethod(self):
                     print('userCodeMethod')
+                """
+
+            [RenderConfig.Berry]
+            ClassCode = """
+                def userCodeMethod()
+                    print('userCodeMethod')
+                end
                 """
 
             [RenderConfig.JavaScript]

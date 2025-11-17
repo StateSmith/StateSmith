@@ -10,6 +10,7 @@ using StateSmith.Output.Gil.Java;
 using StateSmith.Output.Gil.JavaScript;
 using StateSmith.Output.Gil.Python;
 using StateSmith.Output.Gil.TypeScript;
+using StateSmith.Output.Gil.Berry;
 using StateSmith.Output.UserConfig.AutoVars;
 using System;
 
@@ -144,6 +145,30 @@ public class AlgoTranspilerCustomizer
                     if (algorithmId != AlgorithmId.Balanced2)
                     {
                         throw new Exception("TypeScript transpiler currently only supports `AlgorithmId.Balanced2`. Please reply to https://github.com/StateSmith/StateSmith/issues/407 .");
+                    }
+                }
+                break;
+
+            case TranspilerId.Berry:
+                {
+                    sp.AddSingletonT<IGilTranspiler, GilToBerry>();
+                    sp.AddSingletonT<IExpansionVarsPathProvider, BerryExpansionVarsPathProvider>();
+                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
+                    sp.AddSingletonT<IAutoVarsParser, PythonAutoVarsParser>();
+
+                    algoBalanced1Settings.skipClassIndentation = false;
+                    algoBalanced1Settings.varsStructAsClass = true;
+                    algoBalanced1Settings.outputEnumMemberCount = false;
+                    algoBalanced1Settings.allowSingleLineSwitchCase = false;
+
+                    if (!style.BracesOnNewLines)
+                    {
+                        throw new Exception("Berry transpiler currently only supports `style.BracesOnNewLines = true`.");
+                    }
+
+                    if (algorithmId != AlgorithmId.Balanced2)
+                    {
+                        throw new Exception("Berry transpiler currently only supports `AlgorithmId.Balanced2`.");
                     }
                 }
                 break;

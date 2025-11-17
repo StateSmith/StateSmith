@@ -111,6 +111,26 @@ public class MyRenderConfig : {{renderConfigBase}}
 
 
 
+    //!!<filter:Berry>
+
+    string IRenderConfig.AutoExpandedVars => """
+        self.auto_expanded_user_example_var = 0
+        """;
+
+    string IRenderConfig.VariableDeclarations => """
+        self.non_expanded_user_example_var = 0
+        """;
+
+    string IRenderConfigBerry.Imports => """
+        import string  // or any other Berry modules you need
+        """;
+
+    string IRenderConfigBerry.Extends => "{{smName}}Base";
+
+    //!!</filter>
+
+
+
     // See https://github.com/StateSmith/tutorial-2/tree/main/lesson-3
     public class MyExpansions : UserExpansionScriptBase
     {

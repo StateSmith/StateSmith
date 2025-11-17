@@ -26,6 +26,8 @@ FileTop = "stuff..."
 AutoExpandedVars  = "stuff..."
 ```
 
+
+
 <br>
 
 # Table of Contents
@@ -77,6 +79,8 @@ AutoExpandedVars  = "stuff..."
   - [RenderConfig.Cpp.HFileIncludes](#renderconfigcpphfileincludes)
   - [RenderConfig.Cpp.HFileBottomPreIncludeGuard](#renderconfigcpphfilebottompreincludeguard)
   - [RenderConfig.Cpp.HFileBottom](#renderconfigcpphfilebottom)
+
+
   - [RenderConfig.Cpp.CFileExtension](#renderconfigcppcfileextension)
   - [RenderConfig.Cpp.CFileTop](#renderconfigcppcfiletop)
   - [RenderConfig.Cpp.CFileIncludes](#renderconfigcppcfileincludes)
@@ -107,6 +111,10 @@ AutoExpandedVars  = "stuff..."
   - [RenderConfig.Python.Imports](#renderconfigpythonimports)
   - [RenderConfig.Python.Extends](#renderconfigpythonextends)
   - [RenderConfig.Python.ClassCode](#renderconfigpythonclasscode)
+- [RenderConfig.Berry](#renderconfigberry)
+    - [RenderConfig.Berry.Imports](#renderconfigberryimports)
+    - [RenderConfig.Berry.Extends](#renderconfigberryextends)
+    - [RenderConfig.Berry.ClassCode](#renderconfigberryclasscode)
 - [SmRunnerSettings](#smrunnersettings)
   - [SmRunnerSettings.transpilerId](#smrunnersettingstranspilerid)
   - [SmRunnerSettings.algorithmId](#smrunnersettingsalgorithmid)
@@ -1154,6 +1162,61 @@ ClassCode = """
 
 
 
+<br>
+<br>
+
+# RenderConfig.Berry
+Maps to the [IRenderConfigBerry](../src/StateSmith/Output/UserConfig/IRenderConfigBerry.cs) interface.
+
+```toml
+[RenderConfig.Berry]
+Imports = """
+    # from some_module import some_function
+    """
+Extends = "MyUserBaseClass"
+ClassCode = """
+    # Add custom code here to inject into the generated class.
+    # Inheritance or composition might be a better choice.
+    """
+```
+
+## RenderConfig.Berry.Imports
+Type: `string`
+
+Use to add import statements to the generated class. Can span multiple lines.
+
+```toml
+[RenderConfig.Berry]
+Imports = """
+    # from some_module import some_function
+    """
+```
+
+## RenderConfig.Berry.Extends
+Type: `string`
+
+Use to have generated state machine class extend a user defined base class.
+
+```toml
+[RenderConfig.Berry]
+Extends = "MyUserBaseClass"
+```
+
+## RenderConfig.Berry.ClassCode
+Type: `string`
+
+Use to add custom code to generated state machine class. Inheritance or composition is often a better choice.
+
+```toml
+[RenderConfig.Berry]
+ClassCode = """
+    # Add custom code here...
+    """
+```
+
+
+
+
 
 <br>
 <br>
@@ -1209,8 +1272,13 @@ transpilerId = "CSharp"
 Options:
 - `Default` --> `C99`
 - `C99`
+- `Cpp` *(Balanced2 only)*
 - `CSharp`
 - `JavaScript`
+- `TypeScript` *(Balanced2 only)*
+- `Java` *(Balanced2 only)*
+- `Python` *(Balanced2 only; requires `style.BracesOnNewLines = true`)*
+- `Berry` *(Balanced2 only; requires `style.BracesOnNewLines = true`)*
 
 > csx note: you can also specify the `transpilerId` via the `SmRunner` constructor.
 

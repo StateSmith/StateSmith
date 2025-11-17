@@ -424,4 +424,50 @@ public class TemplatePlantUmlMinimalNoCsx
         // make sure the calls were made
         mockFileWriter.Received().Write("RocketSm.plantuml", Arg.Any<string>());
     }
+
+    [Fact]
+    public void LangBerry()
+    {
+        settings.TargetLanguageId = TargetLanguageId.Berry;
+        Generator generator = new(settings);
+        generator.tomlConfigType = TemplateLoader.TomlConfigType.Minimal;
+        generator.SetFileWriter(mockFileWriter);
+
+        var berryTop = Top;
+        berryTop = berryTop.Replace(";", "");
+        berryTop = berryTop.Replace("++", " += 1");
+
+        mockFileWriter.When(x => x.Write("RocketSm.plantuml", Arg.Any<string>())).Do(x => {
+            x.ArgAt<string>(1).ShouldBeShowDiff($$""""
+            {{berryTop}}
+
+            [RenderConfig]
+            FileTop = """
+                # Whatever you put in this `FileTop` section will end up 
+                # being printed at the top of every generated code file.
+                """
+            AutoExpandedVars = """
+                self.count = 0  # this var can be referenced in diagram
+                """
+
+            [RenderConfig.Berry]
+            Imports = """
+                import string
+                """
+            Extends = "MyUserBaseClass"
+            ClassCode = """
+                # Custom Berry code injected into the generated class
+                """
+
+            [SmRunnerSettings]
+            transpilerId = "Berry"
+            '/
+            @enduml
+            """", outputCleanActual: true);
+        });
+
+        generator.GenerateFiles();
+
+        mockFileWriter.Received().Write("RocketSm.plantuml", Arg.Any<string>());
+    }
 }
