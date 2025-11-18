@@ -1,6 +1,9 @@
 {
   "name": "ts-spec2",
   "version": "1.0.0",
+  "scripts": {
+    "build": "tsc"
+  },
   "engines": {
     "node": "^24.10.0"
   },
