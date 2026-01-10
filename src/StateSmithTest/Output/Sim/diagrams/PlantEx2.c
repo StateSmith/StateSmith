@@ -2,7 +2,6 @@
 // Algorithm: Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 #include "PlantEx2.h"
-#include <stdbool.h> // required for `consume_event` flag
 #include <string.h> // for memset
 
 // This function is used when StateSmith doesn't know what the active leaf state is at
@@ -471,6 +470,7 @@ static void IDLE_evconfig(PlantEx2* sm)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * PlantEx2_state_id_to_string(PlantEx2_StateId id)
 {
     switch (id)
@@ -488,6 +488,7 @@ char const * PlantEx2_state_id_to_string(PlantEx2_StateId id)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * PlantEx2_event_id_to_string(PlantEx2_EventId id)
 {
     switch (id)
@@ -498,5 +499,20 @@ char const * PlantEx2_event_id_to_string(PlantEx2_EventId id)
         case PlantEx2_EventId_EVNEWVALUEREJECTED: return "EVNEWVALUEREJECTED";
         case PlantEx2_EventId_EVNEWVALUESAVED: return "EVNEWVALUESAVED";
         default: return "?";
+    }
+}
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool PlantEx2_is_event_id_valid(PlantEx2_EventId id)
+{
+    switch (id)
+    {
+        case PlantEx2_EventId_EV2: return true;
+        case PlantEx2_EventId_EVCONFIG: return true;
+        case PlantEx2_EventId_EVNEWVALUE: return true;
+        case PlantEx2_EventId_EVNEWVALUEREJECTED: return true;
+        case PlantEx2_EventId_EVNEWVALUESAVED: return true;
+        default: return false;
     }
 }

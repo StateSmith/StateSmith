@@ -4,6 +4,7 @@
 #ifndef SPEC1B_CUSTOM_INCLUDE_GUARD_H
 #define SPEC1B_CUSTOM_INCLUDE_GUARD_H
 #include <stdint.h>
+#include <stdbool.h> // required for `is_event_id_valid()`, and `consume_event` flags.
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
 
 typedef enum Spec1bSm_EventId
@@ -54,10 +55,16 @@ void Spec1bSm_start(Spec1bSm* sm);
 void Spec1bSm_dispatch_event(Spec1bSm* sm, Spec1bSm_EventId event_id);
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Spec1bSm_state_id_to_string(Spec1bSm_StateId id);
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Spec1bSm_event_id_to_string(Spec1bSm_EventId id);
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool Spec1bSm_is_event_id_valid(Spec1bSm_EventId id);
 
 // Generated state machine
 struct Spec1bSm

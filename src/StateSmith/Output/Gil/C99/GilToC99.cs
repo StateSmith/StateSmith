@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Text;
 using StateSmith.Output.UserConfig;
+using StateSmith.Output.Algos.Balanced1;
 
 namespace StateSmith.Output.Gil.C99;
 
@@ -18,8 +19,16 @@ public class GilToC99 : IGilTranspiler
     private readonly IOutputInfo outputInfo;
     private readonly IGilToC99Customizer cCustomizer;
     private readonly RoslynCompiler roslynCompiler;
+    private readonly NameMangler nameMangler;
 
-    public GilToC99(IOutputInfo outputInfo, IGilToC99Customizer cCustomizer, ICodeFileWriter codeFileWriter, RenderConfigBaseVars renderConfig, RenderConfigCVars renderConfigC, RoslynCompiler roslynCompiler)
+    public GilToC99(
+        IOutputInfo outputInfo,
+        IGilToC99Customizer cCustomizer,
+        ICodeFileWriter codeFileWriter,
+        RenderConfigBaseVars renderConfig,
+        RenderConfigCVars renderConfigC,
+        RoslynCompiler roslynCompiler,
+        NameMangler nameMangler)
     {
         this.renderConfigC = renderConfigC;
         this.outputInfo = outputInfo;
@@ -27,6 +36,7 @@ public class GilToC99 : IGilTranspiler
         this.codeFileWriter = codeFileWriter;
         this.renderConfig = renderConfig;
         this.roslynCompiler = roslynCompiler;
+        this.nameMangler = nameMangler;
     }
 
     public void TranspileAndOutputCode(string programText)
@@ -37,7 +47,7 @@ public class GilToC99 : IGilTranspiler
 
         roslynCompiler.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
 
-        C99GenVisitor visitor = new(model, hFileSb, cFileSb, renderConfig, renderConfigC, cCustomizer, outputInfo);
+        C99GenVisitor visitor = new(model, hFileSb, cFileSb, renderConfig, renderConfigC, cCustomizer, outputInfo, nameMangler);
 
         visitor.Visit(root);
 

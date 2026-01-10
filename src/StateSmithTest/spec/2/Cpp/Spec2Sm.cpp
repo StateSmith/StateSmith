@@ -12606,6 +12606,7 @@ namespace Spec2
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     char const * Spec2Sm::stateIdToString(StateId id)
     {
         switch (id)
@@ -12789,6 +12790,7 @@ namespace Spec2
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     char const * Spec2Sm::eventIdToString(EventId id)
     {
         switch (id)
@@ -12809,6 +12811,31 @@ namespace Spec2
             case EventId::EVOPEN: return "EVOPEN";
             case EventId::EVSTEP: return "EVSTEP";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    bool Spec2Sm::isEventIdValid(EventId id)
+    {
+        switch (id)
+        {
+            case EventId::DO: return true;
+            case EventId::EV1: return true;
+            case EventId::EV10: return true;
+            case EventId::EV2: return true;
+            case EventId::EV3: return true;
+            case EventId::EV4: return true;
+            case EventId::EV5: return true;
+            case EventId::EV6: return true;
+            case EventId::EV7: return true;
+            case EventId::EV8: return true;
+            case EventId::EV9: return true;
+            case EventId::EVBACK: return true;
+            case EventId::EVCLOSE: return true;
+            case EventId::EVOPEN: return true;
+            case EventId::EVSTEP: return true;
+            default: return false;
         }
     }
 }

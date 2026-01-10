@@ -2,7 +2,6 @@
 // Algorithm: Balanced1. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 #include "RocketSm.h"
-#include <stdbool.h> // required for `consume_event` flag
 #include <string.h> // for memset
 
 // This function is used when StateSmith doesn't know what the active leaf state is at
@@ -221,6 +220,7 @@ static void G2_do(RocketSm* sm)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * RocketSm_state_id_to_string(RocketSm_StateId id)
 {
     switch (id)
@@ -234,11 +234,23 @@ char const * RocketSm_state_id_to_string(RocketSm_StateId id)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * RocketSm_event_id_to_string(RocketSm_EventId id)
 {
     switch (id)
     {
         case RocketSm_EventId_DO: return "DO";
         default: return "?";
+    }
+}
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool RocketSm_is_event_id_valid(RocketSm_EventId id)
+{
+    switch (id)
+    {
+        case RocketSm_EventId_DO: return true;
+        default: return false;
     }
 }

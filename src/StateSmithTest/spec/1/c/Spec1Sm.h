@@ -3,6 +3,7 @@
 
 #pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md
 #include <stdint.h>
+#include <stdbool.h> // required for `is_event_id_valid()`, and `consume_event` flags.
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
 
 typedef enum Spec1Sm_EventId
@@ -55,10 +56,16 @@ void Spec1Sm_start(Spec1Sm* sm);
 void Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id);
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Spec1Sm_state_id_to_string(Spec1Sm_StateId id);
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Spec1Sm_event_id_to_string(Spec1Sm_EventId id);
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool Spec1Sm_is_event_id_valid(Spec1Sm_EventId id);
 
 // Generated state machine
 struct Spec1Sm

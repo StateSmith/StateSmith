@@ -65,6 +65,7 @@ public class RenderConfigCVars
 
     /// <summary>
     /// Will use &lt;stdbool.h&gt; and bool type instead of int for boolean
+    /// https://github.com/StateSmith/StateSmith/pull/376
     /// </summary>
     public bool UseStdBool = true;
 

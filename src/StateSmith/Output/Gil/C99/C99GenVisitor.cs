@@ -9,6 +9,7 @@ using System.Text;
 using StateSmith.Common;
 using System.Linq;
 using StateSmith.Output.UserConfig;
+using StateSmith.Output.Algos.Balanced1;
 
 // spell-checker: ignore customizer
 
@@ -29,10 +30,21 @@ public class C99GenVisitor : CSharpSyntaxWalker
     protected readonly RenderConfigBaseVars renderConfig;
     protected readonly RenderConfigCVars renderConfigC;
     protected readonly IGilToC99Customizer customizer;
+    private readonly NameMangler nameMangler;
     protected readonly GilTranspilerHelper transpilerHelper;
     protected readonly IncludeGuardProvider includeGuardProvider;
 
-    public C99GenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigBaseVars renderConfig, RenderConfigCVars renderConfigC, IGilToC99Customizer customizer, IOutputInfo outputInfo) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public C99GenVisitor(
+        SemanticModel model,
+        StringBuilder hFileSb,
+        StringBuilder cFileSb,
+        RenderConfigBaseVars renderConfig,
+        RenderConfigCVars renderConfigC,
+        IGilToC99Customizer customizer,
+        IOutputInfo outputInfo,
+        NameMangler nameMangler
+    )
+        : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.model = model;
         this.hFileSb = hFileSb;
@@ -40,6 +52,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         this.renderConfig = renderConfig;
         this.renderConfigC = renderConfigC;
         this.customizer = customizer;
+        this.nameMangler = nameMangler;
         this.includeGuardProvider = new IncludeGuardProvider(renderConfigC.IncludeGuardLabel, outputInfo);
 
         transpilerHelper = new(this, model);
@@ -69,6 +82,12 @@ public class C99GenVisitor : CSharpSyntaxWalker
         sb.AppendLineIfNotBlank(renderConfigC.HFileTopPostIncludeGuard);
 
         sb.AppendLine("#include <stdint.h>");
+
+        if (renderConfigC.UseStdBool)
+        {
+            sb.AppendLine($"#include <stdbool.h> // required for `{nameMangler.SmEventIdIsValidFuncName}()`, and `consume_event` flags.");
+        }
+
         sb.AppendLineIfNotBlank(renderConfigC.HFileIncludes);
         sb.AppendLine();
 
@@ -82,10 +101,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
         sb.AppendLineIfNotBlank(renderConfigC.CFileTop);
         sb.AppendLine($"#include \"{customizer.MakeHFileName()}\"");
-        if (renderConfigC.UseStdBool)
-        {
-            sb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
-        }
         sb.AppendLine("#include <string.h> // for memset");
         sb.AppendLineIfNotBlank(renderConfigC.CFileIncludes);
         sb.AppendLine();

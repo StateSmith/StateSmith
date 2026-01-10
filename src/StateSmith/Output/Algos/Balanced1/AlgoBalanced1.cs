@@ -21,7 +21,7 @@ public class AlgoBalanced1 : IGilAlgo
     protected readonly OutputFile file;
     protected readonly EventHandlerBuilder eventHandlerBuilder;
     protected readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
-    protected readonly IAlgoEventIdToString algoEventIdToString;
+    protected readonly IAlgoEventIdFuncGenerator algoEventIdFuncGen;
     protected readonly IAlgoStateIdToString algoStateIdToString;
     protected readonly StandardFileHeaderPrinter standardFileHeaderPrinter;
     private readonly GilCreationHelper gilCreationHelper;
@@ -33,7 +33,7 @@ public class AlgoBalanced1 : IGilAlgo
 
     protected static string ConstMarker => ""; // todo_low - put in an attribute like [ro] that will end up as `const` for languages that support that
 
-    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigBaseVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter)
+    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigBaseVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdFuncGenerator algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter)
     {
         this.mangler = mangler;
         this.file = new OutputFile(styler, new StringBuilder());
@@ -42,7 +42,7 @@ public class AlgoBalanced1 : IGilAlgo
         this.renderConfig = renderConfig;
         this.eventHandlerBuilder = eventHandlerBuilder;
         this.settings = settings;
-        this.algoEventIdToString = algoEventIdToString;
+        this.algoEventIdFuncGen = algoEventIdToString;
         this.algoStateIdToString = algoStateIdToString;
         this.standardFileHeaderPrinter = standardFileHeaderPrinter;
         this.gilCreationHelper = new GilCreationHelper();
@@ -162,7 +162,12 @@ public class AlgoBalanced1 : IGilAlgo
 
         if (settings.outputEventIdToStringFunction)
         {
-            algoEventIdToString.CreateEventIdToStringFunction(file, Sm);
+            algoEventIdFuncGen.CreateEventIdToStringFunction(file, Sm);
+        }
+
+        if (settings.outputEventIdIsValidFunction)
+        {
+            algoEventIdFuncGen.CreateEventIdIsValidFunction(file, Sm);
         }
     }
 

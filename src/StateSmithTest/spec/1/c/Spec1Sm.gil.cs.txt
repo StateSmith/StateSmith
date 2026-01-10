@@ -453,6 +453,7 @@ private void T111_exit()
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 public static string state_id_to_string(StateId id)
 {
     switch (id)
@@ -469,6 +470,7 @@ public static string state_id_to_string(StateId id)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 public static string event_id_to_string(EventId id)
 {
     switch (id)
@@ -476,6 +478,18 @@ public static string event_id_to_string(EventId id)
         case EventId.EV1: return "EV1";
         case EventId.EV2: return "EV2";
         default: return "?";
+    }
+}
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+public static bool is_event_id_valid(EventId id)
+{
+    switch (id)
+    {
+        case EventId.EV1: return true;
+        case EventId.EV2: return true;
+        default: return false;
     }
 }
 

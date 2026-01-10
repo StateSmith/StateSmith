@@ -901,6 +901,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static stateIdToString(id)
     {
         switch (id)
@@ -918,6 +919,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static eventIdToString(id)
     {
         switch (id)
@@ -928,6 +930,21 @@ evaluateGuard = null;
             case PlantEx2.EventId.EVNEWVALUEREJECTED: return "EVNEWVALUEREJECTED";
             case PlantEx2.EventId.EVNEWVALUESAVED: return "EVNEWVALUESAVED";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    static isEventIdValid(id)
+    {
+        switch (id)
+        {
+            case PlantEx2.EventId.EV2: return true;
+            case PlantEx2.EventId.EVCONFIG: return true;
+            case PlantEx2.EventId.EVNEWVALUE: return true;
+            case PlantEx2.EventId.EVNEWVALUEREJECTED: return true;
+            case PlantEx2.EventId.EVNEWVALUESAVED: return true;
+            default: return false;
         }
     }
 }

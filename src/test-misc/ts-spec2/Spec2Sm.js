@@ -10311,6 +10311,7 @@ var Spec2Sm = /** @class */ (function () {
         this.stateId = StateId.ROOT;
     };
     // Thread safe.
+    // There is a setting available to disable generating this function.
     Spec2Sm.stateIdToString = function (id) {
         switch (id) {
             case StateId.ROOT: return "ROOT";
@@ -10491,6 +10492,7 @@ var Spec2Sm = /** @class */ (function () {
         }
     };
     // Thread safe.
+    // There is a setting available to disable generating this function.
     Spec2Sm.eventIdToString = function (id) {
         switch (id) {
             case EventId.DO: return "DO";
@@ -10509,6 +10511,28 @@ var Spec2Sm = /** @class */ (function () {
             case EventId.EVOPEN: return "EVOPEN";
             case EventId.EVSTEP: return "EVSTEP";
             default: return "?";
+        }
+    };
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    Spec2Sm.isEventIdValid = function (id) {
+        switch (id) {
+            case EventId.DO: return true;
+            case EventId.EV1: return true;
+            case EventId.EV10: return true;
+            case EventId.EV2: return true;
+            case EventId.EV3: return true;
+            case EventId.EV4: return true;
+            case EventId.EV5: return true;
+            case EventId.EV6: return true;
+            case EventId.EV7: return true;
+            case EventId.EV8: return true;
+            case EventId.EV9: return true;
+            case EventId.EVBACK: return true;
+            case EventId.EVCLOSE: return true;
+            case EventId.EVOPEN: return true;
+            case EventId.EVSTEP: return true;
+            default: return false;
         }
     };
     return Spec2Sm;

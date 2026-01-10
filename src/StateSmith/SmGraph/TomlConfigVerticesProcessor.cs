@@ -1,6 +1,7 @@
 #nullable enable
 
 using StateSmith.Input.Settings;
+using StateSmith.Output.UserConfig;
 using StateSmith.Output.UserConfig.AutoVars;
 using StateSmith.Runner;
 using StateSmith.SmGraph.Validation;

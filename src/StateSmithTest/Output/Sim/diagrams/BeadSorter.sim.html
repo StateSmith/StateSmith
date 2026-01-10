@@ -3159,6 +3159,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static stateIdToString(id)
     {
         switch (id)
@@ -3196,6 +3197,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static eventIdToString(id)
     {
         switch (id)
@@ -3205,6 +3207,20 @@ evaluateGuard = null;
             case BeadSorter.EventId.BUTTON2: return "BUTTON2";
             case BeadSorter.EventId.DO: return "DO";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    static isEventIdValid(id)
+    {
+        switch (id)
+        {
+            case BeadSorter.EventId.BUTTON0: return true;
+            case BeadSorter.EventId.BUTTON1: return true;
+            case BeadSorter.EventId.BUTTON2: return true;
+            case BeadSorter.EventId.DO: return true;
+            default: return false;
         }
     }
 }

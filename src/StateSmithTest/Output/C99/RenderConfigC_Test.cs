@@ -64,6 +64,7 @@ public class RenderConfigC_Test
             index = ExpectNext(hCode, index, "\n#define MY_INCLUDE_GUARD_H\n");
             index = ExpectNext(hCode, index, "\n// HFileTopPostIncludeGuard\n");
             index = ExpectNext(hCode, index, "\n#include <stdint.h>\n"); // auto included by StateSmith
+            index = ExpectNext(hCode, index, "\n#include <stdbool.h> "); // auto included by StateSmith
             index = ExpectNext(hCode, index, "\n// HFileIncludes\n");
             index = ExpectNext(hCode, index, "\n// HFileBottomPreIncludeGuard\n");
             index = ExpectNext(hCode, index, "\n#endif // MY_INCLUDE_GUARD_H\n");
@@ -78,7 +79,6 @@ public class RenderConfigC_Test
             index = ExpectNext(cCode, index, "\n// FileTop\n");
             index = ExpectNext(cCode, index, "\n// CFileTop\n");
             index = ExpectNext(cCode, index, "\n#include \"ExampleSm.hpp\"\n"); // auto included by StateSmith
-            index = ExpectNext(cCode, index, "\n#include <stdbool.h> ");        // auto included by StateSmith
             index = ExpectNext(cCode, index, "\n#include <string.h> ");         // auto included by StateSmith
             index = ExpectNext(cCode, index, "\n// CFileIncludes\n");
             index = ExpectNext(cCode, index, "\n// CFileBottom\n");
@@ -169,10 +169,14 @@ public class RenderConfigC_Test
         var fakeFs = new CapturingCodeFileWriter();
         TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
-        var cCode = fakeFs.GetCapturesForFileName("ExampleSm.c").Single().code.ConvertLineEndingsToN();
+        var cCode = fakeFs.GetSoleCaptureWithName("ExampleSm.c").code;
         cCode.Should().NotContain("#include <stdbool.h>");
         cCode.Should().NotContain("bool consume_event = ");
         cCode.Should().Contain("int consume_event = ");
+
+        var hCode = fakeFs.GetSoleCaptureWithName("ExampleSm.h").code;
+        hCode.Should().NotContain("#include <stdbool.h>");
+        hCode.Should().NotContain("bool ");
     }
 
     /// <summary>

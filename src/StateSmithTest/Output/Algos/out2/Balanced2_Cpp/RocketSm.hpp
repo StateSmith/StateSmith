@@ -49,10 +49,16 @@ public:
     void dispatchEvent(EventId eventId);
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static char const * stateIdToString(StateId id);
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static char const * eventIdToString(EventId id);
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    static bool isEventIdValid(EventId id);
 
 
 // ################################### PRIVATE MEMBERS ###################################

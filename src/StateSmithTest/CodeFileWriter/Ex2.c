@@ -2,7 +2,6 @@
 // Algorithm: Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 #include "Ex2.h"
-#include <stdbool.h> // required for `consume_event` flag
 #include <string.h> // for memset
 
 // This function is used when StateSmith doesn't know what the active leaf state is at
@@ -199,6 +198,7 @@ static void STATE_2_myev1(Ex2* sm)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Ex2_state_id_to_string(Ex2_StateId id)
 {
     switch (id)
@@ -211,6 +211,7 @@ char const * Ex2_state_id_to_string(Ex2_StateId id)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Ex2_event_id_to_string(Ex2_EventId id)
 {
     switch (id)
@@ -219,6 +220,19 @@ char const * Ex2_event_id_to_string(Ex2_EventId id)
         case Ex2_EventId_EV2: return "EV2";
         case Ex2_EventId_MYEV1: return "MYEV1";
         default: return "?";
+    }
+}
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool Ex2_is_event_id_valid(Ex2_EventId id)
+{
+    switch (id)
+    {
+        case Ex2_EventId_DO: return true;
+        case Ex2_EventId_EV2: return true;
+        case Ex2_EventId_MYEV1: return true;
+        default: return false;
     }
 }
 // Converts an event id to a string. Thread safe.

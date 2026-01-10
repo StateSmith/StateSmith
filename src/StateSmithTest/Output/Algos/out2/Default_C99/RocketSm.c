@@ -4,7 +4,6 @@
 // RenderConfig.C.CFileTop
 
 #include "RocketSm.h"
-#include <stdbool.h> // required for `consume_event` flag
 #include <string.h> // for memset
 
 // This function is used when StateSmith doesn't know what the active leaf state is at
@@ -292,6 +291,7 @@ static void S1_exit(RocketSm* sm)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * RocketSm_state_id_to_string(RocketSm_StateId id)
 {
     switch (id)
@@ -306,6 +306,7 @@ char const * RocketSm_state_id_to_string(RocketSm_StateId id)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * RocketSm_event_id_to_string(RocketSm_EventId id)
 {
     switch (id)
@@ -313,5 +314,17 @@ char const * RocketSm_event_id_to_string(RocketSm_EventId id)
         case RocketSm_EventId_EV1: return "EV1";
         case RocketSm_EventId_EV2: return "EV2";
         default: return "?";
+    }
+}
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool RocketSm_is_event_id_valid(RocketSm_EventId id)
+{
+    switch (id)
+    {
+        case RocketSm_EventId_EV1: return true;
+        case RocketSm_EventId_EV2: return true;
+        default: return false;
     }
 }

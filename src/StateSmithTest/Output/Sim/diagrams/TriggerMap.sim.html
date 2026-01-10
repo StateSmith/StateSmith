@@ -1152,6 +1152,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static stateIdToString(id)
     {
         switch (id)
@@ -1167,6 +1168,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static eventIdToString(id)
     {
         switch (id)
@@ -1178,6 +1180,22 @@ evaluateGuard = null;
             case TriggerMap.EventId.INC2: return "INC2";
             case TriggerMap.EventId.INCITE_RESET: return "INCITE_RESET";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    static isEventIdValid(id)
+    {
+        switch (id)
+        {
+            case TriggerMap.EventId.DIM1: return true;
+            case TriggerMap.EventId.DIM2: return true;
+            case TriggerMap.EventId.ERR: return true;
+            case TriggerMap.EventId.INC1: return true;
+            case TriggerMap.EventId.INC2: return true;
+            case TriggerMap.EventId.INCITE_RESET: return true;
+            default: return false;
         }
     }
 }

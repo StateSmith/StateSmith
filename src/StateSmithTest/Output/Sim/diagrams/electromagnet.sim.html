@@ -1404,6 +1404,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static stateIdToString(id)
     {
         switch (id)
@@ -1425,6 +1426,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static eventIdToString(id)
     {
         switch (id)
@@ -1439,6 +1441,25 @@ evaluateGuard = null;
             case electromagnet.EventId.STOP_THE_REQUEST: return "STOP_THE_REQUEST";
             case electromagnet.EventId.TARGET_CURRENT_CHANGE: return "TARGET_CURRENT_CHANGE";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    static isEventIdValid(id)
+    {
+        switch (id)
+        {
+            case electromagnet.EventId.ADC_CALIBRATION_COMPLETE: return true;
+            case electromagnet.EventId.CALIBRATION_FAILED: return true;
+            case electromagnet.EventId.CONTROL_ANOMALY: return true;
+            case electromagnet.EventId.DO: return true;
+            case electromagnet.EventId.GET_ON_STANDBY: return true;
+            case electromagnet.EventId.NEEDED_REFERRAL: return true;
+            case electromagnet.EventId.POWER_CONTROL: return true;
+            case electromagnet.EventId.STOP_THE_REQUEST: return true;
+            case electromagnet.EventId.TARGET_CURRENT_CHANGE: return true;
+            default: return false;
         }
     }
 }

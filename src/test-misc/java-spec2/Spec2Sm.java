@@ -12548,6 +12548,7 @@ public class Spec2Sm extends Spec2SmBase
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     public static String stateIdToString(StateId id)
     {
         switch (id)
@@ -12731,6 +12732,7 @@ public class Spec2Sm extends Spec2SmBase
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     public static String eventIdToString(EventId id)
     {
         switch (id)
@@ -12751,6 +12753,31 @@ public class Spec2Sm extends Spec2SmBase
             case EVOPEN: return "EVOPEN";
             case EVSTEP: return "EVSTEP";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    public static boolean isEventIdValid(EventId id)
+    {
+        switch (id)
+        {
+            case DO: return true;
+            case EV1: return true;
+            case EV10: return true;
+            case EV2: return true;
+            case EV3: return true;
+            case EV4: return true;
+            case EV5: return true;
+            case EV6: return true;
+            case EV7: return true;
+            case EV8: return true;
+            case EV9: return true;
+            case EVBACK: return true;
+            case EVCLOSE: return true;
+            case EVOPEN: return true;
+            case EVSTEP: return true;
+            default: return false;
         }
     }
 }

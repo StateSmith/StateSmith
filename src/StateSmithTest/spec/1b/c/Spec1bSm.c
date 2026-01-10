@@ -2,7 +2,6 @@
 // Algorithm: Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 #include "Spec1bSm.h"
-#include <stdbool.h> // required for `consume_event` flag
 #include <string.h> // for memset
 #include "../../lang-helpers/c/helper.h"
 #include "printer.h"
@@ -309,6 +308,7 @@ static void S2_1_exit(Spec1bSm* sm)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Spec1bSm_state_id_to_string(Spec1bSm_StateId id)
 {
     switch (id)
@@ -324,11 +324,23 @@ char const * Spec1bSm_state_id_to_string(Spec1bSm_StateId id)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Spec1bSm_event_id_to_string(Spec1bSm_EventId id)
 {
     switch (id)
     {
         case Spec1bSm_EventId_T1: return "T1";
         default: return "?";
+    }
+}
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool Spec1bSm_is_event_id_valid(Spec1bSm_EventId id)
+{
+    switch (id)
+    {
+        case Spec1bSm_EventId_T1: return true;
+        default: return false;
     }
 }

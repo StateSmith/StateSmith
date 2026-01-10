@@ -836,6 +836,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static stateIdToString(id)
     {
         switch (id)
@@ -851,6 +852,7 @@ evaluateGuard = null;
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static eventIdToString(id)
     {
         switch (id)
@@ -859,6 +861,19 @@ evaluateGuard = null;
             case LightSm.EventId.INCREASE: return "INCREASE";
             case LightSm.EventId.OFF: return "OFF";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    static isEventIdValid(id)
+    {
+        switch (id)
+        {
+            case LightSm.EventId.DIMLIGHT: return true;
+            case LightSm.EventId.INCREASE: return true;
+            case LightSm.EventId.OFF: return true;
+            default: return false;
         }
     }
 }

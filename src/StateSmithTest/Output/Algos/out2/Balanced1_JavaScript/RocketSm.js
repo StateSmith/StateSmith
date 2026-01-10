@@ -268,6 +268,7 @@ function userCodeMethod() {
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static stateIdToString(id)
     {
         switch (id)
@@ -282,6 +283,7 @@ function userCodeMethod() {
     }
     
     // Thread safe.
+    // There is a setting available to disable generating this function.
     static eventIdToString(id)
     {
         switch (id)
@@ -289,6 +291,18 @@ function userCodeMethod() {
             case RocketSm.EventId.EV1: return "EV1";
             case RocketSm.EventId.EV2: return "EV2";
             default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    static isEventIdValid(id)
+    {
+        switch (id)
+        {
+            case RocketSm.EventId.EV1: return true;
+            case RocketSm.EventId.EV2: return true;
+            default: return false;
         }
     }
 }

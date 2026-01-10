@@ -4,7 +4,6 @@
 // diagram embedded CFileTop
 // inside sm - diagram embedded CFileTop
 #include "Spec2Sm.h"
-#include <stdbool.h> // required for `consume_event` flag
 #include <string.h> // for memset
 #include "../../lang-helpers/c/helper.h"
 // diagram embedded CFileIncludes
@@ -13628,6 +13627,7 @@ static void USELESS_exit(Spec2Sm* sm)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Spec2Sm_state_id_to_string(Spec2Sm_StateId id)
 {
     switch (id)
@@ -13811,6 +13811,7 @@ char const * Spec2Sm_state_id_to_string(Spec2Sm_StateId id)
 }
 
 // Thread safe.
+// There is a setting available to disable generating this function.
 char const * Spec2Sm_event_id_to_string(Spec2Sm_EventId id)
 {
     switch (id)
@@ -13831,5 +13832,30 @@ char const * Spec2Sm_event_id_to_string(Spec2Sm_EventId id)
         case Spec2Sm_EventId_EVOPEN: return "EVOPEN";
         case Spec2Sm_EventId_EVSTEP: return "EVSTEP";
         default: return "?";
+    }
+}
+
+// Thread safe.
+// There is a setting available to disable generating this function.
+bool Spec2Sm_is_event_id_valid(Spec2Sm_EventId id)
+{
+    switch (id)
+    {
+        case Spec2Sm_EventId_DO: return true;
+        case Spec2Sm_EventId_EV1: return true;
+        case Spec2Sm_EventId_EV10: return true;
+        case Spec2Sm_EventId_EV2: return true;
+        case Spec2Sm_EventId_EV3: return true;
+        case Spec2Sm_EventId_EV4: return true;
+        case Spec2Sm_EventId_EV5: return true;
+        case Spec2Sm_EventId_EV6: return true;
+        case Spec2Sm_EventId_EV7: return true;
+        case Spec2Sm_EventId_EV8: return true;
+        case Spec2Sm_EventId_EV9: return true;
+        case Spec2Sm_EventId_EVBACK: return true;
+        case Spec2Sm_EventId_EVCLOSE: return true;
+        case Spec2Sm_EventId_EVOPEN: return true;
+        case Spec2Sm_EventId_EVSTEP: return true;
+        default: return false;
     }
 }

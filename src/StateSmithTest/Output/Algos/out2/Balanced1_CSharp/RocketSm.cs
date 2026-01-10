@@ -291,6 +291,7 @@ public partial class RocketSm
     }
 
     // Thread safe.
+    // There is a setting available to disable generating this function.
     public static string StateIdToString(StateId id)
     {
         switch (id)
@@ -305,6 +306,7 @@ public partial class RocketSm
     }
 
     // Thread safe.
+    // There is a setting available to disable generating this function.
     public static string EventIdToString(EventId id)
     {
         switch (id)
@@ -312,6 +314,18 @@ public partial class RocketSm
             case EventId.EV1: return "EV1";
             case EventId.EV2: return "EV2";
             default: return "?";
+        }
+    }
+
+    // Thread safe.
+    // There is a setting available to disable generating this function.
+    public static bool IsEventIdValid(EventId id)
+    {
+        switch (id)
+        {
+            case EventId.EV1: return true;
+            case EventId.EV2: return true;
+            default: return false;
         }
     }
 }
