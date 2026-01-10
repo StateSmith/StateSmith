@@ -38,6 +38,45 @@ Test/interim releases are not documented here.
 - Code generated helper method to check if an event ID is valid.
   - https://github.com/StateSmith/StateSmith/issues/473
 
+## [0.19.0-alpha-1]
+### Contributors
+- @UCSIG
+  - https://github.com/StateSmith/StateSmith/pull/495
+  - https://github.com/StateSmith/StateSmith/pull/493
+- @simon-spobu
+  - https://github.com/StateSmith/StateSmith/pull/483
+
+### Fixed (minor)
+- Fix SimWebGenerator failure when multiple statemachine nodes at root level (@simon-spobu).
+  - https://github.com/StateSmith/StateSmith/pull/483
+
+### Added
+- PlantUML - support `<StateSmith:ignore>` (@UCSIG).
+  - https://github.com/StateSmith/StateSmith/issues/494
+- PlantUML - ignore `!theme` directive (@UCSIG).
+  - https://github.com/StateSmith/StateSmith/issues/492
+
+---
+
+## [0.18.0]
+### Contributors
+- @LinFei83
+  - https://github.com/StateSmith/StateSmith/pull/481
+
+### Added
+- Simulator - Dynamic event visibility based on active state (@LinFei83).
+  - https://github.com/StateSmith/StateSmith/issues/472
+- Simulator - Slight improvements to drop down settings menu.
+  - https://github.com/StateSmith/StateSmith/pull/487
+
+---
+
+## [0.17.6]
+### Added
+- StateSmith Grammar - allow `#ifdef` and other C/C++ preprocessor directives in user action code.
+  - https://github.com/StateSmith/StateSmith/issues/478
+  - Also relaxes grammar around a number of StateSmith keywords: `$NOTES`, `$CONFIG`, `$ORTHO`, `$choice`, `$STATEMACHINE`.
+
 ---
 
 ## [0.17.5]

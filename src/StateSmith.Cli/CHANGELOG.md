@@ -12,6 +12,48 @@ Test/interim releases are not documented here.
 lib updates for #470
 lib updates for #473
 
+## [0.20.0-alpha-1]
+### Contributors
+- @UCSIG
+  - https://github.com/StateSmith/StateSmith/pull/495
+  - https://github.com/StateSmith/StateSmith/pull/493
+- @simon-spobu
+  - https://github.com/StateSmith/StateSmith/pull/483
+
+### Upgrade StateSmith library version to `0.19.0-alpha-1`
+#### Fixed (minor)
+- Fix SimWebGenerator failure when multiple statemachine nodes at root level (@simon-spobu).
+  - https://github.com/StateSmith/StateSmith/pull/483
+
+#### Added
+- PlantUML - support `<StateSmith:ignore>` (@UCSIG).
+  - https://github.com/StateSmith/StateSmith/issues/494
+- PlantUML - ignore `!theme` directive (@UCSIG).
+  - https://github.com/StateSmith/StateSmith/issues/492
+
+---
+
+## [0.19.0]
+### Upgrade StateSmith library version to `0.18.0`
+#### Contributors
+- @LinFei83
+  - https://github.com/StateSmith/StateSmith/pull/481
+
+#### Added
+- Simulator - Dynamic event visibility based on active state (@LinFei83).
+  - https://github.com/StateSmith/StateSmith/issues/472
+- Simulator - Slight improvements to drop down settings menu.
+  - https://github.com/StateSmith/StateSmith/pull/487
+
+---
+
+## [0.18.3]
+### Upgrade StateSmith library version to `0.17.6`
+#### Added
+- StateSmith Grammar - allow `#ifdef` and other C/C++ preprocessor directives in user action code.
+  - https://github.com/StateSmith/StateSmith/issues/478
+  - Also relaxes grammar around a number of StateSmith keywords: `$NOTES`, `$CONFIG`, `$ORTHO`, `$choice`, `$STATEMACHINE`.
+
 ---
 
 ## [0.18.2]

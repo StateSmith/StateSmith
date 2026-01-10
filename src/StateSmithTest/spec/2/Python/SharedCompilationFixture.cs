@@ -44,7 +44,7 @@ public class SharedCompilationFixture
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            ProgramPath = "python",
+            ProgramPath = "python3",
             Args = " -m compileall ."   // https://stackoverflow.com/questions/5607283/how-can-i-manually-generate-a-pyc-file-from-a-py-file
         };
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);

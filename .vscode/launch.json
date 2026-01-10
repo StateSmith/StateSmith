@@ -1,0 +1,32 @@
+// see https://code.visualstudio.com/docs/csharp/debugger-settings
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug ss.cli",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            
+            // NOTE the net9.0 version. Update if yours is different.
+            "program": "${workspaceFolder}/src/StateSmith.Cli/bin/Debug/net9.0/StateSmith.Cli.dll",
+            "cwd": "${workspaceFolder}/src/StateSmith.Cli",
+            "args": [], // NOTE! you can add args like: ["run", "--here"]
+
+            // If you try and use regular "internalConsole", you'll get an exception "Cannot show selection prompt since the current terminal isn't interactive" if ss.cli tries to show a prompt.
+            // "integratedTerminal" and "externalTerminal" allow you to interact with CLI prompts. See https://aka.ms/VSCode-CS-LaunchJson-Console.
+            // Note! if you stop a debugging session during a prompt, you may be left with a messed up terminal. See https://github.com/StateSmith/StateSmith/issues/256
+            "console": "integratedTerminal",
+            "stopAtEntry": false,
+            "justMyCode": true,
+            "logging": {
+                "moduleLoad": false // Avoids many "module loading" logs
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}

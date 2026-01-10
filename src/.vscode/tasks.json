@@ -7,7 +7,6 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/StateSmithTest/StateSmithTest.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -20,29 +19,6 @@
             "args": [
                 "watch",
                 "run",
-                "--project",
-                "${workspaceFolder}/StateSmithTest/StateSmithTest.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "Test",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "test",
-            ],
-            "isTestCommand": true,
-        },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/StateSmithTest/StateSmithTest.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         }

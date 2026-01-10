@@ -338,6 +338,30 @@ LINE_COMMENT:
     -> skip
     ;
 
+// Skip the `!theme` directive.
+// https://plantuml.com/en/theme
+THEME_DIRECTIVE:
+    (START_OF_INPUT | LINE_ENDER)
+    HWS*
+    '!theme'
+    HWS ~[\r\n]*
+    -> skip
+    ;
+
+// Ignore all content between the following comment tags:
+// ' <StateSmith:ignore>
+// ' </StateSmith:ignore>
+SS_IGNORE_COMMENT:
+    (START_OF_INPUT | LINE_ENDER)
+    HWS*
+    SINGLE_QUOTE
+    HWS*
+    '<StateSmith:ignore>'
+    .*?
+    '</StateSmith:ignore>'
+    -> skip
+    ;
+
 // This token MUST occur AFTER the LINE_COMMENT token as it is a subset of the LINE_COMMENT token.
 // See https://github.com/StateSmith/StateSmith/issues/352
 START_OF_INPUT : '\u0001' -> skip;

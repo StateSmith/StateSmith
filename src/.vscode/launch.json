@@ -1,21 +1,27 @@
+// see https://code.visualstudio.com/docs/csharp/debugger-settings
 {
     "version": "0.2.0",
     "configurations": [
         {
-            // Use IntelliSense to find out which attributes exist for C# debugging
-            // Use hover for the description of the existing attributes
-            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
-            "name": ".NET Core Launch (console)",
+            "name": "Debug ss.cli",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/StateSmithTest/bin/Debug/net8.0/StateSmithTest.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/StateSmithTest",
-            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
-            "console": "internalConsole",
-            "stopAtEntry": false
+            
+            // NOTE the net9.0 version. Update if yours is different.
+            "program": "${workspaceFolder}/StateSmith.Cli/bin/Debug/net9.0/StateSmith.Cli.dll",
+            "cwd": "${workspaceFolder}/StateSmith.Cli",
+            "args": [], // NOTE! you can add args like: ["run", "--here"]
+
+            // If you try and use regular "internalConsole", you'll get an exception "Cannot show selection prompt since the current terminal isn't interactive" if ss.cli tries to show a prompt.
+            // "integratedTerminal" and "externalTerminal" allow you to interact with CLI prompts. See https://aka.ms/VSCode-CS-LaunchJson-Console.
+            // Note! if you stop a debugging session during a prompt, you may be left with a messed up terminal. See https://github.com/StateSmith/StateSmith/issues/256
+            "console": "integratedTerminal",
+            "stopAtEntry": false,
+            "justMyCode": true,
+            "logging": {
+                "moduleLoad": false // Avoids many "module loading" logs
+            }
         },
         {
             "name": ".NET Core Attach",

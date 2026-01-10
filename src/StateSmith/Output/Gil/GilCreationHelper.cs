@@ -8,14 +8,6 @@ namespace StateSmith.Output.Gil;
 public class GilCreationHelper
 {
     /// <summary>
-    /// This is a thread static field so that we can have unique field names for each thread.
-    /// It also allows us to have multiple instances of the transpiler running in parallel without having random numbers here.
-    /// Tests running in parallel now have unique and consistent field names.
-    /// </summary>
-    [ThreadStatic]
-    private static int _fieldCounter = 0;
-
-    /// <summary>
     /// Helps prevent clashing with code to transpile.
     /// </summary>
     public const string GilDataPrefix = "____GilData_";
@@ -59,6 +51,12 @@ public class GilCreationHelper
     /// `$gil(code...)`
     /// </summary>
     public const string GilExpansionMarkerFuncName = "$gil";
+
+    /// <summary>
+    /// This allows us to have multiple instances of the transpiler running in parallel without having random numbers here.
+    /// Tests running in parallel now have unique and consistent field names.
+    /// </summary>
+    private int _fieldCounter = 0;
 
     public static void AppendGilHelpersFuncs(OutputFile file)
     {
@@ -115,8 +113,10 @@ public class GilCreationHelper
 
     /// <summary>
     /// This is useful for outputting user code that isn't valid GIL/C# code that the transpiler would otherwise error on.
+    /// NOTE! You should not repeatedly create an instance of this object to wrap code. Instead, use the same instance to wrap multiple lines of code.
+    /// This will ensure that the field names are unique and consistent.
     /// </summary>
-    public static string WrapRawCodeAsField(string codeToWrap)
+    public string WrapRawCodeAsField(string codeToWrap)
     {
         string result = "";
         string joiner = "";
@@ -136,7 +136,7 @@ public class GilCreationHelper
         return result;
     }
 
-    private static string CreateGilFieldName_EchoString()
+    private string CreateGilFieldName_EchoString()
     {
         return $"{GilFieldName_EchoString}{_fieldCounter++}";
     }

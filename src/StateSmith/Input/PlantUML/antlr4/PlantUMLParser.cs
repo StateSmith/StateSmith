@@ -40,8 +40,9 @@ public partial class PlantUMLParser : Parser {
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, START_UML=27, END_UML=28, HWS=29, LINE_ENDER=30, IDENTIFIER=31, 
-		DIGIT=32, KEPT_BLOCK_COMMENT=33, BLOCK_COMMENT=34, LINE_COMMENT=35, START_OF_INPUT=36, 
-		SYMBOLS=37, SINGLE_QUOTE=38, STRING=39, ENDNOTE=40;
+		DIGIT=32, KEPT_BLOCK_COMMENT=33, BLOCK_COMMENT=34, LINE_COMMENT=35, THEME_DIRECTIVE=36, 
+		SS_IGNORE_COMMENT=37, START_OF_INPUT=38, SYMBOLS=39, SINGLE_QUOTE=40, 
+		STRING=41, ENDNOTE=42;
 	public const int
 		RULE_line_ending_ows = 0, RULE_optional_any_space = 1, RULE_ohs = 2, RULE_start_end_state = 3, 
 		RULE_history_state = 4, RULE_state_id = 5, RULE_vertex = 6, RULE_edge = 7, 
@@ -66,14 +67,15 @@ public partial class PlantUMLParser : Parser {
 		"'}'", "'<<'", "'>>'", "'state'", "'State'", "'as'", "'hide empty description'", 
 		"'scale'", "'skin'", "'mainframe'", "'title'", "'skinparam'", "'#'", "'note'", 
 		"'on'", "'link'", "'end'", "'@startuml'", "'@enduml'", null, null, null, 
-		null, null, null, null, "'\u0001'"
+		null, null, null, null, null, null, "'\u0001'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, "START_UML", "END_UML", "HWS", "LINE_ENDER", "IDENTIFIER", 
-		"DIGIT", "KEPT_BLOCK_COMMENT", "BLOCK_COMMENT", "LINE_COMMENT", "START_OF_INPUT", 
-		"SYMBOLS", "SINGLE_QUOTE", "STRING", "ENDNOTE"
+		"DIGIT", "KEPT_BLOCK_COMMENT", "BLOCK_COMMENT", "LINE_COMMENT", "THEME_DIRECTIVE", 
+		"SS_IGNORE_COMMENT", "START_OF_INPUT", "SYMBOLS", "SINGLE_QUOTE", "STRING", 
+		"ENDNOTE"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -650,7 +652,7 @@ public partial class PlantUMLParser : Parser {
 					State = 101;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-					while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__2) | (1L << T__3) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << START_UML) | (1L << END_UML) | (1L << HWS) | (1L << IDENTIFIER) | (1L << DIGIT) | (1L << KEPT_BLOCK_COMMENT) | (1L << BLOCK_COMMENT) | (1L << LINE_COMMENT) | (1L << START_OF_INPUT) | (1L << SYMBOLS) | (1L << SINGLE_QUOTE) | (1L << STRING) | (1L << ENDNOTE))) != 0)) {
+					while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__2) | (1L << T__3) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << START_UML) | (1L << END_UML) | (1L << HWS) | (1L << IDENTIFIER) | (1L << DIGIT) | (1L << KEPT_BLOCK_COMMENT) | (1L << BLOCK_COMMENT) | (1L << LINE_COMMENT) | (1L << THEME_DIRECTIVE) | (1L << SS_IGNORE_COMMENT) | (1L << START_OF_INPUT) | (1L << SYMBOLS) | (1L << SINGLE_QUOTE) | (1L << STRING) | (1L << ENDNOTE))) != 0)) {
 						{
 						{
 						State = 98;
@@ -1841,7 +1843,7 @@ public partial class PlantUMLParser : Parser {
 			State = 269;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << START_UML) | (1L << END_UML) | (1L << HWS) | (1L << IDENTIFIER) | (1L << DIGIT) | (1L << KEPT_BLOCK_COMMENT) | (1L << BLOCK_COMMENT) | (1L << LINE_COMMENT) | (1L << START_OF_INPUT) | (1L << SYMBOLS) | (1L << SINGLE_QUOTE) | (1L << STRING))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << START_UML) | (1L << END_UML) | (1L << HWS) | (1L << IDENTIFIER) | (1L << DIGIT) | (1L << KEPT_BLOCK_COMMENT) | (1L << BLOCK_COMMENT) | (1L << LINE_COMMENT) | (1L << THEME_DIRECTIVE) | (1L << SS_IGNORE_COMMENT) | (1L << START_OF_INPUT) | (1L << SYMBOLS) | (1L << SINGLE_QUOTE) | (1L << STRING))) != 0)) {
 				{
 				{
 				State = 266;
@@ -2633,7 +2635,7 @@ public partial class PlantUMLParser : Parser {
 
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', '*', '\x17C', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
+		'\x5964', '\x3', ',', '\x17C', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
 		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x4', '\x5', '\t', '\x5', '\x4', 
 		'\x6', '\t', '\x6', '\x4', '\a', '\t', '\a', '\x4', '\b', '\t', '\b', 
 		'\x4', '\t', '\t', '\t', '\x4', '\n', '\t', '\n', '\x4', '\v', '\t', '\v', 
@@ -2719,7 +2721,7 @@ public partial class PlantUMLParser : Parser {
 		'\x36', '\x38', '\x2', '\t', '\x3', '\x2', '\x1F', ' ', '\x3', '\x2', 
 		'\x5', '\x6', '\x5', '\x2', '\x4', '\x4', '\a', '\a', ' ', ' ', '\x3', 
 		'\x2', '\xF', '\x10', '\x3', '\x2', ' ', ' ', '\x4', '\x2', ' ', ' ', 
-		'*', '*', '\x6', '\x2', '\xF', '\x11', '\x13', '\x17', '\x19', '\x1C', 
+		',', ',', '\x6', '\x2', '\xF', '\x11', '\x13', '\x17', '\x19', '\x1C', 
 		'!', '!', '\x2', '\x19A', '\x2', ':', '\x3', '\x2', '\x2', '\x2', '\x4', 
 		'\x41', '\x3', '\x2', '\x2', '\x2', '\x6', 'G', '\x3', '\x2', '\x2', '\x2', 
 		'\b', 'J', '\x3', '\x2', '\x2', '\x2', '\n', 'L', '\x3', '\x2', '\x2', 
@@ -2792,7 +2794,7 @@ public partial class PlantUMLParser : Parser {
 		'\x2', '\x2', '\x2', '\x8F', '\x90', '\x3', '\x2', '\x2', '\x2', '\x90', 
 		'\x8E', '\x3', '\x2', '\x2', '\x2', '\x90', '\x91', '\x3', '\x2', '\x2', 
 		'\x2', '\x91', '\x9E', '\x3', '\x2', '\x2', '\x2', '\x92', '\x94', '\a', 
-		')', '\x2', '\x2', '\x93', '\x95', '\a', '\x1F', '\x2', '\x2', '\x94', 
+		'+', '\x2', '\x2', '\x93', '\x95', '\a', '\x1F', '\x2', '\x2', '\x94', 
 		'\x93', '\x3', '\x2', '\x2', '\x2', '\x95', '\x96', '\x3', '\x2', '\x2', 
 		'\x2', '\x96', '\x94', '\x3', '\x2', '\x2', '\x2', '\x96', '\x97', '\x3', 
 		'\x2', '\x2', '\x2', '\x97', '\x98', '\x3', '\x2', '\x2', '\x2', '\x98', 
@@ -2904,7 +2906,7 @@ public partial class PlantUMLParser : Parser {
 		'\x2', '\x128', '\x12B', '\x3', '\x2', '\x2', '\x2', '\x129', '\x127', 
 		'\x3', '\x2', '\x2', '\x2', '\x129', '\x12A', '\x3', '\x2', '\x2', '\x2', 
 		'\x12A', '\x12C', '\x3', '\x2', '\x2', '\x2', '\x12B', '\x129', '\x3', 
-		'\x2', '\x2', '\x2', '\x12C', '\x12D', '\a', '*', '\x2', '\x2', '\x12D', 
+		'\x2', '\x2', '\x2', '\x12C', '\x12D', '\a', ',', '\x2', '\x2', '\x12D', 
 		'+', '\x3', '\x2', '\x2', '\x2', '\x12E', '\x130', '\a', '\x19', '\x2', 
 		'\x2', '\x12F', '\x131', '\a', '\x1F', '\x2', '\x2', '\x130', '\x12F', 
 		'\x3', '\x2', '\x2', '\x2', '\x131', '\x132', '\x3', '\x2', '\x2', '\x2', 
@@ -2920,12 +2922,12 @@ public partial class PlantUMLParser : Parser {
 		'\x3', '\x2', '\x2', '\x2', '\x13F', '\x13D', '\x3', '\x2', '\x2', '\x2', 
 		'\x13F', '\x140', '\x3', '\x2', '\x2', '\x2', '\x140', '\x142', '\x3', 
 		'\x2', '\x2', '\x2', '\x141', '\x13F', '\x3', '\x2', '\x2', '\x2', '\x142', 
-		'\x143', '\a', '*', '\x2', '\x2', '\x143', '-', '\x3', '\x2', '\x2', '\x2', 
+		'\x143', '\a', ',', '\x2', '\x2', '\x143', '-', '\x3', '\x2', '\x2', '\x2', 
 		'\x144', '\x146', '\a', '\x19', '\x2', '\x2', '\x145', '\x147', '\a', 
 		'\x1F', '\x2', '\x2', '\x146', '\x145', '\x3', '\x2', '\x2', '\x2', '\x147', 
 		'\x148', '\x3', '\x2', '\x2', '\x2', '\x148', '\x146', '\x3', '\x2', '\x2', 
 		'\x2', '\x148', '\x149', '\x3', '\x2', '\x2', '\x2', '\x149', '\x14A', 
-		'\x3', '\x2', '\x2', '\x2', '\x14A', '\x14B', '\a', ')', '\x2', '\x2', 
+		'\x3', '\x2', '\x2', '\x2', '\x14A', '\x14B', '\a', '+', '\x2', '\x2', 
 		'\x14B', '\x14C', '\x5', '\x1C', '\xF', '\x2', '\x14C', '/', '\x3', '\x2', 
 		'\x2', '\x2', '\x14D', '\x152', '\x5', '$', '\x13', '\x2', '\x14E', '\x152', 
 		'\x5', ',', '\x17', '\x2', '\x14F', '\x152', '\x5', '*', '\x16', '\x2', 

@@ -5,6 +5,7 @@ using StateSmith.Input.Antlr4;
 using StateSmith.Output;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
+using System.Linq;
 
 // todolow look into this: https://www.antlr.org/api/Java/org/antlr/v4/runtime/TokenStreamRewriter.html
 
@@ -227,16 +228,6 @@ public class Antlr4Test : CommonTestHelper
         ShouldBeEquivalentToUml(behaviors[1], "event1");
     }
 
-    private static void ShouldBeEquivalentToUml(NodeBehavior nodeBehavior, string uml)
-    {
-        ConvertNodeBehaviorToBehavior(nodeBehavior).DescribeAsUml().Should().Be(uml);
-    }
-
-    public static Behavior ConvertNodeBehaviorToBehavior(NodeBehavior nodeBehavior)
-    {
-        return DiagramToSmConverter.ConvertBehavior(new State("dummy"), nodeBehavior);
-    }
-
     /// <summary>
     /// https://github.com/StateSmith/StateSmith/issues/43
     /// </summary>
@@ -328,6 +319,66 @@ public class Antlr4Test : CommonTestHelper
             }
             """
         );
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/478
+    /// </summary>
+    [Fact]
+    public void PreprocessorConditionalActionCode_478()
+    {
+        // test #ifdef
+        TestParsingSingleEdgeLabelBehavior(
+            input: 
+                """
+                event / {
+                    #ifdef ENABLE_SOME_FEATURE
+                    do_stuff();
+                    #endif
+                }
+                """,
+            expectedSingleLineUml: 
+                """
+                event / { #ifdef ENABLE_SOME_FEATURE\ndo_stuff();\n#endif }
+                """
+        );
+
+        // test #if
+        TestParsingSingleEdgeLabelBehavior(
+            input:
+                """
+                event / {
+                    #if ENABLE_SOME_FEATURE
+                    do_stuff();
+                    #else
+                    do_other_stuff();
+                    #endif
+                }
+                """,
+            expectedSingleLineUml: 
+                """
+                event / { #if ENABLE_SOME_FEATURE\ndo_stuff();\n#else\ndo_other_stuff();\n#endif }
+                """
+        );
+    }
+
+    /// <summary>
+    /// This test just shows that these keywords can be parsed correctly in action code.
+    /// We DO NOT specifically allow or deny them at this point. Avoid using them in action code
+    /// if you can.
+    /// </summary>
+    [Fact]
+    public void KeywordsInActionCode()
+    {
+        string[] keywords = ["$NOTES", "$CONFIG", "$ORTHO", "$choice", "$STATEMACHINE"];
+
+        foreach (string keyword in keywords)
+        {
+            TestParsingSingleEdgeLabelBehavior(
+                input: $$"""my_event / { {{keyword}}++; }""",
+                expectedSingleLineUml: $$"""my_event / { {{keyword}}++; }"""
+            );
+        }
     }
 
     [Fact]
@@ -569,5 +620,25 @@ public class Antlr4Test : CommonTestHelper
             var node = (NotesNode)ParseNodeWithNoErrors("$NOTES " + input);
             node.notes.Should().Be(input);
         }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    private void TestParsingSingleEdgeLabelBehavior(string input, string expectedSingleLineUml)
+    {
+        input = StringUtils.ConvertToSlashNLines(input);
+        var behavior = parser.ParseEdgeLabel(input).Single();
+        AssertNoErrors();
+        ShouldBeEquivalentToUml(behavior, expectedSingleLineUml);
+    }
+
+    private static void ShouldBeEquivalentToUml(NodeBehavior nodeBehavior, string uml)
+    {
+        ConvertNodeBehaviorToBehavior(nodeBehavior).DescribeAsUml().Should().Be(uml);
+    }
+
+    public static Behavior ConvertNodeBehaviorToBehavior(NodeBehavior nodeBehavior)
+    {
+        return DiagramToSmConverter.ConvertBehavior(new State("dummy"), nodeBehavior);
     }
 }

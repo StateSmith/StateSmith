@@ -9,7 +9,7 @@ import shutil
 import glob
 import subprocess
 
-framework = "net8.0"
+framework = "net9.0"
 
 # https://learn.microsoft.com/en-us/dotnet/core/rid-catalog
 rids = [

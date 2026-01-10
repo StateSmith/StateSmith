@@ -40,7 +40,8 @@ public class SharedCompilationFixture
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            ProgramPath = "tsc",
+            ProgramPath = "npm",
+            Args = "run build"
         };
         process.IfWindowsWrapWithCmd();
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);

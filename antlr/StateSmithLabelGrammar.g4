@@ -49,7 +49,7 @@ statemachine_name:
 
 statemachine_defn:
     optional_any_space
-    '$STATEMACHINE'
+    DOLLAR_STATEMACHINE
     ohs
     COLON
     ohs
@@ -66,7 +66,7 @@ any_text:
 
 notes_node:
     optional_any_space
-    '$NOTES'
+    DOLLAR_NOTES
     (
         some_ws
         any_text
@@ -77,7 +77,7 @@ notes_node:
 // https://github.com/StateSmith/StateSmith/issues/23
 config_node:
     optional_any_space
-    '$CONFIG'
+    DOLLAR_CONFIG
     ohs
     COLON
     ohs
@@ -100,10 +100,11 @@ state_behaviors:
     optional_any_space
     ;
 
-//$ORTHO 1 : BASIC
+// Currently not supported. Do not use.
+// Example: $ORTHO 1 : BASIC
 ortho_defn:
     optional_any_space
-    '$ORTHO'
+    DOLLAR_ORTHO
     ohs
     ortho_order?
     ohs
@@ -123,9 +124,9 @@ state_defn:
     EOF
     ;
 
-// todo_low - remove.
+// Currently not supported. Treated just like a regular state. Example: `#MY_STATE`
 global_id:
-    '#'
+    HASH
     SS_IDENTIFIER
     ;
 
@@ -183,7 +184,7 @@ entry_point:
 // https://github.com/StateSmith/StateSmith/issues/40
 choice:
     optional_any_space
-    '$choice'
+    DOLLAR_CHOICE
     (
         optional_any_space
         COLON
@@ -375,9 +376,20 @@ expandable_identifier:
     permissive_identifier
     ;
 
-// allows state machine grammar keywords to be used as identifiers
+// Allows state machine grammar keywords to be used as identifiers.
+// Future validations may restrict these to only be used in certain contexts.
 permissive_identifier:
-    (SS_IDENTIFIER | EXIT | ENTRY | VIA) // exit/entry lexer tokens required because of exit/entry point rules
+    (
+        SS_IDENTIFIER
+        | EXIT
+        | ENTRY
+        | VIA
+        | DOLLAR_NOTES
+        | DOLLAR_CONFIG
+        | DOLLAR_ORTHO
+        | DOLLAR_CHOICE
+        | DOLLAR_STATEMACHINE
+    )
     ;
 
 group_expression: 
@@ -505,6 +517,7 @@ code_symbol:
     COLON |
     GT |
     LT |
+    HASH |
     OTHER_SYMBOLS |
     FORWARD_SLASH
     ;
@@ -513,13 +526,16 @@ code_symbol:
 
 LINE_ENDER: [\r\n]+;
 
-// StateSmith keywords
-// These should be added to permissive_identifier
-// must come before SS_IDENTIFIER
+// StateSmith keywords. Must come before SS_IDENTIFIER lexer rule.
+// These should be added to permissive_identifier.
 EXIT: 'exit';
 ENTRY: 'entry';
 VIA: 'via';
-
+DOLLAR_NOTES: '$NOTES';
+DOLLAR_CONFIG: '$CONFIG';
+DOLLAR_ORTHO: '$ORTHO';
+DOLLAR_CHOICE: '$choice';
+DOLLAR_STATEMACHINE: '$STATEMACHINE';
 
 fragment IDENTIFIER_NON_DIGIT :  [$a-zA-Z_] ;
 
@@ -575,9 +591,10 @@ DASH : '-' ;
 COLON : ':';
 GT : '>' ;
 LT : '<' ;
+HASH : '#' ;
 FORWARD_SLASH: '/' ; // fix for https://github.com/StateSmith/StateSmith/issues/230
 OTHER_SYMBOLS: 
-    [~!%^&*=:;?|\\@#$];  //don't include braces/parenthesis as those need to be grouped
+    [~!%^&*=:;?|\\@$];  //don't include braces/parenthesis as those need to be grouped
 
 HWS : [ \t]+ ;
 

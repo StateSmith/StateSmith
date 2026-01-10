@@ -1,2 +1,6 @@
-$NOTES
-Special chars: ë, Ш
+STATE1
+event / {
+    #if 0
+    do_stuff();
+    #endif
+}
