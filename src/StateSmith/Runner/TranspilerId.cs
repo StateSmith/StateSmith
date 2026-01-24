@@ -20,4 +20,5 @@ public enum TranspilerId
     Java,
     Python,
     TypeScript,
+    Swift,
 }

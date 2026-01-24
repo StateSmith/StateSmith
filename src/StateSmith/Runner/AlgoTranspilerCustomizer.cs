@@ -9,6 +9,7 @@ using StateSmith.Output.Gil.CSharp;
 using StateSmith.Output.Gil.Java;
 using StateSmith.Output.Gil.JavaScript;
 using StateSmith.Output.Gil.Python;
+using StateSmith.Output.Gil.Swift;
 using StateSmith.Output.Gil.TypeScript;
 using StateSmith.Output.UserConfig.AutoVars;
 using System;
@@ -126,6 +127,20 @@ public class AlgoTranspilerCustomizer
                     if (algorithmId != AlgorithmId.Balanced2)
                     {
                         throw new Exception("Python transpiler currently only supports `AlgorithmId.Balanced2`. Please reply to https://github.com/StateSmith/StateSmith/issues/398 .");
+                    }
+                }
+                break;
+
+            case TranspilerId.Swift:
+                {
+                    sp.AddSingletonT<IGilTranspiler, GilToSwift>();
+                    sp.AddSingletonT<IExpansionVarsPathProvider, SwiftExpansionVarsPathProvider>();
+                    sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>();
+                    algoBalanced1Settings.skipClassIndentation = false;
+
+                    if (algorithmId != AlgorithmId.Balanced2)
+                    {
+                        throw new Exception("Swift transpiler currently only supports `AlgorithmId.Balanced2`.");
                     }
                 }
                 break;

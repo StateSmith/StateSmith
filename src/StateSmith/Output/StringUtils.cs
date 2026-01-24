@@ -207,6 +207,25 @@ public class StringUtils
         return result;
     }
 
+    internal static string RemoveSwiftComments(string code, bool keepLineEnding = false)
+    {
+        var regex = new Regex(@"(?x)
+                //.* (?<lineEnding> \r\n | \r | \n | $ )
+                |
+                /[*]
+                [\s\S]*? # anything, lazy
+                [*]/
+            ");
+
+        var result = regex.Replace(code, (m) => {
+            if (keepLineEnding)
+                return m.Groups["lineEnding"].Value;
+            return "";
+        });
+
+        return result;
+    }
+
     internal static string RemoveJsStrings(string code)
     {
         var regex = new Regex(@"(?x)

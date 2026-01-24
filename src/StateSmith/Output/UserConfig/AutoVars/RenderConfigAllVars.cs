@@ -43,6 +43,11 @@ public class RenderConfigAllVars
     /// </summary>
     public readonly RenderConfigPythonVars Python;
 
+    /// <summary>
+    /// NOTE! Field name used with reflection for toml parsing.
+    /// </summary>
+    public readonly RenderConfigSwiftVars Swift;
+
     public RenderConfigAllVars()
     {
         Base = new RenderConfigBaseVars();
@@ -52,6 +57,7 @@ public class RenderConfigAllVars
         TypeScript = new RenderConfigTypeScriptVars();
         Java = new RenderConfigJavaVars();
         Python = new RenderConfigPythonVars();
+        Swift = new RenderConfigSwiftVars();
         Cpp = new RenderConfigCppVars();
     }
 }
