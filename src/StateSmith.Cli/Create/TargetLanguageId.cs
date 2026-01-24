@@ -18,4 +18,5 @@ public enum TargetLanguageId
     TypeScript,
     Java,
     Python,
+    Swift,
 }

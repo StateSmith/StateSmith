@@ -164,8 +164,8 @@ public class TomlConfigTest_335
         // python
         TestHelper.ExpectPropertyCount<IRenderConfigPython>(3, because: "test need updating");
         TestHelper.ExpectFieldCount<RenderConfigPythonVars>(3, because: "test need updating");
-        // assert only 7 transpiler IDs
-        Enum.GetValues(typeof(TranspilerId)).Length.Should().Be(7 + 2, because: "Needs to be updated for new language"); // +2 for NotYetSet and Default
+        // assert only 8 transpiler IDs
+        Enum.GetValues(typeof(TranspilerId)).Length.Should().Be(8 + 2, because: "Needs to be updated for new language"); // +2 for NotYetSet and Default
 
         var toml = """"
             ############Render Config Settings ##############
