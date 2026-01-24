@@ -35,6 +35,6 @@ public class GilToSwift : IGilTranspiler
 
         PostProcessor.PostProcess(fileSb);
 
-        codeFileWriter.WriteFile($"{outputInfo.OutputDirectory}{outputInfo.BaseFileName}.py", code: fileSb.ToString());
+        codeFileWriter.WriteFile($"{outputInfo.OutputDirectory}{outputInfo.BaseFileName}.swift", code: fileSb.ToString());
     }
 }
