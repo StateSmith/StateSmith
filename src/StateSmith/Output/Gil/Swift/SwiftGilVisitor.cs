@@ -27,9 +27,6 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
     private readonly CodeStyleSettings codeStyleSettings;
 
     private SemanticModel model;
-    private string Indent => codeStyleSettings.Indent1;
-
-    private SyntaxToken? tokenToSkip;
 
     public SwiftGilVisitor(string gilCode, StringBuilder sb, RenderConfigSwiftVars renderConfigSwift, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler, CodeStyleSettings codeStyleSettings) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
@@ -220,23 +217,21 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
 
     public override void VisitBlock(BlockSyntax node)
     {
+        void VisitStatements(IEnumerable<StatementSyntax> statements)
+        {
+            foreach (var statement in statements)
+            {
+                if (statement is BlockSyntax block)
+                    VisitStatements(block.Statements);
+                else
+                    Visit(statement);
+            }
+        }
+
         VisitLeadingTrivia(node.GetFirstToken());
         string indent = StringUtils.FindLastIndent(sb);
         sb.AppendLine("{");
-        foreach (var statement in node.Statements)
-        {
-            if (statement is BlockSyntax)
-            {
-                Visit(statement);
-                int index = sb.Length - 1;
-                for (;index >= 0 && sb[index] != '}'; index--) {}
-                sb.Insert(index + 1, "()");
-            } 
-            else
-            {
-                Visit(statement);
-            }
-        }
+        VisitStatements(node.Statements);
         sb.Append(indent);
         sb.Append('}');
         VisitTrailingTrivia(node.GetLastToken());
@@ -323,12 +318,6 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
     // kinda like: https://sourceroslyn.io/#Microsoft.CodeAnalysis.CSharp/Syntax/InternalSyntax/SyntaxToken.cs,516c0eb61810c3ef,references
     public override void VisitToken(SyntaxToken token)
     {
-        if (token == tokenToSkip)
-        {
-            tokenToSkip = null;
-            return;
-        }
-
         token.LeadingTrivia.VisitWith(this);
 
         string tokenText = token.Text;
