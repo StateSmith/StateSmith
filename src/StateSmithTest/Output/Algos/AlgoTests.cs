@@ -156,6 +156,12 @@ public class AlgoTests
                 }
                 """
 
+            [RenderConfig.Swift]
+            ClassCode = """
+                func userCodeMethod():
+                    print("userCodeMethod")
+                """
+
             [RenderConfig.TypeScript]
             ClassCode = """
                 public userCodeMethod() {

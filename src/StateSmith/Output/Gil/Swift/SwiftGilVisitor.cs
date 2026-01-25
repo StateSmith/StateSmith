@@ -25,6 +25,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
     private readonly CodeStyleSettings codeStyleSettings;
+    private string Indent => codeStyleSettings.Indent1;
 
     private SemanticModel model;
 
@@ -49,6 +50,13 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         sb.AppendLineIfNotBlank(renderConfigSwift.Imports, optionalTrailer: "\n");
 
         this.Visit(transpilerHelper.root);
+    }
+
+    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+    {
+        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
+
+        base.VisitClassDeclaration(node);
     }
 
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
@@ -95,7 +103,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
     {
         VisitLeadingTrivia(node.GetFirstToken());
         sb.Append("case ");
-        VisitToken(node.Identifier);
+        sb.Append(node.Identifier.Text);
         /*if (node.EqualsValue != null)
         {
             Visit(node.EqualsValue);
@@ -105,8 +113,12 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
 
     public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
     {
+        VisitLeadingTrivia(node.GetFirstToken());
         var variable = node.Variables.Single();
-        sb.Append("var ");
+        if (node.Parent is FieldDeclarationSyntax field && field.Modifiers.Any(SyntaxKind.ConstKeyword))
+            sb.Append("let ");
+        else
+            sb.Append("var ");
         VisitToken(variable.Identifier);
         if (node.Type != null)
         {
@@ -117,6 +129,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         {          
             Visit(variable.Initializer);
         }
+        VisitTrailingTrivia(node.GetLastToken());
     }
 
     // handle object creation like `new MyClass()`
@@ -222,7 +235,11 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
             foreach (var statement in statements)
             {
                 if (statement is BlockSyntax block)
+                {
+                    VisitLeadingTrivia(block.GetFirstToken());
                     VisitStatements(block.Statements);
+                    VisitTrailingTrivia(block.GetLastToken());
+                }
                 else
                     Visit(statement);
             }
@@ -250,6 +267,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         VisitLeadingTrivia(node.GetFirstToken());
         sb.Append("if ");
         Visit(node.Condition);
+        sb.AppendLine();
         Visit(node.Statement);
         VisitTrailingTrivia(node.GetLastToken());
     }
@@ -259,6 +277,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         VisitLeadingTrivia(node.GetFirstToken());
         sb.Append("while ");
         Visit(node.Condition);
+        sb.AppendLine();
         Visit(node.Statement);
         VisitTrailingTrivia(node.GetLastToken());
     }
@@ -269,14 +288,22 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         string indent = StringUtils.FindLastIndent(sb);
         sb.Append("switch ");
         Visit(node.Expression);
-        sb.Append(" {");
         sb.AppendLine();
+        sb.Append(indent);
+        sb.AppendLine("{");
         foreach (var section in node.Sections) {
             Visit(section);
         }
+
+        if (!node.Sections.SelectMany(s => s.Labels).Any(l => l.Keyword.RawKind == (int)SyntaxKind.DefaultKeyword))
+        {
+            sb.Append(indent);
+            sb.Append(Indent);
+            sb.AppendLine("default: break");
+        }
+
         sb.Append(indent);
         sb.Append("}");
-        sb.AppendLine();
         VisitTrailingTrivia(node.GetLastToken());
     }
 
@@ -305,6 +332,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
             {
                 Visit(statement);
             }
+            VisitTrailingTrivia(node.Statements.Last().GetLastToken());
         }
         else
         {
@@ -312,6 +340,19 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
             {
                 Visit(statement);
             }
+        }
+    }
+
+    public override void VisitInvocationExpression(InvocationExpressionSyntax node)
+    {
+        bool done = false;
+
+        done |= transpilerHelper.HandleGilSpecialInvocations(node, sb);
+        done |= transpilerHelper.HandleGilUnusedVarSpecialInvocation(node, argument => {});
+
+        if (!done)
+        {
+            base.VisitInvocationExpression(node);
         }
     }
 
@@ -326,12 +367,12 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         {
             case SyntaxKind.ConstKeyword:
             case SyntaxKind.SemicolonToken: tokenText = ""; break;
-            case SyntaxKind.TrueKeyword: tokenText = "True"; break;
-            case SyntaxKind.FalseKeyword: tokenText = "False"; break;
+            case SyntaxKind.TrueKeyword: tokenText = "true"; break;
+            case SyntaxKind.FalseKeyword: tokenText = "false"; break;
             case SyntaxKind.ThisKeyword: tokenText = "self"; break;
             case SyntaxKind.IntKeyword: tokenText = "Int"; break;
             case SyntaxKind.StringKeyword: tokenText = "String"; break;
-            case SyntaxKind.BoolKeyword: tokenText = "Boolean"; break;
+            case SyntaxKind.BoolKeyword: tokenText = "Bool"; break;
             case SyntaxKind.FloatKeyword: tokenText = "Float"; break;
             case SyntaxKind.DoubleKeyword: tokenText = "Double"; break;
             case SyntaxKind.VoidKeyword: tokenText = "Void"; break;
