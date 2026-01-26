@@ -1,37 +1,62 @@
-See basic unit test instructions first.
-
-NOTE! You probably don't need to run the specification tests unless you are working on code gen.
 
 # Requirements
-You don't need to install *all* of these unless you plan on doing code gen that affects them. Github CI/CD will test all languages in merge requests.
+See [basic unit test instructions](./lib-test-basic.md) first. 
+
+You don't need to run the specification tests and install *all* of these unless you plan on doing code gen that affects them. Github CI/CD will test all languages in merge requests.
+
+> ℹ️ **Windows** users should install and use `WSL2`, it greatly simplifies the setup and documentation maintenance.
 
 ## C/C++
-### [Linux/Mac]
-Install `gcc`.
+Install the latest `gcc` and `g++`.[^footnot_gcc]
 
-### [Windows]
-First install `WSL2`.
+```bash
+# Linux/WSL:
+sudo apt-get install gcc g++
 
-Then <u>INSIDE WSL2</u>, install `gcc`.
+# MacOS:
+brew install gcc
+```
 
-## Python 3
-Install Python 3
+## Python
+![Supported Versions](https://img.shields.io/badge/Supported_Versions->=_v3\.10-blue)
+
+Install `Python`.[^footnote_python]
+
+```bash
+# Download and install uv:
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Download and install Python:
+uv python install 3.15
+
+# Activate Python
+uv python pin 3.15
+
+# Verify installation
+python3 --version # Should print e.g. "Python 3.15.0a1"
+```
 
 ## Berry
 Install Berry
 
 ## Java
-Install a java JDK.
+![Supported Versions](https://img.shields.io/badge/Supported_Versions->=_v5-blue)
 
-## JavaScript
-Install `nodejs` version 22. 
-> ⚠️ It has to be version 22. Or at least *not* version 23 which causes some TypeScript tests to [fail due to warning](https://github.com/nodejs/node/issues/55417) (not in our code).
+Install `java-jdk`.
 
-### Windows
-Download [installer](https://nodejs.org/dist/v22.20.0/node-v22.20.0-x64.msi) or similar from [NodeSource](https://nodejs.org/en/download/package-manager#debian-and-ubuntu-based-linux-distributions).
+```bash
+# Linux/WSL:
+sudo apt-get install openjdk-25-jdk-headless
 
-### Linux/Mac
-Directions from [here](https://nodejs.org/en/download#debian-and-ubuntu-based-linux-distributions).
+# MacOS:
+brew install openjdk@25
+```
+
+## JavaScript (Node.js)
+![Supported Versions](https://img.shields.io/badge/Supported_Versions->=_v20\.0\.0-blue)
+
+Install `Node.js`.[^footnote_javascript]
+
 ```bash
 # Download and install nvm:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
@@ -40,25 +65,12 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
 
 # Download and install Node.js:
-nvm install 22
+nvm install 24
 
-# Verify the Node.js version:
-node -v # Should print "v22.20.0".
-
-# Verify npm version:
-npm -v # Should print "10.9.3".
+# Verify installation
+node -v # Should print e.g. "v24.10.0".
+npm -v # Should print e.g. "11.6.1".
 ```
-
-### Troubleshooting
-* Old versions of nodejs (v12) will give errors like `SyntaxError: Unexpected token '{'`.
-
-
-## Install typescript
-Run
-```
-npm install -g typescript@5.6.3
-```
-We pin to 5.6.3 to be compatible with Node 22
 
 
 <br><br>
@@ -103,8 +115,10 @@ If you want to run lib and ss.cli tests all at once, run `dotnet test` from `src
 You may want to reboot your system after installing everything if you have strange issues. Only 1 reboot should be needed otherwise there is another issue.
 
 ## Specification Test Failures
-NOTE! We run a lot of specification tests. Sometimes they will fail without a helpful error message (like below). If you are concerned, try running only the tests that failed again and they should pass (if CPU resources was the problem).
-`System.InvalidOperationException : An async read operation has already been started on the stream.` - some part of the external process invocation failed. Check to make sure tools like (gcc or required dotnet version) are installed.
+> ⚠️ We run a lot of specification tests. Sometimes they will fail without a helpful error message (like below). If you are concerned, try running only the tests that failed again and they should pass (if CPU resources was the problem).
+
+ - `System.InvalidOperationException : An async read operation has already been started on the stream.`
+   - some part of the external process invocation failed => Check to make sure tools (e.g. gcc, dotnet) are installed and have the correct versions.
 
 
 
@@ -198,3 +212,8 @@ Then use git to see if any of the example projects generated new code.
 
 -->
 
+[^footnot_gcc]: It may be enough to install `gcc`, but depending on the system `g++` is missing and may need to be installed alongside (e.g. Ubuntu in `WSL2`). MacOS appears to have both installed by default, but they are usually symlinked to the `clang` compiler, which can be fixed by installing the `gcc` homebrew package.
+
+[^footnote_python]: Python installation instructions from [here](https://github.com/astral-sh/uv). `uv` is a modern python manager with similar benefits to using `nvm` for Node.js. If `uv python pin` does not work, you can try to manually override the existing symlink by running `sudo ln -fs ~/.local/bin/python3.15 $(which python3)`.
+
+[^footnote_javascript]: Node.js installation instructions from [here](https://nodejs.org/en/download#debian-and-ubuntu-based-linux-distributions). Node.js and dependency versions which the project currently uses in its tests can be found [here](./../../src/test-misc/ts-spec2/package.json).

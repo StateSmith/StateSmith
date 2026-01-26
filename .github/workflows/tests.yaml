@@ -12,12 +12,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'  # stick to 22 for now. 23 has some bumps causing TypeScript tests to fail: https://github.com/nodejs/node/issues/55417
+          node-version-file: 'src/test-misc/ts-spec2/package.json'
 
-      - run: npm install -g typescript@5.6.3 # pin to 5.6.3 to be compatible with Node 22
-          
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v4
         with:
@@ -26,6 +25,7 @@ jobs:
             7.0.x
             8.0.x
             9.0.x
+
       - name: Install dependencies
         run: dotnet restore src/StateSmith.sln
 
