@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
+using System.Reflection.Metadata;
 
 namespace StateSmith.Output.Gil.Swift;
 
@@ -81,14 +82,6 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
             sb.Append(" : " + baseList);
     }
 
-    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
-    {
-        if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
-            return;
-
-        base.VisitFieldDeclaration(node);
-    }
-
     public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
     {
         VisitLeadingTrivia(node.GetFirstToken());
@@ -106,9 +99,19 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         }
 
         sb.Append("enum ");        
-        VisitToken(node.Identifier);
-        sb.Append(indent);
-        sb.AppendLine("{");   
+        sb.Append(node.Identifier.Text);
+        sb.Append(" : "); 
+        if (node.BaseList != null)
+        {
+            Visit(node.BaseList);
+        } 
+        else
+        {
+            sb.Append("Int");
+        }
+        sb.AppendLine();
+
+        VisitToken(node.OpenBraceToken);
 
         foreach (var member in node.Members)
         {
@@ -116,9 +119,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
             sb.AppendLine();
         }
 
-        sb.Append(indent);
-        sb.AppendLine("}");  
-        VisitTrailingTrivia(node.GetLastToken());
+        VisitToken(node.CloseBraceToken);
     }
 
     public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
@@ -126,11 +127,20 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         VisitLeadingTrivia(node.GetFirstToken());
         sb.Append("case ");
         sb.Append(node.Identifier.Text);
-        /*if (node.EqualsValue != null)
+        if (node.EqualsValue != null)
         {
+            sb.Append(" ");
             Visit(node.EqualsValue);
-        }*/
+        }
         VisitTrailingTrivia(node.GetLastToken());
+    }
+
+    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+    {
+        if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
+            return;
+
+        base.VisitFieldDeclaration(node);
     }
 
     public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
@@ -151,7 +161,32 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         {          
             Visit(variable.Initializer);
         }
+        else
+        {
+            var fieldSymbol = model.GetDeclaredSymbol(variable) as IFieldSymbol;
+            if (fieldSymbol != null && !fieldSymbol.Type.IsReferenceType)
+            {
+                var defaultValue = GetDefaultValue(fieldSymbol.Type);
+                sb.Append(" = ");
+                sb.Append(defaultValue);
+            }
+            
+        }
         VisitTrailingTrivia(node.GetLastToken());
+    }
+
+    private string GetDefaultValue(ITypeSymbol typeSymbol)
+    {
+        if (typeSymbol.TypeKind == TypeKind.Enum)
+        {
+            return ".init(rawValue: 0)!";
+        }
+        return typeSymbol.SpecialType switch
+        {
+            SpecialType.System_Boolean => "false",
+            SpecialType.System_Char => "'\\0'",
+            _ => "0"
+        };
     }
 
     // handle object creation like `new MyClass()`
@@ -256,19 +291,12 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
             {
                 if (statement is BlockSyntax block)
                 {
-                    var id = Guid.NewGuid().ToString("N");
                     VisitLeadingTrivia(block.GetFirstToken());
                     string indent = StringUtils.FindLastIndent(sb);
-                    sb.Append("let NESTED_BLOCK_");
-                    sb.Append(id);
-                    sb.AppendLine(" = {");
+                    sb.AppendLine("do {");
                     VisitStatements(block.Statements);
                     sb.Append(indent);
-                    sb.AppendLine("}");
-                    sb.Append(indent);
-                    sb.Append("NESTED_BLOCK_");
-                    sb.Append(id);
-                    sb.Append("()");
+                    sb.Append("} catch {}");
                     VisitTrailingTrivia(block.GetLastToken());
                 }
                 else
@@ -396,6 +424,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         {
             case SyntaxKind.ConstKeyword:
             case SyntaxKind.SemicolonToken: tokenText = ""; break;
+            case SyntaxKind.NullKeyword: tokenText = "nil"; break;
             case SyntaxKind.TrueKeyword: tokenText = "true"; break;
             case SyntaxKind.FalseKeyword: tokenText = "false"; break;
             case SyntaxKind.ThisKeyword: tokenText = "self"; break;
