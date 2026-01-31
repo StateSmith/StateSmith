@@ -3,7 +3,7 @@ namespace StateSmith.Output.UserConfig;
 public class RenderConfigSwiftVars
 {
     public string Imports = "";
-    public string Extends = "";
+    public string BaseList = "";
     public string ClassCode = "";
 
     public void SetFrom(IRenderConfigSwift config, bool autoDeIndentAndTrim)
@@ -20,7 +20,7 @@ public class RenderConfigSwiftVars
         }
 
         Imports = Process(config.Imports);
-        Extends = Process(config.Extends);
+        BaseList = Process(config.BaseList);
         ClassCode = Process(config.ClassCode);
     }
 }

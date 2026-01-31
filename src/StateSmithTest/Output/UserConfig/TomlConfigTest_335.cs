@@ -241,6 +241,11 @@ public class TomlConfigTest_335
             Implements = ""
             ClassCode = ""
 
+            [RenderConfig.Swift]
+            Imports = ""
+            BaseList = ""
+            ClassCode = ""
+
             ############SmRunner.Settings ###############
 
             [SmRunnerSettings]

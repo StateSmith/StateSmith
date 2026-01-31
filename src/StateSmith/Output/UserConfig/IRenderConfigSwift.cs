@@ -3,7 +3,7 @@
 public interface IRenderConfigSwift : IRenderConfig
 {
     string Imports => "";
-    string Extends => "";
+    string BaseList => "";
 
     /// <summary>
     /// Use to add custom code to generated state machine class.

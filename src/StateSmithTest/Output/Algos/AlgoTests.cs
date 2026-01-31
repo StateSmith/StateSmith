@@ -158,8 +158,9 @@ public class AlgoTests
 
             [RenderConfig.Swift]
             ClassCode = """
-                func userCodeMethod():
+                func userCodeMethod() {
                     print("userCodeMethod")
+                }
                 """
 
             [RenderConfig.TypeScript]

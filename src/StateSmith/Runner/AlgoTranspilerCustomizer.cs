@@ -135,7 +135,7 @@ public class AlgoTranspilerCustomizer
                 {
                     sp.AddSingletonT<IGilTranspiler, GilToSwift>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, SwiftExpansionVarsPathProvider>();
-                    sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>();
+                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
 
                     if (algorithmId != AlgorithmId.Balanced2)

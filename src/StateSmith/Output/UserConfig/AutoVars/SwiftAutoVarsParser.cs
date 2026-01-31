@@ -15,12 +15,32 @@ public class SwiftAutoVarsParser : IAutoVarsParser
 
         code = StringUtils.RemoveSwiftComments(code);
 
-        // require format like: `self.some_var`
+        // support formats like:
+        //      var count: Int = 0
+        //      var text = ""
+        //      var last: Int?
         var regex = new Regex(@"(?x)
             (?:
                 \s*
-                self[.]
+
+                var
+                \s+
                 (?<identifier>  [_a-zA-Z]  \w* )
+
+                (?: # optional type
+                    \s*
+                    :
+                    \s*
+                    [^;=]*?
+                )?
+
+                (?: # optional initial value
+                    \s*
+                    =
+                    \s*
+                    [^;=]+?
+                )?
+                \s*
             )+
         ");
 
