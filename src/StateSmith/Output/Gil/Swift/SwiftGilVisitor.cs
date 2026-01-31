@@ -56,7 +56,29 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
     {
         if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
 
-        base.VisitClassDeclaration(node);
+        var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+
+        iterableChildSyntaxList.VisitUpTo(SyntaxKind.ClassKeyword);
+
+        iterableChildSyntaxList.VisitUpTo(node.Identifier);
+
+        // handle identifier specially so that it doesn't put base list on newline
+        iterableChildSyntaxList.Remove(node.Identifier);
+        sb.Append(node.Identifier.Text);
+        MaybeOutputBaseList();
+        VisitTrailingTrivia(node.Identifier);
+
+        iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
+        sb.AppendLineIfNotBlank(renderConfigSwift.ClassCode);  // append class code after open brace token
+
+        iterableChildSyntaxList.VisitRest();
+    }
+
+    private void MaybeOutputBaseList()
+    {
+        var baseList = renderConfigSwift.BaseList.Trim();
+        if (baseList.Length > 0)
+            sb.Append(" : " + baseList);
     }
 
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
@@ -161,8 +183,6 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         Visit(node.ParameterList);
         
         Visit(node.Body);
-
-        VisitTrailingTrivia(node.GetLastToken());
     }
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
@@ -236,8 +256,19 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
             {
                 if (statement is BlockSyntax block)
                 {
+                    var id = Guid.NewGuid().ToString("N");
                     VisitLeadingTrivia(block.GetFirstToken());
+                    string indent = StringUtils.FindLastIndent(sb);
+                    sb.Append("let NESTED_BLOCK_");
+                    sb.Append(id);
+                    sb.AppendLine(" = {");
                     VisitStatements(block.Statements);
+                    sb.Append(indent);
+                    sb.AppendLine("}");
+                    sb.Append(indent);
+                    sb.Append("NESTED_BLOCK_");
+                    sb.Append(id);
+                    sb.Append("()");
                     VisitTrailingTrivia(block.GetLastToken());
                 }
                 else
@@ -269,7 +300,6 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         Visit(node.Condition);
         sb.AppendLine();
         Visit(node.Statement);
-        VisitTrailingTrivia(node.GetLastToken());
     }
 
     public override void VisitWhileStatement(WhileStatementSyntax node)
@@ -279,7 +309,6 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         Visit(node.Condition);
         sb.AppendLine();
         Visit(node.Statement);
-        VisitTrailingTrivia(node.GetLastToken());
     }
 
     public override void VisitSwitchStatement(SwitchStatementSyntax node)
