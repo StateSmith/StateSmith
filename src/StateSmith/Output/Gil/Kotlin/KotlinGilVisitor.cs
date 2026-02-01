@@ -107,15 +107,24 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
     private void MaybeOutputBaseList()
     {
         var extends = renderConfigKotlin.Extends.Trim();
-        if (extends.Length > 0)
-        {
-            sb.Append(" extends " + extends);
-        }
-
         var implements = renderConfigKotlin.Implements.Trim();
-        if (implements.Length > 0)
+        if (extends.Length > 0 && implements.Length > 0)
         {
-            sb.Append(" implements " + implements);
+            sb.Append(" : ");
+            sb.Append(extends);
+            sb.Append("(), ");
+            sb.Append(implements);
+        } 
+        else if (extends.Length > 0)
+        {
+            sb.Append(" : ");
+            sb.Append(extends);
+            sb.Append("()");
+        }
+        else if (implements.Length > 0)
+        {
+            sb.Append(" : ");
+            sb.Append(implements);
         }
     }
 
@@ -186,7 +195,9 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
         }
 
         Visit(node.Declaration);
-        sb = mainSb;        
+        sb = mainSb;
+
+        VisitTrailingTrivia(node.GetLastToken());
     }
 
     public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
@@ -347,7 +358,9 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
 
     public override void VisitObjectCreationExpression(ObjectCreationExpressionSyntax node)
     {
-        sb.Append(node.ToFullString()); // otherwise we need to update how `VisitArgumentList()` works
+        Visit(node.Type);
+        //Visit(node.ArgumentList);  // we need to update how `VisitArgumentList()` works
+        sb.Append("()");
     }
 
     public override void VisitExpressionStatement(ExpressionStatementSyntax node)
@@ -361,12 +374,19 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
     public override void VisitSwitchStatement(SwitchStatementSyntax node)
     { 
         VisitLeadingTrivia(node.GetFirstToken());
+        string indent = StringUtils.FindLastIndent(sb);
         sb.Append("when (");
         Visit(node.Expression);
         sb.AppendLine(")");
         VisitToken(node.OpenBraceToken);
         foreach (var section in node.Sections) {
             Visit(section);
+        }
+
+        if (!node.Sections.SelectMany(s => s.Labels).Any(l => l.Keyword.RawKind == (int)SyntaxKind.DefaultKeyword))
+        {
+            sb.Append(indent);
+            sb.AppendLine("else -> {}");
         }
 
         VisitToken(node.CloseBraceToken);
@@ -387,7 +407,7 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
         if (breakIndex == node.Statements.Count && returnIndex == node.Statements.Count)
         {
             throw new Exception("Fallthrough not supported!");
-        } 
+        }
         else if (breakIndex < returnIndex)
         {
             if (breakIndex != 1)
