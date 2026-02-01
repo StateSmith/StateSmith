@@ -1,41 +1,39 @@
+using System;
 #nullable enable
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
+using System.Linq;
 using System.Text;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
-using System.Linq;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.ComponentModel;
-using System.Reflection.Metadata;
 
-namespace StateSmith.Output.Gil.Swift;
+namespace StateSmith.Output.Gil.Kotlin;
 
 /// <summary>
-/// NOTE! This is mostly a copy of CSharp transpiler with some Swift specific changes.
+/// NOTE! This is mostly a copy of CSharp transpiler with some Kotlin specific changes.
 /// </summary>
-public class SwiftGilVisitor : CSharpSyntaxWalker
+public class KotlinGilVisitor : CSharpSyntaxWalker
 {
-    public readonly StringBuilder sb;
-    private readonly RenderConfigSwiftVars renderConfigSwift;
+    public readonly StringBuilder mainSb, companionSb;
+    private readonly RenderConfigKotlinVars renderConfigKotlin;
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
-    private readonly CodeStyleSettings codeStyleSettings;
-    private string Indent => codeStyleSettings.Indent1;
 
     private SemanticModel model;
+    private StringBuilder sb;
 
-    public SwiftGilVisitor(string gilCode, StringBuilder sb, RenderConfigSwiftVars renderConfigSwift, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler, CodeStyleSettings codeStyleSettings) : base(SyntaxWalkerDepth.StructuredTrivia)
+
+    private SyntaxToken? tokenToSkip;
+
+    public KotlinGilVisitor(string gilCode, StringBuilder sb, RenderConfigKotlinVars renderConfigKotlin, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
-        this.sb = sb;
+        this.sb = mainSb = sb;
+        companionSb = new StringBuilder();
         this.renderConfig = renderConfig;
-        this.renderConfigSwift = renderConfigSwift;
-        this.codeStyleSettings = codeStyleSettings;
+        this.renderConfigKotlin = renderConfigKotlin;
         transpilerHelper = GilTranspilerHelper.Create(this, gilCode, roslynCompiler);
         model = transpilerHelper.model;
     }
@@ -46,9 +44,14 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
 
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
 
-        sb.AppendLine("import Foundation");
+        var package = renderConfigKotlin.Package.Trim();
+        if (package.Length > 0)
+        {
+            sb.AppendLine("package " + renderConfigKotlin.Package);
+            sb.AppendLine();
+        }
 
-        sb.AppendLineIfNotBlank(renderConfigSwift.Imports, optionalTrailer: "\n");
+        sb.AppendLineIfNotBlank(renderConfigKotlin.Imports, optionalTrailer: "\n");
 
         this.Visit(transpilerHelper.root);
     }
@@ -58,8 +61,24 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
 
         var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+        
+        VisitLeadingTrivia(node.GetFirstToken());
+        string indent = StringUtils.FindLastIndent(sb);
 
-        iterableChildSyntaxList.VisitUpTo(SyntaxKind.ClassKeyword);
+        iterableChildSyntaxList.SkipUpTo(SyntaxKind.ClassKeyword);
+
+        if (node.Modifiers.Any(SyntaxKind.PrivateKeyword))
+        {
+            sb.Append("private ");
+        }
+        else if (node.Modifiers.Any(SyntaxKind.ProtectedKeyword))
+        {
+            sb.Append("protected ");
+        } 
+        else if (node.Modifiers.Any(SyntaxKind.InternalKeyword))
+        {
+            sb.Append("internal ");
+        }
 
         iterableChildSyntaxList.VisitUpTo(node.Identifier);
 
@@ -70,52 +89,65 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         VisitTrailingTrivia(node.Identifier);
 
         iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
-        sb.AppendLineIfNotBlank(renderConfigSwift.ClassCode);  // append class code after open brace token
+        sb.AppendLineIfNotBlank(renderConfigKotlin.ClassCode);  // append class code after open brace token
+
+        iterableChildSyntaxList.VisitUpTo(node.CloseBraceToken);
+        if (companionSb.Length > 0)
+        {
+            sb.Append(indent);
+            sb.AppendLine("companion object {");
+            sb.Append(companionSb.ToString());
+            sb.Append(indent);
+            sb.AppendLine("}");
+        }
 
         iterableChildSyntaxList.VisitRest();
     }
 
     private void MaybeOutputBaseList()
     {
-        var baseList = renderConfigSwift.BaseList.Trim();
-        if (baseList.Length > 0)
-            sb.Append(" : " + baseList);
+        var extends = renderConfigKotlin.Extends.Trim();
+        if (extends.Length > 0)
+        {
+            sb.Append(" extends " + extends);
+        }
+
+        var implements = renderConfigKotlin.Implements.Trim();
+        if (implements.Length > 0)
+        {
+            sb.Append(" implements " + implements);
+        }
     }
 
     public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
     {
         VisitLeadingTrivia(node.GetFirstToken());
-        string indent = StringUtils.FindLastIndent(sb);
         
         if (node.Modifiers.Any(SyntaxKind.PrivateKeyword))
         {
             sb.Append("private ");
         }
-
-        if (node.Modifiers.Any(SyntaxKind.PublicKeyword))
+        else if (node.Modifiers.Any(SyntaxKind.ProtectedKeyword))
         {
-            sb.Append("public ");
-        }
-
-        sb.Append("enum ");        
-        sb.Append(node.Identifier.Text);
-        sb.Append(" : "); 
-        if (node.BaseList != null)
-        {
-            Visit(node.BaseList);
+            sb.Append("protected ");
         } 
-        else
+        else if (node.Modifiers.Any(SyntaxKind.InternalKeyword))
         {
-            sb.Append("Int");
+            sb.Append("internal ");
         }
-        sb.AppendLine();
+
+        sb.Append("enum class ");        
+        sb.Append(node.Identifier.Text);
 
         VisitToken(node.OpenBraceToken);
 
-        foreach (var member in node.Members)
+        for (var i = 0; i < node.Members.Count; i++)
         {
-            Visit(member);
-            sb.AppendLine();
+            Visit(node.Members[i]);
+            if (i == node.Members.Count - 1)            
+                sb.AppendLine();          
+            else  
+                sb.AppendLine(", ");
         }
 
         VisitToken(node.CloseBraceToken);
@@ -124,13 +156,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
     public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
     {
         VisitLeadingTrivia(node.GetFirstToken());
-        sb.Append("case ");
         sb.Append(node.Identifier.Text);
-        if (node.EqualsValue != null)
-        {
-            sb.Append(" ");
-            Visit(node.EqualsValue);
-        }
         VisitTrailingTrivia(node.GetLastToken());
     }
 
@@ -139,7 +165,28 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
             return;
 
-        base.VisitFieldDeclaration(node);
+        if (node.Modifiers.Any(SyntaxKind.StaticKeyword))
+        {
+            sb = companionSb;
+        }
+
+        VisitLeadingTrivia(node.GetFirstToken());
+
+        if (node.Modifiers.Any(SyntaxKind.PrivateKeyword))
+        {
+            sb.Append("private ");
+        }
+        else if (node.Modifiers.Any(SyntaxKind.ProtectedKeyword))
+        {
+            sb.Append("protected ");
+        } 
+        else if (node.Modifiers.Any(SyntaxKind.InternalKeyword))
+        {
+            sb.Append("internal ");
+        }
+
+        Visit(node.Declaration);
+        sb = mainSb;        
     }
 
     public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
@@ -147,7 +194,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         VisitLeadingTrivia(node.GetFirstToken());
         var variable = node.Variables.Single();
         if (node.Parent is FieldDeclarationSyntax field && field.Modifiers.Any(SyntaxKind.ConstKeyword))
-            sb.Append("let ");
+            sb.Append("val ");
         else
             sb.Append("var ");
         VisitToken(variable.Identifier);
@@ -179,7 +226,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         if (typeSymbol.TypeKind == TypeKind.Enum)
         {
             var defaultMember = transpilerHelper.GetDefaultEnumMember(typeSymbol);
-            return $".{defaultMember.Name}";
+            return $"{typeSymbol.Name}.{defaultMember.Name}";
         }
         return typeSymbol.SpecialType switch
         {
@@ -189,64 +236,49 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         };
     }
 
-    // handle object creation like `new MyClass()`
-    public override void VisitObjectCreationExpression(ObjectCreationExpressionSyntax node)
-    {
-        VisitLeadingTrivia(node.GetFirstToken());
-        Visit(node.Type);
-        //Visit(node.ArgumentList);  // we need to update how `VisitArgumentList()` works
-        sb.Append("()");
-        VisitTrailingTrivia(node.GetLastToken());
-    }
-
     public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
     {
-        VisitLeadingTrivia(node.GetFirstToken());
-        
-        if (node.Modifiers.Any(SyntaxKind.PrivateKeyword))
-        {
-            sb.Append("private ");
-        }
-
-        if (node.Modifiers.Any(SyntaxKind.PublicKeyword))
-        {
-            sb.Append("public ");
-        }
-
-        sb.Append("init");
-
-        Visit(node.ParameterList);
-        
-        Visit(node.Body);
+        // TODO: include constructor in the class declaration using semantic model (when needed)
     }
 
+    public override void VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
+    {
+        bool done = false;
+
+        if (transpilerHelper.HandleThisMethodAccess(node))
+            done = true;
+
+        if (!done)
+            base.VisitMemberAccessExpression(node);
+    }
+    
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
         if (transpilerHelper.IsGilData(node))
             return;
 
-        bool isStatic = node.Modifiers.Any(SyntaxKind.StaticKeyword);
+        if (node.Modifiers.Any(SyntaxKind.StaticKeyword))
+        {
+            sb = companionSb;
+        }
 
         VisitLeadingTrivia(node.GetFirstToken());
         string indent = StringUtils.FindLastIndent(sb);
 
-        //if private, add a leading underscore
         if (node.Modifiers.Any(SyntaxKind.PrivateKeyword))
         {
             sb.Append("private ");
         }
-
-        if (node.Modifiers.Any(SyntaxKind.PublicKeyword))
+        else if (node.Modifiers.Any(SyntaxKind.ProtectedKeyword))
         {
-            sb.Append("public ");
-        }
-        
-        if (isStatic)
+            sb.Append("protected ");
+        } 
+        else if (node.Modifiers.Any(SyntaxKind.InternalKeyword))
         {
-            sb.Append("static ");
+            sb.Append("internal ");
         }
 
-        sb.Append("func ");
+        sb.Append("fun ");
 
         VisitToken(node.Identifier);
 
@@ -255,16 +287,16 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         if (node.ReturnType != null && (node.ReturnType as PredefinedTypeSyntax)?.Keyword.RawKind != (int)SyntaxKind.VoidKeyword)
         {
             sb.Append(indent);
-            sb.Append(" -> ");
+            sb.Append(" : ");
             Visit(node.ReturnType);
         }
 
         VisitBlock(node.Body!);
+        sb = mainSb;
     }
 
     public override void VisitParameter(ParameterSyntax node)
     {
-        sb.Append("_ ");
         VisitToken(node.Identifier);
         if (node.Type != null)
         {
@@ -293,10 +325,10 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
                 {
                     VisitLeadingTrivia(block.GetFirstToken());
                     string indent = StringUtils.FindLastIndent(sb);
-                    sb.AppendLine("do {");
+                    sb.AppendLine("try {");
                     VisitStatements(block.Statements);
                     sb.Append(indent);
-                    sb.Append("} catch {}");
+                    sb.Append("} finally {}");
                     VisitTrailingTrivia(block.GetLastToken());
                 }
                 else
@@ -313,6 +345,11 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         VisitTrailingTrivia(node.GetLastToken());
     }
 
+    public override void VisitObjectCreationExpression(ObjectCreationExpressionSyntax node)
+    {
+        sb.Append(node.ToFullString()); // otherwise we need to update how `VisitArgumentList()` works
+    }
+
     public override void VisitExpressionStatement(ExpressionStatementSyntax node)
     {
         if (transpilerHelper.HandleGilSpecialExpressionStatements(node, sb))
@@ -321,83 +358,84 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         base.VisitExpressionStatement(node);
     }
 
-    public override void VisitIfStatement(IfStatementSyntax node)
-    {
-        VisitLeadingTrivia(node.GetFirstToken());
-        sb.Append("if ");
-        Visit(node.Condition);
-        sb.AppendLine();
-        Visit(node.Statement);
-    }
-
-    public override void VisitWhileStatement(WhileStatementSyntax node)
-    {        
-        VisitLeadingTrivia(node.GetFirstToken());
-        sb.Append("while ");
-        Visit(node.Condition);
-        sb.AppendLine();
-        Visit(node.Statement);
-    }
-
     public override void VisitSwitchStatement(SwitchStatementSyntax node)
     { 
         VisitLeadingTrivia(node.GetFirstToken());
-        string indent = StringUtils.FindLastIndent(sb);
-        sb.Append("switch ");
+        sb.Append("when (");
         Visit(node.Expression);
-        sb.AppendLine();
-        sb.Append(indent);
-        sb.AppendLine("{");
+        sb.AppendLine(")");
+        VisitToken(node.OpenBraceToken);
         foreach (var section in node.Sections) {
             Visit(section);
         }
 
-        if (!node.Sections.SelectMany(s => s.Labels).Any(l => l.Keyword.RawKind == (int)SyntaxKind.DefaultKeyword))
-        {
-            sb.Append(indent);
-            sb.Append(Indent);
-            sb.AppendLine("default: break");
-        }
-
-        sb.Append(indent);
-        sb.Append("}");
-        VisitTrailingTrivia(node.GetLastToken());
+        VisitToken(node.CloseBraceToken);
     }
 
     public override void VisitSwitchSection(SwitchSectionSyntax node)
     {
+        string indent = StringUtils.FindLastIndent(sb);
         Visit(node.Labels[0]);
         foreach (var label in node.Labels.Skip(1))
         {
             sb.Append(", ");
             Visit(label);
         }
+
         var breakIndex = node.Statements.TakeWhile((s) => s is not BreakStatementSyntax).Count();
         var returnIndex = node.Statements.TakeWhile((s) => s is not ReturnStatementSyntax).Count();
         if (breakIndex == node.Statements.Count && returnIndex == node.Statements.Count)
         {
-            foreach (var statement in node.Statements)
-            {
-                Visit(statement);
-            }
-            sb.Append(";fallthrough");
-            sb.AppendLine();
+            throw new Exception("Fallthrough not supported!");
         } 
         else if (breakIndex < returnIndex)
         {
-            foreach (var statement in node.Statements.Take(Math.Max(1, breakIndex)))
+            if (breakIndex != 1)
+            {
+                sb.Append(indent);
+                sb.Append("{ ");
+            }
+            foreach (var statement in node.Statements.Take(breakIndex))
             {
                 Visit(statement);
+            }
+            if (breakIndex != 1)
+            {
+                sb.Append("} ");
             }
             VisitTrailingTrivia(node.Statements.Last().GetLastToken());
         }
         else
         {
+            if (returnIndex != 0)
+            {
+                sb.Append(indent);
+                sb.Append("{ ");
+            }
             foreach (var statement in node.Statements.Take(returnIndex + 1))
             {
                 Visit(statement);
             }
+            if (returnIndex != 0)
+            {
+                sb.Append("} ");
+            }
         }
+    }
+
+    public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+        Visit(node.Value);
+        sb.Append(" -> ");
+        VisitTrailingTrivia(node.GetLastToken());
+    }
+
+    public override void VisitDefaultSwitchLabel(DefaultSwitchLabelSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+        sb.Append("else -> ");
+        VisitTrailingTrivia(node.GetLastToken());
     }
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
@@ -416,6 +454,12 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
     // kinda like: https://sourceroslyn.io/#Microsoft.CodeAnalysis.CSharp/Syntax/InternalSyntax/SyntaxToken.cs,516c0eb61810c3ef,references
     public override void VisitToken(SyntaxToken token)
     {
+        if (token == tokenToSkip)
+        {
+            tokenToSkip = null;
+            return;
+        }
+
         token.LeadingTrivia.VisitWith(this);
 
         string tokenText = token.Text;
@@ -424,16 +468,13 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         {
             case SyntaxKind.ConstKeyword:
             case SyntaxKind.SemicolonToken: tokenText = ""; break;
-            case SyntaxKind.NullKeyword: tokenText = "nil"; break;
-            case SyntaxKind.TrueKeyword: tokenText = "true"; break;
-            case SyntaxKind.FalseKeyword: tokenText = "false"; break;
-            case SyntaxKind.ThisKeyword: tokenText = "self"; break;
+            case SyntaxKind.StructKeyword: tokenText = "class"; break;
+            case SyntaxKind.VirtualKeyword: tokenText = "open"; break;
             case SyntaxKind.IntKeyword: tokenText = "Int"; break;
             case SyntaxKind.StringKeyword: tokenText = "String"; break;
-            case SyntaxKind.BoolKeyword: tokenText = "Bool"; break;
+            case SyntaxKind.BoolKeyword: tokenText = "Boolean"; break;
             case SyntaxKind.FloatKeyword: tokenText = "Float"; break;
             case SyntaxKind.DoubleKeyword: tokenText = "Double"; break;
-            case SyntaxKind.VoidKeyword: tokenText = "Void"; break;
         }
 
         sb.Append(tokenText);
@@ -444,11 +485,5 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
     public override void VisitTrivia(SyntaxTrivia trivia)
     {
         sb.Append(trivia.ToString());
-
-        // useful for nullable directives or maybe structured comments
-        //if (trivia.HasStructure)
-        //{
-        //    this.Visit(trivia.GetStructure());
-        //}
     }
 }

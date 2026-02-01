@@ -6,6 +6,7 @@ using StateSmith.Output.Algos.Balanced2;
 using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Gil.Cpp;
 using StateSmith.Output.Gil.CSharp;
+using StateSmith.Output.Gil.Kotlin;
 using StateSmith.Output.Gil.Java;
 using StateSmith.Output.Gil.JavaScript;
 using StateSmith.Output.Gil.Python;
@@ -105,6 +106,21 @@ public class AlgoTranspilerCustomizer
                 }
                 break;
 
+            case TranspilerId.Kotlin:
+                {
+                    sp.AddSingletonT<IGilTranspiler, GilToKotlin>();
+                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
+                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
+                    sp.AddSingletonT<IAutoVarsParser, KotlinAutoVarsParser>();
+                    algoBalanced1Settings.skipClassIndentation = false;
+
+                    if (algorithmId != AlgorithmId.Balanced2)
+                    {
+                        throw new Exception("Kotlin transpiler currently only supports `AlgorithmId.Balanced2`.");
+                    }
+                }
+                break;
+
             case TranspilerId.Python:
                 {
                     sp.AddSingletonT<IGilTranspiler, GilToPython>();
@@ -136,6 +152,7 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IGilTranspiler, GilToSwift>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, SwiftExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
+                    sp.AddSingletonT<IAutoVarsParser, SwiftAutoVarsParser>();
                     algoBalanced1Settings.skipClassIndentation = false;
 
                     if (algorithmId != AlgorithmId.Balanced2)

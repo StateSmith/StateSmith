@@ -55,6 +55,7 @@ public class JsonSettingsTest
         Test("TypeScript", TargetLanguageId.TypeScript);
         Test("Java", TargetLanguageId.Java);
         Test("Python", TargetLanguageId.Python);
+        Test("Kotlin", TargetLanguageId.Kotlin);
         Test("Swift", TargetLanguageId.Swift);
 
         void Test(string languageIdName, TargetLanguageId targetLanguageId)

@@ -395,6 +395,7 @@ public class CreateUi
             new UiItem<TargetLanguageId>(id: TargetLanguageId.TypeScript,  display: "TypeScript"),
             new UiItem<TargetLanguageId>(id: TargetLanguageId.Java,        display: "Java"),
             new UiItem<TargetLanguageId>(id: TargetLanguageId.Python,      display: "Python"),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.Kotlin,      display: "Kotlin"),
             new UiItem<TargetLanguageId>(id: TargetLanguageId.Swift,      display: "Swift"),
         };
 

@@ -241,6 +241,13 @@ public class TomlConfigTest_335
             Implements = ""
             ClassCode = ""
 
+            [RenderConfig.Kotlin]
+            Package = ""
+            Imports = ""
+            Extends = ""
+            Implements = ""
+            ClassCode = ""
+
             [RenderConfig.Swift]
             Imports = ""
             BaseList = ""

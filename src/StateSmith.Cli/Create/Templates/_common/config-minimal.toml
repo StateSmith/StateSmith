@@ -130,7 +130,22 @@ Imports = """
 //!!</filter>
 
 
+//!!<filter:Kotlin>
+AutoExpandedVars = """
+    var count = 0 // this var can be referenced in diagram
+    """
 
+[RenderConfig.Kotlin]
+# Package = "my.package.for.statemachine"
+Imports = """
+    // whatever you need to import here
+    """
+# Extends = "MyUserBaseClass"
+# Implements = "SomeUserInterface"
+
+# More Kotlin settings are available. See docs.
+
+//!!</filter>
 
 
 //!!<filter:Python>
@@ -179,4 +194,5 @@ transpilerId = "JavaScript"  //!!<line-filter:JavaScript>
 transpilerId = "TypeScript"  //!!<line-filter:TypeScript>
 transpilerId = "Java"  //!!<line-filter:Java>
 transpilerId = "Python"  //!!<line-filter:Python>
+transpilerId = "Kotlin"  //!!<line-filter:Kotlin>
 transpilerId = "Swift"  //!!<line-filter:Swift>

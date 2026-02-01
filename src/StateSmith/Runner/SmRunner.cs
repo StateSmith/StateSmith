@@ -189,6 +189,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(renderConfigAllVars.C);
             services.AddSingleton(renderConfigAllVars.Cpp);
             services.AddSingleton(renderConfigAllVars.CSharp);
+            services.AddSingleton(renderConfigAllVars.Kotlin);
             services.AddSingleton(renderConfigAllVars.JavaScript);
             services.AddSingleton(renderConfigAllVars.TypeScript);
             services.AddSingleton(renderConfigAllVars.Java);
@@ -226,6 +227,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         if (iRenderConfig is IRenderConfigPython rcp)
             renderConfigAllVars.Python.SetFrom(rcp, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigKotlin rck)
+            renderConfigAllVars.Kotlin.SetFrom(rck, autoDeIndentAndTrimRenderConfigItems);
 
         if (iRenderConfig is IRenderConfigSwift rcs)
             renderConfigAllVars.Swift.SetFrom(rcs, autoDeIndentAndTrimRenderConfigItems);

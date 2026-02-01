@@ -68,6 +68,10 @@ public class AlgoTests
                 if (transpilerId == TranspilerId.Java && algoId != AlgorithmId.Balanced2)
                     continue;
 
+                // Kotlin only supports Balanced2 right now.
+                if (transpilerId == TranspilerId.Kotlin && algoId != AlgorithmId.Balanced2)
+                    continue;
+
                 // Python only supports Balanced2 right now. See https://github.com/StateSmith/StateSmith/issues/398
                 if (transpilerId == TranspilerId.Python && algoId != AlgorithmId.Balanced2)
                     continue;
@@ -133,6 +137,13 @@ public class AlgoTests
             ClassCode = """
                 public void UserCodeMethod() {
                     Console.WriteLine('userCodeMethod');
+                }
+                """
+
+            [RenderConfig.Kotlin]
+            ClassCode = """
+                fun userCodeMethod() {
+                    println('userCodeMethod');
                 }
                 """
 

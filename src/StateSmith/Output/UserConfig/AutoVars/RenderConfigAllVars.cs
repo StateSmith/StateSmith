@@ -36,6 +36,11 @@ public class RenderConfigAllVars
     /// <summary>
     /// NOTE! Field name used with reflection for toml parsing.
     /// </summary>
+    public readonly RenderConfigKotlinVars Kotlin;
+
+    /// <summary>
+    /// NOTE! Field name used with reflection for toml parsing.
+    /// </summary>
     public readonly RenderConfigCppVars Cpp;
 
     /// <summary>
@@ -56,6 +61,7 @@ public class RenderConfigAllVars
         JavaScript = new RenderConfigJavaScriptVars();
         TypeScript = new RenderConfigTypeScriptVars();
         Java = new RenderConfigJavaVars();
+        Kotlin = new RenderConfigKotlinVars();
         Python = new RenderConfigPythonVars();
         Swift = new RenderConfigSwiftVars();
         Cpp = new RenderConfigCppVars();
