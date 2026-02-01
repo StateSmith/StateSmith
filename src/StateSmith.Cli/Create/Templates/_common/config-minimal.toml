@@ -153,7 +153,7 @@ ClassCode = """
 
 //!!<filter:Swift>
 AutoExpandedVars = """
-    var count: Int = 0; // this var can be referenced in diagram
+    var count: Int = 0 // this var can be referenced in diagram
     """
 
 [RenderConfig.Swift]
