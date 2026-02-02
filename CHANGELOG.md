@@ -41,6 +41,8 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/513
 - Simulator - verbose mode to show history var updating.
   - https://github.com/StateSmith/StateSmith/issues/323
+- Simulator - add event log clearing button.
+  - https://github.com/StateSmith/StateSmith/issues/514
 
 ---
 

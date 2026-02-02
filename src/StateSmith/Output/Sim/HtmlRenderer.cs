@@ -17,7 +17,10 @@ public class HtmlRenderer
 <html>
   <head>
     <link rel='icon' type='image/png' href='https://statesmith.github.io/favicon.png'>
+
+      <!-- The below css makes the titlebar-icon functionality work. See https://fonts.google.com/icons -->
     <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined'>
+
     <style>
       body {
         display: flex;
@@ -142,7 +145,7 @@ public class HtmlRenderer
         font-size: small;
       }
 
-      .history {
+      #event-logs {
         margin-top: 30px;       
         display: flex;
         overflow: auto;    
@@ -266,8 +269,9 @@ public class HtmlRenderer
       <div id=""buttons"">
         <div class=""titlebar"">Events
           <div class='dropdown'>
-            <span id='settings-dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
-            <a href='https://github.com/StateSmith/StateSmith/wiki/Simulator' id='help-button' class='titlebar-icon dropdown-button' target='_blank'>help</a>
+            <span id='settings-dropdown-button' class='titlebar-icon dropdown-button' title='Settings'>settings</span>
+            <span id='clear-button' class='titlebar-icon dropdown-button' title='Clear event log'>delete</span>
+            <a href='https://github.com/StateSmith/StateSmith/wiki/Simulator' id='help-button' class='titlebar-icon dropdown-button' target='_blank' title='Help info'>help</a>
             <div id='myDropdown' class='dropdown-content'>
               <label class='dropdown-item' for='hideIrrelevantEvents'
                 title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
@@ -294,14 +298,14 @@ public class HtmlRenderer
         </div>
       </div>
     
-      <div class=""history"">
-        <table class=""console"">
+      <div id='event-logs'>
+        <table class='console'>
           <tbody>
           </tbody>
         </table>
       </div>
     
-      <div class=""gutter""></div>
+      <div class='gutter'></div>
     </div>
     </div>
 
@@ -309,7 +313,7 @@ public class HtmlRenderer
 {{jsCode}}
 </script>
 
-    <script type=""module"">
+    <script type='module'>
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         import svgPanZoom from 'https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/+esm' ;
         mermaid.initialize({ startOnLoad: false });
@@ -319,7 +323,7 @@ public class HtmlRenderer
         document.querySelector('svg').removeAttribute('viewBox');
         document.querySelector('svg').setAttribute('width', '100%');
         document.querySelector('svg').setAttribute('height', '100%');
-        document.querySelector('svg').style[""max-width""] = '';
+        document.querySelector('svg').style['max-width'] = '';
 
         // don't scale the arrow when we scale the transition edge
         document.querySelectorAll('g defs marker[id$=barbEnd]').forEach(marker => {
@@ -346,9 +350,9 @@ public class HtmlRenderer
         const stateEventsMapping = {{stateEventsMapping}};
 
         // Get page element references
-        const leftPane = document.querySelector("".main"");
-        const rightPane = document.querySelector("".sidebar"");
-        const gutter = document.querySelector("".gutter"");
+        const leftPane = document.querySelector('.main');
+        const rightPane = document.querySelector('.sidebar');
+        const gutter = document.querySelector('.gutter');
 
         // Function to resize panes
         function resizer(e) {          
@@ -381,6 +385,11 @@ public class HtmlRenderer
         const dropdownDiv = document.getElementById('myDropdown');
 
         dropdownButton.addEventListener('click', toggleDropdown);
+
+        document.getElementById('clear-button').addEventListener('click', function() {
+          const tbody = document.querySelector('#event-logs tbody');
+          tbody.innerHTML = '';
+        });
 
         /* When the user clicks on the button, 
         toggle between hiding and showing the dropdown content */
@@ -434,7 +443,7 @@ public class HtmlRenderer
         }
 
         // Add a row to the history table.
-        function addHistoryRow(time, event, html = false) {
+        function addEventLogRow(time, event, html = false) {
             var row = document.createElement('tr');
             var timeCell = document.createElement('td');
             timeCell.innerText = formatTime(time);
@@ -449,7 +458,7 @@ public class HtmlRenderer
 
             row.appendChild(timeCell);
             row.appendChild(eventCell);
-            document.querySelector('tbody').appendChild(row);
+            document.querySelector('#event-logs tbody').appendChild(row);
         }
 
         var sm = new {{smName}}();
@@ -550,7 +559,7 @@ public class HtmlRenderer
                 sm.tracer.log(`⚡ FSM would execute action: ${actionCode}`);
             },
             log: (message, html=false) => {
-                addHistoryRow(new Date(), message, html);
+                addEventLogRow(new Date(), message, html);
             }
         };
 
