@@ -160,21 +160,24 @@ public class HtmlRenderer
         font-weight: bold;
       }
 
-      .dispatched > .trigger {
+      .dispatched > .event-id {
         border: 1px solid #000;
         border-radius: 4px;
-        padding: 2px 10px 2px 10px;
+        padding: 2px;
       }
 
       button {
         margin: 5px;
       }
 
+      button.event-button, .event-id {
+        background-color: #007bff;
+        color: white;
+      }
+
       button.event-button {
         transition: opacity 0.3s ease, background-color 0.3s ease;
         opacity: 1;
-        background-color: #007bff;
-        color: white;
         cursor: pointer;
       }
 
@@ -534,7 +537,7 @@ public class HtmlRenderer
                   e.classList.add('active');
                   panOnScreen(e);
                 }
-                
+
                 if (document.getElementById('verboseEnter').checked) {
                     sm.tracer.log('➡️ Entered ' + mermaidName);
                 }
@@ -581,7 +584,7 @@ public class HtmlRenderer
                 // Only handle click events when button is enabled
                 if (!button.disabled) {
                     clearHighlightedEdges();
-                    sm.tracer?.log('<span class=""dispatched""><span class=""trigger"">' + diagramEventName + '</span> DISPATCHED</span>', true);
+                    sm.tracer?.log('<span class=\'dispatched\'>EVENT <span class=\'event-id\'>' + diagramEventName + '</span> DISPATCHED</span>', true);
                     const fsmEventName = diagramEventName.toUpperCase();
                     sm.dispatchEvent({{smName}}.EventId[fsmEventName]); 
                 }
