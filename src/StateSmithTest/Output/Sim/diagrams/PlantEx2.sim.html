@@ -322,12 +322,23 @@ State1 --> State2 : Ev2
       <div id="buttons">
         <div class="titlebar">Events
           <div class='dropdown'>
-            <span id='dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <span id='settings-dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <a href='https://github.com/StateSmith/StateSmith/wiki/Simulator' id='help-button' class='titlebar-icon dropdown-button' target='_blank'>help</a>
             <div id='myDropdown' class='dropdown-content'>
               <label class='dropdown-item' for='hideIrrelevantEvents'
                 title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
                 <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents'>
                 Hide ignored event buttons
+              </label>
+              <label class='dropdown-item' for='verboseExit'
+                title='Log state exits'>
+                <input type='checkbox' id='verboseExit' name='verboseExit' checked>
+                Log State Exit
+              </label>
+              <label class='dropdown-item' for='verboseHistory'
+                title='Log history pseudo state variable updates'>
+                <input type='checkbox' id='verboseHistory' name='verboseHistory' checked>
+                Log History Variables
               </label>
               <label class='dropdown-item' for='timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
@@ -407,23 +418,23 @@ evaluateGuard = null;
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge0"); } TransitionTo(NotShooting)
+            // uml: / { this.tracer?.edgeTransition('edge0'); } TransitionTo(NotShooting)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge0");`.
-                this.tracer?.edgeTransition("edge0");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
+                this.tracer?.edgeTransition('edge0');
                 
                 // Step 3: Enter/move towards transition target `NotShooting`.
                 this.#NOTSHOOTING_enter();
                 
                 // NotShooting.<InitialState> behavior
-                // uml: / { this.tracer?.edgeTransition("edge1"); } TransitionTo(Idle)
+                // uml: / { this.tracer?.edgeTransition('edge1'); } TransitionTo(Idle)
                 {
                     // Step 1: Exit states until we reach `NotShooting` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: `this.tracer?.edgeTransition("edge1");`.
-                    this.tracer?.edgeTransition("edge1");
+                    // Step 2: Transition action: `this.tracer?.edgeTransition('edge1');`.
+                    this.tracer?.edgeTransition('edge1');
                     
                     // Step 3: Enter/move towards transition target `Idle`.
                     this.#IDLE_enter();
@@ -608,13 +619,13 @@ evaluateGuard = null;
     #CONFIGURING_evconfig()
     {
         // Configuring behavior
-        // uml: EvConfig / { this.tracer?.edgeTransition("edge3"); } TransitionTo(Idle)
+        // uml: EvConfig / { this.tracer?.edgeTransition('edge3'); } TransitionTo(Idle)
         {
             // Step 1: Exit states until we reach `NotShooting` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(PlantEx2.StateId.NOTSHOOTING);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge3");`.
-            this.tracer?.edgeTransition("edge3");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
+            this.tracer?.edgeTransition('edge3');
             
             // Step 3: Enter/move towards transition target `Idle`.
             this.#IDLE_enter();
@@ -658,13 +669,13 @@ evaluateGuard = null;
     #NEWVALUEPREVIEW_evnewvaluerejected()
     {
         // NewValuePreview behavior
-        // uml: EvNewValueRejected / { this.tracer?.edgeTransition("edge6"); } TransitionTo(NewValueSelection)
+        // uml: EvNewValueRejected / { this.tracer?.edgeTransition('edge6'); } TransitionTo(NewValueSelection)
         {
             // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(PlantEx2.StateId.CONFIGURING);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge6");`.
-            this.tracer?.edgeTransition("edge6");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
+            this.tracer?.edgeTransition('edge6');
             
             // Step 3: Enter/move towards transition target `NewValueSelection`.
             this.#NEWVALUESELECTION_enter();
@@ -679,13 +690,13 @@ evaluateGuard = null;
     #NEWVALUEPREVIEW_evnewvaluesaved()
     {
         // NewValuePreview behavior
-        // uml: EvNewValueSaved / { this.tracer?.edgeTransition("edge7"); } TransitionTo(NewValueSelection)
+        // uml: EvNewValueSaved / { this.tracer?.edgeTransition('edge7'); } TransitionTo(NewValueSelection)
         {
             // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(PlantEx2.StateId.CONFIGURING);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge7");`.
-            this.tracer?.edgeTransition("edge7");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
+            this.tracer?.edgeTransition('edge7');
             
             // Step 3: Enter/move towards transition target `NewValueSelection`.
             this.#NEWVALUESELECTION_enter();
@@ -729,13 +740,13 @@ evaluateGuard = null;
     #STATE1_ev2()
     {
         // State1 behavior
-        // uml: Ev2 / { this.tracer?.edgeTransition("edge9"); } TransitionTo(State2)
+        // uml: Ev2 / { this.tracer?.edgeTransition('edge9'); } TransitionTo(State2)
         {
             // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition).
             this.#STATE1_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge9");`.
-            this.tracer?.edgeTransition("edge9");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
+            this.tracer?.edgeTransition('edge9');
             
             // Step 3: Enter/move towards transition target `State2`.
             this.#STATE2_enter();
@@ -808,24 +819,24 @@ evaluateGuard = null;
     #NEWVALUESELECTION_evnewvalue()
     {
         // NewValueSelection behavior
-        // uml: EvNewValue / { this.tracer?.edgeTransition("edge5"); } TransitionTo(NewValuePreview)
+        // uml: EvNewValue / { this.tracer?.edgeTransition('edge5'); } TransitionTo(NewValuePreview)
         {
             // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
             this.#NEWVALUESELECTION_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge5");`.
-            this.tracer?.edgeTransition("edge5");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge5');`.
+            this.tracer?.edgeTransition('edge5');
             
             // Step 3: Enter/move towards transition target `NewValuePreview`.
             this.#NEWVALUEPREVIEW_enter();
             
             // NewValuePreview.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge8"); } TransitionTo(State1)
+            // uml: / { this.tracer?.edgeTransition('edge8'); } TransitionTo(State1)
             {
                 // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge8");`.
-                this.tracer?.edgeTransition("edge8");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge8');`.
+                this.tracer?.edgeTransition('edge8');
                 
                 // Step 3: Enter/move towards transition target `State1`.
                 this.#STATE1_enter();
@@ -870,24 +881,24 @@ evaluateGuard = null;
     #IDLE_evconfig()
     {
         // Idle behavior
-        // uml: EvConfig / { this.tracer?.edgeTransition("edge2"); } TransitionTo(Configuring)
+        // uml: EvConfig / { this.tracer?.edgeTransition('edge2'); } TransitionTo(Configuring)
         {
             // Step 1: Exit states until we reach `NotShooting` state (Least Common Ancestor for transition).
             this.#IDLE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge2");`.
-            this.tracer?.edgeTransition("edge2");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
+            this.tracer?.edgeTransition('edge2');
             
             // Step 3: Enter/move towards transition target `Configuring`.
             this.#CONFIGURING_enter();
             
             // Configuring.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge4"); } TransitionTo(NewValueSelection)
+            // uml: / { this.tracer?.edgeTransition('edge4'); } TransitionTo(NewValueSelection)
             {
                 // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge4");`.
-                this.tracer?.edgeTransition("edge4");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
+                this.tracer?.edgeTransition('edge4');
                 
                 // Step 3: Enter/move towards transition target `NewValueSelection`.
                 this.#NEWVALUESELECTION_enter();
@@ -1030,7 +1041,7 @@ evaluateGuard = null;
 
 
         //------------------- drop down functionality start -------------------
-        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownButton = document.getElementById('settings-dropdown-button');
         const dropdownDiv = document.getElementById('myDropdown');
 
         dropdownButton.addEventListener('click', toggleDropdown);
@@ -1165,9 +1176,7 @@ evaluateGuard = null;
         }
 
         // The simulator uses a tracer callback to perform operations such as 
-        // state highlighting and logging. You do not need this functionality
-        // when using PlantEx2.js in your own applications, although you may
-        // choose to implement a tracer for debugging purposes.
+        // state highlighting and logging.
         sm.tracer = {
             enterState: (mermaidName) => {
                 var e = document.querySelector('g[data-id=' + mermaidName + ']');
@@ -1182,9 +1191,27 @@ evaluateGuard = null;
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
+
+                if (document.getElementById('verboseExit').checked) {
+                    sm.tracer.log('↩️ Exited ' + mermaidName);
+                }
             },
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
+            },
+            logHistoryVarUpdate: (varName, newValue) => {
+                if (document.getElementById('verboseHistory').checked) {
+                    sm.tracer.log(`🕑 HistoryVar(${varName}) = ${newValue}`);
+                }
+            },
+            logHistoryTransition: (description) => {
+                sm.tracer.log(`🕑 History: ${description}.`);
+            },
+            logGuardCodeEvaluation: (guardCode) => {
+                sm.tracer.log(`🛡️ User evaluating guard: ${guardCode}`);
+            },
+            logActionCode: (actionCode) => {
+                sm.tracer.log(`⚡ FSM would execute action: ${actionCode}`);
             },
             log: (message, html=false) => {
                 addHistoryRow(new Date(), message, html);

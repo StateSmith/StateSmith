@@ -374,12 +374,23 @@ Change_Of_Objective --> Electricity_Control : do
       <div id="buttons">
         <div class="titlebar">Events
           <div class='dropdown'>
-            <span id='dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <span id='settings-dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <a href='https://github.com/StateSmith/StateSmith/wiki/Simulator' id='help-button' class='titlebar-icon dropdown-button' target='_blank'>help</a>
             <div id='myDropdown' class='dropdown-content'>
               <label class='dropdown-item' for='hideIrrelevantEvents'
                 title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
                 <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents'>
                 Hide ignored event buttons
+              </label>
+              <label class='dropdown-item' for='verboseExit'
+                title='Log state exits'>
+                <input type='checkbox' id='verboseExit' name='verboseExit' checked>
+                Log State Exit
+              </label>
+              <label class='dropdown-item' for='verboseHistory'
+                title='Log history pseudo state variable updates'>
+                <input type='checkbox' id='verboseHistory' name='verboseHistory' checked>
+                Log History Variables
               </label>
               <label class='dropdown-item' for='timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
@@ -467,12 +478,12 @@ evaluateGuard = null;
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge0"); } TransitionTo(System_Initialization)
+            // uml: / { this.tracer?.edgeTransition('edge0'); } TransitionTo(System_Initialization)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge0");`.
-                this.tracer?.edgeTransition("edge0");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
+                this.tracer?.edgeTransition('edge0');
                 
                 // Step 3: Enter/move towards transition target `System_Initialization`.
                 this.#SYSTEM_INITIALIZATION_enter();
@@ -668,10 +679,10 @@ evaluateGuard = null;
         } // end of behavior for Adc_Calibration
         
         // Adc_Calibration behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "adc_calibration_enter();"); }
+        // uml: enter / { this.tracer?.logActionCode("adc_calibration_enter();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "adc_calibration_enter();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "adc_calibration_enter();");
+            // Step 1: execute action `this.tracer?.logActionCode("adc_calibration_enter();");`
+            this.tracer?.logActionCode("adc_calibration_enter();");
         } // end of behavior for Adc_Calibration
     }
     
@@ -690,24 +701,24 @@ evaluateGuard = null;
     #ADC_CALIBRATION_adc_calibration_complete()
     {
         // Adc_Calibration behavior
-        // uml: adc_calibration_complete / { this.tracer?.edgeTransition("edge2"); } TransitionTo(System_Run)
+        // uml: adc_calibration_complete / { this.tracer?.edgeTransition('edge2'); } TransitionTo(System_Run)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#ADC_CALIBRATION_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge2");`.
-            this.tracer?.edgeTransition("edge2");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
+            this.tracer?.edgeTransition('edge2');
             
             // Step 3: Enter/move towards transition target `System_Run`.
             this.#SYSTEM_RUN_enter();
             
             // System_Run.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge6"); } TransitionTo(Standby)
+            // uml: / { this.tracer?.edgeTransition('edge6'); } TransitionTo(Standby)
             {
                 // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge6");`.
-                this.tracer?.edgeTransition("edge6");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
+                this.tracer?.edgeTransition('edge6');
                 
                 // Step 3: Enter/move towards transition target `Standby`.
                 this.#STANDBY_enter();
@@ -723,13 +734,13 @@ evaluateGuard = null;
     #ADC_CALIBRATION_calibration_failed()
     {
         // Adc_Calibration behavior
-        // uml: calibration_failed / { this.tracer?.edgeTransition("edge3"); } TransitionTo(System_Error)
+        // uml: calibration_failed / { this.tracer?.edgeTransition('edge3'); } TransitionTo(System_Error)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#ADC_CALIBRATION_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge3");`.
-            this.tracer?.edgeTransition("edge3");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
+            this.tracer?.edgeTransition('edge3');
             
             // Step 3: Enter/move towards transition target `System_Error`.
             this.#SYSTEM_ERROR_enter();
@@ -744,10 +755,10 @@ evaluateGuard = null;
     #ADC_CALIBRATION_do()
     {
         // Adc_Calibration behavior
-        // uml: do / { this.tracer?.log("⚡ FSM would execute action: " + "adc_calibration_do();"); }
+        // uml: do / { this.tracer?.logActionCode("adc_calibration_do();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "adc_calibration_do();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "adc_calibration_do();");
+            // Step 1: execute action `this.tracer?.logActionCode("adc_calibration_do();");`
+            this.tracer?.logActionCode("adc_calibration_do();");
         } // end of behavior for Adc_Calibration
         
         // No ancestor handles this event.
@@ -770,20 +781,20 @@ evaluateGuard = null;
         } // end of behavior for System_Error
         
         // System_Error behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "system_error_enter();"); }
+        // uml: enter / { this.tracer?.logActionCode("system_error_enter();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "system_error_enter();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "system_error_enter();");
+            // Step 1: execute action `this.tracer?.logActionCode("system_error_enter();");`
+            this.tracer?.logActionCode("system_error_enter();");
         } // end of behavior for System_Error
     }
     
     #SYSTEM_ERROR_exit()
     {
         // System_Error behavior
-        // uml: exit / { this.tracer?.log("⚡ FSM would execute action: " + "system_error_exit();"); }
+        // uml: exit / { this.tracer?.logActionCode("system_error_exit();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "system_error_exit();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "system_error_exit();");
+            // Step 1: execute action `this.tracer?.logActionCode("system_error_exit();");`
+            this.tracer?.logActionCode("system_error_exit();");
         } // end of behavior for System_Error
         
         // System_Error behavior
@@ -813,10 +824,10 @@ evaluateGuard = null;
         } // end of behavior for System_Initialization
         
         // System_Initialization behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "system_init_enter();"); }
+        // uml: enter / { this.tracer?.logActionCode("system_init_enter();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "system_init_enter();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "system_init_enter();");
+            // Step 1: execute action `this.tracer?.logActionCode("system_init_enter();");`
+            this.tracer?.logActionCode("system_init_enter();");
         } // end of behavior for System_Initialization
     }
     
@@ -835,13 +846,13 @@ evaluateGuard = null;
     #SYSTEM_INITIALIZATION_do()
     {
         // System_Initialization behavior
-        // uml: do / { this.tracer?.edgeTransition("edge1"); } TransitionTo(Adc_Calibration)
+        // uml: do / { this.tracer?.edgeTransition('edge1'); } TransitionTo(Adc_Calibration)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#SYSTEM_INITIALIZATION_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge1");`.
-            this.tracer?.edgeTransition("edge1");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge1');`.
+            this.tracer?.edgeTransition('edge1');
             
             // Step 3: Enter/move towards transition target `Adc_Calibration`.
             this.#ADC_CALIBRATION_enter();
@@ -885,13 +896,13 @@ evaluateGuard = null;
     #SYSTEM_RUN_control_anomaly()
     {
         // System_Run behavior
-        // uml: control_anomaly / { this.tracer?.edgeTransition("edge4"); } TransitionTo(System_Error)
+        // uml: control_anomaly / { this.tracer?.edgeTransition('edge4'); } TransitionTo(System_Error)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(electromagnet.StateId.ROOT);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge4");`.
-            this.tracer?.edgeTransition("edge4");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
+            this.tracer?.edgeTransition('edge4');
             
             // Step 3: Enter/move towards transition target `System_Error`.
             this.#SYSTEM_ERROR_enter();
@@ -906,10 +917,10 @@ evaluateGuard = null;
     #SYSTEM_RUN_do()
     {
         // System_Run behavior
-        // uml: do / { this.tracer?.log("⚡ FSM would execute action: " + "system_running_do();"); }
+        // uml: do / { this.tracer?.logActionCode("system_running_do();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "system_running_do();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "system_running_do();");
+            // Step 1: execute action `this.tracer?.logActionCode("system_running_do();");`
+            this.tracer?.logActionCode("system_running_do();");
         } // end of behavior for System_Run
         
         // No ancestor handles this event.
@@ -918,13 +929,13 @@ evaluateGuard = null;
     #SYSTEM_RUN_stop_the_request()
     {
         // System_Run behavior
-        // uml: stop_the_request / { this.tracer?.edgeTransition("edge5"); } TransitionTo(System_Stop)
+        // uml: stop_the_request / { this.tracer?.edgeTransition('edge5'); } TransitionTo(System_Stop)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(electromagnet.StateId.ROOT);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge5");`.
-            this.tracer?.edgeTransition("edge5");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge5');`.
+            this.tracer?.edgeTransition('edge5');
             
             // Step 3: Enter/move towards transition target `System_Stop`.
             this.#SYSTEM_STOP_enter();
@@ -968,13 +979,13 @@ evaluateGuard = null;
     #ELECTRICITY_CONTROL_MODE_get_on_standby()
     {
         // Electricity_Control_Mode behavior
-        // uml: get_on_standby / { this.tracer?.edgeTransition("edge8"); } TransitionTo(Standby)
+        // uml: get_on_standby / { this.tracer?.edgeTransition('edge8'); } TransitionTo(Standby)
         {
             // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(electromagnet.StateId.SYSTEM_RUN);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge8");`.
-            this.tracer?.edgeTransition("edge8");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge8');`.
+            this.tracer?.edgeTransition('edge8');
             
             // Step 3: Enter/move towards transition target `Standby`.
             this.#STANDBY_enter();
@@ -1003,10 +1014,10 @@ evaluateGuard = null;
         } // end of behavior for Change_Of_Objective
         
         // Change_Of_Objective behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "target_change_enter();"); }
+        // uml: enter / { this.tracer?.logActionCode("target_change_enter();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "target_change_enter();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "target_change_enter();");
+            // Step 1: execute action `this.tracer?.logActionCode("target_change_enter();");`
+            this.tracer?.logActionCode("target_change_enter();");
         } // end of behavior for Change_Of_Objective
     }
     
@@ -1027,13 +1038,13 @@ evaluateGuard = null;
         let consume_event = false;
         
         // Change_Of_Objective behavior
-        // uml: do / { this.tracer?.edgeTransition("edge14"); } TransitionTo(Electricity_Control)
+        // uml: do / { this.tracer?.edgeTransition('edge14'); } TransitionTo(Electricity_Control)
         {
             // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition).
             this.#CHANGE_OF_OBJECTIVE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge14");`.
-            this.tracer?.edgeTransition("edge14");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge14');`.
+            this.tracer?.edgeTransition('edge14');
             
             // Step 3: Enter/move towards transition target `Electricity_Control`.
             this.#ELECTRICITY_CONTROL_enter();
@@ -1066,20 +1077,20 @@ evaluateGuard = null;
         } // end of behavior for Electricity_Control
         
         // Electricity_Control behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "current_control_enter();"); }
+        // uml: enter / { this.tracer?.logActionCode("current_control_enter();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "current_control_enter();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "current_control_enter();");
+            // Step 1: execute action `this.tracer?.logActionCode("current_control_enter();");`
+            this.tracer?.logActionCode("current_control_enter();");
         } // end of behavior for Electricity_Control
     }
     
     #ELECTRICITY_CONTROL_exit()
     {
         // Electricity_Control behavior
-        // uml: exit / { this.tracer?.log("⚡ FSM would execute action: " + "current_control_exit();"); }
+        // uml: exit / { this.tracer?.logActionCode("current_control_exit();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "current_control_exit();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "current_control_exit();");
+            // Step 1: execute action `this.tracer?.logActionCode("current_control_exit();");`
+            this.tracer?.logActionCode("current_control_exit();");
         } // end of behavior for Electricity_Control
         
         // Electricity_Control behavior
@@ -1097,11 +1108,11 @@ evaluateGuard = null;
         let consume_event = false;
         
         // Electricity_Control behavior
-        // uml: do / { this.tracer?.log("⚡ FSM would execute action: " + "current_control_do();"); }
+        // uml: do / { this.tracer?.logActionCode("current_control_do();"); }
         {
             // `do` events are not normally consumed.
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "current_control_do();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "current_control_do();");
+            // Step 1: execute action `this.tracer?.logActionCode("current_control_do();");`
+            this.tracer?.logActionCode("current_control_do();");
         } // end of behavior for Electricity_Control
         
         // Check if event has been consumed before calling ancestor handler.
@@ -1114,13 +1125,13 @@ evaluateGuard = null;
     #ELECTRICITY_CONTROL_needed_referral()
     {
         // Electricity_Control behavior
-        // uml: needed_referral / { this.tracer?.edgeTransition("edge11"); } TransitionTo(Parameter_Adjustments)
+        // uml: needed_referral / { this.tracer?.edgeTransition('edge11'); } TransitionTo(Parameter_Adjustments)
         {
             // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition).
             this.#ELECTRICITY_CONTROL_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge11");`.
-            this.tracer?.edgeTransition("edge11");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge11');`.
+            this.tracer?.edgeTransition('edge11');
             
             // Step 3: Enter/move towards transition target `Parameter_Adjustments`.
             this.#PARAMETER_ADJUSTMENTS_enter();
@@ -1135,13 +1146,13 @@ evaluateGuard = null;
     #ELECTRICITY_CONTROL_target_current_change()
     {
         // Electricity_Control behavior
-        // uml: target_current_change / { this.tracer?.edgeTransition("edge12"); } TransitionTo(Change_Of_Objective)
+        // uml: target_current_change / { this.tracer?.edgeTransition('edge12'); } TransitionTo(Change_Of_Objective)
         {
             // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition).
             this.#ELECTRICITY_CONTROL_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge12");`.
-            this.tracer?.edgeTransition("edge12");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge12');`.
+            this.tracer?.edgeTransition('edge12');
             
             // Step 3: Enter/move towards transition target `Change_Of_Objective`.
             this.#CHANGE_OF_OBJECTIVE_enter();
@@ -1170,10 +1181,10 @@ evaluateGuard = null;
         } // end of behavior for Initialization_Of_Pid
         
         // Initialization_Of_Pid behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "pid_init_enter();"); }
+        // uml: enter / { this.tracer?.logActionCode("pid_init_enter();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "pid_init_enter();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "pid_init_enter();");
+            // Step 1: execute action `this.tracer?.logActionCode("pid_init_enter();");`
+            this.tracer?.logActionCode("pid_init_enter();");
         } // end of behavior for Initialization_Of_Pid
     }
     
@@ -1194,13 +1205,13 @@ evaluateGuard = null;
         let consume_event = false;
         
         // Initialization_Of_Pid behavior
-        // uml: do / { this.tracer?.edgeTransition("edge10"); } TransitionTo(Electricity_Control)
+        // uml: do / { this.tracer?.edgeTransition('edge10'); } TransitionTo(Electricity_Control)
         {
             // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition).
             this.#INITIALIZATION_OF_PID_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge10");`.
-            this.tracer?.edgeTransition("edge10");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge10');`.
+            this.tracer?.edgeTransition('edge10');
             
             // Step 3: Enter/move towards transition target `Electricity_Control`.
             this.#ELECTRICITY_CONTROL_enter();
@@ -1233,10 +1244,10 @@ evaluateGuard = null;
         } // end of behavior for Parameter_Adjustments
         
         // Parameter_Adjustments behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "parameter_adjust_enter();"); }
+        // uml: enter / { this.tracer?.logActionCode("parameter_adjust_enter();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "parameter_adjust_enter();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "parameter_adjust_enter();");
+            // Step 1: execute action `this.tracer?.logActionCode("parameter_adjust_enter();");`
+            this.tracer?.logActionCode("parameter_adjust_enter();");
         } // end of behavior for Parameter_Adjustments
     }
     
@@ -1257,13 +1268,13 @@ evaluateGuard = null;
         let consume_event = false;
         
         // Parameter_Adjustments behavior
-        // uml: do / { this.tracer?.edgeTransition("edge13"); } TransitionTo(Electricity_Control)
+        // uml: do / { this.tracer?.edgeTransition('edge13'); } TransitionTo(Electricity_Control)
         {
             // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition).
             this.#PARAMETER_ADJUSTMENTS_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge13");`.
-            this.tracer?.edgeTransition("edge13");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge13');`.
+            this.tracer?.edgeTransition('edge13');
             
             // Step 3: Enter/move towards transition target `Electricity_Control`.
             this.#ELECTRICITY_CONTROL_enter();
@@ -1296,20 +1307,20 @@ evaluateGuard = null;
         } // end of behavior for Standby
         
         // Standby behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "system_pause_enter();"); }
+        // uml: enter / { this.tracer?.logActionCode("system_pause_enter();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "system_pause_enter();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "system_pause_enter();");
+            // Step 1: execute action `this.tracer?.logActionCode("system_pause_enter();");`
+            this.tracer?.logActionCode("system_pause_enter();");
         } // end of behavior for Standby
     }
     
     #STANDBY_exit()
     {
         // Standby behavior
-        // uml: exit / { this.tracer?.log("⚡ FSM would execute action: " + "system_pause_exit();"); }
+        // uml: exit / { this.tracer?.logActionCode("system_pause_exit();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "system_pause_exit();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "system_pause_exit();");
+            // Step 1: execute action `this.tracer?.logActionCode("system_pause_exit();");`
+            this.tracer?.logActionCode("system_pause_exit();");
         } // end of behavior for Standby
         
         // Standby behavior
@@ -1325,24 +1336,24 @@ evaluateGuard = null;
     #STANDBY_power_control()
     {
         // Standby behavior
-        // uml: power_control / { this.tracer?.edgeTransition("edge7"); } TransitionTo(Electricity_Control_Mode)
+        // uml: power_control / { this.tracer?.edgeTransition('edge7'); } TransitionTo(Electricity_Control_Mode)
         {
             // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition).
             this.#STANDBY_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge7");`.
-            this.tracer?.edgeTransition("edge7");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
+            this.tracer?.edgeTransition('edge7');
             
             // Step 3: Enter/move towards transition target `Electricity_Control_Mode`.
             this.#ELECTRICITY_CONTROL_MODE_enter();
             
             // Electricity_Control_Mode.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge9"); } TransitionTo(Initialization_Of_Pid)
+            // uml: / { this.tracer?.edgeTransition('edge9'); } TransitionTo(Initialization_Of_Pid)
             {
                 // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge9");`.
-                this.tracer?.edgeTransition("edge9");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
+                this.tracer?.edgeTransition('edge9');
                 
                 // Step 3: Enter/move towards transition target `Initialization_Of_Pid`.
                 this.#INITIALIZATION_OF_PID_enter();
@@ -1372,10 +1383,10 @@ evaluateGuard = null;
         } // end of behavior for System_Stop
         
         // System_Stop behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "system_stop_enter();"); }
+        // uml: enter / { this.tracer?.logActionCode("system_stop_enter();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "system_stop_enter();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "system_stop_enter();");
+            // Step 1: execute action `this.tracer?.logActionCode("system_stop_enter();");`
+            this.tracer?.logActionCode("system_stop_enter();");
         } // end of behavior for System_Stop
     }
     
@@ -1394,10 +1405,10 @@ evaluateGuard = null;
     #SYSTEM_STOP_do()
     {
         // System_Stop behavior
-        // uml: do / { this.tracer?.log("⚡ FSM would execute action: " + "system_stop_do();"); }
+        // uml: do / { this.tracer?.logActionCode("system_stop_do();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "system_stop_do();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "system_stop_do();");
+            // Step 1: execute action `this.tracer?.logActionCode("system_stop_do();");`
+            this.tracer?.logActionCode("system_stop_do();");
         } // end of behavior for System_Stop
         
         // No ancestor handles this event.
@@ -1569,7 +1580,7 @@ evaluateGuard = null;
 
 
         //------------------- drop down functionality start -------------------
-        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownButton = document.getElementById('settings-dropdown-button');
         const dropdownDiv = document.getElementById('myDropdown');
 
         dropdownButton.addEventListener('click', toggleDropdown);
@@ -1704,9 +1715,7 @@ evaluateGuard = null;
         }
 
         // The simulator uses a tracer callback to perform operations such as 
-        // state highlighting and logging. You do not need this functionality
-        // when using electromagnet.js in your own applications, although you may
-        // choose to implement a tracer for debugging purposes.
+        // state highlighting and logging.
         sm.tracer = {
             enterState: (mermaidName) => {
                 var e = document.querySelector('g[data-id=' + mermaidName + ']');
@@ -1721,9 +1730,27 @@ evaluateGuard = null;
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
+
+                if (document.getElementById('verboseExit').checked) {
+                    sm.tracer.log('↩️ Exited ' + mermaidName);
+                }
             },
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
+            },
+            logHistoryVarUpdate: (varName, newValue) => {
+                if (document.getElementById('verboseHistory').checked) {
+                    sm.tracer.log(`🕑 HistoryVar(${varName}) = ${newValue}`);
+                }
+            },
+            logHistoryTransition: (description) => {
+                sm.tracer.log(`🕑 History: ${description}.`);
+            },
+            logGuardCodeEvaluation: (guardCode) => {
+                sm.tracer.log(`🛡️ User evaluating guard: ${guardCode}`);
+            },
+            logActionCode: (actionCode) => {
+                sm.tracer.log(`⚡ FSM would execute action: ${actionCode}`);
             },
             log: (message, html=false) => {
                 addHistoryRow(new Date(), message, html);

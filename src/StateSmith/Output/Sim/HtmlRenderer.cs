@@ -266,12 +266,23 @@ public class HtmlRenderer
       <div id=""buttons"">
         <div class=""titlebar"">Events
           <div class='dropdown'>
-            <span id='dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <span id='settings-dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <a href='https://github.com/StateSmith/StateSmith/wiki/Simulator' id='help-button' class='titlebar-icon dropdown-button' target='_blank'>help</a>
             <div id='myDropdown' class='dropdown-content'>
               <label class='dropdown-item' for='hideIrrelevantEvents'
                 title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
                 <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents'>
                 Hide ignored event buttons
+              </label>
+              <label class='dropdown-item' for='verboseExit'
+                title='Log state exits'>
+                <input type='checkbox' id='verboseExit' name='verboseExit' checked>
+                Log State Exit
+              </label>
+              <label class='dropdown-item' for='verboseHistory'
+                title='Log history pseudo state variable updates'>
+                <input type='checkbox' id='verboseHistory' name='verboseHistory' checked>
+                Log History Variables
               </label>
               <label class='dropdown-item' for='timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
@@ -366,7 +377,7 @@ public class HtmlRenderer
 
 
         //------------------- drop down functionality start -------------------
-        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownButton = document.getElementById('settings-dropdown-button');
         const dropdownDiv = document.getElementById('myDropdown');
 
         dropdownButton.addEventListener('click', toggleDropdown);
@@ -501,9 +512,7 @@ public class HtmlRenderer
         }
 
         // The simulator uses a tracer callback to perform operations such as 
-        // state highlighting and logging. You do not need this functionality
-        // when using {{smName}}.js in your own applications, although you may
-        // choose to implement a tracer for debugging purposes.
+        // state highlighting and logging.
         sm.tracer = {
             enterState: (mermaidName) => {
                 var e = document.querySelector('g[data-id=' + mermaidName + ']');
@@ -518,9 +527,27 @@ public class HtmlRenderer
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
+
+                if (document.getElementById('verboseExit').checked) {
+                    sm.tracer.log('↩️ Exited ' + mermaidName);
+                }
             },
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
+            },
+            logHistoryVarUpdate: (varName, newValue) => {
+                if (document.getElementById('verboseHistory').checked) {
+                    sm.tracer.log(`🕑 HistoryVar(${varName}) = ${newValue}`);
+                }
+            },
+            logHistoryTransition: (description) => {
+                sm.tracer.log(`🕑 History: ${description}.`);
+            },
+            logGuardCodeEvaluation: (guardCode) => {
+                sm.tracer.log(`🛡️ User evaluating guard: ${guardCode}`);
+            },
+            logActionCode: (actionCode) => {
+                sm.tracer.log(`⚡ FSM would execute action: ${actionCode}`);
             },
             log: (message, html=false) => {
                 addHistoryRow(new Date(), message, html);

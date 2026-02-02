@@ -526,12 +526,23 @@ ROOT.(InitialState) --> Running
       <div id="buttons">
         <div class="titlebar">Events
           <div class='dropdown'>
-            <span id='dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <span id='settings-dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <a href='https://github.com/StateSmith/StateSmith/wiki/Simulator' id='help-button' class='titlebar-icon dropdown-button' target='_blank'>help</a>
             <div id='myDropdown' class='dropdown-content'>
               <label class='dropdown-item' for='hideIrrelevantEvents'
                 title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
                 <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents'>
                 Hide ignored event buttons
+              </label>
+              <label class='dropdown-item' for='verboseExit'
+                title='Log state exits'>
+                <input type='checkbox' id='verboseExit' name='verboseExit' checked>
+                Log State Exit
+              </label>
+              <label class='dropdown-item' for='verboseHistory'
+                title='Log history pseudo state variable updates'>
+                <input type='checkbox' id='verboseHistory' name='verboseHistory' checked>
+                Log History Variables
               </label>
               <label class='dropdown-item' for='timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
@@ -663,12 +674,12 @@ evaluateGuard = null;
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge36"); } TransitionTo(Running)
+            // uml: / { this.tracer?.edgeTransition('edge36'); } TransitionTo(Running)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge36");`.
-                this.tracer?.edgeTransition("edge36");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge36');`.
+                this.tracer?.edgeTransition('edge36');
                 
                 // Step 3: Enter/move towards transition target `Running`.
                 this.#RUNNING_enter();
@@ -1042,13 +1053,13 @@ evaluateGuard = null;
     #PAUSED_button0()
     {
         // Paused behavior
-        // uml: BUTTON0 / { this.tracer?.edgeTransition("edge35"); } TransitionTo(Running)
+        // uml: BUTTON0 / { this.tracer?.edgeTransition('edge35'); } TransitionTo(Running)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#PAUSED_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge35");`.
-            this.tracer?.edgeTransition("edge35");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge35');`.
+            this.tracer?.edgeTransition('edge35');
             
             // Step 3: Enter/move towards transition target `Running`.
             this.#RUNNING_enter();
@@ -1093,13 +1104,13 @@ evaluateGuard = null;
     #RUNNING_button0()
     {
         // Running behavior
-        // uml: BUTTON0 / { this.tracer?.edgeTransition("edge0"); } TransitionTo(Paused)
+        // uml: BUTTON0 / { this.tracer?.edgeTransition('edge0'); } TransitionTo(Paused)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(BeadSorter.StateId.ROOT);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge0");`.
-            this.tracer?.edgeTransition("edge0");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
+            this.tracer?.edgeTransition('edge0');
             
             // Step 3: Enter/move towards transition target `Paused`.
             this.#PAUSED_enter();
@@ -1114,24 +1125,24 @@ evaluateGuard = null;
     #Running_InitialState_transition()
     {
         // Running.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition("edge33"); } TransitionTo(Running.<History>)
+        // uml: / { this.tracer?.edgeTransition('edge33'); } TransitionTo(Running.<History>)
         {
             // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge33");`.
-            this.tracer?.edgeTransition("edge33");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge33');`.
+            this.tracer?.edgeTransition('edge33');
             
             // Step 3: Enter/move towards transition target `Running.<History>`.
             // Running.<History> is a pseudo state and cannot have an `enter` trigger.
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.TRAININGMODE)] / { this.tracer?.log("🕑 History: transitioning to TrainingMode."); } TransitionTo(TrainingMode)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.TRAININGMODE)] / { this.tracer?.logHistoryTransition('transitioning to TrainingMode'); } TransitionTo(TrainingMode)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.TRAININGMODE)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to TrainingMode.");`.
-                this.tracer?.log("🕑 History: transitioning to TrainingMode.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to TrainingMode');`.
+                this.tracer?.logHistoryTransition('transitioning to TrainingMode');
                 
                 // Step 3: Enter/move towards transition target `TrainingMode`.
                 this.#TRAININGMODE_enter();
@@ -1142,13 +1153,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SORTINGMODE)] / { this.tracer?.log("🕑 History: transitioning to SortingMode."); } TransitionTo(SortingMode)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SORTINGMODE)] / { this.tracer?.logHistoryTransition('transitioning to SortingMode'); } TransitionTo(SortingMode)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.SORTINGMODE)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to SortingMode.");`.
-                this.tracer?.log("🕑 History: transitioning to SortingMode.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to SortingMode');`.
+                this.tracer?.logHistoryTransition('transitioning to SortingMode');
                 
                 // Step 3: Enter/move towards transition target `SortingMode`.
                 this.#SORTINGMODE_enter();
@@ -1159,13 +1170,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READEMPTYSLOT)] / { this.tracer?.log("🕑 History: transitioning to ReadEmptySlot."); } TransitionTo(ReadEmptySlot)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READEMPTYSLOT)] / { this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot'); } TransitionTo(ReadEmptySlot)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.READEMPTYSLOT)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to ReadEmptySlot.");`.
-                this.tracer?.log("🕑 History: transitioning to ReadEmptySlot.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot');`.
+                this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot');
                 
                 // Step 3: Enter/move towards transition target `ReadEmptySlot`.
                 this.#TRAININGMODE_enter();
@@ -1177,13 +1188,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READJAMMEDSLOT)] / { this.tracer?.log("🕑 History: transitioning to ReadJammedSlot."); } TransitionTo(ReadJammedSlot)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READJAMMEDSLOT)] / { this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot'); } TransitionTo(ReadJammedSlot)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.READJAMMEDSLOT)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to ReadJammedSlot.");`.
-                this.tracer?.log("🕑 History: transitioning to ReadJammedSlot.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot');`.
+                this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot');
                 
                 // Step 3: Enter/move towards transition target `ReadJammedSlot`.
                 this.#TRAININGMODE_enter();
@@ -1195,13 +1206,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READSLOT)] / { this.tracer?.log("🕑 History: transitioning to ReadSlot."); } TransitionTo(ReadSlot)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READSLOT)] / { this.tracer?.logHistoryTransition('transitioning to ReadSlot'); } TransitionTo(ReadSlot)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.READSLOT)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to ReadSlot.");`.
-                this.tracer?.log("🕑 History: transitioning to ReadSlot.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to ReadSlot');`.
+                this.tracer?.logHistoryTransition('transitioning to ReadSlot');
                 
                 // Step 3: Enter/move towards transition target `ReadSlot`.
                 this.#TRAININGMODE_enter();
@@ -1213,13 +1224,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.TRAININGMODE__START)] / { this.tracer?.log("🕑 History: transitioning to TrainingMode__Start."); } TransitionTo(TrainingMode__Start)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.TRAININGMODE__START)] / { this.tracer?.logHistoryTransition('transitioning to TrainingMode__Start'); } TransitionTo(TrainingMode__Start)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.TRAININGMODE__START)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to TrainingMode__Start.");`.
-                this.tracer?.log("🕑 History: transitioning to TrainingMode__Start.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to TrainingMode__Start');`.
+                this.tracer?.logHistoryTransition('transitioning to TrainingMode__Start');
                 
                 // Step 3: Enter/move towards transition target `TrainingMode__Start`.
                 this.#TRAININGMODE_enter();
@@ -1230,13 +1241,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READEMPTYSLOT__DROPOFF)] / { this.tracer?.log("🕑 History: transitioning to ReadEmptySlot__Dropoff."); } TransitionTo(ReadEmptySlot__Dropoff)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READEMPTYSLOT__DROPOFF)] / { this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot__Dropoff'); } TransitionTo(ReadEmptySlot__Dropoff)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.READEMPTYSLOT__DROPOFF)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to ReadEmptySlot__Dropoff.");`.
-                this.tracer?.log("🕑 History: transitioning to ReadEmptySlot__Dropoff.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot__Dropoff');`.
+                this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot__Dropoff');
                 
                 // Step 3: Enter/move towards transition target `ReadEmptySlot__Dropoff`.
                 this.#TRAININGMODE_enter();
@@ -1248,13 +1259,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READEMPTYSLOT__SENSOR)] / { this.tracer?.log("🕑 History: transitioning to ReadEmptySlot__Sensor."); } TransitionTo(ReadEmptySlot__Sensor)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READEMPTYSLOT__SENSOR)] / { this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot__Sensor'); } TransitionTo(ReadEmptySlot__Sensor)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.READEMPTYSLOT__SENSOR)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to ReadEmptySlot__Sensor.");`.
-                this.tracer?.log("🕑 History: transitioning to ReadEmptySlot__Sensor.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot__Sensor');`.
+                this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot__Sensor');
                 
                 // Step 3: Enter/move towards transition target `ReadEmptySlot__Sensor`.
                 this.#TRAININGMODE_enter();
@@ -1266,13 +1277,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READJAMMEDSLOT__DROPOFF)] / { this.tracer?.log("🕑 History: transitioning to ReadJammedSlot__Dropoff."); } TransitionTo(ReadJammedSlot__Dropoff)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READJAMMEDSLOT__DROPOFF)] / { this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot__Dropoff'); } TransitionTo(ReadJammedSlot__Dropoff)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.READJAMMEDSLOT__DROPOFF)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to ReadJammedSlot__Dropoff.");`.
-                this.tracer?.log("🕑 History: transitioning to ReadJammedSlot__Dropoff.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot__Dropoff');`.
+                this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot__Dropoff');
                 
                 // Step 3: Enter/move towards transition target `ReadJammedSlot__Dropoff`.
                 this.#TRAININGMODE_enter();
@@ -1284,13 +1295,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.JAMMED)] / { this.tracer?.log("🕑 History: transitioning to Jammed."); } TransitionTo(Jammed)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.JAMMED)] / { this.tracer?.logHistoryTransition('transitioning to Jammed'); } TransitionTo(Jammed)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.JAMMED)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to Jammed.");`.
-                this.tracer?.log("🕑 History: transitioning to Jammed.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to Jammed');`.
+                this.tracer?.logHistoryTransition('transitioning to Jammed');
                 
                 // Step 3: Enter/move towards transition target `Jammed`.
                 this.#TRAININGMODE_enter();
@@ -1302,13 +1313,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READJAMMEDSLOT__SENSOR)] / { this.tracer?.log("🕑 History: transitioning to ReadJammedSlot__Sensor."); } TransitionTo(ReadJammedSlot__Sensor)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READJAMMEDSLOT__SENSOR)] / { this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot__Sensor'); } TransitionTo(ReadJammedSlot__Sensor)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.READJAMMEDSLOT__SENSOR)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to ReadJammedSlot__Sensor.");`.
-                this.tracer?.log("🕑 History: transitioning to ReadJammedSlot__Sensor.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot__Sensor');`.
+                this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot__Sensor');
                 
                 // Step 3: Enter/move towards transition target `ReadJammedSlot__Sensor`.
                 this.#TRAININGMODE_enter();
@@ -1320,13 +1331,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READSLOT__DROPOFF)] / { this.tracer?.log("🕑 History: transitioning to ReadSlot__Dropoff."); } TransitionTo(ReadSlot__Dropoff)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READSLOT__DROPOFF)] / { this.tracer?.logHistoryTransition('transitioning to ReadSlot__Dropoff'); } TransitionTo(ReadSlot__Dropoff)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.READSLOT__DROPOFF)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to ReadSlot__Dropoff.");`.
-                this.tracer?.log("🕑 History: transitioning to ReadSlot__Dropoff.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to ReadSlot__Dropoff');`.
+                this.tracer?.logHistoryTransition('transitioning to ReadSlot__Dropoff');
                 
                 // Step 3: Enter/move towards transition target `ReadSlot__Dropoff`.
                 this.#TRAININGMODE_enter();
@@ -1338,13 +1349,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.TRAININGMODE__PICKUP)] / { this.tracer?.log("🕑 History: transitioning to TrainingMode__Pickup."); } TransitionTo(TrainingMode__Pickup)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.TRAININGMODE__PICKUP)] / { this.tracer?.logHistoryTransition('transitioning to TrainingMode__Pickup'); } TransitionTo(TrainingMode__Pickup)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.TRAININGMODE__PICKUP)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to TrainingMode__Pickup.");`.
-                this.tracer?.log("🕑 History: transitioning to TrainingMode__Pickup.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to TrainingMode__Pickup');`.
+                this.tracer?.logHistoryTransition('transitioning to TrainingMode__Pickup');
                 
                 // Step 3: Enter/move towards transition target `TrainingMode__Pickup`.
                 this.#TRAININGMODE_enter();
@@ -1356,13 +1367,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READSLOT__SENSOR)] / { this.tracer?.log("🕑 History: transitioning to ReadSlot__Sensor."); } TransitionTo(ReadSlot__Sensor)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.READSLOT__SENSOR)] / { this.tracer?.logHistoryTransition('transitioning to ReadSlot__Sensor'); } TransitionTo(ReadSlot__Sensor)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.READSLOT__SENSOR)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to ReadSlot__Sensor.");`.
-                this.tracer?.log("🕑 History: transitioning to ReadSlot__Sensor.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to ReadSlot__Sensor');`.
+                this.tracer?.logHistoryTransition('transitioning to ReadSlot__Sensor');
                 
                 // Step 3: Enter/move towards transition target `ReadSlot__Sensor`.
                 this.#TRAININGMODE_enter();
@@ -1374,13 +1385,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SORTINGMODE__DROPOFF)] / { this.tracer?.log("🕑 History: transitioning to SortingMode__Dropoff."); } TransitionTo(SortingMode__Dropoff)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SORTINGMODE__DROPOFF)] / { this.tracer?.logHistoryTransition('transitioning to SortingMode__Dropoff'); } TransitionTo(SortingMode__Dropoff)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.SORTINGMODE__DROPOFF)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to SortingMode__Dropoff.");`.
-                this.tracer?.log("🕑 History: transitioning to SortingMode__Dropoff.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to SortingMode__Dropoff');`.
+                this.tracer?.logHistoryTransition('transitioning to SortingMode__Dropoff');
                 
                 // Step 3: Enter/move towards transition target `SortingMode__Dropoff`.
                 this.#SORTINGMODE_enter();
@@ -1391,13 +1402,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SORTINGMODE__PICKUP)] / { this.tracer?.log("🕑 History: transitioning to SortingMode__Pickup."); } TransitionTo(SortingMode__Pickup)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SORTINGMODE__PICKUP)] / { this.tracer?.logHistoryTransition('transitioning to SortingMode__Pickup'); } TransitionTo(SortingMode__Pickup)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.SORTINGMODE__PICKUP)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to SortingMode__Pickup.");`.
-                this.tracer?.log("🕑 History: transitioning to SortingMode__Pickup.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to SortingMode__Pickup');`.
+                this.tracer?.logHistoryTransition('transitioning to SortingMode__Pickup');
                 
                 // Step 3: Enter/move towards transition target `SortingMode__Pickup`.
                 this.#SORTINGMODE_enter();
@@ -1408,13 +1419,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SORTINGMODE__START)] / { this.tracer?.log("🕑 History: transitioning to SortingMode__Start."); } TransitionTo(SortingMode__Start)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SORTINGMODE__START)] / { this.tracer?.logHistoryTransition('transitioning to SortingMode__Start'); } TransitionTo(SortingMode__Start)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.SORTINGMODE__START)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to SortingMode__Start.");`.
-                this.tracer?.log("🕑 History: transitioning to SortingMode__Start.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to SortingMode__Start');`.
+                this.tracer?.logHistoryTransition('transitioning to SortingMode__Start');
                 
                 // Step 3: Enter/move towards transition target `SortingMode__Start`.
                 this.#SORTINGMODE_enter();
@@ -1425,13 +1436,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SORTINGMODE__SENSOR)] / { this.tracer?.log("🕑 History: transitioning to SortingMode__Sensor."); } TransitionTo(SortingMode__Sensor)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SORTINGMODE__SENSOR)] / { this.tracer?.logHistoryTransition('transitioning to SortingMode__Sensor'); } TransitionTo(SortingMode__Sensor)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.SORTINGMODE__SENSOR)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to SortingMode__Sensor.");`.
-                this.tracer?.log("🕑 History: transitioning to SortingMode__Sensor.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to SortingMode__Sensor');`.
+                this.tracer?.logHistoryTransition('transitioning to SortingMode__Sensor');
                 
                 // Step 3: Enter/move towards transition target `SortingMode__Sensor`.
                 this.#SORTINGMODE_enter();
@@ -1442,13 +1453,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.TOUR)] / { this.tracer?.log("🕑 History: transitioning to Tour."); } TransitionTo(Tour)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.TOUR)] / { this.tracer?.logHistoryTransition('transitioning to Tour'); } TransitionTo(Tour)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.TOUR)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to Tour.");`.
-                this.tracer?.log("🕑 History: transitioning to Tour.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to Tour');`.
+                this.tracer?.logHistoryTransition('transitioning to Tour');
                 
                 // Step 3: Enter/move towards transition target `Tour`.
                 this.#SETUPCHECK_enter();
@@ -1459,13 +1470,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SETUPCHECK__START)] / { this.tracer?.log("🕑 History: transitioning to SetupCheck__Start."); } TransitionTo(SetupCheck__Start)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.SETUPCHECK__START)] / { this.tracer?.logHistoryTransition('transitioning to SetupCheck__Start'); } TransitionTo(SetupCheck__Start)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.SETUPCHECK__START)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to SetupCheck__Start.");`.
-                this.tracer?.log("🕑 History: transitioning to SetupCheck__Start.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to SetupCheck__Start');`.
+                this.tracer?.logHistoryTransition('transitioning to SetupCheck__Start');
                 
                 // Step 3: Enter/move towards transition target `SetupCheck__Start`.
                 this.#SETUPCHECK_enter();
@@ -1476,13 +1487,13 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: [$gil(this.vars.Running_history == Running_HistoryId.ADJUSTSERVOOFFSETS)] / { this.tracer?.log("🕑 History: transitioning to AdjustServoOffsets."); } TransitionTo(AdjustServoOffsets)
+            // uml: [$gil(this.vars.Running_history == Running_HistoryId.ADJUSTSERVOOFFSETS)] / { this.tracer?.logHistoryTransition('transitioning to AdjustServoOffsets'); } TransitionTo(AdjustServoOffsets)
             if (this.vars.Running_history == BeadSorter.Running_HistoryId.ADJUSTSERVOOFFSETS)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to AdjustServoOffsets.");`.
-                this.tracer?.log("🕑 History: transitioning to AdjustServoOffsets.");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to AdjustServoOffsets');`.
+                this.tracer?.logHistoryTransition('transitioning to AdjustServoOffsets');
                 
                 // Step 3: Enter/move towards transition target `AdjustServoOffsets`.
                 this.#SETUPCHECK_enter();
@@ -1494,23 +1505,23 @@ evaluateGuard = null;
             } // end of behavior for Running.<History>
             
             // Running.<History> behavior
-            // uml: else / { this.tracer?.log("🕑 History: default transition.");this.tracer?.edgeTransition("edge34"); } TransitionTo(SetupCheck)
+            // uml: else / { this.tracer?.logHistoryTransition('default transition');this.tracer?.edgeTransition('edge34'); } TransitionTo(SetupCheck)
             {
                 // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("🕑 History: default transition.");this.tracer?.edgeTransition("edge34");`.
-                this.tracer?.log("🕑 History: default transition.");this.tracer?.edgeTransition("edge34");
+                // Step 2: Transition action: `this.tracer?.logHistoryTransition('default transition');this.tracer?.edgeTransition('edge34');`.
+                this.tracer?.logHistoryTransition('default transition');this.tracer?.edgeTransition('edge34');
                 
                 // Step 3: Enter/move towards transition target `SetupCheck`.
                 this.#SETUPCHECK_enter();
                 
                 // SetupCheck.<InitialState> behavior
-                // uml: / { this.tracer?.edgeTransition("edge22"); } TransitionTo(SetupCheck__Start)
+                // uml: / { this.tracer?.edgeTransition('edge22'); } TransitionTo(SetupCheck__Start)
                 {
                     // Step 1: Exit states until we reach `SetupCheck` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: `this.tracer?.edgeTransition("edge22");`.
-                    this.tracer?.edgeTransition("edge22");
+                    // Step 2: Transition action: `this.tracer?.edgeTransition('edge22');`.
+                    this.tracer?.edgeTransition('edge22');
                     
                     // Step 3: Enter/move towards transition target `SetupCheck__Start`.
                     this.#SETUPCHECK__START_enter();
@@ -1539,10 +1550,10 @@ evaluateGuard = null;
         } // end of behavior for SetupCheck
         
         // SetupCheck behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK;)this.tracer?.logHistoryVarUpdate('Running', 'SETUPCHECK'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SETUPCHECK;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK;)this.tracer?.logHistoryVarUpdate('Running', 'SETUPCHECK');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SETUPCHECK;this.tracer?.logHistoryVarUpdate('Running', 'SETUPCHECK');
         } // end of behavior for SetupCheck
     }
     
@@ -1575,10 +1586,10 @@ evaluateGuard = null;
         } // end of behavior for AdjustServoOffsets
         
         // AdjustServoOffsets behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.ADJUSTSERVOOFFSETS;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.ADJUSTSERVOOFFSETS;)this.tracer?.logHistoryVarUpdate('Running', 'ADJUSTSERVOOFFSETS'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.ADJUSTSERVOOFFSETS;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.ADJUSTSERVOOFFSETS;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.ADJUSTSERVOOFFSETS;)this.tracer?.logHistoryVarUpdate('Running', 'ADJUSTSERVOOFFSETS');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.ADJUSTSERVOOFFSETS;this.tracer?.logHistoryVarUpdate('Running', 'ADJUSTSERVOOFFSETS');
         } // end of behavior for AdjustServoOffsets
     }
     
@@ -1597,13 +1608,13 @@ evaluateGuard = null;
     #ADJUSTSERVOOFFSETS_button2()
     {
         // AdjustServoOffsets behavior
-        // uml: BUTTON2 / { this.tracer?.edgeTransition("edge27"); } TransitionTo(SetupCheck__Start)
+        // uml: BUTTON2 / { this.tracer?.edgeTransition('edge27'); } TransitionTo(SetupCheck__Start)
         {
             // Step 1: Exit states until we reach `SetupCheck` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(BeadSorter.StateId.SETUPCHECK);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge27");`.
-            this.tracer?.edgeTransition("edge27");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge27');`.
+            this.tracer?.edgeTransition('edge27');
             
             // Step 3: Enter/move towards transition target `SetupCheck__Start`.
             this.#SETUPCHECK__START_enter();
@@ -1618,12 +1629,12 @@ evaluateGuard = null;
     #AdjustServoOffsets_InitialState_transition()
     {
         // AdjustServoOffsets.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition("edge32"); } TransitionTo(Wait)
+        // uml: / { this.tracer?.edgeTransition('edge32'); } TransitionTo(Wait)
         {
             // Step 1: Exit states until we reach `AdjustServoOffsets` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge32");`.
-            this.tracer?.edgeTransition("edge32");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge32');`.
+            this.tracer?.edgeTransition('edge32');
             
             // Step 3: Enter/move towards transition target `Wait`.
             this.#WAIT_enter();
@@ -1650,10 +1661,10 @@ evaluateGuard = null;
         } // end of behavior for DECREASE
         
         // DECREASE behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.adjustOffset(-2);"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.adjustOffset(-2);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.adjustOffset(-2);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.adjustOffset(-2);");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.adjustOffset(-2);");`
+            this.tracer?.logActionCode("picker.adjustOffset(-2);");
         } // end of behavior for DECREASE
     }
     
@@ -1672,13 +1683,13 @@ evaluateGuard = null;
     #DECREASE_do()
     {
         // DECREASE behavior
-        // uml: do / { this.tracer?.edgeTransition("edge28"); } TransitionTo(Wait)
+        // uml: do / { this.tracer?.edgeTransition('edge28'); } TransitionTo(Wait)
         {
             // Step 1: Exit states until we reach `AdjustServoOffsets` state (Least Common Ancestor for transition).
             this.#DECREASE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge28");`.
-            this.tracer?.edgeTransition("edge28");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge28');`.
+            this.tracer?.edgeTransition('edge28');
             
             // Step 3: Enter/move towards transition target `Wait`.
             this.#WAIT_enter();
@@ -1707,10 +1718,10 @@ evaluateGuard = null;
         } // end of behavior for INCREASE
         
         // INCREASE behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.adjustOffset(2);"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.adjustOffset(2);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.adjustOffset(2);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.adjustOffset(2);");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.adjustOffset(2);");`
+            this.tracer?.logActionCode("picker.adjustOffset(2);");
         } // end of behavior for INCREASE
     }
     
@@ -1729,13 +1740,13 @@ evaluateGuard = null;
     #INCREASE_do()
     {
         // INCREASE behavior
-        // uml: do / { this.tracer?.edgeTransition("edge29"); } TransitionTo(Wait)
+        // uml: do / { this.tracer?.edgeTransition('edge29'); } TransitionTo(Wait)
         {
             // Step 1: Exit states until we reach `AdjustServoOffsets` state (Least Common Ancestor for transition).
             this.#INCREASE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge29");`.
-            this.tracer?.edgeTransition("edge29");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge29');`.
+            this.tracer?.edgeTransition('edge29');
             
             // Step 3: Enter/move towards transition target `Wait`.
             this.#WAIT_enter();
@@ -1764,10 +1775,10 @@ evaluateGuard = null;
         } // end of behavior for Wait
         
         // Wait behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.displayOffset();"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.displayOffset();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.displayOffset();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.displayOffset();");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.displayOffset();");`
+            this.tracer?.logActionCode("picker.displayOffset();");
         } // end of behavior for Wait
     }
     
@@ -1786,13 +1797,13 @@ evaluateGuard = null;
     #WAIT_button1()
     {
         // Wait behavior
-        // uml: BUTTON1 / { this.tracer?.edgeTransition("edge30"); } TransitionTo(DECREASE)
+        // uml: BUTTON1 / { this.tracer?.edgeTransition('edge30'); } TransitionTo(DECREASE)
         {
             // Step 1: Exit states until we reach `AdjustServoOffsets` state (Least Common Ancestor for transition).
             this.#WAIT_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge30");`.
-            this.tracer?.edgeTransition("edge30");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge30');`.
+            this.tracer?.edgeTransition('edge30');
             
             // Step 3: Enter/move towards transition target `DECREASE`.
             this.#DECREASE_enter();
@@ -1809,13 +1820,13 @@ evaluateGuard = null;
         let consume_event = false;
         
         // Wait behavior
-        // uml: BUTTON2 / { this.tracer?.edgeTransition("edge31"); } TransitionTo(INCREASE)
+        // uml: BUTTON2 / { this.tracer?.edgeTransition('edge31'); } TransitionTo(INCREASE)
         {
             // Step 1: Exit states until we reach `AdjustServoOffsets` state (Least Common Ancestor for transition).
             this.#WAIT_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge31");`.
-            this.tracer?.edgeTransition("edge31");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge31');`.
+            this.tracer?.edgeTransition('edge31');
             
             // Step 3: Enter/move towards transition target `INCREASE`.
             this.#INCREASE_enter();
@@ -1848,17 +1859,17 @@ evaluateGuard = null;
         } // end of behavior for SetupCheck__Start
         
         // SetupCheck__Start behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "modeDisplay.print(\"SETUP CHECK\");\nsorter.moveTo(0);\npicker.moveTo(DEG_DROPOFF);\npicker.moveTo(DEG_PICKUP);\nt1Restart();"); }
+        // uml: enter / { this.tracer?.logActionCode("modeDisplay.print(\"SETUP CHECK\");\nsorter.moveTo(0);\npicker.moveTo(DEG_DROPOFF);\npicker.moveTo(DEG_PICKUP);\nt1Restart();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "modeDisplay.print(\"SETUP CHECK\");\nsorter.moveTo(0);\npicker.moveTo(DEG_DROPOFF);\npicker.moveTo(DEG_PICKUP);\nt1Restart();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "modeDisplay.print(\"SETUP CHECK\");\nsorter.moveTo(0);\npicker.moveTo(DEG_DROPOFF);\npicker.moveTo(DEG_PICKUP);\nt1Restart();");
+            // Step 1: execute action `this.tracer?.logActionCode("modeDisplay.print(\"SETUP CHECK\");\nsorter.moveTo(0);\npicker.moveTo(DEG_DROPOFF);\npicker.moveTo(DEG_PICKUP);\nt1Restart();");`
+            this.tracer?.logActionCode("modeDisplay.print(\"SETUP CHECK\");\nsorter.moveTo(0);\npicker.moveTo(DEG_DROPOFF);\npicker.moveTo(DEG_PICKUP);\nt1Restart();");
         } // end of behavior for SetupCheck__Start
         
         // SetupCheck__Start behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;)this.tracer?.logHistoryVarUpdate('Running', 'SETUPCHECK__START'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SETUPCHECK__START;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;)this.tracer?.logHistoryVarUpdate('Running', 'SETUPCHECK__START');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SETUPCHECK__START;this.tracer?.logHistoryVarUpdate('Running', 'SETUPCHECK__START');
         } // end of behavior for SetupCheck__Start
     }
     
@@ -1877,13 +1888,13 @@ evaluateGuard = null;
     #SETUPCHECK__START_button2()
     {
         // SetupCheck__Start behavior
-        // uml: BUTTON2 / { this.tracer?.edgeTransition("edge26"); } TransitionTo(AdjustServoOffsets)
+        // uml: BUTTON2 / { this.tracer?.edgeTransition('edge26'); } TransitionTo(AdjustServoOffsets)
         {
             // Step 1: Exit states until we reach `SetupCheck` state (Least Common Ancestor for transition).
             this.#SETUPCHECK__START_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge26");`.
-            this.tracer?.edgeTransition("edge26");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge26');`.
+            this.tracer?.edgeTransition('edge26');
             
             // Step 3: Enter/move towards transition target `AdjustServoOffsets`.
             this.#ADJUSTSERVOOFFSETS_enter();
@@ -1899,14 +1910,14 @@ evaluateGuard = null;
     #SETUPCHECK__START_do()
     {
         // SetupCheck__Start behavior
-        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1After(3s)") || this.evaluateGuard("SetupCheck__Start","do [t1After(3s)] TransitionTo(Tour)")] / { this.tracer?.edgeTransition("edge25"); } TransitionTo(Tour)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1After(3s)") || this.evaluateGuard("SetupCheck__Start","do [t1After(3s)] TransitionTo(Tour)"))
+        // uml: do [this.tracer?.logGuardCodeEvaluation("t1After(3s)") || this.evaluateGuard('SetupCheck__Start', "do [t1After(3s)] TransitionTo(Tour)")] / { this.tracer?.edgeTransition('edge25'); } TransitionTo(Tour)
+        if (this.tracer?.logGuardCodeEvaluation("t1After(3s)") || this.evaluateGuard('SetupCheck__Start', "do [t1After(3s)] TransitionTo(Tour)"))
         {
             // Step 1: Exit states until we reach `SetupCheck` state (Least Common Ancestor for transition).
             this.#SETUPCHECK__START_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge25");`.
-            this.tracer?.edgeTransition("edge25");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge25');`.
+            this.tracer?.edgeTransition('edge25');
             
             // Step 3: Enter/move towards transition target `Tour`.
             this.#TOUR_enter();
@@ -1935,17 +1946,17 @@ evaluateGuard = null;
         } // end of behavior for Tour
         
         // Tour behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "tourBin = min(tourBin+1, DEFAULT_BIN);\nsorter.moveTo(tourBin);"); }
+        // uml: enter / { this.tracer?.logActionCode("tourBin = min(tourBin+1, DEFAULT_BIN);\nsorter.moveTo(tourBin);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "tourBin = min(tourBin+1, DEFAULT_BIN);\nsorter.moveTo(tourBin);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "tourBin = min(tourBin+1, DEFAULT_BIN);\nsorter.moveTo(tourBin);");
+            // Step 1: execute action `this.tracer?.logActionCode("tourBin = min(tourBin+1, DEFAULT_BIN);\nsorter.moveTo(tourBin);");`
+            this.tracer?.logActionCode("tourBin = min(tourBin+1, DEFAULT_BIN);\nsorter.moveTo(tourBin);");
         } // end of behavior for Tour
         
         // Tour behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TOUR;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TOUR;)this.tracer?.logHistoryVarUpdate('Running', 'TOUR'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TOUR;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.TOUR;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TOUR;)this.tracer?.logHistoryVarUpdate('Running', 'TOUR');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.TOUR;this.tracer?.logHistoryVarUpdate('Running', 'TOUR');
         } // end of behavior for Tour
     }
     
@@ -1964,14 +1975,14 @@ evaluateGuard = null;
     #TOUR_do()
     {
         // Tour behavior
-        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "tourBin>=DEFAULT_BIN") || this.evaluateGuard("Tour","1. do [tourBin>=DEFAULT_BIN] TransitionTo(TrainingMode)")] / { this.tracer?.edgeTransition("edge23"); } TransitionTo(TrainingMode)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "tourBin>=DEFAULT_BIN") || this.evaluateGuard("Tour","1. do [tourBin>=DEFAULT_BIN] TransitionTo(TrainingMode)"))
+        // uml: 1. do [this.tracer?.logGuardCodeEvaluation("tourBin>=DEFAULT_BIN") || this.evaluateGuard('Tour', "1. do [tourBin>=DEFAULT_BIN] TransitionTo(TrainingMode)")] / { this.tracer?.edgeTransition('edge23'); } TransitionTo(TrainingMode)
+        if (this.tracer?.logGuardCodeEvaluation("tourBin>=DEFAULT_BIN") || this.evaluateGuard('Tour', "1. do [tourBin>=DEFAULT_BIN] TransitionTo(TrainingMode)"))
         {
             // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(BeadSorter.StateId.RUNNING);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge23");`.
-            this.tracer?.edgeTransition("edge23");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge23');`.
+            this.tracer?.edgeTransition('edge23');
             
             // Step 3: Enter/move towards transition target `TrainingMode`.
             this.#TRAININGMODE_enter();
@@ -1982,14 +1993,14 @@ evaluateGuard = null;
         } // end of behavior for Tour
         
         // Tour behavior
-        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "true") || this.evaluateGuard("Tour","do [true] TransitionTo(Tour)")] / { this.tracer?.edgeTransition("edge24"); } TransitionTo(Tour)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "true") || this.evaluateGuard("Tour","do [true] TransitionTo(Tour)"))
+        // uml: do [this.tracer?.logGuardCodeEvaluation("true") || this.evaluateGuard('Tour', "do [true] TransitionTo(Tour)")] / { this.tracer?.edgeTransition('edge24'); } TransitionTo(Tour)
+        if (this.tracer?.logGuardCodeEvaluation("true") || this.evaluateGuard('Tour', "do [true] TransitionTo(Tour)"))
         {
             // Step 1: Exit states until we reach `SetupCheck` state (Least Common Ancestor for transition).
             this.#TOUR_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge24");`.
-            this.tracer?.edgeTransition("edge24");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge24');`.
+            this.tracer?.edgeTransition('edge24');
             
             // Step 3: Enter/move towards transition target `Tour`.
             this.#TOUR_enter();
@@ -2018,10 +2029,10 @@ evaluateGuard = null;
         } // end of behavior for SortingMode
         
         // SortingMode behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE;)this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE;)this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE;this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE');
         } // end of behavior for SortingMode
     }
     
@@ -2040,12 +2051,12 @@ evaluateGuard = null;
     #SortingMode_InitialState_transition()
     {
         // SortingMode.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition("edge19"); } TransitionTo(SortingMode__Start)
+        // uml: / { this.tracer?.edgeTransition('edge19'); } TransitionTo(SortingMode__Start)
         {
             // Step 1: Exit states until we reach `SortingMode` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge19");`.
-            this.tracer?.edgeTransition("edge19");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge19');`.
+            this.tracer?.edgeTransition('edge19');
             
             // Step 3: Enter/move towards transition target `SortingMode__Start`.
             this.#SORTINGMODE__START_enter();
@@ -2072,17 +2083,17 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Dropoff
         
         // SortingMode__Dropoff behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);");`
+            this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);");
         } // end of behavior for SortingMode__Dropoff
         
         // SortingMode__Dropoff behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__DROPOFF;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__DROPOFF;)this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__DROPOFF'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__DROPOFF;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__DROPOFF;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__DROPOFF;)this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__DROPOFF');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__DROPOFF;this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__DROPOFF');
         } // end of behavior for SortingMode__Dropoff
     }
     
@@ -2101,13 +2112,13 @@ evaluateGuard = null;
     #SORTINGMODE__DROPOFF_do()
     {
         // SortingMode__Dropoff behavior
-        // uml: do / { this.tracer?.edgeTransition("edge17"); } TransitionTo(SortingMode__Pickup)
+        // uml: do / { this.tracer?.edgeTransition('edge17'); } TransitionTo(SortingMode__Pickup)
         {
             // Step 1: Exit states until we reach `SortingMode` state (Least Common Ancestor for transition).
             this.#SORTINGMODE__DROPOFF_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge17");`.
-            this.tracer?.edgeTransition("edge17");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge17');`.
+            this.tracer?.edgeTransition('edge17');
             
             // Step 3: Enter/move towards transition target `SortingMode__Pickup`.
             this.#SORTINGMODE__PICKUP_enter();
@@ -2136,17 +2147,17 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Pickup
         
         // SortingMode__Pickup behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_PICKUP);"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.moveTo(DEG_PICKUP);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_PICKUP);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_PICKUP);");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.moveTo(DEG_PICKUP);");`
+            this.tracer?.logActionCode("picker.moveTo(DEG_PICKUP);");
         } // end of behavior for SortingMode__Pickup
         
         // SortingMode__Pickup behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__PICKUP;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__PICKUP;)this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__PICKUP'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__PICKUP;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__PICKUP;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__PICKUP;)this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__PICKUP');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__PICKUP;this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__PICKUP');
         } // end of behavior for SortingMode__Pickup
     }
     
@@ -2165,13 +2176,13 @@ evaluateGuard = null;
     #SORTINGMODE__PICKUP_do()
     {
         // SortingMode__Pickup behavior
-        // uml: do / { this.tracer?.edgeTransition("edge18"); } TransitionTo(SortingMode__Sensor)
+        // uml: do / { this.tracer?.edgeTransition('edge18'); } TransitionTo(SortingMode__Sensor)
         {
             // Step 1: Exit states until we reach `SortingMode` state (Least Common Ancestor for transition).
             this.#SORTINGMODE__PICKUP_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge18");`.
-            this.tracer?.edgeTransition("edge18");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge18');`.
+            this.tracer?.edgeTransition('edge18');
             
             // Step 3: Enter/move towards transition target `SortingMode__Sensor`.
             this.#SORTINGMODE__SENSOR_enter();
@@ -2200,17 +2211,17 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Sensor
         
         // SortingMode__Sensor behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.shimmyAndMoveTo(min(sorter.readColor(), DEFAULT_BIN));"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.shimmyAndMoveTo(min(sorter.readColor(), DEFAULT_BIN));"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.shimmyAndMoveTo(min(sorter.readColor(), DEFAULT_BIN));");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.shimmyAndMoveTo(min(sorter.readColor(), DEFAULT_BIN));");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.shimmyAndMoveTo(min(sorter.readColor(), DEFAULT_BIN));");`
+            this.tracer?.logActionCode("picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.shimmyAndMoveTo(min(sorter.readColor(), DEFAULT_BIN));");
         } // end of behavior for SortingMode__Sensor
         
         // SortingMode__Sensor behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__SENSOR;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__SENSOR;)this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__SENSOR'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__SENSOR;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__SENSOR;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__SENSOR;)this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__SENSOR');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__SENSOR;this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__SENSOR');
         } // end of behavior for SortingMode__Sensor
     }
     
@@ -2229,13 +2240,13 @@ evaluateGuard = null;
     #SORTINGMODE__SENSOR_do()
     {
         // SortingMode__Sensor behavior
-        // uml: do / { this.tracer?.edgeTransition("edge21"); } TransitionTo(SortingMode__Dropoff)
+        // uml: do / { this.tracer?.edgeTransition('edge21'); } TransitionTo(SortingMode__Dropoff)
         {
             // Step 1: Exit states until we reach `SortingMode` state (Least Common Ancestor for transition).
             this.#SORTINGMODE__SENSOR_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge21");`.
-            this.tracer?.edgeTransition("edge21");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge21');`.
+            this.tracer?.edgeTransition('edge21');
             
             // Step 3: Enter/move towards transition target `SortingMode__Dropoff`.
             this.#SORTINGMODE__DROPOFF_enter();
@@ -2264,17 +2275,17 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Start
         
         // SortingMode__Start behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "modeDisplay.clear();"); }
+        // uml: enter / { this.tracer?.logActionCode("modeDisplay.clear();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "modeDisplay.clear();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "modeDisplay.clear();");
+            // Step 1: execute action `this.tracer?.logActionCode("modeDisplay.clear();");`
+            this.tracer?.logActionCode("modeDisplay.clear();");
         } // end of behavior for SortingMode__Start
         
         // SortingMode__Start behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__START;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__START;)this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__START'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__START;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__START;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__START;)this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__START');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__START;this.tracer?.logHistoryVarUpdate('Running', 'SORTINGMODE__START');
         } // end of behavior for SortingMode__Start
     }
     
@@ -2293,13 +2304,13 @@ evaluateGuard = null;
     #SORTINGMODE__START_do()
     {
         // SortingMode__Start behavior
-        // uml: do / { this.tracer?.edgeTransition("edge20"); } TransitionTo(SortingMode__Pickup)
+        // uml: do / { this.tracer?.edgeTransition('edge20'); } TransitionTo(SortingMode__Pickup)
         {
             // Step 1: Exit states until we reach `SortingMode` state (Least Common Ancestor for transition).
             this.#SORTINGMODE__START_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge20");`.
-            this.tracer?.edgeTransition("edge20");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge20');`.
+            this.tracer?.edgeTransition('edge20');
             
             // Step 3: Enter/move towards transition target `SortingMode__Pickup`.
             this.#SORTINGMODE__PICKUP_enter();
@@ -2328,10 +2339,10 @@ evaluateGuard = null;
         } // end of behavior for TrainingMode
         
         // TrainingMode behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE;)this.tracer?.logHistoryVarUpdate('Running', 'TRAININGMODE'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE;)this.tracer?.logHistoryVarUpdate('Running', 'TRAININGMODE');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE;this.tracer?.logHistoryVarUpdate('Running', 'TRAININGMODE');
         } // end of behavior for TrainingMode
     }
     
@@ -2350,12 +2361,12 @@ evaluateGuard = null;
     #TrainingMode_InitialState_transition()
     {
         // TrainingMode.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition("edge16"); } TransitionTo(TrainingMode__Start)
+        // uml: / { this.tracer?.edgeTransition('edge16'); } TransitionTo(TrainingMode__Start)
         {
             // Step 1: Exit states until we reach `TrainingMode` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge16");`.
-            this.tracer?.edgeTransition("edge16");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge16');`.
+            this.tracer?.edgeTransition('edge16');
             
             // Step 3: Enter/move towards transition target `TrainingMode__Start`.
             this.#TRAININGMODE__START_enter();
@@ -2382,10 +2393,10 @@ evaluateGuard = null;
         } // end of behavior for ReadEmptySlot
         
         // ReadEmptySlot behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT;)this.tracer?.logHistoryVarUpdate('Running', 'READEMPTYSLOT'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT;)this.tracer?.logHistoryVarUpdate('Running', 'READEMPTYSLOT');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT;this.tracer?.logHistoryVarUpdate('Running', 'READEMPTYSLOT');
         } // end of behavior for ReadEmptySlot
     }
     
@@ -2404,12 +2415,12 @@ evaluateGuard = null;
     #ReadEmptySlot_InitialState_transition()
     {
         // ReadEmptySlot.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition("edge1"); } TransitionTo(ReadEmptySlot__Dropoff)
+        // uml: / { this.tracer?.edgeTransition('edge1'); } TransitionTo(ReadEmptySlot__Dropoff)
         {
             // Step 1: Exit states until we reach `ReadEmptySlot` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge1");`.
-            this.tracer?.edgeTransition("edge1");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge1');`.
+            this.tracer?.edgeTransition('edge1');
             
             // Step 3: Enter/move towards transition target `ReadEmptySlot__Dropoff`.
             this.#READEMPTYSLOT__DROPOFF_enter();
@@ -2436,17 +2447,17 @@ evaluateGuard = null;
         } // end of behavior for ReadEmptySlot__Dropoff
         
         // ReadEmptySlot__Dropoff behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);");`
+            this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);");
         } // end of behavior for ReadEmptySlot__Dropoff
         
         // ReadEmptySlot__Dropoff behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__DROPOFF;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__DROPOFF;)this.tracer?.logHistoryVarUpdate('Running', 'READEMPTYSLOT__DROPOFF'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__DROPOFF;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT__DROPOFF;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__DROPOFF;)this.tracer?.logHistoryVarUpdate('Running', 'READEMPTYSLOT__DROPOFF');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT__DROPOFF;this.tracer?.logHistoryVarUpdate('Running', 'READEMPTYSLOT__DROPOFF');
         } // end of behavior for ReadEmptySlot__Dropoff
     }
     
@@ -2465,13 +2476,13 @@ evaluateGuard = null;
     #READEMPTYSLOT__DROPOFF_do()
     {
         // ReadEmptySlot__Dropoff behavior
-        // uml: do / { this.tracer?.edgeTransition("edge2"); } TransitionTo(ReadEmptySlot__Sensor)
+        // uml: do / { this.tracer?.edgeTransition('edge2'); } TransitionTo(ReadEmptySlot__Sensor)
         {
             // Step 1: Exit states until we reach `ReadEmptySlot` state (Least Common Ancestor for transition).
             this.#READEMPTYSLOT__DROPOFF_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge2");`.
-            this.tracer?.edgeTransition("edge2");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
+            this.tracer?.edgeTransition('edge2');
             
             // Step 3: Enter/move towards transition target `ReadEmptySlot__Sensor`.
             this.#READEMPTYSLOT__SENSOR_enter();
@@ -2500,17 +2511,17 @@ evaluateGuard = null;
         } // end of behavior for ReadEmptySlot__Sensor
         
         // ReadEmptySlot__Sensor behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_SENSOR);\nempties++;\nsorter.readColor();"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.moveTo(DEG_SENSOR);\nempties++;\nsorter.readColor();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_SENSOR);\nempties++;\nsorter.readColor();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_SENSOR);\nempties++;\nsorter.readColor();");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.moveTo(DEG_SENSOR);\nempties++;\nsorter.readColor();");`
+            this.tracer?.logActionCode("picker.moveTo(DEG_SENSOR);\nempties++;\nsorter.readColor();");
         } // end of behavior for ReadEmptySlot__Sensor
         
         // ReadEmptySlot__Sensor behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__SENSOR;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__SENSOR;)this.tracer?.logHistoryVarUpdate('Running', 'READEMPTYSLOT__SENSOR'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__SENSOR;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT__SENSOR;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__SENSOR;)this.tracer?.logHistoryVarUpdate('Running', 'READEMPTYSLOT__SENSOR');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT__SENSOR;this.tracer?.logHistoryVarUpdate('Running', 'READEMPTYSLOT__SENSOR');
         } // end of behavior for ReadEmptySlot__Sensor
     }
     
@@ -2529,14 +2540,14 @@ evaluateGuard = null;
     #READEMPTYSLOT__SENSOR_do()
     {
         // ReadEmptySlot__Sensor behavior
-        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "empties>=NUM_EMPTY_READS") || this.evaluateGuard("ReadEmptySlot__Sensor","1. do [empties>=NUM_EMPTY_READS] TransitionTo(ReadJammedSlot)")] / { this.tracer?.edgeTransition("edge4"); } TransitionTo(ReadJammedSlot)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "empties>=NUM_EMPTY_READS") || this.evaluateGuard("ReadEmptySlot__Sensor","1. do [empties>=NUM_EMPTY_READS] TransitionTo(ReadJammedSlot)"))
+        // uml: 1. do [this.tracer?.logGuardCodeEvaluation("empties>=NUM_EMPTY_READS") || this.evaluateGuard('ReadEmptySlot__Sensor', "1. do [empties>=NUM_EMPTY_READS] TransitionTo(ReadJammedSlot)")] / { this.tracer?.edgeTransition('edge4'); } TransitionTo(ReadJammedSlot)
+        if (this.tracer?.logGuardCodeEvaluation("empties>=NUM_EMPTY_READS") || this.evaluateGuard('ReadEmptySlot__Sensor', "1. do [empties>=NUM_EMPTY_READS] TransitionTo(ReadJammedSlot)"))
         {
             // Step 1: Exit states until we reach `TrainingMode` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(BeadSorter.StateId.TRAININGMODE);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge4");`.
-            this.tracer?.edgeTransition("edge4");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
+            this.tracer?.edgeTransition('edge4');
             
             // Step 3: Enter/move towards transition target `ReadJammedSlot`.
             this.#READJAMMEDSLOT_enter();
@@ -2547,13 +2558,13 @@ evaluateGuard = null;
         } // end of behavior for ReadEmptySlot__Sensor
         
         // ReadEmptySlot__Sensor behavior
-        // uml: do / { this.tracer?.edgeTransition("edge3"); } TransitionTo(ReadEmptySlot__Dropoff)
+        // uml: do / { this.tracer?.edgeTransition('edge3'); } TransitionTo(ReadEmptySlot__Dropoff)
         {
             // Step 1: Exit states until we reach `ReadEmptySlot` state (Least Common Ancestor for transition).
             this.#READEMPTYSLOT__SENSOR_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge3");`.
-            this.tracer?.edgeTransition("edge3");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
+            this.tracer?.edgeTransition('edge3');
             
             // Step 3: Enter/move towards transition target `ReadEmptySlot__Dropoff`.
             this.#READEMPTYSLOT__DROPOFF_enter();
@@ -2582,10 +2593,10 @@ evaluateGuard = null;
         } // end of behavior for ReadJammedSlot
         
         // ReadJammedSlot behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT;)this.tracer?.logHistoryVarUpdate('Running', 'READJAMMEDSLOT'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT;)this.tracer?.logHistoryVarUpdate('Running', 'READJAMMEDSLOT');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT;this.tracer?.logHistoryVarUpdate('Running', 'READJAMMEDSLOT');
         } // end of behavior for ReadJammedSlot
     }
     
@@ -2604,12 +2615,12 @@ evaluateGuard = null;
     #ReadJammedSlot_InitialState_transition()
     {
         // ReadJammedSlot.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition("edge5"); } TransitionTo(Jammed)
+        // uml: / { this.tracer?.edgeTransition('edge5'); } TransitionTo(Jammed)
         {
             // Step 1: Exit states until we reach `ReadJammedSlot` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge5");`.
-            this.tracer?.edgeTransition("edge5");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge5');`.
+            this.tracer?.edgeTransition('edge5');
             
             // Step 3: Enter/move towards transition target `Jammed`.
             this.#JAMMED_enter();
@@ -2636,17 +2647,17 @@ evaluateGuard = null;
         } // end of behavior for Jammed
         
         // Jammed behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_JAMMED_READ);"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.moveTo(DEG_JAMMED_READ);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_JAMMED_READ);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_JAMMED_READ);");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.moveTo(DEG_JAMMED_READ);");`
+            this.tracer?.logActionCode("picker.moveTo(DEG_JAMMED_READ);");
         } // end of behavior for Jammed
         
         // Jammed behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.JAMMED;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.JAMMED;)this.tracer?.logHistoryVarUpdate('Running', 'JAMMED'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.JAMMED;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.JAMMED;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.JAMMED;)this.tracer?.logHistoryVarUpdate('Running', 'JAMMED');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.JAMMED;this.tracer?.logHistoryVarUpdate('Running', 'JAMMED');
         } // end of behavior for Jammed
     }
     
@@ -2665,13 +2676,13 @@ evaluateGuard = null;
     #JAMMED_do()
     {
         // Jammed behavior
-        // uml: do / { this.tracer?.edgeTransition("edge8"); } TransitionTo(ReadJammedSlot__Sensor)
+        // uml: do / { this.tracer?.edgeTransition('edge8'); } TransitionTo(ReadJammedSlot__Sensor)
         {
             // Step 1: Exit states until we reach `ReadJammedSlot` state (Least Common Ancestor for transition).
             this.#JAMMED_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge8");`.
-            this.tracer?.edgeTransition("edge8");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge8');`.
+            this.tracer?.edgeTransition('edge8');
             
             // Step 3: Enter/move towards transition target `ReadJammedSlot__Sensor`.
             this.#READJAMMEDSLOT__SENSOR_enter();
@@ -2700,17 +2711,17 @@ evaluateGuard = null;
         } // end of behavior for ReadJammedSlot__Dropoff
         
         // ReadJammedSlot__Dropoff behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);");`
+            this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);");
         } // end of behavior for ReadJammedSlot__Dropoff
         
         // ReadJammedSlot__Dropoff behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__DROPOFF;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__DROPOFF;)this.tracer?.logHistoryVarUpdate('Running', 'READJAMMEDSLOT__DROPOFF'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__DROPOFF;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT__DROPOFF;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__DROPOFF;)this.tracer?.logHistoryVarUpdate('Running', 'READJAMMEDSLOT__DROPOFF');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT__DROPOFF;this.tracer?.logHistoryVarUpdate('Running', 'READJAMMEDSLOT__DROPOFF');
         } // end of behavior for ReadJammedSlot__Dropoff
     }
     
@@ -2729,14 +2740,14 @@ evaluateGuard = null;
     #READJAMMEDSLOT__DROPOFF_do()
     {
         // ReadJammedSlot__Dropoff behavior
-        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "jammies>=NUM_JAMMED_READS") || this.evaluateGuard("ReadJammedSlot__Dropoff","1. do [jammies>=NUM_JAMMED_READS] TransitionTo(ReadSlot)")] / { this.tracer?.edgeTransition("edge7"); } TransitionTo(ReadSlot)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "jammies>=NUM_JAMMED_READS") || this.evaluateGuard("ReadJammedSlot__Dropoff","1. do [jammies>=NUM_JAMMED_READS] TransitionTo(ReadSlot)"))
+        // uml: 1. do [this.tracer?.logGuardCodeEvaluation("jammies>=NUM_JAMMED_READS") || this.evaluateGuard('ReadJammedSlot__Dropoff', "1. do [jammies>=NUM_JAMMED_READS] TransitionTo(ReadSlot)")] / { this.tracer?.edgeTransition('edge7'); } TransitionTo(ReadSlot)
+        if (this.tracer?.logGuardCodeEvaluation("jammies>=NUM_JAMMED_READS") || this.evaluateGuard('ReadJammedSlot__Dropoff', "1. do [jammies>=NUM_JAMMED_READS] TransitionTo(ReadSlot)"))
         {
             // Step 1: Exit states until we reach `TrainingMode` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(BeadSorter.StateId.TRAININGMODE);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge7");`.
-            this.tracer?.edgeTransition("edge7");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
+            this.tracer?.edgeTransition('edge7');
             
             // Step 3: Enter/move towards transition target `ReadSlot`.
             this.#READSLOT_enter();
@@ -2747,13 +2758,13 @@ evaluateGuard = null;
         } // end of behavior for ReadJammedSlot__Dropoff
         
         // ReadJammedSlot__Dropoff behavior
-        // uml: do / { this.tracer?.edgeTransition("edge6"); } TransitionTo(Jammed)
+        // uml: do / { this.tracer?.edgeTransition('edge6'); } TransitionTo(Jammed)
         {
             // Step 1: Exit states until we reach `ReadJammedSlot` state (Least Common Ancestor for transition).
             this.#READJAMMEDSLOT__DROPOFF_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge6");`.
-            this.tracer?.edgeTransition("edge6");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
+            this.tracer?.edgeTransition('edge6');
             
             // Step 3: Enter/move towards transition target `Jammed`.
             this.#JAMMED_enter();
@@ -2782,17 +2793,17 @@ evaluateGuard = null;
         } // end of behavior for ReadJammedSlot__Sensor
         
         // ReadJammedSlot__Sensor behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "jammies++;\nsorter.readColor();"); }
+        // uml: enter / { this.tracer?.logActionCode("jammies++;\nsorter.readColor();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "jammies++;\nsorter.readColor();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "jammies++;\nsorter.readColor();");
+            // Step 1: execute action `this.tracer?.logActionCode("jammies++;\nsorter.readColor();");`
+            this.tracer?.logActionCode("jammies++;\nsorter.readColor();");
         } // end of behavior for ReadJammedSlot__Sensor
         
         // ReadJammedSlot__Sensor behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__SENSOR;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__SENSOR;)this.tracer?.logHistoryVarUpdate('Running', 'READJAMMEDSLOT__SENSOR'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__SENSOR;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT__SENSOR;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__SENSOR;)this.tracer?.logHistoryVarUpdate('Running', 'READJAMMEDSLOT__SENSOR');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT__SENSOR;this.tracer?.logHistoryVarUpdate('Running', 'READJAMMEDSLOT__SENSOR');
         } // end of behavior for ReadJammedSlot__Sensor
     }
     
@@ -2811,13 +2822,13 @@ evaluateGuard = null;
     #READJAMMEDSLOT__SENSOR_do()
     {
         // ReadJammedSlot__Sensor behavior
-        // uml: do / { this.tracer?.edgeTransition("edge9"); } TransitionTo(ReadJammedSlot__Dropoff)
+        // uml: do / { this.tracer?.edgeTransition('edge9'); } TransitionTo(ReadJammedSlot__Dropoff)
         {
             // Step 1: Exit states until we reach `ReadJammedSlot` state (Least Common Ancestor for transition).
             this.#READJAMMEDSLOT__SENSOR_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge9");`.
-            this.tracer?.edgeTransition("edge9");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
+            this.tracer?.edgeTransition('edge9');
             
             // Step 3: Enter/move towards transition target `ReadJammedSlot__Dropoff`.
             this.#READJAMMEDSLOT__DROPOFF_enter();
@@ -2846,10 +2857,10 @@ evaluateGuard = null;
         } // end of behavior for ReadSlot
         
         // ReadSlot behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT;)this.tracer?.logHistoryVarUpdate('Running', 'READSLOT'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT;)this.tracer?.logHistoryVarUpdate('Running', 'READSLOT');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT;this.tracer?.logHistoryVarUpdate('Running', 'READSLOT');
         } // end of behavior for ReadSlot
     }
     
@@ -2868,12 +2879,12 @@ evaluateGuard = null;
     #ReadSlot_InitialState_transition()
     {
         // ReadSlot.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition("edge10"); } TransitionTo(TrainingMode__Pickup)
+        // uml: / { this.tracer?.edgeTransition('edge10'); } TransitionTo(TrainingMode__Pickup)
         {
             // Step 1: Exit states until we reach `ReadSlot` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge10");`.
-            this.tracer?.edgeTransition("edge10");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge10');`.
+            this.tracer?.edgeTransition('edge10');
             
             // Step 3: Enter/move towards transition target `TrainingMode__Pickup`.
             this.#TRAININGMODE__PICKUP_enter();
@@ -2900,17 +2911,17 @@ evaluateGuard = null;
         } // end of behavior for ReadSlot__Dropoff
         
         // ReadSlot__Dropoff behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.moveToAndShimmy(DEG_DROPOFF);");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);");`
+            this.tracer?.logActionCode("picker.moveToAndShimmy(DEG_DROPOFF);");
         } // end of behavior for ReadSlot__Dropoff
         
         // ReadSlot__Dropoff behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT__DROPOFF;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT__DROPOFF;)this.tracer?.logHistoryVarUpdate('Running', 'READSLOT__DROPOFF'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT__DROPOFF;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT__DROPOFF;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT__DROPOFF;)this.tracer?.logHistoryVarUpdate('Running', 'READSLOT__DROPOFF');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT__DROPOFF;this.tracer?.logHistoryVarUpdate('Running', 'READSLOT__DROPOFF');
         } // end of behavior for ReadSlot__Dropoff
     }
     
@@ -2929,14 +2940,14 @@ evaluateGuard = null;
     #READSLOT__DROPOFF_do()
     {
         // ReadSlot__Dropoff behavior
-        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "sorter.isTrainingDone()") || this.evaluateGuard("ReadSlot__Dropoff","1. do [sorter.isTrainingDone()] TransitionTo(SortingMode)")] / { this.tracer?.edgeTransition("edge12"); } TransitionTo(SortingMode)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "sorter.isTrainingDone()") || this.evaluateGuard("ReadSlot__Dropoff","1. do [sorter.isTrainingDone()] TransitionTo(SortingMode)"))
+        // uml: 1. do [this.tracer?.logGuardCodeEvaluation("sorter.isTrainingDone()") || this.evaluateGuard('ReadSlot__Dropoff', "1. do [sorter.isTrainingDone()] TransitionTo(SortingMode)")] / { this.tracer?.edgeTransition('edge12'); } TransitionTo(SortingMode)
+        if (this.tracer?.logGuardCodeEvaluation("sorter.isTrainingDone()") || this.evaluateGuard('ReadSlot__Dropoff', "1. do [sorter.isTrainingDone()] TransitionTo(SortingMode)"))
         {
             // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(BeadSorter.StateId.RUNNING);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge12");`.
-            this.tracer?.edgeTransition("edge12");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge12');`.
+            this.tracer?.edgeTransition('edge12');
             
             // Step 3: Enter/move towards transition target `SortingMode`.
             this.#SORTINGMODE_enter();
@@ -2947,13 +2958,13 @@ evaluateGuard = null;
         } // end of behavior for ReadSlot__Dropoff
         
         // ReadSlot__Dropoff behavior
-        // uml: do / { this.tracer?.edgeTransition("edge11"); } TransitionTo(TrainingMode__Pickup)
+        // uml: do / { this.tracer?.edgeTransition('edge11'); } TransitionTo(TrainingMode__Pickup)
         {
             // Step 1: Exit states until we reach `ReadSlot` state (Least Common Ancestor for transition).
             this.#READSLOT__DROPOFF_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge11");`.
-            this.tracer?.edgeTransition("edge11");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge11');`.
+            this.tracer?.edgeTransition('edge11');
             
             // Step 3: Enter/move towards transition target `TrainingMode__Pickup`.
             this.#TRAININGMODE__PICKUP_enter();
@@ -2982,17 +2993,17 @@ evaluateGuard = null;
         } // end of behavior for ReadSlot__Sensor
         
         // ReadSlot__Sensor behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.readColor();\nsorter.runTraining();\nsorter.shimmyAndMoveTo(DEFAULT_BIN);"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.readColor();\nsorter.runTraining();\nsorter.shimmyAndMoveTo(DEFAULT_BIN);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.readColor();\nsorter.runTraining();\nsorter.shimmyAndMoveTo(DEFAULT_BIN);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.readColor();\nsorter.runTraining();\nsorter.shimmyAndMoveTo(DEFAULT_BIN);");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.readColor();\nsorter.runTraining();\nsorter.shimmyAndMoveTo(DEFAULT_BIN);");`
+            this.tracer?.logActionCode("picker.shimmyAndMoveTo(DEG_SENSOR);\nsorter.readColor();\nsorter.runTraining();\nsorter.shimmyAndMoveTo(DEFAULT_BIN);");
         } // end of behavior for ReadSlot__Sensor
         
         // ReadSlot__Sensor behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT__SENSOR;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT__SENSOR;)this.tracer?.logHistoryVarUpdate('Running', 'READSLOT__SENSOR'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT__SENSOR;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT__SENSOR;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT__SENSOR;)this.tracer?.logHistoryVarUpdate('Running', 'READSLOT__SENSOR');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT__SENSOR;this.tracer?.logHistoryVarUpdate('Running', 'READSLOT__SENSOR');
         } // end of behavior for ReadSlot__Sensor
     }
     
@@ -3011,13 +3022,13 @@ evaluateGuard = null;
     #READSLOT__SENSOR_do()
     {
         // ReadSlot__Sensor behavior
-        // uml: do / { this.tracer?.edgeTransition("edge14"); } TransitionTo(ReadSlot__Dropoff)
+        // uml: do / { this.tracer?.edgeTransition('edge14'); } TransitionTo(ReadSlot__Dropoff)
         {
             // Step 1: Exit states until we reach `ReadSlot` state (Least Common Ancestor for transition).
             this.#READSLOT__SENSOR_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge14");`.
-            this.tracer?.edgeTransition("edge14");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge14');`.
+            this.tracer?.edgeTransition('edge14');
             
             // Step 3: Enter/move towards transition target `ReadSlot__Dropoff`.
             this.#READSLOT__DROPOFF_enter();
@@ -3046,17 +3057,17 @@ evaluateGuard = null;
         } // end of behavior for TrainingMode__Pickup
         
         // TrainingMode__Pickup behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_PICKUP);"); }
+        // uml: enter / { this.tracer?.logActionCode("picker.moveTo(DEG_PICKUP);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_PICKUP);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "picker.moveTo(DEG_PICKUP);");
+            // Step 1: execute action `this.tracer?.logActionCode("picker.moveTo(DEG_PICKUP);");`
+            this.tracer?.logActionCode("picker.moveTo(DEG_PICKUP);");
         } // end of behavior for TrainingMode__Pickup
         
         // TrainingMode__Pickup behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__PICKUP;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__PICKUP;)this.tracer?.logHistoryVarUpdate('Running', 'TRAININGMODE__PICKUP'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__PICKUP;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE__PICKUP;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__PICKUP;)this.tracer?.logHistoryVarUpdate('Running', 'TRAININGMODE__PICKUP');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE__PICKUP;this.tracer?.logHistoryVarUpdate('Running', 'TRAININGMODE__PICKUP');
         } // end of behavior for TrainingMode__Pickup
     }
     
@@ -3075,13 +3086,13 @@ evaluateGuard = null;
     #TRAININGMODE__PICKUP_do()
     {
         // TrainingMode__Pickup behavior
-        // uml: do / { this.tracer?.edgeTransition("edge13"); } TransitionTo(ReadSlot__Sensor)
+        // uml: do / { this.tracer?.edgeTransition('edge13'); } TransitionTo(ReadSlot__Sensor)
         {
             // Step 1: Exit states until we reach `ReadSlot` state (Least Common Ancestor for transition).
             this.#TRAININGMODE__PICKUP_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge13");`.
-            this.tracer?.edgeTransition("edge13");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge13');`.
+            this.tracer?.edgeTransition('edge13');
             
             // Step 3: Enter/move towards transition target `ReadSlot__Sensor`.
             this.#READSLOT__SENSOR_enter();
@@ -3110,17 +3121,17 @@ evaluateGuard = null;
         } // end of behavior for TrainingMode__Start
         
         // TrainingMode__Start behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "modeDisplay.print(\"TRAINING\");"); }
+        // uml: enter / { this.tracer?.logActionCode("modeDisplay.print(\"TRAINING\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "modeDisplay.print(\"TRAINING\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "modeDisplay.print(\"TRAINING\");");
+            // Step 1: execute action `this.tracer?.logActionCode("modeDisplay.print(\"TRAINING\");");`
+            this.tracer?.logActionCode("modeDisplay.print(\"TRAINING\");");
         } // end of behavior for TrainingMode__Start
         
         // TrainingMode__Start behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__START;) }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__START;)this.tracer?.logHistoryVarUpdate('Running', 'TRAININGMODE__START'); }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__START;)`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE__START;
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__START;)this.tracer?.logHistoryVarUpdate('Running', 'TRAININGMODE__START');`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE__START;this.tracer?.logHistoryVarUpdate('Running', 'TRAININGMODE__START');
         } // end of behavior for TrainingMode__Start
     }
     
@@ -3139,13 +3150,13 @@ evaluateGuard = null;
     #TRAININGMODE__START_do()
     {
         // TrainingMode__Start behavior
-        // uml: do / { this.tracer?.edgeTransition("edge15"); } TransitionTo(ReadEmptySlot)
+        // uml: do / { this.tracer?.edgeTransition('edge15'); } TransitionTo(ReadEmptySlot)
         {
             // Step 1: Exit states until we reach `TrainingMode` state (Least Common Ancestor for transition).
             this.#TRAININGMODE__START_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge15");`.
-            this.tracer?.edgeTransition("edge15");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge15');`.
+            this.tracer?.edgeTransition('edge15');
             
             // Step 3: Enter/move towards transition target `ReadEmptySlot`.
             this.#READEMPTYSLOT_enter();
@@ -3384,7 +3395,7 @@ evaluateGuard = null;
 
 
         //------------------- drop down functionality start -------------------
-        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownButton = document.getElementById('settings-dropdown-button');
         const dropdownDiv = document.getElementById('myDropdown');
 
         dropdownButton.addEventListener('click', toggleDropdown);
@@ -3519,9 +3530,7 @@ evaluateGuard = null;
         }
 
         // The simulator uses a tracer callback to perform operations such as 
-        // state highlighting and logging. You do not need this functionality
-        // when using BeadSorter.js in your own applications, although you may
-        // choose to implement a tracer for debugging purposes.
+        // state highlighting and logging.
         sm.tracer = {
             enterState: (mermaidName) => {
                 var e = document.querySelector('g[data-id=' + mermaidName + ']');
@@ -3536,9 +3545,27 @@ evaluateGuard = null;
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
+
+                if (document.getElementById('verboseExit').checked) {
+                    sm.tracer.log('↩️ Exited ' + mermaidName);
+                }
             },
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
+            },
+            logHistoryVarUpdate: (varName, newValue) => {
+                if (document.getElementById('verboseHistory').checked) {
+                    sm.tracer.log(`🕑 HistoryVar(${varName}) = ${newValue}`);
+                }
+            },
+            logHistoryTransition: (description) => {
+                sm.tracer.log(`🕑 History: ${description}.`);
+            },
+            logGuardCodeEvaluation: (guardCode) => {
+                sm.tracer.log(`🛡️ User evaluating guard: ${guardCode}`);
+            },
+            logActionCode: (actionCode) => {
+                sm.tracer.log(`⚡ FSM would execute action: ${actionCode}`);
             },
             log: (message, html=false) => {
                 addHistoryRow(new Date(), message, html);

@@ -506,12 +506,23 @@ MENU.(InitialState) --> MAIN_MENU_INNER
       <div id="buttons">
         <div class="titlebar">Events
           <div class='dropdown'>
-            <span id='dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <span id='settings-dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <a href='https://github.com/StateSmith/StateSmith/wiki/Simulator' id='help-button' class='titlebar-icon dropdown-button' target='_blank'>help</a>
             <div id='myDropdown' class='dropdown-content'>
               <label class='dropdown-item' for='hideIrrelevantEvents'
                 title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
                 <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents'>
                 Hide ignored event buttons
+              </label>
+              <label class='dropdown-item' for='verboseExit'
+                title='Log state exits'>
+                <input type='checkbox' id='verboseExit' name='verboseExit' checked>
+                Log State Exit
+              </label>
+              <label class='dropdown-item' for='verboseHistory'
+                title='Log history pseudo state variable updates'>
+                <input type='checkbox' id='verboseHistory' name='verboseHistory' checked>
+                Log History Variables
               </label>
               <label class='dropdown-item' for='timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
@@ -609,12 +620,12 @@ evaluateGuard = null;
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge0"); } TransitionTo(SPLASH_SCREEN)
+            // uml: / { this.tracer?.edgeTransition('edge0'); } TransitionTo(SPLASH_SCREEN)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge0");`.
-                this.tracer?.edgeTransition("edge0");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
+                this.tracer?.edgeTransition('edge0');
                 
                 // Step 3: Enter/move towards transition target `SPLASH_SCREEN`.
                 this.#SPLASH_SCREEN_enter();
@@ -957,10 +968,10 @@ evaluateGuard = null;
         } // end of behavior for DONE
         
         // DONE behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "ShowDoneScreen();"); }
+        // uml: enter / { this.tracer?.logActionCode("ShowDoneScreen();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "ShowDoneScreen();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "ShowDoneScreen();");
+            // Step 1: execute action `this.tracer?.logActionCode("ShowDoneScreen();");`
+            this.tracer?.logActionCode("ShowDoneScreen();");
         } // end of behavior for DONE
     }
     
@@ -993,10 +1004,10 @@ evaluateGuard = null;
         } // end of behavior for MENU
         
         // MENU behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "display.SetMenuMode(true);"); }
+        // uml: enter / { this.tracer?.logActionCode("display.SetMenuMode(true);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "display.SetMenuMode(true);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "display.SetMenuMode(true);");
+            // Step 1: execute action `this.tracer?.logActionCode("display.SetMenuMode(true);");`
+            this.tracer?.logActionCode("display.SetMenuMode(true);");
         } // end of behavior for MENU
     }
     
@@ -1015,13 +1026,13 @@ evaluateGuard = null;
     #MENU_esc()
     {
         // MENU behavior
-        // uml: ESC / { this.tracer?.edgeTransition("edge2"); } TransitionTo(DONE)
+        // uml: ESC / { this.tracer?.edgeTransition('edge2'); } TransitionTo(DONE)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.ROOT);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge2");`.
-            this.tracer?.edgeTransition("edge2");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
+            this.tracer?.edgeTransition('edge2');
             
             // Step 3: Enter/move towards transition target `DONE`.
             this.#DONE_enter();
@@ -1067,13 +1078,13 @@ evaluateGuard = null;
         let consume_event = false;
         
         // ESC_CATCHER_1 behavior
-        // uml: ESC / { this.tracer?.edgeTransition("edge13"); } TransitionTo(MAIN_MENU_INNER)
+        // uml: ESC / { this.tracer?.edgeTransition('edge13'); } TransitionTo(MAIN_MENU_INNER)
         {
             // Step 1: Exit states until we reach `MENU` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge13");`.
-            this.tracer?.edgeTransition("edge13");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge13');`.
+            this.tracer?.edgeTransition('edge13');
             
             // Step 3: Enter/move towards transition target `MAIN_MENU_INNER`.
             this.#MAIN_MENU_INNER_enter();
@@ -1107,10 +1118,10 @@ evaluateGuard = null;
         } // end of behavior for DRINK_MENU
         
         // DRINK_MENU behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Coffee System Offline\");\nMenuOption(\"Activate self destruct?\");"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuHeader(\"Coffee System Offline\");\nMenuOption(\"Activate self destruct?\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Coffee System Offline\");\nMenuOption(\"Activate self destruct?\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Coffee System Offline\");\nMenuOption(\"Activate self destruct?\");");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuHeader(\"Coffee System Offline\");\nMenuOption(\"Activate self destruct?\");");`
+            this.tracer?.logActionCode("MenuHeader(\"Coffee System Offline\");\nMenuOption(\"Activate self destruct?\");");
         } // end of behavior for DRINK_MENU
     }
     
@@ -1129,13 +1140,13 @@ evaluateGuard = null;
     #DRINK_MENU_left()
     {
         // DRINK_MENU behavior
-        // uml: LEFT / { this.tracer?.edgeTransition("edge14"); } TransitionTo(DRINK)
+        // uml: LEFT / { this.tracer?.edgeTransition('edge14'); } TransitionTo(DRINK)
         {
             // Step 1: Exit states until we reach `MENU` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge14");`.
-            this.tracer?.edgeTransition("edge14");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge14');`.
+            this.tracer?.edgeTransition('edge14');
             
             // Step 3: Enter/move towards transition target `DRINK`.
             this.#MAIN_MENU_INNER_enter();
@@ -1151,25 +1162,25 @@ evaluateGuard = null;
     #DRINK_MENU_right()
     {
         // DRINK_MENU behavior
-        // uml: RIGHT / { this.tracer?.edgeTransition("edge15"); } TransitionTo(SYSTEM_INFO_MENU.<EntryPoint>(self_destruct))
+        // uml: RIGHT / { this.tracer?.edgeTransition('edge15'); } TransitionTo(SYSTEM_INFO_MENU.<EntryPoint>(self_destruct))
         {
             // Step 1: Exit states until we reach `ESC_CATCHER_1` state (Least Common Ancestor for transition).
             this.#DRINK_MENU_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge15");`.
-            this.tracer?.edgeTransition("edge15");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge15');`.
+            this.tracer?.edgeTransition('edge15');
             
             // Step 3: Enter/move towards transition target `SYSTEM_INFO_MENU.<EntryPoint>(self_destruct)`.
             this.#SYSTEM_INFO_MENU_enter();
             // SYSTEM_INFO_MENU.<EntryPoint>(self_destruct) is a pseudo state and cannot have an `enter` trigger.
             
             // SYSTEM_INFO_MENU.<EntryPoint>(self_destruct) behavior
-            // uml: / { this.tracer?.edgeTransition("edge37"); } TransitionTo(SELF_DESTRUCT)
+            // uml: / { this.tracer?.edgeTransition('edge37'); } TransitionTo(SELF_DESTRUCT)
             {
                 // Step 1: Exit states until we reach `SYSTEM_INFO_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge37");`.
-                this.tracer?.edgeTransition("edge37");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge37');`.
+                this.tracer?.edgeTransition('edge37');
                 
                 // Step 3: Enter/move towards transition target `SELF_DESTRUCT`.
                 this.#SELF_DESTRUCT_enter();
@@ -1200,10 +1211,10 @@ evaluateGuard = null;
         } // end of behavior for FOOD_MENU
         
         // FOOD_MENU behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Food Menu\");"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuHeader(\"Food Menu\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Food Menu\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Food Menu\");");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuHeader(\"Food Menu\");");`
+            this.tracer?.logActionCode("MenuHeader(\"Food Menu\");");
         } // end of behavior for FOOD_MENU
     }
     
@@ -1222,13 +1233,13 @@ evaluateGuard = null;
     #FOOD_MENU_left()
     {
         // FOOD_MENU behavior
-        // uml: LEFT / { this.tracer?.edgeTransition("edge16"); } TransitionTo(FOOD)
+        // uml: LEFT / { this.tracer?.edgeTransition('edge16'); } TransitionTo(FOOD)
         {
             // Step 1: Exit states until we reach `MENU` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge16");`.
-            this.tracer?.edgeTransition("edge16");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge16');`.
+            this.tracer?.edgeTransition('edge16');
             
             // Step 3: Enter/move towards transition target `FOOD`.
             this.#MAIN_MENU_INNER_enter();
@@ -1258,10 +1269,10 @@ evaluateGuard = null;
         } // end of behavior for EAT_BURRITO
         
         // EAT_BURRITO behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Big Fat Burrito\");"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuOption(\"Big Fat Burrito\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Big Fat Burrito\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Big Fat Burrito\");");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuOption(\"Big Fat Burrito\");");`
+            this.tracer?.logActionCode("MenuOption(\"Big Fat Burrito\");");
         } // end of behavior for EAT_BURRITO
     }
     
@@ -1280,13 +1291,13 @@ evaluateGuard = null;
     #EAT_BURRITO_down()
     {
         // EAT_BURRITO behavior
-        // uml: DOWN / { this.tracer?.edgeTransition("edge17"); } TransitionTo(EAT_SLUDGE)
+        // uml: DOWN / { this.tracer?.edgeTransition('edge17'); } TransitionTo(EAT_SLUDGE)
         {
             // Step 1: Exit states until we reach `FOOD_MENU` state (Least Common Ancestor for transition).
             this.#EAT_BURRITO_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge17");`.
-            this.tracer?.edgeTransition("edge17");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge17');`.
+            this.tracer?.edgeTransition('edge17');
             
             // Step 3: Enter/move towards transition target `EAT_SLUDGE`.
             this.#EAT_SLUDGE_enter();
@@ -1301,13 +1312,13 @@ evaluateGuard = null;
     #EAT_BURRITO_right()
     {
         // EAT_BURRITO behavior
-        // uml: RIGHT / { this.tracer?.log("⚡ FSM would execute action: " + "burritoCount--;");this.tracer?.edgeTransition("edge18"); } TransitionTo(COOKING_FOOD)
+        // uml: RIGHT / { this.tracer?.logActionCode("burritoCount--;");this.tracer?.edgeTransition('edge18'); } TransitionTo(COOKING_FOOD)
         {
             // Step 1: Exit states until we reach `FOOD_MENU` state (Least Common Ancestor for transition).
             this.#EAT_BURRITO_exit();
             
-            // Step 2: Transition action: `this.tracer?.log("⚡ FSM would execute action: " + "burritoCount--;");this.tracer?.edgeTransition("edge18");`.
-            this.tracer?.log("⚡ FSM would execute action: " + "burritoCount--;");this.tracer?.edgeTransition("edge18");
+            // Step 2: Transition action: `this.tracer?.logActionCode("burritoCount--;");this.tracer?.edgeTransition('edge18');`.
+            this.tracer?.logActionCode("burritoCount--;");this.tracer?.edgeTransition('edge18');
             
             // Step 3: Enter/move towards transition target `COOKING_FOOD`.
             this.#EVENT_EATER_2_enter();
@@ -1337,10 +1348,10 @@ evaluateGuard = null;
         } // end of behavior for EAT_MRE
         
         // EAT_MRE behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"MRE\");"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuOption(\"MRE\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"MRE\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"MRE\");");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuOption(\"MRE\");");`
+            this.tracer?.logActionCode("MenuOption(\"MRE\");");
         } // end of behavior for EAT_MRE
     }
     
@@ -1359,13 +1370,13 @@ evaluateGuard = null;
     #EAT_MRE_right()
     {
         // EAT_MRE behavior
-        // uml: RIGHT / { this.tracer?.edgeTransition("edge24"); } TransitionTo(COOKING_FOOD)
+        // uml: RIGHT / { this.tracer?.edgeTransition('edge24'); } TransitionTo(COOKING_FOOD)
         {
             // Step 1: Exit states until we reach `FOOD_MENU` state (Least Common Ancestor for transition).
             this.#EAT_MRE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge24");`.
-            this.tracer?.edgeTransition("edge24");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge24');`.
+            this.tracer?.edgeTransition('edge24');
             
             // Step 3: Enter/move towards transition target `COOKING_FOOD`.
             this.#EVENT_EATER_2_enter();
@@ -1381,13 +1392,13 @@ evaluateGuard = null;
     #EAT_MRE_up()
     {
         // EAT_MRE behavior
-        // uml: UP / { this.tracer?.edgeTransition("edge23"); } TransitionTo(EAT_SLUDGE)
+        // uml: UP / { this.tracer?.edgeTransition('edge23'); } TransitionTo(EAT_SLUDGE)
         {
             // Step 1: Exit states until we reach `FOOD_MENU` state (Least Common Ancestor for transition).
             this.#EAT_MRE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge23");`.
-            this.tracer?.edgeTransition("edge23");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge23');`.
+            this.tracer?.edgeTransition('edge23');
             
             // Step 3: Enter/move towards transition target `EAT_SLUDGE`.
             this.#EAT_SLUDGE_enter();
@@ -1416,10 +1427,10 @@ evaluateGuard = null;
         } // end of behavior for EAT_SLUDGE
         
         // EAT_SLUDGE behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Nutrient Mush\");"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuOption(\"Nutrient Mush\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Nutrient Mush\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Nutrient Mush\");");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuOption(\"Nutrient Mush\");");`
+            this.tracer?.logActionCode("MenuOption(\"Nutrient Mush\");");
         } // end of behavior for EAT_SLUDGE
     }
     
@@ -1438,13 +1449,13 @@ evaluateGuard = null;
     #EAT_SLUDGE_down()
     {
         // EAT_SLUDGE behavior
-        // uml: DOWN / { this.tracer?.edgeTransition("edge20"); } TransitionTo(EAT_MRE)
+        // uml: DOWN / { this.tracer?.edgeTransition('edge20'); } TransitionTo(EAT_MRE)
         {
             // Step 1: Exit states until we reach `FOOD_MENU` state (Least Common Ancestor for transition).
             this.#EAT_SLUDGE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge20");`.
-            this.tracer?.edgeTransition("edge20");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge20');`.
+            this.tracer?.edgeTransition('edge20');
             
             // Step 3: Enter/move towards transition target `EAT_MRE`.
             this.#EAT_MRE_enter();
@@ -1459,13 +1470,13 @@ evaluateGuard = null;
     #EAT_SLUDGE_right()
     {
         // EAT_SLUDGE behavior
-        // uml: RIGHT / { this.tracer?.edgeTransition("edge22"); } TransitionTo(COOKING_FOOD1)
+        // uml: RIGHT / { this.tracer?.edgeTransition('edge22'); } TransitionTo(COOKING_FOOD1)
         {
             // Step 1: Exit states until we reach `FOOD_MENU` state (Least Common Ancestor for transition).
             this.#EAT_SLUDGE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge22");`.
-            this.tracer?.edgeTransition("edge22");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge22');`.
+            this.tracer?.edgeTransition('edge22');
             
             // Step 3: Enter/move towards transition target `COOKING_FOOD1`.
             this.#EVENT_EATER_2_enter();
@@ -1481,13 +1492,13 @@ evaluateGuard = null;
     #EAT_SLUDGE_up()
     {
         // EAT_SLUDGE behavior
-        // uml: UP / { this.tracer?.edgeTransition("edge21"); } TransitionTo(EAT_BURRITO)
+        // uml: UP / { this.tracer?.edgeTransition('edge21'); } TransitionTo(EAT_BURRITO)
         {
             // Step 1: Exit states until we reach `FOOD_MENU` state (Least Common Ancestor for transition).
             this.#EAT_SLUDGE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge21");`.
-            this.tracer?.edgeTransition("edge21");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge21');`.
+            this.tracer?.edgeTransition('edge21');
             
             // Step 3: Enter/move towards transition target `EAT_BURRITO`.
             this.#EAT_BURRITO_enter();
@@ -1583,10 +1594,10 @@ evaluateGuard = null;
         } // end of behavior for COOKING_FOOD
         
         // COOKING_FOOD behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "t1Restart();\nMenuHeader(\"Cooking Food\");\nMenuOption(\"...\");"); }
+        // uml: enter / { this.tracer?.logActionCode("t1Restart();\nMenuHeader(\"Cooking Food\");\nMenuOption(\"...\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "t1Restart();\nMenuHeader(\"Cooking Food\");\nMenuOption(\"...\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "t1Restart();\nMenuHeader(\"Cooking Food\");\nMenuOption(\"...\");");
+            // Step 1: execute action `this.tracer?.logActionCode("t1Restart();\nMenuHeader(\"Cooking Food\");\nMenuOption(\"...\");");`
+            this.tracer?.logActionCode("t1Restart();\nMenuHeader(\"Cooking Food\");\nMenuOption(\"...\");");
         } // end of behavior for COOKING_FOOD
     }
     
@@ -1605,26 +1616,26 @@ evaluateGuard = null;
     #COOKING_FOOD_do()
     {
         // COOKING_FOOD behavior
-        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 3.5 s )") || this.evaluateGuard("COOKING_FOOD","do [t1After( 3.5 s )] TransitionTo(FOOD_MENU.<ExitPoint>(food_selected))")] / { this.tracer?.edgeTransition("edge27"); } TransitionTo(FOOD_MENU.<ExitPoint>(food_selected))
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 3.5 s )") || this.evaluateGuard("COOKING_FOOD","do [t1After( 3.5 s )] TransitionTo(FOOD_MENU.<ExitPoint>(food_selected))"))
+        // uml: do [this.tracer?.logGuardCodeEvaluation("t1After( 3.5 s )") || this.evaluateGuard('COOKING_FOOD', "do [t1After( 3.5 s )] TransitionTo(FOOD_MENU.<ExitPoint>(food_selected))")] / { this.tracer?.edgeTransition('edge27'); } TransitionTo(FOOD_MENU.<ExitPoint>(food_selected))
+        if (this.tracer?.logGuardCodeEvaluation("t1After( 3.5 s )") || this.evaluateGuard('COOKING_FOOD', "do [t1After( 3.5 s )] TransitionTo(FOOD_MENU.<ExitPoint>(food_selected))"))
         {
             // Step 1: Exit states until we reach `FOOD_MENU` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.FOOD_MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge27");`.
-            this.tracer?.edgeTransition("edge27");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge27');`.
+            this.tracer?.edgeTransition('edge27');
             
             // Step 3: Enter/move towards transition target `FOOD_MENU.<ExitPoint>(food_selected)`.
             // FOOD_MENU.<ExitPoint>(food_selected) is a pseudo state and cannot have an `enter` trigger.
             
             // FOOD_MENU.<ExitPoint>(food_selected) behavior
-            // uml: / { this.tracer?.edgeTransition("edge25"); } TransitionTo(FOOD)
+            // uml: / { this.tracer?.edgeTransition('edge25'); } TransitionTo(FOOD)
             {
                 // Step 1: Exit states until we reach `MENU` state (Least Common Ancestor for transition).
                 this.#exitUpToStateHandler(SpaceControlUiSm.StateId.MENU);
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge25");`.
-                this.tracer?.edgeTransition("edge25");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge25');`.
+                this.tracer?.edgeTransition('edge25');
                 
                 // Step 3: Enter/move towards transition target `FOOD`.
                 this.#MAIN_MENU_INNER_enter();
@@ -1655,24 +1666,24 @@ evaluateGuard = null;
         } // end of behavior for COOKING_FOOD1
         
         // COOKING_FOOD1 behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "t1Restart();"); }
+        // uml: enter / { this.tracer?.logActionCode("t1Restart();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "t1Restart();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "t1Restart();");
+            // Step 1: execute action `this.tracer?.logActionCode("t1Restart();");`
+            this.tracer?.logActionCode("t1Restart();");
         } // end of behavior for COOKING_FOOD1
         
         // COOKING_FOOD1 behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Mush...\");"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuHeader(\"Mush...\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Mush...\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Mush...\");");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuHeader(\"Mush...\");");`
+            this.tracer?.logActionCode("MenuHeader(\"Mush...\");");
         } // end of behavior for COOKING_FOOD1
         
         // COOKING_FOOD1 behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Gross...\");"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuOption(\"Gross...\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Gross...\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Gross...\");");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuOption(\"Gross...\");");`
+            this.tracer?.logActionCode("MenuOption(\"Gross...\");");
         } // end of behavior for COOKING_FOOD1
     }
     
@@ -1691,14 +1702,14 @@ evaluateGuard = null;
     #COOKING_FOOD1_do()
     {
         // COOKING_FOOD1 behavior
-        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 1s )") || this.evaluateGuard("COOKING_FOOD1","do [t1After( 1s )] TransitionTo(COOKING_FOOD)")] / { this.tracer?.edgeTransition("edge26"); } TransitionTo(COOKING_FOOD)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 1s )") || this.evaluateGuard("COOKING_FOOD1","do [t1After( 1s )] TransitionTo(COOKING_FOOD)"))
+        // uml: do [this.tracer?.logGuardCodeEvaluation("t1After( 1s )") || this.evaluateGuard('COOKING_FOOD1', "do [t1After( 1s )] TransitionTo(COOKING_FOOD)")] / { this.tracer?.edgeTransition('edge26'); } TransitionTo(COOKING_FOOD)
+        if (this.tracer?.logGuardCodeEvaluation("t1After( 1s )") || this.evaluateGuard('COOKING_FOOD1', "do [t1After( 1s )] TransitionTo(COOKING_FOOD)"))
         {
             // Step 1: Exit states until we reach `EVENT_EATER_2` state (Least Common Ancestor for transition).
             this.#COOKING_FOOD1_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge26");`.
-            this.tracer?.edgeTransition("edge26");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge26');`.
+            this.tracer?.edgeTransition('edge26');
             
             // Step 3: Enter/move towards transition target `COOKING_FOOD`.
             this.#COOKING_FOOD_enter();
@@ -1742,13 +1753,13 @@ evaluateGuard = null;
     #SYSTEM_INFO_MENU_left()
     {
         // SYSTEM_INFO_MENU behavior
-        // uml: LEFT / { this.tracer?.edgeTransition("edge28"); } TransitionTo(SYSTEM_INFO)
+        // uml: LEFT / { this.tracer?.edgeTransition('edge28'); } TransitionTo(SYSTEM_INFO)
         {
             // Step 1: Exit states until we reach `MENU` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge28");`.
-            this.tracer?.edgeTransition("edge28");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge28');`.
+            this.tracer?.edgeTransition('edge28');
             
             // Step 3: Enter/move towards transition target `SYSTEM_INFO`.
             this.#MAIN_MENU_INNER_enter();
@@ -1764,13 +1775,13 @@ evaluateGuard = null;
     #SYSTEM_INFO_MENU_pg_down()
     {
         // SYSTEM_INFO_MENU behavior
-        // uml: PG_DOWN / { this.tracer?.edgeTransition("edge29"); } TransitionTo(SELF_DESTRUCT_OPTION)
+        // uml: PG_DOWN / { this.tracer?.edgeTransition('edge29'); } TransitionTo(SELF_DESTRUCT_OPTION)
         {
             // Step 1: Exit states until we reach `SYSTEM_INFO_MENU` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.SYSTEM_INFO_MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge29");`.
-            this.tracer?.edgeTransition("edge29");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge29');`.
+            this.tracer?.edgeTransition('edge29');
             
             // Step 3: Enter/move towards transition target `SELF_DESTRUCT_OPTION`.
             this.#SELF_DESTRUCT_OPTION_enter();
@@ -1785,13 +1796,13 @@ evaluateGuard = null;
     #SYSTEM_INFO_MENU_pg_up()
     {
         // SYSTEM_INFO_MENU behavior
-        // uml: PG_UP / { this.tracer?.edgeTransition("edge30"); } TransitionTo(DISTANCE)
+        // uml: PG_UP / { this.tracer?.edgeTransition('edge30'); } TransitionTo(DISTANCE)
         {
             // Step 1: Exit states until we reach `SYSTEM_INFO_MENU` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.SYSTEM_INFO_MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge30");`.
-            this.tracer?.edgeTransition("edge30");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge30');`.
+            this.tracer?.edgeTransition('edge30');
             
             // Step 3: Enter/move towards transition target `DISTANCE`.
             this.#DISTANCE_enter();
@@ -1820,10 +1831,10 @@ evaluateGuard = null;
         } // end of behavior for BURRITO_COUNT
         
         // BURRITO_COUNT behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Burrito count: \" + burritoCount);"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuOption(\"Burrito count: \" + burritoCount);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Burrito count: \" + burritoCount);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Burrito count: \" + burritoCount);");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuOption(\"Burrito count: \" + burritoCount);");`
+            this.tracer?.logActionCode("MenuOption(\"Burrito count: \" + burritoCount);");
         } // end of behavior for BURRITO_COUNT
     }
     
@@ -1842,13 +1853,13 @@ evaluateGuard = null;
     #BURRITO_COUNT_down()
     {
         // BURRITO_COUNT behavior
-        // uml: DOWN / { this.tracer?.edgeTransition("edge31"); } TransitionTo(SELF_DESTRUCT_OPTION)
+        // uml: DOWN / { this.tracer?.edgeTransition('edge31'); } TransitionTo(SELF_DESTRUCT_OPTION)
         {
             // Step 1: Exit states until we reach `SYSTEM_INFO_MENU` state (Least Common Ancestor for transition).
             this.#BURRITO_COUNT_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge31");`.
-            this.tracer?.edgeTransition("edge31");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge31');`.
+            this.tracer?.edgeTransition('edge31');
             
             // Step 3: Enter/move towards transition target `SELF_DESTRUCT_OPTION`.
             this.#SELF_DESTRUCT_OPTION_enter();
@@ -1863,13 +1874,13 @@ evaluateGuard = null;
     #BURRITO_COUNT_up()
     {
         // BURRITO_COUNT behavior
-        // uml: UP / { this.tracer?.edgeTransition("edge32"); } TransitionTo(DISTANCE)
+        // uml: UP / { this.tracer?.edgeTransition('edge32'); } TransitionTo(DISTANCE)
         {
             // Step 1: Exit states until we reach `SYSTEM_INFO_MENU` state (Least Common Ancestor for transition).
             this.#BURRITO_COUNT_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge32");`.
-            this.tracer?.edgeTransition("edge32");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge32');`.
+            this.tracer?.edgeTransition('edge32');
             
             // Step 3: Enter/move towards transition target `DISTANCE`.
             this.#DISTANCE_enter();
@@ -1898,10 +1909,10 @@ evaluateGuard = null;
         } // end of behavior for DISTANCE
         
         // DISTANCE behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Distance to Tau Ceti: \" + distance); "); }
+        // uml: enter / { this.tracer?.logActionCode("MenuOption(\"Distance to Tau Ceti: \" + distance); "); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Distance to Tau Ceti: \" + distance); ");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Distance to Tau Ceti: \" + distance); ");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuOption(\"Distance to Tau Ceti: \" + distance); ");`
+            this.tracer?.logActionCode("MenuOption(\"Distance to Tau Ceti: \" + distance); ");
         } // end of behavior for DISTANCE
     }
     
@@ -1920,13 +1931,13 @@ evaluateGuard = null;
     #DISTANCE_down()
     {
         // DISTANCE behavior
-        // uml: DOWN / { this.tracer?.edgeTransition("edge33"); } TransitionTo(BURRITO_COUNT)
+        // uml: DOWN / { this.tracer?.edgeTransition('edge33'); } TransitionTo(BURRITO_COUNT)
         {
             // Step 1: Exit states until we reach `SYSTEM_INFO_MENU` state (Least Common Ancestor for transition).
             this.#DISTANCE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge33");`.
-            this.tracer?.edgeTransition("edge33");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge33');`.
+            this.tracer?.edgeTransition('edge33');
             
             // Step 3: Enter/move towards transition target `BURRITO_COUNT`.
             this.#BURRITO_COUNT_enter();
@@ -1943,12 +1954,12 @@ evaluateGuard = null;
         let consume_event = false;
         
         // DISTANCE behavior
-        // uml: (UP, PG_UP) / { this.tracer?.log("⚡ FSM would execute action: " + "Beep();"); }
+        // uml: (UP, PG_UP) / { this.tracer?.logActionCode("Beep();"); }
         {
             // Consume event `pg_up`.
             consume_event = true;
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "Beep();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "Beep();");
+            // Step 1: execute action `this.tracer?.logActionCode("Beep();");`
+            this.tracer?.logActionCode("Beep();");
         } // end of behavior for DISTANCE
         
         // Check if event has been consumed before calling ancestor handler.
@@ -1961,10 +1972,10 @@ evaluateGuard = null;
     #DISTANCE_up()
     {
         // DISTANCE behavior
-        // uml: (UP, PG_UP) / { this.tracer?.log("⚡ FSM would execute action: " + "Beep();"); }
+        // uml: (UP, PG_UP) / { this.tracer?.logActionCode("Beep();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "Beep();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "Beep();");
+            // Step 1: execute action `this.tracer?.logActionCode("Beep();");`
+            this.tracer?.logActionCode("Beep();");
         } // end of behavior for DISTANCE
         
         // No ancestor handles this event.
@@ -1987,10 +1998,10 @@ evaluateGuard = null;
         } // end of behavior for SELF_DESTRUCT
         
         // SELF_DESTRUCT behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "StartSelfDestructTimer();"); }
+        // uml: enter / { this.tracer?.logActionCode("StartSelfDestructTimer();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "StartSelfDestructTimer();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "StartSelfDestructTimer();");
+            // Step 1: execute action `this.tracer?.logActionCode("StartSelfDestructTimer();");`
+            this.tracer?.logActionCode("StartSelfDestructTimer();");
         } // end of behavior for SELF_DESTRUCT
     }
     
@@ -2011,12 +2022,12 @@ evaluateGuard = null;
         let consume_event = false;
         
         // SELF_DESTRUCT behavior
-        // uml: LEFT / { this.tracer?.log("⚡ FSM would execute action: " + "Beep();"); }
+        // uml: LEFT / { this.tracer?.logActionCode("Beep();"); }
         {
             // Consume event `left`.
             consume_event = true;
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "Beep();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "Beep();");
+            // Step 1: execute action `this.tracer?.logActionCode("Beep();");`
+            this.tracer?.logActionCode("Beep();");
         } // end of behavior for SELF_DESTRUCT
         
         // Check if event has been consumed before calling ancestor handler.
@@ -2029,12 +2040,12 @@ evaluateGuard = null;
     #SELF_DESTRUCT_InitialState_transition()
     {
         // SELF_DESTRUCT.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition("edge39"); } TransitionTo(SD_1)
+        // uml: / { this.tracer?.edgeTransition('edge39'); } TransitionTo(SD_1)
         {
             // Step 1: Exit states until we reach `SELF_DESTRUCT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge39");`.
-            this.tracer?.edgeTransition("edge39");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge39');`.
+            this.tracer?.edgeTransition('edge39');
             
             // Step 3: Enter/move towards transition target `SD_1`.
             this.#SD_1_enter();
@@ -2061,24 +2072,24 @@ evaluateGuard = null;
         } // end of behavior for SD_1
         
         // SD_1 behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "Beep();"); }
+        // uml: enter / { this.tracer?.logActionCode("Beep();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "Beep();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "Beep();");
+            // Step 1: execute action `this.tracer?.logActionCode("Beep();");`
+            this.tracer?.logActionCode("Beep();");
         } // end of behavior for SD_1
         
         // SD_1 behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "t1.Restart();"); }
+        // uml: enter / { this.tracer?.logActionCode("t1.Restart();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "t1.Restart();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "t1.Restart();");
+            // Step 1: execute action `this.tracer?.logActionCode("t1.Restart();");`
+            this.tracer?.logActionCode("t1.Restart();");
         } // end of behavior for SD_1
         
         // SD_1 behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader($\"SELF DESTRUCT IN \" + SelfDestructSeconds);"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuHeader($\"SELF DESTRUCT IN \" + SelfDestructSeconds);"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader($\"SELF DESTRUCT IN \" + SelfDestructSeconds);");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader($\"SELF DESTRUCT IN \" + SelfDestructSeconds);");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuHeader($\"SELF DESTRUCT IN \" + SelfDestructSeconds);");`
+            this.tracer?.logActionCode("MenuHeader($\"SELF DESTRUCT IN \" + SelfDestructSeconds);");
         } // end of behavior for SD_1
     }
     
@@ -2097,22 +2108,22 @@ evaluateGuard = null;
     #SD_1_do()
     {
         // SD_1 behavior
-        // uml: DO [this.tracer?.log("🛡️ User evaluating guard: " + "SelfDestructSeconds <= 0") || this.evaluateGuard("SD_1","DO [SelfDestructSeconds <= 0] / { SelfDestruct(); }")] / { this.tracer?.log("⚡ FSM would execute action: " + "SelfDestruct();"); }
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "SelfDestructSeconds <= 0") || this.evaluateGuard("SD_1","DO [SelfDestructSeconds <= 0] / { SelfDestruct(); }"))
+        // uml: DO [this.tracer?.logGuardCodeEvaluation("SelfDestructSeconds <= 0") || this.evaluateGuard('SD_1', "DO [SelfDestructSeconds <= 0] / { SelfDestruct(); }")] / { this.tracer?.logActionCode("SelfDestruct();"); }
+        if (this.tracer?.logGuardCodeEvaluation("SelfDestructSeconds <= 0") || this.evaluateGuard('SD_1', "DO [SelfDestructSeconds <= 0] / { SelfDestruct(); }"))
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "SelfDestruct();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "SelfDestruct();");
+            // Step 1: execute action `this.tracer?.logActionCode("SelfDestruct();");`
+            this.tracer?.logActionCode("SelfDestruct();");
         } // end of behavior for SD_1
         
         // SD_1 behavior
-        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1.Elapsed.Seconds >= 1") || this.evaluateGuard("SD_1","do [t1.Elapsed.Seconds >= 1] TransitionTo(SD_1)")] / { this.tracer?.edgeTransition("edge38"); } TransitionTo(SD_1)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1.Elapsed.Seconds >= 1") || this.evaluateGuard("SD_1","do [t1.Elapsed.Seconds >= 1] TransitionTo(SD_1)"))
+        // uml: do [this.tracer?.logGuardCodeEvaluation("t1.Elapsed.Seconds >= 1") || this.evaluateGuard('SD_1', "do [t1.Elapsed.Seconds >= 1] TransitionTo(SD_1)")] / { this.tracer?.edgeTransition('edge38'); } TransitionTo(SD_1)
+        if (this.tracer?.logGuardCodeEvaluation("t1.Elapsed.Seconds >= 1") || this.evaluateGuard('SD_1', "do [t1.Elapsed.Seconds >= 1] TransitionTo(SD_1)"))
         {
             // Step 1: Exit states until we reach `SELF_DESTRUCT` state (Least Common Ancestor for transition).
             this.#SD_1_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge38");`.
-            this.tracer?.edgeTransition("edge38");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge38');`.
+            this.tracer?.edgeTransition('edge38');
             
             // Step 3: Enter/move towards transition target `SD_1`.
             this.#SD_1_enter();
@@ -2141,10 +2152,10 @@ evaluateGuard = null;
         } // end of behavior for SELF_DESTRUCT_OPTION
         
         // SELF_DESTRUCT_OPTION behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "count = 0;\nMenuOption(\"Self Destruct?\");"); }
+        // uml: enter / { this.tracer?.logActionCode("count = 0;\nMenuOption(\"Self Destruct?\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "count = 0;\nMenuOption(\"Self Destruct?\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "count = 0;\nMenuOption(\"Self Destruct?\");");
+            // Step 1: execute action `this.tracer?.logActionCode("count = 0;\nMenuOption(\"Self Destruct?\");");`
+            this.tracer?.logActionCode("count = 0;\nMenuOption(\"Self Destruct?\");");
         } // end of behavior for SELF_DESTRUCT_OPTION
     }
     
@@ -2163,10 +2174,10 @@ evaluateGuard = null;
     #SELF_DESTRUCT_OPTION_down()
     {
         // SELF_DESTRUCT_OPTION behavior
-        // uml: (DOWN, PG_DOWN) / { this.tracer?.log("⚡ FSM would execute action: " + "Beep();"); }
+        // uml: (DOWN, PG_DOWN) / { this.tracer?.logActionCode("Beep();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "Beep();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "Beep();");
+            // Step 1: execute action `this.tracer?.logActionCode("Beep();");`
+            this.tracer?.logActionCode("Beep();");
         } // end of behavior for SELF_DESTRUCT_OPTION
         
         // No ancestor handles this event.
@@ -2177,12 +2188,12 @@ evaluateGuard = null;
         let consume_event = false;
         
         // SELF_DESTRUCT_OPTION behavior
-        // uml: (DOWN, PG_DOWN) / { this.tracer?.log("⚡ FSM would execute action: " + "Beep();"); }
+        // uml: (DOWN, PG_DOWN) / { this.tracer?.logActionCode("Beep();"); }
         {
             // Consume event `pg_down`.
             consume_event = true;
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "Beep();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "Beep();");
+            // Step 1: execute action `this.tracer?.logActionCode("Beep();");`
+            this.tracer?.logActionCode("Beep();");
         } // end of behavior for SELF_DESTRUCT_OPTION
         
         // Check if event has been consumed before calling ancestor handler.
@@ -2195,21 +2206,21 @@ evaluateGuard = null;
     #SELF_DESTRUCT_OPTION_right()
     {
         // SELF_DESTRUCT_OPTION behavior
-        // uml: 1. RIGHT / { this.tracer?.log("⚡ FSM would execute action: " + "count++; Beep();"); }
+        // uml: 1. RIGHT / { this.tracer?.logActionCode("count++; Beep();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "count++; Beep();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "count++; Beep();");
+            // Step 1: execute action `this.tracer?.logActionCode("count++; Beep();");`
+            this.tracer?.logActionCode("count++; Beep();");
         } // end of behavior for SELF_DESTRUCT_OPTION
         
         // SELF_DESTRUCT_OPTION behavior
-        // uml: RIGHT [this.tracer?.log("🛡️ User evaluating guard: " + "count >= 5") || this.evaluateGuard("SELF_DESTRUCT_OPTION","RIGHT [count >= 5] TransitionTo(SELF_DESTRUCT)")] / { this.tracer?.edgeTransition("edge35"); } TransitionTo(SELF_DESTRUCT)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "count >= 5") || this.evaluateGuard("SELF_DESTRUCT_OPTION","RIGHT [count >= 5] TransitionTo(SELF_DESTRUCT)"))
+        // uml: RIGHT [this.tracer?.logGuardCodeEvaluation("count >= 5") || this.evaluateGuard('SELF_DESTRUCT_OPTION', "RIGHT [count >= 5] TransitionTo(SELF_DESTRUCT)")] / { this.tracer?.edgeTransition('edge35'); } TransitionTo(SELF_DESTRUCT)
+        if (this.tracer?.logGuardCodeEvaluation("count >= 5") || this.evaluateGuard('SELF_DESTRUCT_OPTION', "RIGHT [count >= 5] TransitionTo(SELF_DESTRUCT)"))
         {
             // Step 1: Exit states until we reach `SYSTEM_INFO_MENU` state (Least Common Ancestor for transition).
             this.#SELF_DESTRUCT_OPTION_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge35");`.
-            this.tracer?.edgeTransition("edge35");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge35');`.
+            this.tracer?.edgeTransition('edge35');
             
             // Step 3: Enter/move towards transition target `SELF_DESTRUCT`.
             this.#SELF_DESTRUCT_enter();
@@ -2225,13 +2236,13 @@ evaluateGuard = null;
     #SELF_DESTRUCT_OPTION_up()
     {
         // SELF_DESTRUCT_OPTION behavior
-        // uml: UP / { this.tracer?.edgeTransition("edge34"); } TransitionTo(BURRITO_COUNT)
+        // uml: UP / { this.tracer?.edgeTransition('edge34'); } TransitionTo(BURRITO_COUNT)
         {
             // Step 1: Exit states until we reach `SYSTEM_INFO_MENU` state (Least Common Ancestor for transition).
             this.#SELF_DESTRUCT_OPTION_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge34");`.
-            this.tracer?.edgeTransition("edge34");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge34');`.
+            this.tracer?.edgeTransition('edge34');
             
             // Step 3: Enter/move towards transition target `BURRITO_COUNT`.
             this.#BURRITO_COUNT_enter();
@@ -2260,10 +2271,10 @@ evaluateGuard = null;
         } // end of behavior for MAIN_MENU_INNER
         
         // MAIN_MENU_INNER behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Main Menu\");"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuHeader(\"Main Menu\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Main Menu\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"Main Menu\");");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuHeader(\"Main Menu\");");`
+            this.tracer?.logActionCode("MenuHeader(\"Main Menu\");");
         } // end of behavior for MAIN_MENU_INNER
     }
     
@@ -2282,13 +2293,13 @@ evaluateGuard = null;
     #MAIN_MENU_INNER_pg_down()
     {
         // MAIN_MENU_INNER behavior
-        // uml: PG_DOWN / { this.tracer?.edgeTransition("edge3"); } TransitionTo(SYSTEM_INFO)
+        // uml: PG_DOWN / { this.tracer?.edgeTransition('edge3'); } TransitionTo(SYSTEM_INFO)
         {
             // Step 1: Exit states until we reach `MAIN_MENU_INNER` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.MAIN_MENU_INNER);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge3");`.
-            this.tracer?.edgeTransition("edge3");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
+            this.tracer?.edgeTransition('edge3');
             
             // Step 3: Enter/move towards transition target `SYSTEM_INFO`.
             this.#SYSTEM_INFO_enter();
@@ -2303,13 +2314,13 @@ evaluateGuard = null;
     #MAIN_MENU_INNER_pg_up()
     {
         // MAIN_MENU_INNER behavior
-        // uml: PG_UP / { this.tracer?.edgeTransition("edge4"); } TransitionTo(FOOD)
+        // uml: PG_UP / { this.tracer?.edgeTransition('edge4'); } TransitionTo(FOOD)
         {
             // Step 1: Exit states until we reach `MAIN_MENU_INNER` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.MAIN_MENU_INNER);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge4");`.
-            this.tracer?.edgeTransition("edge4");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
+            this.tracer?.edgeTransition('edge4');
             
             // Step 3: Enter/move towards transition target `FOOD`.
             this.#FOOD_enter();
@@ -2324,12 +2335,12 @@ evaluateGuard = null;
     #MAIN_MENU_INNER_InitialState_transition()
     {
         // MAIN_MENU_INNER.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition("edge5"); } TransitionTo(FOOD)
+        // uml: / { this.tracer?.edgeTransition('edge5'); } TransitionTo(FOOD)
         {
             // Step 1: Exit states until we reach `MAIN_MENU_INNER` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge5");`.
-            this.tracer?.edgeTransition("edge5");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge5');`.
+            this.tracer?.edgeTransition('edge5');
             
             // Step 3: Enter/move towards transition target `FOOD`.
             this.#FOOD_enter();
@@ -2356,10 +2367,10 @@ evaluateGuard = null;
         } // end of behavior for DRINK
         
         // DRINK behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Select Drink\");"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuOption(\"Select Drink\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Select Drink\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Select Drink\");");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuOption(\"Select Drink\");");`
+            this.tracer?.logActionCode("MenuOption(\"Select Drink\");");
         } // end of behavior for DRINK
     }
     
@@ -2378,13 +2389,13 @@ evaluateGuard = null;
     #DRINK_down()
     {
         // DRINK behavior
-        // uml: DOWN / { this.tracer?.edgeTransition("edge6"); } TransitionTo(SYSTEM_INFO)
+        // uml: DOWN / { this.tracer?.edgeTransition('edge6'); } TransitionTo(SYSTEM_INFO)
         {
             // Step 1: Exit states until we reach `MAIN_MENU_INNER` state (Least Common Ancestor for transition).
             this.#DRINK_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge6");`.
-            this.tracer?.edgeTransition("edge6");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
+            this.tracer?.edgeTransition('edge6');
             
             // Step 3: Enter/move towards transition target `SYSTEM_INFO`.
             this.#SYSTEM_INFO_enter();
@@ -2399,13 +2410,13 @@ evaluateGuard = null;
     #DRINK_right()
     {
         // DRINK behavior
-        // uml: RIGHT / { this.tracer?.edgeTransition("edge8"); } TransitionTo(DRINK_MENU)
+        // uml: RIGHT / { this.tracer?.edgeTransition('edge8'); } TransitionTo(DRINK_MENU)
         {
             // Step 1: Exit states until we reach `MENU` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge8");`.
-            this.tracer?.edgeTransition("edge8");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge8');`.
+            this.tracer?.edgeTransition('edge8');
             
             // Step 3: Enter/move towards transition target `DRINK_MENU`.
             this.#ESC_CATCHER_1_enter();
@@ -2421,13 +2432,13 @@ evaluateGuard = null;
     #DRINK_up()
     {
         // DRINK behavior
-        // uml: UP / { this.tracer?.edgeTransition("edge7"); } TransitionTo(FOOD)
+        // uml: UP / { this.tracer?.edgeTransition('edge7'); } TransitionTo(FOOD)
         {
             // Step 1: Exit states until we reach `MAIN_MENU_INNER` state (Least Common Ancestor for transition).
             this.#DRINK_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge7");`.
-            this.tracer?.edgeTransition("edge7");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
+            this.tracer?.edgeTransition('edge7');
             
             // Step 3: Enter/move towards transition target `FOOD`.
             this.#FOOD_enter();
@@ -2456,10 +2467,10 @@ evaluateGuard = null;
         } // end of behavior for FOOD
         
         // FOOD behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Select Food\"); "); }
+        // uml: enter / { this.tracer?.logActionCode("MenuOption(\"Select Food\"); "); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Select Food\"); ");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"Select Food\"); ");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuOption(\"Select Food\"); ");`
+            this.tracer?.logActionCode("MenuOption(\"Select Food\"); ");
         } // end of behavior for FOOD
     }
     
@@ -2478,13 +2489,13 @@ evaluateGuard = null;
     #FOOD_down()
     {
         // FOOD behavior
-        // uml: DOWN / { this.tracer?.edgeTransition("edge10"); } TransitionTo(DRINK)
+        // uml: DOWN / { this.tracer?.edgeTransition('edge10'); } TransitionTo(DRINK)
         {
             // Step 1: Exit states until we reach `MAIN_MENU_INNER` state (Least Common Ancestor for transition).
             this.#FOOD_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge10");`.
-            this.tracer?.edgeTransition("edge10");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge10');`.
+            this.tracer?.edgeTransition('edge10');
             
             // Step 3: Enter/move towards transition target `DRINK`.
             this.#DRINK_enter();
@@ -2501,12 +2512,12 @@ evaluateGuard = null;
         let consume_event = false;
         
         // FOOD behavior
-        // uml: (UP, PG_UP) / { this.tracer?.log("⚡ FSM would execute action: " + "Beep();"); }
+        // uml: (UP, PG_UP) / { this.tracer?.logActionCode("Beep();"); }
         {
             // Consume event `pg_up`.
             consume_event = true;
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "Beep();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "Beep();");
+            // Step 1: execute action `this.tracer?.logActionCode("Beep();");`
+            this.tracer?.logActionCode("Beep();");
         } // end of behavior for FOOD
         
         // Check if event has been consumed before calling ancestor handler.
@@ -2519,25 +2530,25 @@ evaluateGuard = null;
     #FOOD_right()
     {
         // FOOD behavior
-        // uml: RIGHT / { this.tracer?.edgeTransition("edge9"); } TransitionTo(FOOD_MENU)
+        // uml: RIGHT / { this.tracer?.edgeTransition('edge9'); } TransitionTo(FOOD_MENU)
         {
             // Step 1: Exit states until we reach `MENU` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge9");`.
-            this.tracer?.edgeTransition("edge9");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
+            this.tracer?.edgeTransition('edge9');
             
             // Step 3: Enter/move towards transition target `FOOD_MENU`.
             this.#ESC_CATCHER_1_enter();
             this.#FOOD_MENU_enter();
             
             // FOOD_MENU.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge19"); } TransitionTo(EAT_BURRITO)
+            // uml: / { this.tracer?.edgeTransition('edge19'); } TransitionTo(EAT_BURRITO)
             {
                 // Step 1: Exit states until we reach `FOOD_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge19");`.
-                this.tracer?.edgeTransition("edge19");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge19');`.
+                this.tracer?.edgeTransition('edge19');
                 
                 // Step 3: Enter/move towards transition target `EAT_BURRITO`.
                 this.#EAT_BURRITO_enter();
@@ -2553,10 +2564,10 @@ evaluateGuard = null;
     #FOOD_up()
     {
         // FOOD behavior
-        // uml: (UP, PG_UP) / { this.tracer?.log("⚡ FSM would execute action: " + "Beep();"); }
+        // uml: (UP, PG_UP) / { this.tracer?.logActionCode("Beep();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "Beep();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "Beep();");
+            // Step 1: execute action `this.tracer?.logActionCode("Beep();");`
+            this.tracer?.logActionCode("Beep();");
         } // end of behavior for FOOD
         
         // No ancestor handles this event.
@@ -2579,10 +2590,10 @@ evaluateGuard = null;
         } // end of behavior for SYSTEM_INFO
         
         // SYSTEM_INFO behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"System Info\");"); }
+        // uml: enter / { this.tracer?.logActionCode("MenuOption(\"System Info\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"System Info\");");`
-            this.tracer?.log("⚡ FSM would execute action: " + "MenuOption(\"System Info\");");
+            // Step 1: execute action `this.tracer?.logActionCode("MenuOption(\"System Info\");");`
+            this.tracer?.logActionCode("MenuOption(\"System Info\");");
         } // end of behavior for SYSTEM_INFO
     }
     
@@ -2601,10 +2612,10 @@ evaluateGuard = null;
     #SYSTEM_INFO_down()
     {
         // SYSTEM_INFO behavior
-        // uml: (DOWN, PG_DOWN) / { this.tracer?.log("⚡ FSM would execute action: " + "Beep();"); }
+        // uml: (DOWN, PG_DOWN) / { this.tracer?.logActionCode("Beep();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "Beep();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "Beep();");
+            // Step 1: execute action `this.tracer?.logActionCode("Beep();");`
+            this.tracer?.logActionCode("Beep();");
         } // end of behavior for SYSTEM_INFO
         
         // No ancestor handles this event.
@@ -2615,12 +2626,12 @@ evaluateGuard = null;
         let consume_event = false;
         
         // SYSTEM_INFO behavior
-        // uml: (DOWN, PG_DOWN) / { this.tracer?.log("⚡ FSM would execute action: " + "Beep();"); }
+        // uml: (DOWN, PG_DOWN) / { this.tracer?.logActionCode("Beep();"); }
         {
             // Consume event `pg_down`.
             consume_event = true;
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "Beep();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "Beep();");
+            // Step 1: execute action `this.tracer?.logActionCode("Beep();");`
+            this.tracer?.logActionCode("Beep();");
         } // end of behavior for SYSTEM_INFO
         
         // Check if event has been consumed before calling ancestor handler.
@@ -2633,25 +2644,25 @@ evaluateGuard = null;
     #SYSTEM_INFO_right()
     {
         // SYSTEM_INFO behavior
-        // uml: RIGHT / { this.tracer?.edgeTransition("edge11"); } TransitionTo(SYSTEM_INFO_MENU)
+        // uml: RIGHT / { this.tracer?.edgeTransition('edge11'); } TransitionTo(SYSTEM_INFO_MENU)
         {
             // Step 1: Exit states until we reach `MENU` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(SpaceControlUiSm.StateId.MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge11");`.
-            this.tracer?.edgeTransition("edge11");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge11');`.
+            this.tracer?.edgeTransition('edge11');
             
             // Step 3: Enter/move towards transition target `SYSTEM_INFO_MENU`.
             this.#ESC_CATCHER_1_enter();
             this.#SYSTEM_INFO_MENU_enter();
             
             // SYSTEM_INFO_MENU.<InitialState> behavior
-            // uml: / { this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"System Info\");");this.tracer?.edgeTransition("edge36"); } TransitionTo(DISTANCE)
+            // uml: / { this.tracer?.logActionCode("MenuHeader(\"System Info\");");this.tracer?.edgeTransition('edge36'); } TransitionTo(DISTANCE)
             {
                 // Step 1: Exit states until we reach `SYSTEM_INFO_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"System Info\");");this.tracer?.edgeTransition("edge36");`.
-                this.tracer?.log("⚡ FSM would execute action: " + "MenuHeader(\"System Info\");");this.tracer?.edgeTransition("edge36");
+                // Step 2: Transition action: `this.tracer?.logActionCode("MenuHeader(\"System Info\");");this.tracer?.edgeTransition('edge36');`.
+                this.tracer?.logActionCode("MenuHeader(\"System Info\");");this.tracer?.edgeTransition('edge36');
                 
                 // Step 3: Enter/move towards transition target `DISTANCE`.
                 this.#DISTANCE_enter();
@@ -2667,13 +2678,13 @@ evaluateGuard = null;
     #SYSTEM_INFO_up()
     {
         // SYSTEM_INFO behavior
-        // uml: UP / { this.tracer?.edgeTransition("edge12"); } TransitionTo(DRINK)
+        // uml: UP / { this.tracer?.edgeTransition('edge12'); } TransitionTo(DRINK)
         {
             // Step 1: Exit states until we reach `MAIN_MENU_INNER` state (Least Common Ancestor for transition).
             this.#SYSTEM_INFO_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge12");`.
-            this.tracer?.edgeTransition("edge12");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge12');`.
+            this.tracer?.edgeTransition('edge12');
             
             // Step 3: Enter/move towards transition target `DRINK`.
             this.#DRINK_enter();
@@ -2702,10 +2713,10 @@ evaluateGuard = null;
         } // end of behavior for SPLASH_SCREEN
         
         // SPLASH_SCREEN behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "ShowSplashScreen();"); }
+        // uml: enter / { this.tracer?.logActionCode("ShowSplashScreen();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "ShowSplashScreen();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "ShowSplashScreen();");
+            // Step 1: execute action `this.tracer?.logActionCode("ShowSplashScreen();");`
+            this.tracer?.logActionCode("ShowSplashScreen();");
         } // end of behavior for SPLASH_SCREEN
     }
     
@@ -2724,24 +2735,24 @@ evaluateGuard = null;
     #SPLASH_SCREEN_right()
     {
         // SPLASH_SCREEN behavior
-        // uml: RIGHT / { this.tracer?.edgeTransition("edge1"); } TransitionTo(MENU)
+        // uml: RIGHT / { this.tracer?.edgeTransition('edge1'); } TransitionTo(MENU)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#SPLASH_SCREEN_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge1");`.
-            this.tracer?.edgeTransition("edge1");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge1');`.
+            this.tracer?.edgeTransition('edge1');
             
             // Step 3: Enter/move towards transition target `MENU`.
             this.#MENU_enter();
             
             // MENU.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge40"); } TransitionTo(MAIN_MENU_INNER)
+            // uml: / { this.tracer?.edgeTransition('edge40'); } TransitionTo(MAIN_MENU_INNER)
             {
                 // Step 1: Exit states until we reach `MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge40");`.
-                this.tracer?.edgeTransition("edge40");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge40');`.
+                this.tracer?.edgeTransition('edge40');
                 
                 // Step 3: Enter/move towards transition target `MAIN_MENU_INNER`.
                 this.#MAIN_MENU_INNER_enter();
@@ -3001,7 +3012,7 @@ evaluateGuard = null;
 
 
         //------------------- drop down functionality start -------------------
-        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownButton = document.getElementById('settings-dropdown-button');
         const dropdownDiv = document.getElementById('myDropdown');
 
         dropdownButton.addEventListener('click', toggleDropdown);
@@ -3136,9 +3147,7 @@ evaluateGuard = null;
         }
 
         // The simulator uses a tracer callback to perform operations such as 
-        // state highlighting and logging. You do not need this functionality
-        // when using SpaceControlUiSm.js in your own applications, although you may
-        // choose to implement a tracer for debugging purposes.
+        // state highlighting and logging.
         sm.tracer = {
             enterState: (mermaidName) => {
                 var e = document.querySelector('g[data-id=' + mermaidName + ']');
@@ -3153,9 +3162,27 @@ evaluateGuard = null;
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
+
+                if (document.getElementById('verboseExit').checked) {
+                    sm.tracer.log('↩️ Exited ' + mermaidName);
+                }
             },
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
+            },
+            logHistoryVarUpdate: (varName, newValue) => {
+                if (document.getElementById('verboseHistory').checked) {
+                    sm.tracer.log(`🕑 HistoryVar(${varName}) = ${newValue}`);
+                }
+            },
+            logHistoryTransition: (description) => {
+                sm.tracer.log(`🕑 History: ${description}.`);
+            },
+            logGuardCodeEvaluation: (guardCode) => {
+                sm.tracer.log(`🛡️ User evaluating guard: ${guardCode}`);
+            },
+            logActionCode: (actionCode) => {
+                sm.tracer.log(`⚡ FSM would execute action: ${actionCode}`);
             },
             log: (message, html=false) => {
                 addHistoryRow(new Date(), message, html);

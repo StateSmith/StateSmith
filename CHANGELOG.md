@@ -31,6 +31,19 @@ Test/interim releases are not documented here.
 
 ---
 
+## [WIP]
+### Changed (minor)
+- Simulator - enabling verbose modes below by default.
+- Simulator - added link to wiki in drop down.
+
+### Added
+- Simulator - verbose mode to show exit behavior.
+  - https://github.com/StateSmith/StateSmith/issues/513
+- Simulator - verbose mode to show history var updating.
+  - https://github.com/StateSmith/StateSmith/issues/323
+
+---
+
 ## [0.19.0]
 ### Contributors
 - @UCSIG

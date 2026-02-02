@@ -295,7 +295,7 @@ public class SimWebGenerator
                 // Note: most history behaviors will not be shown in the mermaid diagram
                 var domId = "edge" + mermaidEdgeTracker.GetEdgeId(b);
                 // NOTE! Avoid single quotes in ss guard/action code until bug fixed: https://github.com/StateSmith/StateSmith/issues/282
-                b.actionCode += $"this.tracer?.edgeTransition(\"{domId}\");";
+                b.actionCode += $"this.tracer?.edgeTransition('{domId}');";
             }
         }
     }
@@ -320,16 +320,17 @@ public class SimWebGenerator
             
             if (historyGilMatch.Success)
             {
-                // TODO https://github.com/StateSmith/StateSmith/issues/323
-                // show history var updating
-                // var historyVarName = historyGilMatch.Groups["varName"].Value;
-                // var storedStateName = historyGilMatch.Groups["storedStateName"].Value;
-                // behavior.actionCode += $"this.tracer?.log('📝 History({historyVarName}) = {storedStateName}');";
+                // https://github.com/StateSmith/StateSmith/issues/323
+                var historyVarName = historyGilMatch.Groups["varName"].Value;
+                var storedStateName = historyGilMatch.Groups["storedStateName"].Value;
+
+                // in this case, we want original action to still execute, so we append logging code.
+                behavior.actionCode += $"this.tracer?.logHistoryVarUpdate('{historyVarName}', '{storedStateName}');";
             }
             else
             {
-                // we don't want to execute the action, just log it.
-                behavior.actionCode = $"this.tracer?.log(\"⚡ FSM would execute action: \" + {FsmCodeToJsString(behavior.actionCode)});";
+                // we don't want to execute a user's custom action, just log it.
+                behavior.actionCode = $"this.tracer?.logActionCode({FsmCodeToJsString(behavior.actionCode)});";
             }
         }
 
@@ -338,20 +339,22 @@ public class SimWebGenerator
             if (behavior.HasGuardCode())
             {
                 // we want the history vertex to work as is without prompting the user to evaluate those guards.
-                behavior.actionCode += $"this.tracer?.log(\"🕑 History: transitioning to {Vertex.Describe(behavior.TransitionTarget)}.\");";
+                behavior.actionCode += $"this.tracer?.logHistoryTransition('transitioning to {Vertex.Describe(behavior.TransitionTarget)}');";
             }
             else
             {
-                behavior.actionCode += $"this.tracer?.log(\"🕑 History: default transition.\");";
+                behavior.actionCode += $"this.tracer?.logHistoryTransition('default transition');";
             }
         }
         else
         {
+            // this is not a history vertex
+
             if (behavior.HasGuardCode())
             {
-                var logCode = $"this.tracer?.log(\"🛡️ User evaluating guard: \" + {FsmCodeToJsString(behavior.guardCode)})";
+                var logCode = $"this.tracer?.logGuardCodeEvaluation(" + FsmCodeToJsString(behavior.guardCode) + ")"; // must not end with semicolon. See below.
                 var originalBehaviorUml = behaviorTracker.GetOriginalUmlOrCurrent(behavior);
-                var confirmCode = $"this.evaluateGuard(\"{Vertex.Describe(behavior.OwningVertex)}\",{FsmCodeToJsString(originalBehaviorUml)})";
+                var confirmCode = $"this.evaluateGuard('{Vertex.Describe(behavior.OwningVertex)}', {FsmCodeToJsString(originalBehaviorUml)})";
                 behavior.guardCode = $"{logCode} || {confirmCode}";
                 // NOTE! logCode doesn't return a value, so the confirm code will always be evaluated.
             }
