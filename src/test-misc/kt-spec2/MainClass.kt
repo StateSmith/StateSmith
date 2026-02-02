@@ -17,22 +17,22 @@ class MainClass {
                 System.out.print("Behavior skipped.")
             }
 
-            System.out.println()
+            println()
 
             return guard;
         }
 
         fun printDivider() {
-            System.out.println("===================================================")
+            println("===================================================")
         }
 
         fun printStart() {
-            System.out.println("Start Statemachine");
+            println("Start Statemachine");
             printDivider()
         }
 
         fun printDispatchEventName(eventName: String) {
-            System.out.println("Dispatch event " + eventName);
+            println("Dispatch event " + eventName);
             printDivider()
         }
 
@@ -41,22 +41,22 @@ class MainClass {
 
             printStart()
             sm.start()
-            System.out.println()
+            println()
 
-            for (arg in args) {
+            for (arg in args.drop(1)) {
                 try {
                     val eventId = Spec2Sm.EventId.valueOf(arg.uppercase())
                     printDispatchEventName(arg)
                     sm.dispatchEvent(eventId)
-                    System.out.println()
+                    println()
                 } catch (e: IllegalArgumentException) {
                     throw IllegalArgumentException("bad arg: `" + arg + "`")
                 }
             }
         }
-
-        fun main(args: Array<String>) {
-            actualMain(args)
-        }
     }
+}
+
+fun main(args: Array<String>) {
+    MainClass.actualMain(args)
 }

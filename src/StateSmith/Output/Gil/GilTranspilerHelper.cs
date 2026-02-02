@@ -234,13 +234,16 @@ public class GilTranspilerHelper
 
         return false;
     }
+    public IEnumerable<IFieldSymbol> GetEnumMembers(ITypeSymbol enumType)
+    {
+        return enumType.GetMembers()
+            .Where(m => m.Kind == SymbolKind.Field && !m.IsImplicitlyDeclared)
+            .Cast<IFieldSymbol>();
+    }
 
     public IFieldSymbol GetDefaultEnumMember(ITypeSymbol enumType)
     {
-        var members = enumType.GetMembers()
-            .Where(m => m.Kind == SymbolKind.Field && !m.IsImplicitlyDeclared)
-            .Cast<IFieldSymbol>()
-            .ToList();
+        var members = GetEnumMembers(enumType).ToList();
         var parameter = (enumType as INamedTypeSymbol)!.TypeParameters;
         return members.First(m => m.HasConstantValue && m.ConstantValue is int intValue && intValue == 0) ?? members.First();
     }

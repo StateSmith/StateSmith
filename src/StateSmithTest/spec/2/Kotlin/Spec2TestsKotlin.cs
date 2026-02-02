@@ -14,7 +14,7 @@ public class Spec2TestsKotlin : Spec2Tests, IClassFixture<SharedCompilationFixtu
         {
             WorkingDirectory = SharedCompilationFixture.OutputDirectory,
             ProgramPath = "java",
-            Args = $"MainClass {testEvents}"
+            Args = $"-jar test.jar MainClassKt {testEvents}"
         };
         process.Run(SimpleProcess.DefaultLongTimeoutMs);
 

@@ -382,8 +382,13 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
         foreach (var section in node.Sections) {
             Visit(section);
         }
+        
+        var typeInfo = model.GetTypeInfo(node.Expression);
+        var memberNames = typeInfo.Type == null || typeInfo.Type.TypeKind != TypeKind.Enum ? null : transpilerHelper.GetEnumMembers(typeInfo.Type).Select(m => $"{typeInfo.Type.Name}.{m.Name}").ToHashSet();
+        var labelNames = node.Sections.SelectMany(s => s.Labels).OfType<CaseSwitchLabelSyntax>().Select(l => l.Value.ToFullString()).ToHashSet();
+        var isDefaultUnnecessary = memberNames != null && labelNames.IsSupersetOf(memberNames);
 
-        if (!node.Sections.SelectMany(s => s.Labels).Any(l => l.Keyword.RawKind == (int)SyntaxKind.DefaultKeyword))
+        if (!node.Sections.SelectMany(s => s.Labels).Any(l => l.Keyword.RawKind == (int)SyntaxKind.DefaultKeyword) && !isDefaultUnnecessary)
         {
             sb.Append(indent);
             sb.AppendLine("else -> {}");
@@ -393,11 +398,27 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
     }
 
     public override void VisitSwitchSection(SwitchSectionSyntax node)
-    {
-        string indent = StringUtils.FindLastIndent(sb);
-        Visit(node.Labels[0]);
-        foreach (var label in node.Labels.Skip(1))
+    {        
+        var switchStatement = (SwitchStatementSyntax) node.Parent;
+        var typeInfo = model.GetTypeInfo(switchStatement.Expression);
+        var memberNames = typeInfo.Type == null || typeInfo.Type.TypeKind != TypeKind.Enum ? null : transpilerHelper.GetEnumMembers(typeInfo.Type).Select(m => $"{typeInfo.Type.Name}.{m.Name}").ToHashSet();
+        var labelNames = switchStatement.Sections.SelectMany(s => s.Labels).OfType<CaseSwitchLabelSyntax>().Select(l => l.Value.ToFullString()).ToHashSet();
+        var isDefaultUnnecessary = memberNames != null && labelNames.IsSupersetOf(memberNames);
+
+        var labels = isDefaultUnnecessary ? node.Labels.Where(l => l is not DefaultSwitchLabelSyntax).ToList() : node.Labels.ToList();
+
+        if (labels.Count == 0)
         {
+            return;
+        }
+
+        string indent = StringUtils.FindLastIndent(sb);
+        Visit(labels[0]);
+        foreach (var label in labels.Skip(1))
+        {
+            if (isDefaultUnnecessary && label is DefaultSwitchLabelSyntax)
+                continue;
+
             sb.Append(", ");
             Visit(label);
         }

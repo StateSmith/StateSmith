@@ -31,7 +31,7 @@ public class SharedCompilationFixture
         {
             WorkingDirectory = OutputDirectory,
             ProgramPath = "kotlinc.bat",
-            Args = " MainClass.kt Spec2SmBase.kt Spec2Sm.kt"
+            Args = " MainClass.kt Spec2SmBase.kt Spec2Sm.kt -include-runtime -d test.jar"
         };
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
     }
@@ -39,6 +39,7 @@ public class SharedCompilationFixture
     public class MyGlueFile : IRenderConfigKotlin
     {
         string IRenderConfig.FileTop => @"
+            @file:Suppress(""ALL"")
             // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated file
             ";
 
@@ -54,7 +55,9 @@ public class SharedCompilationFixture
 
         public class Expansions : Spec2GenericVarExpansions
         {
-            public override string trace(string message) => $"MainClass.trace({message})"; // this isn't actually needed, but helps ensure expansions are working
+            public override string trace(string message) => $"MainClass.trace({message.Replace("$", "\\$")})";
+
+            public override string trace_guard(string message, string guardCode) => $"trace_guard({message.Replace("$", "\\$")}, {guardCode})";
         }
     }
 }
