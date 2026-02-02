@@ -43,8 +43,6 @@ public class SimWebGenerator
     /// </summary>
     Dictionary<string, HashSet<string>> stateToAvailableEvents = new(StringComparer.OrdinalIgnoreCase);
 
-    BehaviorTracker behaviorTracker = new();
-
     SmRunner runner;
 
     /// <summary>
@@ -275,10 +273,12 @@ public class SimWebGenerator
     {
         sm.VisitRecursively((Vertex vertex) =>
         {
+            BehaviorTracker behaviorTracker = new();
+
             foreach (var behavior in vertex.Behaviors)
             {
                 behaviorTracker.RecordOriginalBehavior(behavior);
-                V1ModBehaviorsForSimulation(vertex, behavior);
+                V1ModBehaviorsForSimulation(vertex, behavior, behaviorTracker);
             }
 
             V1AddEntryExitTracing(sm, vertex);
@@ -312,7 +312,7 @@ public class SimWebGenerator
         }
     }
 
-    void V1ModBehaviorsForSimulation(Vertex vertex, Behavior behavior)
+    void V1ModBehaviorsForSimulation(Vertex vertex, Behavior behavior, BehaviorTracker behaviorTracker)
     {
         if (behavior.HasActionCode())
         {
