@@ -15,6 +15,7 @@ public class GilTranspilerHelper
     private readonly CSharpSyntaxWalker transpilerWalker;
     public readonly SemanticModel model;
     public readonly CompilationUnitSyntax root;
+    public Func<string, string>? EchoStringTransformer { get; set; }
 
     public GilTranspilerHelper(CSharpSyntaxWalker transpilerWalker, SemanticModel model, CompilationUnitSyntax? root = null)
     {
@@ -103,11 +104,11 @@ public class GilTranspilerHelper
     /// Some gil expressions need to be handled specially to avoid outputting additional semicolons.
     /// </summary>
     /// <param name="expressionNode"></param>
-    /// <param name="sb"></param>
+    /// <param name="text">The raw code to emit if handled.</param>
     /// <returns></returns>
-    public bool HandleGilSpecialExpressionStatements(ExpressionStatementSyntax expressionNode, StringBuilder sb)
+    public bool TryGetGilSpecialExpressionText(ExpressionStatementSyntax expressionNode, out string text)
     {
-        bool gilEmitMethodFoundAndHandled = false;
+        text = string.Empty;
 
         if (expressionNode.Expression is InvocationExpressionSyntax ies)
         {
@@ -115,15 +116,27 @@ public class GilTranspilerHelper
             {
                 if (ins.Identifier.Text == GilCreationHelper.GilFuncName_EchoStringStatement)
                 {
-                    this.transpilerWalker.VisitLeadingTrivia(ies.GetFirstToken());
-                    gilEmitMethodFoundAndHandled = true;
-                    ProcessGilEchoInvocations(sb, ies);
-                    this.transpilerWalker.VisitTrailingTrivia(expressionNode.GetLastToken());
+                    text = GetGilEchoInvocationText(ies);
+                    return true;
                 }
             }
         }
 
-        return gilEmitMethodFoundAndHandled;
+        return false;
+    }
+
+    [Obsolete("Use TryGetGilSpecialExpressionText instead.")]
+    public bool HandleGilSpecialExpressionStatements(ExpressionStatementSyntax expressionNode, StringBuilder sb)
+    {
+        if (TryGetGilSpecialExpressionText(expressionNode, out string text))
+        {
+            this.transpilerWalker.VisitLeadingTrivia(expressionNode.GetFirstToken());
+            sb.Append(text);
+            expressionNode.GetLastToken().TrailingTrivia.VisitWith(this.transpilerWalker);
+            return true;
+        }
+
+        return false;
     }
 
     public bool HandleGilSpecialInvocations(InvocationExpressionSyntax node, StringBuilder sb)
@@ -135,7 +148,7 @@ public class GilTranspilerHelper
             if (ins.Identifier.Text == GilCreationHelper.GilFuncName_EchoStringBool)
             {
                 gilEmitMethodFoundAndHandled = true;
-                ProcessGilEchoInvocations(sb, node);
+                sb.Append(GetGilEchoInvocationText(node));
             }
             else if (ins.Identifier.Text == GilCreationHelper.GilFuncName_VarArgsToBool)
             {
@@ -153,14 +166,17 @@ public class GilTranspilerHelper
     /// <summary>
     /// The code to echo is wrapped in quotes (to make it a string) and then passed to this function.
     /// </summary>
-    /// <param name="sb"></param>
     /// <param name="ies"></param>
-    private static void ProcessGilEchoInvocations(StringBuilder sb, InvocationExpressionSyntax ies)
+    private string GetGilEchoInvocationText(InvocationExpressionSyntax ies)
     {
         ArgumentSyntax argumentSyntax = ies.ArgumentList.Arguments.Single();
         string escapedString = argumentSyntax.ToFullString();
         string unescaped = UnescapeQuotedString(escapedString);
-        sb.Append(unescaped);
+        if (EchoStringTransformer != null)
+        {
+            unescaped = EchoStringTransformer(unescaped);
+        }
+        return unescaped;
     }
 
     private static string UnescapeQuotedString(string escapedString)

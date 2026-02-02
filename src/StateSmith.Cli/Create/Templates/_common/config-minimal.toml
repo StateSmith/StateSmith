@@ -54,6 +54,24 @@ CFileIncludes = """
 
 
 
+//!!<filter:Berry>
+AutoExpandedVars = """
+    self.count = 0  # this var can be referenced in diagram
+    """
+
+[RenderConfig.Berry]
+Imports = """
+    import string
+    """
+Extends = "MyUserBaseClass"
+ClassCode = """
+    # Custom Berry code injected into the generated class
+    """
+
+//!!</filter>
+
+
+
 
 
 //!!<filter:CSharp>
@@ -162,3 +180,4 @@ transpilerId = "JavaScript"  //!!<line-filter:JavaScript>
 transpilerId = "TypeScript"  //!!<line-filter:TypeScript>
 transpilerId = "Java"  //!!<line-filter:Java>
 transpilerId = "Python"  //!!<line-filter:Python>
+transpilerId = "Berry"  //!!<line-filter:Berry>

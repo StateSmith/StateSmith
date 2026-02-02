@@ -8,6 +8,15 @@ StateSmith is a cross platform, free/open source tool for generating state machi
 
 
 
+## Supported Output Languages
+- C99 (default)
+- C++
+- C#
+- JavaScript / TypeScript
+- Java
+- Python
+- Berry *(preview)*
+
 <br>
 
 # Features and Interactive Examples 🌟

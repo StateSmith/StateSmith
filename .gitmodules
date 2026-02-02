@@ -1,0 +1,6 @@
+[submodule "berry"]
+	path = berry
+	url = https://github.com/berry-lang/berry.git
+[submodule "examples/StateSmith-examples"]
+	path = examples/StateSmith-examples
+	url = https://github.com/StateSmith/StateSmith-examples
