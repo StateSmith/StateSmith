@@ -518,8 +518,13 @@ MENU.(InitialState) --> MAIN_MENU_INNER
                 <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents'>
                 Hide ignored event buttons
               </label>
+              <label class='dropdown-item' for='verboseEnter'
+                title='Every time a state is entered, it will be logged below in the event log.'>
+                <input type='checkbox' id='verboseEnter' name='verboseEnter' checked>
+                Log State Entry
+              </label>
               <label class='dropdown-item' for='verboseExit'
-                title='Log state exits'>
+                title='Every time a state is exited, it will be logged below in the event log.'>
                 <input type='checkbox' id='verboseExit' name='verboseExit' checked>
                 Log State Exit
               </label>
@@ -3164,7 +3169,10 @@ evaluateGuard = null;
                   e.classList.add('active');
                   panOnScreen(e);
                 }
-                sm.tracer.log('➡️ Entered ' + mermaidName);
+                
+                if (document.getElementById('verboseEnter').checked) {
+                    sm.tracer.log('➡️ Entered ' + mermaidName);
+                }
                 
                 // Update event button states
                 updateEventButtonStates(mermaidName);

@@ -37,6 +37,8 @@ Test/interim releases are not documented here.
 - Simulator - added link to wiki in drop down.
 
 ### Added
+- Simulator - verbose mode to show enter behavior.
+  - https://github.com/StateSmith/StateSmith/issues/515
 - Simulator - verbose mode to show exit behavior.
   - https://github.com/StateSmith/StateSmith/issues/513
 - Simulator - verbose mode to show history var updating.
