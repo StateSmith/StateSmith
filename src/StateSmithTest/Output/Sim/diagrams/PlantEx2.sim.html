@@ -170,14 +170,14 @@
         cursor: pointer;
       }
 
-      button.event-button:disabled {
+      button.event-button.hasNoEventHandler {
         opacity: 0.4;
         background-color: #f0f0f0;
         color: #999;
         cursor: not-allowed;
       }
 
-      button.event-button:not(:disabled):hover {
+      button.event-button:not(.hasNoEventHandler):hover {
         background-color: #0056b3;
       }
 
@@ -1168,10 +1168,17 @@ evaluateGuard = null;
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
                 if (button) {
-                    const isAvailable = availableEvents.includes(eventName);
-                    
-                    // Only set disabled property, CSS :disabled pseudo-class handles styling
-                    button.disabled = !isAvailable;
+                    const hasEventHandler = availableEvents.includes(eventName);
+
+                    button.title = `Dispatch event '${eventName}' to the state machine.`;
+
+                    if (hasEventHandler) {
+                        button.classList.remove('hasNoEventHandler');
+                    } else {
+                        button.classList.add('hasNoEventHandler');
+                        button.title += '\nThere is no handler for this event in the current state.\nDispatching is valid, but will have no effect on the state machine.';
+                    }
+
                 }
             });
             
@@ -1186,8 +1193,8 @@ evaluateGuard = null;
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
                 if (button) {
-                    // Toggle hidden class based on checkbox state and button disabled state
-                    button.classList.toggle('hidden', hideIrrelevantEvents && button.disabled);
+                    // Toggle hidden class based on checkbox state and button has no event handler
+                    button.classList.toggle('hidden', hideIrrelevantEvents && button.classList.contains('hasNoEventHandler'));
                 }
             });
         }
@@ -1245,8 +1252,12 @@ evaluateGuard = null;
             button.className = 'event-button';
             button.innerText = diagramEventName;
             button.addEventListener('click', () => {
-                // Only handle click events when button is enabled
-                if (!button.disabled) {
+
+                // allow dispatching events even if they have no handler in current state to aid in learning
+                // https://github.com/StateSmith/StateSmith/issues/497
+                const alwaysAllowEventDispatch = true;
+
+                if (alwaysAllowEventDispatch || !button.classList.contains('hasNoEventHandler')) {
                     clearHighlightedEdges();
                     sm.tracer?.log('<span class=\'dispatched\'>EVENT <span class=\'event-id\'>' + diagramEventName + '</span> DISPATCHED</span>', true);
                     const fsmEventName = diagramEventName.toUpperCase();

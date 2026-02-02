@@ -34,6 +34,7 @@ Test/interim releases are not documented here.
 ## [WIP]
 ### Changed (minor)
 - Simulator - enabling verbose modes below by default.
+- See below.
 
 ### Added
 - Simulator - verbose mode to show enter behavior.
@@ -44,6 +45,8 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/323
 - Simulator - add event log clearing button.
   - https://github.com/StateSmith/StateSmith/issues/514
+- Simulator - allow dispatching events that will have no effect.
+  - https://github.com/StateSmith/StateSmith/issues/497
 - Simulator - style event dispatched log to match event button
 - Simulator - added link to wiki in drop down.
 
