@@ -49,6 +49,7 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/497
 - Simulator - style event dispatched log to match event button
 - Simulator - added link to wiki in drop down.
+- Simulator - prevent accidental text selection of top right buttons.
 
 ---
 

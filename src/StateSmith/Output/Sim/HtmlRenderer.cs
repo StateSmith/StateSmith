@@ -204,6 +204,7 @@ public class HtmlRenderer
       .dropdown-button {
         border: none;
         cursor: pointer;
+        user-select: none;
       }
       
       .dropdown-button:hover, .dropdown-button:focus {
