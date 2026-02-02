@@ -601,7 +601,7 @@ public class HtmlRenderer
 
                 if (alwaysAllowEventDispatch || !button.classList.contains('hasNoEventHandler')) {
                     clearHighlightedEdges();
-                    sm.tracer?.log('<span class=\'dispatched\'>EVENT <span class=\'event-id\'>' + diagramEventName + '</span> DISPATCHED</span>', true);
+                    sm.tracer?.log('<span class=\'dispatched\'><span class=\'event-id\'>' + diagramEventName + '</span> DISPATCHED</span>', true);
                     const fsmEventName = diagramEventName.toUpperCase();
                     sm.dispatchEvent({{smName}}.EventId[fsmEventName]); 
                 }
