@@ -383,7 +383,7 @@ Change_Of_Objective --> Electricity_Control : do
           <div class='dropdown'>
             <span id='settings-dropdown-button' class='titlebar-icon dropdown-button' title='Settings'>settings</span>
             <span id='clear-button' class='titlebar-icon dropdown-button' title='Clear event log'>delete</span>
-            <a href='https://github.com/StateSmith/StateSmith/wiki/Simulator' id='help-button' class='titlebar-icon dropdown-button' target='_blank' title='Help info'>help</a>
+            <a href='https://github.com/StateSmith/StateSmith/wiki/Simulator' id='help-button' class='titlebar-icon dropdown-button' target='_blank' title='CHECK THIS!&#10;The simulator has a number of quirks and limitations&#10;that you should be aware of.'>help</a>
             <div id='myDropdown' class='dropdown-content'>
               <label class='dropdown-item' for='hideIrrelevantEvents'
                 title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
@@ -1716,7 +1716,7 @@ evaluateGuard = null;
                         button.classList.remove('hasNoEventHandler');
                     } else {
                         button.classList.add('hasNoEventHandler');
-                        button.title += '\nThere is no handler for this event in the current state.\nDispatching is valid, but will have no effect on the state machine.';
+                        button.title += '&#10;There is no handler for this event in the current state.&#10;Dispatching is valid, but will have no effect on the state machine.';
                     }
 
                 }
