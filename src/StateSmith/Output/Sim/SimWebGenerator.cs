@@ -29,7 +29,15 @@ public class SimWebGenerator
     SingleFileCapturer fileCapturer = new();
     StateMachineProvider stateMachineProvider;
     NameMangler nameMangler;
-    Regex historyGilRegex;
+    Regex gilHistoryVarSetRegex;
+
+    // https://github.com/StateSmith/StateSmith/issues/512
+    HashSet<Behavior> behaviorsAddedForIssue512 = new();
+
+    // https://github.com/StateSmith/StateSmith/issues/512
+    HashSet<Behavior> behaviorsToModifyForIssue512 = new();
+
+    BehaviorTracker originalBehaviorTracker = new();
 
     /// <summary>
     /// We want to show the user their original event names in the simulator.
@@ -78,7 +86,7 @@ public class SimWebGenerator
 
         nameMangler = simDiServiceProvider.GetInstanceOf<NameMangler>();
 
-        SetupGilHistoryRegex();
+        SetupGilHistoryVarSetRegex();
     }
 
     /// <summary>
@@ -99,8 +107,8 @@ public class SimWebGenerator
     /// GIL is Generic Intermediary Language. It is used by history vertices and other special cases.
     /// </summary>
     /// <exception cref="InvalidOperationException"></exception>
-    [MemberNotNull(nameof(historyGilRegex))]
-    private void SetupGilHistoryRegex()
+    [MemberNotNull(nameof(gilHistoryVarSetRegex))]
+    private void SetupGilHistoryVarSetRegex()
     {
         if (nameMangler.HistoryVarEnumTypePostfix != "_HistoryId")
             throw new InvalidOperationException("Expected HistoryVarEnumTypePostfix to be '_HistoryId' for regex below");
@@ -112,7 +120,7 @@ public class SimWebGenerator
             throw new InvalidOperationException("Expected GilExpansionMarkerFuncName to be '$gil' for regex below");
 
         // want to match: `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;)`
-        historyGilRegex = new(@"(?x)
+        gilHistoryVarSetRegex = new(@"(?x)
         \$gil\(
             \s*
             this\.vars\.
@@ -125,11 +133,23 @@ public class SimWebGenerator
 
     private void AdjustTransformationPipeline()
     {
-        // Note! For `MermaidEdgeTracker` to function correctly, both below transformations must occur in the same `SmRunner`.
+        // Note! For `MermaidEdgeTracker` to function correctly, below transformations must occur in the same `SmRunner`.
         // This allows us to easily map an SS behavior to its corresponding mermaid edge ID.
+
+        // NOTE! BE VERY careful adding action code before Standard_SupportHistory. If we add a tracing action on a history default behavior,
+        // then it causes HistoryProcessor to output a duplicate history enumeration value which then breaks compilation.
 
         const string GenMermaidCodeStepId = "gen-mermaid-code";
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportHistory, new TransformationStep(id: GenMermaidCodeStepId, GenerateMermaidCode));
+        
+        // this step MUST run before mermaid generation for the workaround to be effective
+        runner.SmTransformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, MermaidStateSmithIssue512WorkAround);
+
+        // show default 'do' events in mermaid diagram
+        runner.SmTransformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, (StateMachine sm) => { DefaultToDoEventVisitor.Process(sm); });
+
+        // We want this step to run near the end so that behaviors are very close to their final form. This is good for users' understanding.
+        // There's no functional difference in moving further back at this point and it is helpful to put in front of validation to ensure no issues are introduced.
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, V1LoggingTransformationStep);
         
         // collect diagram names after trigger mapping completes
@@ -144,9 +164,6 @@ public class SimWebGenerator
         int mermaidIndex = runner.SmTransformer.GetMatchIndex(GenMermaidCodeStepId);
         if (mermaidIndex <= nameConflictIndex || mermaidIndex >= historyIndex)
             throw new Exception("Mermaid generation must occur after name conflict resolution and before history support.");
-
-        // show default 'do' events in mermaid diagram
-         runner.SmTransformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, (StateMachine sm) => { DefaultToDoEventVisitor.Process(sm); });
     }
 
     private void CollectDiagramNames(StateMachine sm)
@@ -268,17 +285,65 @@ public class SimWebGenerator
         mermaidCodeWriter.WriteLine(visitor.GetMermaidCode());
     }
 
+    // See https://github.com/StateSmith/StateSmith/issues/512
+    void MermaidStateSmithIssue512WorkAround(StateMachine sm)
+    {
+        // to avoid modifying collection during enumeration, we first collect behaviors to modify
+        sm.VisitRecursively((Vertex vertex) =>
+        {
+            if (vertex is State state)
+            {
+                foreach (var stateTransitionBehavior in state.TransitionBehaviors())
+                {
+                    // issue 512 only affects self-transitions of parent states that also have a parent shown in mermaid (not the state machine itself)
+                    if (stateTransitionBehavior.TransitionTarget == state && state.Children.Any() && state.Parent != sm)
+                    {
+                        // Record original behavior UML before modifying.
+                        // Without this, the guard message for the user to evaluate has text like:
+                        //      TransitionTo(System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__1)
+                        // instead of:
+                        //      TransitionTo(Electricity_Control_Mode2)
+                        originalBehaviorTracker.RecordOriginalBehavior(stateTransitionBehavior);
+                        behaviorsToModifyForIssue512.Add(stateTransitionBehavior);
+                    }
+                }
+            }
+        });
+
+        // variables so that we can create unique names for choice states
+        int choicePointId = 0;
+        Behavior? previousBehavior = null;
+
+        foreach (var behavior in behaviorsToModifyForIssue512)
+        {
+            var owningState = (State)behavior.OwningVertex;
+
+            // reset choice point ID when we switch to a new owning state.
+            // This keeps the names more readable and reduces git diff noise if the diagram changes.
+            if (previousBehavior != null && previousBehavior.OwningVertex != owningState)
+            {
+                choicePointId = 0;
+            }
+
+            // add a new sibling choice point
+            var choicePoint = new ChoicePoint($"{owningState.Name}__Mermaid_StateSmith_Issue_512__{choicePointId}");
+            owningState.Parent.ThrowIfNull().AddChild(choicePoint);
+            var newBehavior = choicePoint.AddTransitionTo(behavior.TransitionTarget.ThrowIfNull()); // can't be null as we know it's a self-transition
+            behaviorsAddedForIssue512.Add(newBehavior);
+            behavior._transitionTarget = choicePoint;
+
+            previousBehavior = behavior;
+            choicePointId++;
+        }
+    }
 
     void V1LoggingTransformationStep(StateMachine sm)
     {
         sm.VisitRecursively((Vertex vertex) =>
         {
-            BehaviorTracker behaviorTracker = new();
-
             foreach (var behavior in vertex.Behaviors)
             {
-                behaviorTracker.RecordOriginalBehavior(behavior);
-                V1ModBehaviorsForSimulation(vertex, behavior, behaviorTracker);
+                V1ModBehaviorsForSimulation(vertex, behavior);
             }
 
             V1AddEntryExitTracing(sm, vertex);
@@ -312,17 +377,28 @@ public class SimWebGenerator
         }
     }
 
-    void V1ModBehaviorsForSimulation(Vertex vertex, Behavior behavior, BehaviorTracker behaviorTracker)
+    void V1ModBehaviorsForSimulation(Vertex vertex, Behavior behavior)
     {
+        // https://github.com/StateSmith/StateSmith/issues/512
+        if (behaviorsAddedForIssue512.Contains(behavior))
+        {
+            behavior.actionCode = "this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);";
+            return;
+        }
+
+        // Handle action code. This must happen before guard code handling as HistoryVertex also modifies action code.
+        // record original behavior before we modify it.
+        var originalBehaviorUml = originalBehaviorTracker.GetOriginalUmlOrCurrent(behavior);
         if (behavior.HasActionCode())
         {
-            var historyGilMatch = historyGilRegex.Match(behavior.actionCode);
+            var gilHistoryVarSetMatch = gilHistoryVarSetRegex.Match(behavior.actionCode);
             
-            if (historyGilMatch.Success)
+            // special case for history variable sets
+            if (gilHistoryVarSetMatch.Success)
             {
                 // https://github.com/StateSmith/StateSmith/issues/323
-                var historyVarName = historyGilMatch.Groups["varName"].Value;
-                var storedStateName = historyGilMatch.Groups["storedStateName"].Value;
+                var historyVarName = gilHistoryVarSetMatch.Groups["varName"].Value;
+                var storedStateName = gilHistoryVarSetMatch.Groups["storedStateName"].Value;
 
                 // in this case, we want original action to still execute, so we append logging code.
                 behavior.actionCode += $"this.tracer?.logHistoryVarUpdate('{historyVarName}', '{storedStateName}');";
@@ -334,11 +410,12 @@ public class SimWebGenerator
             }
         }
 
+        // Handle guard code. We purposely need to treat history vertices differently.
+        // We want the history vertex to work as is without prompting the user to evaluate those guards.
         if (vertex is HistoryVertex)
         {
             if (behavior.HasGuardCode())
             {
-                // we want the history vertex to work as is without prompting the user to evaluate those guards.
                 behavior.actionCode += $"this.tracer?.logHistoryTransition('transitioning to {Vertex.Describe(behavior.TransitionTarget)}');";
             }
             else
@@ -353,7 +430,6 @@ public class SimWebGenerator
             if (behavior.HasGuardCode())
             {
                 var logCode = $"this.tracer?.logGuardCodeEvaluation(" + FsmCodeToJsString(behavior.guardCode) + ")"; // must not end with semicolon. See below.
-                var originalBehaviorUml = behaviorTracker.GetOriginalUmlOrCurrent(behavior);
                 var confirmCode = $"this.evaluateGuard('{Vertex.Describe(behavior.OwningVertex)}', {FsmCodeToJsString(originalBehaviorUml)})";
                 behavior.guardCode = $"{logCode} || {confirmCode}";
                 // NOTE! logCode doesn't return a value, so the confirm code will always be evaluated.

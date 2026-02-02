@@ -33,6 +33,11 @@ public class HtmlRenderer
         margin: 0px;
       }
 
+      a.mermaid-workaround {
+        text-decoration: none;
+        color: inherit;
+      }
+
       .wrapper {
         height: 100vh;
         width: 100vw;

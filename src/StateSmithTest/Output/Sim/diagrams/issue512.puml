@@ -1,0 +1,21 @@
+@startuml issue512
+
+state ORDER_MENU {
+    [*] -> FOOD
+
+    state FOOD {
+        [*] --> SANDWICH
+        state SANDWICH
+    }
+}
+
+' NOTE! Changing below initial transition end point to FOOD (rather than ORDER_MENU) also resolve mermaid syntax error.
+[*] --> ORDER_MENU
+
+' NOTE! Self transition below causes "Syntax error in text mermaid version 10.9.5"
+FOOD --> FOOD: MY_EVENT
+
+/'! $CONFIG : toml
+SmRunnerSettings.transpilerId = "JavaScript"
+'/
+@enduml

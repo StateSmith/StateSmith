@@ -22,6 +22,11 @@
         margin: 0px;
       }
 
+      a.mermaid-workaround {
+        text-decoration: none;
+        color: inherit;
+      }
+
       .wrapper {
         height: 100vh;
         width: 100vw;
@@ -324,6 +329,38 @@ state System_Run {
 
         }
 
+        state Electricity_Control_Mode2 {
+
+                %% Initial state name as "." so that it fits in black circle shape.
+                %% See https://github.com/StateSmith/StateSmith/issues/404
+                state "." as Electricity_Control_Mode2.(InitialState)
+
+                Initialization_Of_Pid2
+
+                Initialization_Of_Pid2 : Initialization_Of_Pid2
+
+                Initialization_Of_Pid2 : enter / #123; pid_init_enter()#59; #125;
+
+                Electricity_Control2
+
+                Electricity_Control2 : Electricity_Control2
+
+                Electricity_Control2 : enter / #123; current_control_enter()#59; #125;
+
+                Electricity_Control2 : do / #123; current_control_do()#59; #125;
+
+                Electricity_Control2 : exit / #123; current_control_exit()#59; #125;
+
+        }
+
+        state System_Run.(ChoicePoint)(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__0) <<choice>>
+
+        state System_Run.(ChoicePoint)(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__1) <<choice>>
+
+        state System_Run.(ChoicePoint)(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__0) <<choice>>
+
+        state System_Run.(ChoicePoint)(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__1) <<choice>>
+
 }
 
 System_Error
@@ -354,11 +391,21 @@ System_Run --> System_Error : control_anomaly
 
 System_Run --> System_Stop : stop_the_request
 
+System_Run --> System_Run : ISSUE_512
+
+System_Run --> System_Run : ISSUE_512_ALT [test]
+
 System_Run.(InitialState) --> Standby
 
 Standby --> Electricity_Control_Mode : power_control
 
 Electricity_Control_Mode --> Standby : get_on_standby
+
+Electricity_Control_Mode --> System_Run.(ChoicePoint)(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__0) : ISSUE_512
+
+Electricity_Control_Mode --> System_Run.(ChoicePoint)(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__1) : ISSUE_512_ALT
+
+Electricity_Control_Mode --> Electricity_Control_Mode2 : switch_mode
 
 Electricity_Control_Mode.(InitialState) --> Initialization_Of_Pid
 
@@ -371,6 +418,22 @@ Electricity_Control --> Change_Of_Objective : target_current_change
 Parameter_Adjustments --> Electricity_Control : do
 
 Change_Of_Objective --> Electricity_Control : do
+
+Electricity_Control_Mode2 --> System_Run.(ChoicePoint)(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__0) : ISSUE_512 [test_1]
+
+Electricity_Control_Mode2 --> System_Run.(ChoicePoint)(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__1) : ISSUE_512 [test_2] / #123; do_something()#59; #125;
+
+Electricity_Control_Mode2 --> Electricity_Control_Mode : switch_mode
+
+Electricity_Control_Mode2.(InitialState) --> Initialization_Of_Pid2
+
+System_Run.(ChoicePoint)(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__0) --> Electricity_Control_Mode
+
+System_Run.(ChoicePoint)(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__1) --> Electricity_Control_Mode
+
+System_Run.(ChoicePoint)(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__0) --> Electricity_Control_Mode2
+
+System_Run.(ChoicePoint)(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__1) --> Electricity_Control_Mode2
 
 
 
@@ -443,14 +506,17 @@ evaluateGuard = null;
         CALIBRATION_FAILED : 2,
         CONTROL_ANOMALY : 3,
         GET_ON_STANDBY : 4,
-        NEEDED_REFERRAL : 5,
-        POWER_CONTROL : 6,
-        STOP_THE_REQUEST : 7,
-        TARGET_CURRENT_CHANGE : 8,
+        ISSUE_512 : 5,
+        ISSUE_512_ALT : 6,
+        NEEDED_REFERRAL : 7,
+        POWER_CONTROL : 8,
+        STOP_THE_REQUEST : 9,
+        SWITCH_MODE : 10,
+        TARGET_CURRENT_CHANGE : 11,
     }
     static { Object.freeze(this.EventId); }
     
-    static EventIdCount = 9;
+    static EventIdCount = 12;
     static { Object.freeze(this.EventIdCount); }
     
     static StateId = 
@@ -465,12 +531,15 @@ evaluateGuard = null;
         ELECTRICITY_CONTROL : 7,
         INITIALIZATION_OF_PID : 8,
         PARAMETER_ADJUSTMENTS : 9,
-        STANDBY : 10,
-        SYSTEM_STOP : 11,
+        ELECTRICITY_CONTROL_MODE2 : 10,
+        ELECTRICITY_CONTROL2 : 11,
+        INITIALIZATION_OF_PID2 : 12,
+        STANDBY : 13,
+        SYSTEM_STOP : 14,
     }
     static { Object.freeze(this.StateId); }
     
-    static StateIdCount = 12;
+    static StateIdCount = 15;
     static { Object.freeze(this.StateIdCount); }
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
@@ -548,6 +617,8 @@ evaluateGuard = null;
                     case electromagnet.EventId.DO: this.#SYSTEM_RUN_do(); break;
                     case electromagnet.EventId.CONTROL_ANOMALY: this.#SYSTEM_RUN_control_anomaly(); break;
                     case electromagnet.EventId.STOP_THE_REQUEST: this.#SYSTEM_RUN_stop_the_request(); break;
+                    case electromagnet.EventId.ISSUE_512: this.#SYSTEM_RUN_issue_512(); break;
+                    case electromagnet.EventId.ISSUE_512_ALT: this.#SYSTEM_RUN_issue_512_alt(); break;
                 }
                 break;
             
@@ -556,6 +627,9 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case electromagnet.EventId.GET_ON_STANDBY: this.#ELECTRICITY_CONTROL_MODE_get_on_standby(); break;
+                    case electromagnet.EventId.ISSUE_512: this.#ELECTRICITY_CONTROL_MODE_issue_512(); break;
+                    case electromagnet.EventId.ISSUE_512_ALT: this.#ELECTRICITY_CONTROL_MODE_issue_512_alt(); break;
+                    case electromagnet.EventId.SWITCH_MODE: this.#ELECTRICITY_CONTROL_MODE_switch_mode(); break;
                     case electromagnet.EventId.DO: this.#SYSTEM_RUN_do(); break; // First ancestor handler for this event
                     case electromagnet.EventId.CONTROL_ANOMALY: this.#SYSTEM_RUN_control_anomaly(); break; // First ancestor handler for this event
                     case electromagnet.EventId.STOP_THE_REQUEST: this.#SYSTEM_RUN_stop_the_request(); break; // First ancestor handler for this event
@@ -569,7 +643,10 @@ evaluateGuard = null;
                     case electromagnet.EventId.DO: this.#CHANGE_OF_OBJECTIVE_do(); break;
                     case electromagnet.EventId.CONTROL_ANOMALY: this.#SYSTEM_RUN_control_anomaly(); break; // First ancestor handler for this event
                     case electromagnet.EventId.STOP_THE_REQUEST: this.#SYSTEM_RUN_stop_the_request(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512: this.#ELECTRICITY_CONTROL_MODE_issue_512(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512_ALT: this.#ELECTRICITY_CONTROL_MODE_issue_512_alt(); break; // First ancestor handler for this event
                     case electromagnet.EventId.GET_ON_STANDBY: this.#ELECTRICITY_CONTROL_MODE_get_on_standby(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.SWITCH_MODE: this.#ELECTRICITY_CONTROL_MODE_switch_mode(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -582,7 +659,10 @@ evaluateGuard = null;
                     case electromagnet.EventId.TARGET_CURRENT_CHANGE: this.#ELECTRICITY_CONTROL_target_current_change(); break;
                     case electromagnet.EventId.CONTROL_ANOMALY: this.#SYSTEM_RUN_control_anomaly(); break; // First ancestor handler for this event
                     case electromagnet.EventId.STOP_THE_REQUEST: this.#SYSTEM_RUN_stop_the_request(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512: this.#ELECTRICITY_CONTROL_MODE_issue_512(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512_ALT: this.#ELECTRICITY_CONTROL_MODE_issue_512_alt(); break; // First ancestor handler for this event
                     case electromagnet.EventId.GET_ON_STANDBY: this.#ELECTRICITY_CONTROL_MODE_get_on_standby(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.SWITCH_MODE: this.#ELECTRICITY_CONTROL_MODE_switch_mode(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -593,7 +673,10 @@ evaluateGuard = null;
                     case electromagnet.EventId.DO: this.#INITIALIZATION_OF_PID_do(); break;
                     case electromagnet.EventId.CONTROL_ANOMALY: this.#SYSTEM_RUN_control_anomaly(); break; // First ancestor handler for this event
                     case electromagnet.EventId.STOP_THE_REQUEST: this.#SYSTEM_RUN_stop_the_request(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512: this.#ELECTRICITY_CONTROL_MODE_issue_512(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512_ALT: this.#ELECTRICITY_CONTROL_MODE_issue_512_alt(); break; // First ancestor handler for this event
                     case electromagnet.EventId.GET_ON_STANDBY: this.#ELECTRICITY_CONTROL_MODE_get_on_standby(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.SWITCH_MODE: this.#ELECTRICITY_CONTROL_MODE_switch_mode(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -604,7 +687,49 @@ evaluateGuard = null;
                     case electromagnet.EventId.DO: this.#PARAMETER_ADJUSTMENTS_do(); break;
                     case electromagnet.EventId.CONTROL_ANOMALY: this.#SYSTEM_RUN_control_anomaly(); break; // First ancestor handler for this event
                     case electromagnet.EventId.STOP_THE_REQUEST: this.#SYSTEM_RUN_stop_the_request(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512: this.#ELECTRICITY_CONTROL_MODE_issue_512(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512_ALT: this.#ELECTRICITY_CONTROL_MODE_issue_512_alt(); break; // First ancestor handler for this event
                     case electromagnet.EventId.GET_ON_STANDBY: this.#ELECTRICITY_CONTROL_MODE_get_on_standby(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.SWITCH_MODE: this.#ELECTRICITY_CONTROL_MODE_switch_mode(); break; // First ancestor handler for this event
+                }
+                break;
+            
+            // STATE: Electricity_Control_Mode2
+            case electromagnet.StateId.ELECTRICITY_CONTROL_MODE2:
+                switch (eventId)
+                {
+                    case electromagnet.EventId.ISSUE_512: this.#ELECTRICITY_CONTROL_MODE2_issue_512(); break;
+                    case electromagnet.EventId.SWITCH_MODE: this.#ELECTRICITY_CONTROL_MODE2_switch_mode(); break;
+                    case electromagnet.EventId.DO: this.#SYSTEM_RUN_do(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.CONTROL_ANOMALY: this.#SYSTEM_RUN_control_anomaly(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.STOP_THE_REQUEST: this.#SYSTEM_RUN_stop_the_request(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512_ALT: this.#SYSTEM_RUN_issue_512_alt(); break; // First ancestor handler for this event
+                }
+                break;
+            
+            // STATE: Electricity_Control2
+            case electromagnet.StateId.ELECTRICITY_CONTROL2:
+                switch (eventId)
+                {
+                    case electromagnet.EventId.DO: this.#ELECTRICITY_CONTROL2_do(); break;
+                    case electromagnet.EventId.CONTROL_ANOMALY: this.#SYSTEM_RUN_control_anomaly(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.STOP_THE_REQUEST: this.#SYSTEM_RUN_stop_the_request(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512: this.#ELECTRICITY_CONTROL_MODE2_issue_512(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512_ALT: this.#SYSTEM_RUN_issue_512_alt(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.SWITCH_MODE: this.#ELECTRICITY_CONTROL_MODE2_switch_mode(); break; // First ancestor handler for this event
+                }
+                break;
+            
+            // STATE: Initialization_Of_Pid2
+            case electromagnet.StateId.INITIALIZATION_OF_PID2:
+                switch (eventId)
+                {
+                    case electromagnet.EventId.DO: this.#SYSTEM_RUN_do(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.CONTROL_ANOMALY: this.#SYSTEM_RUN_control_anomaly(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.STOP_THE_REQUEST: this.#SYSTEM_RUN_stop_the_request(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512: this.#ELECTRICITY_CONTROL_MODE2_issue_512(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512_ALT: this.#SYSTEM_RUN_issue_512_alt(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.SWITCH_MODE: this.#ELECTRICITY_CONTROL_MODE2_switch_mode(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -616,6 +741,8 @@ evaluateGuard = null;
                     case electromagnet.EventId.DO: this.#SYSTEM_RUN_do(); break; // First ancestor handler for this event
                     case electromagnet.EventId.CONTROL_ANOMALY: this.#SYSTEM_RUN_control_anomaly(); break; // First ancestor handler for this event
                     case electromagnet.EventId.STOP_THE_REQUEST: this.#SYSTEM_RUN_stop_the_request(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512: this.#SYSTEM_RUN_issue_512(); break; // First ancestor handler for this event
+                    case electromagnet.EventId.ISSUE_512_ALT: this.#SYSTEM_RUN_issue_512_alt(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -655,6 +782,12 @@ evaluateGuard = null;
                 case electromagnet.StateId.INITIALIZATION_OF_PID: this.#INITIALIZATION_OF_PID_exit(); break;
                 
                 case electromagnet.StateId.PARAMETER_ADJUSTMENTS: this.#PARAMETER_ADJUSTMENTS_exit(); break;
+                
+                case electromagnet.StateId.ELECTRICITY_CONTROL_MODE2: this.#ELECTRICITY_CONTROL_MODE2_exit(); break;
+                
+                case electromagnet.StateId.ELECTRICITY_CONTROL2: this.#ELECTRICITY_CONTROL2_exit(); break;
+                
+                case electromagnet.StateId.INITIALIZATION_OF_PID2: this.#INITIALIZATION_OF_PID2_exit(); break;
                 
                 case electromagnet.StateId.STANDBY: this.#STANDBY_exit(); break;
                 
@@ -725,20 +858,9 @@ evaluateGuard = null;
             // Step 3: Enter/move towards transition target `System_Run`.
             this.#SYSTEM_RUN_enter();
             
-            // System_Run.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition('edge6'); } TransitionTo(Standby)
-            {
-                // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-                
-                // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
-                this.tracer?.edgeTransition('edge6');
-                
-                // Step 3: Enter/move towards transition target `Standby`.
-                this.#STANDBY_enter();
-                
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                return;
-            } // end of behavior for System_Run.<InitialState>
+            // Finish transition by calling pseudo state transition function.
+            this.#System_Run_InitialState_transition();
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for Adc_Calibration
         
         // No ancestor handles this event.
@@ -939,6 +1061,51 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
+    #SYSTEM_RUN_issue_512()
+    {
+        // System_Run behavior
+        // uml: ISSUE_512 / { this.tracer?.edgeTransition('edge6'); } TransitionTo(System_Run)
+        {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            this.#exitUpToStateHandler(electromagnet.StateId.ROOT);
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
+            this.tracer?.edgeTransition('edge6');
+            
+            // Step 3: Enter/move towards transition target `System_Run`.
+            this.#SYSTEM_RUN_enter();
+            
+            // Finish transition by calling pseudo state transition function.
+            this.#System_Run_InitialState_transition();
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for System_Run
+        
+        // No ancestor handles this event.
+    }
+    
+    #SYSTEM_RUN_issue_512_alt()
+    {
+        // System_Run behavior
+        // uml: ISSUE_512_ALT [this.tracer?.logGuardCodeEvaluation("test") || this.evaluateGuard('System_Run', "ISSUE_512_ALT [test] TransitionTo(System_Run)")] / { this.tracer?.edgeTransition('edge7'); } TransitionTo(System_Run)
+        if (this.tracer?.logGuardCodeEvaluation("test") || this.evaluateGuard('System_Run', "ISSUE_512_ALT [test] TransitionTo(System_Run)"))
+        {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            this.#exitUpToStateHandler(electromagnet.StateId.ROOT);
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
+            this.tracer?.edgeTransition('edge7');
+            
+            // Step 3: Enter/move towards transition target `System_Run`.
+            this.#SYSTEM_RUN_enter();
+            
+            // Finish transition by calling pseudo state transition function.
+            this.#System_Run_InitialState_transition();
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for System_Run
+        
+        // No ancestor handles this event.
+    }
+    
     #SYSTEM_RUN_stop_the_request()
     {
         // System_Run behavior
@@ -958,6 +1125,24 @@ evaluateGuard = null;
         } // end of behavior for System_Run
         
         // No ancestor handles this event.
+    }
+    
+    #System_Run_InitialState_transition()
+    {
+        // System_Run.<InitialState> behavior
+        // uml: / { this.tracer?.edgeTransition('edge8'); } TransitionTo(Standby)
+        {
+            // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge8');`.
+            this.tracer?.edgeTransition('edge8');
+            
+            // Step 3: Enter/move towards transition target `Standby`.
+            this.#STANDBY_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for System_Run.<InitialState>
     }
     
     
@@ -992,13 +1177,13 @@ evaluateGuard = null;
     #ELECTRICITY_CONTROL_MODE_get_on_standby()
     {
         // Electricity_Control_Mode behavior
-        // uml: get_on_standby / { this.tracer?.edgeTransition('edge8'); } TransitionTo(Standby)
+        // uml: get_on_standby / { this.tracer?.edgeTransition('edge10'); } TransitionTo(Standby)
         {
             // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(electromagnet.StateId.SYSTEM_RUN);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge8');`.
-            this.tracer?.edgeTransition('edge8');
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge10');`.
+            this.tracer?.edgeTransition('edge10');
             
             // Step 3: Enter/move towards transition target `Standby`.
             this.#STANDBY_enter();
@@ -1008,6 +1193,126 @@ evaluateGuard = null;
         } // end of behavior for Electricity_Control_Mode
         
         // No ancestor handles this event.
+    }
+    
+    #ELECTRICITY_CONTROL_MODE_issue_512()
+    {
+        let consume_event = false;
+        
+        // Electricity_Control_Mode behavior
+        // uml: ISSUE_512 / { this.tracer?.edgeTransition('edge11'); } TransitionTo(System_Run.<ChoicePoint>(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__0))
+        {
+            // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition).
+            this.#exitUpToStateHandler(electromagnet.StateId.SYSTEM_RUN);
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge11');`.
+            this.tracer?.edgeTransition('edge11');
+            
+            // Step 3: Enter/move towards transition target `System_Run.<ChoicePoint>(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__0)`.
+            // System_Run.<ChoicePoint>(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__0) is a pseudo state and cannot have an `enter` trigger.
+            
+            // System_Run.<ChoicePoint>(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__0) behavior
+            // uml: / { this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge24'); } TransitionTo(Electricity_Control_Mode)
+            {
+                // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge24');`.
+                this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge24');
+                
+                // Step 3: Enter/move towards transition target `Electricity_Control_Mode`.
+                this.#ELECTRICITY_CONTROL_MODE_enter();
+                
+                // Finish transition by calling pseudo state transition function.
+                this.#Electricity_Control_Mode_InitialState_transition();
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for System_Run.<ChoicePoint>(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__0)
+        } // end of behavior for Electricity_Control_Mode
+        
+        // Check if event has been consumed before calling ancestor handler.
+        if (!consume_event)
+        {
+            this.#SYSTEM_RUN_issue_512();
+        }
+    }
+    
+    #ELECTRICITY_CONTROL_MODE_issue_512_alt()
+    {
+        let consume_event = false;
+        
+        // Electricity_Control_Mode behavior
+        // uml: ISSUE_512_ALT / { this.tracer?.edgeTransition('edge12'); } TransitionTo(System_Run.<ChoicePoint>(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__1))
+        {
+            // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition).
+            this.#exitUpToStateHandler(electromagnet.StateId.SYSTEM_RUN);
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge12');`.
+            this.tracer?.edgeTransition('edge12');
+            
+            // Step 3: Enter/move towards transition target `System_Run.<ChoicePoint>(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__1)`.
+            // System_Run.<ChoicePoint>(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__1) is a pseudo state and cannot have an `enter` trigger.
+            
+            // System_Run.<ChoicePoint>(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__1) behavior
+            // uml: / { this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge25'); } TransitionTo(Electricity_Control_Mode)
+            {
+                // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge25');`.
+                this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge25');
+                
+                // Step 3: Enter/move towards transition target `Electricity_Control_Mode`.
+                this.#ELECTRICITY_CONTROL_MODE_enter();
+                
+                // Finish transition by calling pseudo state transition function.
+                this.#Electricity_Control_Mode_InitialState_transition();
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for System_Run.<ChoicePoint>(Electricity_Control_Mode__Mermaid_StateSmith_Issue_512__1)
+        } // end of behavior for Electricity_Control_Mode
+        
+        // Check if event has been consumed before calling ancestor handler.
+        if (!consume_event)
+        {
+            this.#SYSTEM_RUN_issue_512_alt();
+        }
+    }
+    
+    #ELECTRICITY_CONTROL_MODE_switch_mode()
+    {
+        // Electricity_Control_Mode behavior
+        // uml: switch_mode / { this.tracer?.edgeTransition('edge13'); } TransitionTo(Electricity_Control_Mode2)
+        {
+            // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition).
+            this.#exitUpToStateHandler(electromagnet.StateId.SYSTEM_RUN);
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge13');`.
+            this.tracer?.edgeTransition('edge13');
+            
+            // Step 3: Enter/move towards transition target `Electricity_Control_Mode2`.
+            this.#ELECTRICITY_CONTROL_MODE2_enter();
+            
+            // Finish transition by calling pseudo state transition function.
+            this.#Electricity_Control_Mode2_InitialState_transition();
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for Electricity_Control_Mode
+        
+        // No ancestor handles this event.
+    }
+    
+    #Electricity_Control_Mode_InitialState_transition()
+    {
+        // Electricity_Control_Mode.<InitialState> behavior
+        // uml: / { this.tracer?.edgeTransition('edge14'); } TransitionTo(Initialization_Of_Pid)
+        {
+            // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge14');`.
+            this.tracer?.edgeTransition('edge14');
+            
+            // Step 3: Enter/move towards transition target `Initialization_Of_Pid`.
+            this.#INITIALIZATION_OF_PID_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for Electricity_Control_Mode.<InitialState>
     }
     
     
@@ -1051,13 +1356,13 @@ evaluateGuard = null;
         let consume_event = false;
         
         // Change_Of_Objective behavior
-        // uml: do / { this.tracer?.edgeTransition('edge14'); } TransitionTo(Electricity_Control)
+        // uml: do / { this.tracer?.edgeTransition('edge19'); } TransitionTo(Electricity_Control)
         {
             // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition).
             this.#CHANGE_OF_OBJECTIVE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge14');`.
-            this.tracer?.edgeTransition('edge14');
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge19');`.
+            this.tracer?.edgeTransition('edge19');
             
             // Step 3: Enter/move towards transition target `Electricity_Control`.
             this.#ELECTRICITY_CONTROL_enter();
@@ -1138,13 +1443,13 @@ evaluateGuard = null;
     #ELECTRICITY_CONTROL_needed_referral()
     {
         // Electricity_Control behavior
-        // uml: needed_referral / { this.tracer?.edgeTransition('edge11'); } TransitionTo(Parameter_Adjustments)
+        // uml: needed_referral / { this.tracer?.edgeTransition('edge16'); } TransitionTo(Parameter_Adjustments)
         {
             // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition).
             this.#ELECTRICITY_CONTROL_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge11');`.
-            this.tracer?.edgeTransition('edge11');
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge16');`.
+            this.tracer?.edgeTransition('edge16');
             
             // Step 3: Enter/move towards transition target `Parameter_Adjustments`.
             this.#PARAMETER_ADJUSTMENTS_enter();
@@ -1159,13 +1464,13 @@ evaluateGuard = null;
     #ELECTRICITY_CONTROL_target_current_change()
     {
         // Electricity_Control behavior
-        // uml: target_current_change / { this.tracer?.edgeTransition('edge12'); } TransitionTo(Change_Of_Objective)
+        // uml: target_current_change / { this.tracer?.edgeTransition('edge17'); } TransitionTo(Change_Of_Objective)
         {
             // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition).
             this.#ELECTRICITY_CONTROL_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge12');`.
-            this.tracer?.edgeTransition('edge12');
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge17');`.
+            this.tracer?.edgeTransition('edge17');
             
             // Step 3: Enter/move towards transition target `Change_Of_Objective`.
             this.#CHANGE_OF_OBJECTIVE_enter();
@@ -1218,13 +1523,13 @@ evaluateGuard = null;
         let consume_event = false;
         
         // Initialization_Of_Pid behavior
-        // uml: do / { this.tracer?.edgeTransition('edge10'); } TransitionTo(Electricity_Control)
+        // uml: do / { this.tracer?.edgeTransition('edge15'); } TransitionTo(Electricity_Control)
         {
             // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition).
             this.#INITIALIZATION_OF_PID_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge10');`.
-            this.tracer?.edgeTransition('edge10');
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge15');`.
+            this.tracer?.edgeTransition('edge15');
             
             // Step 3: Enter/move towards transition target `Electricity_Control`.
             this.#ELECTRICITY_CONTROL_enter();
@@ -1281,13 +1586,13 @@ evaluateGuard = null;
         let consume_event = false;
         
         // Parameter_Adjustments behavior
-        // uml: do / { this.tracer?.edgeTransition('edge13'); } TransitionTo(Electricity_Control)
+        // uml: do / { this.tracer?.edgeTransition('edge18'); } TransitionTo(Electricity_Control)
         {
             // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition).
             this.#PARAMETER_ADJUSTMENTS_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge13');`.
-            this.tracer?.edgeTransition('edge13');
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge18');`.
+            this.tracer?.edgeTransition('edge18');
             
             // Step 3: Enter/move towards transition target `Electricity_Control`.
             this.#ELECTRICITY_CONTROL_enter();
@@ -1301,6 +1606,244 @@ evaluateGuard = null;
         {
             this.#SYSTEM_RUN_do();
         }
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state ELECTRICITY_CONTROL_MODE2
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    #ELECTRICITY_CONTROL_MODE2_enter()
+    {
+        this.stateId = electromagnet.StateId.ELECTRICITY_CONTROL_MODE2;
+        
+        // Electricity_Control_Mode2 behavior
+        // uml: enter / { this.tracer?.enterState('Electricity_Control_Mode2'); }
+        {
+            // Step 1: execute action `this.tracer?.enterState('Electricity_Control_Mode2');`
+            this.tracer?.enterState('Electricity_Control_Mode2');
+        } // end of behavior for Electricity_Control_Mode2
+    }
+    
+    #ELECTRICITY_CONTROL_MODE2_exit()
+    {
+        // Electricity_Control_Mode2 behavior
+        // uml: exit / { this.tracer?.exitState('Electricity_Control_Mode2'); }
+        {
+            // Step 1: execute action `this.tracer?.exitState('Electricity_Control_Mode2');`
+            this.tracer?.exitState('Electricity_Control_Mode2');
+        } // end of behavior for Electricity_Control_Mode2
+        
+        this.stateId = electromagnet.StateId.SYSTEM_RUN;
+    }
+    
+    #ELECTRICITY_CONTROL_MODE2_issue_512()
+    {
+        let consume_event = false;
+        
+        // Electricity_Control_Mode2 behavior
+        // uml: ISSUE_512 [this.tracer?.logGuardCodeEvaluation("test_1") || this.evaluateGuard('Electricity_Control_Mode2', "ISSUE_512 [test_1] TransitionTo(Electricity_Control_Mode2)")] / { this.tracer?.edgeTransition('edge20'); } TransitionTo(System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__0))
+        if (this.tracer?.logGuardCodeEvaluation("test_1") || this.evaluateGuard('Electricity_Control_Mode2', "ISSUE_512 [test_1] TransitionTo(Electricity_Control_Mode2)"))
+        {
+            // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition).
+            this.#exitUpToStateHandler(electromagnet.StateId.SYSTEM_RUN);
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge20');`.
+            this.tracer?.edgeTransition('edge20');
+            
+            // Step 3: Enter/move towards transition target `System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__0)`.
+            // System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__0) is a pseudo state and cannot have an `enter` trigger.
+            
+            // System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__0) behavior
+            // uml: / { this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge26'); } TransitionTo(Electricity_Control_Mode2)
+            {
+                // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge26');`.
+                this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge26');
+                
+                // Step 3: Enter/move towards transition target `Electricity_Control_Mode2`.
+                this.#ELECTRICITY_CONTROL_MODE2_enter();
+                
+                // Finish transition by calling pseudo state transition function.
+                this.#Electricity_Control_Mode2_InitialState_transition();
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__0)
+        } // end of behavior for Electricity_Control_Mode2
+        
+        // Electricity_Control_Mode2 behavior
+        // uml: ISSUE_512 [this.tracer?.logGuardCodeEvaluation("test_2") || this.evaluateGuard('Electricity_Control_Mode2', "ISSUE_512 [test_2] / { do_something(); } TransitionTo(Electricity_Control_Mode2)")] / { this.tracer?.logActionCode("do_something();");this.tracer?.edgeTransition('edge21'); } TransitionTo(System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__1))
+        if (this.tracer?.logGuardCodeEvaluation("test_2") || this.evaluateGuard('Electricity_Control_Mode2', "ISSUE_512 [test_2] / { do_something(); } TransitionTo(Electricity_Control_Mode2)"))
+        {
+            // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition).
+            this.#exitUpToStateHandler(electromagnet.StateId.SYSTEM_RUN);
+            
+            // Step 2: Transition action: `this.tracer?.logActionCode("do_something();");this.tracer?.edgeTransition('edge21');`.
+            this.tracer?.logActionCode("do_something();");this.tracer?.edgeTransition('edge21');
+            
+            // Step 3: Enter/move towards transition target `System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__1)`.
+            // System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__1) is a pseudo state and cannot have an `enter` trigger.
+            
+            // System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__1) behavior
+            // uml: / { this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge27'); } TransitionTo(Electricity_Control_Mode2)
+            {
+                // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge27');`.
+                this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge27');
+                
+                // Step 3: Enter/move towards transition target `Electricity_Control_Mode2`.
+                this.#ELECTRICITY_CONTROL_MODE2_enter();
+                
+                // Finish transition by calling pseudo state transition function.
+                this.#Electricity_Control_Mode2_InitialState_transition();
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__1)
+        } // end of behavior for Electricity_Control_Mode2
+        
+        // Check if event has been consumed before calling ancestor handler.
+        if (!consume_event)
+        {
+            this.#SYSTEM_RUN_issue_512();
+        }
+    }
+    
+    #ELECTRICITY_CONTROL_MODE2_switch_mode()
+    {
+        // Electricity_Control_Mode2 behavior
+        // uml: switch_mode / { this.tracer?.edgeTransition('edge22'); } TransitionTo(Electricity_Control_Mode)
+        {
+            // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition).
+            this.#exitUpToStateHandler(electromagnet.StateId.SYSTEM_RUN);
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge22');`.
+            this.tracer?.edgeTransition('edge22');
+            
+            // Step 3: Enter/move towards transition target `Electricity_Control_Mode`.
+            this.#ELECTRICITY_CONTROL_MODE_enter();
+            
+            // Finish transition by calling pseudo state transition function.
+            this.#Electricity_Control_Mode_InitialState_transition();
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for Electricity_Control_Mode2
+        
+        // No ancestor handles this event.
+    }
+    
+    #Electricity_Control_Mode2_InitialState_transition()
+    {
+        // Electricity_Control_Mode2.<InitialState> behavior
+        // uml: / { this.tracer?.edgeTransition('edge23'); } TransitionTo(Initialization_Of_Pid2)
+        {
+            // Step 1: Exit states until we reach `Electricity_Control_Mode2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge23');`.
+            this.tracer?.edgeTransition('edge23');
+            
+            // Step 3: Enter/move towards transition target `Initialization_Of_Pid2`.
+            this.#INITIALIZATION_OF_PID2_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for Electricity_Control_Mode2.<InitialState>
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state ELECTRICITY_CONTROL2
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    #ELECTRICITY_CONTROL2_enter()
+    {
+        this.stateId = electromagnet.StateId.ELECTRICITY_CONTROL2;
+        
+        // Electricity_Control2 behavior
+        // uml: enter / { this.tracer?.enterState('Electricity_Control2'); }
+        {
+            // Step 1: execute action `this.tracer?.enterState('Electricity_Control2');`
+            this.tracer?.enterState('Electricity_Control2');
+        } // end of behavior for Electricity_Control2
+        
+        // Electricity_Control2 behavior
+        // uml: enter / { this.tracer?.logActionCode("current_control_enter();"); }
+        {
+            // Step 1: execute action `this.tracer?.logActionCode("current_control_enter();");`
+            this.tracer?.logActionCode("current_control_enter();");
+        } // end of behavior for Electricity_Control2
+    }
+    
+    #ELECTRICITY_CONTROL2_exit()
+    {
+        // Electricity_Control2 behavior
+        // uml: exit / { this.tracer?.logActionCode("current_control_exit();"); }
+        {
+            // Step 1: execute action `this.tracer?.logActionCode("current_control_exit();");`
+            this.tracer?.logActionCode("current_control_exit();");
+        } // end of behavior for Electricity_Control2
+        
+        // Electricity_Control2 behavior
+        // uml: exit / { this.tracer?.exitState('Electricity_Control2'); }
+        {
+            // Step 1: execute action `this.tracer?.exitState('Electricity_Control2');`
+            this.tracer?.exitState('Electricity_Control2');
+        } // end of behavior for Electricity_Control2
+        
+        this.stateId = electromagnet.StateId.ELECTRICITY_CONTROL_MODE2;
+    }
+    
+    #ELECTRICITY_CONTROL2_do()
+    {
+        let consume_event = false;
+        
+        // Electricity_Control2 behavior
+        // uml: do / { this.tracer?.logActionCode("current_control_do();"); }
+        {
+            // `do` events are not normally consumed.
+            // Step 1: execute action `this.tracer?.logActionCode("current_control_do();");`
+            this.tracer?.logActionCode("current_control_do();");
+        } // end of behavior for Electricity_Control2
+        
+        // Check if event has been consumed before calling ancestor handler.
+        if (!consume_event)
+        {
+            this.#SYSTEM_RUN_do();
+        }
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state INITIALIZATION_OF_PID2
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    #INITIALIZATION_OF_PID2_enter()
+    {
+        this.stateId = electromagnet.StateId.INITIALIZATION_OF_PID2;
+        
+        // Initialization_Of_Pid2 behavior
+        // uml: enter / { this.tracer?.enterState('Initialization_Of_Pid2'); }
+        {
+            // Step 1: execute action `this.tracer?.enterState('Initialization_Of_Pid2');`
+            this.tracer?.enterState('Initialization_Of_Pid2');
+        } // end of behavior for Initialization_Of_Pid2
+        
+        // Initialization_Of_Pid2 behavior
+        // uml: enter / { this.tracer?.logActionCode("pid_init_enter();"); }
+        {
+            // Step 1: execute action `this.tracer?.logActionCode("pid_init_enter();");`
+            this.tracer?.logActionCode("pid_init_enter();");
+        } // end of behavior for Initialization_Of_Pid2
+    }
+    
+    #INITIALIZATION_OF_PID2_exit()
+    {
+        // Initialization_Of_Pid2 behavior
+        // uml: exit / { this.tracer?.exitState('Initialization_Of_Pid2'); }
+        {
+            // Step 1: execute action `this.tracer?.exitState('Initialization_Of_Pid2');`
+            this.tracer?.exitState('Initialization_Of_Pid2');
+        } // end of behavior for Initialization_Of_Pid2
+        
+        this.stateId = electromagnet.StateId.ELECTRICITY_CONTROL_MODE2;
     }
     
     
@@ -1349,31 +1892,20 @@ evaluateGuard = null;
     #STANDBY_power_control()
     {
         // Standby behavior
-        // uml: power_control / { this.tracer?.edgeTransition('edge7'); } TransitionTo(Electricity_Control_Mode)
+        // uml: power_control / { this.tracer?.edgeTransition('edge9'); } TransitionTo(Electricity_Control_Mode)
         {
             // Step 1: Exit states until we reach `System_Run` state (Least Common Ancestor for transition).
             this.#STANDBY_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
-            this.tracer?.edgeTransition('edge7');
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
+            this.tracer?.edgeTransition('edge9');
             
             // Step 3: Enter/move towards transition target `Electricity_Control_Mode`.
             this.#ELECTRICITY_CONTROL_MODE_enter();
             
-            // Electricity_Control_Mode.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition('edge9'); } TransitionTo(Initialization_Of_Pid)
-            {
-                // Step 1: Exit states until we reach `Electricity_Control_Mode` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-                
-                // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
-                this.tracer?.edgeTransition('edge9');
-                
-                // Step 3: Enter/move towards transition target `Initialization_Of_Pid`.
-                this.#INITIALIZATION_OF_PID_enter();
-                
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                return;
-            } // end of behavior for Electricity_Control_Mode.<InitialState>
+            // Finish transition by calling pseudo state transition function.
+            this.#Electricity_Control_Mode_InitialState_transition();
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for Standby
         
         // No ancestor handles this event.
@@ -1442,6 +1974,9 @@ evaluateGuard = null;
             case electromagnet.StateId.ELECTRICITY_CONTROL: return "ELECTRICITY_CONTROL";
             case electromagnet.StateId.INITIALIZATION_OF_PID: return "INITIALIZATION_OF_PID";
             case electromagnet.StateId.PARAMETER_ADJUSTMENTS: return "PARAMETER_ADJUSTMENTS";
+            case electromagnet.StateId.ELECTRICITY_CONTROL_MODE2: return "ELECTRICITY_CONTROL_MODE2";
+            case electromagnet.StateId.ELECTRICITY_CONTROL2: return "ELECTRICITY_CONTROL2";
+            case electromagnet.StateId.INITIALIZATION_OF_PID2: return "INITIALIZATION_OF_PID2";
             case electromagnet.StateId.STANDBY: return "STANDBY";
             case electromagnet.StateId.SYSTEM_STOP: return "SYSTEM_STOP";
             default: return "?";
@@ -1458,9 +1993,12 @@ evaluateGuard = null;
             case electromagnet.EventId.CONTROL_ANOMALY: return "CONTROL_ANOMALY";
             case electromagnet.EventId.DO: return "DO";
             case electromagnet.EventId.GET_ON_STANDBY: return "GET_ON_STANDBY";
+            case electromagnet.EventId.ISSUE_512: return "ISSUE_512";
+            case electromagnet.EventId.ISSUE_512_ALT: return "ISSUE_512_ALT";
             case electromagnet.EventId.NEEDED_REFERRAL: return "NEEDED_REFERRAL";
             case electromagnet.EventId.POWER_CONTROL: return "POWER_CONTROL";
             case electromagnet.EventId.STOP_THE_REQUEST: return "STOP_THE_REQUEST";
+            case electromagnet.EventId.SWITCH_MODE: return "SWITCH_MODE";
             case electromagnet.EventId.TARGET_CURRENT_CHANGE: return "TARGET_CURRENT_CHANGE";
             default: return "?";
         }
@@ -1500,7 +2038,7 @@ evaluateGuard = null;
             center: true
         });
 
-        const diagramEventNamesArray = ['do', 'adc_calibration_complete', 'calibration_failed', 'control_anomaly', 'get_on_standby', 'needed_referral', 'power_control', 'stop_the_request', 'target_current_change', ];
+        const diagramEventNamesArray = ['do', 'adc_calibration_complete', 'calibration_failed', 'control_anomaly', 'get_on_standby', 'ISSUE_512', 'ISSUE_512_ALT', 'needed_referral', 'power_control', 'stop_the_request', 'switch_mode', 'target_current_change', ];
 
         // Mapping from state to available events
         const stateEventsMapping = {
@@ -1515,11 +2053,15 @@ evaluateGuard = null;
   "System_Run": [
     "control_anomaly",
     "do",
+    "ISSUE_512",
+    "ISSUE_512_ALT",
     "stop_the_request"
   ],
   "Standby": [
     "control_anomaly",
     "do",
+    "ISSUE_512",
+    "ISSUE_512_ALT",
     "power_control",
     "stop_the_request"
   ],
@@ -1527,33 +2069,72 @@ evaluateGuard = null;
     "control_anomaly",
     "do",
     "get_on_standby",
-    "stop_the_request"
+    "ISSUE_512",
+    "ISSUE_512_ALT",
+    "stop_the_request",
+    "switch_mode"
   ],
   "Initialization_Of_Pid": [
     "control_anomaly",
     "do",
     "get_on_standby",
-    "stop_the_request"
+    "ISSUE_512",
+    "ISSUE_512_ALT",
+    "stop_the_request",
+    "switch_mode"
   ],
   "Electricity_Control": [
     "control_anomaly",
     "do",
     "get_on_standby",
+    "ISSUE_512",
+    "ISSUE_512_ALT",
     "needed_referral",
     "stop_the_request",
+    "switch_mode",
     "target_current_change"
   ],
   "Parameter_Adjustments": [
     "control_anomaly",
     "do",
     "get_on_standby",
-    "stop_the_request"
+    "ISSUE_512",
+    "ISSUE_512_ALT",
+    "stop_the_request",
+    "switch_mode"
   ],
   "Change_Of_Objective": [
     "control_anomaly",
     "do",
     "get_on_standby",
-    "stop_the_request"
+    "ISSUE_512",
+    "ISSUE_512_ALT",
+    "stop_the_request",
+    "switch_mode"
+  ],
+  "Electricity_Control_Mode2": [
+    "control_anomaly",
+    "do",
+    "ISSUE_512",
+    "ISSUE_512_ALT",
+    "stop_the_request",
+    "switch_mode"
+  ],
+  "Initialization_Of_Pid2": [
+    "control_anomaly",
+    "do",
+    "ISSUE_512",
+    "ISSUE_512_ALT",
+    "stop_the_request",
+    "switch_mode"
+  ],
+  "Electricity_Control2": [
+    "control_anomaly",
+    "do",
+    "ISSUE_512",
+    "ISSUE_512_ALT",
+    "stop_the_request",
+    "switch_mode"
   ],
   "System_Error": [],
   "System_Stop": [
