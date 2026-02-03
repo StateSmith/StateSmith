@@ -31,7 +31,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## [0.19.0-alpha-1]
+## [0.19.0]
 ### Contributors
 - @UCSIG
   - https://github.com/StateSmith/StateSmith/pull/495
