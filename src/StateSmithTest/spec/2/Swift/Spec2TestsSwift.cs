@@ -6,15 +6,17 @@ using System.Text.RegularExpressions;
 
 namespace Spec.Spec2.Swift;
 
-public class Spec2TestsJava : Spec2Tests, IClassFixture<SharedCompilationFixture>
+public class Spec2TestsSwift : Spec2Tests, IClassFixture<SharedCompilationFixture>
 {
+    override public string PostInc => " += 1";
+    override public string SemiColon => "";
     public override string RunProcess(string testEvents)
     {
         SimpleProcess process = new()
         {
             WorkingDirectory = $"{SharedCompilationFixture.OutputDirectory}/..",
             ProgramPath = "swift",
-            Args = $"run"
+            Args = $"run SpecSwift"
         };
         process.Run(SimpleProcess.DefaultLongTimeoutMs);
 

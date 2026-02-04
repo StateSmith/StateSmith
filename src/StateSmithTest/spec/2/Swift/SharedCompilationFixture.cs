@@ -2,6 +2,7 @@
 
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
+using StateSmith.SmGraph;
 using StateSmithTest.Processes;
 
 namespace Spec.Spec2.Swift;
@@ -20,10 +21,21 @@ public class SharedCompilationFixture
         {
             runner.Settings.transpilerId = TranspilerId.Swift;
             runner.AlgoOrTranspilerUpdated();
-            //runner.Settings.outputGilCodeAlways = true;
+            runner.Settings.outputGilCodeAlways = true;
+
+            runner.SmTransformer.transformationPipeline.Insert(0, new TransformationStep(action: (sm) => {
+                sm.VisitRecursively((node) =>
+                {
+                    foreach (var behavior in node.Behaviors)
+                    {
+                        behavior.actionCode = SwiftifyDiagramCode(behavior.actionCode);
+                        behavior.guardCode = SwiftifyDiagramCode(behavior.guardCode);
+                    }
+                });
+            }));
         };
 
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, semiColon: "");
 
         SimpleProcess process;
 
@@ -34,6 +46,14 @@ public class SharedCompilationFixture
             Args = "build"
         };
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+    }
+
+    private static string SwiftifyDiagramCode(string str)
+    {
+        str = str.Replace(";", "");
+        str = str.Replace("++", " += 1");
+        str = str.Replace("<=1", "<= 1");
+        return str;
     }
 
     public class MyGlueFile : IRenderConfigSwift
@@ -54,7 +74,7 @@ public class SharedCompilationFixture
             public var auto_var_1 = 0
             ";
 
-        string IRenderConfigSwift.BaseList => "Spec2SmBase";
+        string IRenderConfigSwift.Extends => "Spec2SmBase";
 
         public class Expansions : Spec2GenericVarExpansions
         {

@@ -60,6 +60,7 @@ public class MainClass {
         for arg in args {
             guard let eventId = eventMapping[arg] else {
                 print("bad arg: `" + arg + "`")
+                return
             }
             printDispatchEventName(arg)
             sm.dispatchEvent(eventId)

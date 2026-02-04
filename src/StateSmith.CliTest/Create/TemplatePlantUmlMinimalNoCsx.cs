@@ -455,7 +455,8 @@ public class TemplatePlantUmlMinimalNoCsx
             Imports = """
                 // whatever you need to import here
                 """
-            # BaseList = "MyUserBaseClass, MyUserProtocol"
+            # Extends = "MyUserBaseClass"
+            # Implements = "SomeUserProtocol"
             ClassCode = """
                 # Add custom code here to inject into the generated class.
                 # Inheritance or composition might be a better choice.

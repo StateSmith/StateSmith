@@ -250,7 +250,8 @@ public class TomlConfigTest_335
 
             [RenderConfig.Swift]
             Imports = ""
-            BaseList = ""
+            Extends = ""
+            Implements = ""
             ClassCode = ""
 
             ############SmRunner.Settings ###############

@@ -3,7 +3,8 @@ namespace StateSmith.Output.UserConfig;
 public class RenderConfigSwiftVars
 {
     public string Imports = "";
-    public string BaseList = "";
+    public string Extends = "";
+    public string Implements = "";
     public string ClassCode = "";
 
     public void SetFrom(IRenderConfigSwift config, bool autoDeIndentAndTrim)
@@ -20,7 +21,8 @@ public class RenderConfigSwiftVars
         }
 
         Imports = Process(config.Imports);
-        BaseList = Process(config.BaseList);
+        Extends = Process(config.Extends);
+        Implements = Process(config.Implements);
         ClassCode = Process(config.ClassCode);
     }
 }

@@ -77,15 +77,30 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
 
     private void MaybeOutputBaseList()
     {
-        var baseList = renderConfigSwift.BaseList.Trim();
-        if (baseList.Length > 0)
-            sb.Append(" : " + baseList);
+        var extends = renderConfigSwift.Extends.Trim();
+        var implements = renderConfigSwift.Implements.Trim();
+        if (extends.Length > 0 && implements.Length > 0)
+        {
+            sb.Append(" : ");
+            sb.Append(extends);
+            sb.Append(", ");
+            sb.Append(implements);
+        } 
+        else if (extends.Length > 0)
+        {
+            sb.Append(" : ");
+            sb.Append(extends);
+        }
+        else if (implements.Length > 0)
+        {
+            sb.Append(" : ");
+            sb.Append(implements);
+        }
     }
 
     public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
     {
         VisitLeadingTrivia(node.GetFirstToken());
-        string indent = StringUtils.FindLastIndent(sb);
         
         if (node.Modifiers.Any(SyntaxKind.PrivateKeyword))
         {
@@ -211,6 +226,12 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         if (node.Modifiers.Any(SyntaxKind.PublicKeyword))
         {
             sb.Append("public ");
+        }
+
+        var extends = renderConfigSwift.Extends.Trim();
+        if (extends.Length > 0)
+        {
+            sb.Append("override ");
         }
 
         sb.Append("init");
