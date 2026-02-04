@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmithTest.Processes;
@@ -30,7 +31,7 @@ public class SharedCompilationFixture
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            ProgramPath = "kotlinc.bat",
+            ProgramPath = Environment.OSVersion.Platform == PlatformID.Win32NT ? "kotlinc.bat" : "kotlinc",
             Args = " MainClass.kt Spec2SmBase.kt Spec2Sm.kt -include-runtime -d test.jar"
         };
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
