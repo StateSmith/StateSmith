@@ -43,7 +43,8 @@ public class SharedCompilationFixture
         {
             WorkingDirectory = $"{OutputDirectory}/..",
             ProgramPath = "swift",
-            Args = "build"
+            Args = "build",
+            throwOnStdErr = false
         };
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
     }

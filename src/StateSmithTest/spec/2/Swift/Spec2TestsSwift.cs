@@ -16,7 +16,8 @@ public class Spec2TestsSwift : Spec2Tests, IClassFixture<SharedCompilationFixtur
         {
             WorkingDirectory = $"{SharedCompilationFixture.OutputDirectory}/..",
             ProgramPath = "swift",
-            Args = $"run SpecSwift"
+            Args = $"run SpecSwift {testEvents}",
+            throwOnStdErr = false
         };
         process.Run(SimpleProcess.DefaultLongTimeoutMs);
 

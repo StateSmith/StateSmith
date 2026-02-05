@@ -1,3 +1,5 @@
+import Darwin
+
 @MainActor
 public class MainClass {
     static let eventMapping: [String: Spec2Sm.EventId] = [
@@ -57,10 +59,10 @@ public class MainClass {
         sm.start()
         print("")
 
-        for arg in args {
-            guard let eventId = eventMapping[arg] else {
+        for arg in args[1...] {
+            guard let eventId = eventMapping[arg.uppercased()] else {
                 print("bad arg: `" + arg + "`")
-                return
+                exit(1)
             }
             printDispatchEventName(arg)
             sm.dispatchEvent(eventId)
