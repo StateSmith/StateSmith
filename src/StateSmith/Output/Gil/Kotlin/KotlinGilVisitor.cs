@@ -274,7 +274,7 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
         if (transpilerHelper.IsGilData(node))
             return;
 
-        if (node.Modifiers.Any(SyntaxKind.StaticKeyword))
+        if (node.Modifiers.Any(SyntaxKind.StaticKeyword) && companionSb != null)
         {
             sb = companionSb;
         }
