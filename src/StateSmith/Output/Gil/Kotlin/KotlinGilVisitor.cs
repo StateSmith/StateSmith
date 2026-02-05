@@ -17,13 +17,14 @@ namespace StateSmith.Output.Gil.Kotlin;
 /// </summary>
 public class KotlinGilVisitor : CSharpSyntaxWalker
 {
-    public readonly StringBuilder mainSb, companionSb;
+    private readonly StringBuilder mainSb;
     private readonly RenderConfigKotlinVars renderConfigKotlin;
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
 
     private SemanticModel model;
     private StringBuilder sb;
+    private StringBuilder? companionSb;
 
 
     private SyntaxToken? tokenToSkip;
@@ -31,7 +32,6 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
     public KotlinGilVisitor(string gilCode, StringBuilder sb, RenderConfigKotlinVars renderConfigKotlin, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = mainSb = sb;
-        companionSb = new StringBuilder();
         this.renderConfig = renderConfig;
         this.renderConfigKotlin = renderConfigKotlin;
         transpilerHelper = GilTranspilerHelper.Create(this, gilCode, roslynCompiler);
@@ -59,6 +59,10 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
         if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
+
+        var parentSb = this.companionSb;
+        var companionSb = new StringBuilder();
+        this.companionSb = companionSb;
 
         var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
         
@@ -100,6 +104,8 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
             sb.Append(indent);
             sb.AppendLine("}");
         }
+
+        this.companionSb = parentSb;
 
         iterableChildSyntaxList.VisitRest();
     }
@@ -174,7 +180,7 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
         if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb))
             return;
 
-        if (node.Modifiers.Any(SyntaxKind.StaticKeyword))
+        if (node.Modifiers.Any(SyntaxKind.StaticKeyword) && companionSb != null)
         {
             sb = companionSb;
         }
