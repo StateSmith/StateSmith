@@ -45,6 +45,11 @@ public interface IRenderConfig
     /// See https://github.com/StateSmith/StateSmith/issues/161
     /// </summary>
     string TriggerMap => "";
+
+    /// <summary>
+    /// Disables generation of statemachine delegates
+    /// </summary>
+    string NoDelegate => ""; // TODO when I make this a bool, SmRunner sees the correct value but GilToJava always sees false
 }
 
 public class DummyIRenderConfig : IRenderConfig
