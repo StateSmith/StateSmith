@@ -209,7 +209,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
     {
         VisitLeadingTrivia(node.GetFirstToken());
         Visit(node.Type);
-        //Visit(node.ArgumentList);  // we need to update how `VisitArgumentList()` works
+        Visit(node.ArgumentList);
         sb.Append("()");
         VisitTrailingTrivia(node.GetLastToken());
     }
@@ -251,7 +251,6 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         VisitLeadingTrivia(node.GetFirstToken());
         string indent = StringUtils.FindLastIndent(sb);
 
-        //if private, add a leading underscore
         if (node.Modifiers.Any(SyntaxKind.PrivateKeyword))
         {
             sb.Append("private ");
@@ -434,7 +433,6 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         }
     }
 
-    // kinda like: https://sourceroslyn.io/#Microsoft.CodeAnalysis.CSharp/Syntax/InternalSyntax/SyntaxToken.cs,516c0eb61810c3ef,references
     public override void VisitToken(SyntaxToken token)
     {
         token.LeadingTrivia.VisitWith(this);
@@ -465,11 +463,5 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
     public override void VisitTrivia(SyntaxTrivia trivia)
     {
         sb.Append(trivia.ToString());
-
-        // useful for nullable directives or maybe structured comments
-        //if (trivia.HasStructure)
-        //{
-        //    this.Visit(trivia.GetStructure());
-        //}
     }
 }

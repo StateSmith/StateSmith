@@ -374,8 +374,7 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
     public override void VisitObjectCreationExpression(ObjectCreationExpressionSyntax node)
     {
         Visit(node.Type);
-        //Visit(node.ArgumentList);  // we need to update how `VisitArgumentList()` works
-        sb.Append("()");
+        Visit(node.ArgumentList);
     }
 
     public override void VisitExpressionStatement(ExpressionStatementSyntax node)
@@ -507,7 +506,6 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
         }
     }
 
-    // kinda like: https://sourceroslyn.io/#Microsoft.CodeAnalysis.CSharp/Syntax/InternalSyntax/SyntaxToken.cs,516c0eb61810c3ef,references
     public override void VisitToken(SyntaxToken token)
     {
         if (token == tokenToSkip)
