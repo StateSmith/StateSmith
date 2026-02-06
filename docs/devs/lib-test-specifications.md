@@ -49,6 +49,49 @@ sudo apt-get install openjdk-25-jdk-headless
 brew install openjdk@25
 ```
 
+## Kotlin
+
+[Instructions](https://kotlinlang.org/docs/command-line.html#install-the-compiler)
+
+Install `java-jdk`.
+
+```bash
+# Linux/WSL:
+sudo apt-get install openjdk-25-jdk-headless
+
+# MacOS:
+brew install openjdk@25
+```
+Install Kotlin compiler
+
+```bash
+# Linux/WSL:
+sdk install kotlin
+
+# MacOS:
+brew install kotlin
+```
+
+## Swift
+
+[Instructions](https://www.swift.org/install)
+
+```bash
+# Linux/WSL:
+curl -O https://download.swift.org/swiftly/linux/swiftly-$(uname -m).tar.gz && \
+tar zxf swiftly-$(uname -m).tar.gz && \
+./swiftly init --quiet-shell-followup && \
+. "${SWIFTLY_HOME_DIR:-$HOME/.local/share/swiftly}/env.sh" && \
+hash -r
+
+# MacOS:
+curl -O https://download.swift.org/swiftly/darwin/swiftly.pkg && \
+installer -pkg swiftly.pkg -target CurrentUserHomeDirectory && \
+~/.swiftly/bin/swiftly init --quiet-shell-followup && \
+. "${SWIFTLY_HOME_DIR:-$HOME/.swiftly}/env.sh" && \
+hash -r
+```
+
 ## JavaScript (Node.js)
 ![Supported Versions](https://img.shields.io/badge/Supported_Versions->=_v20\.0\.0-blue)
 
