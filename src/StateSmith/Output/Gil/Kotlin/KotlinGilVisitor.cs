@@ -255,7 +255,16 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
 
     public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
     {
-        // TODO: include constructor in the class declaration using semantic model (when needed)
+        if (node.Body == null || node.Body.Statements.Count == 0)
+        {
+            return;
+        }
+
+        VisitLeadingTrivia(node.GetFirstToken());
+
+        sb.AppendLine("init");
+        
+        Visit(node.Body);
     }
 
     public override void VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
