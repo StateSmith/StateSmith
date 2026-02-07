@@ -340,29 +340,35 @@ State1 --> State2 : Ev2
             <span id='clear-button' class='titlebar-icon dropdown-button' title='Clear event log'>delete</span>
             <a href='https://github.com/StateSmith/StateSmith/wiki/Simulator' id='help-button' class='titlebar-icon dropdown-button' target='_blank' title='CHECK THIS!&#10;The simulator has a number of quirks and limitations&#10;that you should be aware of.'>help</a>
             <div id='myDropdown' class='dropdown-content'>
-              <label class='dropdown-item' for='hideIrrelevantEvents'
+
+              <!-- 
+                NOTE! When adding new settings, be sure to also update the code that saves and restores the checkbox states using localStorage.
+                NOTE! Try not to change the ids of input checkboxes below as that will reset user preferences stored in localStorage.
+               -->
+
+              <label class='dropdown-item' for='settings_hideIrrelevantEvents'
                 title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
-                <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents'>
+                <input type='checkbox' id='settings_hideIrrelevantEvents' name='settings_hideIrrelevantEvents'>
                 Hide ignored event buttons
               </label>
-              <label class='dropdown-item' for='verboseEnter'
+              <label class='dropdown-item' for='settings_verboseEnter'
                 title='Every time a state is entered, it will be logged below in the event log.'>
-                <input type='checkbox' id='verboseEnter' name='verboseEnter' checked>
+                <input type='checkbox' id='settings_verboseEnter' name='settings_verboseEnter' checked>
                 Log State Entry
               </label>
-              <label class='dropdown-item' for='verboseExit'
+              <label class='dropdown-item' for='settings_verboseExit'
                 title='Every time a state is exited, it will be logged below in the event log.'>
-                <input type='checkbox' id='verboseExit' name='verboseExit' checked>
+                <input type='checkbox' id='settings_verboseExit' name='settings_verboseExit' checked>
                 Log State Exit
               </label>
-              <label class='dropdown-item' for='verboseHistory'
+              <label class='dropdown-item' for='settings_verboseHistory'
                 title='Log history pseudo state variable updates'>
-                <input type='checkbox' id='verboseHistory' name='verboseHistory' checked>
+                <input type='checkbox' id='settings_verboseHistory' name='settings_verboseHistory' checked>
                 Log History Variables
               </label>
-              <label class='dropdown-item' for='timestamps'
+              <label class='dropdown-item' for='settings_timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
-                <input type='checkbox' id='timestamps' name='timestamps'>
+                <input type='checkbox' id='settings_timestamps' name='settings_timestamps'>
                 Timestamps
               </label>
             </div>
@@ -1110,7 +1116,7 @@ evaluateGuard = null;
         });
 
         // Set the state of the timestamp checkbox
-        document.getElementById('timestamps').addEventListener('change', function() {
+        document.getElementById('settings_timestamps').addEventListener('change', function() {
           if(this.checked) {
             document.querySelector('table.console').classList.add('timestamps');
           } else {
@@ -1119,7 +1125,7 @@ evaluateGuard = null;
         });
 
         // Set up hide irrelevant events checkbox state and event listener
-        document.getElementById('hideIrrelevantEvents').addEventListener('change', function() {
+        document.getElementById('settings_hideIrrelevantEvents').addEventListener('change', function() {
           // When checkbox state changes, only update button visibility, not availability
           updateButtonVisibility();
         });
@@ -1233,13 +1239,13 @@ evaluateGuard = null;
 
         // Function to update button visibility based on Hide Unused checkbox
         function updateButtonVisibility() {
-            const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
+            const settings_hideIrrelevantEvents = document.getElementById('settings_hideIrrelevantEvents').checked;
             
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
                 if (button) {
                     // Toggle hidden class based on checkbox state and button has no event handler
-                    button.classList.toggle('hidden', hideIrrelevantEvents && button.classList.contains('hasNoEventHandler'));
+                    button.classList.toggle('hidden', settings_hideIrrelevantEvents && button.classList.contains('hasNoEventHandler'));
                 }
             });
         }
@@ -1254,7 +1260,7 @@ evaluateGuard = null;
                   panOnScreen(e);
                 }
 
-                if (document.getElementById('verboseEnter').checked) {
+                if (document.getElementById('settings_verboseEnter').checked) {
                     sm.tracer.log('➡️ Entered ' + mermaidName);
                 }
                 
@@ -1264,7 +1270,7 @@ evaluateGuard = null;
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
 
-                if (document.getElementById('verboseExit').checked) {
+                if (document.getElementById('settings_verboseExit').checked) {
                     sm.tracer.log('↩️ Exited ' + mermaidName);
                 }
             },
@@ -1272,7 +1278,7 @@ evaluateGuard = null;
                 highlightEdge(edgeId);
             },
             logHistoryVarUpdate: (varName, newValue) => {
-                if (document.getElementById('verboseHistory').checked) {
+                if (document.getElementById('settings_verboseHistory').checked) {
                     sm.tracer.log(`🕑 HistoryVar(${varName}) = ${newValue}`);
                 }
             },
