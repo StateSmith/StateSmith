@@ -51,6 +51,7 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/498
 - Simulator - style event dispatched log to match event button
 - Simulator - prevent accidental text selection of top right buttons.
+- Simulator - add tool tip titles to event and other buttons.
 
 ## Fixed (minor)
 - Fix - simulator - mermaid bug with parent self transitions.

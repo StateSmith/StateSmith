@@ -518,7 +518,7 @@ public class HtmlRenderer
                         button.classList.remove('hasNoEventHandler');
                     } else {
                         button.classList.add('hasNoEventHandler');
-                        button.title += '&#10;There is no handler for this event in the current state.&#10;Dispatching is valid, but will have no effect on the state machine.';
+                        button.title += '\nThere is no handler for this event in the current state.\nDispatching is valid, but will have no effect on the state machine.';
                     }
 
                 }
