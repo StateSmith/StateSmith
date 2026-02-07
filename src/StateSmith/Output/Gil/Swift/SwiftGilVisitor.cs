@@ -210,7 +210,6 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
         VisitLeadingTrivia(node.GetFirstToken());
         Visit(node.Type);
         Visit(node.ArgumentList);
-        sb.Append("()");
         VisitTrailingTrivia(node.GetLastToken());
     }
 
