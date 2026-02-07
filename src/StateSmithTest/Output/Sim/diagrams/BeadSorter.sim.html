@@ -544,33 +544,38 @@ ROOT.(InitialState) --> Running
             <div id='myDropdown' class='dropdown-content'>
 
               <!-- 
-                NOTE! When adding new settings, be sure to also update the code that saves and restores the checkbox states using localStorage.
                 NOTE! Try not to change the ids of input checkboxes below as that will reset user preferences stored in localStorage.
+                NOTE! New settings will be automatically picked up if they start with 'savedSetting_' and are checkboxes.
                -->
 
-              <label class='dropdown-item' for='settings_hideIrrelevantEvents'
+              <label class='dropdown-item' for='savedSetting_hideIrrelevantEvents'
                 title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
-                <input type='checkbox' id='settings_hideIrrelevantEvents' name='settings_hideIrrelevantEvents'>
+                <input type='checkbox' id='savedSetting_hideIrrelevantEvents' name='savedSetting_hideIrrelevantEvents'>
                 Hide ignored event buttons
               </label>
-              <label class='dropdown-item' for='settings_verboseEnter'
+              <label class='dropdown-item' for='savedSetting_verboseEnter'
                 title='Every time a state is entered, it will be logged below in the event log.'>
-                <input type='checkbox' id='settings_verboseEnter' name='settings_verboseEnter' checked>
+                <input type='checkbox' id='savedSetting_verboseEnter' name='savedSetting_verboseEnter' checked>
                 Log State Entry
               </label>
-              <label class='dropdown-item' for='settings_verboseExit'
+              <label class='dropdown-item' for='savedSetting_verboseExit'
                 title='Every time a state is exited, it will be logged below in the event log.'>
-                <input type='checkbox' id='settings_verboseExit' name='settings_verboseExit' checked>
+                <input type='checkbox' id='savedSetting_verboseExit' name='savedSetting_verboseExit' checked>
                 Log State Exit
               </label>
-              <label class='dropdown-item' for='settings_verboseHistory'
+              <label class='dropdown-item' for='savedSetting_verboseHistory'
                 title='Log history pseudo state variable updates'>
-                <input type='checkbox' id='settings_verboseHistory' name='settings_verboseHistory' checked>
+                <input type='checkbox' id='savedSetting_verboseHistory' name='savedSetting_verboseHistory' checked>
                 Log History Variables
               </label>
-              <label class='dropdown-item' for='settings_timestamps'
+              <label class='dropdown-item' for='savedSetting_showEventButtonTooltips'
+                 title='Event dispatching buttons will have tooltips with additional info.&#10;📢 NOTE! Changes to this setting take effect on state change or page reload.'>
+                <input type='checkbox' id='savedSetting_showEventButtonTooltips' name='savedSetting_showEventButtonTooltips' checked>
+                Show event button tooltips
+              </label>
+              <label class='dropdown-item' for='savedSetting_timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
-                <input type='checkbox' id='settings_timestamps' name='settings_timestamps'>
+                <input type='checkbox' id='savedSetting_timestamps' name='savedSetting_timestamps'>
                 Timestamps
               </label>
             </div>
@@ -3453,7 +3458,7 @@ evaluateGuard = null;
         });
 
         // Set the state of the timestamp checkbox
-        document.getElementById('settings_timestamps').addEventListener('change', function() {
+        document.getElementById('savedSetting_timestamps').addEventListener('change', function() {
           if(this.checked) {
             document.querySelector('table.console').classList.add('timestamps');
           } else {
@@ -3462,7 +3467,7 @@ evaluateGuard = null;
         });
 
         // Set up hide irrelevant events checkbox state and event listener
-        document.getElementById('settings_hideIrrelevantEvents').addEventListener('change', function() {
+        document.getElementById('savedSetting_hideIrrelevantEvents').addEventListener('change', function() {
           // When checkbox state changes, only update button visibility, not availability
           updateButtonVisibility();
         });
@@ -3471,6 +3476,12 @@ evaluateGuard = null;
         // DO AFTER event listeners are set up, so that restored state will trigger the change event and apply the setting.
         const dropdownCheckboxes = document.querySelectorAll(`.dropdown-content input[type='checkbox']`);
         dropdownCheckboxes.forEach(checkbox => {
+
+          if (checkbox.id.startsWith('savedSetting_') === false)
+          {
+            console.log(`Skipping checkbox with id '${checkbox.id}' for localStorage state saving/restoring because it does not start with 'savedSetting_'.`, checkbox);
+            return;
+          }
 
           // append a note to the checkbox title that the state is saved in localStorage
           checkbox.parentElement.title += '\nThis setting is saved in localStorage and will persist across page reloads.';
@@ -3552,21 +3563,29 @@ evaluateGuard = null;
         // Function to update event button states (availability and visibility)
         function updateEventButtonStates(currentStateName) {
             const availableEvents = stateEventsMapping[currentStateName] || [];
-            
+
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
                 if (button) {
                     const hasEventHandler = availableEvents.includes(eventName);
 
-                    button.title = `Dispatch event '${eventName}' to the state machine.`;
+                    let title = `Dispatch event '${eventName}' to the state machine.`;
 
                     if (hasEventHandler) {
                         button.classList.remove('hasNoEventHandler');
                     } else {
                         button.classList.add('hasNoEventHandler');
-                        button.title += '\nThere is no handler for this event in the current state.\nDispatching is valid, but will have no effect on the state machine.';
+                        title += '\nThere is no handler for this event in the current state.\nDispatching is valid, but will have no effect on the state machine.';
                     }
 
+                    title += '\nThere is a ⚙️ setting to disable these tooltips.';
+
+                    const showTooltips = document.getElementById('savedSetting_showEventButtonTooltips').checked
+                    if (showTooltips) {
+                        button.title = title;
+                    } else {
+                        button.removeAttribute('title');
+                    }
                 }
             });
             
@@ -3576,13 +3595,13 @@ evaluateGuard = null;
 
         // Function to update button visibility based on Hide Unused checkbox
         function updateButtonVisibility() {
-            const settings_hideIrrelevantEvents = document.getElementById('settings_hideIrrelevantEvents').checked;
+            const hideIrrelevantEvents = document.getElementById('savedSetting_hideIrrelevantEvents').checked;
             
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
                 if (button) {
                     // Toggle hidden class based on checkbox state and button has no event handler
-                    button.classList.toggle('hidden', settings_hideIrrelevantEvents && button.classList.contains('hasNoEventHandler'));
+                    button.classList.toggle('hidden', hideIrrelevantEvents && button.classList.contains('hasNoEventHandler'));
                 }
             });
         }
@@ -3597,7 +3616,7 @@ evaluateGuard = null;
                   panOnScreen(e);
                 }
 
-                if (document.getElementById('settings_verboseEnter').checked) {
+                if (document.getElementById('savedSetting_verboseEnter').checked) {
                     sm.tracer.log('➡️ Entered ' + mermaidName);
                 }
                 
@@ -3607,7 +3626,7 @@ evaluateGuard = null;
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
 
-                if (document.getElementById('settings_verboseExit').checked) {
+                if (document.getElementById('savedSetting_verboseExit').checked) {
                     sm.tracer.log('↩️ Exited ' + mermaidName);
                 }
             },
@@ -3615,7 +3634,7 @@ evaluateGuard = null;
                 highlightEdge(edgeId);
             },
             logHistoryVarUpdate: (varName, newValue) => {
-                if (document.getElementById('settings_verboseHistory').checked) {
+                if (document.getElementById('savedSetting_verboseHistory').checked) {
                     sm.tracer.log(`🕑 HistoryVar(${varName}) = ${newValue}`);
                 }
             },

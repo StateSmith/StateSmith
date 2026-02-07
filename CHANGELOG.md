@@ -52,6 +52,7 @@ Test/interim releases are not documented here.
 - Simulator - style event dispatched log to match event button
 - Simulator - prevent accidental text selection of top right buttons.
 - Simulator - add tool tip titles to event and other buttons.
+- Simulator - add setting to disable tool tips on event buttons.
 - Simulator - remember settings in localStorage.
 
 ## Fixed (minor)
