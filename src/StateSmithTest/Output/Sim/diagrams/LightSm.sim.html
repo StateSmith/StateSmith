@@ -1017,7 +1017,6 @@ evaluateGuard = null;
         });
 
         // Set the state of the timestamp checkbox
-        document.getElementById('timestamps').checked = document.querySelector('table.console').classList.contains('timestamps');
         document.getElementById('timestamps').addEventListener('change', function() {
           if(this.checked) {
             document.querySelector('table.console').classList.add('timestamps');
@@ -1030,6 +1029,29 @@ evaluateGuard = null;
         document.getElementById('hideIrrelevantEvents').addEventListener('change', function() {
           // When checkbox state changes, only update button visibility, not availability
           updateButtonVisibility();
+        });
+
+        // store and restore checkbox states using localStorage.
+        // DO AFTER event listeners are set up, so that restored state will trigger the change event and apply the setting.
+        const dropdownCheckboxes = document.querySelectorAll(`.dropdown-content input[type='checkbox']`);
+        dropdownCheckboxes.forEach(checkbox => {
+
+          // append a note to the checkbox title that the state is saved in localStorage
+          checkbox.parentElement.title += '\nThis setting is saved in localStorage and will persist across page reloads.';
+
+          // Restore state from localStorage
+          const savedState = localStorage.getItem(checkbox.id);
+          if (savedState !== null) {
+            checkbox.checked = (savedState === 'true');
+            checkbox.dispatchEvent(new Event('change')); // Trigger change event to apply the setting
+            console.log(`Restored checkbox value for '${checkbox.id}' to '${checkbox.checked}'`, checkbox);
+          }
+
+          // Save state to localStorage on change
+          checkbox.addEventListener('change', function() {
+            localStorage.setItem(checkbox.id, this.checked);
+            console.log(`Saved checkbox value for '${checkbox.id}' to '${this.checked}'`, checkbox);
+          });
         });
 
         //------------------- drop down functionality end -------------------
