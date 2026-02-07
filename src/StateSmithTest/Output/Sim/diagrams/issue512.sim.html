@@ -355,6 +355,12 @@ ROOT.(InitialState) --> ORDER_MENU
                 <input type='checkbox' id='savedSetting_showEventButtonTooltips' name='savedSetting_showEventButtonTooltips' checked>
                 Show event button tooltips
               </label>
+              <!-- setting for requiring CTRL to held while clicking to force state -->
+                <label class='dropdown-item' for='savedSetting_requireCtrlForForceState'
+                    title='CTRL key must be held while clicking a state to force it.&#10;This can help prevent accidental forced state changes.'>
+                    <input type='checkbox' id='savedSetting_requireCtrlForForceState' name='savedSetting_requireCtrlForForceState'>
+                    Require CTRL to force state
+                </label>
               <label class='dropdown-item' for='savedSetting_timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
                 <input type='checkbox' id='savedSetting_timestamps' name='savedSetting_timestamps'>
@@ -1097,6 +1103,11 @@ evaluateGuard = null;
           document.querySelectorAll('g.statediagram-state[id]').forEach(stateElement => {
             stateElement.style.cursor = 'pointer'; // indicate that the element is clickable.
             stateElement.addEventListener('click', (event) => {
+
+              if (savedSetting_requireCtrlForForceState.checked && !event.ctrlKey) {
+                  // if the setting to require ctrl key is enabled, and the ctrl key is not pressed, do not force state.
+                  return;
+              }
 
               if (isDragging) {
                 // If the mouse is currently being dragged, do not treat this click as a state change request.
