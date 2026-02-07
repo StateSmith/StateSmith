@@ -68,8 +68,16 @@ public class AlgoTests
                 if (transpilerId == TranspilerId.Java && algoId != AlgorithmId.Balanced2)
                     continue;
 
+                // Kotlin only supports Balanced2 right now.
+                if (transpilerId == TranspilerId.Kotlin && algoId != AlgorithmId.Balanced2)
+                    continue;
+
                 // Python only supports Balanced2 right now. See https://github.com/StateSmith/StateSmith/issues/398
                 if (transpilerId == TranspilerId.Python && algoId != AlgorithmId.Balanced2)
+                    continue;
+
+                // Swift only supports Balanced2 right now. 
+                if (transpilerId == TranspilerId.Swift && algoId != AlgorithmId.Balanced2)
                     continue;
 
                 // TypeScript only supports Balanced2 right now. See https://github.com/StateSmith/StateSmith/issues/407
@@ -132,6 +140,13 @@ public class AlgoTests
                 }
                 """
 
+            [RenderConfig.Kotlin]
+            ClassCode = """
+                fun userCodeMethod() {
+                    println('userCodeMethod');
+                }
+                """
+
             [RenderConfig.Java]
             ClassCode = """
                 public void userCodeMethod() {
@@ -149,6 +164,13 @@ public class AlgoTests
             ClassCode = """
                 function userCodeMethod() {
                     console.log('userCodeMethod');
+                }
+                """
+
+            [RenderConfig.Swift]
+            ClassCode = """
+                func userCodeMethod() {
+                    print("userCodeMethod")
                 }
                 """
 

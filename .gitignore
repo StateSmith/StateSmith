@@ -1,4 +1,6 @@
 *.class
+*.jar
+main.kotlin_module
 .antlr/
 
 example-output/render2

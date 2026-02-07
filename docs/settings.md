@@ -107,6 +107,17 @@ AutoExpandedVars  = "stuff..."
   - [RenderConfig.Python.Imports](#renderconfigpythonimports)
   - [RenderConfig.Python.Extends](#renderconfigpythonextends)
   - [RenderConfig.Python.ClassCode](#renderconfigpythonclasscode)
+- [RenderConfig.Kotlin](#renderconfigkotlin)
+  - [RenderConfig.Kotlin.Package](#renderconfigkotlinpackage)
+  - [RenderConfig.Kotlin.Imports](#renderconfigkotlinimports)
+  - [RenderConfig.Kotlin.Extends](#renderconfigkotlinextends)
+  - [RenderConfig.Kotlin.Implements](#renderconfigkotlinimplements)
+  - [RenderConfig.Kotlin.ClassCode](#renderconfigkotlinclasscode)
+- [RenderConfig.Swift](#renderconfigswift)
+  - [RenderConfig.Swift.Imports](#renderconfigswiftimports)
+  - [RenderConfig.Swift.Extends](#renderconfigswiftextends)
+  - [RenderConfig.Swift.Implements](#renderconfigswiftimplements)
+  - [RenderConfig.Swift.ClassCode](#renderconfigswiftclasscode)
 - [SmRunnerSettings](#smrunnersettings)
   - [SmRunnerSettings.transpilerId](#smrunnersettingstranspilerid)
   - [SmRunnerSettings.algorithmId](#smrunnersettingsalgorithmid)
@@ -1149,6 +1160,148 @@ Use to add custom code to generated state machine class. Inheritance or composit
 [RenderConfig.Python]
 ClassCode = """
     # Add custom code here...
+    """
+```
+
+
+
+
+<br>
+<br>
+
+# RenderConfig.Kotlin
+Maps to the [IRenderConfigKotlin](../src/StateSmith/Output/UserConfig/IRenderConfigKotlin.cs) interface.
+
+```toml
+[RenderConfig.Kotlin]
+Imports = """
+    import org.example.* // or whatever you need
+    """
+Extends = "MyUserBaseClass"
+Implements = "SomeUserInterface"
+ClassCode = """
+    // Add custom code here to inject into the generated class.
+    // Inheritance or composition might be a better choice.
+    """
+```
+
+## RenderConfig.Kotlin.Package
+Type: `string`
+
+Use to specify the package for the generated class. If empty, no package is generated.
+
+```toml
+[RenderConfig.Kotlin]
+Package = "my.package.for.statemachine"
+```
+
+## RenderConfig.Kotlin.Imports
+Type: `string`
+
+Use to add import statements to the generated class. Can span multiple lines.
+
+```toml
+[RenderConfig.Kotlin]
+Imports = """
+    import org.example.* // or whatever you need
+    """
+```
+
+## RenderConfig.Kotlin.Extends
+Type: `string`
+
+Use to have generated state machine class extend a user defined base class.
+
+```toml
+[RenderConfig.Kotlin]
+Extends = "MyUserBaseClass"
+```
+
+## RenderConfig.Kotlin.Implements
+Type: `string`
+
+Use to have generated state machine class implement a user defined interface.
+
+```toml
+[RenderConfig.Kotlin]
+Implements = "SomeUserInterface"
+```
+
+## RenderConfig.Kotlin.ClassCode
+Type: `string`
+
+Use to add custom code to generated state machine class. Inheritance or composition is often a better choice.
+
+```toml
+[RenderConfig.Kotlin]
+ClassCode = """
+    // Add custom code here...
+    """
+```
+
+
+
+
+<br>
+<br>
+
+# RenderConfig.Swift
+Maps to the [IRenderConfigSwift](../src/StateSmith/Output/UserConfig/IRenderConfigSwift.cs) interface.
+
+```toml
+[RenderConfig.Swift]
+Imports = """
+    import Combine // or whatever you need
+    """
+Extends = "MyUserBaseClass"
+Implements = "SomeUserInterface"
+ClassCode = """
+    // Add custom code here to inject into the generated class.
+    // Inheritance or composition might be a better choice.
+    """
+```
+
+## RenderConfig.Swift.Imports
+Type: `string`
+
+Use to add import statements to the generated class. Can span multiple lines.
+
+```toml
+[RenderConfig.Swift]
+Imports = """
+    import Combine // or whatever you need
+    """
+```
+
+## RenderConfig.Swift.Extends
+Type: `string`
+
+Use to have generated state machine class extend a user defined base class.
+
+```toml
+[RenderConfig.Swift]
+Extends = "MyUserBaseClass"
+```
+
+## RenderConfig.Swift.Implements
+Type: `string`
+
+Use to have generated state machine class implement a user defined interface.
+
+```toml
+[RenderConfig.Swift]
+Implements = "SomeUserProtocol"
+```
+
+## RenderConfig.Swift.ClassCode
+Type: `string`
+
+Use to add custom code to generated state machine class. Inheritance or composition is often a better choice.
+
+```toml
+[RenderConfig.Swift]
+ClassCode = """
+    // Add custom code here...
     """
 ```
 

@@ -424,4 +424,54 @@ public class TemplatePlantUmlMinimalNoCsx
         // make sure the calls were made
         mockFileWriter.Received().Write("RocketSm.plantuml", Arg.Any<string>());
     }
+
+    [Fact]
+    public void LangSwift()
+    {
+        settings.TargetLanguageId = TargetLanguageId.Swift;
+        Generator generator = new(settings);
+        generator.tomlConfigType = TemplateLoader.TomlConfigType.Minimal;
+        generator.SetFileWriter(mockFileWriter);
+
+        var swiftTop = Top;
+        swiftTop = swiftTop.Replace(";", "");
+        swiftTop = swiftTop.Replace("++", " += 1");
+
+        // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
+        mockFileWriter.When(x => x.Write("RocketSm.plantuml", Arg.Any<string>())).Do(x => {
+            x.ArgAt<string>(1).ShouldBeShowDiff($""""
+            {swiftTop}
+
+            [RenderConfig]
+            FileTop = """
+                // Whatever you put in this `FileTop` section will end up 
+                // being printed at the top of every generated code file.
+                """
+            AutoExpandedVars = """
+                var count: Int = 0 // this var can be referenced in diagram
+                """
+
+            [RenderConfig.Swift]
+            Imports = """
+                // whatever you need to import here
+                """
+            # Extends = "MyUserBaseClass"
+            # Implements = "SomeUserProtocol"
+            ClassCode = """
+                # Add custom code here to inject into the generated class.
+                # Inheritance or composition might be a better choice.
+                """
+
+            [SmRunnerSettings]
+            transpilerId = "Swift"
+            '/
+            @enduml
+            """", outputCleanActual: true);
+        });
+
+        generator.GenerateFiles();
+
+        // make sure the calls were made
+        mockFileWriter.Received().Write("RocketSm.plantuml", Arg.Any<string>());
+    }
 }

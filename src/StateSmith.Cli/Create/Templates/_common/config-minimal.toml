@@ -130,7 +130,22 @@ Imports = """
 //!!</filter>
 
 
+//!!<filter:Kotlin>
+AutoExpandedVars = """
+    var count = 0 // this var can be referenced in diagram
+    """
 
+[RenderConfig.Kotlin]
+# Package = "my.package.for.statemachine"
+Imports = """
+    // whatever you need to import here
+    """
+# Extends = "MyUserBaseClass"
+# Implements = "SomeUserInterface"
+
+# More Kotlin settings are available. See docs.
+
+//!!</filter>
 
 
 //!!<filter:Python>
@@ -151,6 +166,24 @@ ClassCode = """
 
 //!!</filter>
 
+//!!<filter:Swift>
+AutoExpandedVars = """
+    var count: Int = 0 // this var can be referenced in diagram
+    """
+
+[RenderConfig.Swift]
+Imports = """
+    // whatever you need to import here
+    """
+# Extends = "MyUserBaseClass"
+# Implements = "SomeUserProtocol"
+ClassCode = """
+    # Add custom code here to inject into the generated class.
+    # Inheritance or composition might be a better choice.
+    """
+
+//!!</filter>
+
 
 
 
@@ -162,3 +195,5 @@ transpilerId = "JavaScript"  //!!<line-filter:JavaScript>
 transpilerId = "TypeScript"  //!!<line-filter:TypeScript>
 transpilerId = "Java"  //!!<line-filter:Java>
 transpilerId = "Python"  //!!<line-filter:Python>
+transpilerId = "Kotlin"  //!!<line-filter:Kotlin>
+transpilerId = "Swift"  //!!<line-filter:Swift>
