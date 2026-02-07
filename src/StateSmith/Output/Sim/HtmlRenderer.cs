@@ -34,7 +34,7 @@ public class HtmlRenderer
         margin: 0px;
       }
 
-      a.mermaid-workaround {
+      #event-logs a {
         text-decoration: none;
         color: inherit;
       }
@@ -166,8 +166,16 @@ public class HtmlRenderer
         font-weight: bold;
       }
 
-      .dispatched > .event-id {
+      .dispatched .event-id {
         border: 1px solid #000;
+        border-radius: 4px;
+        padding: 2px;
+      }
+
+      .dispatched .forced-state {
+        border: 1px solid #000;
+        color: white;
+        background-color: #c50c0c;
         border-radius: 4px;
         padding: 2px;
       }
@@ -261,6 +269,12 @@ public class HtmlRenderer
 
       .statediagram-state.active > * {
         fill: #fff5ad !important;
+        stroke-width: 2px !important;
+      }
+
+      /* we don't want to fill body of parent state with regular active yellow. It's just too much! */
+      .statediagram-state.active rect.inner {
+        fill: #faf7e1 !important;
         stroke-width: 2px !important;
       }
 
@@ -362,6 +376,31 @@ public class HtmlRenderer
         document.querySelectorAll(`g[data-id*='(InitialState)']`).forEach(g=> {
           g.innerHTML = `<circle transform='translate(0,3)' height='14' width='14' r='14' class='state - start'></circle>`;
         })
+
+
+        // now that we allow clicks to force state, we want to detect when something is a click or a click+drag for panning.
+        // Users can always use middle click to safely pan, but it's annoying.
+        let isDragging = false;
+        let clickStartX = 0;
+        let clickStartY = 0;
+
+        document.addEventListener('mousedown', (event) => {
+            isDragging = false;
+            clickStartX = event.clientX;
+            clickStartY = event.clientY;
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            // If the mouse button is down and moves by more than a few pixels, we consider it a drag (and not a click).
+            if (event.buttons === 1 && !isDragging) {
+                const deltaX = event.clientX - clickStartX;
+                const deltaY = event.clientY - clickStartY;
+                if (Math.abs(deltaX) + Math.abs(deltaY) > 3) { // allow a bit of accidental movement when trying to click to help with accessibility.
+                    isDragging = true;
+                }
+            }
+        });
+
 
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {
             zoomEnabled: true,
@@ -516,6 +555,7 @@ public class HtmlRenderer
         }
 
         var sm = new {{smName}}();
+        window.StateSmith_sm = sm; // expose to global scope so people can interact with it from the console if they want to.
 
         // prompt the user to evaluate guards manually
         sm.evaluateGuard = (vertexName, behaviorUml) => {
@@ -543,9 +583,13 @@ public class HtmlRenderer
             highlightedEdges.clear();
         }
 
+        function clearHighlightedStates() {
+            document.querySelectorAll('g[id].active').forEach(e => e.classList.remove('active'));
+        }
+
         // Function to update event button states (availability and visibility)
-        function updateEventButtonStates(currentStateName) {
-            const availableEvents = stateEventsMapping[currentStateName] || [];
+        function updateEventButtonStates(currentStateDiagramName) {
+            const availableEvents = stateEventsMapping[currentStateDiagramName] || [];
 
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
@@ -593,10 +637,13 @@ public class HtmlRenderer
         // state highlighting and logging.
         sm.tracer = {
             enterState: (mermaidName) => {
-                var e = document.querySelector('g[data-id=' + mermaidName + ']');
+                var e = document.querySelector('g[data-id=' + mermaidName + ']') || document.querySelector('g[id=' + mermaidName + ']');
+
                 if(e) {
                   e.classList.add('active');
                   panOnScreen(e);
+                } else {
+                  console.warn(`Could not find mermaid element to highlight for state '${mermaidName}'.`);
                 }
 
                 if (document.getElementById('savedSetting_verboseEnter').checked) {
@@ -608,6 +655,7 @@ public class HtmlRenderer
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
+                document.querySelector('g[id=' + mermaidName + ']')?.classList.remove('active');
 
                 if (document.getElementById('savedSetting_verboseExit').checked) {
                     sm.tracer.log('↩️ Exited ' + mermaidName);
@@ -635,6 +683,110 @@ public class HtmlRenderer
             }
         };
 
+        // https://github.com/StateSmith/StateSmith/issues/519
+        function forceStateChange(stateNameAnyCase)
+        {
+          const stateName = stateNameAnyCase.toUpperCase();
+
+          // get ID from stateName
+          const stateId = {{smName}}.StateId[stateName];
+          if (stateId === undefined) {
+            console.error(`Invalid state name '${stateNameAnyCase}' passed to forceStateChange.`);
+            console.log('Valid state names are (in any case):', Object.keys({{smName}}.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
+            return;
+          }
+
+          // note! This and other ROOT code assumes that it is the first state. This is a fairly safe assumption, but if that ever changes this code will need to be updated.
+          if (Object.keys({{smName}}.StateId)[0] !== 'ROOT') {
+            console.warn(`ROOT not found. This should happen. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }
+
+          if (stateId === 0) {
+            console.error(`Cannot force state to state machine ROOT.`,);
+            return;
+          }
+
+          let mermaidElement = null;
+
+          // we now need the mermaid state element for the state of interest
+          document.querySelectorAll('g[data-id],g[id]').forEach(e => {
+            const lowerName = stateNameAnyCase.toLowerCase();
+            const matchesLeafState = e.getAttribute('data-id') && e.getAttribute('data-id').toLowerCase() === lowerName;
+            const matchesCompoundState = e.getAttribute('id').toLowerCase() === lowerName;
+
+            if (matchesCompoundState || matchesLeafState) {
+              mermaidElement = e;
+            }
+          });
+
+          if (!mermaidElement) {
+            console.error(`Could not find mermaid element for state name '${stateNameAnyCase}'. This is unexpected as we already found matching state id. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+            return;
+          }
+
+          // force the state change. NOTE! This will only work with Algorithm Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms.
+          sm.stateId = stateId;
+          
+          // remove the active class from all states, then add it to the forced state.
+          clearHighlightedStates();
+          // mermaidElement.classList.add('active'); // done by state enter below
+
+          const htmlMode = true;
+          sm.tracer.log(`<span class='dispatched'><a href='https://github.com/StateSmith/StateSmith/issues/519' target='_blank' title='May have impacts! Click for details.'><span class='forced-state'>FORCED STATE</span> to '${stateNameAnyCase}'</span></a>`, htmlMode);
+
+          // execute state's enter function
+          const enterFunction = sm['_' + stateName + '_enter'];
+          if (enterFunction) {
+            enterFunction.call(sm); // need to call with sm as 'this' context so that it can update the state machine state and do other things that require access to 'this'.
+          } else {
+            console.warn(`No enter function found for state '${stateName}'. This is unexpected. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }            
+
+          panOnScreen(mermaidElement);
+          
+          let mermaidStateName;
+          
+          if (mermaidElement.getAttribute('data-id')) {
+            mermaidStateName = mermaidElement.getAttribute('data-id');
+          } else {
+             mermaidStateName = mermaidElement.getAttribute('id');
+          }
+          updateEventButtonStates(mermaidStateName);
+          clearHighlightedEdges();
+
+          console.log(`Forced state to ${stateNameAnyCase}. See https://github.com/StateSmith/StateSmith/issues/519`);
+        }
+
+        // https://github.com/StateSmith/StateSmith/issues/519
+        {
+          // allow clicking states to force state machine to that state.
+          document.querySelectorAll('g.statediagram-state[id]').forEach(stateElement => {
+            stateElement.style.cursor = 'pointer'; // indicate that the element is clickable.
+            stateElement.addEventListener('click', (event) => {
+
+              if (isDragging) {
+                // If the mouse is currently being dragged, do not treat this click as a state change request.
+                return;
+              }
+
+              let stateName = null;
+
+              // this is a bit hacky. Composite states have their name in the 'id' attribute, while simple states have their name in the 'data-id' attribute. We need to check both to support both types of states.
+              if (stateElement.classList.contains('statediagram-cluster')) {
+                stateName = stateElement.getAttribute('id');
+              } else {
+                stateName = stateElement.getAttribute('data-id');
+              }
+
+              forceStateChange(stateName);
+            });
+          });
+        }
+
+        // export forceStateChange to global scope so it can be called from the console for testing purposes.
+        window.StateSmith_forceStateChange = forceStateChange;
+
+
         // Wire up the buttons that dispatch events for the state machine.
         diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
@@ -649,7 +801,7 @@ public class HtmlRenderer
 
                 if (alwaysAllowEventDispatch || !button.classList.contains('hasNoEventHandler')) {
                     clearHighlightedEdges();
-                    sm.tracer?.log('<span class=\'dispatched\'><span class=\'event-id\'>' + diagramEventName + '</span> DISPATCHED</span>', true);
+                    sm.tracer?.log(`<span class='dispatched'><span class='event-id'>${diagramEventName}</span> DISPATCHED</span>`, true);
                     const fsmEventName = diagramEventName.toUpperCase();
                     sm.dispatchEvent({{smName}}.EventId[fsmEventName]); 
                 }
@@ -661,20 +813,34 @@ public class HtmlRenderer
         sm.start(); // This will cause `updateEventButtonStates()` to be called.
 
         function panOnScreen(element) {
-          if(!element) return;
+            if (!element) return;
 
-          var bounds = element.getBoundingClientRect();
-          if(bounds.x<0 || bounds.y<0) {
-              var x = Math.max(0, -bounds.x + 20);
-              var y = Math.max(0, -bounds.y + 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
-          var panebounds = document.querySelector('svg').getBoundingClientRect();
-          if(bounds.x>panebounds.width || bounds.y>panebounds.height) {
-              var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
-              var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
+            // NOTE! There's some hacks here to prevent multiple rapid calls to panOnScreen.
+            // If one transition causes 3 state enters, and each state entry calls panOnScreen, the screen often goes blank.
+            // I would guess caused by window.panZoom.panBy()
+            // So we put in a little delay hack in here and cancel any pending panning action.
+
+            window.ss_lastPanActionHandle = window.ss_lastPanActionHandle || null;
+
+            if (window.ss_lastPanActionHandle) {
+                clearTimeout(window.ss_lastPanActionHandle);
+                window.ss_lastPanActionHandle = null;
+            }
+
+            window.ss_lastPanActionHandle = setTimeout(() => {
+                var bounds = element.getBoundingClientRect();
+                if (bounds.x < 0 || bounds.y < 0) {
+                    var x = Math.max(0, -bounds.x + 20);
+                    var y = Math.max(0, -bounds.y + 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+                var panebounds = document.querySelector('svg').getBoundingClientRect();
+                if (bounds.x > panebounds.width || bounds.y > panebounds.height) {
+                    var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
+                    var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+            }, 1);
         }
     </script>
 

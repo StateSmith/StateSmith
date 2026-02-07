@@ -22,7 +22,7 @@
         margin: 0px;
       }
 
-      a.mermaid-workaround {
+      #event-logs a {
         text-decoration: none;
         color: inherit;
       }
@@ -154,8 +154,16 @@
         font-weight: bold;
       }
 
-      .dispatched > .event-id {
+      .dispatched .event-id {
         border: 1px solid #000;
+        border-radius: 4px;
+        padding: 2px;
+      }
+
+      .dispatched .forced-state {
+        border: 1px solid #000;
+        color: white;
+        background-color: #c50c0c;
         border-radius: 4px;
         padding: 2px;
       }
@@ -249,6 +257,12 @@
 
       .statediagram-state.active > * {
         fill: #fff5ad !important;
+        stroke-width: 2px !important;
+      }
+
+      /* we don't want to fill body of parent state with regular active yellow. It's just too much! */
+      .statediagram-state.active rect.inner {
+        fill: #faf7e1 !important;
         stroke-width: 2px !important;
       }
 
@@ -428,7 +442,7 @@ evaluateGuard = null;
     // Starts the state machine. Must be called before dispatching events. Not thread safe.
     start()
     {
-        this.#ROOT_enter();
+        this._ROOT_enter();
         // ROOT behavior
         // uml: TransitionTo(ROOT.<InitialState>)
         {
@@ -448,10 +462,10 @@ evaluateGuard = null;
                 this.tracer?.edgeTransition('edge9');
                 
                 // Step 3: Enter/move towards transition target `NORMAL`.
-                this.#NORMAL_enter();
+                this._NORMAL_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this.#NORMAL_InitialState_transition();
+                this._NORMAL_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for ROOT.<InitialState>
         } // end of behavior for ROOT
@@ -467,12 +481,12 @@ evaluateGuard = null;
             case TriggerMap.StateId.ROOT:
                 switch (eventId)
                 {
-                    case TriggerMap.EventId.ERR: this.#ROOT_err(); break;
-                    case TriggerMap.EventId.INC1: this.#ROOT_inc1(); break;
-                    case TriggerMap.EventId.INC2: this.#ROOT_inc2(); break;
-                    case TriggerMap.EventId.DIM1: this.#ROOT_dim1(); break;
-                    case TriggerMap.EventId.DIM2: this.#ROOT_dim2(); break;
-                    case TriggerMap.EventId.INCITE_RESET: this.#ROOT_incite_reset(); break;
+                    case TriggerMap.EventId.ERR: this._ROOT_err(); break;
+                    case TriggerMap.EventId.INC1: this._ROOT_inc1(); break;
+                    case TriggerMap.EventId.INC2: this._ROOT_inc2(); break;
+                    case TriggerMap.EventId.DIM1: this._ROOT_dim1(); break;
+                    case TriggerMap.EventId.DIM2: this._ROOT_dim2(); break;
+                    case TriggerMap.EventId.INCITE_RESET: this._ROOT_incite_reset(); break;
                 }
                 break;
             
@@ -480,12 +494,12 @@ evaluateGuard = null;
             case TriggerMap.StateId.NORMAL:
                 switch (eventId)
                 {
-                    case TriggerMap.EventId.ERR: this.#NORMAL_err(); break;
-                    case TriggerMap.EventId.INC1: this.#ROOT_inc1(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INC2: this.#ROOT_inc2(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.DIM1: this.#ROOT_dim1(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.DIM2: this.#ROOT_dim2(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INCITE_RESET: this.#ROOT_incite_reset(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.ERR: this._NORMAL_err(); break;
+                    case TriggerMap.EventId.INC1: this._ROOT_inc1(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.INC2: this._ROOT_inc2(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.DIM1: this._ROOT_dim1(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.DIM2: this._ROOT_dim2(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.INCITE_RESET: this._ROOT_incite_reset(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -493,12 +507,12 @@ evaluateGuard = null;
             case TriggerMap.StateId.BLUE:
                 switch (eventId)
                 {
-                    case TriggerMap.EventId.DIM1: this.#BLUE_dim1(); break;
-                    case TriggerMap.EventId.DIM2: this.#BLUE_dim2(); break;
-                    case TriggerMap.EventId.INC1: this.#BLUE_inc1(); break;
-                    case TriggerMap.EventId.INC2: this.#BLUE_inc2(); break;
-                    case TriggerMap.EventId.ERR: this.#NORMAL_err(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INCITE_RESET: this.#ROOT_incite_reset(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.DIM1: this._BLUE_dim1(); break;
+                    case TriggerMap.EventId.DIM2: this._BLUE_dim2(); break;
+                    case TriggerMap.EventId.INC1: this._BLUE_inc1(); break;
+                    case TriggerMap.EventId.INC2: this._BLUE_inc2(); break;
+                    case TriggerMap.EventId.ERR: this._NORMAL_err(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.INCITE_RESET: this._ROOT_incite_reset(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -506,12 +520,12 @@ evaluateGuard = null;
             case TriggerMap.StateId.OFF:
                 switch (eventId)
                 {
-                    case TriggerMap.EventId.INC1: this.#OFF_inc1(); break;
-                    case TriggerMap.EventId.INC2: this.#OFF_inc2(); break;
-                    case TriggerMap.EventId.ERR: this.#NORMAL_err(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.DIM1: this.#ROOT_dim1(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.DIM2: this.#ROOT_dim2(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INCITE_RESET: this.#ROOT_incite_reset(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.INC1: this._OFF_inc1(); break;
+                    case TriggerMap.EventId.INC2: this._OFF_inc2(); break;
+                    case TriggerMap.EventId.ERR: this._NORMAL_err(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.DIM1: this._ROOT_dim1(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.DIM2: this._ROOT_dim2(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.INCITE_RESET: this._ROOT_incite_reset(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -519,12 +533,12 @@ evaluateGuard = null;
             case TriggerMap.StateId.YELLOW:
                 switch (eventId)
                 {
-                    case TriggerMap.EventId.DIM1: this.#YELLOW_dim1(); break;
-                    case TriggerMap.EventId.DIM2: this.#YELLOW_dim2(); break;
-                    case TriggerMap.EventId.ERR: this.#NORMAL_err(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INC1: this.#ROOT_inc1(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INC2: this.#ROOT_inc2(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INCITE_RESET: this.#ROOT_incite_reset(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.DIM1: this._YELLOW_dim1(); break;
+                    case TriggerMap.EventId.DIM2: this._YELLOW_dim2(); break;
+                    case TriggerMap.EventId.ERR: this._NORMAL_err(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.INC1: this._ROOT_inc1(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.INC2: this._ROOT_inc2(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.INCITE_RESET: this._ROOT_incite_reset(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -532,12 +546,12 @@ evaluateGuard = null;
             case TriggerMap.StateId.RED:
                 switch (eventId)
                 {
-                    case TriggerMap.EventId.DIM1: this.#RED_dim1(); break;
-                    case TriggerMap.EventId.INC1: this.#RED_inc1(); break;
-                    case TriggerMap.EventId.DIM2: this.#RED_dim2(); break;
-                    case TriggerMap.EventId.INC2: this.#RED_inc2(); break;
-                    case TriggerMap.EventId.INCITE_RESET: this.#RED_incite_reset(); break;
-                    case TriggerMap.EventId.ERR: this.#ROOT_err(); break; // First ancestor handler for this event
+                    case TriggerMap.EventId.DIM1: this._RED_dim1(); break;
+                    case TriggerMap.EventId.INC1: this._RED_inc1(); break;
+                    case TriggerMap.EventId.DIM2: this._RED_dim2(); break;
+                    case TriggerMap.EventId.INC2: this._RED_inc2(); break;
+                    case TriggerMap.EventId.INCITE_RESET: this._RED_incite_reset(); break;
+                    case TriggerMap.EventId.ERR: this._ROOT_err(); break; // First ancestor handler for this event
                 }
                 break;
         }
@@ -546,21 +560,21 @@ evaluateGuard = null;
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    #exitUpToStateHandler(desiredState)
+    _exitUpToStateHandler(desiredState)
     {
         while (this.stateId != desiredState)
         {
             switch (this.stateId)
             {
-                case TriggerMap.StateId.NORMAL: this.#NORMAL_exit(); break;
+                case TriggerMap.StateId.NORMAL: this._NORMAL_exit(); break;
                 
-                case TriggerMap.StateId.BLUE: this.#BLUE_exit(); break;
+                case TriggerMap.StateId.BLUE: this._BLUE_exit(); break;
                 
-                case TriggerMap.StateId.OFF: this.#OFF_exit(); break;
+                case TriggerMap.StateId.OFF: this._OFF_exit(); break;
                 
-                case TriggerMap.StateId.YELLOW: this.#YELLOW_exit(); break;
+                case TriggerMap.StateId.YELLOW: this._YELLOW_exit(); break;
                 
-                case TriggerMap.StateId.RED: this.#RED_exit(); break;
+                case TriggerMap.StateId.RED: this._RED_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -572,12 +586,12 @@ evaluateGuard = null;
     // event handlers for state ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    #ROOT_enter()
+    _ROOT_enter()
     {
         this.stateId = TriggerMap.StateId.ROOT;
     }
     
-    #ROOT_dim1()
+    _ROOT_dim1()
     {
         // ROOT behavior
         // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
@@ -589,7 +603,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #ROOT_dim2()
+    _ROOT_dim2()
     {
         // ROOT behavior
         // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
@@ -601,7 +615,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #ROOT_err()
+    _ROOT_err()
     {
         // ROOT behavior
         // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
@@ -613,7 +627,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #ROOT_inc1()
+    _ROOT_inc1()
     {
         // ROOT behavior
         // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
@@ -625,7 +639,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #ROOT_inc2()
+    _ROOT_inc2()
     {
         // ROOT behavior
         // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
@@ -637,7 +651,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #ROOT_incite_reset()
+    _ROOT_incite_reset()
     {
         // ROOT behavior
         // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
@@ -654,7 +668,7 @@ evaluateGuard = null;
     // event handlers for state NORMAL
     ////////////////////////////////////////////////////////////////////////////////
     
-    #NORMAL_enter()
+    _NORMAL_enter()
     {
         this.stateId = TriggerMap.StateId.NORMAL;
         
@@ -666,7 +680,7 @@ evaluateGuard = null;
         } // end of behavior for NORMAL
     }
     
-    #NORMAL_exit()
+    _NORMAL_exit()
     {
         // NORMAL behavior
         // uml: exit / { this.tracer?.exitState('NORMAL'); }
@@ -678,7 +692,7 @@ evaluateGuard = null;
         this.stateId = TriggerMap.StateId.ROOT;
     }
     
-    #NORMAL_err()
+    _NORMAL_err()
     {
         let consume_event = false;
         
@@ -686,13 +700,13 @@ evaluateGuard = null;
         // uml: ERR / { this.tracer?.edgeTransition('edge0'); } TransitionTo(RED)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(TriggerMap.StateId.ROOT);
+            this._exitUpToStateHandler(TriggerMap.StateId.ROOT);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
             this.tracer?.edgeTransition('edge0');
             
             // Step 3: Enter/move towards transition target `RED`.
-            this.#RED_enter();
+            this._RED_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -701,11 +715,11 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_err();
+            this._ROOT_err();
         }
     }
     
-    #NORMAL_InitialState_transition()
+    _NORMAL_InitialState_transition()
     {
         // NORMAL.<InitialState> behavior
         // uml: / { this.tracer?.edgeTransition('edge7'); } TransitionTo(OFF)
@@ -716,7 +730,7 @@ evaluateGuard = null;
             this.tracer?.edgeTransition('edge7');
             
             // Step 3: Enter/move towards transition target `OFF`.
-            this.#OFF_enter();
+            this._OFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -728,7 +742,7 @@ evaluateGuard = null;
     // event handlers for state BLUE
     ////////////////////////////////////////////////////////////////////////////////
     
-    #BLUE_enter()
+    _BLUE_enter()
     {
         this.stateId = TriggerMap.StateId.BLUE;
         
@@ -747,7 +761,7 @@ evaluateGuard = null;
         } // end of behavior for BLUE
     }
     
-    #BLUE_exit()
+    _BLUE_exit()
     {
         // BLUE behavior
         // uml: exit / { this.tracer?.exitState('BLUE'); }
@@ -759,7 +773,7 @@ evaluateGuard = null;
         this.stateId = TriggerMap.StateId.NORMAL;
     }
     
-    #BLUE_dim1()
+    _BLUE_dim1()
     {
         let consume_event = false;
         
@@ -767,13 +781,13 @@ evaluateGuard = null;
         // uml: (DIM1, DIM2) / { this.tracer?.edgeTransition('edge3'); } TransitionTo(OFF)
         {
             // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this.#BLUE_exit();
+            this._BLUE_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
             this.tracer?.edgeTransition('edge3');
             
             // Step 3: Enter/move towards transition target `OFF`.
-            this.#OFF_enter();
+            this._OFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -782,11 +796,11 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_dim1();
+            this._ROOT_dim1();
         }
     }
     
-    #BLUE_dim2()
+    _BLUE_dim2()
     {
         let consume_event = false;
         
@@ -794,13 +808,13 @@ evaluateGuard = null;
         // uml: (DIM1, DIM2) / { this.tracer?.edgeTransition('edge3'); } TransitionTo(OFF)
         {
             // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this.#BLUE_exit();
+            this._BLUE_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
             this.tracer?.edgeTransition('edge3');
             
             // Step 3: Enter/move towards transition target `OFF`.
-            this.#OFF_enter();
+            this._OFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -809,11 +823,11 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_dim2();
+            this._ROOT_dim2();
         }
     }
     
-    #BLUE_inc1()
+    _BLUE_inc1()
     {
         let consume_event = false;
         
@@ -821,13 +835,13 @@ evaluateGuard = null;
         // uml: (INC1, INC2) / { this.tracer?.edgeTransition('edge4'); } TransitionTo(YELLOW)
         {
             // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this.#BLUE_exit();
+            this._BLUE_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
             this.tracer?.edgeTransition('edge4');
             
             // Step 3: Enter/move towards transition target `YELLOW`.
-            this.#YELLOW_enter();
+            this._YELLOW_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -836,11 +850,11 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_inc1();
+            this._ROOT_inc1();
         }
     }
     
-    #BLUE_inc2()
+    _BLUE_inc2()
     {
         let consume_event = false;
         
@@ -848,13 +862,13 @@ evaluateGuard = null;
         // uml: (INC1, INC2) / { this.tracer?.edgeTransition('edge4'); } TransitionTo(YELLOW)
         {
             // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this.#BLUE_exit();
+            this._BLUE_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
             this.tracer?.edgeTransition('edge4');
             
             // Step 3: Enter/move towards transition target `YELLOW`.
-            this.#YELLOW_enter();
+            this._YELLOW_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -863,7 +877,7 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_inc2();
+            this._ROOT_inc2();
         }
     }
     
@@ -872,7 +886,7 @@ evaluateGuard = null;
     // event handlers for state OFF
     ////////////////////////////////////////////////////////////////////////////////
     
-    #OFF_enter()
+    _OFF_enter()
     {
         this.stateId = TriggerMap.StateId.OFF;
         
@@ -891,7 +905,7 @@ evaluateGuard = null;
         } // end of behavior for OFF
     }
     
-    #OFF_exit()
+    _OFF_exit()
     {
         // OFF behavior
         // uml: exit / { this.tracer?.exitState('OFF'); }
@@ -903,7 +917,7 @@ evaluateGuard = null;
         this.stateId = TriggerMap.StateId.NORMAL;
     }
     
-    #OFF_inc1()
+    _OFF_inc1()
     {
         let consume_event = false;
         
@@ -911,13 +925,13 @@ evaluateGuard = null;
         // uml: INC1 / { this.tracer?.edgeTransition('edge1'); } TransitionTo(BLUE)
         {
             // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this.#OFF_exit();
+            this._OFF_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge1');`.
             this.tracer?.edgeTransition('edge1');
             
             // Step 3: Enter/move towards transition target `BLUE`.
-            this.#BLUE_enter();
+            this._BLUE_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -926,11 +940,11 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_inc1();
+            this._ROOT_inc1();
         }
     }
     
-    #OFF_inc2()
+    _OFF_inc2()
     {
         let consume_event = false;
         
@@ -938,13 +952,13 @@ evaluateGuard = null;
         // uml: INC2 / { this.tracer?.edgeTransition('edge2'); } TransitionTo(YELLOW)
         {
             // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this.#OFF_exit();
+            this._OFF_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
             this.tracer?.edgeTransition('edge2');
             
             // Step 3: Enter/move towards transition target `YELLOW`.
-            this.#YELLOW_enter();
+            this._YELLOW_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -953,7 +967,7 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_inc2();
+            this._ROOT_inc2();
         }
     }
     
@@ -962,7 +976,7 @@ evaluateGuard = null;
     // event handlers for state YELLOW
     ////////////////////////////////////////////////////////////////////////////////
     
-    #YELLOW_enter()
+    _YELLOW_enter()
     {
         this.stateId = TriggerMap.StateId.YELLOW;
         
@@ -981,7 +995,7 @@ evaluateGuard = null;
         } // end of behavior for YELLOW
     }
     
-    #YELLOW_exit()
+    _YELLOW_exit()
     {
         // YELLOW behavior
         // uml: exit / { this.tracer?.exitState('YELLOW'); }
@@ -993,7 +1007,7 @@ evaluateGuard = null;
         this.stateId = TriggerMap.StateId.NORMAL;
     }
     
-    #YELLOW_dim1()
+    _YELLOW_dim1()
     {
         let consume_event = false;
         
@@ -1001,13 +1015,13 @@ evaluateGuard = null;
         // uml: DIM1 / { this.tracer?.edgeTransition('edge5'); } TransitionTo(BLUE)
         {
             // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this.#YELLOW_exit();
+            this._YELLOW_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge5');`.
             this.tracer?.edgeTransition('edge5');
             
             // Step 3: Enter/move towards transition target `BLUE`.
-            this.#BLUE_enter();
+            this._BLUE_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1016,11 +1030,11 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_dim1();
+            this._ROOT_dim1();
         }
     }
     
-    #YELLOW_dim2()
+    _YELLOW_dim2()
     {
         let consume_event = false;
         
@@ -1028,13 +1042,13 @@ evaluateGuard = null;
         // uml: DIM2 / { this.tracer?.edgeTransition('edge6'); } TransitionTo(OFF)
         {
             // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this.#YELLOW_exit();
+            this._YELLOW_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
             this.tracer?.edgeTransition('edge6');
             
             // Step 3: Enter/move towards transition target `OFF`.
-            this.#OFF_enter();
+            this._OFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1043,7 +1057,7 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_dim2();
+            this._ROOT_dim2();
         }
     }
     
@@ -1052,7 +1066,7 @@ evaluateGuard = null;
     // event handlers for state RED
     ////////////////////////////////////////////////////////////////////////////////
     
-    #RED_enter()
+    _RED_enter()
     {
         this.stateId = TriggerMap.StateId.RED;
         
@@ -1071,7 +1085,7 @@ evaluateGuard = null;
         } // end of behavior for RED
     }
     
-    #RED_exit()
+    _RED_exit()
     {
         // RED behavior
         // uml: exit / { this.tracer?.exitState('RED'); }
@@ -1083,7 +1097,7 @@ evaluateGuard = null;
         this.stateId = TriggerMap.StateId.ROOT;
     }
     
-    #RED_dim1()
+    _RED_dim1()
     {
         let consume_event = false;
         
@@ -1099,11 +1113,11 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_dim1();
+            this._ROOT_dim1();
         }
     }
     
-    #RED_dim2()
+    _RED_dim2()
     {
         let consume_event = false;
         
@@ -1119,11 +1133,11 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_dim2();
+            this._ROOT_dim2();
         }
     }
     
-    #RED_inc1()
+    _RED_inc1()
     {
         let consume_event = false;
         
@@ -1139,11 +1153,11 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_inc1();
+            this._ROOT_inc1();
         }
     }
     
-    #RED_inc2()
+    _RED_inc2()
     {
         let consume_event = false;
         
@@ -1159,11 +1173,11 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_inc2();
+            this._ROOT_inc2();
         }
     }
     
-    #RED_incite_reset()
+    _RED_incite_reset()
     {
         let consume_event = false;
         
@@ -1171,23 +1185,23 @@ evaluateGuard = null;
         // uml: INCITE_RESET / { this.tracer?.edgeTransition('edge8'); } TransitionTo(NORMAL)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this.#RED_exit();
+            this._RED_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge8');`.
             this.tracer?.edgeTransition('edge8');
             
             // Step 3: Enter/move towards transition target `NORMAL`.
-            this.#NORMAL_enter();
+            this._NORMAL_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this.#NORMAL_InitialState_transition();
+            this._NORMAL_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for RED
         
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ROOT_incite_reset();
+            this._ROOT_incite_reset();
         }
     }
     
@@ -1247,6 +1261,31 @@ evaluateGuard = null;
         document.querySelectorAll(`g[data-id*='(InitialState)']`).forEach(g=> {
           g.innerHTML = `<circle transform='translate(0,3)' height='14' width='14' r='14' class='state - start'></circle>`;
         })
+
+
+        // now that we allow clicks to force state, we want to detect when something is a click or a click+drag for panning.
+        // Users can always use middle click to safely pan, but it's annoying.
+        let isDragging = false;
+        let clickStartX = 0;
+        let clickStartY = 0;
+
+        document.addEventListener('mousedown', (event) => {
+            isDragging = false;
+            clickStartX = event.clientX;
+            clickStartY = event.clientY;
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            // If the mouse button is down and moves by more than a few pixels, we consider it a drag (and not a click).
+            if (event.buttons === 1 && !isDragging) {
+                const deltaX = event.clientX - clickStartX;
+                const deltaY = event.clientY - clickStartY;
+                if (Math.abs(deltaX) + Math.abs(deltaY) > 3) { // allow a bit of accidental movement when trying to click to help with accessibility.
+                    isDragging = true;
+                }
+            }
+        });
+
 
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {
             zoomEnabled: true,
@@ -1442,6 +1481,7 @@ evaluateGuard = null;
         }
 
         var sm = new TriggerMap();
+        window.StateSmith_sm = sm; // expose to global scope so people can interact with it from the console if they want to.
 
         // prompt the user to evaluate guards manually
         sm.evaluateGuard = (vertexName, behaviorUml) => {
@@ -1469,9 +1509,13 @@ evaluateGuard = null;
             highlightedEdges.clear();
         }
 
+        function clearHighlightedStates() {
+            document.querySelectorAll('g[id].active').forEach(e => e.classList.remove('active'));
+        }
+
         // Function to update event button states (availability and visibility)
-        function updateEventButtonStates(currentStateName) {
-            const availableEvents = stateEventsMapping[currentStateName] || [];
+        function updateEventButtonStates(currentStateDiagramName) {
+            const availableEvents = stateEventsMapping[currentStateDiagramName] || [];
 
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
@@ -1519,10 +1563,13 @@ evaluateGuard = null;
         // state highlighting and logging.
         sm.tracer = {
             enterState: (mermaidName) => {
-                var e = document.querySelector('g[data-id=' + mermaidName + ']');
+                var e = document.querySelector('g[data-id=' + mermaidName + ']') || document.querySelector('g[id=' + mermaidName + ']');
+
                 if(e) {
                   e.classList.add('active');
                   panOnScreen(e);
+                } else {
+                  console.warn(`Could not find mermaid element to highlight for state '${mermaidName}'.`);
                 }
 
                 if (document.getElementById('savedSetting_verboseEnter').checked) {
@@ -1534,6 +1581,7 @@ evaluateGuard = null;
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
+                document.querySelector('g[id=' + mermaidName + ']')?.classList.remove('active');
 
                 if (document.getElementById('savedSetting_verboseExit').checked) {
                     sm.tracer.log('↩️ Exited ' + mermaidName);
@@ -1561,6 +1609,110 @@ evaluateGuard = null;
             }
         };
 
+        // https://github.com/StateSmith/StateSmith/issues/519
+        function forceStateChange(stateNameAnyCase)
+        {
+          const stateName = stateNameAnyCase.toUpperCase();
+
+          // get ID from stateName
+          const stateId = TriggerMap.StateId[stateName];
+          if (stateId === undefined) {
+            console.error(`Invalid state name '${stateNameAnyCase}' passed to forceStateChange.`);
+            console.log('Valid state names are (in any case):', Object.keys(TriggerMap.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
+            return;
+          }
+
+          // note! This and other ROOT code assumes that it is the first state. This is a fairly safe assumption, but if that ever changes this code will need to be updated.
+          if (Object.keys(TriggerMap.StateId)[0] !== 'ROOT') {
+            console.warn(`ROOT not found. This should happen. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }
+
+          if (stateId === 0) {
+            console.error(`Cannot force state to state machine ROOT.`,);
+            return;
+          }
+
+          let mermaidElement = null;
+
+          // we now need the mermaid state element for the state of interest
+          document.querySelectorAll('g[data-id],g[id]').forEach(e => {
+            const lowerName = stateNameAnyCase.toLowerCase();
+            const matchesLeafState = e.getAttribute('data-id') && e.getAttribute('data-id').toLowerCase() === lowerName;
+            const matchesCompoundState = e.getAttribute('id').toLowerCase() === lowerName;
+
+            if (matchesCompoundState || matchesLeafState) {
+              mermaidElement = e;
+            }
+          });
+
+          if (!mermaidElement) {
+            console.error(`Could not find mermaid element for state name '${stateNameAnyCase}'. This is unexpected as we already found matching state id. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+            return;
+          }
+
+          // force the state change. NOTE! This will only work with Algorithm Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms.
+          sm.stateId = stateId;
+          
+          // remove the active class from all states, then add it to the forced state.
+          clearHighlightedStates();
+          // mermaidElement.classList.add('active'); // done by state enter below
+
+          const htmlMode = true;
+          sm.tracer.log(`<span class='dispatched'><a href='https://github.com/StateSmith/StateSmith/issues/519' target='_blank' title='May have impacts! Click for details.'><span class='forced-state'>FORCED STATE</span> to '${stateNameAnyCase}'</span></a>`, htmlMode);
+
+          // execute state's enter function
+          const enterFunction = sm['_' + stateName + '_enter'];
+          if (enterFunction) {
+            enterFunction.call(sm); // need to call with sm as 'this' context so that it can update the state machine state and do other things that require access to 'this'.
+          } else {
+            console.warn(`No enter function found for state '${stateName}'. This is unexpected. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }            
+
+          panOnScreen(mermaidElement);
+          
+          let mermaidStateName;
+          
+          if (mermaidElement.getAttribute('data-id')) {
+            mermaidStateName = mermaidElement.getAttribute('data-id');
+          } else {
+             mermaidStateName = mermaidElement.getAttribute('id');
+          }
+          updateEventButtonStates(mermaidStateName);
+          clearHighlightedEdges();
+
+          console.log(`Forced state to ${stateNameAnyCase}. See https://github.com/StateSmith/StateSmith/issues/519`);
+        }
+
+        // https://github.com/StateSmith/StateSmith/issues/519
+        {
+          // allow clicking states to force state machine to that state.
+          document.querySelectorAll('g.statediagram-state[id]').forEach(stateElement => {
+            stateElement.style.cursor = 'pointer'; // indicate that the element is clickable.
+            stateElement.addEventListener('click', (event) => {
+
+              if (isDragging) {
+                // If the mouse is currently being dragged, do not treat this click as a state change request.
+                return;
+              }
+
+              let stateName = null;
+
+              // this is a bit hacky. Composite states have their name in the 'id' attribute, while simple states have their name in the 'data-id' attribute. We need to check both to support both types of states.
+              if (stateElement.classList.contains('statediagram-cluster')) {
+                stateName = stateElement.getAttribute('id');
+              } else {
+                stateName = stateElement.getAttribute('data-id');
+              }
+
+              forceStateChange(stateName);
+            });
+          });
+        }
+
+        // export forceStateChange to global scope so it can be called from the console for testing purposes.
+        window.StateSmith_forceStateChange = forceStateChange;
+
+
         // Wire up the buttons that dispatch events for the state machine.
         diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
@@ -1575,7 +1727,7 @@ evaluateGuard = null;
 
                 if (alwaysAllowEventDispatch || !button.classList.contains('hasNoEventHandler')) {
                     clearHighlightedEdges();
-                    sm.tracer?.log('<span class=\'dispatched\'><span class=\'event-id\'>' + diagramEventName + '</span> DISPATCHED</span>', true);
+                    sm.tracer?.log(`<span class='dispatched'><span class='event-id'>${diagramEventName}</span> DISPATCHED</span>`, true);
                     const fsmEventName = diagramEventName.toUpperCase();
                     sm.dispatchEvent(TriggerMap.EventId[fsmEventName]); 
                 }
@@ -1587,20 +1739,34 @@ evaluateGuard = null;
         sm.start(); // This will cause `updateEventButtonStates()` to be called.
 
         function panOnScreen(element) {
-          if(!element) return;
+            if (!element) return;
 
-          var bounds = element.getBoundingClientRect();
-          if(bounds.x<0 || bounds.y<0) {
-              var x = Math.max(0, -bounds.x + 20);
-              var y = Math.max(0, -bounds.y + 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
-          var panebounds = document.querySelector('svg').getBoundingClientRect();
-          if(bounds.x>panebounds.width || bounds.y>panebounds.height) {
-              var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
-              var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
+            // NOTE! There's some hacks here to prevent multiple rapid calls to panOnScreen.
+            // If one transition causes 3 state enters, and each state entry calls panOnScreen, the screen often goes blank.
+            // I would guess caused by window.panZoom.panBy()
+            // So we put in a little delay hack in here and cancel any pending panning action.
+
+            window.ss_lastPanActionHandle = window.ss_lastPanActionHandle || null;
+
+            if (window.ss_lastPanActionHandle) {
+                clearTimeout(window.ss_lastPanActionHandle);
+                window.ss_lastPanActionHandle = null;
+            }
+
+            window.ss_lastPanActionHandle = setTimeout(() => {
+                var bounds = element.getBoundingClientRect();
+                if (bounds.x < 0 || bounds.y < 0) {
+                    var x = Math.max(0, -bounds.x + 20);
+                    var y = Math.max(0, -bounds.y + 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+                var panebounds = document.querySelector('svg').getBoundingClientRect();
+                if (bounds.x > panebounds.width || bounds.y > panebounds.height) {
+                    var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
+                    var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+            }, 1);
         }
     </script>
 

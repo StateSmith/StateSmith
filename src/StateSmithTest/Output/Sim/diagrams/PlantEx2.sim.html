@@ -22,7 +22,7 @@
         margin: 0px;
       }
 
-      a.mermaid-workaround {
+      #event-logs a {
         text-decoration: none;
         color: inherit;
       }
@@ -154,8 +154,16 @@
         font-weight: bold;
       }
 
-      .dispatched > .event-id {
+      .dispatched .event-id {
         border: 1px solid #000;
+        border-radius: 4px;
+        padding: 2px;
+      }
+
+      .dispatched .forced-state {
+        border: 1px solid #000;
+        color: white;
+        background-color: #c50c0c;
         border-radius: 4px;
         padding: 2px;
       }
@@ -249,6 +257,12 @@
 
       .statediagram-state.active > * {
         fill: #fff5ad !important;
+        stroke-width: 2px !important;
+      }
+
+      /* we don't want to fill body of parent state with regular active yellow. It's just too much! */
+      .statediagram-state.active rect.inner {
+        fill: #faf7e1 !important;
         stroke-width: 2px !important;
       }
 
@@ -435,7 +449,7 @@ evaluateGuard = null;
     // Starts the state machine. Must be called before dispatching events. Not thread safe.
     start()
     {
-        this.#ROOT_enter();
+        this._ROOT_enter();
         // ROOT behavior
         // uml: TransitionTo(ROOT.<InitialState>)
         {
@@ -455,7 +469,7 @@ evaluateGuard = null;
                 this.tracer?.edgeTransition('edge0');
                 
                 // Step 3: Enter/move towards transition target `NotShooting`.
-                this.#NOTSHOOTING_enter();
+                this._NOTSHOOTING_enter();
                 
                 // NotShooting.<InitialState> behavior
                 // uml: / { this.tracer?.edgeTransition('edge1'); } TransitionTo(Idle)
@@ -466,7 +480,7 @@ evaluateGuard = null;
                     this.tracer?.edgeTransition('edge1');
                     
                     // Step 3: Enter/move towards transition target `Idle`.
-                    this.#IDLE_enter();
+                    this._IDLE_enter();
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return;
@@ -495,7 +509,7 @@ evaluateGuard = null;
             case PlantEx2.StateId.CONFIGURING:
                 switch (eventId)
                 {
-                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break;
+                    case PlantEx2.EventId.EVCONFIG: this._CONFIGURING_evconfig(); break;
                 }
                 break;
             
@@ -503,9 +517,9 @@ evaluateGuard = null;
             case PlantEx2.StateId.NEWVALUEPREVIEW:
                 switch (eventId)
                 {
-                    case PlantEx2.EventId.EVNEWVALUEREJECTED: this.#NEWVALUEPREVIEW_evnewvaluerejected(); break;
-                    case PlantEx2.EventId.EVNEWVALUESAVED: this.#NEWVALUEPREVIEW_evnewvaluesaved(); break;
-                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
+                    case PlantEx2.EventId.EVNEWVALUEREJECTED: this._NEWVALUEPREVIEW_evnewvaluerejected(); break;
+                    case PlantEx2.EventId.EVNEWVALUESAVED: this._NEWVALUEPREVIEW_evnewvaluesaved(); break;
+                    case PlantEx2.EventId.EVCONFIG: this._CONFIGURING_evconfig(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -513,10 +527,10 @@ evaluateGuard = null;
             case PlantEx2.StateId.STATE1:
                 switch (eventId)
                 {
-                    case PlantEx2.EventId.EV2: this.#STATE1_ev2(); break;
-                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
-                    case PlantEx2.EventId.EVNEWVALUEREJECTED: this.#NEWVALUEPREVIEW_evnewvaluerejected(); break; // First ancestor handler for this event
-                    case PlantEx2.EventId.EVNEWVALUESAVED: this.#NEWVALUEPREVIEW_evnewvaluesaved(); break; // First ancestor handler for this event
+                    case PlantEx2.EventId.EV2: this._STATE1_ev2(); break;
+                    case PlantEx2.EventId.EVCONFIG: this._CONFIGURING_evconfig(); break; // First ancestor handler for this event
+                    case PlantEx2.EventId.EVNEWVALUEREJECTED: this._NEWVALUEPREVIEW_evnewvaluerejected(); break; // First ancestor handler for this event
+                    case PlantEx2.EventId.EVNEWVALUESAVED: this._NEWVALUEPREVIEW_evnewvaluesaved(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -524,9 +538,9 @@ evaluateGuard = null;
             case PlantEx2.StateId.STATE2:
                 switch (eventId)
                 {
-                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
-                    case PlantEx2.EventId.EVNEWVALUEREJECTED: this.#NEWVALUEPREVIEW_evnewvaluerejected(); break; // First ancestor handler for this event
-                    case PlantEx2.EventId.EVNEWVALUESAVED: this.#NEWVALUEPREVIEW_evnewvaluesaved(); break; // First ancestor handler for this event
+                    case PlantEx2.EventId.EVCONFIG: this._CONFIGURING_evconfig(); break; // First ancestor handler for this event
+                    case PlantEx2.EventId.EVNEWVALUEREJECTED: this._NEWVALUEPREVIEW_evnewvaluerejected(); break; // First ancestor handler for this event
+                    case PlantEx2.EventId.EVNEWVALUESAVED: this._NEWVALUEPREVIEW_evnewvaluesaved(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -534,8 +548,8 @@ evaluateGuard = null;
             case PlantEx2.StateId.NEWVALUESELECTION:
                 switch (eventId)
                 {
-                    case PlantEx2.EventId.EVNEWVALUE: this.#NEWVALUESELECTION_evnewvalue(); break;
-                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
+                    case PlantEx2.EventId.EVNEWVALUE: this._NEWVALUESELECTION_evnewvalue(); break;
+                    case PlantEx2.EventId.EVCONFIG: this._CONFIGURING_evconfig(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -543,7 +557,7 @@ evaluateGuard = null;
             case PlantEx2.StateId.IDLE:
                 switch (eventId)
                 {
-                    case PlantEx2.EventId.EVCONFIG: this.#IDLE_evconfig(); break;
+                    case PlantEx2.EventId.EVCONFIG: this._IDLE_evconfig(); break;
                 }
                 break;
         }
@@ -552,25 +566,25 @@ evaluateGuard = null;
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    #exitUpToStateHandler(desiredState)
+    _exitUpToStateHandler(desiredState)
     {
         while (this.stateId != desiredState)
         {
             switch (this.stateId)
             {
-                case PlantEx2.StateId.NOTSHOOTING: this.#NOTSHOOTING_exit(); break;
+                case PlantEx2.StateId.NOTSHOOTING: this._NOTSHOOTING_exit(); break;
                 
-                case PlantEx2.StateId.CONFIGURING: this.#CONFIGURING_exit(); break;
+                case PlantEx2.StateId.CONFIGURING: this._CONFIGURING_exit(); break;
                 
-                case PlantEx2.StateId.NEWVALUEPREVIEW: this.#NEWVALUEPREVIEW_exit(); break;
+                case PlantEx2.StateId.NEWVALUEPREVIEW: this._NEWVALUEPREVIEW_exit(); break;
                 
-                case PlantEx2.StateId.STATE1: this.#STATE1_exit(); break;
+                case PlantEx2.StateId.STATE1: this._STATE1_exit(); break;
                 
-                case PlantEx2.StateId.STATE2: this.#STATE2_exit(); break;
+                case PlantEx2.StateId.STATE2: this._STATE2_exit(); break;
                 
-                case PlantEx2.StateId.NEWVALUESELECTION: this.#NEWVALUESELECTION_exit(); break;
+                case PlantEx2.StateId.NEWVALUESELECTION: this._NEWVALUESELECTION_exit(); break;
                 
-                case PlantEx2.StateId.IDLE: this.#IDLE_exit(); break;
+                case PlantEx2.StateId.IDLE: this._IDLE_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -582,7 +596,7 @@ evaluateGuard = null;
     // event handlers for state ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    #ROOT_enter()
+    _ROOT_enter()
     {
         this.stateId = PlantEx2.StateId.ROOT;
     }
@@ -592,7 +606,7 @@ evaluateGuard = null;
     // event handlers for state NOTSHOOTING
     ////////////////////////////////////////////////////////////////////////////////
     
-    #NOTSHOOTING_enter()
+    _NOTSHOOTING_enter()
     {
         this.stateId = PlantEx2.StateId.NOTSHOOTING;
         
@@ -604,7 +618,7 @@ evaluateGuard = null;
         } // end of behavior for NotShooting
     }
     
-    #NOTSHOOTING_exit()
+    _NOTSHOOTING_exit()
     {
         // NotShooting behavior
         // uml: exit / { this.tracer?.exitState('NotShooting'); }
@@ -621,7 +635,7 @@ evaluateGuard = null;
     // event handlers for state CONFIGURING
     ////////////////////////////////////////////////////////////////////////////////
     
-    #CONFIGURING_enter()
+    _CONFIGURING_enter()
     {
         this.stateId = PlantEx2.StateId.CONFIGURING;
         
@@ -633,7 +647,7 @@ evaluateGuard = null;
         } // end of behavior for Configuring
     }
     
-    #CONFIGURING_exit()
+    _CONFIGURING_exit()
     {
         // Configuring behavior
         // uml: exit / { this.tracer?.exitState('Configuring'); }
@@ -645,19 +659,19 @@ evaluateGuard = null;
         this.stateId = PlantEx2.StateId.NOTSHOOTING;
     }
     
-    #CONFIGURING_evconfig()
+    _CONFIGURING_evconfig()
     {
         // Configuring behavior
         // uml: EvConfig / { this.tracer?.edgeTransition('edge3'); } TransitionTo(Idle)
         {
             // Step 1: Exit states until we reach `NotShooting` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(PlantEx2.StateId.NOTSHOOTING);
+            this._exitUpToStateHandler(PlantEx2.StateId.NOTSHOOTING);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
             this.tracer?.edgeTransition('edge3');
             
             // Step 3: Enter/move towards transition target `Idle`.
-            this.#IDLE_enter();
+            this._IDLE_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -671,7 +685,7 @@ evaluateGuard = null;
     // event handlers for state NEWVALUEPREVIEW
     ////////////////////////////////////////////////////////////////////////////////
     
-    #NEWVALUEPREVIEW_enter()
+    _NEWVALUEPREVIEW_enter()
     {
         this.stateId = PlantEx2.StateId.NEWVALUEPREVIEW;
         
@@ -683,7 +697,7 @@ evaluateGuard = null;
         } // end of behavior for NewValuePreview
     }
     
-    #NEWVALUEPREVIEW_exit()
+    _NEWVALUEPREVIEW_exit()
     {
         // NewValuePreview behavior
         // uml: exit / { this.tracer?.exitState('NewValuePreview'); }
@@ -695,19 +709,19 @@ evaluateGuard = null;
         this.stateId = PlantEx2.StateId.CONFIGURING;
     }
     
-    #NEWVALUEPREVIEW_evnewvaluerejected()
+    _NEWVALUEPREVIEW_evnewvaluerejected()
     {
         // NewValuePreview behavior
         // uml: EvNewValueRejected / { this.tracer?.edgeTransition('edge6'); } TransitionTo(NewValueSelection)
         {
             // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(PlantEx2.StateId.CONFIGURING);
+            this._exitUpToStateHandler(PlantEx2.StateId.CONFIGURING);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
             this.tracer?.edgeTransition('edge6');
             
             // Step 3: Enter/move towards transition target `NewValueSelection`.
-            this.#NEWVALUESELECTION_enter();
+            this._NEWVALUESELECTION_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -716,19 +730,19 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #NEWVALUEPREVIEW_evnewvaluesaved()
+    _NEWVALUEPREVIEW_evnewvaluesaved()
     {
         // NewValuePreview behavior
         // uml: EvNewValueSaved / { this.tracer?.edgeTransition('edge7'); } TransitionTo(NewValueSelection)
         {
             // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(PlantEx2.StateId.CONFIGURING);
+            this._exitUpToStateHandler(PlantEx2.StateId.CONFIGURING);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
             this.tracer?.edgeTransition('edge7');
             
             // Step 3: Enter/move towards transition target `NewValueSelection`.
-            this.#NEWVALUESELECTION_enter();
+            this._NEWVALUESELECTION_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -742,7 +756,7 @@ evaluateGuard = null;
     // event handlers for state STATE1
     ////////////////////////////////////////////////////////////////////////////////
     
-    #STATE1_enter()
+    _STATE1_enter()
     {
         this.stateId = PlantEx2.StateId.STATE1;
         
@@ -754,7 +768,7 @@ evaluateGuard = null;
         } // end of behavior for State1
     }
     
-    #STATE1_exit()
+    _STATE1_exit()
     {
         // State1 behavior
         // uml: exit / { this.tracer?.exitState('State1'); }
@@ -766,19 +780,19 @@ evaluateGuard = null;
         this.stateId = PlantEx2.StateId.NEWVALUEPREVIEW;
     }
     
-    #STATE1_ev2()
+    _STATE1_ev2()
     {
         // State1 behavior
         // uml: Ev2 / { this.tracer?.edgeTransition('edge9'); } TransitionTo(State2)
         {
             // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition).
-            this.#STATE1_exit();
+            this._STATE1_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
             this.tracer?.edgeTransition('edge9');
             
             // Step 3: Enter/move towards transition target `State2`.
-            this.#STATE2_enter();
+            this._STATE2_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -792,7 +806,7 @@ evaluateGuard = null;
     // event handlers for state STATE2
     ////////////////////////////////////////////////////////////////////////////////
     
-    #STATE2_enter()
+    _STATE2_enter()
     {
         this.stateId = PlantEx2.StateId.STATE2;
         
@@ -804,7 +818,7 @@ evaluateGuard = null;
         } // end of behavior for State2
     }
     
-    #STATE2_exit()
+    _STATE2_exit()
     {
         // State2 behavior
         // uml: exit / { this.tracer?.exitState('State2'); }
@@ -821,7 +835,7 @@ evaluateGuard = null;
     // event handlers for state NEWVALUESELECTION
     ////////////////////////////////////////////////////////////////////////////////
     
-    #NEWVALUESELECTION_enter()
+    _NEWVALUESELECTION_enter()
     {
         this.stateId = PlantEx2.StateId.NEWVALUESELECTION;
         
@@ -833,7 +847,7 @@ evaluateGuard = null;
         } // end of behavior for NewValueSelection
     }
     
-    #NEWVALUESELECTION_exit()
+    _NEWVALUESELECTION_exit()
     {
         // NewValueSelection behavior
         // uml: exit / { this.tracer?.exitState('NewValueSelection'); }
@@ -845,19 +859,19 @@ evaluateGuard = null;
         this.stateId = PlantEx2.StateId.CONFIGURING;
     }
     
-    #NEWVALUESELECTION_evnewvalue()
+    _NEWVALUESELECTION_evnewvalue()
     {
         // NewValueSelection behavior
         // uml: EvNewValue / { this.tracer?.edgeTransition('edge5'); } TransitionTo(NewValuePreview)
         {
             // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
-            this.#NEWVALUESELECTION_exit();
+            this._NEWVALUESELECTION_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge5');`.
             this.tracer?.edgeTransition('edge5');
             
             // Step 3: Enter/move towards transition target `NewValuePreview`.
-            this.#NEWVALUEPREVIEW_enter();
+            this._NEWVALUEPREVIEW_enter();
             
             // NewValuePreview.<InitialState> behavior
             // uml: / { this.tracer?.edgeTransition('edge8'); } TransitionTo(State1)
@@ -868,7 +882,7 @@ evaluateGuard = null;
                 this.tracer?.edgeTransition('edge8');
                 
                 // Step 3: Enter/move towards transition target `State1`.
-                this.#STATE1_enter();
+                this._STATE1_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -883,7 +897,7 @@ evaluateGuard = null;
     // event handlers for state IDLE
     ////////////////////////////////////////////////////////////////////////////////
     
-    #IDLE_enter()
+    _IDLE_enter()
     {
         this.stateId = PlantEx2.StateId.IDLE;
         
@@ -895,7 +909,7 @@ evaluateGuard = null;
         } // end of behavior for Idle
     }
     
-    #IDLE_exit()
+    _IDLE_exit()
     {
         // Idle behavior
         // uml: exit / { this.tracer?.exitState('Idle'); }
@@ -907,19 +921,19 @@ evaluateGuard = null;
         this.stateId = PlantEx2.StateId.NOTSHOOTING;
     }
     
-    #IDLE_evconfig()
+    _IDLE_evconfig()
     {
         // Idle behavior
         // uml: EvConfig / { this.tracer?.edgeTransition('edge2'); } TransitionTo(Configuring)
         {
             // Step 1: Exit states until we reach `NotShooting` state (Least Common Ancestor for transition).
-            this.#IDLE_exit();
+            this._IDLE_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
             this.tracer?.edgeTransition('edge2');
             
             // Step 3: Enter/move towards transition target `Configuring`.
-            this.#CONFIGURING_enter();
+            this._CONFIGURING_enter();
             
             // Configuring.<InitialState> behavior
             // uml: / { this.tracer?.edgeTransition('edge4'); } TransitionTo(NewValueSelection)
@@ -930,7 +944,7 @@ evaluateGuard = null;
                 this.tracer?.edgeTransition('edge4');
                 
                 // Step 3: Enter/move towards transition target `NewValueSelection`.
-                this.#NEWVALUESELECTION_enter();
+                this._NEWVALUESELECTION_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -997,6 +1011,31 @@ evaluateGuard = null;
         document.querySelectorAll(`g[data-id*='(InitialState)']`).forEach(g=> {
           g.innerHTML = `<circle transform='translate(0,3)' height='14' width='14' r='14' class='state - start'></circle>`;
         })
+
+
+        // now that we allow clicks to force state, we want to detect when something is a click or a click+drag for panning.
+        // Users can always use middle click to safely pan, but it's annoying.
+        let isDragging = false;
+        let clickStartX = 0;
+        let clickStartY = 0;
+
+        document.addEventListener('mousedown', (event) => {
+            isDragging = false;
+            clickStartX = event.clientX;
+            clickStartY = event.clientY;
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            // If the mouse button is down and moves by more than a few pixels, we consider it a drag (and not a click).
+            if (event.buttons === 1 && !isDragging) {
+                const deltaX = event.clientX - clickStartX;
+                const deltaY = event.clientY - clickStartY;
+                if (Math.abs(deltaX) + Math.abs(deltaY) > 3) { // allow a bit of accidental movement when trying to click to help with accessibility.
+                    isDragging = true;
+                }
+            }
+        });
+
 
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {
             zoomEnabled: true,
@@ -1179,6 +1218,7 @@ evaluateGuard = null;
         }
 
         var sm = new PlantEx2();
+        window.StateSmith_sm = sm; // expose to global scope so people can interact with it from the console if they want to.
 
         // prompt the user to evaluate guards manually
         sm.evaluateGuard = (vertexName, behaviorUml) => {
@@ -1206,9 +1246,13 @@ evaluateGuard = null;
             highlightedEdges.clear();
         }
 
+        function clearHighlightedStates() {
+            document.querySelectorAll('g[id].active').forEach(e => e.classList.remove('active'));
+        }
+
         // Function to update event button states (availability and visibility)
-        function updateEventButtonStates(currentStateName) {
-            const availableEvents = stateEventsMapping[currentStateName] || [];
+        function updateEventButtonStates(currentStateDiagramName) {
+            const availableEvents = stateEventsMapping[currentStateDiagramName] || [];
 
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
@@ -1256,10 +1300,13 @@ evaluateGuard = null;
         // state highlighting and logging.
         sm.tracer = {
             enterState: (mermaidName) => {
-                var e = document.querySelector('g[data-id=' + mermaidName + ']');
+                var e = document.querySelector('g[data-id=' + mermaidName + ']') || document.querySelector('g[id=' + mermaidName + ']');
+
                 if(e) {
                   e.classList.add('active');
                   panOnScreen(e);
+                } else {
+                  console.warn(`Could not find mermaid element to highlight for state '${mermaidName}'.`);
                 }
 
                 if (document.getElementById('savedSetting_verboseEnter').checked) {
@@ -1271,6 +1318,7 @@ evaluateGuard = null;
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
+                document.querySelector('g[id=' + mermaidName + ']')?.classList.remove('active');
 
                 if (document.getElementById('savedSetting_verboseExit').checked) {
                     sm.tracer.log('↩️ Exited ' + mermaidName);
@@ -1298,6 +1346,110 @@ evaluateGuard = null;
             }
         };
 
+        // https://github.com/StateSmith/StateSmith/issues/519
+        function forceStateChange(stateNameAnyCase)
+        {
+          const stateName = stateNameAnyCase.toUpperCase();
+
+          // get ID from stateName
+          const stateId = PlantEx2.StateId[stateName];
+          if (stateId === undefined) {
+            console.error(`Invalid state name '${stateNameAnyCase}' passed to forceStateChange.`);
+            console.log('Valid state names are (in any case):', Object.keys(PlantEx2.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
+            return;
+          }
+
+          // note! This and other ROOT code assumes that it is the first state. This is a fairly safe assumption, but if that ever changes this code will need to be updated.
+          if (Object.keys(PlantEx2.StateId)[0] !== 'ROOT') {
+            console.warn(`ROOT not found. This should happen. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }
+
+          if (stateId === 0) {
+            console.error(`Cannot force state to state machine ROOT.`,);
+            return;
+          }
+
+          let mermaidElement = null;
+
+          // we now need the mermaid state element for the state of interest
+          document.querySelectorAll('g[data-id],g[id]').forEach(e => {
+            const lowerName = stateNameAnyCase.toLowerCase();
+            const matchesLeafState = e.getAttribute('data-id') && e.getAttribute('data-id').toLowerCase() === lowerName;
+            const matchesCompoundState = e.getAttribute('id').toLowerCase() === lowerName;
+
+            if (matchesCompoundState || matchesLeafState) {
+              mermaidElement = e;
+            }
+          });
+
+          if (!mermaidElement) {
+            console.error(`Could not find mermaid element for state name '${stateNameAnyCase}'. This is unexpected as we already found matching state id. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+            return;
+          }
+
+          // force the state change. NOTE! This will only work with Algorithm Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms.
+          sm.stateId = stateId;
+          
+          // remove the active class from all states, then add it to the forced state.
+          clearHighlightedStates();
+          // mermaidElement.classList.add('active'); // done by state enter below
+
+          const htmlMode = true;
+          sm.tracer.log(`<span class='dispatched'><a href='https://github.com/StateSmith/StateSmith/issues/519' target='_blank' title='May have impacts! Click for details.'><span class='forced-state'>FORCED STATE</span> to '${stateNameAnyCase}'</span></a>`, htmlMode);
+
+          // execute state's enter function
+          const enterFunction = sm['_' + stateName + '_enter'];
+          if (enterFunction) {
+            enterFunction.call(sm); // need to call with sm as 'this' context so that it can update the state machine state and do other things that require access to 'this'.
+          } else {
+            console.warn(`No enter function found for state '${stateName}'. This is unexpected. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }            
+
+          panOnScreen(mermaidElement);
+          
+          let mermaidStateName;
+          
+          if (mermaidElement.getAttribute('data-id')) {
+            mermaidStateName = mermaidElement.getAttribute('data-id');
+          } else {
+             mermaidStateName = mermaidElement.getAttribute('id');
+          }
+          updateEventButtonStates(mermaidStateName);
+          clearHighlightedEdges();
+
+          console.log(`Forced state to ${stateNameAnyCase}. See https://github.com/StateSmith/StateSmith/issues/519`);
+        }
+
+        // https://github.com/StateSmith/StateSmith/issues/519
+        {
+          // allow clicking states to force state machine to that state.
+          document.querySelectorAll('g.statediagram-state[id]').forEach(stateElement => {
+            stateElement.style.cursor = 'pointer'; // indicate that the element is clickable.
+            stateElement.addEventListener('click', (event) => {
+
+              if (isDragging) {
+                // If the mouse is currently being dragged, do not treat this click as a state change request.
+                return;
+              }
+
+              let stateName = null;
+
+              // this is a bit hacky. Composite states have their name in the 'id' attribute, while simple states have their name in the 'data-id' attribute. We need to check both to support both types of states.
+              if (stateElement.classList.contains('statediagram-cluster')) {
+                stateName = stateElement.getAttribute('id');
+              } else {
+                stateName = stateElement.getAttribute('data-id');
+              }
+
+              forceStateChange(stateName);
+            });
+          });
+        }
+
+        // export forceStateChange to global scope so it can be called from the console for testing purposes.
+        window.StateSmith_forceStateChange = forceStateChange;
+
+
         // Wire up the buttons that dispatch events for the state machine.
         diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
@@ -1312,7 +1464,7 @@ evaluateGuard = null;
 
                 if (alwaysAllowEventDispatch || !button.classList.contains('hasNoEventHandler')) {
                     clearHighlightedEdges();
-                    sm.tracer?.log('<span class=\'dispatched\'><span class=\'event-id\'>' + diagramEventName + '</span> DISPATCHED</span>', true);
+                    sm.tracer?.log(`<span class='dispatched'><span class='event-id'>${diagramEventName}</span> DISPATCHED</span>`, true);
                     const fsmEventName = diagramEventName.toUpperCase();
                     sm.dispatchEvent(PlantEx2.EventId[fsmEventName]); 
                 }
@@ -1324,20 +1476,34 @@ evaluateGuard = null;
         sm.start(); // This will cause `updateEventButtonStates()` to be called.
 
         function panOnScreen(element) {
-          if(!element) return;
+            if (!element) return;
 
-          var bounds = element.getBoundingClientRect();
-          if(bounds.x<0 || bounds.y<0) {
-              var x = Math.max(0, -bounds.x + 20);
-              var y = Math.max(0, -bounds.y + 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
-          var panebounds = document.querySelector('svg').getBoundingClientRect();
-          if(bounds.x>panebounds.width || bounds.y>panebounds.height) {
-              var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
-              var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
+            // NOTE! There's some hacks here to prevent multiple rapid calls to panOnScreen.
+            // If one transition causes 3 state enters, and each state entry calls panOnScreen, the screen often goes blank.
+            // I would guess caused by window.panZoom.panBy()
+            // So we put in a little delay hack in here and cancel any pending panning action.
+
+            window.ss_lastPanActionHandle = window.ss_lastPanActionHandle || null;
+
+            if (window.ss_lastPanActionHandle) {
+                clearTimeout(window.ss_lastPanActionHandle);
+                window.ss_lastPanActionHandle = null;
+            }
+
+            window.ss_lastPanActionHandle = setTimeout(() => {
+                var bounds = element.getBoundingClientRect();
+                if (bounds.x < 0 || bounds.y < 0) {
+                    var x = Math.max(0, -bounds.x + 20);
+                    var y = Math.max(0, -bounds.y + 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+                var panebounds = document.querySelector('svg').getBoundingClientRect();
+                if (bounds.x > panebounds.width || bounds.y > panebounds.height) {
+                    var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
+                    var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+            }, 1);
         }
     </script>
 

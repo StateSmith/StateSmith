@@ -382,7 +382,7 @@ public class SimWebGenerator
         // https://github.com/StateSmith/StateSmith/issues/512
         if (behaviorsAddedForIssue512.Contains(behavior))
         {
-            behavior.actionCode = "this.tracer?.log(`🧜‍♀️ <a href='https://github.com/StateSmith/StateSmith/issues/512' class='mermaid-workaround' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>mermaid issue #512</a>`, true);";
+            behavior.actionCode = "this.tracer?.log(`<a href='https://github.com/StateSmith/StateSmith/issues/512' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>🧜‍♀️ mermaid issue #512</a>`, true);";
             return;
         }
 
@@ -450,6 +450,10 @@ public class SimWebGenerator
         // May be overridden to override guard evaluation (eg. in a simulator)
         evaluateGuard = null;
     ";
+
+        // this is needed so that simulator can call enter method when forcing a state.
+        // https://github.com/StateSmith/StateSmith/issues/519
+        string IRenderConfigJavaScript.PrivatePrefix => "_";
     }
 
     /// <summary>

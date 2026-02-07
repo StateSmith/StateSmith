@@ -22,7 +22,7 @@
         margin: 0px;
       }
 
-      a.mermaid-workaround {
+      #event-logs a {
         text-decoration: none;
         color: inherit;
       }
@@ -154,8 +154,16 @@
         font-weight: bold;
       }
 
-      .dispatched > .event-id {
+      .dispatched .event-id {
         border: 1px solid #000;
+        border-radius: 4px;
+        padding: 2px;
+      }
+
+      .dispatched .forced-state {
+        border: 1px solid #000;
+        color: white;
+        background-color: #c50c0c;
         border-radius: 4px;
         padding: 2px;
       }
@@ -249,6 +257,12 @@
 
       .statediagram-state.active > * {
         fill: #fff5ad !important;
+        stroke-width: 2px !important;
+      }
+
+      /* we don't want to fill body of parent state with regular active yellow. It's just too much! */
+      .statediagram-state.active rect.inner {
+        fill: #faf7e1 !important;
         stroke-width: 2px !important;
       }
 
@@ -691,7 +705,7 @@ evaluateGuard = null;
     // Starts the state machine. Must be called before dispatching events. Not thread safe.
     start()
     {
-        this.#ROOT_enter();
+        this._ROOT_enter();
         // ROOT behavior
         // uml: TransitionTo(ROOT.<InitialState>)
         {
@@ -711,10 +725,10 @@ evaluateGuard = null;
                 this.tracer?.edgeTransition('edge36');
                 
                 // Step 3: Enter/move towards transition target `Running`.
-                this.#RUNNING_enter();
+                this._RUNNING_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this.#Running_InitialState_transition();
+                this._Running_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for ROOT.<InitialState>
         } // end of behavior for ROOT
@@ -735,7 +749,7 @@ evaluateGuard = null;
             case BeadSorter.StateId.PAUSED:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.BUTTON0: this.#PAUSED_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this._PAUSED_button0(); break;
                 }
                 break;
             
@@ -743,7 +757,7 @@ evaluateGuard = null;
             case BeadSorter.StateId.RUNNING:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break;
                 }
                 break;
             
@@ -751,7 +765,7 @@ evaluateGuard = null;
             case BeadSorter.StateId.SETUPCHECK:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -759,8 +773,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.ADJUSTSERVOOFFSETS:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.BUTTON2: this.#ADJUSTSERVOOFFSETS_button2(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON2: this._ADJUSTSERVOOFFSETS_button2(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -768,9 +782,9 @@ evaluateGuard = null;
             case BeadSorter.StateId.DECREASE:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#DECREASE_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
-                    case BeadSorter.EventId.BUTTON2: this.#ADJUSTSERVOOFFSETS_button2(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._DECREASE_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON2: this._ADJUSTSERVOOFFSETS_button2(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -778,9 +792,9 @@ evaluateGuard = null;
             case BeadSorter.StateId.INCREASE:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#INCREASE_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
-                    case BeadSorter.EventId.BUTTON2: this.#ADJUSTSERVOOFFSETS_button2(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._INCREASE_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON2: this._ADJUSTSERVOOFFSETS_button2(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -788,9 +802,9 @@ evaluateGuard = null;
             case BeadSorter.StateId.WAIT:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.BUTTON1: this.#WAIT_button1(); break;
-                    case BeadSorter.EventId.BUTTON2: this.#WAIT_button2(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON1: this._WAIT_button1(); break;
+                    case BeadSorter.EventId.BUTTON2: this._WAIT_button2(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -798,9 +812,9 @@ evaluateGuard = null;
             case BeadSorter.StateId.SETUPCHECK__START:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#SETUPCHECK__START_do(); break;
-                    case BeadSorter.EventId.BUTTON2: this.#SETUPCHECK__START_button2(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._SETUPCHECK__START_do(); break;
+                    case BeadSorter.EventId.BUTTON2: this._SETUPCHECK__START_button2(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -808,8 +822,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.TOUR:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#TOUR_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._TOUR_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -817,7 +831,7 @@ evaluateGuard = null;
             case BeadSorter.StateId.SORTINGMODE:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -825,8 +839,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.SORTINGMODE__DROPOFF:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#SORTINGMODE__DROPOFF_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._SORTINGMODE__DROPOFF_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -834,8 +848,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.SORTINGMODE__PICKUP:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#SORTINGMODE__PICKUP_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._SORTINGMODE__PICKUP_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -843,8 +857,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.SORTINGMODE__SENSOR:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#SORTINGMODE__SENSOR_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._SORTINGMODE__SENSOR_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -852,8 +866,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.SORTINGMODE__START:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#SORTINGMODE__START_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._SORTINGMODE__START_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -861,7 +875,7 @@ evaluateGuard = null;
             case BeadSorter.StateId.TRAININGMODE:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -869,7 +883,7 @@ evaluateGuard = null;
             case BeadSorter.StateId.READEMPTYSLOT:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -877,8 +891,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.READEMPTYSLOT__DROPOFF:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#READEMPTYSLOT__DROPOFF_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._READEMPTYSLOT__DROPOFF_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -886,8 +900,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.READEMPTYSLOT__SENSOR:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#READEMPTYSLOT__SENSOR_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._READEMPTYSLOT__SENSOR_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -895,7 +909,7 @@ evaluateGuard = null;
             case BeadSorter.StateId.READJAMMEDSLOT:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -903,8 +917,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.JAMMED:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#JAMMED_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._JAMMED_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -912,8 +926,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.READJAMMEDSLOT__DROPOFF:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#READJAMMEDSLOT__DROPOFF_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._READJAMMEDSLOT__DROPOFF_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -921,8 +935,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.READJAMMEDSLOT__SENSOR:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#READJAMMEDSLOT__SENSOR_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._READJAMMEDSLOT__SENSOR_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -930,7 +944,7 @@ evaluateGuard = null;
             case BeadSorter.StateId.READSLOT:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -938,8 +952,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.READSLOT__DROPOFF:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#READSLOT__DROPOFF_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._READSLOT__DROPOFF_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -947,8 +961,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.READSLOT__SENSOR:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#READSLOT__SENSOR_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._READSLOT__SENSOR_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -956,8 +970,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.TRAININGMODE__PICKUP:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#TRAININGMODE__PICKUP_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._TRAININGMODE__PICKUP_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -965,8 +979,8 @@ evaluateGuard = null;
             case BeadSorter.StateId.TRAININGMODE__START:
                 switch (eventId)
                 {
-                    case BeadSorter.EventId.DO: this.#TRAININGMODE__START_do(); break;
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.DO: this._TRAININGMODE__START_do(); break;
+                    case BeadSorter.EventId.BUTTON0: this._RUNNING_button0(); break; // First ancestor handler for this event
                 }
                 break;
         }
@@ -975,65 +989,65 @@ evaluateGuard = null;
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    #exitUpToStateHandler(desiredState)
+    _exitUpToStateHandler(desiredState)
     {
         while (this.stateId != desiredState)
         {
             switch (this.stateId)
             {
-                case BeadSorter.StateId.PAUSED: this.#PAUSED_exit(); break;
+                case BeadSorter.StateId.PAUSED: this._PAUSED_exit(); break;
                 
-                case BeadSorter.StateId.RUNNING: this.#RUNNING_exit(); break;
+                case BeadSorter.StateId.RUNNING: this._RUNNING_exit(); break;
                 
-                case BeadSorter.StateId.SETUPCHECK: this.#SETUPCHECK_exit(); break;
+                case BeadSorter.StateId.SETUPCHECK: this._SETUPCHECK_exit(); break;
                 
-                case BeadSorter.StateId.ADJUSTSERVOOFFSETS: this.#ADJUSTSERVOOFFSETS_exit(); break;
+                case BeadSorter.StateId.ADJUSTSERVOOFFSETS: this._ADJUSTSERVOOFFSETS_exit(); break;
                 
-                case BeadSorter.StateId.DECREASE: this.#DECREASE_exit(); break;
+                case BeadSorter.StateId.DECREASE: this._DECREASE_exit(); break;
                 
-                case BeadSorter.StateId.INCREASE: this.#INCREASE_exit(); break;
+                case BeadSorter.StateId.INCREASE: this._INCREASE_exit(); break;
                 
-                case BeadSorter.StateId.WAIT: this.#WAIT_exit(); break;
+                case BeadSorter.StateId.WAIT: this._WAIT_exit(); break;
                 
-                case BeadSorter.StateId.SETUPCHECK__START: this.#SETUPCHECK__START_exit(); break;
+                case BeadSorter.StateId.SETUPCHECK__START: this._SETUPCHECK__START_exit(); break;
                 
-                case BeadSorter.StateId.TOUR: this.#TOUR_exit(); break;
+                case BeadSorter.StateId.TOUR: this._TOUR_exit(); break;
                 
-                case BeadSorter.StateId.SORTINGMODE: this.#SORTINGMODE_exit(); break;
+                case BeadSorter.StateId.SORTINGMODE: this._SORTINGMODE_exit(); break;
                 
-                case BeadSorter.StateId.SORTINGMODE__DROPOFF: this.#SORTINGMODE__DROPOFF_exit(); break;
+                case BeadSorter.StateId.SORTINGMODE__DROPOFF: this._SORTINGMODE__DROPOFF_exit(); break;
                 
-                case BeadSorter.StateId.SORTINGMODE__PICKUP: this.#SORTINGMODE__PICKUP_exit(); break;
+                case BeadSorter.StateId.SORTINGMODE__PICKUP: this._SORTINGMODE__PICKUP_exit(); break;
                 
-                case BeadSorter.StateId.SORTINGMODE__SENSOR: this.#SORTINGMODE__SENSOR_exit(); break;
+                case BeadSorter.StateId.SORTINGMODE__SENSOR: this._SORTINGMODE__SENSOR_exit(); break;
                 
-                case BeadSorter.StateId.SORTINGMODE__START: this.#SORTINGMODE__START_exit(); break;
+                case BeadSorter.StateId.SORTINGMODE__START: this._SORTINGMODE__START_exit(); break;
                 
-                case BeadSorter.StateId.TRAININGMODE: this.#TRAININGMODE_exit(); break;
+                case BeadSorter.StateId.TRAININGMODE: this._TRAININGMODE_exit(); break;
                 
-                case BeadSorter.StateId.READEMPTYSLOT: this.#READEMPTYSLOT_exit(); break;
+                case BeadSorter.StateId.READEMPTYSLOT: this._READEMPTYSLOT_exit(); break;
                 
-                case BeadSorter.StateId.READEMPTYSLOT__DROPOFF: this.#READEMPTYSLOT__DROPOFF_exit(); break;
+                case BeadSorter.StateId.READEMPTYSLOT__DROPOFF: this._READEMPTYSLOT__DROPOFF_exit(); break;
                 
-                case BeadSorter.StateId.READEMPTYSLOT__SENSOR: this.#READEMPTYSLOT__SENSOR_exit(); break;
+                case BeadSorter.StateId.READEMPTYSLOT__SENSOR: this._READEMPTYSLOT__SENSOR_exit(); break;
                 
-                case BeadSorter.StateId.READJAMMEDSLOT: this.#READJAMMEDSLOT_exit(); break;
+                case BeadSorter.StateId.READJAMMEDSLOT: this._READJAMMEDSLOT_exit(); break;
                 
-                case BeadSorter.StateId.JAMMED: this.#JAMMED_exit(); break;
+                case BeadSorter.StateId.JAMMED: this._JAMMED_exit(); break;
                 
-                case BeadSorter.StateId.READJAMMEDSLOT__DROPOFF: this.#READJAMMEDSLOT__DROPOFF_exit(); break;
+                case BeadSorter.StateId.READJAMMEDSLOT__DROPOFF: this._READJAMMEDSLOT__DROPOFF_exit(); break;
                 
-                case BeadSorter.StateId.READJAMMEDSLOT__SENSOR: this.#READJAMMEDSLOT__SENSOR_exit(); break;
+                case BeadSorter.StateId.READJAMMEDSLOT__SENSOR: this._READJAMMEDSLOT__SENSOR_exit(); break;
                 
-                case BeadSorter.StateId.READSLOT: this.#READSLOT_exit(); break;
+                case BeadSorter.StateId.READSLOT: this._READSLOT_exit(); break;
                 
-                case BeadSorter.StateId.READSLOT__DROPOFF: this.#READSLOT__DROPOFF_exit(); break;
+                case BeadSorter.StateId.READSLOT__DROPOFF: this._READSLOT__DROPOFF_exit(); break;
                 
-                case BeadSorter.StateId.READSLOT__SENSOR: this.#READSLOT__SENSOR_exit(); break;
+                case BeadSorter.StateId.READSLOT__SENSOR: this._READSLOT__SENSOR_exit(); break;
                 
-                case BeadSorter.StateId.TRAININGMODE__PICKUP: this.#TRAININGMODE__PICKUP_exit(); break;
+                case BeadSorter.StateId.TRAININGMODE__PICKUP: this._TRAININGMODE__PICKUP_exit(); break;
                 
-                case BeadSorter.StateId.TRAININGMODE__START: this.#TRAININGMODE__START_exit(); break;
+                case BeadSorter.StateId.TRAININGMODE__START: this._TRAININGMODE__START_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -1045,7 +1059,7 @@ evaluateGuard = null;
     // event handlers for state ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    #ROOT_enter()
+    _ROOT_enter()
     {
         this.stateId = BeadSorter.StateId.ROOT;
     }
@@ -1055,7 +1069,7 @@ evaluateGuard = null;
     // event handlers for state PAUSED
     ////////////////////////////////////////////////////////////////////////////////
     
-    #PAUSED_enter()
+    _PAUSED_enter()
     {
         this.stateId = BeadSorter.StateId.PAUSED;
         
@@ -1067,7 +1081,7 @@ evaluateGuard = null;
         } // end of behavior for Paused
     }
     
-    #PAUSED_exit()
+    _PAUSED_exit()
     {
         // Paused behavior
         // uml: exit / { this.tracer?.exitState('Paused'); }
@@ -1079,22 +1093,22 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.ROOT;
     }
     
-    #PAUSED_button0()
+    _PAUSED_button0()
     {
         // Paused behavior
         // uml: BUTTON0 / { this.tracer?.edgeTransition('edge35'); } TransitionTo(Running)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this.#PAUSED_exit();
+            this._PAUSED_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge35');`.
             this.tracer?.edgeTransition('edge35');
             
             // Step 3: Enter/move towards transition target `Running`.
-            this.#RUNNING_enter();
+            this._RUNNING_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this.#Running_InitialState_transition();
+            this._Running_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for Paused
         
@@ -1106,7 +1120,7 @@ evaluateGuard = null;
     // event handlers for state RUNNING
     ////////////////////////////////////////////////////////////////////////////////
     
-    #RUNNING_enter()
+    _RUNNING_enter()
     {
         this.stateId = BeadSorter.StateId.RUNNING;
         
@@ -1118,7 +1132,7 @@ evaluateGuard = null;
         } // end of behavior for Running
     }
     
-    #RUNNING_exit()
+    _RUNNING_exit()
     {
         // Running behavior
         // uml: exit / { this.tracer?.exitState('Running'); }
@@ -1130,19 +1144,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.ROOT;
     }
     
-    #RUNNING_button0()
+    _RUNNING_button0()
     {
         // Running behavior
         // uml: BUTTON0 / { this.tracer?.edgeTransition('edge0'); } TransitionTo(Paused)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(BeadSorter.StateId.ROOT);
+            this._exitUpToStateHandler(BeadSorter.StateId.ROOT);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
             this.tracer?.edgeTransition('edge0');
             
             // Step 3: Enter/move towards transition target `Paused`.
-            this.#PAUSED_enter();
+            this._PAUSED_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1151,7 +1165,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #Running_InitialState_transition()
+    _Running_InitialState_transition()
     {
         // Running.<InitialState> behavior
         // uml: / { this.tracer?.edgeTransition('edge33'); } TransitionTo(Running.<History>)
@@ -1174,10 +1188,10 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to TrainingMode');
                 
                 // Step 3: Enter/move towards transition target `TrainingMode`.
-                this.#TRAININGMODE_enter();
+                this._TRAININGMODE_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this.#TrainingMode_InitialState_transition();
+                this._TrainingMode_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for Running.<History>
             
@@ -1191,10 +1205,10 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to SortingMode');
                 
                 // Step 3: Enter/move towards transition target `SortingMode`.
-                this.#SORTINGMODE_enter();
+                this._SORTINGMODE_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this.#SortingMode_InitialState_transition();
+                this._SortingMode_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for Running.<History>
             
@@ -1208,11 +1222,11 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot');
                 
                 // Step 3: Enter/move towards transition target `ReadEmptySlot`.
-                this.#TRAININGMODE_enter();
-                this.#READEMPTYSLOT_enter();
+                this._TRAININGMODE_enter();
+                this._READEMPTYSLOT_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this.#ReadEmptySlot_InitialState_transition();
+                this._ReadEmptySlot_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for Running.<History>
             
@@ -1226,11 +1240,11 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot');
                 
                 // Step 3: Enter/move towards transition target `ReadJammedSlot`.
-                this.#TRAININGMODE_enter();
-                this.#READJAMMEDSLOT_enter();
+                this._TRAININGMODE_enter();
+                this._READJAMMEDSLOT_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this.#ReadJammedSlot_InitialState_transition();
+                this._ReadJammedSlot_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for Running.<History>
             
@@ -1244,11 +1258,11 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to ReadSlot');
                 
                 // Step 3: Enter/move towards transition target `ReadSlot`.
-                this.#TRAININGMODE_enter();
-                this.#READSLOT_enter();
+                this._TRAININGMODE_enter();
+                this._READSLOT_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this.#ReadSlot_InitialState_transition();
+                this._ReadSlot_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for Running.<History>
             
@@ -1262,8 +1276,8 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to TrainingMode__Start');
                 
                 // Step 3: Enter/move towards transition target `TrainingMode__Start`.
-                this.#TRAININGMODE_enter();
-                this.#TRAININGMODE__START_enter();
+                this._TRAININGMODE_enter();
+                this._TRAININGMODE__START_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1279,9 +1293,9 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot__Dropoff');
                 
                 // Step 3: Enter/move towards transition target `ReadEmptySlot__Dropoff`.
-                this.#TRAININGMODE_enter();
-                this.#READEMPTYSLOT_enter();
-                this.#READEMPTYSLOT__DROPOFF_enter();
+                this._TRAININGMODE_enter();
+                this._READEMPTYSLOT_enter();
+                this._READEMPTYSLOT__DROPOFF_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1297,9 +1311,9 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to ReadEmptySlot__Sensor');
                 
                 // Step 3: Enter/move towards transition target `ReadEmptySlot__Sensor`.
-                this.#TRAININGMODE_enter();
-                this.#READEMPTYSLOT_enter();
-                this.#READEMPTYSLOT__SENSOR_enter();
+                this._TRAININGMODE_enter();
+                this._READEMPTYSLOT_enter();
+                this._READEMPTYSLOT__SENSOR_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1315,9 +1329,9 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot__Dropoff');
                 
                 // Step 3: Enter/move towards transition target `ReadJammedSlot__Dropoff`.
-                this.#TRAININGMODE_enter();
-                this.#READJAMMEDSLOT_enter();
-                this.#READJAMMEDSLOT__DROPOFF_enter();
+                this._TRAININGMODE_enter();
+                this._READJAMMEDSLOT_enter();
+                this._READJAMMEDSLOT__DROPOFF_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1333,9 +1347,9 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to Jammed');
                 
                 // Step 3: Enter/move towards transition target `Jammed`.
-                this.#TRAININGMODE_enter();
-                this.#READJAMMEDSLOT_enter();
-                this.#JAMMED_enter();
+                this._TRAININGMODE_enter();
+                this._READJAMMEDSLOT_enter();
+                this._JAMMED_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1351,9 +1365,9 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to ReadJammedSlot__Sensor');
                 
                 // Step 3: Enter/move towards transition target `ReadJammedSlot__Sensor`.
-                this.#TRAININGMODE_enter();
-                this.#READJAMMEDSLOT_enter();
-                this.#READJAMMEDSLOT__SENSOR_enter();
+                this._TRAININGMODE_enter();
+                this._READJAMMEDSLOT_enter();
+                this._READJAMMEDSLOT__SENSOR_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1369,9 +1383,9 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to ReadSlot__Dropoff');
                 
                 // Step 3: Enter/move towards transition target `ReadSlot__Dropoff`.
-                this.#TRAININGMODE_enter();
-                this.#READSLOT_enter();
-                this.#READSLOT__DROPOFF_enter();
+                this._TRAININGMODE_enter();
+                this._READSLOT_enter();
+                this._READSLOT__DROPOFF_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1387,9 +1401,9 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to TrainingMode__Pickup');
                 
                 // Step 3: Enter/move towards transition target `TrainingMode__Pickup`.
-                this.#TRAININGMODE_enter();
-                this.#READSLOT_enter();
-                this.#TRAININGMODE__PICKUP_enter();
+                this._TRAININGMODE_enter();
+                this._READSLOT_enter();
+                this._TRAININGMODE__PICKUP_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1405,9 +1419,9 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to ReadSlot__Sensor');
                 
                 // Step 3: Enter/move towards transition target `ReadSlot__Sensor`.
-                this.#TRAININGMODE_enter();
-                this.#READSLOT_enter();
-                this.#READSLOT__SENSOR_enter();
+                this._TRAININGMODE_enter();
+                this._READSLOT_enter();
+                this._READSLOT__SENSOR_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1423,8 +1437,8 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to SortingMode__Dropoff');
                 
                 // Step 3: Enter/move towards transition target `SortingMode__Dropoff`.
-                this.#SORTINGMODE_enter();
-                this.#SORTINGMODE__DROPOFF_enter();
+                this._SORTINGMODE_enter();
+                this._SORTINGMODE__DROPOFF_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1440,8 +1454,8 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to SortingMode__Pickup');
                 
                 // Step 3: Enter/move towards transition target `SortingMode__Pickup`.
-                this.#SORTINGMODE_enter();
-                this.#SORTINGMODE__PICKUP_enter();
+                this._SORTINGMODE_enter();
+                this._SORTINGMODE__PICKUP_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1457,8 +1471,8 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to SortingMode__Start');
                 
                 // Step 3: Enter/move towards transition target `SortingMode__Start`.
-                this.#SORTINGMODE_enter();
-                this.#SORTINGMODE__START_enter();
+                this._SORTINGMODE_enter();
+                this._SORTINGMODE__START_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1474,8 +1488,8 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to SortingMode__Sensor');
                 
                 // Step 3: Enter/move towards transition target `SortingMode__Sensor`.
-                this.#SORTINGMODE_enter();
-                this.#SORTINGMODE__SENSOR_enter();
+                this._SORTINGMODE_enter();
+                this._SORTINGMODE__SENSOR_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1491,8 +1505,8 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to Tour');
                 
                 // Step 3: Enter/move towards transition target `Tour`.
-                this.#SETUPCHECK_enter();
-                this.#TOUR_enter();
+                this._SETUPCHECK_enter();
+                this._TOUR_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1508,8 +1522,8 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to SetupCheck__Start');
                 
                 // Step 3: Enter/move towards transition target `SetupCheck__Start`.
-                this.#SETUPCHECK_enter();
-                this.#SETUPCHECK__START_enter();
+                this._SETUPCHECK_enter();
+                this._SETUPCHECK__START_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1525,11 +1539,11 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('transitioning to AdjustServoOffsets');
                 
                 // Step 3: Enter/move towards transition target `AdjustServoOffsets`.
-                this.#SETUPCHECK_enter();
-                this.#ADJUSTSERVOOFFSETS_enter();
+                this._SETUPCHECK_enter();
+                this._ADJUSTSERVOOFFSETS_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this.#AdjustServoOffsets_InitialState_transition();
+                this._AdjustServoOffsets_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for Running.<History>
             
@@ -1542,7 +1556,7 @@ evaluateGuard = null;
                 this.tracer?.logHistoryTransition('default transition');this.tracer?.edgeTransition('edge34');
                 
                 // Step 3: Enter/move towards transition target `SetupCheck`.
-                this.#SETUPCHECK_enter();
+                this._SETUPCHECK_enter();
                 
                 // SetupCheck.<InitialState> behavior
                 // uml: / { this.tracer?.edgeTransition('edge22'); } TransitionTo(SetupCheck__Start)
@@ -1553,7 +1567,7 @@ evaluateGuard = null;
                     this.tracer?.edgeTransition('edge22');
                     
                     // Step 3: Enter/move towards transition target `SetupCheck__Start`.
-                    this.#SETUPCHECK__START_enter();
+                    this._SETUPCHECK__START_enter();
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return;
@@ -1567,7 +1581,7 @@ evaluateGuard = null;
     // event handlers for state SETUPCHECK
     ////////////////////////////////////////////////////////////////////////////////
     
-    #SETUPCHECK_enter()
+    _SETUPCHECK_enter()
     {
         this.stateId = BeadSorter.StateId.SETUPCHECK;
         
@@ -1586,7 +1600,7 @@ evaluateGuard = null;
         } // end of behavior for SetupCheck
     }
     
-    #SETUPCHECK_exit()
+    _SETUPCHECK_exit()
     {
         // SetupCheck behavior
         // uml: exit / { this.tracer?.exitState('SetupCheck'); }
@@ -1603,7 +1617,7 @@ evaluateGuard = null;
     // event handlers for state ADJUSTSERVOOFFSETS
     ////////////////////////////////////////////////////////////////////////////////
     
-    #ADJUSTSERVOOFFSETS_enter()
+    _ADJUSTSERVOOFFSETS_enter()
     {
         this.stateId = BeadSorter.StateId.ADJUSTSERVOOFFSETS;
         
@@ -1622,7 +1636,7 @@ evaluateGuard = null;
         } // end of behavior for AdjustServoOffsets
     }
     
-    #ADJUSTSERVOOFFSETS_exit()
+    _ADJUSTSERVOOFFSETS_exit()
     {
         // AdjustServoOffsets behavior
         // uml: exit / { this.tracer?.exitState('AdjustServoOffsets'); }
@@ -1634,19 +1648,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.SETUPCHECK;
     }
     
-    #ADJUSTSERVOOFFSETS_button2()
+    _ADJUSTSERVOOFFSETS_button2()
     {
         // AdjustServoOffsets behavior
         // uml: BUTTON2 / { this.tracer?.edgeTransition('edge27'); } TransitionTo(SetupCheck__Start)
         {
             // Step 1: Exit states until we reach `SetupCheck` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(BeadSorter.StateId.SETUPCHECK);
+            this._exitUpToStateHandler(BeadSorter.StateId.SETUPCHECK);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge27');`.
             this.tracer?.edgeTransition('edge27');
             
             // Step 3: Enter/move towards transition target `SetupCheck__Start`.
-            this.#SETUPCHECK__START_enter();
+            this._SETUPCHECK__START_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1655,7 +1669,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #AdjustServoOffsets_InitialState_transition()
+    _AdjustServoOffsets_InitialState_transition()
     {
         // AdjustServoOffsets.<InitialState> behavior
         // uml: / { this.tracer?.edgeTransition('edge32'); } TransitionTo(Wait)
@@ -1666,7 +1680,7 @@ evaluateGuard = null;
             this.tracer?.edgeTransition('edge32');
             
             // Step 3: Enter/move towards transition target `Wait`.
-            this.#WAIT_enter();
+            this._WAIT_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1678,7 +1692,7 @@ evaluateGuard = null;
     // event handlers for state DECREASE
     ////////////////////////////////////////////////////////////////////////////////
     
-    #DECREASE_enter()
+    _DECREASE_enter()
     {
         this.stateId = BeadSorter.StateId.DECREASE;
         
@@ -1697,7 +1711,7 @@ evaluateGuard = null;
         } // end of behavior for DECREASE
     }
     
-    #DECREASE_exit()
+    _DECREASE_exit()
     {
         // DECREASE behavior
         // uml: exit / { this.tracer?.exitState('DECREASE'); }
@@ -1709,19 +1723,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.ADJUSTSERVOOFFSETS;
     }
     
-    #DECREASE_do()
+    _DECREASE_do()
     {
         // DECREASE behavior
         // uml: do / { this.tracer?.edgeTransition('edge28'); } TransitionTo(Wait)
         {
             // Step 1: Exit states until we reach `AdjustServoOffsets` state (Least Common Ancestor for transition).
-            this.#DECREASE_exit();
+            this._DECREASE_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge28');`.
             this.tracer?.edgeTransition('edge28');
             
             // Step 3: Enter/move towards transition target `Wait`.
-            this.#WAIT_enter();
+            this._WAIT_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1735,7 +1749,7 @@ evaluateGuard = null;
     // event handlers for state INCREASE
     ////////////////////////////////////////////////////////////////////////////////
     
-    #INCREASE_enter()
+    _INCREASE_enter()
     {
         this.stateId = BeadSorter.StateId.INCREASE;
         
@@ -1754,7 +1768,7 @@ evaluateGuard = null;
         } // end of behavior for INCREASE
     }
     
-    #INCREASE_exit()
+    _INCREASE_exit()
     {
         // INCREASE behavior
         // uml: exit / { this.tracer?.exitState('INCREASE'); }
@@ -1766,19 +1780,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.ADJUSTSERVOOFFSETS;
     }
     
-    #INCREASE_do()
+    _INCREASE_do()
     {
         // INCREASE behavior
         // uml: do / { this.tracer?.edgeTransition('edge29'); } TransitionTo(Wait)
         {
             // Step 1: Exit states until we reach `AdjustServoOffsets` state (Least Common Ancestor for transition).
-            this.#INCREASE_exit();
+            this._INCREASE_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge29');`.
             this.tracer?.edgeTransition('edge29');
             
             // Step 3: Enter/move towards transition target `Wait`.
-            this.#WAIT_enter();
+            this._WAIT_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1792,7 +1806,7 @@ evaluateGuard = null;
     // event handlers for state WAIT
     ////////////////////////////////////////////////////////////////////////////////
     
-    #WAIT_enter()
+    _WAIT_enter()
     {
         this.stateId = BeadSorter.StateId.WAIT;
         
@@ -1811,7 +1825,7 @@ evaluateGuard = null;
         } // end of behavior for Wait
     }
     
-    #WAIT_exit()
+    _WAIT_exit()
     {
         // Wait behavior
         // uml: exit / { this.tracer?.exitState('Wait'); }
@@ -1823,19 +1837,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.ADJUSTSERVOOFFSETS;
     }
     
-    #WAIT_button1()
+    _WAIT_button1()
     {
         // Wait behavior
         // uml: BUTTON1 / { this.tracer?.edgeTransition('edge30'); } TransitionTo(DECREASE)
         {
             // Step 1: Exit states until we reach `AdjustServoOffsets` state (Least Common Ancestor for transition).
-            this.#WAIT_exit();
+            this._WAIT_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge30');`.
             this.tracer?.edgeTransition('edge30');
             
             // Step 3: Enter/move towards transition target `DECREASE`.
-            this.#DECREASE_enter();
+            this._DECREASE_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1844,7 +1858,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #WAIT_button2()
+    _WAIT_button2()
     {
         let consume_event = false;
         
@@ -1852,13 +1866,13 @@ evaluateGuard = null;
         // uml: BUTTON2 / { this.tracer?.edgeTransition('edge31'); } TransitionTo(INCREASE)
         {
             // Step 1: Exit states until we reach `AdjustServoOffsets` state (Least Common Ancestor for transition).
-            this.#WAIT_exit();
+            this._WAIT_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge31');`.
             this.tracer?.edgeTransition('edge31');
             
             // Step 3: Enter/move towards transition target `INCREASE`.
-            this.#INCREASE_enter();
+            this._INCREASE_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1867,7 +1881,7 @@ evaluateGuard = null;
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#ADJUSTSERVOOFFSETS_button2();
+            this._ADJUSTSERVOOFFSETS_button2();
         }
     }
     
@@ -1876,7 +1890,7 @@ evaluateGuard = null;
     // event handlers for state SETUPCHECK__START
     ////////////////////////////////////////////////////////////////////////////////
     
-    #SETUPCHECK__START_enter()
+    _SETUPCHECK__START_enter()
     {
         this.stateId = BeadSorter.StateId.SETUPCHECK__START;
         
@@ -1902,7 +1916,7 @@ evaluateGuard = null;
         } // end of behavior for SetupCheck__Start
     }
     
-    #SETUPCHECK__START_exit()
+    _SETUPCHECK__START_exit()
     {
         // SetupCheck__Start behavior
         // uml: exit / { this.tracer?.exitState('SetupCheck__Start'); }
@@ -1914,42 +1928,42 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.SETUPCHECK;
     }
     
-    #SETUPCHECK__START_button2()
+    _SETUPCHECK__START_button2()
     {
         // SetupCheck__Start behavior
         // uml: BUTTON2 / { this.tracer?.edgeTransition('edge26'); } TransitionTo(AdjustServoOffsets)
         {
             // Step 1: Exit states until we reach `SetupCheck` state (Least Common Ancestor for transition).
-            this.#SETUPCHECK__START_exit();
+            this._SETUPCHECK__START_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge26');`.
             this.tracer?.edgeTransition('edge26');
             
             // Step 3: Enter/move towards transition target `AdjustServoOffsets`.
-            this.#ADJUSTSERVOOFFSETS_enter();
+            this._ADJUSTSERVOOFFSETS_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this.#AdjustServoOffsets_InitialState_transition();
+            this._AdjustServoOffsets_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for SetupCheck__Start
         
         // No ancestor handles this event.
     }
     
-    #SETUPCHECK__START_do()
+    _SETUPCHECK__START_do()
     {
         // SetupCheck__Start behavior
         // uml: do [this.tracer?.logGuardCodeEvaluation("t1After(3s)") || this.evaluateGuard('SetupCheck__Start', "do [t1After(3s)] TransitionTo(Tour)")] / { this.tracer?.edgeTransition('edge25'); } TransitionTo(Tour)
         if (this.tracer?.logGuardCodeEvaluation("t1After(3s)") || this.evaluateGuard('SetupCheck__Start', "do [t1After(3s)] TransitionTo(Tour)"))
         {
             // Step 1: Exit states until we reach `SetupCheck` state (Least Common Ancestor for transition).
-            this.#SETUPCHECK__START_exit();
+            this._SETUPCHECK__START_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge25');`.
             this.tracer?.edgeTransition('edge25');
             
             // Step 3: Enter/move towards transition target `Tour`.
-            this.#TOUR_enter();
+            this._TOUR_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1963,7 +1977,7 @@ evaluateGuard = null;
     // event handlers for state TOUR
     ////////////////////////////////////////////////////////////////////////////////
     
-    #TOUR_enter()
+    _TOUR_enter()
     {
         this.stateId = BeadSorter.StateId.TOUR;
         
@@ -1989,7 +2003,7 @@ evaluateGuard = null;
         } // end of behavior for Tour
     }
     
-    #TOUR_exit()
+    _TOUR_exit()
     {
         // Tour behavior
         // uml: exit / { this.tracer?.exitState('Tour'); }
@@ -2001,23 +2015,23 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.SETUPCHECK;
     }
     
-    #TOUR_do()
+    _TOUR_do()
     {
         // Tour behavior
         // uml: 1. do [this.tracer?.logGuardCodeEvaluation("tourBin>=DEFAULT_BIN") || this.evaluateGuard('Tour', "1. do [tourBin>=DEFAULT_BIN] TransitionTo(TrainingMode)")] / { this.tracer?.edgeTransition('edge23'); } TransitionTo(TrainingMode)
         if (this.tracer?.logGuardCodeEvaluation("tourBin>=DEFAULT_BIN") || this.evaluateGuard('Tour', "1. do [tourBin>=DEFAULT_BIN] TransitionTo(TrainingMode)"))
         {
             // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(BeadSorter.StateId.RUNNING);
+            this._exitUpToStateHandler(BeadSorter.StateId.RUNNING);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge23');`.
             this.tracer?.edgeTransition('edge23');
             
             // Step 3: Enter/move towards transition target `TrainingMode`.
-            this.#TRAININGMODE_enter();
+            this._TRAININGMODE_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this.#TrainingMode_InitialState_transition();
+            this._TrainingMode_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for Tour
         
@@ -2026,13 +2040,13 @@ evaluateGuard = null;
         if (this.tracer?.logGuardCodeEvaluation("true") || this.evaluateGuard('Tour', "do [true] TransitionTo(Tour)"))
         {
             // Step 1: Exit states until we reach `SetupCheck` state (Least Common Ancestor for transition).
-            this.#TOUR_exit();
+            this._TOUR_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge24');`.
             this.tracer?.edgeTransition('edge24');
             
             // Step 3: Enter/move towards transition target `Tour`.
-            this.#TOUR_enter();
+            this._TOUR_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2046,7 +2060,7 @@ evaluateGuard = null;
     // event handlers for state SORTINGMODE
     ////////////////////////////////////////////////////////////////////////////////
     
-    #SORTINGMODE_enter()
+    _SORTINGMODE_enter()
     {
         this.stateId = BeadSorter.StateId.SORTINGMODE;
         
@@ -2065,7 +2079,7 @@ evaluateGuard = null;
         } // end of behavior for SortingMode
     }
     
-    #SORTINGMODE_exit()
+    _SORTINGMODE_exit()
     {
         // SortingMode behavior
         // uml: exit / { this.tracer?.exitState('SortingMode'); }
@@ -2077,7 +2091,7 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.RUNNING;
     }
     
-    #SortingMode_InitialState_transition()
+    _SortingMode_InitialState_transition()
     {
         // SortingMode.<InitialState> behavior
         // uml: / { this.tracer?.edgeTransition('edge19'); } TransitionTo(SortingMode__Start)
@@ -2088,7 +2102,7 @@ evaluateGuard = null;
             this.tracer?.edgeTransition('edge19');
             
             // Step 3: Enter/move towards transition target `SortingMode__Start`.
-            this.#SORTINGMODE__START_enter();
+            this._SORTINGMODE__START_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2100,7 +2114,7 @@ evaluateGuard = null;
     // event handlers for state SORTINGMODE__DROPOFF
     ////////////////////////////////////////////////////////////////////////////////
     
-    #SORTINGMODE__DROPOFF_enter()
+    _SORTINGMODE__DROPOFF_enter()
     {
         this.stateId = BeadSorter.StateId.SORTINGMODE__DROPOFF;
         
@@ -2126,7 +2140,7 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Dropoff
     }
     
-    #SORTINGMODE__DROPOFF_exit()
+    _SORTINGMODE__DROPOFF_exit()
     {
         // SortingMode__Dropoff behavior
         // uml: exit / { this.tracer?.exitState('SortingMode__Dropoff'); }
@@ -2138,19 +2152,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.SORTINGMODE;
     }
     
-    #SORTINGMODE__DROPOFF_do()
+    _SORTINGMODE__DROPOFF_do()
     {
         // SortingMode__Dropoff behavior
         // uml: do / { this.tracer?.edgeTransition('edge17'); } TransitionTo(SortingMode__Pickup)
         {
             // Step 1: Exit states until we reach `SortingMode` state (Least Common Ancestor for transition).
-            this.#SORTINGMODE__DROPOFF_exit();
+            this._SORTINGMODE__DROPOFF_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge17');`.
             this.tracer?.edgeTransition('edge17');
             
             // Step 3: Enter/move towards transition target `SortingMode__Pickup`.
-            this.#SORTINGMODE__PICKUP_enter();
+            this._SORTINGMODE__PICKUP_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2164,7 +2178,7 @@ evaluateGuard = null;
     // event handlers for state SORTINGMODE__PICKUP
     ////////////////////////////////////////////////////////////////////////////////
     
-    #SORTINGMODE__PICKUP_enter()
+    _SORTINGMODE__PICKUP_enter()
     {
         this.stateId = BeadSorter.StateId.SORTINGMODE__PICKUP;
         
@@ -2190,7 +2204,7 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Pickup
     }
     
-    #SORTINGMODE__PICKUP_exit()
+    _SORTINGMODE__PICKUP_exit()
     {
         // SortingMode__Pickup behavior
         // uml: exit / { this.tracer?.exitState('SortingMode__Pickup'); }
@@ -2202,19 +2216,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.SORTINGMODE;
     }
     
-    #SORTINGMODE__PICKUP_do()
+    _SORTINGMODE__PICKUP_do()
     {
         // SortingMode__Pickup behavior
         // uml: do / { this.tracer?.edgeTransition('edge18'); } TransitionTo(SortingMode__Sensor)
         {
             // Step 1: Exit states until we reach `SortingMode` state (Least Common Ancestor for transition).
-            this.#SORTINGMODE__PICKUP_exit();
+            this._SORTINGMODE__PICKUP_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge18');`.
             this.tracer?.edgeTransition('edge18');
             
             // Step 3: Enter/move towards transition target `SortingMode__Sensor`.
-            this.#SORTINGMODE__SENSOR_enter();
+            this._SORTINGMODE__SENSOR_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2228,7 +2242,7 @@ evaluateGuard = null;
     // event handlers for state SORTINGMODE__SENSOR
     ////////////////////////////////////////////////////////////////////////////////
     
-    #SORTINGMODE__SENSOR_enter()
+    _SORTINGMODE__SENSOR_enter()
     {
         this.stateId = BeadSorter.StateId.SORTINGMODE__SENSOR;
         
@@ -2254,7 +2268,7 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Sensor
     }
     
-    #SORTINGMODE__SENSOR_exit()
+    _SORTINGMODE__SENSOR_exit()
     {
         // SortingMode__Sensor behavior
         // uml: exit / { this.tracer?.exitState('SortingMode__Sensor'); }
@@ -2266,19 +2280,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.SORTINGMODE;
     }
     
-    #SORTINGMODE__SENSOR_do()
+    _SORTINGMODE__SENSOR_do()
     {
         // SortingMode__Sensor behavior
         // uml: do / { this.tracer?.edgeTransition('edge21'); } TransitionTo(SortingMode__Dropoff)
         {
             // Step 1: Exit states until we reach `SortingMode` state (Least Common Ancestor for transition).
-            this.#SORTINGMODE__SENSOR_exit();
+            this._SORTINGMODE__SENSOR_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge21');`.
             this.tracer?.edgeTransition('edge21');
             
             // Step 3: Enter/move towards transition target `SortingMode__Dropoff`.
-            this.#SORTINGMODE__DROPOFF_enter();
+            this._SORTINGMODE__DROPOFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2292,7 +2306,7 @@ evaluateGuard = null;
     // event handlers for state SORTINGMODE__START
     ////////////////////////////////////////////////////////////////////////////////
     
-    #SORTINGMODE__START_enter()
+    _SORTINGMODE__START_enter()
     {
         this.stateId = BeadSorter.StateId.SORTINGMODE__START;
         
@@ -2318,7 +2332,7 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Start
     }
     
-    #SORTINGMODE__START_exit()
+    _SORTINGMODE__START_exit()
     {
         // SortingMode__Start behavior
         // uml: exit / { this.tracer?.exitState('SortingMode__Start'); }
@@ -2330,19 +2344,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.SORTINGMODE;
     }
     
-    #SORTINGMODE__START_do()
+    _SORTINGMODE__START_do()
     {
         // SortingMode__Start behavior
         // uml: do / { this.tracer?.edgeTransition('edge20'); } TransitionTo(SortingMode__Pickup)
         {
             // Step 1: Exit states until we reach `SortingMode` state (Least Common Ancestor for transition).
-            this.#SORTINGMODE__START_exit();
+            this._SORTINGMODE__START_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge20');`.
             this.tracer?.edgeTransition('edge20');
             
             // Step 3: Enter/move towards transition target `SortingMode__Pickup`.
-            this.#SORTINGMODE__PICKUP_enter();
+            this._SORTINGMODE__PICKUP_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2356,7 +2370,7 @@ evaluateGuard = null;
     // event handlers for state TRAININGMODE
     ////////////////////////////////////////////////////////////////////////////////
     
-    #TRAININGMODE_enter()
+    _TRAININGMODE_enter()
     {
         this.stateId = BeadSorter.StateId.TRAININGMODE;
         
@@ -2375,7 +2389,7 @@ evaluateGuard = null;
         } // end of behavior for TrainingMode
     }
     
-    #TRAININGMODE_exit()
+    _TRAININGMODE_exit()
     {
         // TrainingMode behavior
         // uml: exit / { this.tracer?.exitState('TrainingMode'); }
@@ -2387,7 +2401,7 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.RUNNING;
     }
     
-    #TrainingMode_InitialState_transition()
+    _TrainingMode_InitialState_transition()
     {
         // TrainingMode.<InitialState> behavior
         // uml: / { this.tracer?.edgeTransition('edge16'); } TransitionTo(TrainingMode__Start)
@@ -2398,7 +2412,7 @@ evaluateGuard = null;
             this.tracer?.edgeTransition('edge16');
             
             // Step 3: Enter/move towards transition target `TrainingMode__Start`.
-            this.#TRAININGMODE__START_enter();
+            this._TRAININGMODE__START_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2410,7 +2424,7 @@ evaluateGuard = null;
     // event handlers for state READEMPTYSLOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    #READEMPTYSLOT_enter()
+    _READEMPTYSLOT_enter()
     {
         this.stateId = BeadSorter.StateId.READEMPTYSLOT;
         
@@ -2429,7 +2443,7 @@ evaluateGuard = null;
         } // end of behavior for ReadEmptySlot
     }
     
-    #READEMPTYSLOT_exit()
+    _READEMPTYSLOT_exit()
     {
         // ReadEmptySlot behavior
         // uml: exit / { this.tracer?.exitState('ReadEmptySlot'); }
@@ -2441,7 +2455,7 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.TRAININGMODE;
     }
     
-    #ReadEmptySlot_InitialState_transition()
+    _ReadEmptySlot_InitialState_transition()
     {
         // ReadEmptySlot.<InitialState> behavior
         // uml: / { this.tracer?.edgeTransition('edge1'); } TransitionTo(ReadEmptySlot__Dropoff)
@@ -2452,7 +2466,7 @@ evaluateGuard = null;
             this.tracer?.edgeTransition('edge1');
             
             // Step 3: Enter/move towards transition target `ReadEmptySlot__Dropoff`.
-            this.#READEMPTYSLOT__DROPOFF_enter();
+            this._READEMPTYSLOT__DROPOFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2464,7 +2478,7 @@ evaluateGuard = null;
     // event handlers for state READEMPTYSLOT__DROPOFF
     ////////////////////////////////////////////////////////////////////////////////
     
-    #READEMPTYSLOT__DROPOFF_enter()
+    _READEMPTYSLOT__DROPOFF_enter()
     {
         this.stateId = BeadSorter.StateId.READEMPTYSLOT__DROPOFF;
         
@@ -2490,7 +2504,7 @@ evaluateGuard = null;
         } // end of behavior for ReadEmptySlot__Dropoff
     }
     
-    #READEMPTYSLOT__DROPOFF_exit()
+    _READEMPTYSLOT__DROPOFF_exit()
     {
         // ReadEmptySlot__Dropoff behavior
         // uml: exit / { this.tracer?.exitState('ReadEmptySlot__Dropoff'); }
@@ -2502,19 +2516,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.READEMPTYSLOT;
     }
     
-    #READEMPTYSLOT__DROPOFF_do()
+    _READEMPTYSLOT__DROPOFF_do()
     {
         // ReadEmptySlot__Dropoff behavior
         // uml: do / { this.tracer?.edgeTransition('edge2'); } TransitionTo(ReadEmptySlot__Sensor)
         {
             // Step 1: Exit states until we reach `ReadEmptySlot` state (Least Common Ancestor for transition).
-            this.#READEMPTYSLOT__DROPOFF_exit();
+            this._READEMPTYSLOT__DROPOFF_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
             this.tracer?.edgeTransition('edge2');
             
             // Step 3: Enter/move towards transition target `ReadEmptySlot__Sensor`.
-            this.#READEMPTYSLOT__SENSOR_enter();
+            this._READEMPTYSLOT__SENSOR_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2528,7 +2542,7 @@ evaluateGuard = null;
     // event handlers for state READEMPTYSLOT__SENSOR
     ////////////////////////////////////////////////////////////////////////////////
     
-    #READEMPTYSLOT__SENSOR_enter()
+    _READEMPTYSLOT__SENSOR_enter()
     {
         this.stateId = BeadSorter.StateId.READEMPTYSLOT__SENSOR;
         
@@ -2554,7 +2568,7 @@ evaluateGuard = null;
         } // end of behavior for ReadEmptySlot__Sensor
     }
     
-    #READEMPTYSLOT__SENSOR_exit()
+    _READEMPTYSLOT__SENSOR_exit()
     {
         // ReadEmptySlot__Sensor behavior
         // uml: exit / { this.tracer?.exitState('ReadEmptySlot__Sensor'); }
@@ -2566,23 +2580,23 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.READEMPTYSLOT;
     }
     
-    #READEMPTYSLOT__SENSOR_do()
+    _READEMPTYSLOT__SENSOR_do()
     {
         // ReadEmptySlot__Sensor behavior
         // uml: 1. do [this.tracer?.logGuardCodeEvaluation("empties>=NUM_EMPTY_READS") || this.evaluateGuard('ReadEmptySlot__Sensor', "1. do [empties>=NUM_EMPTY_READS] TransitionTo(ReadJammedSlot)")] / { this.tracer?.edgeTransition('edge4'); } TransitionTo(ReadJammedSlot)
         if (this.tracer?.logGuardCodeEvaluation("empties>=NUM_EMPTY_READS") || this.evaluateGuard('ReadEmptySlot__Sensor', "1. do [empties>=NUM_EMPTY_READS] TransitionTo(ReadJammedSlot)"))
         {
             // Step 1: Exit states until we reach `TrainingMode` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(BeadSorter.StateId.TRAININGMODE);
+            this._exitUpToStateHandler(BeadSorter.StateId.TRAININGMODE);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
             this.tracer?.edgeTransition('edge4');
             
             // Step 3: Enter/move towards transition target `ReadJammedSlot`.
-            this.#READJAMMEDSLOT_enter();
+            this._READJAMMEDSLOT_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this.#ReadJammedSlot_InitialState_transition();
+            this._ReadJammedSlot_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for ReadEmptySlot__Sensor
         
@@ -2590,13 +2604,13 @@ evaluateGuard = null;
         // uml: do / { this.tracer?.edgeTransition('edge3'); } TransitionTo(ReadEmptySlot__Dropoff)
         {
             // Step 1: Exit states until we reach `ReadEmptySlot` state (Least Common Ancestor for transition).
-            this.#READEMPTYSLOT__SENSOR_exit();
+            this._READEMPTYSLOT__SENSOR_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
             this.tracer?.edgeTransition('edge3');
             
             // Step 3: Enter/move towards transition target `ReadEmptySlot__Dropoff`.
-            this.#READEMPTYSLOT__DROPOFF_enter();
+            this._READEMPTYSLOT__DROPOFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2610,7 +2624,7 @@ evaluateGuard = null;
     // event handlers for state READJAMMEDSLOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    #READJAMMEDSLOT_enter()
+    _READJAMMEDSLOT_enter()
     {
         this.stateId = BeadSorter.StateId.READJAMMEDSLOT;
         
@@ -2629,7 +2643,7 @@ evaluateGuard = null;
         } // end of behavior for ReadJammedSlot
     }
     
-    #READJAMMEDSLOT_exit()
+    _READJAMMEDSLOT_exit()
     {
         // ReadJammedSlot behavior
         // uml: exit / { this.tracer?.exitState('ReadJammedSlot'); }
@@ -2641,7 +2655,7 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.TRAININGMODE;
     }
     
-    #ReadJammedSlot_InitialState_transition()
+    _ReadJammedSlot_InitialState_transition()
     {
         // ReadJammedSlot.<InitialState> behavior
         // uml: / { this.tracer?.edgeTransition('edge5'); } TransitionTo(Jammed)
@@ -2652,7 +2666,7 @@ evaluateGuard = null;
             this.tracer?.edgeTransition('edge5');
             
             // Step 3: Enter/move towards transition target `Jammed`.
-            this.#JAMMED_enter();
+            this._JAMMED_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2664,7 +2678,7 @@ evaluateGuard = null;
     // event handlers for state JAMMED
     ////////////////////////////////////////////////////////////////////////////////
     
-    #JAMMED_enter()
+    _JAMMED_enter()
     {
         this.stateId = BeadSorter.StateId.JAMMED;
         
@@ -2690,7 +2704,7 @@ evaluateGuard = null;
         } // end of behavior for Jammed
     }
     
-    #JAMMED_exit()
+    _JAMMED_exit()
     {
         // Jammed behavior
         // uml: exit / { this.tracer?.exitState('Jammed'); }
@@ -2702,19 +2716,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.READJAMMEDSLOT;
     }
     
-    #JAMMED_do()
+    _JAMMED_do()
     {
         // Jammed behavior
         // uml: do / { this.tracer?.edgeTransition('edge8'); } TransitionTo(ReadJammedSlot__Sensor)
         {
             // Step 1: Exit states until we reach `ReadJammedSlot` state (Least Common Ancestor for transition).
-            this.#JAMMED_exit();
+            this._JAMMED_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge8');`.
             this.tracer?.edgeTransition('edge8');
             
             // Step 3: Enter/move towards transition target `ReadJammedSlot__Sensor`.
-            this.#READJAMMEDSLOT__SENSOR_enter();
+            this._READJAMMEDSLOT__SENSOR_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2728,7 +2742,7 @@ evaluateGuard = null;
     // event handlers for state READJAMMEDSLOT__DROPOFF
     ////////////////////////////////////////////////////////////////////////////////
     
-    #READJAMMEDSLOT__DROPOFF_enter()
+    _READJAMMEDSLOT__DROPOFF_enter()
     {
         this.stateId = BeadSorter.StateId.READJAMMEDSLOT__DROPOFF;
         
@@ -2754,7 +2768,7 @@ evaluateGuard = null;
         } // end of behavior for ReadJammedSlot__Dropoff
     }
     
-    #READJAMMEDSLOT__DROPOFF_exit()
+    _READJAMMEDSLOT__DROPOFF_exit()
     {
         // ReadJammedSlot__Dropoff behavior
         // uml: exit / { this.tracer?.exitState('ReadJammedSlot__Dropoff'); }
@@ -2766,23 +2780,23 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.READJAMMEDSLOT;
     }
     
-    #READJAMMEDSLOT__DROPOFF_do()
+    _READJAMMEDSLOT__DROPOFF_do()
     {
         // ReadJammedSlot__Dropoff behavior
         // uml: 1. do [this.tracer?.logGuardCodeEvaluation("jammies>=NUM_JAMMED_READS") || this.evaluateGuard('ReadJammedSlot__Dropoff', "1. do [jammies>=NUM_JAMMED_READS] TransitionTo(ReadSlot)")] / { this.tracer?.edgeTransition('edge7'); } TransitionTo(ReadSlot)
         if (this.tracer?.logGuardCodeEvaluation("jammies>=NUM_JAMMED_READS") || this.evaluateGuard('ReadJammedSlot__Dropoff', "1. do [jammies>=NUM_JAMMED_READS] TransitionTo(ReadSlot)"))
         {
             // Step 1: Exit states until we reach `TrainingMode` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(BeadSorter.StateId.TRAININGMODE);
+            this._exitUpToStateHandler(BeadSorter.StateId.TRAININGMODE);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
             this.tracer?.edgeTransition('edge7');
             
             // Step 3: Enter/move towards transition target `ReadSlot`.
-            this.#READSLOT_enter();
+            this._READSLOT_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this.#ReadSlot_InitialState_transition();
+            this._ReadSlot_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for ReadJammedSlot__Dropoff
         
@@ -2790,13 +2804,13 @@ evaluateGuard = null;
         // uml: do / { this.tracer?.edgeTransition('edge6'); } TransitionTo(Jammed)
         {
             // Step 1: Exit states until we reach `ReadJammedSlot` state (Least Common Ancestor for transition).
-            this.#READJAMMEDSLOT__DROPOFF_exit();
+            this._READJAMMEDSLOT__DROPOFF_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
             this.tracer?.edgeTransition('edge6');
             
             // Step 3: Enter/move towards transition target `Jammed`.
-            this.#JAMMED_enter();
+            this._JAMMED_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2810,7 +2824,7 @@ evaluateGuard = null;
     // event handlers for state READJAMMEDSLOT__SENSOR
     ////////////////////////////////////////////////////////////////////////////////
     
-    #READJAMMEDSLOT__SENSOR_enter()
+    _READJAMMEDSLOT__SENSOR_enter()
     {
         this.stateId = BeadSorter.StateId.READJAMMEDSLOT__SENSOR;
         
@@ -2836,7 +2850,7 @@ evaluateGuard = null;
         } // end of behavior for ReadJammedSlot__Sensor
     }
     
-    #READJAMMEDSLOT__SENSOR_exit()
+    _READJAMMEDSLOT__SENSOR_exit()
     {
         // ReadJammedSlot__Sensor behavior
         // uml: exit / { this.tracer?.exitState('ReadJammedSlot__Sensor'); }
@@ -2848,19 +2862,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.READJAMMEDSLOT;
     }
     
-    #READJAMMEDSLOT__SENSOR_do()
+    _READJAMMEDSLOT__SENSOR_do()
     {
         // ReadJammedSlot__Sensor behavior
         // uml: do / { this.tracer?.edgeTransition('edge9'); } TransitionTo(ReadJammedSlot__Dropoff)
         {
             // Step 1: Exit states until we reach `ReadJammedSlot` state (Least Common Ancestor for transition).
-            this.#READJAMMEDSLOT__SENSOR_exit();
+            this._READJAMMEDSLOT__SENSOR_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
             this.tracer?.edgeTransition('edge9');
             
             // Step 3: Enter/move towards transition target `ReadJammedSlot__Dropoff`.
-            this.#READJAMMEDSLOT__DROPOFF_enter();
+            this._READJAMMEDSLOT__DROPOFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2874,7 +2888,7 @@ evaluateGuard = null;
     // event handlers for state READSLOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    #READSLOT_enter()
+    _READSLOT_enter()
     {
         this.stateId = BeadSorter.StateId.READSLOT;
         
@@ -2893,7 +2907,7 @@ evaluateGuard = null;
         } // end of behavior for ReadSlot
     }
     
-    #READSLOT_exit()
+    _READSLOT_exit()
     {
         // ReadSlot behavior
         // uml: exit / { this.tracer?.exitState('ReadSlot'); }
@@ -2905,7 +2919,7 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.TRAININGMODE;
     }
     
-    #ReadSlot_InitialState_transition()
+    _ReadSlot_InitialState_transition()
     {
         // ReadSlot.<InitialState> behavior
         // uml: / { this.tracer?.edgeTransition('edge10'); } TransitionTo(TrainingMode__Pickup)
@@ -2916,7 +2930,7 @@ evaluateGuard = null;
             this.tracer?.edgeTransition('edge10');
             
             // Step 3: Enter/move towards transition target `TrainingMode__Pickup`.
-            this.#TRAININGMODE__PICKUP_enter();
+            this._TRAININGMODE__PICKUP_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -2928,7 +2942,7 @@ evaluateGuard = null;
     // event handlers for state READSLOT__DROPOFF
     ////////////////////////////////////////////////////////////////////////////////
     
-    #READSLOT__DROPOFF_enter()
+    _READSLOT__DROPOFF_enter()
     {
         this.stateId = BeadSorter.StateId.READSLOT__DROPOFF;
         
@@ -2954,7 +2968,7 @@ evaluateGuard = null;
         } // end of behavior for ReadSlot__Dropoff
     }
     
-    #READSLOT__DROPOFF_exit()
+    _READSLOT__DROPOFF_exit()
     {
         // ReadSlot__Dropoff behavior
         // uml: exit / { this.tracer?.exitState('ReadSlot__Dropoff'); }
@@ -2966,23 +2980,23 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.READSLOT;
     }
     
-    #READSLOT__DROPOFF_do()
+    _READSLOT__DROPOFF_do()
     {
         // ReadSlot__Dropoff behavior
         // uml: 1. do [this.tracer?.logGuardCodeEvaluation("sorter.isTrainingDone()") || this.evaluateGuard('ReadSlot__Dropoff', "1. do [sorter.isTrainingDone()] TransitionTo(SortingMode)")] / { this.tracer?.edgeTransition('edge12'); } TransitionTo(SortingMode)
         if (this.tracer?.logGuardCodeEvaluation("sorter.isTrainingDone()") || this.evaluateGuard('ReadSlot__Dropoff', "1. do [sorter.isTrainingDone()] TransitionTo(SortingMode)"))
         {
             // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(BeadSorter.StateId.RUNNING);
+            this._exitUpToStateHandler(BeadSorter.StateId.RUNNING);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge12');`.
             this.tracer?.edgeTransition('edge12');
             
             // Step 3: Enter/move towards transition target `SortingMode`.
-            this.#SORTINGMODE_enter();
+            this._SORTINGMODE_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this.#SortingMode_InitialState_transition();
+            this._SortingMode_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for ReadSlot__Dropoff
         
@@ -2990,13 +3004,13 @@ evaluateGuard = null;
         // uml: do / { this.tracer?.edgeTransition('edge11'); } TransitionTo(TrainingMode__Pickup)
         {
             // Step 1: Exit states until we reach `ReadSlot` state (Least Common Ancestor for transition).
-            this.#READSLOT__DROPOFF_exit();
+            this._READSLOT__DROPOFF_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge11');`.
             this.tracer?.edgeTransition('edge11');
             
             // Step 3: Enter/move towards transition target `TrainingMode__Pickup`.
-            this.#TRAININGMODE__PICKUP_enter();
+            this._TRAININGMODE__PICKUP_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -3010,7 +3024,7 @@ evaluateGuard = null;
     // event handlers for state READSLOT__SENSOR
     ////////////////////////////////////////////////////////////////////////////////
     
-    #READSLOT__SENSOR_enter()
+    _READSLOT__SENSOR_enter()
     {
         this.stateId = BeadSorter.StateId.READSLOT__SENSOR;
         
@@ -3036,7 +3050,7 @@ evaluateGuard = null;
         } // end of behavior for ReadSlot__Sensor
     }
     
-    #READSLOT__SENSOR_exit()
+    _READSLOT__SENSOR_exit()
     {
         // ReadSlot__Sensor behavior
         // uml: exit / { this.tracer?.exitState('ReadSlot__Sensor'); }
@@ -3048,19 +3062,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.READSLOT;
     }
     
-    #READSLOT__SENSOR_do()
+    _READSLOT__SENSOR_do()
     {
         // ReadSlot__Sensor behavior
         // uml: do / { this.tracer?.edgeTransition('edge14'); } TransitionTo(ReadSlot__Dropoff)
         {
             // Step 1: Exit states until we reach `ReadSlot` state (Least Common Ancestor for transition).
-            this.#READSLOT__SENSOR_exit();
+            this._READSLOT__SENSOR_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge14');`.
             this.tracer?.edgeTransition('edge14');
             
             // Step 3: Enter/move towards transition target `ReadSlot__Dropoff`.
-            this.#READSLOT__DROPOFF_enter();
+            this._READSLOT__DROPOFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -3074,7 +3088,7 @@ evaluateGuard = null;
     // event handlers for state TRAININGMODE__PICKUP
     ////////////////////////////////////////////////////////////////////////////////
     
-    #TRAININGMODE__PICKUP_enter()
+    _TRAININGMODE__PICKUP_enter()
     {
         this.stateId = BeadSorter.StateId.TRAININGMODE__PICKUP;
         
@@ -3100,7 +3114,7 @@ evaluateGuard = null;
         } // end of behavior for TrainingMode__Pickup
     }
     
-    #TRAININGMODE__PICKUP_exit()
+    _TRAININGMODE__PICKUP_exit()
     {
         // TrainingMode__Pickup behavior
         // uml: exit / { this.tracer?.exitState('TrainingMode__Pickup'); }
@@ -3112,19 +3126,19 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.READSLOT;
     }
     
-    #TRAININGMODE__PICKUP_do()
+    _TRAININGMODE__PICKUP_do()
     {
         // TrainingMode__Pickup behavior
         // uml: do / { this.tracer?.edgeTransition('edge13'); } TransitionTo(ReadSlot__Sensor)
         {
             // Step 1: Exit states until we reach `ReadSlot` state (Least Common Ancestor for transition).
-            this.#TRAININGMODE__PICKUP_exit();
+            this._TRAININGMODE__PICKUP_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge13');`.
             this.tracer?.edgeTransition('edge13');
             
             // Step 3: Enter/move towards transition target `ReadSlot__Sensor`.
-            this.#READSLOT__SENSOR_enter();
+            this._READSLOT__SENSOR_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -3138,7 +3152,7 @@ evaluateGuard = null;
     // event handlers for state TRAININGMODE__START
     ////////////////////////////////////////////////////////////////////////////////
     
-    #TRAININGMODE__START_enter()
+    _TRAININGMODE__START_enter()
     {
         this.stateId = BeadSorter.StateId.TRAININGMODE__START;
         
@@ -3164,7 +3178,7 @@ evaluateGuard = null;
         } // end of behavior for TrainingMode__Start
     }
     
-    #TRAININGMODE__START_exit()
+    _TRAININGMODE__START_exit()
     {
         // TrainingMode__Start behavior
         // uml: exit / { this.tracer?.exitState('TrainingMode__Start'); }
@@ -3176,22 +3190,22 @@ evaluateGuard = null;
         this.stateId = BeadSorter.StateId.TRAININGMODE;
     }
     
-    #TRAININGMODE__START_do()
+    _TRAININGMODE__START_do()
     {
         // TrainingMode__Start behavior
         // uml: do / { this.tracer?.edgeTransition('edge15'); } TransitionTo(ReadEmptySlot)
         {
             // Step 1: Exit states until we reach `TrainingMode` state (Least Common Ancestor for transition).
-            this.#TRAININGMODE__START_exit();
+            this._TRAININGMODE__START_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge15');`.
             this.tracer?.edgeTransition('edge15');
             
             // Step 3: Enter/move towards transition target `ReadEmptySlot`.
-            this.#READEMPTYSLOT_enter();
+            this._READEMPTYSLOT_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this.#ReadEmptySlot_InitialState_transition();
+            this._ReadEmptySlot_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TrainingMode__Start
         
@@ -3274,6 +3288,31 @@ evaluateGuard = null;
         document.querySelectorAll(`g[data-id*='(InitialState)']`).forEach(g=> {
           g.innerHTML = `<circle transform='translate(0,3)' height='14' width='14' r='14' class='state - start'></circle>`;
         })
+
+
+        // now that we allow clicks to force state, we want to detect when something is a click or a click+drag for panning.
+        // Users can always use middle click to safely pan, but it's annoying.
+        let isDragging = false;
+        let clickStartX = 0;
+        let clickStartY = 0;
+
+        document.addEventListener('mousedown', (event) => {
+            isDragging = false;
+            clickStartX = event.clientX;
+            clickStartY = event.clientY;
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            // If the mouse button is down and moves by more than a few pixels, we consider it a drag (and not a click).
+            if (event.buttons === 1 && !isDragging) {
+                const deltaX = event.clientX - clickStartX;
+                const deltaY = event.clientY - clickStartY;
+                if (Math.abs(deltaX) + Math.abs(deltaY) > 3) { // allow a bit of accidental movement when trying to click to help with accessibility.
+                    isDragging = true;
+                }
+            }
+        });
+
 
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {
             zoomEnabled: true,
@@ -3533,6 +3572,7 @@ evaluateGuard = null;
         }
 
         var sm = new BeadSorter();
+        window.StateSmith_sm = sm; // expose to global scope so people can interact with it from the console if they want to.
 
         // prompt the user to evaluate guards manually
         sm.evaluateGuard = (vertexName, behaviorUml) => {
@@ -3560,9 +3600,13 @@ evaluateGuard = null;
             highlightedEdges.clear();
         }
 
+        function clearHighlightedStates() {
+            document.querySelectorAll('g[id].active').forEach(e => e.classList.remove('active'));
+        }
+
         // Function to update event button states (availability and visibility)
-        function updateEventButtonStates(currentStateName) {
-            const availableEvents = stateEventsMapping[currentStateName] || [];
+        function updateEventButtonStates(currentStateDiagramName) {
+            const availableEvents = stateEventsMapping[currentStateDiagramName] || [];
 
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
@@ -3610,10 +3654,13 @@ evaluateGuard = null;
         // state highlighting and logging.
         sm.tracer = {
             enterState: (mermaidName) => {
-                var e = document.querySelector('g[data-id=' + mermaidName + ']');
+                var e = document.querySelector('g[data-id=' + mermaidName + ']') || document.querySelector('g[id=' + mermaidName + ']');
+
                 if(e) {
                   e.classList.add('active');
                   panOnScreen(e);
+                } else {
+                  console.warn(`Could not find mermaid element to highlight for state '${mermaidName}'.`);
                 }
 
                 if (document.getElementById('savedSetting_verboseEnter').checked) {
@@ -3625,6 +3672,7 @@ evaluateGuard = null;
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
+                document.querySelector('g[id=' + mermaidName + ']')?.classList.remove('active');
 
                 if (document.getElementById('savedSetting_verboseExit').checked) {
                     sm.tracer.log('↩️ Exited ' + mermaidName);
@@ -3652,6 +3700,110 @@ evaluateGuard = null;
             }
         };
 
+        // https://github.com/StateSmith/StateSmith/issues/519
+        function forceStateChange(stateNameAnyCase)
+        {
+          const stateName = stateNameAnyCase.toUpperCase();
+
+          // get ID from stateName
+          const stateId = BeadSorter.StateId[stateName];
+          if (stateId === undefined) {
+            console.error(`Invalid state name '${stateNameAnyCase}' passed to forceStateChange.`);
+            console.log('Valid state names are (in any case):', Object.keys(BeadSorter.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
+            return;
+          }
+
+          // note! This and other ROOT code assumes that it is the first state. This is a fairly safe assumption, but if that ever changes this code will need to be updated.
+          if (Object.keys(BeadSorter.StateId)[0] !== 'ROOT') {
+            console.warn(`ROOT not found. This should happen. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }
+
+          if (stateId === 0) {
+            console.error(`Cannot force state to state machine ROOT.`,);
+            return;
+          }
+
+          let mermaidElement = null;
+
+          // we now need the mermaid state element for the state of interest
+          document.querySelectorAll('g[data-id],g[id]').forEach(e => {
+            const lowerName = stateNameAnyCase.toLowerCase();
+            const matchesLeafState = e.getAttribute('data-id') && e.getAttribute('data-id').toLowerCase() === lowerName;
+            const matchesCompoundState = e.getAttribute('id').toLowerCase() === lowerName;
+
+            if (matchesCompoundState || matchesLeafState) {
+              mermaidElement = e;
+            }
+          });
+
+          if (!mermaidElement) {
+            console.error(`Could not find mermaid element for state name '${stateNameAnyCase}'. This is unexpected as we already found matching state id. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+            return;
+          }
+
+          // force the state change. NOTE! This will only work with Algorithm Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms.
+          sm.stateId = stateId;
+          
+          // remove the active class from all states, then add it to the forced state.
+          clearHighlightedStates();
+          // mermaidElement.classList.add('active'); // done by state enter below
+
+          const htmlMode = true;
+          sm.tracer.log(`<span class='dispatched'><a href='https://github.com/StateSmith/StateSmith/issues/519' target='_blank' title='May have impacts! Click for details.'><span class='forced-state'>FORCED STATE</span> to '${stateNameAnyCase}'</span></a>`, htmlMode);
+
+          // execute state's enter function
+          const enterFunction = sm['_' + stateName + '_enter'];
+          if (enterFunction) {
+            enterFunction.call(sm); // need to call with sm as 'this' context so that it can update the state machine state and do other things that require access to 'this'.
+          } else {
+            console.warn(`No enter function found for state '${stateName}'. This is unexpected. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }            
+
+          panOnScreen(mermaidElement);
+          
+          let mermaidStateName;
+          
+          if (mermaidElement.getAttribute('data-id')) {
+            mermaidStateName = mermaidElement.getAttribute('data-id');
+          } else {
+             mermaidStateName = mermaidElement.getAttribute('id');
+          }
+          updateEventButtonStates(mermaidStateName);
+          clearHighlightedEdges();
+
+          console.log(`Forced state to ${stateNameAnyCase}. See https://github.com/StateSmith/StateSmith/issues/519`);
+        }
+
+        // https://github.com/StateSmith/StateSmith/issues/519
+        {
+          // allow clicking states to force state machine to that state.
+          document.querySelectorAll('g.statediagram-state[id]').forEach(stateElement => {
+            stateElement.style.cursor = 'pointer'; // indicate that the element is clickable.
+            stateElement.addEventListener('click', (event) => {
+
+              if (isDragging) {
+                // If the mouse is currently being dragged, do not treat this click as a state change request.
+                return;
+              }
+
+              let stateName = null;
+
+              // this is a bit hacky. Composite states have their name in the 'id' attribute, while simple states have their name in the 'data-id' attribute. We need to check both to support both types of states.
+              if (stateElement.classList.contains('statediagram-cluster')) {
+                stateName = stateElement.getAttribute('id');
+              } else {
+                stateName = stateElement.getAttribute('data-id');
+              }
+
+              forceStateChange(stateName);
+            });
+          });
+        }
+
+        // export forceStateChange to global scope so it can be called from the console for testing purposes.
+        window.StateSmith_forceStateChange = forceStateChange;
+
+
         // Wire up the buttons that dispatch events for the state machine.
         diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
@@ -3666,7 +3818,7 @@ evaluateGuard = null;
 
                 if (alwaysAllowEventDispatch || !button.classList.contains('hasNoEventHandler')) {
                     clearHighlightedEdges();
-                    sm.tracer?.log('<span class=\'dispatched\'><span class=\'event-id\'>' + diagramEventName + '</span> DISPATCHED</span>', true);
+                    sm.tracer?.log(`<span class='dispatched'><span class='event-id'>${diagramEventName}</span> DISPATCHED</span>`, true);
                     const fsmEventName = diagramEventName.toUpperCase();
                     sm.dispatchEvent(BeadSorter.EventId[fsmEventName]); 
                 }
@@ -3678,20 +3830,34 @@ evaluateGuard = null;
         sm.start(); // This will cause `updateEventButtonStates()` to be called.
 
         function panOnScreen(element) {
-          if(!element) return;
+            if (!element) return;
 
-          var bounds = element.getBoundingClientRect();
-          if(bounds.x<0 || bounds.y<0) {
-              var x = Math.max(0, -bounds.x + 20);
-              var y = Math.max(0, -bounds.y + 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
-          var panebounds = document.querySelector('svg').getBoundingClientRect();
-          if(bounds.x>panebounds.width || bounds.y>panebounds.height) {
-              var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
-              var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
+            // NOTE! There's some hacks here to prevent multiple rapid calls to panOnScreen.
+            // If one transition causes 3 state enters, and each state entry calls panOnScreen, the screen often goes blank.
+            // I would guess caused by window.panZoom.panBy()
+            // So we put in a little delay hack in here and cancel any pending panning action.
+
+            window.ss_lastPanActionHandle = window.ss_lastPanActionHandle || null;
+
+            if (window.ss_lastPanActionHandle) {
+                clearTimeout(window.ss_lastPanActionHandle);
+                window.ss_lastPanActionHandle = null;
+            }
+
+            window.ss_lastPanActionHandle = setTimeout(() => {
+                var bounds = element.getBoundingClientRect();
+                if (bounds.x < 0 || bounds.y < 0) {
+                    var x = Math.max(0, -bounds.x + 20);
+                    var y = Math.max(0, -bounds.y + 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+                var panebounds = document.querySelector('svg').getBoundingClientRect();
+                if (bounds.x > panebounds.width || bounds.y > panebounds.height) {
+                    var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
+                    var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+            }, 1);
         }
     </script>
 

@@ -22,7 +22,7 @@
         margin: 0px;
       }
 
-      a.mermaid-workaround {
+      #event-logs a {
         text-decoration: none;
         color: inherit;
       }
@@ -154,8 +154,16 @@
         font-weight: bold;
       }
 
-      .dispatched > .event-id {
+      .dispatched .event-id {
         border: 1px solid #000;
+        border-radius: 4px;
+        padding: 2px;
+      }
+
+      .dispatched .forced-state {
+        border: 1px solid #000;
+        color: white;
+        background-color: #c50c0c;
         border-radius: 4px;
         padding: 2px;
       }
@@ -249,6 +257,12 @@
 
       .statediagram-state.active > * {
         fill: #fff5ad !important;
+        stroke-width: 2px !important;
+      }
+
+      /* we don't want to fill body of parent state with regular active yellow. It's just too much! */
+      .statediagram-state.active rect.inner {
+        fill: #faf7e1 !important;
         stroke-width: 2px !important;
       }
 
@@ -419,7 +433,7 @@ evaluateGuard = null;
     // Starts the state machine. Must be called before dispatching events. Not thread safe.
     start()
     {
-        this.#ROOT_enter();
+        this._ROOT_enter();
         // ROOT behavior
         // uml: TransitionTo(ROOT.<InitialState>)
         {
@@ -439,7 +453,7 @@ evaluateGuard = null;
                 this.tracer?.edgeTransition('edge6');
                 
                 // Step 3: Enter/move towards transition target `Off`.
-                this.#OFF_enter();
+                this._OFF_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -462,7 +476,7 @@ evaluateGuard = null;
             case LightSm.StateId.OFF:
                 switch (eventId)
                 {
-                    case LightSm.EventId.INCREASE: this.#OFF_increase(); break;
+                    case LightSm.EventId.INCREASE: this._OFF_increase(); break;
                 }
                 break;
             
@@ -470,7 +484,7 @@ evaluateGuard = null;
             case LightSm.StateId.ON_GROUP:
                 switch (eventId)
                 {
-                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break;
+                    case LightSm.EventId.OFF: this._ON_GROUP_off(); break;
                 }
                 break;
             
@@ -478,9 +492,9 @@ evaluateGuard = null;
             case LightSm.StateId.ON1:
                 switch (eventId)
                 {
-                    case LightSm.EventId.INCREASE: this.#ON1_increase(); break;
-                    case LightSm.EventId.DIMLIGHT: this.#ON1_dimlight(); break;
-                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break; // First ancestor handler for this event
+                    case LightSm.EventId.INCREASE: this._ON1_increase(); break;
+                    case LightSm.EventId.DIMLIGHT: this._ON1_dimlight(); break;
+                    case LightSm.EventId.OFF: this._ON_GROUP_off(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -488,9 +502,9 @@ evaluateGuard = null;
             case LightSm.StateId.ON2:
                 switch (eventId)
                 {
-                    case LightSm.EventId.INCREASE: this.#ON2_increase(); break;
-                    case LightSm.EventId.DIMLIGHT: this.#ON2_dimlight(); break;
-                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break; // First ancestor handler for this event
+                    case LightSm.EventId.INCREASE: this._ON2_increase(); break;
+                    case LightSm.EventId.DIMLIGHT: this._ON2_dimlight(); break;
+                    case LightSm.EventId.OFF: this._ON_GROUP_off(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -498,8 +512,8 @@ evaluateGuard = null;
             case LightSm.StateId.ONHOT:
                 switch (eventId)
                 {
-                    case LightSm.EventId.DIMLIGHT: this.#ONHOT_dimlight(); break;
-                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break; // First ancestor handler for this event
+                    case LightSm.EventId.DIMLIGHT: this._ONHOT_dimlight(); break;
+                    case LightSm.EventId.OFF: this._ON_GROUP_off(); break; // First ancestor handler for this event
                 }
                 break;
         }
@@ -508,21 +522,21 @@ evaluateGuard = null;
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    #exitUpToStateHandler(desiredState)
+    _exitUpToStateHandler(desiredState)
     {
         while (this.stateId != desiredState)
         {
             switch (this.stateId)
             {
-                case LightSm.StateId.OFF: this.#OFF_exit(); break;
+                case LightSm.StateId.OFF: this._OFF_exit(); break;
                 
-                case LightSm.StateId.ON_GROUP: this.#ON_GROUP_exit(); break;
+                case LightSm.StateId.ON_GROUP: this._ON_GROUP_exit(); break;
                 
-                case LightSm.StateId.ON1: this.#ON1_exit(); break;
+                case LightSm.StateId.ON1: this._ON1_exit(); break;
                 
-                case LightSm.StateId.ON2: this.#ON2_exit(); break;
+                case LightSm.StateId.ON2: this._ON2_exit(); break;
                 
-                case LightSm.StateId.ONHOT: this.#ONHOT_exit(); break;
+                case LightSm.StateId.ONHOT: this._ONHOT_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -534,7 +548,7 @@ evaluateGuard = null;
     // event handlers for state ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    #ROOT_enter()
+    _ROOT_enter()
     {
         this.stateId = LightSm.StateId.ROOT;
     }
@@ -544,7 +558,7 @@ evaluateGuard = null;
     // event handlers for state OFF
     ////////////////////////////////////////////////////////////////////////////////
     
-    #OFF_enter()
+    _OFF_enter()
     {
         this.stateId = LightSm.StateId.OFF;
         
@@ -563,7 +577,7 @@ evaluateGuard = null;
         } // end of behavior for Off
     }
     
-    #OFF_exit()
+    _OFF_exit()
     {
         // Off behavior
         // uml: exit / { this.tracer?.exitState('Off'); }
@@ -575,20 +589,20 @@ evaluateGuard = null;
         this.stateId = LightSm.StateId.ROOT;
     }
     
-    #OFF_increase()
+    _OFF_increase()
     {
         // Off behavior
         // uml: INCREASE / { this.tracer?.edgeTransition('edge7'); } TransitionTo(ON1)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this.#OFF_exit();
+            this._OFF_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
             this.tracer?.edgeTransition('edge7');
             
             // Step 3: Enter/move towards transition target `ON1`.
-            this.#ON_GROUP_enter();
-            this.#ON1_enter();
+            this._ON_GROUP_enter();
+            this._ON1_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -602,7 +616,7 @@ evaluateGuard = null;
     // event handlers for state ON_GROUP
     ////////////////////////////////////////////////////////////////////////////////
     
-    #ON_GROUP_enter()
+    _ON_GROUP_enter()
     {
         this.stateId = LightSm.StateId.ON_GROUP;
         
@@ -614,7 +628,7 @@ evaluateGuard = null;
         } // end of behavior for ON_GROUP
     }
     
-    #ON_GROUP_exit()
+    _ON_GROUP_exit()
     {
         // ON_GROUP behavior
         // uml: exit / { this.tracer?.exitState('ON_GROUP'); }
@@ -626,19 +640,19 @@ evaluateGuard = null;
         this.stateId = LightSm.StateId.ROOT;
     }
     
-    #ON_GROUP_off()
+    _ON_GROUP_off()
     {
         // ON_GROUP behavior
         // uml: off / { this.tracer?.edgeTransition('edge0'); } TransitionTo(Off)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(LightSm.StateId.ROOT);
+            this._exitUpToStateHandler(LightSm.StateId.ROOT);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
             this.tracer?.edgeTransition('edge0');
             
             // Step 3: Enter/move towards transition target `Off`.
-            this.#OFF_enter();
+            this._OFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -652,7 +666,7 @@ evaluateGuard = null;
     // event handlers for state ON1
     ////////////////////////////////////////////////////////////////////////////////
     
-    #ON1_enter()
+    _ON1_enter()
     {
         this.stateId = LightSm.StateId.ON1;
         
@@ -671,7 +685,7 @@ evaluateGuard = null;
         } // end of behavior for ON1
     }
     
-    #ON1_exit()
+    _ON1_exit()
     {
         // ON1 behavior
         // uml: exit / { this.tracer?.exitState('ON1'); }
@@ -683,19 +697,19 @@ evaluateGuard = null;
         this.stateId = LightSm.StateId.ON_GROUP;
     }
     
-    #ON1_dimlight()
+    _ON1_dimlight()
     {
         // ON1 behavior
         // uml: DimLight / { this.tracer?.edgeTransition('edge2'); } TransitionTo(Off)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(LightSm.StateId.ROOT);
+            this._exitUpToStateHandler(LightSm.StateId.ROOT);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
             this.tracer?.edgeTransition('edge2');
             
             // Step 3: Enter/move towards transition target `Off`.
-            this.#OFF_enter();
+            this._OFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -704,19 +718,19 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #ON1_increase()
+    _ON1_increase()
     {
         // ON1 behavior
         // uml: INCREASE / { this.tracer?.edgeTransition('edge1'); } TransitionTo(ON2)
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
-            this.#ON1_exit();
+            this._ON1_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge1');`.
             this.tracer?.edgeTransition('edge1');
             
             // Step 3: Enter/move towards transition target `ON2`.
-            this.#ON2_enter();
+            this._ON2_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -730,7 +744,7 @@ evaluateGuard = null;
     // event handlers for state ON2
     ////////////////////////////////////////////////////////////////////////////////
     
-    #ON2_enter()
+    _ON2_enter()
     {
         this.stateId = LightSm.StateId.ON2;
         
@@ -756,7 +770,7 @@ evaluateGuard = null;
         } // end of behavior for ON2
     }
     
-    #ON2_exit()
+    _ON2_exit()
     {
         // ON2 behavior
         // uml: exit / { this.tracer?.exitState('ON2'); }
@@ -768,19 +782,19 @@ evaluateGuard = null;
         this.stateId = LightSm.StateId.ON_GROUP;
     }
     
-    #ON2_dimlight()
+    _ON2_dimlight()
     {
         // ON2 behavior
         // uml: DimLight / { this.tracer?.edgeTransition('edge4'); } TransitionTo(ON1)
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
-            this.#ON2_exit();
+            this._ON2_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
             this.tracer?.edgeTransition('edge4');
             
             // Step 3: Enter/move towards transition target `ON1`.
-            this.#ON1_enter();
+            this._ON1_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -789,7 +803,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #ON2_increase()
+    _ON2_increase()
     {
         // ON2 behavior
         // uml: 1. INCREASE / { this.tracer?.logActionCode("count++;"); }
@@ -803,13 +817,13 @@ evaluateGuard = null;
         if (this.tracer?.logGuardCodeEvaluation("count >= 3") || this.evaluateGuard('ON2', "2. INCREASE [count >= 3] TransitionTo(OnHot)"))
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
-            this.#ON2_exit();
+            this._ON2_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge5');`.
             this.tracer?.edgeTransition('edge5');
             
             // Step 3: Enter/move towards transition target `OnHot`.
-            this.#ONHOT_enter();
+            this._ONHOT_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -823,7 +837,7 @@ evaluateGuard = null;
     // event handlers for state ONHOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    #ONHOT_enter()
+    _ONHOT_enter()
     {
         this.stateId = LightSm.StateId.ONHOT;
         
@@ -842,7 +856,7 @@ evaluateGuard = null;
         } // end of behavior for OnHot
     }
     
-    #ONHOT_exit()
+    _ONHOT_exit()
     {
         // OnHot behavior
         // uml: exit / { this.tracer?.exitState('OnHot'); }
@@ -854,19 +868,19 @@ evaluateGuard = null;
         this.stateId = LightSm.StateId.ON_GROUP;
     }
     
-    #ONHOT_dimlight()
+    _ONHOT_dimlight()
     {
         // OnHot behavior
         // uml: DimLight / { this.tracer?.edgeTransition('edge3'); } TransitionTo(ON2)
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
-            this.#ONHOT_exit();
+            this._ONHOT_exit();
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
             this.tracer?.edgeTransition('edge3');
             
             // Step 3: Enter/move towards transition target `ON2`.
-            this.#ON2_enter();
+            this._ON2_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -928,6 +942,31 @@ evaluateGuard = null;
         document.querySelectorAll(`g[data-id*='(InitialState)']`).forEach(g=> {
           g.innerHTML = `<circle transform='translate(0,3)' height='14' width='14' r='14' class='state - start'></circle>`;
         })
+
+
+        // now that we allow clicks to force state, we want to detect when something is a click or a click+drag for panning.
+        // Users can always use middle click to safely pan, but it's annoying.
+        let isDragging = false;
+        let clickStartX = 0;
+        let clickStartY = 0;
+
+        document.addEventListener('mousedown', (event) => {
+            isDragging = false;
+            clickStartX = event.clientX;
+            clickStartY = event.clientY;
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            // If the mouse button is down and moves by more than a few pixels, we consider it a drag (and not a click).
+            if (event.buttons === 1 && !isDragging) {
+                const deltaX = event.clientX - clickStartX;
+                const deltaY = event.clientY - clickStartY;
+                if (Math.abs(deltaX) + Math.abs(deltaY) > 3) { // allow a bit of accidental movement when trying to click to help with accessibility.
+                    isDragging = true;
+                }
+            }
+        });
+
 
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {
             zoomEnabled: true,
@@ -1103,6 +1142,7 @@ evaluateGuard = null;
         }
 
         var sm = new LightSm();
+        window.StateSmith_sm = sm; // expose to global scope so people can interact with it from the console if they want to.
 
         // prompt the user to evaluate guards manually
         sm.evaluateGuard = (vertexName, behaviorUml) => {
@@ -1130,9 +1170,13 @@ evaluateGuard = null;
             highlightedEdges.clear();
         }
 
+        function clearHighlightedStates() {
+            document.querySelectorAll('g[id].active').forEach(e => e.classList.remove('active'));
+        }
+
         // Function to update event button states (availability and visibility)
-        function updateEventButtonStates(currentStateName) {
-            const availableEvents = stateEventsMapping[currentStateName] || [];
+        function updateEventButtonStates(currentStateDiagramName) {
+            const availableEvents = stateEventsMapping[currentStateDiagramName] || [];
 
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
@@ -1180,10 +1224,13 @@ evaluateGuard = null;
         // state highlighting and logging.
         sm.tracer = {
             enterState: (mermaidName) => {
-                var e = document.querySelector('g[data-id=' + mermaidName + ']');
+                var e = document.querySelector('g[data-id=' + mermaidName + ']') || document.querySelector('g[id=' + mermaidName + ']');
+
                 if(e) {
                   e.classList.add('active');
                   panOnScreen(e);
+                } else {
+                  console.warn(`Could not find mermaid element to highlight for state '${mermaidName}'.`);
                 }
 
                 if (document.getElementById('savedSetting_verboseEnter').checked) {
@@ -1195,6 +1242,7 @@ evaluateGuard = null;
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
+                document.querySelector('g[id=' + mermaidName + ']')?.classList.remove('active');
 
                 if (document.getElementById('savedSetting_verboseExit').checked) {
                     sm.tracer.log('↩️ Exited ' + mermaidName);
@@ -1222,6 +1270,110 @@ evaluateGuard = null;
             }
         };
 
+        // https://github.com/StateSmith/StateSmith/issues/519
+        function forceStateChange(stateNameAnyCase)
+        {
+          const stateName = stateNameAnyCase.toUpperCase();
+
+          // get ID from stateName
+          const stateId = LightSm.StateId[stateName];
+          if (stateId === undefined) {
+            console.error(`Invalid state name '${stateNameAnyCase}' passed to forceStateChange.`);
+            console.log('Valid state names are (in any case):', Object.keys(LightSm.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
+            return;
+          }
+
+          // note! This and other ROOT code assumes that it is the first state. This is a fairly safe assumption, but if that ever changes this code will need to be updated.
+          if (Object.keys(LightSm.StateId)[0] !== 'ROOT') {
+            console.warn(`ROOT not found. This should happen. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }
+
+          if (stateId === 0) {
+            console.error(`Cannot force state to state machine ROOT.`,);
+            return;
+          }
+
+          let mermaidElement = null;
+
+          // we now need the mermaid state element for the state of interest
+          document.querySelectorAll('g[data-id],g[id]').forEach(e => {
+            const lowerName = stateNameAnyCase.toLowerCase();
+            const matchesLeafState = e.getAttribute('data-id') && e.getAttribute('data-id').toLowerCase() === lowerName;
+            const matchesCompoundState = e.getAttribute('id').toLowerCase() === lowerName;
+
+            if (matchesCompoundState || matchesLeafState) {
+              mermaidElement = e;
+            }
+          });
+
+          if (!mermaidElement) {
+            console.error(`Could not find mermaid element for state name '${stateNameAnyCase}'. This is unexpected as we already found matching state id. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+            return;
+          }
+
+          // force the state change. NOTE! This will only work with Algorithm Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms.
+          sm.stateId = stateId;
+          
+          // remove the active class from all states, then add it to the forced state.
+          clearHighlightedStates();
+          // mermaidElement.classList.add('active'); // done by state enter below
+
+          const htmlMode = true;
+          sm.tracer.log(`<span class='dispatched'><a href='https://github.com/StateSmith/StateSmith/issues/519' target='_blank' title='May have impacts! Click for details.'><span class='forced-state'>FORCED STATE</span> to '${stateNameAnyCase}'</span></a>`, htmlMode);
+
+          // execute state's enter function
+          const enterFunction = sm['_' + stateName + '_enter'];
+          if (enterFunction) {
+            enterFunction.call(sm); // need to call with sm as 'this' context so that it can update the state machine state and do other things that require access to 'this'.
+          } else {
+            console.warn(`No enter function found for state '${stateName}'. This is unexpected. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }            
+
+          panOnScreen(mermaidElement);
+          
+          let mermaidStateName;
+          
+          if (mermaidElement.getAttribute('data-id')) {
+            mermaidStateName = mermaidElement.getAttribute('data-id');
+          } else {
+             mermaidStateName = mermaidElement.getAttribute('id');
+          }
+          updateEventButtonStates(mermaidStateName);
+          clearHighlightedEdges();
+
+          console.log(`Forced state to ${stateNameAnyCase}. See https://github.com/StateSmith/StateSmith/issues/519`);
+        }
+
+        // https://github.com/StateSmith/StateSmith/issues/519
+        {
+          // allow clicking states to force state machine to that state.
+          document.querySelectorAll('g.statediagram-state[id]').forEach(stateElement => {
+            stateElement.style.cursor = 'pointer'; // indicate that the element is clickable.
+            stateElement.addEventListener('click', (event) => {
+
+              if (isDragging) {
+                // If the mouse is currently being dragged, do not treat this click as a state change request.
+                return;
+              }
+
+              let stateName = null;
+
+              // this is a bit hacky. Composite states have their name in the 'id' attribute, while simple states have their name in the 'data-id' attribute. We need to check both to support both types of states.
+              if (stateElement.classList.contains('statediagram-cluster')) {
+                stateName = stateElement.getAttribute('id');
+              } else {
+                stateName = stateElement.getAttribute('data-id');
+              }
+
+              forceStateChange(stateName);
+            });
+          });
+        }
+
+        // export forceStateChange to global scope so it can be called from the console for testing purposes.
+        window.StateSmith_forceStateChange = forceStateChange;
+
+
         // Wire up the buttons that dispatch events for the state machine.
         diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
@@ -1236,7 +1388,7 @@ evaluateGuard = null;
 
                 if (alwaysAllowEventDispatch || !button.classList.contains('hasNoEventHandler')) {
                     clearHighlightedEdges();
-                    sm.tracer?.log('<span class=\'dispatched\'><span class=\'event-id\'>' + diagramEventName + '</span> DISPATCHED</span>', true);
+                    sm.tracer?.log(`<span class='dispatched'><span class='event-id'>${diagramEventName}</span> DISPATCHED</span>`, true);
                     const fsmEventName = diagramEventName.toUpperCase();
                     sm.dispatchEvent(LightSm.EventId[fsmEventName]); 
                 }
@@ -1248,20 +1400,34 @@ evaluateGuard = null;
         sm.start(); // This will cause `updateEventButtonStates()` to be called.
 
         function panOnScreen(element) {
-          if(!element) return;
+            if (!element) return;
 
-          var bounds = element.getBoundingClientRect();
-          if(bounds.x<0 || bounds.y<0) {
-              var x = Math.max(0, -bounds.x + 20);
-              var y = Math.max(0, -bounds.y + 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
-          var panebounds = document.querySelector('svg').getBoundingClientRect();
-          if(bounds.x>panebounds.width || bounds.y>panebounds.height) {
-              var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
-              var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
+            // NOTE! There's some hacks here to prevent multiple rapid calls to panOnScreen.
+            // If one transition causes 3 state enters, and each state entry calls panOnScreen, the screen often goes blank.
+            // I would guess caused by window.panZoom.panBy()
+            // So we put in a little delay hack in here and cancel any pending panning action.
+
+            window.ss_lastPanActionHandle = window.ss_lastPanActionHandle || null;
+
+            if (window.ss_lastPanActionHandle) {
+                clearTimeout(window.ss_lastPanActionHandle);
+                window.ss_lastPanActionHandle = null;
+            }
+
+            window.ss_lastPanActionHandle = setTimeout(() => {
+                var bounds = element.getBoundingClientRect();
+                if (bounds.x < 0 || bounds.y < 0) {
+                    var x = Math.max(0, -bounds.x + 20);
+                    var y = Math.max(0, -bounds.y + 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+                var panebounds = document.querySelector('svg').getBoundingClientRect();
+                if (bounds.x > panebounds.width || bounds.y > panebounds.height) {
+                    var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
+                    var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+            }, 1);
         }
     </script>
 

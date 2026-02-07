@@ -34,9 +34,12 @@ Test/interim releases are not documented here.
 ## [WIP]
 ### Changed (minor)
 - Simulator - enabling verbose modes below by default.
+- Simulator - parent/composite states are now highlighted when entered.
 - See below.
 
 ### Added
+- Simulator - clicking a state will now force the state machine into that state.
+  - https://github.com/StateSmith/StateSmith/issues/519
 - Simulator - verbose mode to show enter behavior.
   - https://github.com/StateSmith/StateSmith/issues/515
 - Simulator - verbose mode to show exit behavior.
