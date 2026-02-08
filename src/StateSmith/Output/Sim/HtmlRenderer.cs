@@ -427,6 +427,7 @@ config:
 
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {
             zoomEnabled: true,
+            dblClickZoomEnabled: false, // double click zoom gets in the way of quickly clicking on edge events
             controlIconsEnabled: true,
             fit: true,
             center: true

@@ -34,8 +34,9 @@ Test/interim releases are not documented here.
 ## [WIP]
 ### Changed (minor)
 - Simulator - enabling verbose modes below by default.
-- Simulator - parent/composite states are now highlighted when entered.
-- See below.
+- Simulator - disabled double click zoom now that we can click on edges to send events.
+  - related to https://github.com/StateSmith/StateSmith/issues/521
+- See more below.
 
 ### Added
 - Simulator - dark mode!
@@ -61,6 +62,7 @@ Test/interim releases are not documented here.
 - Simulator - add tool tip titles to event and other buttons.
 - Simulator - add setting to disable tool tips on event buttons.
 - Simulator - remember settings in localStorage.
+- Simulator - parent/composite states are now highlighted when entered.
 
 ## Fixed (minor)
 - Fix - simulator - mermaid bug with parent self transitions.
