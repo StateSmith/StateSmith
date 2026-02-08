@@ -65,6 +65,7 @@ Test/interim releases are not documented here.
 - Simulator - add setting to disable tool tips on event buttons.
 - Simulator - remember settings in localStorage.
 - Simulator - parent/composite states are now highlighted when entered.
+- Simulator - dash edges just taken.
 
 ## Fixed (minor)
 - Fix - simulator - mermaid bug with parent self transitions.
