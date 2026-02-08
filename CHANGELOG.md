@@ -42,6 +42,8 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/520
 - Simulator - clicking a state will now force the state machine into that state.
   - https://github.com/StateSmith/StateSmith/issues/519
+- Simulator - allow clicking events shown in diagram.
+  - https://github.com/StateSmith/StateSmith/issues/521
 - Simulator - verbose mode to show enter behavior.
   - https://github.com/StateSmith/StateSmith/issues/515
 - Simulator - verbose mode to show exit behavior.

@@ -281,6 +281,11 @@
         stroke-width: 2px !important;
       }
 
+      /* https://github.com/StateSmith/StateSmith/issues/521 */
+      g .edgeLabel:hover {
+        color: aquamarine !important;
+      }
+
     </style>
   </head>
 
@@ -3459,6 +3464,37 @@ evaluateGuard = null;
         // export forceStateChange to global scope so it can be called from the console for testing purposes.
         window.StateSmith_forceStateChange = forceStateChange;
 
+        // clicking on edge label will try to send event
+        // https://github.com/StateSmith/StateSmith/issues/521
+        {
+          document.querySelectorAll('g.edgeLabel').forEach(edgeLabelElement => {
+            edgeLabelElement.style.cursor = 'pointer'; // indicate that the element is clickable.
+            edgeLabelElement.addEventListener('click', (event) => {
+              const edgeLabel = edgeLabelElement.textContent.trim();
+
+              // ignore any decimal numbers at start, then look for first word which should be event name.
+              // This allows for edge labels like: 
+              //    `1. INCREASE [count >= 3] / { count++; }` and 
+              //    `1.1. MY_EVENT`
+              // See https://github.com/StateSmith/StateSmith/wiki/Behaviors
+              const eventRegex = /^(?:\d+\.)?(?:\d+\.\s+)?(\w+)\b/;
+              const match = edgeLabel.match(eventRegex);
+              if (!match) {
+                console.warn(`Could not parse event name from clicked edge label. Edge label text was: '${edgeLabel}'.`, edgeLabelElement);
+                return;
+              }
+
+              const eventName = match[1];
+
+              const button = document.getElementById('button_' + eventName);
+              if (button) {
+                button.click();
+              } else {
+                console.warn(`No button found for event name '${eventName}' from clicked edge label.`, edgeLabelElement);
+              }
+            });
+          });
+        }
 
         // Wire up the buttons that dispatch events for the state machine.
         diagramEventNamesArray.forEach(diagramEventName => {
