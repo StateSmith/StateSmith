@@ -299,6 +299,14 @@ public class HtmlRenderer
         color: aquamarine !important;
       }
 
+      .clickableStateName {
+        cursor: pointer;
+      }
+
+      span.nodeLabel.clickableStateName:hover {
+        color: aquamarine !important;
+      }
+
     </style>
   </head>
 
@@ -417,31 +425,6 @@ config:
         document.querySelectorAll(`g[data-id*='(InitialState)']`).forEach(g=> {
           g.innerHTML = `<circle transform='translate(0,3)' height='14' width='14' r='14' class='state - start'></circle>`;
         })
-
-
-        // now that we allow clicks to force state, we want to detect when something is a click or a click+drag for panning.
-        // Users can always use middle click to safely pan, but it's annoying.
-        let isDragging = false;
-        let clickStartX = 0;
-        let clickStartY = 0;
-
-        document.addEventListener('mousedown', (event) => {
-            isDragging = false;
-            clickStartX = event.clientX;
-            clickStartY = event.clientY;
-        });
-
-        document.addEventListener('mousemove', (event) => {
-            // If the mouse button is down and moves by more than a few pixels, we consider it a drag (and not a click).
-            if (event.buttons === 1 && !isDragging) {
-                const deltaX = event.clientX - clickStartX;
-                const deltaY = event.clientY - clickStartY;
-                if (Math.abs(deltaX) + Math.abs(deltaY) > 3) { // allow a bit of accidental movement when trying to click to help with accessibility.
-                    isDragging = true;
-                }
-            }
-        });
-
 
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {
             zoomEnabled: true,
@@ -799,19 +782,38 @@ config:
 
         // https://github.com/StateSmith/StateSmith/issues/519
         {
+          // find simple state node labels
+          // Make sure to test with simple states that are just a state name, and ones that have addition labels for non-transition behaviors.
+          document.querySelectorAll('g.statediagram-state[data-id] g.label > foreignObject:first-of-type .nodeLabel').forEach(nodeLabel => {
+            // confirm that node label matches an actual state. This weeds out pseudo states like `$H`, `$HC`, `$entry_pt`, ...
+            const stateName = nodeLabel.textContent.toUpperCase();
+            const stateId = {{smName}}.StateId[stateName];
+            if (stateId === undefined) {
+              return;
+            }
+
+            nodeLabel.classList.add('clickableStateName');
+          });
+
+          // find composite state node labels
+          document.querySelectorAll('g.statediagram-state[id].statediagram-cluster .nodeLabel').forEach(nodeLabel => {
+            nodeLabel.classList.add('clickableStateName');
+          });
+
           // allow clicking states to force state machine to that state.
-          document.querySelectorAll('g.statediagram-state[id]').forEach(stateElement => {
-            stateElement.style.cursor = 'pointer'; // indicate that the element is clickable.
-            stateElement.addEventListener('click', (event) => {
+          document.querySelectorAll('.clickableStateName').forEach(nodeLabel => {
+            const stateElement = nodeLabel.closest('g.statediagram-state[id]');
+
+            if (!stateElement)
+            {
+              console.warn('Open bug ticket? Failed finding statediagram-state for', nodeLabel);
+            }
+
+            nodeLabel.addEventListener('click', (event) => {
 
               if (savedSetting_requireCtrlForForceState.checked && !event.ctrlKey) {
                   // if the setting to require ctrl key is enabled, and the ctrl key is not pressed, do not force state.
                   return;
-              }
-
-              if (isDragging) {
-                // If the mouse is currently being dragged, do not treat this click as a state change request.
-                return;
               }
 
               let stateName = null;
