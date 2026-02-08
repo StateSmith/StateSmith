@@ -201,6 +201,8 @@ public class SimWebGenerator
             var availableEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var availableEdgeIds =  new HashSet<int>();
 
+            var transitionConsumedEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
             // Collect events from this state and all its ancestors
             Vertex? currentVertex = namedVertex;
             while (currentVertex != null)
@@ -212,9 +214,19 @@ public class SimWebGenerator
                         if (TriggerHelper.IsEvent(trigger))
                         {
                             availableEvents.Add(trigger);
+
                             if (behavior.HasTransition())
                             {
-                                availableEdgeIds.Add(mermaidEdgeTracker.GetEdgeId(behavior));
+                                if (transitionConsumedEvents.Contains(trigger) == false)
+                                {
+                                    availableEdgeIds.Add(mermaidEdgeTracker.GetEdgeId(behavior));
+
+                                    // any transition for an event that has no guard code is guaranteed to consume that event
+                                    if (behavior.HasGuardCode() == false)
+                                    {
+                                        transitionConsumedEvents.Add(trigger);
+                                    }
+                                }
                             }
                         }
                     }
