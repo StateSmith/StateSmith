@@ -273,18 +273,18 @@ public class HtmlRenderer
         stroke-width: 2px !important;
       }
 
-      .transition.available {
-        stroke: #7e70cf !important;
-        /* stroke: #4e98d4 !important; */
-        stroke-width: 4px !important;
-        filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
-      }
-
       .transition.pathJustTaken {
         stroke: #E06C75 !important;
-        stroke-width: 5px !important;
+        stroke-width: 4px !important;
         stroke-dasharray: 10 5;
         filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+      }
+
+      /* give priority over pathJustTaken. If it is available and pathJustTaken, then it will still have dash. */
+      .transition.available {
+        stroke: #7e70cf !important;
+        stroke-width: 4px !important;
+        filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
       }
 
       .statediagram-state.active > * {

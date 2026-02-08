@@ -261,18 +261,18 @@
         stroke-width: 2px !important;
       }
 
-      .transition.available {
-        stroke: #7e70cf !important;
-        /* stroke: #4e98d4 !important; */
-        stroke-width: 4px !important;
-        filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
-      }
-
       .transition.pathJustTaken {
         stroke: #E06C75 !important;
-        stroke-width: 5px !important;
+        stroke-width: 4px !important;
         stroke-dasharray: 10 5;
         filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+      }
+
+      /* give priority over pathJustTaken. If it is available and pathJustTaken, then it will still have dash. */
+      .transition.available {
+        stroke: #7e70cf !important;
+        stroke-width: 4px !important;
+        filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
       }
 
       .statediagram-state.active > * {
@@ -388,7 +388,11 @@ NewValuePreview --> NewValueSelection : EvNewValueSaved
 
 NewValuePreview.(InitialState) --> State1
 
-State1 --> State2 : Ev2
+State1 --> State2 : Ev2 [pointless]
+
+State1 --> State2 : 1. Ev2
+
+State2 --> State2 : Ev1
 
 
 
@@ -473,15 +477,16 @@ class PlantEx2
 evaluateGuard = null;
     static EventId = 
     {
-        EV2 : 0,
-        EVCONFIG : 1,
-        EVNEWVALUE : 2,
-        EVNEWVALUEREJECTED : 3,
-        EVNEWVALUESAVED : 4,
+        EV1 : 0,
+        EV2 : 1,
+        EVCONFIG : 2,
+        EVNEWVALUE : 3,
+        EVNEWVALUEREJECTED : 4,
+        EVNEWVALUESAVED : 5,
     }
     static { Object.freeze(this.EventId); }
     
-    static EventIdCount = 5;
+    static EventIdCount = 6;
     static { Object.freeze(this.EventIdCount); }
     
     static StateId = 
@@ -595,6 +600,7 @@ evaluateGuard = null;
             case PlantEx2.StateId.STATE2:
                 switch (eventId)
                 {
+                    case PlantEx2.EventId.EV1: this._STATE2_ev1(); break;
                     case PlantEx2.EventId.EVCONFIG: this._CONFIGURING_evconfig(); break; // First ancestor handler for this event
                     case PlantEx2.EventId.EVNEWVALUEREJECTED: this._NEWVALUEPREVIEW_evnewvaluerejected(); break; // First ancestor handler for this event
                     case PlantEx2.EventId.EVNEWVALUESAVED: this._NEWVALUEPREVIEW_evnewvaluesaved(); break; // First ancestor handler for this event
@@ -840,13 +846,13 @@ evaluateGuard = null;
     _STATE1_ev2()
     {
         // State1 behavior
-        // uml: Ev2 / { this.tracer?.edgeTransition('edge9'); } TransitionTo(State2)
+        // uml: 1. Ev2 / { this.tracer?.edgeTransition('edge10'); } TransitionTo(State2)
         {
             // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition).
             this._STATE1_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
-            this.tracer?.edgeTransition('edge9');
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge10');`.
+            this.tracer?.edgeTransition('edge10');
             
             // Step 3: Enter/move towards transition target `State2`.
             this._STATE2_enter();
@@ -854,6 +860,8 @@ evaluateGuard = null;
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
         } // end of behavior for State1
+        
+        // unreachable behavior: `Ev2 [this.tracer?.logGuardCodeEvaluation("pointless") || this.evaluateGuard('State1', "Ev2 [pointless] TransitionTo(State2)")] / { this.tracer?.edgeTransition('edge9'); } TransitionTo(State2)` due to unconditional transition above
         
         // No ancestor handles this event.
     }
@@ -885,6 +893,27 @@ evaluateGuard = null;
         } // end of behavior for State2
         
         this.stateId = PlantEx2.StateId.NEWVALUEPREVIEW;
+    }
+    
+    _STATE2_ev1()
+    {
+        // State2 behavior
+        // uml: Ev1 / { this.tracer?.edgeTransition('edge11'); } TransitionTo(State2)
+        {
+            // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition).
+            this._STATE2_exit();
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge11');`.
+            this.tracer?.edgeTransition('edge11');
+            
+            // Step 3: Enter/move towards transition target `State2`.
+            this._STATE2_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for State2
+        
+        // No ancestor handles this event.
     }
     
     
@@ -1033,6 +1062,7 @@ evaluateGuard = null;
     {
         switch (id)
         {
+            case PlantEx2.EventId.EV1: return "EV1";
             case PlantEx2.EventId.EV2: return "EV2";
             case PlantEx2.EventId.EVCONFIG: return "EVCONFIG";
             case PlantEx2.EventId.EVNEWVALUE: return "EVNEWVALUE";
@@ -1077,7 +1107,7 @@ evaluateGuard = null;
             center: true
         });
 
-        const diagramEventNamesArray = ['Ev2', 'EvConfig', 'EvNewValue', 'EvNewValueRejected', 'EvNewValueSaved', ];
+        const diagramEventNamesArray = ['Ev1', 'Ev2', 'EvConfig', 'EvNewValue', 'EvNewValueRejected', 'EvNewValueSaved', ];
 
         // Mapping from state to available events
         const stateEventsMapping = {
@@ -1104,6 +1134,7 @@ evaluateGuard = null;
     "EvNewValueSaved"
   ],
   "State2": [
+    "Ev1",
     "EvConfig",
     "EvNewValueRejected",
     "EvNewValueSaved"
@@ -1132,12 +1163,13 @@ evaluateGuard = null;
     3,
     6,
     7,
-    9
+    10
   ],
   "State2": [
     3,
     6,
-    7
+    7,
+    11
   ]
 };
 
