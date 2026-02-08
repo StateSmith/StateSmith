@@ -27,6 +27,18 @@ public class HtmlRenderer
         display: flex;
         flex-direction: row;
         margin: 0px;
+        color: #cacad1;
+        font-family: 'Arial';
+      }
+
+      code {
+        font-family: monospace;
+        color:aquamarine;
+        font-size: 13px;
+      }
+
+      .identifier {
+        color: #9bc2e4;
       }
 
       /* Fix for mermaid content requiring scroll bars https://github.com/StateSmith/StateSmith/issues/288 */
@@ -53,7 +65,7 @@ public class HtmlRenderer
       .titlebar-icon {
         font-family: 'Material Symbols Outlined', sans-serif;
         font-size: 16px;
-        color: #777;
+        color: #b4b4b4;
         border-radius: 5px;
       }
 
@@ -71,13 +83,14 @@ public class HtmlRenderer
         flex: 1;
         overflow: auto;
         padding: 10px;
+        background-color: #1E222A; /* Dark theme */
       }
 
       .sidebar {
         width: 300px;
         padding-top: 0px;
         position: relative;
-        background-color: #f0f0f0;
+        background-color: #30394b;
         border-left: 1px solid #ccc;
         display: flex;
         flex-direction: column;
@@ -89,8 +102,8 @@ public class HtmlRenderer
       }
 
       .titlebar {
-        background-color: #ddd;
-        border-bottom: 1px solid #ccc;
+        background-color: #1d222e;
+        border-bottom: 1px solid #454f64;
         font-weight: bold;
         padding: 5px;
         display: flex;
@@ -111,12 +124,12 @@ public class HtmlRenderer
       }
 
       table.console td {
-          color: rgba(0, 0, 0, 0.7);
+          color: inherit;
       }
 
       table.console td .dispatched {
           font-weight: bold;
-          color: rgba(0, 0, 0, 1);
+          color: #dbdbdb;
       }
 
       table.console tr:has(+tr td .dispatched) {
@@ -127,20 +140,12 @@ public class HtmlRenderer
           padding-bottom: 25px;
       }
 
-      .console th {
-        background-color: #f0f0f0;
-        border-bottom: 1px solid #ccc;
-        font-weight: normal;
-        padding: 5px;
-        text-align: left;
-      }
-
       .console tbody {
         font-family: monospace;
       }
 
       .console tr {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #596275;
       }
 
       .console td {
@@ -169,15 +174,16 @@ public class HtmlRenderer
       .dispatched .event-id {
         border: 1px solid #000;
         border-radius: 4px;
-        padding: 2px;
+        padding: 2px 4px;
       }
 
       .dispatched .forced-state {
         border: 1px solid #000;
-        color: white;
-        background-color: #c50c0c;
+        /* color: white; */
+        color: #252541;
+        background-color: #E06C75;
         border-radius: 4px;
-        padding: 2px;
+        padding: 2px 4px;
       }
 
       button {
@@ -185,8 +191,10 @@ public class HtmlRenderer
       }
 
       button.event-button, .event-id {
-        background-color: #007bff;
-        color: white;
+        /* background-color: #4e98d4;
+        color: #252541; */
+        background-color: #08487c;
+        color: #e9f5ff;
       }
 
       button.event-button {
@@ -198,12 +206,12 @@ public class HtmlRenderer
       button.event-button.hasNoEventHandler {
         opacity: 0.4;
         background-color: #f0f0f0;
-        color: #999;
+        color: #2b2b30;
         cursor: not-allowed;
       }
 
       button.event-button:not(.hasNoEventHandler):hover {
-        background-color: #0056b3;
+        background-color: #00559b;
       }
 
       /* Style for hiding irrelevant events */
@@ -259,22 +267,29 @@ public class HtmlRenderer
 
       /* ----------------------------- Dropdown related end ----------------------------- */
 
-
+      .transition {
+        stroke-width: 2px !important;
+      }
 
       .transition.active {
-        stroke: #fff5ad !important;
+        stroke: #E06C75 !important;
         stroke-width: 5px !important;
         filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
       }
 
       .statediagram-state.active > * {
-        fill: #fff5ad !important;
+        fill: #4e98d4 !important;
+        stroke: #00559b !important;
         stroke-width: 2px !important;
+      }
+
+      .statediagram-state.active span.nodeLabel {
+        color: #000d53 !important;
       }
 
       /* we don't want to fill body of parent state with regular active yellow. It's just too much! */
       .statediagram-state.active rect.inner {
-        fill: #faf7e1 !important;
+        fill: #444  !important;
         stroke-width: 2px !important;
       }
 
@@ -284,7 +299,21 @@ public class HtmlRenderer
   <body>
     <div class='wrapper'>
     <div class='pane main'>
+        <!-- mermaid themes: default, dark, forest, neutral, base https://mermaid.ai/open-source/config/theming.html -->
         <pre class='mermaid'>
+---
+
+config:
+    theme: 'base'
+    themeVariables:
+        primaryColor: '#1f2020'
+        primaryTextColor: '#f0f0f0'
+        background: '#333'
+        primaryBorderColor: '#888888'
+        lineColor: '#999'
+
+---
+
 {{mermaidCode}}
         </pre>
     </div>
@@ -653,7 +682,7 @@ public class HtmlRenderer
                 }
 
                 if (document.getElementById('savedSetting_verboseEnter').checked) {
-                    sm.tracer.log('➡️ Entered ' + mermaidName);
+                    sm.tracer.log(`➡️ Entered <span class='identifier'>${mermaidName}</span>`, true);
                 }
                 
                 // Update event button states
@@ -664,7 +693,7 @@ public class HtmlRenderer
                 document.querySelector('g[id=' + mermaidName + ']')?.classList.remove('active');
 
                 if (document.getElementById('savedSetting_verboseExit').checked) {
-                    sm.tracer.log('↩️ Exited ' + mermaidName);
+                    sm.tracer.log(`↩️ Exited <span class='identifier'>${mermaidName}</span>`, true);
                 }
             },
             edgeTransition: (edgeId) => {
@@ -672,17 +701,17 @@ public class HtmlRenderer
             },
             logHistoryVarUpdate: (varName, newValue) => {
                 if (document.getElementById('savedSetting_verboseHistory').checked) {
-                    sm.tracer.log(`🕑 HistoryVar(${varName}) = ${newValue}`);
+                    sm.tracer.log(`🕑 HistoryVar(<span class='identifier'>${varName}</span>) = <code>${newValue}</code>`, true);
                 }
             },
             logHistoryTransition: (description) => {
                 sm.tracer.log(`🕑 History: ${description}.`);
             },
             logGuardCodeEvaluation: (guardCode) => {
-                sm.tracer.log(`🛡️ User evaluating guard: ${guardCode}`);
+                sm.tracer.log(`<span title='Guard code manually evaluated by user for simulation.'>🛡️ Guard: <code>[ ${guardCode} ]</code></span>`, true);
             },
             logActionCode: (actionCode) => {
-                sm.tracer.log(`⚡ FSM would execute action: ${actionCode}`);
+                sm.tracer.log(`<span title='Your actual state machine will run this action code.'>⚡ Action: <code>${actionCode}</code></span>`, true);
             },
             log: (message, html=false) => {
                 addEventLogRow(new Date(), message, html);
@@ -737,8 +766,7 @@ public class HtmlRenderer
           clearHighlightedStates();
           // mermaidElement.classList.add('active'); // done by state enter below
 
-          const htmlMode = true;
-          sm.tracer.log(`<span class='dispatched'><a href='https://github.com/StateSmith/StateSmith/issues/519' target='_blank' title='May have impacts! Click for details.'><span class='forced-state'>FORCED STATE</span> to '${stateNameAnyCase}'</span></a>`, htmlMode);
+          sm.tracer.log(`<span class='dispatched'><a href='https://github.com/StateSmith/StateSmith/issues/519' target='_blank' title='May have impacts! Click for details.'><span class='forced-state'>FORCED STATE</span> to <span class='identifier'>${stateNameAnyCase}</span></span></a>`, true);
 
           // execute state's enter function
           const enterFunction = sm['_' + stateName + '_enter'];

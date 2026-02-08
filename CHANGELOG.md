@@ -38,6 +38,8 @@ Test/interim releases are not documented here.
 - See below.
 
 ### Added
+- Simulator - dark mode!
+  - https://github.com/StateSmith/StateSmith/issues/520
 - Simulator - clicking a state will now force the state machine into that state.
   - https://github.com/StateSmith/StateSmith/issues/519
 - Simulator - verbose mode to show enter behavior.
