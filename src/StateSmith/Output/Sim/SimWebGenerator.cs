@@ -29,7 +29,15 @@ public class SimWebGenerator
     SingleFileCapturer fileCapturer = new();
     StateMachineProvider stateMachineProvider;
     NameMangler nameMangler;
-    Regex historyGilRegex;
+    Regex gilHistoryVarSetRegex;
+
+    // https://github.com/StateSmith/StateSmith/issues/512
+    HashSet<Behavior> behaviorsAddedForIssue512 = new();
+
+    // https://github.com/StateSmith/StateSmith/issues/512
+    HashSet<Behavior> behaviorsToModifyForIssue512 = new();
+
+    BehaviorTracker originalBehaviorTracker = new();
 
     /// <summary>
     /// We want to show the user their original event names in the simulator.
@@ -43,7 +51,16 @@ public class SimWebGenerator
     /// </summary>
     Dictionary<string, HashSet<string>> stateToAvailableEvents = new(StringComparer.OrdinalIgnoreCase);
 
-    BehaviorTracker behaviorTracker = new();
+    /// <summary>
+    /// Mapping from state to available transition edges
+    /// https://github.com/StateSmith/StateSmith/issues/522
+    /// </summary>
+    Dictionary<string, HashSet<int>> stateToAvailableEdgeIds = new();
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/523
+    /// </summary>
+    Dictionary<string, string> stateDescriptionMapping = new();
 
     SmRunner runner;
 
@@ -80,7 +97,7 @@ public class SimWebGenerator
 
         nameMangler = simDiServiceProvider.GetInstanceOf<NameMangler>();
 
-        SetupGilHistoryRegex();
+        SetupGilHistoryVarSetRegex();
     }
 
     /// <summary>
@@ -101,8 +118,8 @@ public class SimWebGenerator
     /// GIL is Generic Intermediary Language. It is used by history vertices and other special cases.
     /// </summary>
     /// <exception cref="InvalidOperationException"></exception>
-    [MemberNotNull(nameof(historyGilRegex))]
-    private void SetupGilHistoryRegex()
+    [MemberNotNull(nameof(gilHistoryVarSetRegex))]
+    private void SetupGilHistoryVarSetRegex()
     {
         if (nameMangler.HistoryVarEnumTypePostfix != "_HistoryId")
             throw new InvalidOperationException("Expected HistoryVarEnumTypePostfix to be '_HistoryId' for regex below");
@@ -114,7 +131,7 @@ public class SimWebGenerator
             throw new InvalidOperationException("Expected GilExpansionMarkerFuncName to be '$gil' for regex below");
 
         // want to match: `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;)`
-        historyGilRegex = new(@"(?x)
+        gilHistoryVarSetRegex = new(@"(?x)
         \$gil\(
             \s*
             this\.vars\.
@@ -127,16 +144,32 @@ public class SimWebGenerator
 
     private void AdjustTransformationPipeline()
     {
-        // Note! For `MermaidEdgeTracker` to function correctly, both below transformations must occur in the same `SmRunner`.
+        // Note! For `MermaidEdgeTracker` to function correctly, below transformations must occur in the same `SmRunner`.
         // This allows us to easily map an SS behavior to its corresponding mermaid edge ID.
+
+        // NOTE! BE VERY careful adding action code before Standard_SupportHistory. If we add a tracing action on a history default behavior,
+        // then it causes HistoryProcessor to output a duplicate history enumeration value which then breaks compilation.
 
         const string GenMermaidCodeStepId = "gen-mermaid-code";
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportHistory, new TransformationStep(id: GenMermaidCodeStepId, GenerateMermaidCode));
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, V1LoggingTransformationStep);
         
+        // this step MUST run before mermaid generation for the workaround to be effective
+        runner.SmTransformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, MermaidStateSmithIssue512WorkAround);
+
+        // show default 'do' events in mermaid diagram
+        runner.SmTransformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, (StateMachine sm) => { DefaultToDoEventVisitor.Process(sm); });
+
+        // We want this step to run near the end so that behaviors are very close to their final form. This is good for users' understanding.
+        // There's no functional difference in moving further back at this point and it is helpful to put in front of validation to ensure no issues are introduced.
+        const string LoggingTransformationId = "gen-logging-transformation";
+        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, new TransformationStep(id: LoggingTransformationId, V1LoggingTransformationStep));
+
+        // NOTE! Must happen before logging/tracing transformation step. We don't want to show users all the extra logging/tracing behaviors added.
+        runner.SmTransformer.InsertBeforeFirstMatch(LoggingTransformationId, RecordVertexInfo);
+
         // collect diagram names after trigger mapping completes
         runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, CollectDiagramNames);
-        runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, RecordAvailableEventsForEachState);
+        runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, RecordInfoForEachState);
 
         // We to generate mermaid diagram before history support (to avoid a ton of transitions being shown), but AFTER name conflict resolution.
         // See https://github.com/StateSmith/StateSmith/issues/302
@@ -146,9 +179,6 @@ public class SimWebGenerator
         int mermaidIndex = runner.SmTransformer.GetMatchIndex(GenMermaidCodeStepId);
         if (mermaidIndex <= nameConflictIndex || mermaidIndex >= historyIndex)
             throw new Exception("Mermaid generation must occur after name conflict resolution and before history support.");
-
-        // show default 'do' events in mermaid diagram
-         runner.SmTransformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, (StateMachine sm) => { DefaultToDoEventVisitor.Process(sm); });
     }
 
     private void CollectDiagramNames(StateMachine sm)
@@ -166,7 +196,28 @@ public class SimWebGenerator
         });
     }
 
-    private void RecordAvailableEventsForEachState(StateMachine sm)
+    /// <summary>
+    /// This MUST be done before simulation tracing behaviors are added.
+    /// https://github.com/StateSmith/StateSmith/issues/523
+    /// </summary>
+    private void RecordVertexInfo(StateMachine sm)
+    {
+        //todo-low: make this work for pseudo states as well?
+        sm.VisitTypeRecursively((NamedVertex namedVertex) => {
+            var sb = new StringBuilder();
+            SmGraphDescriber smDescriber = new(new StringWriter(sb));
+            smDescriber.SetOutputAncestorHandlers(true);
+            smDescriber.ancestorPrefix = "=== From ancestor `";
+            smDescriber.ancestorPostfix = "` ===";
+            BehaviorDescriber behaviorDescriber = new(singleLineFormat: false, indent: "");
+            behaviorDescriber.prependTransitionArrow = true;
+
+            smDescriber.OutputForVertex(behaviorDescriber, namedVertex, prependSeparator: false);
+            stateDescriptionMapping.Add(namedVertex.Name, sb.ToString());
+        });
+    }
+
+    private void RecordInfoForEachState(StateMachine sm)
     {
         // recursively visit all named vertices (states, orthogonal states, state machines, ...)
         sm.VisitTypeRecursively((NamedVertex namedVertex) =>
@@ -178,6 +229,8 @@ public class SimWebGenerator
             }
 
             var availableEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var availableEdgeIds =  new HashSet<int>();
+            var transitionConsumedEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
             // Collect events from this state and all its ancestors
             Vertex? currentVertex = namedVertex;
@@ -190,6 +243,20 @@ public class SimWebGenerator
                         if (TriggerHelper.IsEvent(trigger))
                         {
                             availableEvents.Add(trigger);
+
+                            if (behavior.HasTransition())
+                            {
+                                if (transitionConsumedEvents.Contains(trigger) == false)
+                                {
+                                    availableEdgeIds.Add(mermaidEdgeTracker.GetEdgeId(behavior));
+
+                                    // any transition for an event that has no guard code is guaranteed to consume that event
+                                    if (behavior.HasGuardCode() == false)
+                                    {
+                                        transitionConsumedEvents.Add(trigger);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -197,6 +264,7 @@ public class SimWebGenerator
             }
 
             stateToAvailableEvents[namedVertex.Name] = availableEvents;
+            stateToAvailableEdgeIds[namedVertex.Name] = availableEdgeIds;
         });
     }
 
@@ -211,19 +279,17 @@ public class SimWebGenerator
 
         string path = Path.Combine(outputDir, $"{smName}.sim.html");
 
-        string diagramEventNamesArray = OrganizeEventNamesIntoJsArray(diagramEventNames);
-
-        // Organize state event mapping into JavaScript object format
-        string stateEventsMapping = OrganizeStateEventsIntoJsObject();
-
         // Build HTML content
         var sb = new StringBuilder();
         HtmlRenderer.Render(sb,
             smName: smName,
             mermaidCode: mermaidCodeWriter.ToString(),
             jsCode: fileCapturer.CapturedCode,
-            diagramEventNamesArray: diagramEventNamesArray,
-            stateEventsMapping: stateEventsMapping);
+            diagramEventNamesArray: OrganizeEventNamesIntoJsArray(diagramEventNames),
+            jsStateEventsMapping: MapToJson(stateToAvailableEvents),
+            jsStateEdgeMapping: MapToJson(stateToAvailableEdgeIds),
+            jsStateDescriptionMapping: SerializeToJson(stateDescriptionMapping)
+        );
             
         codeFileWriter.WriteFile(path, code: sb.ToString());
     }
@@ -270,6 +336,57 @@ public class SimWebGenerator
         mermaidCodeWriter.WriteLine(visitor.GetMermaidCode());
     }
 
+    // See https://github.com/StateSmith/StateSmith/issues/512
+    void MermaidStateSmithIssue512WorkAround(StateMachine sm)
+    {
+        // to avoid modifying collection during enumeration, we first collect behaviors to modify
+        sm.VisitRecursively((Vertex vertex) =>
+        {
+            if (vertex is State state)
+            {
+                foreach (var stateTransitionBehavior in state.TransitionBehaviors())
+                {
+                    // issue 512 only affects self-transitions of parent states that also have a parent shown in mermaid (not the state machine itself)
+                    if (stateTransitionBehavior.TransitionTarget == state && state.Children.Any() && state.Parent != sm)
+                    {
+                        // Record original behavior UML before modifying.
+                        // Without this, the guard message for the user to evaluate has text like:
+                        //      TransitionTo(System_Run.<ChoicePoint>(Electricity_Control_Mode2__Mermaid_StateSmith_Issue_512__1)
+                        // instead of:
+                        //      TransitionTo(Electricity_Control_Mode2)
+                        originalBehaviorTracker.RecordOriginalBehavior(stateTransitionBehavior);
+                        behaviorsToModifyForIssue512.Add(stateTransitionBehavior);
+                    }
+                }
+            }
+        });
+
+        // variables so that we can create unique names for choice states
+        int choicePointId = 0;
+        Behavior? previousBehavior = null;
+
+        foreach (var behavior in behaviorsToModifyForIssue512)
+        {
+            var owningState = (State)behavior.OwningVertex;
+
+            // reset choice point ID when we switch to a new owning state.
+            // This keeps the names more readable and reduces git diff noise if the diagram changes.
+            if (previousBehavior != null && previousBehavior.OwningVertex != owningState)
+            {
+                choicePointId = 0;
+            }
+
+            // add a new sibling choice point
+            var choicePoint = new ChoicePoint($"{owningState.Name}__Mermaid_StateSmith_Issue_512__{choicePointId}");
+            owningState.Parent.ThrowIfNull().AddChild(choicePoint);
+            var newBehavior = choicePoint.AddTransitionTo(behavior.TransitionTarget.ThrowIfNull()); // can't be null as we know it's a self-transition
+            behaviorsAddedForIssue512.Add(newBehavior);
+            behavior._transitionTarget = choicePoint;
+
+            previousBehavior = behavior;
+            choicePointId++;
+        }
+    }
 
     void V1LoggingTransformationStep(StateMachine sm)
     {
@@ -277,7 +394,6 @@ public class SimWebGenerator
         {
             foreach (var behavior in vertex.Behaviors)
             {
-                behaviorTracker.RecordOriginalBehavior(behavior);
                 V1ModBehaviorsForSimulation(vertex, behavior);
             }
 
@@ -294,8 +410,7 @@ public class SimWebGenerator
             {
                 // Note: most history behaviors will not be shown in the mermaid diagram
                 var domId = "edge" + mermaidEdgeTracker.GetEdgeId(b);
-                // NOTE! Avoid single quotes in ss guard/action code until bug fixed: https://github.com/StateSmith/StateSmith/issues/282
-                b.actionCode += $"this.tracer?.edgeTransition(\"{domId}\");";
+                b.actionCode += $"this.tracer?.edgeTransition('{domId}');";
             }
         }
     }
@@ -314,44 +429,58 @@ public class SimWebGenerator
 
     void V1ModBehaviorsForSimulation(Vertex vertex, Behavior behavior)
     {
+        // https://github.com/StateSmith/StateSmith/issues/512
+        if (behaviorsAddedForIssue512.Contains(behavior))
+        {
+            behavior.actionCode = "this.tracer?.log(`<a href='https://github.com/StateSmith/StateSmith/issues/512' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>🧜‍♀️ mermaid issue #512</a>`, true);";
+            return;
+        }
+
+        // Handle action code. This must happen before guard code handling as HistoryVertex also modifies action code.
+        // record original behavior before we modify it.
+        var originalBehaviorUml = originalBehaviorTracker.GetOriginalUmlOrCurrent(behavior);
         if (behavior.HasActionCode())
         {
-            var historyGilMatch = historyGilRegex.Match(behavior.actionCode);
+            var gilHistoryVarSetMatch = gilHistoryVarSetRegex.Match(behavior.actionCode);
             
-            if (historyGilMatch.Success)
+            // special case for history variable sets
+            if (gilHistoryVarSetMatch.Success)
             {
-                // TODO https://github.com/StateSmith/StateSmith/issues/323
-                // show history var updating
-                // var historyVarName = historyGilMatch.Groups["varName"].Value;
-                // var storedStateName = historyGilMatch.Groups["storedStateName"].Value;
-                // behavior.actionCode += $"this.tracer?.log('📝 History({historyVarName}) = {storedStateName}');";
+                // https://github.com/StateSmith/StateSmith/issues/323
+                var historyVarName = gilHistoryVarSetMatch.Groups["varName"].Value;
+                var storedStateName = gilHistoryVarSetMatch.Groups["storedStateName"].Value;
+
+                // in this case, we want original action to still execute, so we append logging code.
+                behavior.actionCode += $"this.tracer?.logHistoryVarUpdate('{historyVarName}', '{storedStateName}');";
             }
             else
             {
-                // we don't want to execute the action, just log it.
-                behavior.actionCode = $"this.tracer?.log(\"⚡ FSM would execute action: \" + {FsmCodeToJsString(behavior.actionCode)});";
+                // we don't want to execute a user's custom action, just log it.
+                behavior.actionCode = $"this.tracer?.logActionCode({FsmCodeToJsString(behavior.actionCode)});";
             }
         }
 
+        // Handle guard code. We purposely need to treat history vertices differently.
+        // We want the history vertex to work as is without prompting the user to evaluate those guards.
         if (vertex is HistoryVertex)
         {
             if (behavior.HasGuardCode())
             {
-                // we want the history vertex to work as is without prompting the user to evaluate those guards.
-                behavior.actionCode += $"this.tracer?.log(\"🕑 History: transitioning to {Vertex.Describe(behavior.TransitionTarget)}.\");";
+                behavior.actionCode += $"this.tracer?.logHistoryTransition('transitioning to {Vertex.Describe(behavior.TransitionTarget)}');";
             }
             else
             {
-                behavior.actionCode += $"this.tracer?.log(\"🕑 History: default transition.\");";
+                behavior.actionCode += $"this.tracer?.logHistoryTransition('default transition');";
             }
         }
         else
         {
+            // this is not a history vertex
+
             if (behavior.HasGuardCode())
             {
-                var logCode = $"this.tracer?.log(\"🛡️ User evaluating guard: \" + {FsmCodeToJsString(behavior.guardCode)})";
-                var originalBehaviorUml = behaviorTracker.GetOriginalUmlOrCurrent(behavior);
-                var confirmCode = $"this.evaluateGuard(\"{Vertex.Describe(behavior.OwningVertex)}\",{FsmCodeToJsString(originalBehaviorUml)})";
+                var logCode = $"this.tracer?.logGuardCodeEvaluation(" + FsmCodeToJsString(behavior.guardCode) + ")"; // must not end with semicolon. See below.
+                var confirmCode = $"this.evaluateGuard('{Vertex.Describe(behavior.OwningVertex)}', {FsmCodeToJsString(originalBehaviorUml)})";
                 behavior.guardCode = $"{logCode} || {confirmCode}";
                 // NOTE! logCode doesn't return a value, so the confirm code will always be evaluated.
             }
@@ -371,26 +500,53 @@ public class SimWebGenerator
         // May be overridden to override guard evaluation (eg. in a simulator)
         evaluateGuard = null;
     ";
+
+        // this is needed so that simulator can call enter method when forcing a state.
+        // https://github.com/StateSmith/StateSmith/issues/519
+        string IRenderConfigJavaScript.PrivatePrefix => "_";
     }
 
-    /// <summary>
-    /// Convert state-to-available-events mapping to JavaScript object format
-    /// </summary>
-    /// <returns>String in JavaScript object format</returns>
-    private string OrganizeStateEventsIntoJsObject()
+    private string MapToJson(Dictionary<string, HashSet<string>> map)
     {
-        // Convert to a dictionary with sorted event arrays for consistent output
-        var sortedStateEvents = stateToAvailableEvents.ToDictionary(
+        // Convert to a dictionary with sorted for consistent output to minimize git diffs
+        var sorted = map.ToDictionary(
             kvp => kvp.Key,
             kvp => kvp.Value.OrderBy(e => e, StringComparer.OrdinalIgnoreCase).ToArray()
         );
-        
+
+        return SerializeToJson(sorted);
+    }
+
+    private string MapToJson(Dictionary<string, HashSet<int>> map)
+    {
+        // Convert to a dictionary with sorted for consistent output to minimize git diffs
+        var sorted = map.ToDictionary(
+            kvp => kvp.Key,
+            kvp => kvp.Value.OrderBy(e => e).ToArray()
+        );
+
+        return SerializeToJson(sorted);
+    }
+
+    private static string SerializeToJson<T>(Dictionary<string, T[]> sorted)
+    {
         var options = new JsonSerializerOptions
         {
             WriteIndented = true,
             PropertyNamingPolicy = null // Keep original property names
         };
-        
-        return JsonSerializer.Serialize(sortedStateEvents, options);
+
+        return JsonSerializer.Serialize(sorted, options);
+    }
+
+    private static string SerializeToJson(Dictionary<string, string> sorted)
+    {
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            PropertyNamingPolicy = null // Keep original property names
+        };
+
+        return JsonSerializer.Serialize(sorted, options);
     }
 }

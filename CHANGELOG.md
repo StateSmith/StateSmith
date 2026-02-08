@@ -31,6 +31,50 @@ Test/interim releases are not documented here.
 
 ---
 
+## [WIP]
+### Changed (minor)
+- Simulator - enabling verbose modes below by default.
+- Simulator - disabled double click zoom now that we can click on edges to send events.
+  - related to https://github.com/StateSmith/StateSmith/issues/521
+- See more below.
+
+### Added
+- Simulator - dark mode!
+  - https://github.com/StateSmith/StateSmith/issues/520
+- Simulator - clicking a state will now force the state machine into that state.
+  - https://github.com/StateSmith/StateSmith/issues/519
+- Simulator - allow clicking events shown in diagram.
+  - https://github.com/StateSmith/StateSmith/issues/521
+- Simulator - distinguish available transition edges.
+  - https://github.com/StateSmith/StateSmith/issues/522
+- Simulator - show full state description on ALT+CLICK.
+  - https://github.com/StateSmith/StateSmith/issues/523
+- Simulator - verbose mode to show enter behavior.
+  - https://github.com/StateSmith/StateSmith/issues/515
+- Simulator - verbose mode to show exit behavior.
+  - https://github.com/StateSmith/StateSmith/issues/513
+- Simulator - verbose mode to show history var updating.
+  - https://github.com/StateSmith/StateSmith/issues/323
+- Simulator - add event log clearing button.
+  - https://github.com/StateSmith/StateSmith/issues/514
+- Simulator - allow dispatching events that will have no effect.
+  - https://github.com/StateSmith/StateSmith/issues/497
+- Simulator - added link to simulator wiki page to help make it easier to find quirks and limitations.
+  - https://github.com/StateSmith/StateSmith/issues/498
+- Simulator - style event dispatched log to match event button
+- Simulator - prevent accidental text selection of top right buttons.
+- Simulator - add tool tip titles to event and other buttons.
+- Simulator - add setting to disable tool tips on event buttons.
+- Simulator - remember settings in localStorage.
+- Simulator - parent/composite states are now highlighted when entered.
+- Simulator - dash edges just taken.
+
+## Fixed (minor)
+- Fix - simulator - mermaid bug with parent self transitions.
+  - https://github.com/StateSmith/StateSmith/issues/512
+
+---
+
 ## [0.19.0]
 ### Contributors
 - @UCSIG

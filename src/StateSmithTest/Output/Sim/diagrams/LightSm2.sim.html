@@ -6,17 +6,38 @@
 <html>
   <head>
     <link rel='icon' type='image/png' href='https://statesmith.github.io/favicon.png'>
+
+      <!-- The below css makes the titlebar-icon functionality work. See https://fonts.google.com/icons -->
     <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined'>
+
     <style>
       body {
         display: flex;
         flex-direction: row;
         margin: 0px;
+        color: #cacad1;
+        font-family: 'Arial';
+        font-size: 13px;
+      }
+
+      code {
+        font-family: monospace;
+        color:aquamarine;
+        white-space: pre;
+      }
+
+      .identifier {
+        color: #9bc2e4;
       }
 
       /* Fix for mermaid content requiring scroll bars https://github.com/StateSmith/StateSmith/issues/288 */
       pre.mermaid {
         margin: 0px;
+      }
+
+      #event-logs a {
+        text-decoration: none;
+        color: inherit;
       }
 
       .wrapper {
@@ -33,7 +54,7 @@
       .titlebar-icon {
         font-family: 'Material Symbols Outlined', sans-serif;
         font-size: 16px;
-        color: #777;
+        color: #b4b4b4;
         border-radius: 5px;
       }
 
@@ -51,13 +72,14 @@
         flex: 1;
         overflow: auto;
         padding: 10px;
+        background-color: #1E222A; /* Dark theme */
       }
 
       .sidebar {
         width: 300px;
         padding-top: 0px;
         position: relative;
-        background-color: #f0f0f0;
+        background-color: #30394b;
         border-left: 1px solid #ccc;
         display: flex;
         flex-direction: column;
@@ -69,8 +91,8 @@
       }
 
       .titlebar {
-        background-color: #ddd;
-        border-bottom: 1px solid #ccc;
+        background-color: #1d222e;
+        border-bottom: 1px solid #454f64;
         font-weight: bold;
         padding: 5px;
         display: flex;
@@ -91,12 +113,12 @@
       }
 
       table.console td {
-          color: rgba(0, 0, 0, 0.7);
+          color: inherit;
       }
 
       table.console td .dispatched {
           font-weight: bold;
-          color: rgba(0, 0, 0, 1);
+          color: #dbdbdb;
       }
 
       table.console tr:has(+tr td .dispatched) {
@@ -107,20 +129,12 @@
           padding-bottom: 25px;
       }
 
-      .console th {
-        background-color: #f0f0f0;
-        border-bottom: 1px solid #ccc;
-        font-weight: normal;
-        padding: 5px;
-        text-align: left;
-      }
-
       .console tbody {
         font-family: monospace;
       }
 
       .console tr {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #596275;
       }
 
       .console td {
@@ -131,7 +145,7 @@
         font-size: small;
       }
 
-      .history {
+      #event-logs {
         margin-top: 30px;       
         display: flex;
         overflow: auto;    
@@ -146,33 +160,47 @@
         font-weight: bold;
       }
 
-      .dispatched > .trigger {
+      .dispatched .event-id {
         border: 1px solid #000;
         border-radius: 4px;
-        padding: 2px 10px 2px 10px;
+        padding: 2px 4px;
+      }
+
+      .dispatched .forced-state {
+        border: 1px solid #000;
+        /* color: white; */
+        color: #252541;
+        background-color: #E06C75;
+        border-radius: 4px;
+        padding: 2px 4px;
       }
 
       button {
         margin: 5px;
       }
 
+      button.event-button, .event-id {
+        /* background-color: #4e98d4;
+        color: #252541; */
+        background-color: #08487c;
+        color: #e9f5ff;
+      }
+
       button.event-button {
         transition: opacity 0.3s ease, background-color 0.3s ease;
         opacity: 1;
-        background-color: #007bff;
-        color: white;
         cursor: pointer;
       }
 
-      button.event-button:disabled {
+      button.event-button.hasNoEventHandler {
         opacity: 0.4;
         background-color: #f0f0f0;
-        color: #999;
+        color: #2b2b30;
         cursor: not-allowed;
       }
 
-      button.event-button:not(:disabled):hover {
-        background-color: #0056b3;
+      button.event-button:not(.hasNoEventHandler):hover {
+        background-color: #00559b;
       }
 
       /* Style for hiding irrelevant events */
@@ -187,10 +215,12 @@
       .dropdown-button {
         border: none;
         cursor: pointer;
+        user-select: none;
       }
       
       .dropdown-button:hover, .dropdown-button:focus {
-        background-color: #f1f1f1;
+        background-color: aquamarine;
+        color: #000;
       }
       
       .dropdown {
@@ -203,7 +233,7 @@
         display: none;
         position: absolute;
         right: 0;
-        background-color: #f1f1f1;
+        background-color: #24253c;
         min-width: 250px;
         overflow: auto;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -217,7 +247,7 @@
       }
 
       .dropdown-content .dropdown-item:hover {
-        background-color: #ddd;
+        background-color: #333786;
         cursor: pointer;
       }
 
@@ -227,26 +257,73 @@
 
       /* ----------------------------- Dropdown related end ----------------------------- */
 
+      .transition {
+        stroke-width: 2px !important;
+      }
 
-
-      .transition.active {
-        stroke: #fff5ad !important;
-        stroke-width: 5px !important;
+      .transition.pathJustTaken {
+        stroke: #E06C75 !important;
+        stroke-width: 4px !important;
+        stroke-dasharray: 10 5;
         filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
       }
 
+      /* give priority over pathJustTaken. If it is available and pathJustTaken, then it will still have dash. */
+      .transition.available {
+        stroke: #7e70cf !important;
+        stroke-width: 4px !important;
+        filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
+      }
+
       .statediagram-state.active > * {
-        fill: #fff5ad !important;
+        fill: #4e98d4 !important;
+        stroke: #00559b !important;
         stroke-width: 2px !important;
+      }
+
+      .statediagram-state.active span.nodeLabel {
+        color: #000d53 !important;
+      }
+
+      /* we don't want to fill body of parent state with regular active yellow. It's just too much! */
+      .statediagram-state.active rect.inner {
+        fill: #444  !important;
+        stroke-width: 2px !important;
+      }
+
+      .clickableDiagramElement {
+        cursor: pointer;
+      }
+
+      span.edgeLabel.clickableDiagramElement:hover {
+        color: aquamarine !important;
+      }
+
+      span.nodeLabel.clickableDiagramElement:hover {
+        color: aquamarine !important;
       }
 
     </style>
   </head>
 
   <body>
-    <div class="wrapper">
-    <div class="pane main">
-        <pre class="mermaid">
+    <div class='wrapper'>
+    <div class='pane main'>
+        <!-- mermaid themes: default, dark, forest, neutral, base https://mermaid.ai/open-source/config/theming.html -->
+        <pre class='mermaid'>
+---
+
+config:
+    theme: 'base'
+    themeVariables:
+        primaryColor: '#1f2020'
+        primaryTextColor: '#f0f0f0'
+        background: '#333'
+        primaryBorderColor: '#888888'
+        lineColor: '#999'
+
+---
+
 stateDiagram
 
 state ORDER_MENU {
@@ -358,20 +435,54 @@ ROOT.(InitialState) --> WAITING
         </pre>
     </div>
 
-    <div class="pane sidebar">
-      <div id="buttons">
-        <div class="titlebar">Events
+    <div class='pane sidebar'>
+      <div id='buttons'>
+        <div class='titlebar'>Events
           <div class='dropdown'>
-            <span id='dropdown-button' class='titlebar-icon dropdown-button'>settings</span>
+            <span id='settings-dropdown-button' class='titlebar-icon dropdown-button' title='Settings'>settings</span>
+            <span id='clear-button' class='titlebar-icon dropdown-button' title='Clear event log'>delete</span>
+            <a href='https://github.com/StateSmith/StateSmith/wiki/Simulator' id='help-button' class='titlebar-icon dropdown-button' target='_blank' title='CHECK THIS!&#10;The simulator has a number of quirks and limitations&#10;that you should be aware of.'>help</a>
             <div id='myDropdown' class='dropdown-content'>
-              <label class='dropdown-item' for='hideIrrelevantEvents'
+
+              <!-- 
+                NOTE! Try not to change the ids of input checkboxes below as that will reset user preferences stored in localStorage.
+                NOTE! New settings will be automatically picked up if they start with 'savedSetting_' and are checkboxes.
+               -->
+
+              <label class='dropdown-item' for='savedSetting_hideIrrelevantEvents'
                 title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
-                <input type='checkbox' id='hideIrrelevantEvents' name='hideIrrelevantEvents'>
+                <input type='checkbox' id='savedSetting_hideIrrelevantEvents' name='savedSetting_hideIrrelevantEvents'>
                 Hide ignored event buttons
               </label>
-              <label class='dropdown-item' for='timestamps'
+              <label class='dropdown-item' for='savedSetting_verboseEnter'
+                title='Every time a state is entered, it will be logged below in the event log.'>
+                <input type='checkbox' id='savedSetting_verboseEnter' name='savedSetting_verboseEnter' checked>
+                Log State Entry
+              </label>
+              <label class='dropdown-item' for='savedSetting_verboseExit'
+                title='Every time a state is exited, it will be logged below in the event log.'>
+                <input type='checkbox' id='savedSetting_verboseExit' name='savedSetting_verboseExit' checked>
+                Log State Exit
+              </label>
+              <label class='dropdown-item' for='savedSetting_verboseHistory'
+                title='Log history pseudo state variable updates'>
+                <input type='checkbox' id='savedSetting_verboseHistory' name='savedSetting_verboseHistory' checked>
+                Log History Variables
+              </label>
+              <label class='dropdown-item' for='savedSetting_showEventButtonTooltips'
+                 title='Event dispatching buttons will have tooltips with additional info.&#10;📢 NOTE! Changes to this setting take effect on state change or page reload.'>
+                <input type='checkbox' id='savedSetting_showEventButtonTooltips' name='savedSetting_showEventButtonTooltips' checked>
+                Show event button tooltips
+              </label>
+              <!-- setting for requiring CTRL to held while clicking to force state -->
+                <label class='dropdown-item' for='savedSetting_requireCtrlForForceState'
+                    title='CTRL key must be held while clicking a state to force it.&#10;This can help prevent accidental forced state changes.'>
+                    <input type='checkbox' id='savedSetting_requireCtrlForForceState' name='savedSetting_requireCtrlForForceState'>
+                    Require CTRL to force state
+                </label>
+              <label class='dropdown-item' for='savedSetting_timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
-                <input type='checkbox' id='timestamps' name='timestamps'>
+                <input type='checkbox' id='savedSetting_timestamps' name='savedSetting_timestamps'>
                 Timestamps
               </label>
             </div>
@@ -379,14 +490,14 @@ ROOT.(InitialState) --> WAITING
         </div>
       </div>
     
-      <div class="history">
-        <table class="console">
+      <div id='event-logs'>
+        <table class='console'>
           <tbody>
           </tbody>
         </table>
       </div>
     
-      <div class="gutter"></div>
+      <div class='gutter'></div>
     </div>
     </div>
 
@@ -453,7 +564,7 @@ evaluateGuard = null;
     // Starts the state machine. Must be called before dispatching events. Not thread safe.
     start()
     {
-        this.#ROOT_enter();
+        this._ROOT_enter();
         // ROOT behavior
         // uml: TransitionTo(ROOT.<InitialState>)
         {
@@ -465,15 +576,15 @@ evaluateGuard = null;
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge19"); } TransitionTo(WAITING)
+            // uml: / { this.tracer?.edgeTransition('edge19'); } TransitionTo(WAITING)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge19");`.
-                this.tracer?.edgeTransition("edge19");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge19');`.
+                this.tracer?.edgeTransition('edge19');
                 
                 // Step 3: Enter/move towards transition target `WAITING`.
-                this.#WAITING_enter();
+                this._WAITING_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -496,7 +607,7 @@ evaluateGuard = null;
             case LightSm2.StateId.ORDER_MENU:
                 switch (eventId)
                 {
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break;
+                    case LightSm2.EventId.EV3: this._ORDER_MENU_ev3(); break;
                 }
                 break;
             
@@ -504,8 +615,8 @@ evaluateGuard = null;
             case LightSm2.StateId.BEVERAGE:
                 switch (eventId)
                 {
-                    case LightSm2.EventId.EV2: this.#BEVERAGE_ev2(); break;
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this._BEVERAGE_ev2(); break;
+                    case LightSm2.EventId.EV3: this._ORDER_MENU_ev3(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -513,9 +624,9 @@ evaluateGuard = null;
             case LightSm2.StateId.BEVERAGE__FIRST:
                 switch (eventId)
                 {
-                    case LightSm2.EventId.EV1: this.#BEVERAGE__FIRST_ev1(); break;
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
-                    case LightSm2.EventId.EV2: this.#BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV1: this._BEVERAGE__FIRST_ev1(); break;
+                    case LightSm2.EventId.EV3: this._ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this._BEVERAGE_ev2(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -523,9 +634,9 @@ evaluateGuard = null;
             case LightSm2.StateId.COFFEE:
                 switch (eventId)
                 {
-                    case LightSm2.EventId.EV1: this.#COFFEE_ev1(); break;
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
-                    case LightSm2.EventId.EV2: this.#BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV1: this._COFFEE_ev1(); break;
+                    case LightSm2.EventId.EV3: this._ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this._BEVERAGE_ev2(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -533,9 +644,9 @@ evaluateGuard = null;
             case LightSm2.StateId.TEA:
                 switch (eventId)
                 {
-                    case LightSm2.EventId.EV1: this.#TEA_ev1(); break;
-                    case LightSm2.EventId.EV2: this.#TEA_ev2(); break;
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV1: this._TEA_ev1(); break;
+                    case LightSm2.EventId.EV2: this._TEA_ev2(); break;
+                    case LightSm2.EventId.EV3: this._ORDER_MENU_ev3(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -543,9 +654,9 @@ evaluateGuard = null;
             case LightSm2.StateId.FOOD:
                 switch (eventId)
                 {
-                    case LightSm2.EventId.EV2: this.#FOOD_ev2(); break;
-                    case LightSm2.EventId.ESCAPE: this.#FOOD_escape(); break;
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this._FOOD_ev2(); break;
+                    case LightSm2.EventId.ESCAPE: this._FOOD_escape(); break;
+                    case LightSm2.EventId.EV3: this._ORDER_MENU_ev3(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -553,10 +664,10 @@ evaluateGuard = null;
             case LightSm2.StateId.FOOD__FIRST:
                 switch (eventId)
                 {
-                    case LightSm2.EventId.EV1: this.#FOOD__FIRST_ev1(); break;
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
-                    case LightSm2.EventId.EV2: this.#FOOD_ev2(); break; // First ancestor handler for this event
-                    case LightSm2.EventId.ESCAPE: this.#FOOD_escape(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV1: this._FOOD__FIRST_ev1(); break;
+                    case LightSm2.EventId.EV3: this._ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this._FOOD_ev2(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.ESCAPE: this._FOOD_escape(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -564,10 +675,10 @@ evaluateGuard = null;
             case LightSm2.StateId.POTATO:
                 switch (eventId)
                 {
-                    case LightSm2.EventId.EV1: this.#POTATO_ev1(); break;
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
-                    case LightSm2.EventId.EV2: this.#FOOD_ev2(); break; // First ancestor handler for this event
-                    case LightSm2.EventId.ESCAPE: this.#FOOD_escape(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV1: this._POTATO_ev1(); break;
+                    case LightSm2.EventId.EV3: this._ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this._FOOD_ev2(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.ESCAPE: this._FOOD_escape(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -575,10 +686,10 @@ evaluateGuard = null;
             case LightSm2.StateId.SUSHI:
                 switch (eventId)
                 {
-                    case LightSm2.EventId.EV1: this.#SUSHI_ev1(); break;
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
-                    case LightSm2.EventId.EV2: this.#FOOD_ev2(); break; // First ancestor handler for this event
-                    case LightSm2.EventId.ESCAPE: this.#FOOD_escape(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV1: this._SUSHI_ev1(); break;
+                    case LightSm2.EventId.EV3: this._ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this._FOOD_ev2(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.ESCAPE: this._FOOD_escape(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -586,7 +697,7 @@ evaluateGuard = null;
             case LightSm2.StateId.WAITING:
                 switch (eventId)
                 {
-                    case LightSm2.EventId.EV3: this.#WAITING_ev3(); break;
+                    case LightSm2.EventId.EV3: this._WAITING_ev3(); break;
                 }
                 break;
         }
@@ -595,31 +706,31 @@ evaluateGuard = null;
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    #exitUpToStateHandler(desiredState)
+    _exitUpToStateHandler(desiredState)
     {
         while (this.stateId != desiredState)
         {
             switch (this.stateId)
             {
-                case LightSm2.StateId.ORDER_MENU: this.#ORDER_MENU_exit(); break;
+                case LightSm2.StateId.ORDER_MENU: this._ORDER_MENU_exit(); break;
                 
-                case LightSm2.StateId.BEVERAGE: this.#BEVERAGE_exit(); break;
+                case LightSm2.StateId.BEVERAGE: this._BEVERAGE_exit(); break;
                 
-                case LightSm2.StateId.BEVERAGE__FIRST: this.#BEVERAGE__FIRST_exit(); break;
+                case LightSm2.StateId.BEVERAGE__FIRST: this._BEVERAGE__FIRST_exit(); break;
                 
-                case LightSm2.StateId.COFFEE: this.#COFFEE_exit(); break;
+                case LightSm2.StateId.COFFEE: this._COFFEE_exit(); break;
                 
-                case LightSm2.StateId.TEA: this.#TEA_exit(); break;
+                case LightSm2.StateId.TEA: this._TEA_exit(); break;
                 
-                case LightSm2.StateId.FOOD: this.#FOOD_exit(); break;
+                case LightSm2.StateId.FOOD: this._FOOD_exit(); break;
                 
-                case LightSm2.StateId.FOOD__FIRST: this.#FOOD__FIRST_exit(); break;
+                case LightSm2.StateId.FOOD__FIRST: this._FOOD__FIRST_exit(); break;
                 
-                case LightSm2.StateId.POTATO: this.#POTATO_exit(); break;
+                case LightSm2.StateId.POTATO: this._POTATO_exit(); break;
                 
-                case LightSm2.StateId.SUSHI: this.#SUSHI_exit(); break;
+                case LightSm2.StateId.SUSHI: this._SUSHI_exit(); break;
                 
-                case LightSm2.StateId.WAITING: this.#WAITING_exit(); break;
+                case LightSm2.StateId.WAITING: this._WAITING_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -631,7 +742,7 @@ evaluateGuard = null;
     // event handlers for state ROOT
     ////////////////////////////////////////////////////////////////////////////////
     
-    #ROOT_enter()
+    _ROOT_enter()
     {
         this.stateId = LightSm2.StateId.ROOT;
     }
@@ -641,7 +752,7 @@ evaluateGuard = null;
     // event handlers for state ORDER_MENU
     ////////////////////////////////////////////////////////////////////////////////
     
-    #ORDER_MENU_enter()
+    _ORDER_MENU_enter()
     {
         this.stateId = LightSm2.StateId.ORDER_MENU;
         
@@ -653,7 +764,7 @@ evaluateGuard = null;
         } // end of behavior for ORDER_MENU
     }
     
-    #ORDER_MENU_exit()
+    _ORDER_MENU_exit()
     {
         // ORDER_MENU behavior
         // uml: exit / { this.tracer?.exitState('ORDER_MENU'); }
@@ -665,19 +776,19 @@ evaluateGuard = null;
         this.stateId = LightSm2.StateId.ROOT;
     }
     
-    #ORDER_MENU_ev3()
+    _ORDER_MENU_ev3()
     {
         // ORDER_MENU behavior
-        // uml: EV3 / { this.tracer?.edgeTransition("edge0"); } TransitionTo(WAITING)
+        // uml: EV3 / { this.tracer?.edgeTransition('edge0'); } TransitionTo(WAITING)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(LightSm2.StateId.ROOT);
+            this._exitUpToStateHandler(LightSm2.StateId.ROOT);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge0");`.
-            this.tracer?.edgeTransition("edge0");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
+            this.tracer?.edgeTransition('edge0');
             
             // Step 3: Enter/move towards transition target `WAITING`.
-            this.#WAITING_enter();
+            this._WAITING_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -691,7 +802,7 @@ evaluateGuard = null;
     // event handlers for state BEVERAGE
     ////////////////////////////////////////////////////////////////////////////////
     
-    #BEVERAGE_enter()
+    _BEVERAGE_enter()
     {
         this.stateId = LightSm2.StateId.BEVERAGE;
         
@@ -703,14 +814,14 @@ evaluateGuard = null;
         } // end of behavior for BEVERAGE
         
         // BEVERAGE behavior
-        // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;) }
+        // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;)this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'BEVERAGE'); }
         {
-            // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;)`
-            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.BEVERAGE;
+            // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;)this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'BEVERAGE');`
+            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.BEVERAGE;this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'BEVERAGE');
         } // end of behavior for BEVERAGE
     }
     
-    #BEVERAGE_exit()
+    _BEVERAGE_exit()
     {
         // BEVERAGE behavior
         // uml: exit / { this.tracer?.exitState('BEVERAGE'); }
@@ -722,40 +833,40 @@ evaluateGuard = null;
         this.stateId = LightSm2.StateId.ORDER_MENU;
     }
     
-    #BEVERAGE_ev2()
+    _BEVERAGE_ev2()
     {
         // BEVERAGE behavior
-        // uml: EV2 / { this.tracer?.edgeTransition("edge1"); } TransitionTo(FOOD)
+        // uml: EV2 / { this.tracer?.edgeTransition('edge1'); } TransitionTo(FOOD)
         {
             // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(LightSm2.StateId.ORDER_MENU);
+            this._exitUpToStateHandler(LightSm2.StateId.ORDER_MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge1");`.
-            this.tracer?.edgeTransition("edge1");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge1');`.
+            this.tracer?.edgeTransition('edge1');
             
             // Step 3: Enter/move towards transition target `FOOD`.
-            this.#FOOD_enter();
+            this._FOOD_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this.#FOOD_InitialState_transition();
+            this._FOOD_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for BEVERAGE
         
         // No ancestor handles this event.
     }
     
-    #BEVERAGE_InitialState_transition()
+    _BEVERAGE_InitialState_transition()
     {
         // BEVERAGE.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition("edge2"); } TransitionTo(BEVERAGE__FIRST)
+        // uml: / { this.tracer?.edgeTransition('edge2'); } TransitionTo(BEVERAGE__FIRST)
         {
             // Step 1: Exit states until we reach `BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge2");`.
-            this.tracer?.edgeTransition("edge2");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
+            this.tracer?.edgeTransition('edge2');
             
             // Step 3: Enter/move towards transition target `BEVERAGE__FIRST`.
-            this.#BEVERAGE__FIRST_enter();
+            this._BEVERAGE__FIRST_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -767,7 +878,7 @@ evaluateGuard = null;
     // event handlers for state BEVERAGE__FIRST
     ////////////////////////////////////////////////////////////////////////////////
     
-    #BEVERAGE__FIRST_enter()
+    _BEVERAGE__FIRST_enter()
     {
         this.stateId = LightSm2.StateId.BEVERAGE__FIRST;
         
@@ -779,14 +890,14 @@ evaluateGuard = null;
         } // end of behavior for BEVERAGE__FIRST
         
         // BEVERAGE__FIRST behavior
-        // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE__FIRST;) }
+        // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE__FIRST;)this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'BEVERAGE__FIRST'); }
         {
-            // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE__FIRST;)`
-            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.BEVERAGE__FIRST;
+            // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE__FIRST;)this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'BEVERAGE__FIRST');`
+            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.BEVERAGE__FIRST;this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'BEVERAGE__FIRST');
         } // end of behavior for BEVERAGE__FIRST
     }
     
-    #BEVERAGE__FIRST_exit()
+    _BEVERAGE__FIRST_exit()
     {
         // BEVERAGE__FIRST behavior
         // uml: exit / { this.tracer?.exitState('BEVERAGE__FIRST'); }
@@ -798,19 +909,19 @@ evaluateGuard = null;
         this.stateId = LightSm2.StateId.BEVERAGE;
     }
     
-    #BEVERAGE__FIRST_ev1()
+    _BEVERAGE__FIRST_ev1()
     {
         // BEVERAGE__FIRST behavior
-        // uml: EV1 / { this.tracer?.edgeTransition("edge3"); } TransitionTo(COFFEE)
+        // uml: EV1 / { this.tracer?.edgeTransition('edge3'); } TransitionTo(COFFEE)
         {
             // Step 1: Exit states until we reach `BEVERAGE` state (Least Common Ancestor for transition).
-            this.#BEVERAGE__FIRST_exit();
+            this._BEVERAGE__FIRST_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge3");`.
-            this.tracer?.edgeTransition("edge3");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
+            this.tracer?.edgeTransition('edge3');
             
             // Step 3: Enter/move towards transition target `COFFEE`.
-            this.#COFFEE_enter();
+            this._COFFEE_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -824,7 +935,7 @@ evaluateGuard = null;
     // event handlers for state COFFEE
     ////////////////////////////////////////////////////////////////////////////////
     
-    #COFFEE_enter()
+    _COFFEE_enter()
     {
         this.stateId = LightSm2.StateId.COFFEE;
         
@@ -836,21 +947,21 @@ evaluateGuard = null;
         } // end of behavior for COFFEE
         
         // COFFEE behavior
-        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "do_x();"); }
+        // uml: enter / { this.tracer?.logActionCode("do_x();"); }
         {
-            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "do_x();");`
-            this.tracer?.log("⚡ FSM would execute action: " + "do_x();");
+            // Step 1: execute action `this.tracer?.logActionCode("do_x();");`
+            this.tracer?.logActionCode("do_x();");
         } // end of behavior for COFFEE
         
         // COFFEE behavior
-        // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;) }
+        // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;)this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'COFFEE'); }
         {
-            // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;)`
-            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.COFFEE;
+            // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;)this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'COFFEE');`
+            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.COFFEE;this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'COFFEE');
         } // end of behavior for COFFEE
     }
     
-    #COFFEE_exit()
+    _COFFEE_exit()
     {
         // COFFEE behavior
         // uml: exit / { this.tracer?.exitState('COFFEE'); }
@@ -862,19 +973,19 @@ evaluateGuard = null;
         this.stateId = LightSm2.StateId.BEVERAGE;
     }
     
-    #COFFEE_ev1()
+    _COFFEE_ev1()
     {
         // COFFEE behavior
-        // uml: EV1 / { this.tracer?.edgeTransition("edge4"); } TransitionTo(TEA)
+        // uml: EV1 / { this.tracer?.edgeTransition('edge4'); } TransitionTo(TEA)
         {
             // Step 1: Exit states until we reach `BEVERAGE` state (Least Common Ancestor for transition).
-            this.#COFFEE_exit();
+            this._COFFEE_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge4");`.
-            this.tracer?.edgeTransition("edge4");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
+            this.tracer?.edgeTransition('edge4');
             
             // Step 3: Enter/move towards transition target `TEA`.
-            this.#TEA_enter();
+            this._TEA_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -888,7 +999,7 @@ evaluateGuard = null;
     // event handlers for state TEA
     ////////////////////////////////////////////////////////////////////////////////
     
-    #TEA_enter()
+    _TEA_enter()
     {
         this.stateId = LightSm2.StateId.TEA;
         
@@ -900,14 +1011,14 @@ evaluateGuard = null;
         } // end of behavior for TEA
         
         // TEA behavior
-        // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;) }
+        // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;)this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'TEA'); }
         {
-            // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;)`
-            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.TEA;
+            // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;)this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'TEA');`
+            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.TEA;this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'TEA');
         } // end of behavior for TEA
     }
     
-    #TEA_exit()
+    _TEA_exit()
     {
         // TEA behavior
         // uml: exit / { this.tracer?.exitState('TEA'); }
@@ -919,19 +1030,19 @@ evaluateGuard = null;
         this.stateId = LightSm2.StateId.BEVERAGE;
     }
     
-    #TEA_ev1()
+    _TEA_ev1()
     {
         // TEA behavior
-        // uml: EV1 / { this.tracer?.edgeTransition("edge5"); } TransitionTo(COFFEE)
+        // uml: EV1 / { this.tracer?.edgeTransition('edge5'); } TransitionTo(COFFEE)
         {
             // Step 1: Exit states until we reach `BEVERAGE` state (Least Common Ancestor for transition).
-            this.#TEA_exit();
+            this._TEA_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge5");`.
-            this.tracer?.edgeTransition("edge5");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge5');`.
+            this.tracer?.edgeTransition('edge5');
             
             // Step 3: Enter/move towards transition target `COFFEE`.
-            this.#COFFEE_enter();
+            this._COFFEE_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -940,31 +1051,31 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #TEA_ev2()
+    _TEA_ev2()
     {
         let consume_event = false;
         
         // TEA behavior
-        // uml: EV2 / { this.tracer?.edgeTransition("edge6"); } TransitionTo(BEVERAGE.<InitialState>)
+        // uml: EV2 / { this.tracer?.edgeTransition('edge6'); } TransitionTo(BEVERAGE.<InitialState>)
         {
             // Step 1: Exit states until we reach `BEVERAGE` state (Least Common Ancestor for transition).
-            this.#TEA_exit();
+            this._TEA_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge6");`.
-            this.tracer?.edgeTransition("edge6");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
+            this.tracer?.edgeTransition('edge6');
             
             // Step 3: Enter/move towards transition target `BEVERAGE.<InitialState>`.
             // BEVERAGE.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // Finish transition by calling pseudo state transition function.
-            this.#BEVERAGE_InitialState_transition();
+            this._BEVERAGE_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEA
         
         // Check if event has been consumed before calling ancestor handler.
         if (!consume_event)
         {
-            this.#BEVERAGE_ev2();
+            this._BEVERAGE_ev2();
         }
     }
     
@@ -973,7 +1084,7 @@ evaluateGuard = null;
     // event handlers for state FOOD
     ////////////////////////////////////////////////////////////////////////////////
     
-    #FOOD_enter()
+    _FOOD_enter()
     {
         this.stateId = LightSm2.StateId.FOOD;
         
@@ -985,14 +1096,14 @@ evaluateGuard = null;
         } // end of behavior for FOOD
         
         // FOOD behavior
-        // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;) }
+        // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;)this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'FOOD'); }
         {
-            // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;)`
-            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.FOOD;
+            // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;)this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'FOOD');`
+            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.FOOD;this.tracer?.logHistoryVarUpdate('ORDER_MENU', 'FOOD');
         } // end of behavior for FOOD
     }
     
-    #FOOD_exit()
+    _FOOD_exit()
     {
         // FOOD behavior
         // uml: exit / { this.tracer?.exitState('FOOD'); }
@@ -1004,31 +1115,31 @@ evaluateGuard = null;
         this.stateId = LightSm2.StateId.ORDER_MENU;
     }
     
-    #FOOD_escape()
+    _FOOD_escape()
     {
         // FOOD behavior
-        // uml: ESCAPE / { this.tracer?.edgeTransition("edge8"); } TransitionTo(ORDER_MENU.<ExitPoint>(1))
+        // uml: ESCAPE / { this.tracer?.edgeTransition('edge8'); } TransitionTo(ORDER_MENU.<ExitPoint>(1))
         {
             // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(LightSm2.StateId.ORDER_MENU);
+            this._exitUpToStateHandler(LightSm2.StateId.ORDER_MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge8");`.
-            this.tracer?.edgeTransition("edge8");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge8');`.
+            this.tracer?.edgeTransition('edge8');
             
             // Step 3: Enter/move towards transition target `ORDER_MENU.<ExitPoint>(1)`.
             // ORDER_MENU.<ExitPoint>(1) is a pseudo state and cannot have an `enter` trigger.
             
             // ORDER_MENU.<ExitPoint>(1) behavior
-            // uml: / { this.tracer?.edgeTransition("edge14"); } TransitionTo(WAITING)
+            // uml: / { this.tracer?.edgeTransition('edge14'); } TransitionTo(WAITING)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-                this.#ORDER_MENU_exit();
+                this._ORDER_MENU_exit();
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge14");`.
-                this.tracer?.edgeTransition("edge14");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge14');`.
+                this.tracer?.edgeTransition('edge14');
                 
                 // Step 3: Enter/move towards transition target `WAITING`.
-                this.#WAITING_enter();
+                this._WAITING_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
@@ -1038,50 +1149,50 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #FOOD_ev2()
+    _FOOD_ev2()
     {
         // FOOD behavior
-        // uml: EV2 / { this.tracer?.edgeTransition("edge7"); } TransitionTo(ORDER_MENU.<ChoicePoint>(bev_choice))
+        // uml: EV2 / { this.tracer?.edgeTransition('edge7'); } TransitionTo(ORDER_MENU.<ChoicePoint>(bev_choice))
         {
             // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition).
-            this.#exitUpToStateHandler(LightSm2.StateId.ORDER_MENU);
+            this._exitUpToStateHandler(LightSm2.StateId.ORDER_MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge7");`.
-            this.tracer?.edgeTransition("edge7");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
+            this.tracer?.edgeTransition('edge7');
             
             // Step 3: Enter/move towards transition target `ORDER_MENU.<ChoicePoint>(bev_choice)`.
             // ORDER_MENU.<ChoicePoint>(bev_choice) is a pseudo state and cannot have an `enter` trigger.
             
             // ORDER_MENU.<ChoicePoint>(bev_choice) behavior
-            // uml: [this.tracer?.log("🛡️ User evaluating guard: " + "a > b") || this.evaluateGuard("ORDER_MENU.<ChoicePoint>(bev_choice)","[a > b] TransitionTo(TEA)")] / { this.tracer?.edgeTransition("edge16"); } TransitionTo(TEA)
-            if (this.tracer?.log("🛡️ User evaluating guard: " + "a > b") || this.evaluateGuard("ORDER_MENU.<ChoicePoint>(bev_choice)","[a > b] TransitionTo(TEA)"))
+            // uml: [this.tracer?.logGuardCodeEvaluation("a > b") || this.evaluateGuard('ORDER_MENU.<ChoicePoint>(bev_choice)', "[a > b] TransitionTo(TEA)")] / { this.tracer?.edgeTransition('edge16'); } TransitionTo(TEA)
+            if (this.tracer?.logGuardCodeEvaluation("a > b") || this.evaluateGuard('ORDER_MENU.<ChoicePoint>(bev_choice)', "[a > b] TransitionTo(TEA)"))
             {
                 // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge16");`.
-                this.tracer?.edgeTransition("edge16");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge16');`.
+                this.tracer?.edgeTransition('edge16');
                 
                 // Step 3: Enter/move towards transition target `TEA`.
-                this.#BEVERAGE_enter();
-                this.#TEA_enter();
+                this._BEVERAGE_enter();
+                this._TEA_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return;
             } // end of behavior for ORDER_MENU.<ChoicePoint>(bev_choice)
             
             // ORDER_MENU.<ChoicePoint>(bev_choice) behavior
-            // uml: else / { this.tracer?.edgeTransition("edge17"); } TransitionTo(BEVERAGE)
+            // uml: else / { this.tracer?.edgeTransition('edge17'); } TransitionTo(BEVERAGE)
             {
                 // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge17");`.
-                this.tracer?.edgeTransition("edge17");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge17');`.
+                this.tracer?.edgeTransition('edge17');
                 
                 // Step 3: Enter/move towards transition target `BEVERAGE`.
-                this.#BEVERAGE_enter();
+                this._BEVERAGE_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this.#BEVERAGE_InitialState_transition();
+                this._BEVERAGE_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for ORDER_MENU.<ChoicePoint>(bev_choice)
         } // end of behavior for FOOD
@@ -1089,18 +1200,18 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    #FOOD_InitialState_transition()
+    _FOOD_InitialState_transition()
     {
         // FOOD.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition("edge9"); } TransitionTo(FOOD__FIRST)
+        // uml: / { this.tracer?.edgeTransition('edge9'); } TransitionTo(FOOD__FIRST)
         {
             // Step 1: Exit states until we reach `FOOD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge9");`.
-            this.tracer?.edgeTransition("edge9");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
+            this.tracer?.edgeTransition('edge9');
             
             // Step 3: Enter/move towards transition target `FOOD__FIRST`.
-            this.#FOOD__FIRST_enter();
+            this._FOOD__FIRST_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1112,7 +1223,7 @@ evaluateGuard = null;
     // event handlers for state FOOD__FIRST
     ////////////////////////////////////////////////////////////////////////////////
     
-    #FOOD__FIRST_enter()
+    _FOOD__FIRST_enter()
     {
         this.stateId = LightSm2.StateId.FOOD__FIRST;
         
@@ -1124,7 +1235,7 @@ evaluateGuard = null;
         } // end of behavior for FOOD__FIRST
     }
     
-    #FOOD__FIRST_exit()
+    _FOOD__FIRST_exit()
     {
         // FOOD__FIRST behavior
         // uml: exit / { this.tracer?.exitState('FOOD__FIRST'); }
@@ -1136,19 +1247,19 @@ evaluateGuard = null;
         this.stateId = LightSm2.StateId.FOOD;
     }
     
-    #FOOD__FIRST_ev1()
+    _FOOD__FIRST_ev1()
     {
         // FOOD__FIRST behavior
-        // uml: EV1 / { this.tracer?.edgeTransition("edge10"); } TransitionTo(POTATO)
+        // uml: EV1 / { this.tracer?.edgeTransition('edge10'); } TransitionTo(POTATO)
         {
             // Step 1: Exit states until we reach `FOOD` state (Least Common Ancestor for transition).
-            this.#FOOD__FIRST_exit();
+            this._FOOD__FIRST_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge10");`.
-            this.tracer?.edgeTransition("edge10");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge10');`.
+            this.tracer?.edgeTransition('edge10');
             
             // Step 3: Enter/move towards transition target `POTATO`.
-            this.#POTATO_enter();
+            this._POTATO_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1162,7 +1273,7 @@ evaluateGuard = null;
     // event handlers for state POTATO
     ////////////////////////////////////////////////////////////////////////////////
     
-    #POTATO_enter()
+    _POTATO_enter()
     {
         this.stateId = LightSm2.StateId.POTATO;
         
@@ -1174,7 +1285,7 @@ evaluateGuard = null;
         } // end of behavior for POTATO
     }
     
-    #POTATO_exit()
+    _POTATO_exit()
     {
         // POTATO behavior
         // uml: exit / { this.tracer?.exitState('POTATO'); }
@@ -1186,19 +1297,19 @@ evaluateGuard = null;
         this.stateId = LightSm2.StateId.FOOD;
     }
     
-    #POTATO_ev1()
+    _POTATO_ev1()
     {
         // POTATO behavior
-        // uml: EV1 / { this.tracer?.edgeTransition("edge11"); } TransitionTo(SUSHI)
+        // uml: EV1 / { this.tracer?.edgeTransition('edge11'); } TransitionTo(SUSHI)
         {
             // Step 1: Exit states until we reach `FOOD` state (Least Common Ancestor for transition).
-            this.#POTATO_exit();
+            this._POTATO_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge11");`.
-            this.tracer?.edgeTransition("edge11");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge11');`.
+            this.tracer?.edgeTransition('edge11');
             
             // Step 3: Enter/move towards transition target `SUSHI`.
-            this.#SUSHI_enter();
+            this._SUSHI_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1212,7 +1323,7 @@ evaluateGuard = null;
     // event handlers for state SUSHI
     ////////////////////////////////////////////////////////////////////////////////
     
-    #SUSHI_enter()
+    _SUSHI_enter()
     {
         this.stateId = LightSm2.StateId.SUSHI;
         
@@ -1224,7 +1335,7 @@ evaluateGuard = null;
         } // end of behavior for SUSHI
     }
     
-    #SUSHI_exit()
+    _SUSHI_exit()
     {
         // SUSHI behavior
         // uml: exit / { this.tracer?.exitState('SUSHI'); }
@@ -1236,19 +1347,19 @@ evaluateGuard = null;
         this.stateId = LightSm2.StateId.FOOD;
     }
     
-    #SUSHI_ev1()
+    _SUSHI_ev1()
     {
         // SUSHI behavior
-        // uml: EV1 / { this.tracer?.edgeTransition("edge12"); } TransitionTo(FOOD__FIRST)
+        // uml: EV1 / { this.tracer?.edgeTransition('edge12'); } TransitionTo(FOOD__FIRST)
         {
             // Step 1: Exit states until we reach `FOOD` state (Least Common Ancestor for transition).
-            this.#SUSHI_exit();
+            this._SUSHI_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge12");`.
-            this.tracer?.edgeTransition("edge12");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge12');`.
+            this.tracer?.edgeTransition('edge12');
             
             // Step 3: Enter/move towards transition target `FOOD__FIRST`.
-            this.#FOOD__FIRST_enter();
+            this._FOOD__FIRST_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
@@ -1262,7 +1373,7 @@ evaluateGuard = null;
     // event handlers for state WAITING
     ////////////////////////////////////////////////////////////////////////////////
     
-    #WAITING_enter()
+    _WAITING_enter()
     {
         this.stateId = LightSm2.StateId.WAITING;
         
@@ -1274,7 +1385,7 @@ evaluateGuard = null;
         } // end of behavior for WAITING
     }
     
-    #WAITING_exit()
+    _WAITING_exit()
     {
         // WAITING behavior
         // uml: exit / { this.tracer?.exitState('WAITING'); }
@@ -1286,113 +1397,113 @@ evaluateGuard = null;
         this.stateId = LightSm2.StateId.ROOT;
     }
     
-    #WAITING_ev3()
+    _WAITING_ev3()
     {
         // WAITING behavior
-        // uml: EV3 / { this.tracer?.edgeTransition("edge18"); } TransitionTo(ORDER_MENU.<EntryPoint>(to_history))
+        // uml: EV3 / { this.tracer?.edgeTransition('edge18'); } TransitionTo(ORDER_MENU.<EntryPoint>(to_history))
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this.#WAITING_exit();
+            this._WAITING_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge18");`.
-            this.tracer?.edgeTransition("edge18");
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge18');`.
+            this.tracer?.edgeTransition('edge18');
             
             // Step 3: Enter/move towards transition target `ORDER_MENU.<EntryPoint>(to_history)`.
-            this.#ORDER_MENU_enter();
+            this._ORDER_MENU_enter();
             // ORDER_MENU.<EntryPoint>(to_history) is a pseudo state and cannot have an `enter` trigger.
             
             // ORDER_MENU.<EntryPoint>(to_history) behavior
-            // uml: / { this.tracer?.edgeTransition("edge13"); } TransitionTo(ORDER_MENU.<History>)
+            // uml: / { this.tracer?.edgeTransition('edge13'); } TransitionTo(ORDER_MENU.<History>)
             {
                 // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition("edge13");`.
-                this.tracer?.edgeTransition("edge13");
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge13');`.
+                this.tracer?.edgeTransition('edge13');
                 
                 // Step 3: Enter/move towards transition target `ORDER_MENU.<History>`.
                 // ORDER_MENU.<History> is a pseudo state and cannot have an `enter` trigger.
                 
                 // ORDER_MENU.<History> behavior
-                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.FOOD)] / { this.tracer?.log("🕑 History: transitioning to FOOD."); } TransitionTo(FOOD)
+                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.FOOD)] / { this.tracer?.logHistoryTransition('transitioning to FOOD'); } TransitionTo(FOOD)
                 if (this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.FOOD)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to FOOD.");`.
-                    this.tracer?.log("🕑 History: transitioning to FOOD.");
+                    // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to FOOD');`.
+                    this.tracer?.logHistoryTransition('transitioning to FOOD');
                     
                     // Step 3: Enter/move towards transition target `FOOD`.
-                    this.#FOOD_enter();
+                    this._FOOD_enter();
                     
                     // Finish transition by calling pseudo state transition function.
-                    this.#FOOD_InitialState_transition();
+                    this._FOOD_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for ORDER_MENU.<History>
                 
                 // ORDER_MENU.<History> behavior
-                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.BEVERAGE__FIRST)] / { this.tracer?.log("🕑 History: transitioning to BEVERAGE__FIRST."); } TransitionTo(BEVERAGE__FIRST)
+                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.BEVERAGE__FIRST)] / { this.tracer?.logHistoryTransition('transitioning to BEVERAGE__FIRST'); } TransitionTo(BEVERAGE__FIRST)
                 if (this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.BEVERAGE__FIRST)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to BEVERAGE__FIRST.");`.
-                    this.tracer?.log("🕑 History: transitioning to BEVERAGE__FIRST.");
+                    // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to BEVERAGE__FIRST');`.
+                    this.tracer?.logHistoryTransition('transitioning to BEVERAGE__FIRST');
                     
                     // Step 3: Enter/move towards transition target `BEVERAGE__FIRST`.
-                    this.#BEVERAGE_enter();
-                    this.#BEVERAGE__FIRST_enter();
+                    this._BEVERAGE_enter();
+                    this._BEVERAGE__FIRST_enter();
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return;
                 } // end of behavior for ORDER_MENU.<History>
                 
                 // ORDER_MENU.<History> behavior
-                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.COFFEE)] / { this.tracer?.log("🕑 History: transitioning to COFFEE."); } TransitionTo(COFFEE)
+                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.COFFEE)] / { this.tracer?.logHistoryTransition('transitioning to COFFEE'); } TransitionTo(COFFEE)
                 if (this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.COFFEE)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to COFFEE.");`.
-                    this.tracer?.log("🕑 History: transitioning to COFFEE.");
+                    // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to COFFEE');`.
+                    this.tracer?.logHistoryTransition('transitioning to COFFEE');
                     
                     // Step 3: Enter/move towards transition target `COFFEE`.
-                    this.#BEVERAGE_enter();
-                    this.#COFFEE_enter();
+                    this._BEVERAGE_enter();
+                    this._COFFEE_enter();
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return;
                 } // end of behavior for ORDER_MENU.<History>
                 
                 // ORDER_MENU.<History> behavior
-                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.TEA)] / { this.tracer?.log("🕑 History: transitioning to TEA."); } TransitionTo(TEA)
+                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.TEA)] / { this.tracer?.logHistoryTransition('transitioning to TEA'); } TransitionTo(TEA)
                 if (this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.TEA)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: `this.tracer?.log("🕑 History: transitioning to TEA.");`.
-                    this.tracer?.log("🕑 History: transitioning to TEA.");
+                    // Step 2: Transition action: `this.tracer?.logHistoryTransition('transitioning to TEA');`.
+                    this.tracer?.logHistoryTransition('transitioning to TEA');
                     
                     // Step 3: Enter/move towards transition target `TEA`.
-                    this.#BEVERAGE_enter();
-                    this.#TEA_enter();
+                    this._BEVERAGE_enter();
+                    this._TEA_enter();
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return;
                 } // end of behavior for ORDER_MENU.<History>
                 
                 // ORDER_MENU.<History> behavior
-                // uml: else / { this.tracer?.log("🕑 History: default transition.");this.tracer?.edgeTransition("edge15"); } TransitionTo(BEVERAGE)
+                // uml: else / { this.tracer?.logHistoryTransition('default transition');this.tracer?.edgeTransition('edge15'); } TransitionTo(BEVERAGE)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: `this.tracer?.log("🕑 History: default transition.");this.tracer?.edgeTransition("edge15");`.
-                    this.tracer?.log("🕑 History: default transition.");this.tracer?.edgeTransition("edge15");
+                    // Step 2: Transition action: `this.tracer?.logHistoryTransition('default transition');this.tracer?.edgeTransition('edge15');`.
+                    this.tracer?.logHistoryTransition('default transition');this.tracer?.edgeTransition('edge15');
                     
                     // Step 3: Enter/move towards transition target `BEVERAGE`.
-                    this.#BEVERAGE_enter();
+                    this._BEVERAGE_enter();
                     
                     // Finish transition by calling pseudo state transition function.
-                    this.#BEVERAGE_InitialState_transition();
+                    this._BEVERAGE_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for ORDER_MENU.<History>
             } // end of behavior for ORDER_MENU.<EntryPoint>(to_history)
@@ -1437,7 +1548,7 @@ evaluateGuard = null;
 
 </script>
 
-    <script type="module">
+    <script type='module'>
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         import svgPanZoom from 'https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/+esm' ;
         mermaid.initialize({ startOnLoad: false });
@@ -1447,7 +1558,7 @@ evaluateGuard = null;
         document.querySelector('svg').removeAttribute('viewBox');
         document.querySelector('svg').setAttribute('width', '100%');
         document.querySelector('svg').setAttribute('height', '100%');
-        document.querySelector('svg').style["max-width"] = '';
+        document.querySelector('svg').style['max-width'] = '';
 
         // don't scale the arrow when we scale the transition edge
         document.querySelectorAll('g defs marker[id$=barbEnd]').forEach(marker => {
@@ -1457,12 +1568,13 @@ evaluateGuard = null;
         // https://github.com/StateSmith/StateSmith/issues/404
         // https://github.com/StateSmith/StateSmith/issues/294
         // rewrite $initial_state to a black circle
-        document.querySelectorAll('g[data-id*="(InitialState)"]').forEach(g=> {
-          g.innerHTML = '<circle transform="translate(0,3)" height="14" width="14" r="14" class="state - start"></circle>';
+        document.querySelectorAll(`g[data-id*='(InitialState)']`).forEach(g=> {
+          g.innerHTML = `<circle transform='translate(0,3)' height='14' width='14' r='14' class='state - start'></circle>`;
         })
 
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {
             zoomEnabled: true,
+            dblClickZoomEnabled: false, // double click zoom gets in the way of quickly clicking on edge events
             controlIconsEnabled: true,
             fit: true,
             center: true
@@ -1522,10 +1634,77 @@ evaluateGuard = null;
   ]
 };
 
+        // https://github.com/StateSmith/StateSmith/issues/522
+        const stateEdgeMapping = {
+  "ORDER_MENU": [
+    0
+  ],
+  "BEVERAGE": [
+    0,
+    1
+  ],
+  "BEVERAGE__FIRST": [
+    0,
+    1,
+    3
+  ],
+  "COFFEE": [
+    0,
+    1,
+    4
+  ],
+  "TEA": [
+    0,
+    5,
+    6
+  ],
+  "FOOD": [
+    0,
+    7,
+    8
+  ],
+  "FOOD__FIRST": [
+    0,
+    7,
+    8,
+    10
+  ],
+  "POTATO": [
+    0,
+    7,
+    8,
+    11
+  ],
+  "SUSHI": [
+    0,
+    7,
+    8,
+    12
+  ],
+  "WAITING": [
+    18
+  ]
+};
+
+        // https://github.com/StateSmith/StateSmith/issues/523
+        const stateDescriptionMapping = {
+  "LightSm2": "Vertex: ROOT\n-----------------------------------------\n- Type: StateMachine\n- Diagram Id: 43\n- Initial State: ROOT.\\\u003CInitialState\u003E\n\n### Behaviors\n",
+  "ORDER_MENU": "Vertex: ORDER_MENU\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: 48\n\n### Behaviors\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "BEVERAGE": "Vertex: BEVERAGE\n-----------------------------------------\n- Parent: ORDER_MENU\n- Type: State\n- Diagram Id: 51\n- Initial State: BEVERAGE.\\\u003CInitialState\u003E\n\n### Behaviors\nEV2 --\u003E TransitionTo(FOOD)\n\nenter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;) }\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "BEVERAGE__FIRST": "Vertex: BEVERAGE__FIRST\n-----------------------------------------\n- Parent: BEVERAGE\n- Type: State\n- Diagram Id: 56\n\n### Behaviors\nEV1 --\u003E TransitionTo(COFFEE)\n\nenter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE__FIRST;) }\n\n=== From ancestor \u0060BEVERAGE\u0060 ===\n\nEV2 --\u003E TransitionTo(FOOD)\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "COFFEE": "Vertex: COFFEE\n-----------------------------------------\n- Parent: BEVERAGE\n- Type: State\n- Diagram Id: 59\n\n### Behaviors\nenter / { do_x(); }\n\nEV1 --\u003E TransitionTo(TEA)\n\nenter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;) }\n\n=== From ancestor \u0060BEVERAGE\u0060 ===\n\nEV2 --\u003E TransitionTo(FOOD)\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "TEA": "Vertex: TEA\n-----------------------------------------\n- Parent: BEVERAGE\n- Type: State\n- Diagram Id: 63\n\n### Behaviors\nEV1 --\u003E TransitionTo(COFFEE)\n\nEV2 --\u003E TransitionTo(BEVERAGE.\u003CInitialState\u003E)\n\nenter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;) }\n\n=== From ancestor \u0060BEVERAGE\u0060 ===\n\nEV2 --\u003E TransitionTo(FOOD)\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "FOOD": "Vertex: FOOD\n-----------------------------------------\n- Parent: ORDER_MENU\n- Type: State\n- Diagram Id: 69\n- Initial State: FOOD.\\\u003CInitialState\u003E\n\n### Behaviors\nEV2 --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(bev_choice))\n\nESCAPE --\u003E TransitionTo(ORDER_MENU.\u003CExitPoint\u003E(1))\n\nenter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;) }\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "FOOD__FIRST": "Vertex: FOOD__FIRST\n-----------------------------------------\n- Parent: FOOD\n- Type: State\n- Diagram Id: 74\n\n### Behaviors\nEV1 --\u003E TransitionTo(POTATO)\n\n=== From ancestor \u0060FOOD\u0060 ===\n\nEV2 --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(bev_choice))\n\nESCAPE --\u003E TransitionTo(ORDER_MENU.\u003CExitPoint\u003E(1))\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "POTATO": "Vertex: POTATO\n-----------------------------------------\n- Parent: FOOD\n- Type: State\n- Diagram Id: 77\n\n### Behaviors\nEV1 --\u003E TransitionTo(SUSHI)\n\n=== From ancestor \u0060FOOD\u0060 ===\n\nEV2 --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(bev_choice))\n\nESCAPE --\u003E TransitionTo(ORDER_MENU.\u003CExitPoint\u003E(1))\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "SUSHI": "Vertex: SUSHI\n-----------------------------------------\n- Parent: FOOD\n- Type: State\n- Diagram Id: 80\n\n### Behaviors\nEV1 --\u003E TransitionTo(FOOD__FIRST)\n\n=== From ancestor \u0060FOOD\u0060 ===\n\nEV2 --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(bev_choice))\n\nESCAPE --\u003E TransitionTo(ORDER_MENU.\u003CExitPoint\u003E(1))\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "WAITING": "Vertex: WAITING\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: 91\n\n### Behaviors\nEV3 --\u003E TransitionTo(ORDER_MENU.\u003CEntryPoint\u003E(to_history))\n"
+};
+
         // Get page element references
-        const leftPane = document.querySelector(".main");
-        const rightPane = document.querySelector(".sidebar");
-        const gutter = document.querySelector(".gutter");
+        const leftPane = document.querySelector('.main');
+        const rightPane = document.querySelector('.sidebar');
+        const gutter = document.querySelector('.gutter');
 
         // Function to resize panes
         function resizer(e) {          
@@ -1554,10 +1733,15 @@ evaluateGuard = null;
 
 
         //------------------- drop down functionality start -------------------
-        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownButton = document.getElementById('settings-dropdown-button');
         const dropdownDiv = document.getElementById('myDropdown');
 
         dropdownButton.addEventListener('click', toggleDropdown);
+
+        document.getElementById('clear-button').addEventListener('click', function() {
+          const tbody = document.querySelector('#event-logs tbody');
+          tbody.innerHTML = '';
+        });
 
         /* When the user clicks on the button, 
         toggle between hiding and showing the dropdown content */
@@ -1583,8 +1767,7 @@ evaluateGuard = null;
         });
 
         // Set the state of the timestamp checkbox
-        document.getElementById('timestamps').checked = document.querySelector('table.console').classList.contains('timestamps');
-        document.getElementById('timestamps').addEventListener('change', function() {
+        document.getElementById('savedSetting_timestamps').addEventListener('change', function() {
           if(this.checked) {
             document.querySelector('table.console').classList.add('timestamps');
           } else {
@@ -1593,9 +1776,38 @@ evaluateGuard = null;
         });
 
         // Set up hide irrelevant events checkbox state and event listener
-        document.getElementById('hideIrrelevantEvents').addEventListener('change', function() {
+        document.getElementById('savedSetting_hideIrrelevantEvents').addEventListener('change', function() {
           // When checkbox state changes, only update button visibility, not availability
           updateButtonVisibility();
+        });
+
+        // store and restore checkbox states using localStorage.
+        // DO AFTER event listeners are set up, so that restored state will trigger the change event and apply the setting.
+        const dropdownCheckboxes = document.querySelectorAll(`.dropdown-content input[type='checkbox']`);
+        dropdownCheckboxes.forEach(checkbox => {
+
+          if (checkbox.id.startsWith('savedSetting_') === false)
+          {
+            console.log(`Skipping checkbox with id '${checkbox.id}' for localStorage state saving/restoring because it does not start with 'savedSetting_'.`, checkbox);
+            return;
+          }
+
+          // append a note to the checkbox title that the state is saved in localStorage
+          checkbox.parentElement.title += '\nThis setting is saved in localStorage and will persist across page reloads.';
+
+          // Restore state from localStorage
+          const savedState = localStorage.getItem(checkbox.id);
+          if (savedState !== null) {
+            checkbox.checked = (savedState === 'true');
+            checkbox.dispatchEvent(new Event('change')); // Trigger change event to apply the setting
+            console.log(`Restored checkbox value for '${checkbox.id}' to '${checkbox.checked}'`, checkbox);
+          }
+
+          // Save state to localStorage on change
+          checkbox.addEventListener('change', function() {
+            localStorage.setItem(checkbox.id, this.checked);
+            console.log(`Saved checkbox value for '${checkbox.id}' to '${this.checked}'`, checkbox);
+          });
         });
 
         //------------------- drop down functionality end -------------------
@@ -1611,7 +1823,7 @@ evaluateGuard = null;
         }
 
         // Add a row to the history table.
-        function addHistoryRow(time, event, html = false) {
+        function addEventLogRow(time, event, html = false) {
             var row = document.createElement('tr');
             var timeCell = document.createElement('td');
             timeCell.innerText = formatTime(time);
@@ -1626,10 +1838,11 @@ evaluateGuard = null;
 
             row.appendChild(timeCell);
             row.appendChild(eventCell);
-            document.querySelector('tbody').appendChild(row);
+            document.querySelector('#event-logs tbody').appendChild(row);
         }
 
         var sm = new LightSm2();
+        window.StateSmith_sm = sm; // expose to global scope so people can interact with it from the console if they want to.
 
         // prompt the user to evaluate guards manually
         sm.evaluateGuard = (vertexName, behaviorUml) => {
@@ -1640,14 +1853,14 @@ evaluateGuard = null;
         function highlightEdge(edgeId) {
             var edge = document.getElementById(edgeId);
             if (edge) {
-              edge.classList.add('active');
+              edge.classList.add('pathJustTaken');
               highlightedEdges.add(edge);
             }
         }
 
         function clearHighlightedEdges() {
             for (const edge of highlightedEdges) {
-              edge.classList.remove('active');
+              edge.classList.remove('pathJustTaken');
               const showOldTraversal = false;
               if (showOldTraversal) {
                   // shows that the edge was traversed. Optional, but kinda nice.
@@ -1657,17 +1870,36 @@ evaluateGuard = null;
             highlightedEdges.clear();
         }
 
+        function clearHighlightedStates() {
+            document.querySelectorAll('g[id].active').forEach(e => e.classList.remove('active'));
+        }
+
         // Function to update event button states (availability and visibility)
-        function updateEventButtonStates(currentStateName) {
-            const availableEvents = stateEventsMapping[currentStateName] || [];
-            
+        function updateEventButtonStates(currentStateDiagramName) {
+            const availableEvents = stateEventsMapping[currentStateDiagramName] || [];
+
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
                 if (button) {
-                    const isAvailable = availableEvents.includes(eventName);
-                    
-                    // Only set disabled property, CSS :disabled pseudo-class handles styling
-                    button.disabled = !isAvailable;
+                    const hasEventHandler = availableEvents.includes(eventName);
+
+                    let title = `Dispatch event '${eventName}' to the state machine.`;
+
+                    if (hasEventHandler) {
+                        button.classList.remove('hasNoEventHandler');
+                    } else {
+                        button.classList.add('hasNoEventHandler');
+                        title += '\nThere is no handler for this event in the current state.\nDispatching is valid, but will have no effect on the state machine.';
+                    }
+
+                    title += '\nThere is a ⚙️ setting to disable these tooltips.';
+
+                    const showTooltips = document.getElementById('savedSetting_showEventButtonTooltips').checked
+                    if (showTooltips) {
+                        button.title = title;
+                    } else {
+                        button.removeAttribute('title');
+                    }
                 }
             });
             
@@ -1677,43 +1909,221 @@ evaluateGuard = null;
 
         // Function to update button visibility based on Hide Unused checkbox
         function updateButtonVisibility() {
-            const hideIrrelevantEvents = document.getElementById('hideIrrelevantEvents').checked;
+            const hideIrrelevantEvents = document.getElementById('savedSetting_hideIrrelevantEvents').checked;
             
             diagramEventNamesArray.forEach(eventName => {
                 const button = document.getElementById('button_' + eventName);
                 if (button) {
-                    // Toggle hidden class based on checkbox state and button disabled state
-                    button.classList.toggle('hidden', hideIrrelevantEvents && button.disabled);
+                    // Toggle hidden class based on checkbox state and button has no event handler
+                    button.classList.toggle('hidden', hideIrrelevantEvents && button.classList.contains('hasNoEventHandler'));
+                }
+            });
+        }
+
+        // https://github.com/StateSmith/StateSmith/issues/522
+        function updateEdgeAvailability(currentStateDiagramName) {
+            const availableEdges = stateEdgeMapping[currentStateDiagramName] || [];
+
+            document.querySelectorAll('.transition.available').forEach(element => {
+              element.classList.remove('available');
+            });
+
+            availableEdges.forEach(edgeId => {
+                var domId = `edge${edgeId}`;
+                var edge = document.getElementById(domId);
+                if (edge) {
+                  edge.classList.add('available');
                 }
             });
         }
 
         // The simulator uses a tracer callback to perform operations such as 
-        // state highlighting and logging. You do not need this functionality
-        // when using LightSm2.js in your own applications, although you may
-        // choose to implement a tracer for debugging purposes.
+        // state highlighting and logging.
         sm.tracer = {
             enterState: (mermaidName) => {
-                var e = document.querySelector('g[data-id=' + mermaidName + ']');
+                var e = document.querySelector('g[data-id=' + mermaidName + ']') || document.querySelector('g[id=' + mermaidName + ']');
+
                 if(e) {
                   e.classList.add('active');
                   panOnScreen(e);
+                } else {
+                  console.warn(`Could not find mermaid element to highlight for state '${mermaidName}'.`);
                 }
-                sm.tracer.log('➡️ Entered ' + mermaidName);
+
+                if (document.getElementById('savedSetting_verboseEnter').checked) {
+                    sm.tracer.log(`➡️ Entered <span class='identifier'>${mermaidName}</span>`, true);
+                }
                 
-                // Update event button states
                 updateEventButtonStates(mermaidName);
+                updateEdgeAvailability(mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
+                document.querySelector('g[id=' + mermaidName + ']')?.classList.remove('active');
+
+                if (document.getElementById('savedSetting_verboseExit').checked) {
+                    sm.tracer.log(`↩️ Exited <span class='identifier'>${mermaidName}</span>`, true);
+                }
             },
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
             },
+            logHistoryVarUpdate: (varName, newValue) => {
+                if (document.getElementById('savedSetting_verboseHistory').checked) {
+                    sm.tracer.log(`🕑 HistoryVar(<span class='identifier'>${varName}</span>) = <span class='identifier'>${newValue}</span>`, true);
+                }
+            },
+            logHistoryTransition: (description) => {
+                sm.tracer.log(`🕑 History: ${description}.`);
+            },
+            logGuardCodeEvaluation: (guardCode) => {
+                sm.tracer.log(`<span title='Guard code manually evaluated by user for simulation.'>🛡️ Guard: <code>[ ${guardCode} ]</code></span>`, true);
+            },
+            logActionCode: (actionCode) => {
+                sm.tracer.log(`<span title='Your actual state machine will run this action code.'>⚡ Action: <code>${actionCode}</code></span>`, true);
+            },
             log: (message, html=false) => {
-                addHistoryRow(new Date(), message, html);
+                addEventLogRow(new Date(), message, html);
             }
         };
+
+        // https://github.com/StateSmith/StateSmith/issues/519
+        function forceStateChange(stateNameAnyCase)
+        {
+          const stateName = stateNameAnyCase.toUpperCase();
+
+          // get ID from stateName
+          const stateId = LightSm2.StateId[stateName];
+          if (stateId === undefined) {
+            console.error(`Invalid state name '${stateNameAnyCase}' passed to forceStateChange.`);
+            console.log('Valid state names are (in any case):', Object.keys(LightSm2.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
+            return;
+          }
+
+          // note! This and other ROOT code assumes that it is the first state. This is a fairly safe assumption, but if that ever changes this code will need to be updated.
+          if (Object.keys(LightSm2.StateId)[0] !== 'ROOT') {
+            console.warn(`ROOT not found. This should happen. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }
+
+          if (stateId === 0) {
+            console.error(`Cannot force state to state machine ROOT.`,);
+            return;
+          }
+
+          let mermaidElement = null;
+
+          // we now need the mermaid state element for the state of interest
+          document.querySelectorAll('g[data-id],g[id]').forEach(e => {
+            const lowerName = stateNameAnyCase.toLowerCase();
+            const matchesLeafState = e.getAttribute('data-id') && e.getAttribute('data-id').toLowerCase() === lowerName;
+            const matchesCompoundState = e.getAttribute('id').toLowerCase() === lowerName;
+
+            if (matchesCompoundState || matchesLeafState) {
+              mermaidElement = e;
+            }
+          });
+
+          if (!mermaidElement) {
+            console.error(`Could not find mermaid element for state name '${stateNameAnyCase}'. This is unexpected as we already found matching state id. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+            return;
+          }
+
+          // force the state change. NOTE! This will only work with Algorithm Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms.
+          sm.stateId = stateId;
+          
+          // remove the active class from all states, then add it to the forced state.
+          clearHighlightedStates();
+          // mermaidElement.classList.add('active'); // done by state enter below
+
+          sm.tracer.log(`<span class='dispatched'><a href='https://github.com/StateSmith/StateSmith/issues/519' target='_blank' title='May have impacts! Click for details.'><span class='forced-state'>FORCED STATE</span> to <span class='identifier'>${stateNameAnyCase}</span></span></a>`, true);
+
+          // execute state's enter function
+          const enterFunction = sm['_' + stateName + '_enter'];
+          if (enterFunction) {
+            enterFunction.call(sm); // need to call with sm as 'this' context so that it can update the state machine state and do other things that require access to 'this'.
+          } else {
+            console.warn(`No enter function found for state '${stateName}'. This is unexpected. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
+          }            
+
+          panOnScreen(mermaidElement);
+          
+          let mermaidStateName;
+          
+          if (mermaidElement.getAttribute('data-id')) {
+            mermaidStateName = mermaidElement.getAttribute('data-id');
+          } else {
+             mermaidStateName = mermaidElement.getAttribute('id');
+          }
+          updateEventButtonStates(mermaidStateName);
+          clearHighlightedEdges();
+
+          console.log(`Forced state to ${stateNameAnyCase}. See https://github.com/StateSmith/StateSmith/issues/519`);
+        }
+
+        // https://github.com/StateSmith/StateSmith/issues/519
+        {
+          // find simple state node labels
+          // Make sure to test with simple states that are just a state name, and ones that have addition labels for non-transition behaviors.
+          document.querySelectorAll('g.statediagram-state[data-id] g.label > foreignObject:first-of-type .nodeLabel').forEach(nodeLabel => {
+            // confirm that node label matches an actual state. This weeds out pseudo states like `$H`, `$HC`, `$entry_pt`, ...
+            const stateName = nodeLabel.textContent.toUpperCase();
+            const stateId = LightSm2.StateId[stateName];
+            if (stateId === undefined) {
+              return;
+            }
+
+            nodeLabel.classList.add('clickableDiagramElement');
+          });
+
+          // find composite state node labels
+          document.querySelectorAll('g.statediagram-state[id].statediagram-cluster .nodeLabel').forEach(nodeLabel => {
+            nodeLabel.classList.add('clickableDiagramElement');
+          });
+
+          // allow clicking states to force state machine to that state.
+          document.querySelectorAll('.clickableDiagramElement').forEach(nodeLabel => {
+            const stateElement = nodeLabel.closest('g.statediagram-state[id]');
+
+            if (!stateElement)
+            {
+              console.warn('Open bug ticket? Failed finding statediagram-state for', nodeLabel);
+            }
+
+            nodeLabel.addEventListener('click', (event) => {
+
+              if (savedSetting_requireCtrlForForceState.checked && !event.ctrlKey) {
+                  // if the setting to require ctrl key is enabled, and the ctrl key is not pressed, do not force state.
+                  return;
+              }
+
+              let stateName = null;
+
+              // this is a bit hacky. Composite states have their name in the 'id' attribute, while simple states have their name in the 'data-id' attribute. We need to check both to support both types of states.
+              if (stateElement.classList.contains('statediagram-cluster')) {
+                stateName = stateElement.getAttribute('id');
+              } else {
+                stateName = stateElement.getAttribute('data-id');
+              }
+
+              // https://github.com/StateSmith/StateSmith/issues/523
+              if (event.altKey)
+              {
+                const description = stateDescriptionMapping[stateName];
+                if (description) {
+                  console.log(description);
+                  window.alert(description);
+                } else {
+                  console.warn(`Failed finding description for ${stateName}`);
+                }
+              } else {
+                forceStateChange(stateName);
+              }
+            });
+          });
+        }
+
+        // export forceStateChange to global scope so it can be called from the console for testing purposes.
+        window.StateSmith_forceStateChange = forceStateChange;
 
         // Wire up the buttons that dispatch events for the state machine.
         diagramEventNamesArray.forEach(diagramEventName => {
@@ -1722,35 +2132,93 @@ evaluateGuard = null;
             button.className = 'event-button';
             button.innerText = diagramEventName;
             button.addEventListener('click', () => {
-                // Only handle click events when button is enabled
-                if (!button.disabled) {
+
+                // allow dispatching events even if they have no handler in current state to aid in learning
+                // https://github.com/StateSmith/StateSmith/issues/497
+                const alwaysAllowEventDispatch = true;
+
+                if (alwaysAllowEventDispatch || !button.classList.contains('hasNoEventHandler')) {
                     clearHighlightedEdges();
-                    sm.tracer?.log('<span class="dispatched"><span class="trigger">' + diagramEventName + '</span> DISPATCHED</span>', true);
+                    sm.tracer?.log(`<span class='dispatched'><span class='event-id'>${diagramEventName}</span> DISPATCHED</span>`, true);
                     const fsmEventName = diagramEventName.toUpperCase();
                     sm.dispatchEvent(LightSm2.EventId[fsmEventName]); 
                 }
             });
-            document.getElementById('buttons').appendChild(button);
+            document.getElementById(`buttons`).appendChild(button);
         });
 
-        sm.tracer?.log('<span class="dispatched">START</span>', true);
+        // clicking on edge label will try to send event
+        // https://github.com/StateSmith/StateSmith/issues/521
+        // DO AFTER buttons exist as we rely on them.
+        {
+          document.querySelectorAll('g span.edgeLabel').forEach(edgeLabelElement => {
+            const edgeLabel = edgeLabelElement.textContent.trim();
+
+            if (!edgeLabel)
+            {
+              return;
+            }
+
+            // ignore any decimal numbers at start, then look for first word which should be event name.
+            // This allows for edge labels like: 
+            //    `1. INCREASE [count >= 3] / { count++; }` and 
+            //    `1.1. MY_EVENT`
+            // See https://github.com/StateSmith/StateSmith/wiki/Behaviors
+            const eventRegex = /^(?:\d+\.)?(?:\d+\.\s+)?(\w+)\b/;
+            const match = edgeLabel.match(eventRegex);
+            if (!match) {
+              console.log(`Could not parse event name from edge label. This is normal for certain edges. Edge label text was: '${edgeLabel}'.`, edgeLabelElement);
+              return;
+            }
+
+            const eventName = match[1];
+            const button = document.getElementById('button_' + eventName);
+            if (!button)
+            {
+              console.log(`No event button found for event name '${eventName}'. This is normal for certain edges.`, edgeLabelElement);
+              return;
+            }
+
+            edgeLabelElement.classList.add('clickableDiagramElement');
+
+            edgeLabelElement.addEventListener('click', (event) => {
+              button.click();
+            });
+          });
+        }
+
+        sm.tracer?.log(`<span class='dispatched'>START</span>`, true);
         sm.start(); // This will cause `updateEventButtonStates()` to be called.
 
         function panOnScreen(element) {
-          if(!element) return;
+            if (!element) return;
 
-          var bounds = element.getBoundingClientRect();
-          if(bounds.x<0 || bounds.y<0) {
-              var x = Math.max(0, -bounds.x + 20);
-              var y = Math.max(0, -bounds.y + 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
-          var panebounds = document.querySelector('svg').getBoundingClientRect();
-          if(bounds.x>panebounds.width || bounds.y>panebounds.height) {
-              var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
-              var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
-              window.panZoom.panBy({x: x, y: y});
-          }
+            // NOTE! There's some hacks here to prevent multiple rapid calls to panOnScreen.
+            // If one transition causes 3 state enters, and each state entry calls panOnScreen, the screen often goes blank.
+            // I would guess caused by window.panZoom.panBy()
+            // So we put in a little delay hack in here and cancel any pending panning action.
+
+            window.ss_lastPanActionHandle = window.ss_lastPanActionHandle || null;
+
+            if (window.ss_lastPanActionHandle) {
+                clearTimeout(window.ss_lastPanActionHandle);
+                window.ss_lastPanActionHandle = null;
+            }
+
+            window.ss_lastPanActionHandle = setTimeout(() => {
+                var bounds = element.getBoundingClientRect();
+                if (bounds.x < 0 || bounds.y < 0) {
+                    var x = Math.max(0, -bounds.x + 20);
+                    var y = Math.max(0, -bounds.y + 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+                var panebounds = document.querySelector('svg').getBoundingClientRect();
+                if (bounds.x > panebounds.width || bounds.y > panebounds.height) {
+                    var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
+                    var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
+                    window.panZoom.panBy({ x: x, y: y });
+                }
+            }, 1);
         }
     </script>
 

@@ -326,71 +326,41 @@ config:
 
 stateDiagram
 
+state ORDER_MENU {
+
+        %% Initial state name as "." so that it fits in black circle shape.
+        %% See https://github.com/StateSmith/StateSmith/issues/404
+        state "." as ORDER_MENU.(InitialState)
+
+        state FOOD {
+
+                %% Initial state name as "." so that it fits in black circle shape.
+                %% See https://github.com/StateSmith/StateSmith/issues/404
+                state "." as FOOD.(InitialState)
+
+                SANDWICH
+
+                SANDWICH : SANDWICH
+
+        }
+
+        state ORDER_MENU.(ChoicePoint)(FOOD__Mermaid_StateSmith_Issue_512__0) <<choice>>
+
+}
+
 %% Initial state name as "." so that it fits in black circle shape.
 %% See https://github.com/StateSmith/StateSmith/issues/404
 state "." as ROOT.(InitialState)
 
-state NotShooting {
+ORDER_MENU.(InitialState) --> FOOD
 
-        %% Initial state name as "." so that it fits in black circle shape.
-        %% See https://github.com/StateSmith/StateSmith/issues/404
-        state "." as NotShooting.(InitialState)
+FOOD --> ORDER_MENU.(ChoicePoint)(FOOD__Mermaid_StateSmith_Issue_512__0) : MY_EVENT
 
-        Idle
+FOOD.(InitialState) --> SANDWICH
 
-        Idle : Idle
+ORDER_MENU.(ChoicePoint)(FOOD__Mermaid_StateSmith_Issue_512__0) --> FOOD
 
-        Idle : Ev4 / #123;  #125;
-
-        state Configuring {
-
-                %% Initial state name as "." so that it fits in black circle shape.
-                %% See https://github.com/StateSmith/StateSmith/issues/404
-                state "." as Configuring.(InitialState)
-
-                NewValueSelection
-
-                NewValueSelection : NewValueSelection
-
-                state NewValuePreview {
-
-                        %% Initial state name as "." so that it fits in black circle shape.
-                        %% See https://github.com/StateSmith/StateSmith/issues/404
-                        state "." as NewValuePreview.(InitialState)
-
-                        State1
-
-                        State1 : State1
-
-                        State2
-
-                        State2 : State2
-
-                }
-
-        }
-
-}
-
-ROOT.(InitialState) --> NotShooting
-
-NotShooting.(InitialState) --> Idle
-
-Idle --> Configuring : EvConfig
-
-Configuring --> Idle : EvConfig
-
-Configuring.(InitialState) --> NewValueSelection
-
-NewValueSelection --> NewValuePreview : EvNewValue
-
-NewValuePreview --> NewValueSelection : EvNewValueRejected
-
-NewValuePreview --> NewValueSelection : EvNewValueSaved
-
-NewValuePreview.(InitialState) --> State1
-
-State1 --> State2 : Ev2
+ROOT.(InitialState) --> ORDER_MENU
 
 
 
@@ -468,39 +438,30 @@ State1 --> State2 : Ev2
 // Algorithm: Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 // Generated state machine
-class PlantEx1
+class issue512
 {
 // Null by default.
 // May be overridden to override guard evaluation (eg. in a simulator)
 evaluateGuard = null;
     static EventId = 
     {
-        EV2 : 0,
-        EV4 : 1,
-        EVCONFIG : 2,
-        EVNEWVALUE : 3,
-        EVNEWVALUEREJECTED : 4,
-        EVNEWVALUESAVED : 5,
+        MY_EVENT : 0,
     }
     static { Object.freeze(this.EventId); }
     
-    static EventIdCount = 6;
+    static EventIdCount = 1;
     static { Object.freeze(this.EventIdCount); }
     
     static StateId = 
     {
         ROOT : 0,
-        NOTSHOOTING : 1,
-        CONFIGURING : 2,
-        NEWVALUEPREVIEW : 3,
-        STATE1 : 4,
-        STATE2 : 5,
-        NEWVALUESELECTION : 6,
-        IDLE : 7,
+        ORDER_MENU : 1,
+        FOOD : 2,
+        SANDWICH : 3,
     }
     static { Object.freeze(this.StateId); }
     
-    static StateIdCount = 8;
+    static StateIdCount = 4;
     static { Object.freeze(this.StateIdCount); }
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
@@ -521,30 +482,31 @@ evaluateGuard = null;
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition('edge0'); } TransitionTo(NotShooting)
+            // uml: / { this.tracer?.edgeTransition('edge4'); } TransitionTo(ORDER_MENU)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
-                this.tracer?.edgeTransition('edge0');
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
+                this.tracer?.edgeTransition('edge4');
                 
-                // Step 3: Enter/move towards transition target `NotShooting`.
-                this._NOTSHOOTING_enter();
+                // Step 3: Enter/move towards transition target `ORDER_MENU`.
+                this._ORDER_MENU_enter();
                 
-                // NotShooting.<InitialState> behavior
-                // uml: / { this.tracer?.edgeTransition('edge1'); } TransitionTo(Idle)
+                // ORDER_MENU.<InitialState> behavior
+                // uml: / { this.tracer?.edgeTransition('edge0'); } TransitionTo(FOOD)
                 {
-                    // Step 1: Exit states until we reach `NotShooting` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                    // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: `this.tracer?.edgeTransition('edge1');`.
-                    this.tracer?.edgeTransition('edge1');
+                    // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
+                    this.tracer?.edgeTransition('edge0');
                     
-                    // Step 3: Enter/move towards transition target `Idle`.
-                    this._IDLE_enter();
+                    // Step 3: Enter/move towards transition target `FOOD`.
+                    this._FOOD_enter();
                     
-                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                    return;
-                } // end of behavior for NotShooting.<InitialState>
+                    // Finish transition by calling pseudo state transition function.
+                    this._FOOD_InitialState_transition();
+                    return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                } // end of behavior for ORDER_MENU.<InitialState>
             } // end of behavior for ROOT.<InitialState>
         } // end of behavior for ROOT
     }
@@ -553,73 +515,28 @@ evaluateGuard = null;
     // Note! This function assumes that the `eventId` parameter is valid.
     dispatchEvent(eventId)
     {
+        
         switch (this.stateId)
         {
-            // STATE: PlantEx1
-            case PlantEx1.StateId.ROOT:
-                // No events handled by this state (or its ancestors).
+            // STATE: issue512
+            case issue512.StateId.ROOT:
+                // state and ancestors have no handler for `my_event` event.
                 break;
             
-            // STATE: NotShooting
-            case PlantEx1.StateId.NOTSHOOTING:
-                // No events handled by this state (or its ancestors).
+            // STATE: ORDER_MENU
+            case issue512.StateId.ORDER_MENU:
+                // state and ancestors have no handler for `my_event` event.
                 break;
             
-            // STATE: Configuring
-            case PlantEx1.StateId.CONFIGURING:
-                switch (eventId)
-                {
-                    case PlantEx1.EventId.EVCONFIG: this._CONFIGURING_evconfig(); break;
-                }
+            // STATE: FOOD
+            case issue512.StateId.FOOD:
+                this._FOOD_my_event(); 
                 break;
             
-            // STATE: NewValuePreview
-            case PlantEx1.StateId.NEWVALUEPREVIEW:
-                switch (eventId)
-                {
-                    case PlantEx1.EventId.EVNEWVALUEREJECTED: this._NEWVALUEPREVIEW_evnewvaluerejected(); break;
-                    case PlantEx1.EventId.EVNEWVALUESAVED: this._NEWVALUEPREVIEW_evnewvaluesaved(); break;
-                    case PlantEx1.EventId.EVCONFIG: this._CONFIGURING_evconfig(); break; // First ancestor handler for this event
-                }
-                break;
-            
-            // STATE: State1
-            case PlantEx1.StateId.STATE1:
-                switch (eventId)
-                {
-                    case PlantEx1.EventId.EV2: this._STATE1_ev2(); break;
-                    case PlantEx1.EventId.EVCONFIG: this._CONFIGURING_evconfig(); break; // First ancestor handler for this event
-                    case PlantEx1.EventId.EVNEWVALUEREJECTED: this._NEWVALUEPREVIEW_evnewvaluerejected(); break; // First ancestor handler for this event
-                    case PlantEx1.EventId.EVNEWVALUESAVED: this._NEWVALUEPREVIEW_evnewvaluesaved(); break; // First ancestor handler for this event
-                }
-                break;
-            
-            // STATE: State2
-            case PlantEx1.StateId.STATE2:
-                switch (eventId)
-                {
-                    case PlantEx1.EventId.EVCONFIG: this._CONFIGURING_evconfig(); break; // First ancestor handler for this event
-                    case PlantEx1.EventId.EVNEWVALUEREJECTED: this._NEWVALUEPREVIEW_evnewvaluerejected(); break; // First ancestor handler for this event
-                    case PlantEx1.EventId.EVNEWVALUESAVED: this._NEWVALUEPREVIEW_evnewvaluesaved(); break; // First ancestor handler for this event
-                }
-                break;
-            
-            // STATE: NewValueSelection
-            case PlantEx1.StateId.NEWVALUESELECTION:
-                switch (eventId)
-                {
-                    case PlantEx1.EventId.EVNEWVALUE: this._NEWVALUESELECTION_evnewvalue(); break;
-                    case PlantEx1.EventId.EVCONFIG: this._CONFIGURING_evconfig(); break; // First ancestor handler for this event
-                }
-                break;
-            
-            // STATE: Idle
-            case PlantEx1.StateId.IDLE:
-                switch (eventId)
-                {
-                    case PlantEx1.EventId.EV4: this._IDLE_ev4(); break;
-                    case PlantEx1.EventId.EVCONFIG: this._IDLE_evconfig(); break;
-                }
+            // STATE: SANDWICH
+            case issue512.StateId.SANDWICH:
+                this._FOOD_my_event();  // First ancestor handler for this event
+
                 break;
         }
         
@@ -633,19 +550,11 @@ evaluateGuard = null;
         {
             switch (this.stateId)
             {
-                case PlantEx1.StateId.NOTSHOOTING: this._NOTSHOOTING_exit(); break;
+                case issue512.StateId.ORDER_MENU: this._ORDER_MENU_exit(); break;
                 
-                case PlantEx1.StateId.CONFIGURING: this._CONFIGURING_exit(); break;
+                case issue512.StateId.FOOD: this._FOOD_exit(); break;
                 
-                case PlantEx1.StateId.NEWVALUEPREVIEW: this._NEWVALUEPREVIEW_exit(); break;
-                
-                case PlantEx1.StateId.STATE1: this._STATE1_exit(); break;
-                
-                case PlantEx1.StateId.STATE2: this._STATE2_exit(); break;
-                
-                case PlantEx1.StateId.NEWVALUESELECTION: this._NEWVALUESELECTION_exit(); break;
-                
-                case PlantEx1.StateId.IDLE: this._IDLE_exit(); break;
+                case issue512.StateId.SANDWICH: this._SANDWICH_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -659,371 +568,146 @@ evaluateGuard = null;
     
     _ROOT_enter()
     {
-        this.stateId = PlantEx1.StateId.ROOT;
+        this.stateId = issue512.StateId.ROOT;
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state NOTSHOOTING
+    // event handlers for state ORDER_MENU
     ////////////////////////////////////////////////////////////////////////////////
     
-    _NOTSHOOTING_enter()
+    _ORDER_MENU_enter()
     {
-        this.stateId = PlantEx1.StateId.NOTSHOOTING;
+        this.stateId = issue512.StateId.ORDER_MENU;
         
-        // NotShooting behavior
-        // uml: enter / { this.tracer?.enterState('NotShooting'); }
+        // ORDER_MENU behavior
+        // uml: enter / { this.tracer?.enterState('ORDER_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.enterState('NotShooting');`
-            this.tracer?.enterState('NotShooting');
-        } // end of behavior for NotShooting
+            // Step 1: execute action `this.tracer?.enterState('ORDER_MENU');`
+            this.tracer?.enterState('ORDER_MENU');
+        } // end of behavior for ORDER_MENU
     }
     
-    _NOTSHOOTING_exit()
+    _ORDER_MENU_exit()
     {
-        // NotShooting behavior
-        // uml: exit / { this.tracer?.exitState('NotShooting'); }
+        // ORDER_MENU behavior
+        // uml: exit / { this.tracer?.exitState('ORDER_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.exitState('NotShooting');`
-            this.tracer?.exitState('NotShooting');
-        } // end of behavior for NotShooting
+            // Step 1: execute action `this.tracer?.exitState('ORDER_MENU');`
+            this.tracer?.exitState('ORDER_MENU');
+        } // end of behavior for ORDER_MENU
         
-        this.stateId = PlantEx1.StateId.ROOT;
-    }
-    
-    
-    ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state CONFIGURING
-    ////////////////////////////////////////////////////////////////////////////////
-    
-    _CONFIGURING_enter()
-    {
-        this.stateId = PlantEx1.StateId.CONFIGURING;
-        
-        // Configuring behavior
-        // uml: enter / { this.tracer?.enterState('Configuring'); }
-        {
-            // Step 1: execute action `this.tracer?.enterState('Configuring');`
-            this.tracer?.enterState('Configuring');
-        } // end of behavior for Configuring
-    }
-    
-    _CONFIGURING_exit()
-    {
-        // Configuring behavior
-        // uml: exit / { this.tracer?.exitState('Configuring'); }
-        {
-            // Step 1: execute action `this.tracer?.exitState('Configuring');`
-            this.tracer?.exitState('Configuring');
-        } // end of behavior for Configuring
-        
-        this.stateId = PlantEx1.StateId.NOTSHOOTING;
-    }
-    
-    _CONFIGURING_evconfig()
-    {
-        // Configuring behavior
-        // uml: EvConfig / { this.tracer?.edgeTransition('edge3'); } TransitionTo(Idle)
-        {
-            // Step 1: Exit states until we reach `NotShooting` state (Least Common Ancestor for transition).
-            this._exitUpToStateHandler(PlantEx1.StateId.NOTSHOOTING);
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
-            this.tracer?.edgeTransition('edge3');
-            
-            // Step 3: Enter/move towards transition target `Idle`.
-            this._IDLE_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for Configuring
-        
-        // No ancestor handles this event.
+        this.stateId = issue512.StateId.ROOT;
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state NEWVALUEPREVIEW
+    // event handlers for state FOOD
     ////////////////////////////////////////////////////////////////////////////////
     
-    _NEWVALUEPREVIEW_enter()
+    _FOOD_enter()
     {
-        this.stateId = PlantEx1.StateId.NEWVALUEPREVIEW;
+        this.stateId = issue512.StateId.FOOD;
         
-        // NewValuePreview behavior
-        // uml: enter / { this.tracer?.enterState('NewValuePreview'); }
+        // FOOD behavior
+        // uml: enter / { this.tracer?.enterState('FOOD'); }
         {
-            // Step 1: execute action `this.tracer?.enterState('NewValuePreview');`
-            this.tracer?.enterState('NewValuePreview');
-        } // end of behavior for NewValuePreview
+            // Step 1: execute action `this.tracer?.enterState('FOOD');`
+            this.tracer?.enterState('FOOD');
+        } // end of behavior for FOOD
     }
     
-    _NEWVALUEPREVIEW_exit()
+    _FOOD_exit()
     {
-        // NewValuePreview behavior
-        // uml: exit / { this.tracer?.exitState('NewValuePreview'); }
+        // FOOD behavior
+        // uml: exit / { this.tracer?.exitState('FOOD'); }
         {
-            // Step 1: execute action `this.tracer?.exitState('NewValuePreview');`
-            this.tracer?.exitState('NewValuePreview');
-        } // end of behavior for NewValuePreview
+            // Step 1: execute action `this.tracer?.exitState('FOOD');`
+            this.tracer?.exitState('FOOD');
+        } // end of behavior for FOOD
         
-        this.stateId = PlantEx1.StateId.CONFIGURING;
+        this.stateId = issue512.StateId.ORDER_MENU;
     }
     
-    _NEWVALUEPREVIEW_evnewvaluerejected()
+    _FOOD_my_event()
     {
-        // NewValuePreview behavior
-        // uml: EvNewValueRejected / { this.tracer?.edgeTransition('edge6'); } TransitionTo(NewValueSelection)
+        // FOOD behavior
+        // uml: MY_EVENT / { this.tracer?.edgeTransition('edge1'); } TransitionTo(ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0))
         {
-            // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
-            this._exitUpToStateHandler(PlantEx1.StateId.CONFIGURING);
+            // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition).
+            this._exitUpToStateHandler(issue512.StateId.ORDER_MENU);
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
-            this.tracer?.edgeTransition('edge6');
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge1');`.
+            this.tracer?.edgeTransition('edge1');
             
-            // Step 3: Enter/move towards transition target `NewValueSelection`.
-            this._NEWVALUESELECTION_enter();
+            // Step 3: Enter/move towards transition target `ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0)`.
+            // ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0) is a pseudo state and cannot have an `enter` trigger.
             
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for NewValuePreview
-        
-        // No ancestor handles this event.
-    }
-    
-    _NEWVALUEPREVIEW_evnewvaluesaved()
-    {
-        // NewValuePreview behavior
-        // uml: EvNewValueSaved / { this.tracer?.edgeTransition('edge7'); } TransitionTo(NewValueSelection)
-        {
-            // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
-            this._exitUpToStateHandler(PlantEx1.StateId.CONFIGURING);
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
-            this.tracer?.edgeTransition('edge7');
-            
-            // Step 3: Enter/move towards transition target `NewValueSelection`.
-            this._NEWVALUESELECTION_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for NewValuePreview
-        
-        // No ancestor handles this event.
-    }
-    
-    
-    ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state STATE1
-    ////////////////////////////////////////////////////////////////////////////////
-    
-    _STATE1_enter()
-    {
-        this.stateId = PlantEx1.StateId.STATE1;
-        
-        // State1 behavior
-        // uml: enter / { this.tracer?.enterState('State1'); }
-        {
-            // Step 1: execute action `this.tracer?.enterState('State1');`
-            this.tracer?.enterState('State1');
-        } // end of behavior for State1
-    }
-    
-    _STATE1_exit()
-    {
-        // State1 behavior
-        // uml: exit / { this.tracer?.exitState('State1'); }
-        {
-            // Step 1: execute action `this.tracer?.exitState('State1');`
-            this.tracer?.exitState('State1');
-        } // end of behavior for State1
-        
-        this.stateId = PlantEx1.StateId.NEWVALUEPREVIEW;
-    }
-    
-    _STATE1_ev2()
-    {
-        // State1 behavior
-        // uml: Ev2 / { this.tracer?.edgeTransition('edge9'); } TransitionTo(State2)
-        {
-            // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition).
-            this._STATE1_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
-            this.tracer?.edgeTransition('edge9');
-            
-            // Step 3: Enter/move towards transition target `State2`.
-            this._STATE2_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for State1
-        
-        // No ancestor handles this event.
-    }
-    
-    
-    ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state STATE2
-    ////////////////////////////////////////////////////////////////////////////////
-    
-    _STATE2_enter()
-    {
-        this.stateId = PlantEx1.StateId.STATE2;
-        
-        // State2 behavior
-        // uml: enter / { this.tracer?.enterState('State2'); }
-        {
-            // Step 1: execute action `this.tracer?.enterState('State2');`
-            this.tracer?.enterState('State2');
-        } // end of behavior for State2
-    }
-    
-    _STATE2_exit()
-    {
-        // State2 behavior
-        // uml: exit / { this.tracer?.exitState('State2'); }
-        {
-            // Step 1: execute action `this.tracer?.exitState('State2');`
-            this.tracer?.exitState('State2');
-        } // end of behavior for State2
-        
-        this.stateId = PlantEx1.StateId.NEWVALUEPREVIEW;
-    }
-    
-    
-    ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state NEWVALUESELECTION
-    ////////////////////////////////////////////////////////////////////////////////
-    
-    _NEWVALUESELECTION_enter()
-    {
-        this.stateId = PlantEx1.StateId.NEWVALUESELECTION;
-        
-        // NewValueSelection behavior
-        // uml: enter / { this.tracer?.enterState('NewValueSelection'); }
-        {
-            // Step 1: execute action `this.tracer?.enterState('NewValueSelection');`
-            this.tracer?.enterState('NewValueSelection');
-        } // end of behavior for NewValueSelection
-    }
-    
-    _NEWVALUESELECTION_exit()
-    {
-        // NewValueSelection behavior
-        // uml: exit / { this.tracer?.exitState('NewValueSelection'); }
-        {
-            // Step 1: execute action `this.tracer?.exitState('NewValueSelection');`
-            this.tracer?.exitState('NewValueSelection');
-        } // end of behavior for NewValueSelection
-        
-        this.stateId = PlantEx1.StateId.CONFIGURING;
-    }
-    
-    _NEWVALUESELECTION_evnewvalue()
-    {
-        // NewValueSelection behavior
-        // uml: EvNewValue / { this.tracer?.edgeTransition('edge5'); } TransitionTo(NewValuePreview)
-        {
-            // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
-            this._NEWVALUESELECTION_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge5');`.
-            this.tracer?.edgeTransition('edge5');
-            
-            // Step 3: Enter/move towards transition target `NewValuePreview`.
-            this._NEWVALUEPREVIEW_enter();
-            
-            // NewValuePreview.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition('edge8'); } TransitionTo(State1)
+            // ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0) behavior
+            // uml: / { this.tracer?.log(`<a href='https://github.com/StateSmith/StateSmith/issues/512' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>🧜‍♀️ mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge3'); } TransitionTo(FOOD)
             {
-                // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition('edge8');`.
-                this.tracer?.edgeTransition('edge8');
+                // Step 2: Transition action: `this.tracer?.log(`<a href='https://github.com/StateSmith/StateSmith/issues/512' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>🧜‍♀️ mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge3');`.
+                this.tracer?.log(`<a href='https://github.com/StateSmith/StateSmith/issues/512' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>🧜‍♀️ mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge3');
                 
-                // Step 3: Enter/move towards transition target `State1`.
-                this._STATE1_enter();
+                // Step 3: Enter/move towards transition target `FOOD`.
+                this._FOOD_enter();
                 
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                return;
-            } // end of behavior for NewValuePreview.<InitialState>
-        } // end of behavior for NewValueSelection
+                // Finish transition by calling pseudo state transition function.
+                this._FOOD_InitialState_transition();
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0)
+        } // end of behavior for FOOD
         
         // No ancestor handles this event.
     }
     
-    
-    ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state IDLE
-    ////////////////////////////////////////////////////////////////////////////////
-    
-    _IDLE_enter()
+    _FOOD_InitialState_transition()
     {
-        this.stateId = PlantEx1.StateId.IDLE;
-        
-        // Idle behavior
-        // uml: enter / { this.tracer?.enterState('Idle'); }
+        // FOOD.<InitialState> behavior
+        // uml: / { this.tracer?.edgeTransition('edge2'); } TransitionTo(SANDWICH)
         {
-            // Step 1: execute action `this.tracer?.enterState('Idle');`
-            this.tracer?.enterState('Idle');
-        } // end of behavior for Idle
-    }
-    
-    _IDLE_exit()
-    {
-        // Idle behavior
-        // uml: exit / { this.tracer?.exitState('Idle'); }
-        {
-            // Step 1: execute action `this.tracer?.exitState('Idle');`
-            this.tracer?.exitState('Idle');
-        } // end of behavior for Idle
-        
-        this.stateId = PlantEx1.StateId.NOTSHOOTING;
-    }
-    
-    _IDLE_ev4()
-    {
-        // Idle behavior
-        // uml: Ev4
-        {
-            // Step 1: execute action ``
-        } // end of behavior for Idle
-        
-        // No ancestor handles this event.
-    }
-    
-    _IDLE_evconfig()
-    {
-        // Idle behavior
-        // uml: EvConfig / { this.tracer?.edgeTransition('edge2'); } TransitionTo(Configuring)
-        {
-            // Step 1: Exit states until we reach `NotShooting` state (Least Common Ancestor for transition).
-            this._IDLE_exit();
+            // Step 1: Exit states until we reach `FOOD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
             this.tracer?.edgeTransition('edge2');
             
-            // Step 3: Enter/move towards transition target `Configuring`.
-            this._CONFIGURING_enter();
+            // Step 3: Enter/move towards transition target `SANDWICH`.
+            this._SANDWICH_enter();
             
-            // Configuring.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition('edge4'); } TransitionTo(NewValueSelection)
-            {
-                // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-                
-                // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
-                this.tracer?.edgeTransition('edge4');
-                
-                // Step 3: Enter/move towards transition target `NewValueSelection`.
-                this._NEWVALUESELECTION_enter();
-                
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                return;
-            } // end of behavior for Configuring.<InitialState>
-        } // end of behavior for Idle
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for FOOD.<InitialState>
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state SANDWICH
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    _SANDWICH_enter()
+    {
+        this.stateId = issue512.StateId.SANDWICH;
         
-        // No ancestor handles this event.
+        // SANDWICH behavior
+        // uml: enter / { this.tracer?.enterState('SANDWICH'); }
+        {
+            // Step 1: execute action `this.tracer?.enterState('SANDWICH');`
+            this.tracer?.enterState('SANDWICH');
+        } // end of behavior for SANDWICH
+    }
+    
+    _SANDWICH_exit()
+    {
+        // SANDWICH behavior
+        // uml: exit / { this.tracer?.exitState('SANDWICH'); }
+        {
+            // Step 1: execute action `this.tracer?.exitState('SANDWICH');`
+            this.tracer?.exitState('SANDWICH');
+        } // end of behavior for SANDWICH
+        
+        this.stateId = issue512.StateId.FOOD;
     }
     
     // Thread safe.
@@ -1031,14 +715,10 @@ evaluateGuard = null;
     {
         switch (id)
         {
-            case PlantEx1.StateId.ROOT: return "ROOT";
-            case PlantEx1.StateId.NOTSHOOTING: return "NOTSHOOTING";
-            case PlantEx1.StateId.CONFIGURING: return "CONFIGURING";
-            case PlantEx1.StateId.NEWVALUEPREVIEW: return "NEWVALUEPREVIEW";
-            case PlantEx1.StateId.STATE1: return "STATE1";
-            case PlantEx1.StateId.STATE2: return "STATE2";
-            case PlantEx1.StateId.NEWVALUESELECTION: return "NEWVALUESELECTION";
-            case PlantEx1.StateId.IDLE: return "IDLE";
+            case issue512.StateId.ROOT: return "ROOT";
+            case issue512.StateId.ORDER_MENU: return "ORDER_MENU";
+            case issue512.StateId.FOOD: return "FOOD";
+            case issue512.StateId.SANDWICH: return "SANDWICH";
             default: return "?";
         }
     }
@@ -1048,12 +728,7 @@ evaluateGuard = null;
     {
         switch (id)
         {
-            case PlantEx1.EventId.EV2: return "EV2";
-            case PlantEx1.EventId.EV4: return "EV4";
-            case PlantEx1.EventId.EVCONFIG: return "EVCONFIG";
-            case PlantEx1.EventId.EVNEWVALUE: return "EVNEWVALUE";
-            case PlantEx1.EventId.EVNEWVALUEREJECTED: return "EVNEWVALUEREJECTED";
-            case PlantEx1.EventId.EVNEWVALUESAVED: return "EVNEWVALUESAVED";
+            case issue512.EventId.MY_EVENT: return "MY_EVENT";
             default: return "?";
         }
     }
@@ -1093,81 +768,36 @@ evaluateGuard = null;
             center: true
         });
 
-        const diagramEventNamesArray = ['Ev2', 'Ev4', 'EvConfig', 'EvNewValue', 'EvNewValueRejected', 'EvNewValueSaved', ];
+        const diagramEventNamesArray = ['MY_EVENT', ];
 
         // Mapping from state to available events
         const stateEventsMapping = {
-  "NotShooting": [],
-  "Idle": [
-    "Ev4",
-    "EvConfig"
+  "ORDER_MENU": [],
+  "FOOD": [
+    "MY_EVENT"
   ],
-  "Configuring": [
-    "EvConfig"
-  ],
-  "NewValueSelection": [
-    "EvConfig",
-    "EvNewValue"
-  ],
-  "NewValuePreview": [
-    "EvConfig",
-    "EvNewValueRejected",
-    "EvNewValueSaved"
-  ],
-  "State1": [
-    "Ev2",
-    "EvConfig",
-    "EvNewValueRejected",
-    "EvNewValueSaved"
-  ],
-  "State2": [
-    "EvConfig",
-    "EvNewValueRejected",
-    "EvNewValueSaved"
+  "SANDWICH": [
+    "MY_EVENT"
   ]
 };
 
         // https://github.com/StateSmith/StateSmith/issues/522
         const stateEdgeMapping = {
-  "NotShooting": [],
-  "Idle": [
-    2
+  "ORDER_MENU": [],
+  "FOOD": [
+    1
   ],
-  "Configuring": [
-    3
-  ],
-  "NewValueSelection": [
-    3,
-    5
-  ],
-  "NewValuePreview": [
-    3,
-    6,
-    7
-  ],
-  "State1": [
-    3,
-    6,
-    7,
-    9
-  ],
-  "State2": [
-    3,
-    6,
-    7
+  "SANDWICH": [
+    1
   ]
 };
 
         // https://github.com/StateSmith/StateSmith/issues/523
         const stateDescriptionMapping = {
-  "PlantEx1": "Vertex: ROOT\n-----------------------------------------\n- Type: StateMachine\n- Diagram Id: PlantEx1\n- Initial State: ROOT.\\\u003CInitialState\u003E\n\n### Behaviors\n",
-  "NotShooting": "Vertex: NotShooting\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: NotShooting\n- Initial State: NotShooting.\\\u003CInitialState\u003E\n\n### Behaviors\n",
-  "Idle": "Vertex: Idle\n-----------------------------------------\n- Parent: NotShooting\n- Type: State\n- Diagram Id: Idle\n\n### Behaviors\nEv4\n\nEvConfig --\u003E TransitionTo(Configuring)\n",
-  "Configuring": "Vertex: Configuring\n-----------------------------------------\n- Parent: NotShooting\n- Type: State\n- Diagram Id: Configuring\n- Initial State: Configuring.\\\u003CInitialState\u003E\n\n### Behaviors\nEvConfig --\u003E TransitionTo(Idle)\n",
-  "NewValueSelection": "Vertex: NewValueSelection\n-----------------------------------------\n- Parent: Configuring\n- Type: State\n- Diagram Id: NewValueSelection\n\n### Behaviors\nEvNewValue --\u003E TransitionTo(NewValuePreview)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n",
-  "NewValuePreview": "Vertex: NewValuePreview\n-----------------------------------------\n- Parent: Configuring\n- Type: State\n- Diagram Id: NewValuePreview\n- Initial State: NewValuePreview.\\\u003CInitialState\u003E\n\n### Behaviors\nEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\n\nEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n",
-  "State1": "Vertex: State1\n-----------------------------------------\n- Parent: NewValuePreview\n- Type: State\n- Diagram Id: State1\n\n### Behaviors\nEv2 --\u003E TransitionTo(State2)\n\n=== From ancestor \u0060NewValuePreview\u0060 ===\n\nEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\n\nEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n",
-  "State2": "Vertex: State2\n-----------------------------------------\n- Parent: NewValuePreview\n- Type: State\n- Diagram Id: State2\n\n### Behaviors\n\n=== From ancestor \u0060NewValuePreview\u0060 ===\n\nEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\n\nEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n"
+  "issue512": "Vertex: ROOT\n-----------------------------------------\n- Type: StateMachine\n- Diagram Id: issue512\n- Initial State: ROOT.\\\u003CInitialState\u003E\n\n### Behaviors\n",
+  "ORDER_MENU": "Vertex: ORDER_MENU\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: ORDER_MENU\n- Initial State: ORDER_MENU.\\\u003CInitialState\u003E\n\n### Behaviors\n",
+  "FOOD": "Vertex: FOOD\n-----------------------------------------\n- Parent: ORDER_MENU\n- Type: State\n- Diagram Id: FOOD\n- Initial State: FOOD.\\\u003CInitialState\u003E\n\n### Behaviors\nMY_EVENT --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(FOOD__Mermaid_StateSmith_Issue_512__0))\n",
+  "SANDWICH": "Vertex: SANDWICH\n-----------------------------------------\n- Parent: FOOD\n- Type: State\n- Diagram Id: SANDWICH\n\n### Behaviors\n\n=== From ancestor \u0060FOOD\u0060 ===\n\nMY_EVENT --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(FOOD__Mermaid_StateSmith_Issue_512__0))\n"
 };
 
         // Get page element references
@@ -1310,7 +940,7 @@ evaluateGuard = null;
             document.querySelector('#event-logs tbody').appendChild(row);
         }
 
-        var sm = new PlantEx1();
+        var sm = new issue512();
         window.StateSmith_sm = sm; // expose to global scope so people can interact with it from the console if they want to.
 
         // prompt the user to evaluate guards manually
@@ -1462,15 +1092,15 @@ evaluateGuard = null;
           const stateName = stateNameAnyCase.toUpperCase();
 
           // get ID from stateName
-          const stateId = PlantEx1.StateId[stateName];
+          const stateId = issue512.StateId[stateName];
           if (stateId === undefined) {
             console.error(`Invalid state name '${stateNameAnyCase}' passed to forceStateChange.`);
-            console.log('Valid state names are (in any case):', Object.keys(PlantEx1.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
+            console.log('Valid state names are (in any case):', Object.keys(issue512.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
             return;
           }
 
           // note! This and other ROOT code assumes that it is the first state. This is a fairly safe assumption, but if that ever changes this code will need to be updated.
-          if (Object.keys(PlantEx1.StateId)[0] !== 'ROOT') {
+          if (Object.keys(issue512.StateId)[0] !== 'ROOT') {
             console.warn(`ROOT not found. This should happen. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
           }
 
@@ -1536,7 +1166,7 @@ evaluateGuard = null;
           document.querySelectorAll('g.statediagram-state[data-id] g.label > foreignObject:first-of-type .nodeLabel').forEach(nodeLabel => {
             // confirm that node label matches an actual state. This weeds out pseudo states like `$H`, `$HC`, `$entry_pt`, ...
             const stateName = nodeLabel.textContent.toUpperCase();
-            const stateId = PlantEx1.StateId[stateName];
+            const stateId = issue512.StateId[stateName];
             if (stateId === undefined) {
               return;
             }
@@ -1610,7 +1240,7 @@ evaluateGuard = null;
                     clearHighlightedEdges();
                     sm.tracer?.log(`<span class='dispatched'><span class='event-id'>${diagramEventName}</span> DISPATCHED</span>`, true);
                     const fsmEventName = diagramEventName.toUpperCase();
-                    sm.dispatchEvent(PlantEx1.EventId[fsmEventName]); 
+                    sm.dispatchEvent(issue512.EventId[fsmEventName]); 
                 }
             });
             document.getElementById(`buttons`).appendChild(button);

@@ -52,6 +52,22 @@ state System_Run {
     Parameter_Adjustments --> Electricity_Control
     Change_Of_Objective --> Electricity_Control 
   }
+
+  ' duplicate for https://github.com/StateSmith/StateSmith/issues/512 testing
+  ' we ideally want to see counts reset for each affected state
+  state Electricity_Control_Mode2 {
+    [*] --> Initialization_Of_Pid2
+    
+    state Initialization_Of_Pid2 {
+      Initialization_Of_Pid2 : enter / pid_init_enter();
+    }
+    
+    state Electricity_Control2 {
+      Electricity_Control2 : enter / current_control_enter();
+      Electricity_Control2 : do / current_control_do();
+      Electricity_Control2 : exit / current_control_exit();
+    }
+  }
   
   state Standby {
     Standby : enter / system_pause_enter();
@@ -78,6 +94,20 @@ Adc_Calibration --> System_Run : adc_calibration_complete
 Adc_Calibration --> System_Error : calibration_failed
 System_Run --> System_Error : control_anomaly
 System_Run --> System_Stop : stop_the_request
+
+' See https://github.com/StateSmith/StateSmith/issues/512
+' System_Run does not cause an issue because it is not nested.
+System_Run --> System_Run : ISSUE_512
+System_Run --> System_Run : ISSUE_512_ALT [test]
+'
+Electricity_Control_Mode --> Electricity_Control_Mode : ISSUE_512
+Electricity_Control_Mode --> Electricity_Control_Mode : ISSUE_512_ALT
+'
+Electricity_Control_Mode2 --> Electricity_Control_Mode2 : ISSUE_512 [test_1]
+Electricity_Control_Mode2 --> Electricity_Control_Mode2 : ISSUE_512 [test_2] / do_something();
+'
+Electricity_Control_Mode --> Electricity_Control_Mode2 : switch_mode
+Electricity_Control_Mode2 --> Electricity_Control_Mode : switch_mode
 
 '######################## StateSmith config ########################
 ' The below special comment block sets the StateSmith configuration.

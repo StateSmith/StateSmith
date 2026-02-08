@@ -7,6 +7,7 @@ namespace StateSmith.SmGraph;
 public class BehaviorDescriber
 {
     public bool describeTransition = true;
+    public bool prependTransitionArrow = false;
 
     readonly string _newLine;
     readonly bool _singleLineFormat;
@@ -74,7 +75,12 @@ public class BehaviorDescriber
 
         if (describeTransition && b.TransitionTarget != null)
         {
-            result += joiner + "TransitionTo(" + Vertex.Describe(b.TransitionTarget) + ")";
+            result += joiner;
+            if (prependTransitionArrow)
+            {
+                result += "--> ";
+            }
+            result += "TransitionTo(" + Vertex.Describe(b.TransitionTarget) + ")";
         }
 
         if (_indent != "")

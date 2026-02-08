@@ -76,6 +76,13 @@ public class SimWebGenerator_IntegrationTests
         GenerateForDiagram(diagramName: "electromagnet.puml", expectedOutputFileName: "electromagnet.sim.html");
     }
 
+    // https://github.com/StateSmith/StateSmith/issues/512
+    [Fact]
+    public void Issue512()
+    {
+        GenerateForDiagram(diagramName: "issue512.puml", expectedOutputFileName: "issue512.sim.html");
+    }
+
     private static void DeleteIfFileExists(string expectedOutputFile)
     {
         if (File.Exists(expectedOutputFile))

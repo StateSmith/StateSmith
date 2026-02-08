@@ -69,7 +69,7 @@ public class SmDesignDescriber : IDisposable
             if (v is StateMachine sm && sm != stateMachineProvider.GetStateMachine())
                 continue;
 
-            smDescriber.Describe(v);
+            smDescriber.DescribeRecursively(v);
         }
 
         needsSeparator = true;
@@ -103,7 +103,7 @@ public class SmDesignDescriber : IDisposable
 
         MaybeAddSeparator();
         smDescriber.OutputHeader("AFTER TRANSFORMATIONS");
-        smDescriber.Describe(stateMachineProvider.GetStateMachine());
+        smDescriber.DescribeRecursively(stateMachineProvider.GetStateMachine());
     }
 
     internal void SetTextWriter(TextWriter writer)
