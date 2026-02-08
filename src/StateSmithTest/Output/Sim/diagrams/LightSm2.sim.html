@@ -1686,6 +1686,21 @@ evaluateGuard = null;
   ]
 };
 
+        // https://github.com/StateSmith/StateSmith/issues/523
+        const stateDescriptionMapping = {
+  "LightSm2": "Vertex: ROOT\n-----------------------------------------\n- Type: StateMachine\n- Diagram Id: 43\n- Initial State: ROOT.\\\u003CInitialState\u003E\n\n### Behaviors\n",
+  "ORDER_MENU": "Vertex: ORDER_MENU\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: 48\n\n### Behaviors\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "BEVERAGE": "Vertex: BEVERAGE\n-----------------------------------------\n- Parent: ORDER_MENU\n- Type: State\n- Diagram Id: 51\n- Initial State: BEVERAGE.\\\u003CInitialState\u003E\n\n### Behaviors\nEV2 --\u003E TransitionTo(FOOD)\n\nenter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;) }\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "BEVERAGE__FIRST": "Vertex: BEVERAGE__FIRST\n-----------------------------------------\n- Parent: BEVERAGE\n- Type: State\n- Diagram Id: 56\n\n### Behaviors\nEV1 --\u003E TransitionTo(COFFEE)\n\nenter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE__FIRST;) }\n\n=== From ancestor \u0060BEVERAGE\u0060 ===\n\nEV2 --\u003E TransitionTo(FOOD)\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "COFFEE": "Vertex: COFFEE\n-----------------------------------------\n- Parent: BEVERAGE\n- Type: State\n- Diagram Id: 59\n\n### Behaviors\nenter / { do_x(); }\n\nEV1 --\u003E TransitionTo(TEA)\n\nenter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;) }\n\n=== From ancestor \u0060BEVERAGE\u0060 ===\n\nEV2 --\u003E TransitionTo(FOOD)\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "TEA": "Vertex: TEA\n-----------------------------------------\n- Parent: BEVERAGE\n- Type: State\n- Diagram Id: 63\n\n### Behaviors\nEV1 --\u003E TransitionTo(COFFEE)\n\nEV2 --\u003E TransitionTo(BEVERAGE.\u003CInitialState\u003E)\n\nenter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;) }\n\n=== From ancestor \u0060BEVERAGE\u0060 ===\n\nEV2 --\u003E TransitionTo(FOOD)\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "FOOD": "Vertex: FOOD\n-----------------------------------------\n- Parent: ORDER_MENU\n- Type: State\n- Diagram Id: 69\n- Initial State: FOOD.\\\u003CInitialState\u003E\n\n### Behaviors\nEV2 --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(bev_choice))\n\nESCAPE --\u003E TransitionTo(ORDER_MENU.\u003CExitPoint\u003E(1))\n\nenter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;) }\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "FOOD__FIRST": "Vertex: FOOD__FIRST\n-----------------------------------------\n- Parent: FOOD\n- Type: State\n- Diagram Id: 74\n\n### Behaviors\nEV1 --\u003E TransitionTo(POTATO)\n\n=== From ancestor \u0060FOOD\u0060 ===\n\nEV2 --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(bev_choice))\n\nESCAPE --\u003E TransitionTo(ORDER_MENU.\u003CExitPoint\u003E(1))\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "POTATO": "Vertex: POTATO\n-----------------------------------------\n- Parent: FOOD\n- Type: State\n- Diagram Id: 77\n\n### Behaviors\nEV1 --\u003E TransitionTo(SUSHI)\n\n=== From ancestor \u0060FOOD\u0060 ===\n\nEV2 --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(bev_choice))\n\nESCAPE --\u003E TransitionTo(ORDER_MENU.\u003CExitPoint\u003E(1))\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "SUSHI": "Vertex: SUSHI\n-----------------------------------------\n- Parent: FOOD\n- Type: State\n- Diagram Id: 80\n\n### Behaviors\nEV1 --\u003E TransitionTo(FOOD__FIRST)\n\n=== From ancestor \u0060FOOD\u0060 ===\n\nEV2 --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(bev_choice))\n\nESCAPE --\u003E TransitionTo(ORDER_MENU.\u003CExitPoint\u003E(1))\n\n=== From ancestor \u0060ORDER_MENU\u0060 ===\n\nEV3 --\u003E TransitionTo(WAITING)\n",
+  "WAITING": "Vertex: WAITING\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: 91\n\n### Behaviors\nEV3 --\u003E TransitionTo(ORDER_MENU.\u003CEntryPoint\u003E(to_history))\n"
+};
+
         // Get page element references
         const leftPane = document.querySelector('.main');
         const rightPane = document.querySelector('.sidebar');
@@ -2090,7 +2105,19 @@ evaluateGuard = null;
                 stateName = stateElement.getAttribute('data-id');
               }
 
-              forceStateChange(stateName);
+              // https://github.com/StateSmith/StateSmith/issues/523
+              if (event.altKey)
+              {
+                const description = stateDescriptionMapping[stateName];
+                if (description) {
+                  console.log(description);
+                  window.alert(description);
+                } else {
+                  console.warn(`Failed finding description for ${stateName}`);
+                }
+              } else {
+                forceStateChange(stateName);
+              }
             });
           });
         }

@@ -792,6 +792,14 @@ evaluateGuard = null;
   ]
 };
 
+        // https://github.com/StateSmith/StateSmith/issues/523
+        const stateDescriptionMapping = {
+  "issue512": "Vertex: ROOT\n-----------------------------------------\n- Type: StateMachine\n- Diagram Id: issue512\n- Initial State: ROOT.\\\u003CInitialState\u003E\n\n### Behaviors\n",
+  "ORDER_MENU": "Vertex: ORDER_MENU\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: ORDER_MENU\n- Initial State: ORDER_MENU.\\\u003CInitialState\u003E\n\n### Behaviors\n",
+  "FOOD": "Vertex: FOOD\n-----------------------------------------\n- Parent: ORDER_MENU\n- Type: State\n- Diagram Id: FOOD\n- Initial State: FOOD.\\\u003CInitialState\u003E\n\n### Behaviors\nMY_EVENT --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(FOOD__Mermaid_StateSmith_Issue_512__0))\n",
+  "SANDWICH": "Vertex: SANDWICH\n-----------------------------------------\n- Parent: FOOD\n- Type: State\n- Diagram Id: SANDWICH\n\n### Behaviors\n\n=== From ancestor \u0060FOOD\u0060 ===\n\nMY_EVENT --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(FOOD__Mermaid_StateSmith_Issue_512__0))\n"
+};
+
         // Get page element references
         const leftPane = document.querySelector('.main');
         const rightPane = document.querySelector('.sidebar');
@@ -1196,7 +1204,19 @@ evaluateGuard = null;
                 stateName = stateElement.getAttribute('data-id');
               }
 
-              forceStateChange(stateName);
+              // https://github.com/StateSmith/StateSmith/issues/523
+              if (event.altKey)
+              {
+                const description = stateDescriptionMapping[stateName];
+                if (description) {
+                  console.log(description);
+                  window.alert(description);
+                } else {
+                  console.warn(`Failed finding description for ${stateName}`);
+                }
+              } else {
+                forceStateChange(stateName);
+              }
             });
           });
         }

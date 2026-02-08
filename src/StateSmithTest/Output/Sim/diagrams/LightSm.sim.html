@@ -1058,6 +1058,16 @@ evaluateGuard = null;
   ]
 };
 
+        // https://github.com/StateSmith/StateSmith/issues/523
+        const stateDescriptionMapping = {
+  "LightSm": "Vertex: ROOT\n-----------------------------------------\n- Type: StateMachine\n- Diagram Id: 12\n- Initial State: ROOT.\\\u003CInitialState\u003E\n\n### Behaviors\n",
+  "ON_GROUP": "Vertex: ON_GROUP\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: 21\n\n### Behaviors\noff --\u003E TransitionTo(Off)\n",
+  "ON1": "Vertex: ON1\n-----------------------------------------\n- Parent: ON_GROUP\n- Type: State\n- Diagram Id: 23\n\n### Behaviors\nenter / { light_blue(); }\n\nINCREASE --\u003E TransitionTo(ON2)\n\nDimLight --\u003E TransitionTo(Off)\n\n=== From ancestor \u0060ON_GROUP\u0060 ===\n\noff --\u003E TransitionTo(Off)\n",
+  "OnHot": "Vertex: OnHot\n-----------------------------------------\n- Parent: ON_GROUP\n- Type: State\n- Diagram Id: 19\n\n### Behaviors\nenter / { light_red(); }\n\nDimLight --\u003E TransitionTo(ON2)\n\n=== From ancestor \u0060ON_GROUP\u0060 ===\n\noff --\u003E TransitionTo(Off)\n",
+  "ON2": "Vertex: ON2\n-----------------------------------------\n- Parent: ON_GROUP\n- Type: State\n- Diagram Id: 42\n\n### Behaviors\n1. INCREASE / { count\u002B\u002B; }\n\n2. INCREASE [count \u003E= 3] --\u003E TransitionTo(OnHot)\n\nenter / { light_yellow(); }\n\nenter / { count = 0; }\n\nDimLight --\u003E TransitionTo(ON1)\n\n=== From ancestor \u0060ON_GROUP\u0060 ===\n\noff --\u003E TransitionTo(Off)\n",
+  "Off": "Vertex: Off\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: 16\n\n### Behaviors\nenter / { console.log( \u0022OFF\\n\u0022); }\n\nINCREASE --\u003E TransitionTo(ON1)\n"
+};
+
         // Get page element references
         const leftPane = document.querySelector('.main');
         const rightPane = document.querySelector('.sidebar');
@@ -1462,7 +1472,19 @@ evaluateGuard = null;
                 stateName = stateElement.getAttribute('data-id');
               }
 
-              forceStateChange(stateName);
+              // https://github.com/StateSmith/StateSmith/issues/523
+              if (event.altKey)
+              {
+                const description = stateDescriptionMapping[stateName];
+                if (description) {
+                  console.log(description);
+                  window.alert(description);
+                } else {
+                  console.warn(`Failed finding description for ${stateName}`);
+                }
+              } else {
+                forceStateChange(stateName);
+              }
             });
           });
         }

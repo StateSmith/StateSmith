@@ -57,6 +57,11 @@ public class SimWebGenerator
     /// </summary>
     Dictionary<string, HashSet<int>> stateToAvailableEdgeIds = new();
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/523
+    /// </summary>
+    Dictionary<string, string> stateDescriptionMapping = new();
+
     SmRunner runner;
 
     /// <summary>
@@ -156,8 +161,12 @@ public class SimWebGenerator
 
         // We want this step to run near the end so that behaviors are very close to their final form. This is good for users' understanding.
         // There's no functional difference in moving further back at this point and it is helpful to put in front of validation to ensure no issues are introduced.
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, V1LoggingTransformationStep);
-        
+        const string LoggingTransformationId = "gen-logging-transformation";
+        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, new TransformationStep(id: LoggingTransformationId, V1LoggingTransformationStep));
+
+        // NOTE! Must happen before logging/tracing transformation step. We don't want to show users all the extra logging/tracing behaviors added.
+        runner.SmTransformer.InsertBeforeFirstMatch(LoggingTransformationId, RecordVertexInfo);
+
         // collect diagram names after trigger mapping completes
         runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, CollectDiagramNames);
         runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, RecordInfoForEachState);
@@ -187,6 +196,27 @@ public class SimWebGenerator
         });
     }
 
+    /// <summary>
+    /// This MUST be done before simulation tracing behaviors are added.
+    /// https://github.com/StateSmith/StateSmith/issues/523
+    /// </summary>
+    private void RecordVertexInfo(StateMachine sm)
+    {
+        //todo-low: make this work for pseudo states as well?
+        sm.VisitTypeRecursively((NamedVertex namedVertex) => {
+            var sb = new StringBuilder();
+            SmGraphDescriber smDescriber = new(new StringWriter(sb));
+            smDescriber.SetOutputAncestorHandlers(true);
+            smDescriber.ancestorPrefix = "=== From ancestor `";
+            smDescriber.ancestorPostfix = "` ===";
+            BehaviorDescriber behaviorDescriber = new(singleLineFormat: false, indent: "");
+            behaviorDescriber.prependTransitionArrow = true;
+
+            smDescriber.OutputForVertex(behaviorDescriber, namedVertex, prependSeparator: false);
+            stateDescriptionMapping.Add(namedVertex.Name, sb.ToString());
+        });
+    }
+
     private void RecordInfoForEachState(StateMachine sm)
     {
         // recursively visit all named vertices (states, orthogonal states, state machines, ...)
@@ -200,7 +230,6 @@ public class SimWebGenerator
 
             var availableEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var availableEdgeIds =  new HashSet<int>();
-
             var transitionConsumedEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
             // Collect events from this state and all its ancestors
@@ -258,7 +287,8 @@ public class SimWebGenerator
             jsCode: fileCapturer.CapturedCode,
             diagramEventNamesArray: OrganizeEventNamesIntoJsArray(diagramEventNames),
             jsStateEventsMapping: MapToJson(stateToAvailableEvents),
-            jsStateEdgeMapping: MapToJson(stateToAvailableEdgeIds)
+            jsStateEdgeMapping: MapToJson(stateToAvailableEdgeIds),
+            jsStateDescriptionMapping: SerializeToJson(stateDescriptionMapping)
         );
             
         codeFileWriter.WriteFile(path, code: sb.ToString());
@@ -499,6 +529,17 @@ public class SimWebGenerator
     }
 
     private static string SerializeToJson<T>(Dictionary<string, T[]> sorted)
+    {
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            PropertyNamingPolicy = null // Keep original property names
+        };
+
+        return JsonSerializer.Serialize(sorted, options);
+    }
+
+    private static string SerializeToJson(Dictionary<string, string> sorted)
     {
         var options = new JsonSerializerOptions
         {

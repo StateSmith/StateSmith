@@ -1158,6 +1158,18 @@ evaluateGuard = null;
   ]
 };
 
+        // https://github.com/StateSmith/StateSmith/issues/523
+        const stateDescriptionMapping = {
+  "PlantEx1": "Vertex: ROOT\n-----------------------------------------\n- Type: StateMachine\n- Diagram Id: PlantEx1\n- Initial State: ROOT.\\\u003CInitialState\u003E\n\n### Behaviors\n",
+  "NotShooting": "Vertex: NotShooting\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: NotShooting\n- Initial State: NotShooting.\\\u003CInitialState\u003E\n\n### Behaviors\n",
+  "Idle": "Vertex: Idle\n-----------------------------------------\n- Parent: NotShooting\n- Type: State\n- Diagram Id: Idle\n\n### Behaviors\nEv4\n\nEvConfig --\u003E TransitionTo(Configuring)\n",
+  "Configuring": "Vertex: Configuring\n-----------------------------------------\n- Parent: NotShooting\n- Type: State\n- Diagram Id: Configuring\n- Initial State: Configuring.\\\u003CInitialState\u003E\n\n### Behaviors\nEvConfig --\u003E TransitionTo(Idle)\n",
+  "NewValueSelection": "Vertex: NewValueSelection\n-----------------------------------------\n- Parent: Configuring\n- Type: State\n- Diagram Id: NewValueSelection\n\n### Behaviors\nEvNewValue --\u003E TransitionTo(NewValuePreview)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n",
+  "NewValuePreview": "Vertex: NewValuePreview\n-----------------------------------------\n- Parent: Configuring\n- Type: State\n- Diagram Id: NewValuePreview\n- Initial State: NewValuePreview.\\\u003CInitialState\u003E\n\n### Behaviors\nEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\n\nEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n",
+  "State1": "Vertex: State1\n-----------------------------------------\n- Parent: NewValuePreview\n- Type: State\n- Diagram Id: State1\n\n### Behaviors\nEv2 --\u003E TransitionTo(State2)\n\n=== From ancestor \u0060NewValuePreview\u0060 ===\n\nEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\n\nEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n",
+  "State2": "Vertex: State2\n-----------------------------------------\n- Parent: NewValuePreview\n- Type: State\n- Diagram Id: State2\n\n### Behaviors\n\n=== From ancestor \u0060NewValuePreview\u0060 ===\n\nEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\n\nEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n"
+};
+
         // Get page element references
         const leftPane = document.querySelector('.main');
         const rightPane = document.querySelector('.sidebar');
@@ -1562,7 +1574,19 @@ evaluateGuard = null;
                 stateName = stateElement.getAttribute('data-id');
               }
 
-              forceStateChange(stateName);
+              // https://github.com/StateSmith/StateSmith/issues/523
+              if (event.altKey)
+              {
+                const description = stateDescriptionMapping[stateName];
+                if (description) {
+                  console.log(description);
+                  window.alert(description);
+                } else {
+                  console.warn(`Failed finding description for ${stateName}`);
+                }
+              } else {
+                forceStateChange(stateName);
+              }
             });
           });
         }

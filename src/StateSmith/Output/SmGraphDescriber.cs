@@ -20,6 +20,9 @@ public class SmGraphDescriber : IDisposable
     protected bool prependSeparator = false;
     protected bool outputAncestorHandlers = false;
 
+    public string ancestorPrefix = "    =========== from ancestor ";
+    public string ancestorPostfix = " ===========";
+
     public SmGraphDescriber(TextWriter writer)
     {
         this.writer = writer;
@@ -34,7 +37,7 @@ public class SmGraphDescriber : IDisposable
     {
         using var writer = new StreamWriter(filePath);
         var describer = new SmGraphDescriber(writer);
-        describer.Describe(vertex);
+        describer.DescribeRecursively(vertex);
     }
 
     public void OutputHeader(string header)
@@ -45,15 +48,15 @@ public class SmGraphDescriber : IDisposable
     }
 
     // describe array of vertices
-    public void Describe(IEnumerable<Vertex> vertices)
+    public void DescribeRecursively(IEnumerable<Vertex> vertices)
     {
         foreach (var v in vertices)
         {
-            Describe(v);
+            DescribeRecursively(v);
         }
     }
 
-    public void Describe(Vertex vertex)
+    public void DescribeRecursively(Vertex vertex)
     {
         BehaviorDescriber behaviorDescriber = new(singleLineFormat: false, indent: indentStr);
 
@@ -77,7 +80,7 @@ public class SmGraphDescriber : IDisposable
         prependSeparator = false;
     }
 
-    private void OutputForVertex(BehaviorDescriber behaviorDescriber, Vertex v, bool prependSeparator)
+    public void OutputForVertex(BehaviorDescriber behaviorDescriber, Vertex v, bool prependSeparator)
     {
         if (prependSeparator)
         {
@@ -162,7 +165,7 @@ public class SmGraphDescriber : IDisposable
             return;
         }
 
-        WriteLine($"\n    =========== from ancestor {DescribeVertex(ancestor)} ===========\n");
+        WriteLine($"\n{ancestorPrefix}{DescribeVertex(ancestor)}{ancestorPostfix}\n");
         Write(sb.ToString());
     }
 

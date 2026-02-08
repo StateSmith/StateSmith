@@ -1398,6 +1398,16 @@ evaluateGuard = null;
   ]
 };
 
+        // https://github.com/StateSmith/StateSmith/issues/523
+        const stateDescriptionMapping = {
+  "TriggerMap": "Vertex: ROOT\n-----------------------------------------\n- Type: StateMachine\n- Diagram Id: 152\n- Initial State: ROOT.\\\u003CInitialState\u003E\n\n### Behaviors\nANY / { log_unhandled_event(); }\n",
+  "NORMAL": "Vertex: NORMAL\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: 160\n- Initial State: NORMAL.\\\u003CInitialState\u003E\n\n### Behaviors\nERR --\u003E TransitionTo(RED)\n\n=== From ancestor \u0060ROOT\u0060 ===\n\nANY / { log_unhandled_event(); }\n",
+  "OFF": "Vertex: OFF\n-----------------------------------------\n- Parent: NORMAL\n- Type: State\n- Diagram Id: 162\n\n### Behaviors\nen / { set_color(\u0022#CCC\u0022); }\n\nINC1 --\u003E TransitionTo(BLUE)\n\nINC2 --\u003E TransitionTo(YELLOW)\n\n=== From ancestor \u0060NORMAL\u0060 ===\n\nERR --\u003E TransitionTo(RED)\n\n=== From ancestor \u0060ROOT\u0060 ===\n\nANY / { log_unhandled_event(); }\n",
+  "BLUE": "Vertex: BLUE\n-----------------------------------------\n- Parent: NORMAL\n- Type: State\n- Diagram Id: 165\n\n### Behaviors\nen / { set_color(\u0022#a2f2ff\u0022); }\n\nDIMx --\u003E TransitionTo(OFF)\n\nINCx --\u003E TransitionTo(YELLOW)\n\n=== From ancestor \u0060NORMAL\u0060 ===\n\nERR --\u003E TransitionTo(RED)\n\n=== From ancestor \u0060ROOT\u0060 ===\n\nANY / { log_unhandled_event(); }\n",
+  "YELLOW": "Vertex: YELLOW\n-----------------------------------------\n- Parent: NORMAL\n- Type: State\n- Diagram Id: 170\n\n### Behaviors\nen / { set_color(\u0022#fdff71\u0022); }\n\nDIM1 --\u003E TransitionTo(BLUE)\n\nDIM2 --\u003E TransitionTo(OFF)\n\n=== From ancestor \u0060NORMAL\u0060 ===\n\nERR --\u003E TransitionTo(RED)\n\n=== From ancestor \u0060ROOT\u0060 ===\n\nANY / { log_unhandled_event(); }\n",
+  "RED": "Vertex: RED\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: 175\n\n### Behaviors\nen / { set_color(\u0022#ff4f4f\u0022); }\n\nINPUT / { beep(); }\n\nINCITE_RESET --\u003E TransitionTo(NORMAL)\n\n=== From ancestor \u0060ROOT\u0060 ===\n\nANY / { log_unhandled_event(); }\n"
+};
+
         // Get page element references
         const leftPane = document.querySelector('.main');
         const rightPane = document.querySelector('.sidebar');
@@ -1802,7 +1812,19 @@ evaluateGuard = null;
                 stateName = stateElement.getAttribute('data-id');
               }
 
-              forceStateChange(stateName);
+              // https://github.com/StateSmith/StateSmith/issues/523
+              if (event.altKey)
+              {
+                const description = stateDescriptionMapping[stateName];
+                if (description) {
+                  console.log(description);
+                  window.alert(description);
+                } else {
+                  console.warn(`Failed finding description for ${stateName}`);
+                }
+              } else {
+                forceStateChange(stateName);
+              }
             });
           });
         }

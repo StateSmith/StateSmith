@@ -4,7 +4,7 @@ namespace StateSmith.Output.Sim;
 
 public class HtmlRenderer
 {
-    public static void Render(StringBuilder stringBuilder, string smName, string mermaidCode, string jsCode, string diagramEventNamesArray, string jsStateEventsMapping, string jsStateEdgeMapping)
+    public static void Render(StringBuilder stringBuilder, string smName, string mermaidCode, string jsCode, string diagramEventNamesArray, string jsStateEventsMapping, string jsStateEdgeMapping, string jsStateDescriptionMapping)
     {
         // Now that we are working inside the StateSmith project, we need to restrict ourselves to dotnet 6 features.
         // We can't use """raw strings""" anymore so we do manual string interpolation below string.
@@ -450,6 +450,9 @@ config:
         // https://github.com/StateSmith/StateSmith/issues/522
         const stateEdgeMapping = {{stateEdgeMapping}};
 
+        // https://github.com/StateSmith/StateSmith/issues/523
+        const stateDescriptionMapping = {{stateDescriptionMapping}};
+
         // Get page element references
         const leftPane = document.querySelector('.main');
         const rightPane = document.querySelector('.sidebar');
@@ -854,7 +857,19 @@ config:
                 stateName = stateElement.getAttribute('data-id');
               }
 
-              forceStateChange(stateName);
+              // https://github.com/StateSmith/StateSmith/issues/523
+              if (event.altKey)
+              {
+                const description = stateDescriptionMapping[stateName];
+                if (description) {
+                  console.log(description);
+                  window.alert(description);
+                } else {
+                  console.warn(`Failed finding description for ${stateName}`);
+                }
+              } else {
+                forceStateChange(stateName);
+              }
             });
           });
         }
@@ -968,6 +983,8 @@ config:
         htmlTemplate = htmlTemplate.Replace("{{diagramEventNamesArray}}", diagramEventNamesArray);
         htmlTemplate = htmlTemplate.Replace("{{stateEventsMapping}}", jsStateEventsMapping);
         htmlTemplate = htmlTemplate.Replace("{{stateEdgeMapping}}", jsStateEdgeMapping);
+        htmlTemplate = htmlTemplate.Replace("{{stateDescriptionMapping}}", jsStateDescriptionMapping);
+        
         stringBuilder.AppendLine(htmlTemplate);
     }
 }
