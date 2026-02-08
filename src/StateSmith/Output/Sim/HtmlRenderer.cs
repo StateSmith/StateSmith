@@ -35,6 +35,7 @@ public class HtmlRenderer
       code {
         font-family: monospace;
         color:aquamarine;
+        white-space: pre;
       }
 
       .identifier {
