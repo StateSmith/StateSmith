@@ -29,12 +29,12 @@ public class HtmlRenderer
         margin: 0px;
         color: #cacad1;
         font-family: 'Arial';
+        font-size: 13px;
       }
 
       code {
         font-family: monospace;
         color:aquamarine;
-        font-size: 13px;
       }
 
       .identifier {
@@ -230,7 +230,8 @@ public class HtmlRenderer
       }
       
       .dropdown-button:hover, .dropdown-button:focus {
-        background-color: #f1f1f1;
+        background-color: aquamarine;
+        color: #000;
       }
       
       .dropdown {
@@ -243,7 +244,7 @@ public class HtmlRenderer
         display: none;
         position: absolute;
         right: 0;
-        background-color: #f1f1f1;
+        background-color: #24253c;
         min-width: 250px;
         overflow: auto;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -257,7 +258,7 @@ public class HtmlRenderer
       }
 
       .dropdown-content .dropdown-item:hover {
-        background-color: #ddd;
+        background-color: #333786;
         cursor: pointer;
       }
 
@@ -706,7 +707,7 @@ config:
             },
             logHistoryVarUpdate: (varName, newValue) => {
                 if (document.getElementById('savedSetting_verboseHistory').checked) {
-                    sm.tracer.log(`🕑 HistoryVar(<span class='identifier'>${varName}</span>) = <code>${newValue}</code>`, true);
+                    sm.tracer.log(`🕑 HistoryVar(<span class='identifier'>${varName}</span>) = <span class='identifier'>${newValue}</span>`, true);
                 }
             },
             logHistoryTransition: (description) => {
