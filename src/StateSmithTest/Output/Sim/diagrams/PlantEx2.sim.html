@@ -282,16 +282,15 @@
         stroke-width: 2px !important;
       }
 
-      /* https://github.com/StateSmith/StateSmith/issues/521 */
-      g .edgeLabel:hover {
-        color: aquamarine !important;
-      }
-
-      .clickableStateName {
+      .clickableDiagramElement {
         cursor: pointer;
       }
 
-      span.nodeLabel.clickableStateName:hover {
+      span.edgeLabel.clickableDiagramElement:hover {
+        color: aquamarine !important;
+      }
+
+      span.nodeLabel.clickableDiagramElement:hover {
         color: aquamarine !important;
       }
 
@@ -1455,16 +1454,16 @@ evaluateGuard = null;
               return;
             }
 
-            nodeLabel.classList.add('clickableStateName');
+            nodeLabel.classList.add('clickableDiagramElement');
           });
 
           // find composite state node labels
           document.querySelectorAll('g.statediagram-state[id].statediagram-cluster .nodeLabel').forEach(nodeLabel => {
-            nodeLabel.classList.add('clickableStateName');
+            nodeLabel.classList.add('clickableDiagramElement');
           });
 
           // allow clicking states to force state machine to that state.
-          document.querySelectorAll('.clickableStateName').forEach(nodeLabel => {
+          document.querySelectorAll('.clickableDiagramElement').forEach(nodeLabel => {
             const stateElement = nodeLabel.closest('g.statediagram-state[id]');
 
             if (!stateElement)
@@ -1496,38 +1495,6 @@ evaluateGuard = null;
         // export forceStateChange to global scope so it can be called from the console for testing purposes.
         window.StateSmith_forceStateChange = forceStateChange;
 
-        // clicking on edge label will try to send event
-        // https://github.com/StateSmith/StateSmith/issues/521
-        {
-          document.querySelectorAll('g.edgeLabel').forEach(edgeLabelElement => {
-            edgeLabelElement.style.cursor = 'pointer'; // indicate that the element is clickable.
-            edgeLabelElement.addEventListener('click', (event) => {
-              const edgeLabel = edgeLabelElement.textContent.trim();
-
-              // ignore any decimal numbers at start, then look for first word which should be event name.
-              // This allows for edge labels like: 
-              //    `1. INCREASE [count >= 3] / { count++; }` and 
-              //    `1.1. MY_EVENT`
-              // See https://github.com/StateSmith/StateSmith/wiki/Behaviors
-              const eventRegex = /^(?:\d+\.)?(?:\d+\.\s+)?(\w+)\b/;
-              const match = edgeLabel.match(eventRegex);
-              if (!match) {
-                console.warn(`Could not parse event name from clicked edge label. Edge label text was: '${edgeLabel}'.`, edgeLabelElement);
-                return;
-              }
-
-              const eventName = match[1];
-
-              const button = document.getElementById('button_' + eventName);
-              if (button) {
-                button.click();
-              } else {
-                console.warn(`No button found for event name '${eventName}' from clicked edge label.`, edgeLabelElement);
-              }
-            });
-          });
-        }
-
         // Wire up the buttons that dispatch events for the state machine.
         diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
@@ -1549,6 +1516,46 @@ evaluateGuard = null;
             });
             document.getElementById(`buttons`).appendChild(button);
         });
+
+        // clicking on edge label will try to send event
+        // https://github.com/StateSmith/StateSmith/issues/521
+        // DO AFTER buttons exist as we rely on them.
+        {
+          document.querySelectorAll('g span.edgeLabel').forEach(edgeLabelElement => {
+            const edgeLabel = edgeLabelElement.textContent.trim();
+
+            if (!edgeLabel)
+            {
+              return;
+            }
+
+            // ignore any decimal numbers at start, then look for first word which should be event name.
+            // This allows for edge labels like: 
+            //    `1. INCREASE [count >= 3] / { count++; }` and 
+            //    `1.1. MY_EVENT`
+            // See https://github.com/StateSmith/StateSmith/wiki/Behaviors
+            const eventRegex = /^(?:\d+\.)?(?:\d+\.\s+)?(\w+)\b/;
+            const match = edgeLabel.match(eventRegex);
+            if (!match) {
+              console.log(`Could not parse event name from edge label. This is normal for certain edges. Edge label text was: '${edgeLabel}'.`, edgeLabelElement);
+              return;
+            }
+
+            const eventName = match[1];
+            const button = document.getElementById('button_' + eventName);
+            if (!button)
+            {
+              console.log(`No event button found for event name '${eventName}'. This is normal for certain edges.`, edgeLabelElement);
+              return;
+            }
+
+            edgeLabelElement.classList.add('clickableDiagramElement');
+
+            edgeLabelElement.addEventListener('click', (event) => {
+              button.click();
+            });
+          });
+        }
 
         sm.tracer?.log(`<span class='dispatched'>START</span>`, true);
         sm.start(); // This will cause `updateEventButtonStates()` to be called.
