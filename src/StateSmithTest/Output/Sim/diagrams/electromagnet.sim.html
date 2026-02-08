@@ -261,6 +261,13 @@
         stroke-width: 2px !important;
       }
 
+      .transition.available {
+        stroke: #7e70cf !important;
+        /* stroke: #4e98d4 !important; */
+        stroke-width: 4px !important;
+        filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
+      }
+
       .transition.active {
         stroke: #E06C75 !important;
         stroke-width: 5px !important;
@@ -2217,6 +2224,114 @@ evaluateGuard = null;
   ]
 };
 
+        // https://github.com/StateSmith/StateSmith/issues/522
+        const stateEdgeMapping = {
+  "System_Initialization": [
+    1
+  ],
+  "Adc_Calibration": [
+    2,
+    3
+  ],
+  "System_Run": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "Standby": [
+    4,
+    5,
+    6,
+    7,
+    9
+  ],
+  "Electricity_Control_Mode": [
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    13
+  ],
+  "Initialization_Of_Pid": [
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    13,
+    15
+  ],
+  "Electricity_Control": [
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    13,
+    16,
+    17
+  ],
+  "Parameter_Adjustments": [
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    13,
+    18
+  ],
+  "Change_Of_Objective": [
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    13,
+    19
+  ],
+  "Electricity_Control_Mode2": [
+    4,
+    5,
+    6,
+    7,
+    20,
+    21,
+    22
+  ],
+  "Initialization_Of_Pid2": [
+    4,
+    5,
+    6,
+    7,
+    20,
+    21,
+    22
+  ],
+  "Electricity_Control2": [
+    4,
+    5,
+    6,
+    7,
+    20,
+    21,
+    22
+  ],
+  "System_Error": [],
+  "System_Stop": []
+};
+
         // Get page element references
         const leftPane = document.querySelector('.main');
         const rightPane = document.querySelector('.sidebar');
@@ -2436,6 +2551,23 @@ evaluateGuard = null;
             });
         }
 
+        // https://github.com/StateSmith/StateSmith/issues/522
+        function updateEdgeAvailability(currentStateDiagramName) {
+            const availableEdges = stateEdgeMapping[currentStateDiagramName] || [];
+
+            document.querySelectorAll('.transition.available').forEach(element => {
+              element.classList.remove('available');
+            });
+
+            availableEdges.forEach(edgeId => {
+                var domId = `edge${edgeId}`;
+                var edge = document.getElementById(domId);
+                if (edge) {
+                  edge.classList.add('available');
+                }
+            });
+        }
+
         // The simulator uses a tracer callback to perform operations such as 
         // state highlighting and logging.
         sm.tracer = {
@@ -2453,8 +2585,8 @@ evaluateGuard = null;
                     sm.tracer.log(`➡️ Entered <span class='identifier'>${mermaidName}</span>`, true);
                 }
                 
-                // Update event button states
                 updateEventButtonStates(mermaidName);
+                updateEdgeAvailability(mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');

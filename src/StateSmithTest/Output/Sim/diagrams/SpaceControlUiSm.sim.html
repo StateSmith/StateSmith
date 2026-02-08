@@ -261,6 +261,13 @@
         stroke-width: 2px !important;
       }
 
+      .transition.available {
+        stroke: #7e70cf !important;
+        /* stroke: #4e98d4 !important; */
+        stroke-width: 4px !important;
+        filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
+      }
+
       .transition.active {
         stroke: #E06C75 !important;
         stroke-width: 5px !important;
@@ -3073,6 +3080,146 @@ evaluateGuard = null;
   ]
 };
 
+        // https://github.com/StateSmith/StateSmith/issues/522
+        const stateEdgeMapping = {
+  "SPLASH_SCREEN": [
+    1
+  ],
+  "DONE": [],
+  "MENU": [
+    2
+  ],
+  "MAIN_MENU_INNER": [
+    2,
+    3,
+    4
+  ],
+  "DRINK": [
+    2,
+    3,
+    4,
+    6,
+    7,
+    8
+  ],
+  "FOOD": [
+    2,
+    3,
+    4,
+    9,
+    10
+  ],
+  "SYSTEM_INFO": [
+    2,
+    3,
+    4,
+    11,
+    12
+  ],
+  "ESC_CATCHER_1": [
+    2,
+    13
+  ],
+  "DRINK_MENU": [
+    2,
+    13,
+    14,
+    15
+  ],
+  "FOOD_MENU": [
+    2,
+    13,
+    16
+  ],
+  "EAT_BURRITO": [
+    2,
+    13,
+    16,
+    17,
+    18
+  ],
+  "EAT_SLUDGE": [
+    2,
+    13,
+    16,
+    20,
+    21,
+    22
+  ],
+  "EAT_MRE": [
+    2,
+    13,
+    16,
+    23,
+    24
+  ],
+  "EVENT_EATER_2": [
+    2,
+    13,
+    16
+  ],
+  "COOKING_FOOD1": [
+    2,
+    13,
+    16,
+    26
+  ],
+  "COOKING_FOOD": [
+    2,
+    13,
+    16,
+    27
+  ],
+  "SYSTEM_INFO_MENU": [
+    2,
+    13,
+    28,
+    29,
+    30
+  ],
+  "BURRITO_COUNT": [
+    2,
+    13,
+    28,
+    29,
+    30,
+    31,
+    32
+  ],
+  "DISTANCE": [
+    2,
+    13,
+    28,
+    29,
+    30,
+    33
+  ],
+  "SELF_DESTRUCT_OPTION": [
+    2,
+    13,
+    28,
+    29,
+    30,
+    34,
+    35
+  ],
+  "SELF_DESTRUCT": [
+    2,
+    13,
+    28,
+    29,
+    30
+  ],
+  "SD_1": [
+    2,
+    13,
+    28,
+    29,
+    30,
+    38
+  ]
+};
+
         // Get page element references
         const leftPane = document.querySelector('.main');
         const rightPane = document.querySelector('.sidebar');
@@ -3292,6 +3439,23 @@ evaluateGuard = null;
             });
         }
 
+        // https://github.com/StateSmith/StateSmith/issues/522
+        function updateEdgeAvailability(currentStateDiagramName) {
+            const availableEdges = stateEdgeMapping[currentStateDiagramName] || [];
+
+            document.querySelectorAll('.transition.available').forEach(element => {
+              element.classList.remove('available');
+            });
+
+            availableEdges.forEach(edgeId => {
+                var domId = `edge${edgeId}`;
+                var edge = document.getElementById(domId);
+                if (edge) {
+                  edge.classList.add('available');
+                }
+            });
+        }
+
         // The simulator uses a tracer callback to perform operations such as 
         // state highlighting and logging.
         sm.tracer = {
@@ -3309,8 +3473,8 @@ evaluateGuard = null;
                     sm.tracer.log(`➡️ Entered <span class='identifier'>${mermaidName}</span>`, true);
                 }
                 
-                // Update event button states
                 updateEventButtonStates(mermaidName);
+                updateEdgeAvailability(mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');

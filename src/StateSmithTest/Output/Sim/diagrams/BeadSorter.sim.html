@@ -261,6 +261,13 @@
         stroke-width: 2px !important;
       }
 
+      .transition.available {
+        stroke: #7e70cf !important;
+        /* stroke: #4e98d4 !important; */
+        stroke-width: 4px !important;
+        filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
+      }
+
       .transition.active {
         stroke: #E06C75 !important;
         stroke-width: 5px !important;
@@ -3456,6 +3463,119 @@ evaluateGuard = null;
   ]
 };
 
+        // https://github.com/StateSmith/StateSmith/issues/522
+        const stateEdgeMapping = {
+  "Running": [
+    0
+  ],
+  "TrainingMode": [
+    0
+  ],
+  "ReadEmptySlot": [
+    0
+  ],
+  "ReadEmptySlot__Dropoff": [
+    0,
+    2
+  ],
+  "ReadEmptySlot__Sensor": [
+    0,
+    3,
+    4
+  ],
+  "ReadJammedSlot": [
+    0
+  ],
+  "ReadJammedSlot__Dropoff": [
+    0,
+    6,
+    7
+  ],
+  "Jammed": [
+    0,
+    8
+  ],
+  "ReadJammedSlot__Sensor": [
+    0,
+    9
+  ],
+  "ReadSlot": [
+    0
+  ],
+  "ReadSlot__Dropoff": [
+    0,
+    11,
+    12
+  ],
+  "TrainingMode__Pickup": [
+    0,
+    13
+  ],
+  "ReadSlot__Sensor": [
+    0,
+    14
+  ],
+  "TrainingMode__Start": [
+    0,
+    15
+  ],
+  "SortingMode": [
+    0
+  ],
+  "SortingMode__Dropoff": [
+    0,
+    17
+  ],
+  "SortingMode__Pickup": [
+    0,
+    18
+  ],
+  "SortingMode__Start": [
+    0,
+    20
+  ],
+  "SortingMode__Sensor": [
+    0,
+    21
+  ],
+  "SetupCheck": [
+    0
+  ],
+  "Tour": [
+    0,
+    23,
+    24
+  ],
+  "SetupCheck__Start": [
+    0,
+    25,
+    26
+  ],
+  "AdjustServoOffsets": [
+    0,
+    27
+  ],
+  "DECREASE": [
+    0,
+    27,
+    28
+  ],
+  "INCREASE": [
+    0,
+    27,
+    29
+  ],
+  "Wait": [
+    0,
+    27,
+    30,
+    31
+  ],
+  "Paused": [
+    35
+  ]
+};
+
         // Get page element references
         const leftPane = document.querySelector('.main');
         const rightPane = document.querySelector('.sidebar');
@@ -3675,6 +3795,23 @@ evaluateGuard = null;
             });
         }
 
+        // https://github.com/StateSmith/StateSmith/issues/522
+        function updateEdgeAvailability(currentStateDiagramName) {
+            const availableEdges = stateEdgeMapping[currentStateDiagramName] || [];
+
+            document.querySelectorAll('.transition.available').forEach(element => {
+              element.classList.remove('available');
+            });
+
+            availableEdges.forEach(edgeId => {
+                var domId = `edge${edgeId}`;
+                var edge = document.getElementById(domId);
+                if (edge) {
+                  edge.classList.add('available');
+                }
+            });
+        }
+
         // The simulator uses a tracer callback to perform operations such as 
         // state highlighting and logging.
         sm.tracer = {
@@ -3692,8 +3829,8 @@ evaluateGuard = null;
                     sm.tracer.log(`➡️ Entered <span class='identifier'>${mermaidName}</span>`, true);
                 }
                 
-                // Update event button states
                 updateEventButtonStates(mermaidName);
+                updateEdgeAvailability(mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');

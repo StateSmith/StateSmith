@@ -51,6 +51,12 @@ public class SimWebGenerator
     /// </summary>
     Dictionary<string, HashSet<string>> stateToAvailableEvents = new(StringComparer.OrdinalIgnoreCase);
 
+    /// <summary>
+    /// Mapping from state to available transition edges
+    /// https://github.com/StateSmith/StateSmith/issues/522
+    /// </summary>
+    Dictionary<string, HashSet<int>> stateToAvailableEdgeIds = new();
+
     SmRunner runner;
 
     /// <summary>
@@ -154,7 +160,7 @@ public class SimWebGenerator
         
         // collect diagram names after trigger mapping completes
         runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, CollectDiagramNames);
-        runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, RecordAvailableEventsForEachState);
+        runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, RecordInfoForEachState);
 
         // We to generate mermaid diagram before history support (to avoid a ton of transitions being shown), but AFTER name conflict resolution.
         // See https://github.com/StateSmith/StateSmith/issues/302
@@ -181,7 +187,7 @@ public class SimWebGenerator
         });
     }
 
-    private void RecordAvailableEventsForEachState(StateMachine sm)
+    private void RecordInfoForEachState(StateMachine sm)
     {
         // recursively visit all named vertices (states, orthogonal states, state machines, ...)
         sm.VisitTypeRecursively((NamedVertex namedVertex) =>
@@ -193,6 +199,7 @@ public class SimWebGenerator
             }
 
             var availableEvents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var availableEdgeIds =  new HashSet<int>();
 
             // Collect events from this state and all its ancestors
             Vertex? currentVertex = namedVertex;
@@ -205,6 +212,10 @@ public class SimWebGenerator
                         if (TriggerHelper.IsEvent(trigger))
                         {
                             availableEvents.Add(trigger);
+                            if (behavior.HasTransition())
+                            {
+                                availableEdgeIds.Add(mermaidEdgeTracker.GetEdgeId(behavior));
+                            }
                         }
                     }
                 }
@@ -212,6 +223,7 @@ public class SimWebGenerator
             }
 
             stateToAvailableEvents[namedVertex.Name] = availableEvents;
+            stateToAvailableEdgeIds[namedVertex.Name] = availableEdgeIds;
         });
     }
 
@@ -226,19 +238,16 @@ public class SimWebGenerator
 
         string path = Path.Combine(outputDir, $"{smName}.sim.html");
 
-        string diagramEventNamesArray = OrganizeEventNamesIntoJsArray(diagramEventNames);
-
-        // Organize state event mapping into JavaScript object format
-        string stateEventsMapping = OrganizeStateEventsIntoJsObject();
-
         // Build HTML content
         var sb = new StringBuilder();
         HtmlRenderer.Render(sb,
             smName: smName,
             mermaidCode: mermaidCodeWriter.ToString(),
             jsCode: fileCapturer.CapturedCode,
-            diagramEventNamesArray: diagramEventNamesArray,
-            stateEventsMapping: stateEventsMapping);
+            diagramEventNamesArray: OrganizeEventNamesIntoJsArray(diagramEventNames),
+            jsStateEventsMapping: MapToJson(stateToAvailableEvents),
+            jsStateEdgeMapping: MapToJson(stateToAvailableEdgeIds)
+        );
             
         codeFileWriter.WriteFile(path, code: sb.ToString());
     }
@@ -359,7 +368,6 @@ public class SimWebGenerator
             {
                 // Note: most history behaviors will not be shown in the mermaid diagram
                 var domId = "edge" + mermaidEdgeTracker.GetEdgeId(b);
-                // NOTE! Avoid single quotes in ss guard/action code until bug fixed: https://github.com/StateSmith/StateSmith/issues/282
                 b.actionCode += $"this.tracer?.edgeTransition('{domId}');";
             }
         }
@@ -456,24 +464,36 @@ public class SimWebGenerator
         string IRenderConfigJavaScript.PrivatePrefix => "_";
     }
 
-    /// <summary>
-    /// Convert state-to-available-events mapping to JavaScript object format
-    /// </summary>
-    /// <returns>String in JavaScript object format</returns>
-    private string OrganizeStateEventsIntoJsObject()
+    private string MapToJson(Dictionary<string, HashSet<string>> map)
     {
-        // Convert to a dictionary with sorted event arrays for consistent output
-        var sortedStateEvents = stateToAvailableEvents.ToDictionary(
+        // Convert to a dictionary with sorted for consistent output to minimize git diffs
+        var sorted = map.ToDictionary(
             kvp => kvp.Key,
             kvp => kvp.Value.OrderBy(e => e, StringComparer.OrdinalIgnoreCase).ToArray()
         );
-        
+
+        return SerializeToJson(sorted);
+    }
+
+    private string MapToJson(Dictionary<string, HashSet<int>> map)
+    {
+        // Convert to a dictionary with sorted for consistent output to minimize git diffs
+        var sorted = map.ToDictionary(
+            kvp => kvp.Key,
+            kvp => kvp.Value.OrderBy(e => e).ToArray()
+        );
+
+        return SerializeToJson(sorted);
+    }
+
+    private static string SerializeToJson<T>(Dictionary<string, T[]> sorted)
+    {
         var options = new JsonSerializerOptions
         {
             WriteIndented = true,
             PropertyNamingPolicy = null // Keep original property names
         };
-        
-        return JsonSerializer.Serialize(sortedStateEvents, options);
+
+        return JsonSerializer.Serialize(sorted, options);
     }
 }

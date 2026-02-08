@@ -45,6 +45,8 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/519
 - Simulator - allow clicking events shown in diagram.
   - https://github.com/StateSmith/StateSmith/issues/521
+- Simulator - distinguish available transition edges.
+  - https://github.com/StateSmith/StateSmith/issues/522
 - Simulator - verbose mode to show enter behavior.
   - https://github.com/StateSmith/StateSmith/issues/515
 - Simulator - verbose mode to show exit behavior.

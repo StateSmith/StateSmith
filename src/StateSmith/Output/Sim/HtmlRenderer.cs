@@ -4,7 +4,7 @@ namespace StateSmith.Output.Sim;
 
 public class HtmlRenderer
 {
-    public static void Render(StringBuilder stringBuilder, string smName, string mermaidCode, string jsCode, string diagramEventNamesArray, string stateEventsMapping)
+    public static void Render(StringBuilder stringBuilder, string smName, string mermaidCode, string jsCode, string diagramEventNamesArray, string jsStateEventsMapping, string jsStateEdgeMapping)
     {
         // Now that we are working inside the StateSmith project, we need to restrict ourselves to dotnet 6 features.
         // We can't use """raw strings""" anymore so we do manual string interpolation below string.
@@ -273,6 +273,13 @@ public class HtmlRenderer
         stroke-width: 2px !important;
       }
 
+      .transition.available {
+        stroke: #7e70cf !important;
+        /* stroke: #4e98d4 !important; */
+        stroke-width: 4px !important;
+        filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
+      }
+
       .transition.active {
         stroke: #E06C75 !important;
         stroke-width: 5px !important;
@@ -438,6 +445,9 @@ config:
 
         // Mapping from state to available events
         const stateEventsMapping = {{stateEventsMapping}};
+
+        // https://github.com/StateSmith/StateSmith/issues/522
+        const stateEdgeMapping = {{stateEdgeMapping}};
 
         // Get page element references
         const leftPane = document.querySelector('.main');
@@ -658,6 +668,23 @@ config:
             });
         }
 
+        // https://github.com/StateSmith/StateSmith/issues/522
+        function updateEdgeAvailability(currentStateDiagramName) {
+            const availableEdges = stateEdgeMapping[currentStateDiagramName] || [];
+
+            document.querySelectorAll('.transition.available').forEach(element => {
+              element.classList.remove('available');
+            });
+
+            availableEdges.forEach(edgeId => {
+                var domId = `edge${edgeId}`;
+                var edge = document.getElementById(domId);
+                if (edge) {
+                  edge.classList.add('available');
+                }
+            });
+        }
+
         // The simulator uses a tracer callback to perform operations such as 
         // state highlighting and logging.
         sm.tracer = {
@@ -675,8 +702,8 @@ config:
                     sm.tracer.log(`➡️ Entered <span class='identifier'>${mermaidName}</span>`, true);
                 }
                 
-                // Update event button states
                 updateEventButtonStates(mermaidName);
+                updateEdgeAvailability(mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
@@ -938,7 +965,8 @@ config:
         htmlTemplate = htmlTemplate.Replace("{{jsCode}}", jsCode);
         htmlTemplate = htmlTemplate.Replace("{{smName}}", smName);
         htmlTemplate = htmlTemplate.Replace("{{diagramEventNamesArray}}", diagramEventNamesArray);
-        htmlTemplate = htmlTemplate.Replace("{{stateEventsMapping}}", stateEventsMapping);
+        htmlTemplate = htmlTemplate.Replace("{{stateEventsMapping}}", jsStateEventsMapping);
+        htmlTemplate = htmlTemplate.Replace("{{stateEdgeMapping}}", jsStateEdgeMapping);
         stringBuilder.AppendLine(htmlTemplate);
     }
 }
