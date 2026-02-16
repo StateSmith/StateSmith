@@ -73,6 +73,47 @@ public class SmRunnerTests
             """);
     }
 
+    [Fact]
+    public void TestReadConfigFromTomlFile()
+    {
+        string tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+        Directory.CreateDirectory(tempDir);
+
+        // The test will set this string in the config
+        // and the test will verify that it is used in the generated Java file.
+        string fileTopString = "BigPurpleDinosaur";
+
+        File.WriteAllText(
+            Path.Combine(tempDir, "lightbulb.puml"),
+            """
+            @startuml
+            [*] --> on
+            on --> off
+            off --> on
+            @enduml
+            """
+        );
+
+        File.WriteAllText(
+            Path.Combine(tempDir, "lightbulb.toml"),
+            $"""
+            SmRunnerSettings.transpilerId = "Java"
+            RenderConfig.Java.Extends = "{fileTopString}"
+            """
+        );
+
+        SmRunner runner = new(diagramPath: Path.Combine(tempDir, "lightbulb.puml"), outputDirectory: tempDir);
+        runner.Run();
+
+        var javaPath = Path.Combine(tempDir, "lightbulb.java");
+        Assert.True(File.Exists(javaPath), $"Java file {javaPath} should be created");
+        string javaContent = File.ReadAllText(javaPath);
+        javaContent.Should().Contain(fileTopString);
+
+        Directory.Delete(tempDir, true); // Delete on success
+    }
+
+
     // todo_low - add test for when state machine name is specified
 
     // todo_low - add test for when exception is thrown
