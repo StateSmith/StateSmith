@@ -204,16 +204,31 @@ public class SimWebGenerator
     {
         //todo-low: make this work for pseudo states as well?
         sm.VisitTypeRecursively((NamedVertex namedVertex) => {
-            var sb = new StringBuilder();
-            SmGraphDescriber smDescriber = new(new StringWriter(sb));
-            smDescriber.SetOutputAncestorHandlers(true);
-            smDescriber.ancestorPrefix = "=== From ancestor `";
-            smDescriber.ancestorPostfix = "` ===";
+
             BehaviorDescriber behaviorDescriber = new(singleLineFormat: false, indent: "");
             behaviorDescriber.prependTransitionArrow = true;
 
-            smDescriber.OutputForVertex(behaviorDescriber, namedVertex, prependSeparator: false);
-            stateDescriptionMapping.Add(namedVertex.Name, sb.ToString());
+            StringBuilder sb = new StringBuilder();
+           
+            Vertex? currentVertex = namedVertex;
+            while (currentVertex != null)
+            {
+                sb.Append("<tr><td>");
+
+                string prefix = (currentVertex != namedVertex) ? "Parent " : "";
+
+                sb.Append($"<h3>{prefix}Vertex: <span class='identifier'>{Vertex.Describe(currentVertex)}</span>, <b>Diagram Id:</b> <span class='identifier'>{currentVertex.DiagramId}</h3>");
+
+                foreach (var behavior in currentVertex.Behaviors)
+                {
+                    sb.Append($"{behaviorDescriber.Describe(behavior)}\n");
+                }
+
+                sb.Append("</td></tr>");
+                currentVertex = currentVertex.Parent;
+            }
+            
+            stateDescriptionMapping.Add(namedVertex.Name, sb.ToString().ReplaceLineEndings("<br>"));
         });
     }
 

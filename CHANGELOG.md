@@ -47,7 +47,7 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/521
 - Simulator - distinguish available transition edges.
   - https://github.com/StateSmith/StateSmith/issues/522
-- Simulator - show full state description on ALT+CLICK.
+- Simulator - show full state description on state entry.
   - https://github.com/StateSmith/StateSmith/issues/523
 - Simulator - verbose mode to show enter behavior.
   - https://github.com/StateSmith/StateSmith/issues/515
@@ -67,7 +67,7 @@ Test/interim releases are not documented here.
 - Simulator - add setting to disable tool tips on event buttons.
 - Simulator - remember settings in localStorage.
 - Simulator - parent/composite states are now highlighted when entered.
-- Simulator - dash edges just taken.
+- Simulator - dash edges for transitions just taken.
 
 ## Fixed (minor)
 - Fix - simulator - mermaid bug with parent self transitions.

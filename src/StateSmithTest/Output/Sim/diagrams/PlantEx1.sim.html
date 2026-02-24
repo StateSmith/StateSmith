@@ -85,6 +85,40 @@
         flex-direction: column;
       }
 
+
+      #state-info {
+        display: none;
+        border-top: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+        /* padding-top: 5px; */
+        /* padding-bottom: 5px; */
+        border-collapse: collapse;
+        overflow: auto;
+        font-family: monospace;
+      }
+
+      #state-info h3 {
+        margin: 0;
+      }
+
+      #state-info tr {
+        border-bottom: 1px solid black;
+      }
+
+      #state-info td {
+        margin: 0;
+        white-space: nowrap;
+
+        padding-bottom: 5px;
+        padding-left: 5px;
+        padding-top: 5px;
+      }
+      
+      #state-info tr:nth-child(even) {
+        background-color: #252933;
+      }
+
+
       #buttons {
         display: flex;
         flex-direction: column;
@@ -146,7 +180,6 @@
       }
 
       #event-logs {
-        margin-top: 30px;       
         display: flex;
         overflow: auto;    
         flex-direction: column-reverse;
@@ -416,6 +449,11 @@ State1 --> State2 : Ev2
                 <input type='checkbox' id='savedSetting_hideIrrelevantEvents' name='savedSetting_hideIrrelevantEvents'>
                 Hide ignored event buttons
               </label>
+              <label class='dropdown-item' for='savedSetting_showStateInfo'
+                title='The state info panel is updated every time a state is entered. This setting controls whether it is visible or not.'>
+                <input type='checkbox' id='savedSetting_showStateInfo' name='savedSetting_showStateInfo' checked>
+                Show state info panel.
+              </label>
               <label class='dropdown-item' for='savedSetting_verboseEnter'
                 title='Every time a state is entered, it will be logged below in the event log.'>
                 <input type='checkbox' id='savedSetting_verboseEnter' name='savedSetting_verboseEnter' checked>
@@ -452,6 +490,11 @@ State1 --> State2 : Ev2
         </div>
       </div>
     
+      <div> <!-- needed to prevent event-logs div from squishing state-info vertically -->
+        <table id='state-info'>
+        </table>
+      </div>
+
       <div id='event-logs'>
         <table class='console'>
           <tbody>
@@ -1160,14 +1203,14 @@ evaluateGuard = null;
 
         // https://github.com/StateSmith/StateSmith/issues/523
         const stateDescriptionMapping = {
-  "PlantEx1": "Vertex: ROOT\n-----------------------------------------\n- Type: StateMachine\n- Diagram Id: PlantEx1\n- Initial State: ROOT.\\\u003CInitialState\u003E\n\n### Behaviors\n",
-  "NotShooting": "Vertex: NotShooting\n-----------------------------------------\n- Parent: ROOT\n- Type: State\n- Diagram Id: NotShooting\n- Initial State: NotShooting.\\\u003CInitialState\u003E\n\n### Behaviors\n",
-  "Idle": "Vertex: Idle\n-----------------------------------------\n- Parent: NotShooting\n- Type: State\n- Diagram Id: Idle\n\n### Behaviors\nEv4\n\nEvConfig --\u003E TransitionTo(Configuring)\n",
-  "Configuring": "Vertex: Configuring\n-----------------------------------------\n- Parent: NotShooting\n- Type: State\n- Diagram Id: Configuring\n- Initial State: Configuring.\\\u003CInitialState\u003E\n\n### Behaviors\nEvConfig --\u003E TransitionTo(Idle)\n",
-  "NewValueSelection": "Vertex: NewValueSelection\n-----------------------------------------\n- Parent: Configuring\n- Type: State\n- Diagram Id: NewValueSelection\n\n### Behaviors\nEvNewValue --\u003E TransitionTo(NewValuePreview)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n",
-  "NewValuePreview": "Vertex: NewValuePreview\n-----------------------------------------\n- Parent: Configuring\n- Type: State\n- Diagram Id: NewValuePreview\n- Initial State: NewValuePreview.\\\u003CInitialState\u003E\n\n### Behaviors\nEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\n\nEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n",
-  "State1": "Vertex: State1\n-----------------------------------------\n- Parent: NewValuePreview\n- Type: State\n- Diagram Id: State1\n\n### Behaviors\nEv2 --\u003E TransitionTo(State2)\n\n=== From ancestor \u0060NewValuePreview\u0060 ===\n\nEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\n\nEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n",
-  "State2": "Vertex: State2\n-----------------------------------------\n- Parent: NewValuePreview\n- Type: State\n- Diagram Id: State2\n\n### Behaviors\n\n=== From ancestor \u0060NewValuePreview\u0060 ===\n\nEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\n\nEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\n\n=== From ancestor \u0060Configuring\u0060 ===\n\nEvConfig --\u003E TransitionTo(Idle)\n"
+  "PlantEx1": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EPlantEx1\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "NotShooting": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EPlantEx1\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "Idle": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003EIdle\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EIdle\u003C/h3\u003EEv4\u003Cbr\u003EEvConfig --\u003E TransitionTo(Configuring)\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EPlantEx1\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "Configuring": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003EConfiguring\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EConfiguring\u003C/h3\u003EEvConfig --\u003E TransitionTo(Idle)\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EPlantEx1\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "NewValueSelection": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003ENewValueSelection\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ENewValueSelection\u003C/h3\u003EEvNewValue --\u003E TransitionTo(NewValuePreview)\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EConfiguring\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EConfiguring\u003C/h3\u003EEvConfig --\u003E TransitionTo(Idle)\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EPlantEx1\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "NewValuePreview": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003ENewValuePreview\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ENewValuePreview\u003C/h3\u003EEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\u003Cbr\u003EEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EConfiguring\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EConfiguring\u003C/h3\u003EEvConfig --\u003E TransitionTo(Idle)\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EPlantEx1\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "State1": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003EState1\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EState1\u003C/h3\u003EEv2 --\u003E TransitionTo(State2)\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003ENewValuePreview\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ENewValuePreview\u003C/h3\u003EEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\u003Cbr\u003EEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EConfiguring\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EConfiguring\u003C/h3\u003EEvConfig --\u003E TransitionTo(Idle)\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EPlantEx1\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "State2": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003EState2\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EState2\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003ENewValuePreview\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ENewValuePreview\u003C/h3\u003EEvNewValueRejected --\u003E TransitionTo(NewValueSelection)\u003Cbr\u003EEvNewValueSaved --\u003E TransitionTo(NewValueSelection)\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EConfiguring\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EConfiguring\u003C/h3\u003EEvConfig --\u003E TransitionTo(Idle)\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ENotShooting\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EPlantEx1\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E"
 };
 
         // Get page element references
@@ -1248,6 +1291,16 @@ evaluateGuard = null;
         document.getElementById('savedSetting_hideIrrelevantEvents').addEventListener('change', function() {
           // When checkbox state changes, only update button visibility, not availability
           updateButtonVisibility();
+        });
+
+        document.getElementById('savedSetting_showStateInfo').addEventListener('change', function() {
+          // hide #state-info div if unchecked
+          const stateInfoDiv = document.getElementById('state-info');
+          if(this.checked) {
+            stateInfoDiv.style.display = 'block';
+          } else {
+            stateInfoDiv.style.display = 'none';
+          }
         });
 
         // store and restore checkbox states using localStorage.
@@ -1425,6 +1478,14 @@ evaluateGuard = null;
                 
                 updateEventButtonStates(mermaidName);
                 updateEdgeAvailability(mermaidName);
+
+                const description = stateDescriptionMapping[mermaidName];
+                if (description) {
+                  console.log(description);
+                  document.querySelector('#state-info').innerHTML = description;
+                } else {
+                  console.warn(`Failed finding description for ${mermaidName}`);
+                }
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
@@ -1574,19 +1635,7 @@ evaluateGuard = null;
                 stateName = stateElement.getAttribute('data-id');
               }
 
-              // https://github.com/StateSmith/StateSmith/issues/523
-              if (event.altKey)
-              {
-                const description = stateDescriptionMapping[stateName];
-                if (description) {
-                  console.log(description);
-                  window.alert(description);
-                } else {
-                  console.warn(`Failed finding description for ${stateName}`);
-                }
-              } else {
-                forceStateChange(stateName);
-              }
+              forceStateChange(stateName);
             });
           });
         }

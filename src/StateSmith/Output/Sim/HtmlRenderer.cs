@@ -97,6 +97,40 @@ public class HtmlRenderer
         flex-direction: column;
       }
 
+
+      #state-info {
+        display: none;
+        border-top: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+        /* padding-top: 5px; */
+        /* padding-bottom: 5px; */
+        border-collapse: collapse;
+        overflow: auto;
+        font-family: monospace;
+      }
+
+      #state-info h3 {
+        margin: 0;
+      }
+
+      #state-info tr {
+        border-bottom: 1px solid black;
+      }
+
+      #state-info td {
+        margin: 0;
+        white-space: nowrap;
+
+        padding-bottom: 5px;
+        padding-left: 5px;
+        padding-top: 5px;
+      }
+      
+      #state-info tr:nth-child(even) {
+        background-color: #252933;
+      }
+
+
       #buttons {
         display: flex;
         flex-direction: column;
@@ -158,7 +192,6 @@ public class HtmlRenderer
       }
 
       #event-logs {
-        margin-top: 30px;       
         display: flex;
         overflow: auto;    
         flex-direction: column-reverse;
@@ -359,6 +392,11 @@ config:
                 <input type='checkbox' id='savedSetting_hideIrrelevantEvents' name='savedSetting_hideIrrelevantEvents'>
                 Hide ignored event buttons
               </label>
+              <label class='dropdown-item' for='savedSetting_showStateInfo'
+                title='The state info panel is updated every time a state is entered. This setting controls whether it is visible or not.'>
+                <input type='checkbox' id='savedSetting_showStateInfo' name='savedSetting_showStateInfo' checked>
+                Show state info panel.
+              </label>
               <label class='dropdown-item' for='savedSetting_verboseEnter'
                 title='Every time a state is entered, it will be logged below in the event log.'>
                 <input type='checkbox' id='savedSetting_verboseEnter' name='savedSetting_verboseEnter' checked>
@@ -395,6 +433,11 @@ config:
         </div>
       </div>
     
+      <div> <!-- needed to prevent event-logs div from squishing state-info vertically -->
+        <table id='state-info'>
+        </table>
+      </div>
+
       <div id='event-logs'>
         <table class='console'>
           <tbody>
@@ -531,6 +574,16 @@ config:
         document.getElementById('savedSetting_hideIrrelevantEvents').addEventListener('change', function() {
           // When checkbox state changes, only update button visibility, not availability
           updateButtonVisibility();
+        });
+
+        document.getElementById('savedSetting_showStateInfo').addEventListener('change', function() {
+          // hide #state-info div if unchecked
+          const stateInfoDiv = document.getElementById('state-info');
+          if(this.checked) {
+            stateInfoDiv.style.display = 'block';
+          } else {
+            stateInfoDiv.style.display = 'none';
+          }
         });
 
         // store and restore checkbox states using localStorage.
@@ -708,6 +761,14 @@ config:
                 
                 updateEventButtonStates(mermaidName);
                 updateEdgeAvailability(mermaidName);
+
+                const description = stateDescriptionMapping[mermaidName];
+                if (description) {
+                  console.log(description);
+                  document.querySelector('#state-info').innerHTML = description;
+                } else {
+                  console.warn(`Failed finding description for ${mermaidName}`);
+                }
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
@@ -857,19 +918,7 @@ config:
                 stateName = stateElement.getAttribute('data-id');
               }
 
-              // https://github.com/StateSmith/StateSmith/issues/523
-              if (event.altKey)
-              {
-                const description = stateDescriptionMapping[stateName];
-                if (description) {
-                  console.log(description);
-                  window.alert(description);
-                } else {
-                  console.warn(`Failed finding description for ${stateName}`);
-                }
-              } else {
-                forceStateChange(stateName);
-              }
+              forceStateChange(stateName);
             });
           });
         }
