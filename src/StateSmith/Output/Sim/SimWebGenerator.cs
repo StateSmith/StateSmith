@@ -15,6 +15,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Web;
 
 namespace StateSmith.Output.Sim;
 
@@ -205,9 +206,6 @@ public class SimWebGenerator
         //todo-low: make this work for pseudo states as well?
         sm.VisitTypeRecursively((NamedVertex namedVertex) => {
 
-            BehaviorDescriber behaviorDescriber = new(singleLineFormat: false, indent: "");
-            behaviorDescriber.prependTransitionArrow = true;
-
             StringBuilder sb = new StringBuilder();
            
             Vertex? currentVertex = namedVertex;
@@ -215,13 +213,13 @@ public class SimWebGenerator
             {
                 sb.Append("<tr><td>");
 
-                string prefix = (currentVertex != namedVertex) ? "Parent " : "";
+                string prefix = (currentVertex != namedVertex) ? "⇡ Parent " : "";
 
-                sb.Append($"<h3>{prefix}Vertex: <span class='identifier'>{Vertex.Describe(currentVertex)}</span>, <b>Diagram Id:</b> <span class='identifier'>{currentVertex.DiagramId}</h3>");
+                sb.Append($"<h3>{prefix}Vertex: {Syntax("vertex-name", HttpUtility.HtmlEncode(Vertex.Describe(currentVertex)))}, <b>Diagram Id:</b> {Syntax("vertex-id", currentVertex.DiagramId)}</h3>");
 
                 foreach (var behavior in currentVertex.Behaviors)
                 {
-                    sb.Append($"{behaviorDescriber.Describe(behavior)}\n");
+                    sb.Append($"{GetHtmlDescription(behavior)}\n");
                 }
 
                 sb.Append("</td></tr>");
@@ -230,6 +228,76 @@ public class SimWebGenerator
             
             stateDescriptionMapping.Add(namedVertex.Name, sb.ToString().ReplaceLineEndings("<br>"));
         });
+    }
+
+    string Syntax(string className, string code)
+    {
+        return $"<span class='syntax-{className}'>{code}</span>";
+    }
+
+    private string GetHtmlDescription(Behavior b)
+    {
+        string result = "";
+        string joiner = "";
+
+        if (b.order == Behavior.ELSE_ORDER)
+        {
+            result += Syntax("order", "else");
+            joiner = " ";
+        }
+        else if (b.order != Behavior.DEFAULT_ORDER)
+        {
+            result += joiner;
+            result += Syntax("order", b.order + ".");
+            joiner = " ";
+        }
+
+        {
+            result += "<span class='syntax-trigger'>";
+            string prefix = "", postfix = "";
+            if (b.Triggers.Count > 1)
+            {
+                prefix = "(";
+                postfix = ")";
+            }
+
+            result += prefix + joiner + string.Join(", ", b.Triggers) + postfix;
+            joiner = " ";
+            result += "</span>";
+        }
+
+        if (b.HasGuardCode())
+        {
+            result += joiner + Syntax("guard-bracket", "[") + Syntax("guard-code", HttpUtility.HtmlEncode(b.guardCode)) + Syntax("guard-bracket", "]");
+            joiner = " ";
+        }
+
+        if (b.HasActionCode())
+        {
+            result += joiner + Syntax("action-start-end", "/ { ") + Syntax("action-code", HttpUtility.HtmlEncode(b.actionCode)) + Syntax("action-start-end", " }");
+            joiner = " ";
+        }
+
+        if (b.HasViaExit())
+        {
+            result += joiner + Syntax("via-exit-entry", "via exit " + b.viaExit);
+            joiner = " ";
+        }
+
+        if (b.HasViaEntry())
+        {
+            result += joiner + Syntax("via-exit-entry", "via entry " + b.viaEntry);
+            joiner = " ";
+        }
+
+        if (b.TransitionTarget != null)
+        {
+            result += joiner;
+            result += Syntax("transition-arrow", "--> ");
+            result += Syntax("transition-to", "TransitionTo(") + Syntax("transition-target", HttpUtility.HtmlEncode(Vertex.Describe(b.TransitionTarget)) + Syntax("transition-to", ")"));
+        }
+
+        return result;
     }
 
     private void RecordInfoForEachState(StateMachine sm)

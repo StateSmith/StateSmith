@@ -22,12 +22,15 @@
 
       code {
         font-family: monospace;
-        color:aquamarine;
+        color: #f5c2c6;
+        color: #a58c71;
         white-space: pre;
       }
 
       .identifier {
         color: #9bc2e4;
+        color: #ededed;
+        font-weight: bold;
       }
 
       /* Fix for mermaid content requiring scroll bars https://github.com/StateSmith/StateSmith/issues/288 */
@@ -86,6 +89,9 @@
       }
 
 
+
+      /* -------------------------------------- STATE INFO -------------------------------- */
+
       #state-info {
         display: none;
         border-top: 2px solid #ccc;
@@ -118,6 +124,60 @@
         background-color: #252933;
       }
 
+
+
+
+      /* -------------------------------------- StateSmith Grammar Syntax -------------------------------- */
+
+      .syntax-vertex-name,
+      .syntax-vertex-id {
+        color: #ffffff;
+      }
+
+      .syntax-order {
+        color: #e9a1eb;
+      }
+
+      .syntax-trigger {
+        color: #eeb765;
+        color: #e7c796
+      }
+
+      .syntax-guard-bracket
+      {
+        color: #7e70cf;
+        color: #00bd2b;
+      }
+      .syntax-guard-code {
+        color: #a6e19f;
+      }
+
+      .syntax-action-start-end {
+        color: #E06C75;
+        color: #e18d33;
+      }
+      .syntax-action-code {
+        color: #f5c2c6;
+        color: #a58c71;
+      }
+
+      .syntax-via-exit-entry {
+        color: #E06C75;
+      }
+
+      .syntax-transition-arrow {
+        color: #E06C75;
+      }
+      .syntax-transition-to {
+        color: #d77e86;
+      }
+      .syntax-transition-target {
+        color: #ededed;
+        font-weight: bold;
+      }
+
+
+      /* --------------------------------------------------------------- */
 
       #buttons {
         display: flex;
@@ -837,10 +897,10 @@ evaluateGuard = null;
 
         // https://github.com/StateSmith/StateSmith/issues/523
         const stateDescriptionMapping = {
-  "issue512": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003Eissue512\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "ORDER_MENU": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EORDER_MENU\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003Eissue512\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "FOOD": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003EFOOD\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EFOOD\u003C/h3\u003EMY_EVENT --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(FOOD__Mermaid_StateSmith_Issue_512__0))\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EORDER_MENU\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003Eissue512\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "SANDWICH": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027identifier\u0027\u003ESANDWICH\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003ESANDWICH\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EFOOD\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EFOOD\u003C/h3\u003EMY_EVENT --\u003E TransitionTo(ORDER_MENU.\u003CChoicePoint\u003E(FOOD__Mermaid_StateSmith_Issue_512__0))\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003EORDER_MENU\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EParent Vertex: \u003Cspan class=\u0027identifier\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027identifier\u0027\u003Eissue512\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E"
+  "issue512": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "ORDER_MENU": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EORDER_MENU\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "FOOD": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EFOOD\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EFOOD\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger\u0027\u003EMY_EVENT\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-target\u0027\u003EORDER_MENU.\u0026lt;ChoicePoint\u0026gt;(FOOD__Mermaid_StateSmith_Issue_512__0)\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EORDER_MENU\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "SANDWICH": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ESANDWICH\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003ESANDWICH\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EFOOD\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EFOOD\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger\u0027\u003EMY_EVENT\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-target\u0027\u003EORDER_MENU.\u0026lt;ChoicePoint\u0026gt;(FOOD__Mermaid_StateSmith_Issue_512__0)\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EORDER_MENU\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E"
 };
 
         // Get page element references
@@ -1111,7 +1171,7 @@ evaluateGuard = null;
 
                 const description = stateDescriptionMapping[mermaidName];
                 if (description) {
-                  console.log(description);
+                  // console.log(description);
                   document.querySelector('#state-info').innerHTML = description;
                 } else {
                   console.warn(`Failed finding description for ${mermaidName}`);

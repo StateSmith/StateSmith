@@ -34,12 +34,15 @@ public class HtmlRenderer
 
       code {
         font-family: monospace;
-        color:aquamarine;
+        color: #f5c2c6;
+        color: #a58c71;
         white-space: pre;
       }
 
       .identifier {
         color: #9bc2e4;
+        color: #ededed;
+        font-weight: bold;
       }
 
       /* Fix for mermaid content requiring scroll bars https://github.com/StateSmith/StateSmith/issues/288 */
@@ -98,6 +101,9 @@ public class HtmlRenderer
       }
 
 
+
+      /* -------------------------------------- STATE INFO -------------------------------- */
+
       #state-info {
         display: none;
         border-top: 2px solid #ccc;
@@ -130,6 +136,60 @@ public class HtmlRenderer
         background-color: #252933;
       }
 
+
+
+
+      /* -------------------------------------- StateSmith Grammar Syntax -------------------------------- */
+
+      .syntax-vertex-name,
+      .syntax-vertex-id {
+        color: #ffffff;
+      }
+
+      .syntax-order {
+        color: #e9a1eb;
+      }
+
+      .syntax-trigger {
+        color: #eeb765;
+        color: #e7c796
+      }
+
+      .syntax-guard-bracket
+      {
+        color: #7e70cf;
+        color: #00bd2b;
+      }
+      .syntax-guard-code {
+        color: #a6e19f;
+      }
+
+      .syntax-action-start-end {
+        color: #E06C75;
+        color: #e18d33;
+      }
+      .syntax-action-code {
+        color: #f5c2c6;
+        color: #a58c71;
+      }
+
+      .syntax-via-exit-entry {
+        color: #E06C75;
+      }
+
+      .syntax-transition-arrow {
+        color: #E06C75;
+      }
+      .syntax-transition-to {
+        color: #d77e86;
+      }
+      .syntax-transition-target {
+        color: #ededed;
+        font-weight: bold;
+      }
+
+
+      /* --------------------------------------------------------------- */
 
       #buttons {
         display: flex;
@@ -764,7 +824,7 @@ config:
 
                 const description = stateDescriptionMapping[mermaidName];
                 if (description) {
-                  console.log(description);
+                  // console.log(description);
                   document.querySelector('#state-info').innerHTML = description;
                 } else {
                   console.warn(`Failed finding description for ${mermaidName}`);
