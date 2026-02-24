@@ -20,6 +20,7 @@ state Configuring {
     State1 -> State2 : Ev2 [pointless]
     State1 -> State2 : 1. Ev2
     State2 -> State2 : Ev1
+    State2 -> State2 : (Ev6, Ev7)
   }
 
 }

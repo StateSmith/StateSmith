@@ -213,9 +213,29 @@ public class SimWebGenerator
             {
                 sb.Append("<tr><td>");
 
-                string prefix = (currentVertex != namedVertex) ? "⇡ Parent " : "";
+                bool isLeafState = currentVertex == namedVertex;
+
+                string prefix = (!isLeafState) ? "⇡ Parent " : "";
 
                 sb.Append($"<h3>{prefix}Vertex: {Syntax("vertex-name", HttpUtility.HtmlEncode(Vertex.Describe(currentVertex)))}, <b>Diagram Id:</b> {Syntax("vertex-id", currentVertex.DiagramId)}</h3>");
+
+                if (isLeafState)
+                {
+                    StringBuilder metaSb = new();
+
+                    if (currentVertex.Children.Any())
+                    {
+                        metaSb.Append("Children: ");
+
+                        foreach (var child in currentVertex.Children)
+                        {
+                            metaSb.Append($"{Syntax("vertex-name", HttpUtility.HtmlEncode(Vertex.Describe(child)))}, ");
+                        }
+                        metaSb.Length -= 2; // remove trailing ", "
+                        metaSb.Append('\n');
+                        sb.Append(HtmlSpan("vertex-meta", metaSb.ToString()));
+                    }
+                }
 
                 foreach (var behavior in currentVertex.Behaviors)
                 {
@@ -232,7 +252,12 @@ public class SimWebGenerator
 
     string Syntax(string className, string code)
     {
-        return $"<span class='syntax-{className}'>{code}</span>";
+        return HtmlSpan($"syntax-{className}", code);
+    }
+
+    string HtmlSpan(string className, string code)
+    {
+        return $"<span class='{className}'>{code}</span>";
     }
 
     private string GetHtmlDescription(Behavior b)
@@ -253,17 +278,30 @@ public class SimWebGenerator
         }
 
         {
-            result += "<span class='syntax-trigger'>";
             string prefix = "", postfix = "";
             if (b.Triggers.Count > 1)
             {
-                prefix = "(";
-                postfix = ")";
+                prefix = Syntax("trigger-punctuation", "(");
+                postfix = Syntax("trigger-punctuation", ")");
             }
 
-            result += prefix + joiner + string.Join(", ", b.Triggers) + postfix;
+            result += prefix + joiner;
+
+            bool needsComma = false;
+            for (int i = 0; i < b.Triggers.Count; i++)
+            {
+                string trigger = b.Triggers[i];
+
+                if (needsComma)
+                {
+                    result += Syntax("trigger-punctuation", ", ");
+                }
+                result += Syntax("trigger-name", trigger);
+                needsComma = true;
+            }
+
+            result += postfix;
             joiner = " ";
-            result += "</span>";
         }
 
         if (b.HasGuardCode())
@@ -294,7 +332,7 @@ public class SimWebGenerator
         {
             result += joiner;
             result += Syntax("transition-arrow", "--> ");
-            result += Syntax("transition-to", "TransitionTo(") + Syntax("transition-target", HttpUtility.HtmlEncode(Vertex.Describe(b.TransitionTarget)) + Syntax("transition-to", ")"));
+            result += Syntax("transition-to", "TransitionTo(") + Syntax("transition-target", HttpUtility.HtmlEncode(Vertex.Describe(b.TransitionTarget))) + Syntax("transition-to", ")");
         }
 
         return result;

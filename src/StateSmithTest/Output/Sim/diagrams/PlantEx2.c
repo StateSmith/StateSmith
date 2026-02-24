@@ -41,6 +41,10 @@ static void STATE2_exit(PlantEx2* sm);
 
 static void STATE2_ev1(PlantEx2* sm);
 
+static void STATE2_ev6(PlantEx2* sm);
+
+static void STATE2_ev7(PlantEx2* sm);
+
 static void NEWVALUESELECTION_enter(PlantEx2* sm);
 
 static void NEWVALUESELECTION_exit(PlantEx2* sm);
@@ -157,6 +161,8 @@ void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id)
             switch (event_id)
             {
                 case PlantEx2_EventId_EV1: STATE2_ev1(sm); break;
+                case PlantEx2_EventId_EV6: STATE2_ev6(sm); break;
+                case PlantEx2_EventId_EV7: STATE2_ev7(sm); break;
                 case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EVNEWVALUEREJECTED: NEWVALUEPREVIEW_evnewvaluerejected(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EVNEWVALUESAVED: NEWVALUEPREVIEW_evnewvaluesaved(sm); break; // First ancestor handler for this event
@@ -403,6 +409,46 @@ static void STATE2_ev1(PlantEx2* sm)
     // No ancestor handles this event.
 }
 
+static void STATE2_ev6(PlantEx2* sm)
+{
+    // State2 behavior
+    // uml: (Ev6, Ev7) TransitionTo(State2)
+    {
+        // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition).
+        STATE2_exit(sm);
+        
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `State2`.
+        STATE2_enter(sm);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        return;
+    } // end of behavior for State2
+    
+    // No ancestor handles this event.
+}
+
+static void STATE2_ev7(PlantEx2* sm)
+{
+    // State2 behavior
+    // uml: (Ev6, Ev7) TransitionTo(State2)
+    {
+        // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition).
+        STATE2_exit(sm);
+        
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `State2`.
+        STATE2_enter(sm);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        return;
+    } // end of behavior for State2
+    
+    // No ancestor handles this event.
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // event handlers for state NEWVALUESELECTION
@@ -519,6 +565,8 @@ char const * PlantEx2_event_id_to_string(PlantEx2_EventId id)
     {
         case PlantEx2_EventId_EV1: return "EV1";
         case PlantEx2_EventId_EV2: return "EV2";
+        case PlantEx2_EventId_EV6: return "EV6";
+        case PlantEx2_EventId_EV7: return "EV7";
         case PlantEx2_EventId_EVCONFIG: return "EVCONFIG";
         case PlantEx2_EventId_EVNEWVALUE: return "EVNEWVALUE";
         case PlantEx2_EventId_EVNEWVALUEREJECTED: return "EVNEWVALUEREJECTED";

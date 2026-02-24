@@ -150,8 +150,11 @@ public class HtmlRenderer
         color: #e9a1eb;
       }
 
-      .syntax-trigger {
+      .syntax-trigger-punctuation {
         color: #eeb765;
+      }
+
+      .syntax-trigger-name {
         color: #e7c796
       }
 
@@ -406,6 +409,10 @@ public class HtmlRenderer
 
       span.nodeLabel.clickableDiagramElement:hover {
         color: aquamarine !important;
+      }
+
+      .clickable:hover {
+        cursor: pointer;
       }
 
     </style>
@@ -802,6 +809,43 @@ config:
             });
         }
 
+        // clicking on state name in state-info panel will also cause state change
+        function updateClickableVertexNames()
+        {
+          document.querySelectorAll('.syntax-vertex-name, .syntax-transition-target').forEach(element => {
+            const stateName = element.innerText;
+            const isState = stateDescriptionMapping[stateName] !== undefined;
+            
+            if (!isState || element.classList.contains('clickable'))
+            {
+              return;
+            }
+
+            element.classList.add('clickable');
+            element.addEventListener('click', (event) => {
+              forceStateChange(stateName);
+            });
+          });
+        }
+
+        function updateClickableEvents()
+        {
+          document.querySelectorAll('.syntax-trigger-name, .event-id').forEach(element => {
+            const eventName = element.innerText;
+
+            const button = document.getElementById('button_' + eventName);
+            if (!button || element.classList.contains('clickable'))
+            {
+              return;
+            }
+
+            element.classList.add('clickable');
+            element.addEventListener('click', (event) => {
+              button.click();
+            });
+          });
+        }
+
         // The simulator uses a tracer callback to perform operations such as 
         // state highlighting and logging.
         sm.tracer = {
@@ -816,7 +860,7 @@ config:
                 }
 
                 if (document.getElementById('savedSetting_verboseEnter').checked) {
-                    sm.tracer.log(`➡️ Entered <span class='identifier'>${mermaidName}</span>`, true);
+                    sm.tracer.log(`➡️ Entered <span class='syntax-vertex-name'>${mermaidName}</span>`, true);
                 }
                 
                 updateEventButtonStates(mermaidName);
@@ -829,13 +873,17 @@ config:
                 } else {
                   console.warn(`Failed finding description for ${mermaidName}`);
                 }
+
+                // must be done after description is updated above
+                updateClickableVertexNames();
+                updateClickableEvents();
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
                 document.querySelector('g[id=' + mermaidName + ']')?.classList.remove('active');
 
                 if (document.getElementById('savedSetting_verboseExit').checked) {
-                    sm.tracer.log(`↩️ Exited <span class='identifier'>${mermaidName}</span>`, true);
+                    sm.tracer.log(`↩️ Exited <span class='syntax-vertex-name'>${mermaidName}</span>`, true);
                 }
             },
             edgeTransition: (edgeId) => {
