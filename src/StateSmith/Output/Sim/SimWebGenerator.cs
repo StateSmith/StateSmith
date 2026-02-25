@@ -15,7 +15,6 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Linq;
-using System.Web;
 
 namespace StateSmith.Output.Sim;
 
@@ -203,139 +202,11 @@ public class SimWebGenerator
     /// </summary>
     private void RecordVertexInfo(StateMachine sm)
     {
+        VertexHtmlDescriber vertexHtmlDescriber = new();
         //todo-low: make this work for pseudo states as well?
         sm.VisitTypeRecursively((NamedVertex namedVertex) => {
-
-            StringBuilder sb = new StringBuilder();
-           
-            Vertex? currentVertex = namedVertex;
-            while (currentVertex != null)
-            {
-                sb.Append("<tr><td>");
-
-                bool isLeafState = currentVertex == namedVertex;
-
-                string prefix = (!isLeafState) ? "⇡ Parent " : "";
-
-                sb.Append($"<h3>{prefix}Vertex: {Syntax("vertex-name", HttpUtility.HtmlEncode(Vertex.Describe(currentVertex)))}, <b>Diagram Id:</b> {Syntax("vertex-id", currentVertex.DiagramId)}</h3>");
-
-                if (isLeafState)
-                {
-                    StringBuilder metaSb = new();
-
-                    if (currentVertex.Children.Any())
-                    {
-                        metaSb.Append("Children: ");
-
-                        foreach (var child in currentVertex.Children)
-                        {
-                            metaSb.Append($"{Syntax("vertex-name", HttpUtility.HtmlEncode(Vertex.Describe(child)))}, ");
-                        }
-                        metaSb.Length -= 2; // remove trailing ", "
-                        metaSb.Append('\n');
-                        sb.Append(HtmlSpan("vertex-meta", metaSb.ToString()));
-                    }
-                }
-
-                foreach (var behavior in currentVertex.Behaviors)
-                {
-                    sb.Append($"{GetHtmlDescription(behavior)}\n");
-                }
-
-                sb.Append("</td></tr>");
-                currentVertex = currentVertex.Parent;
-            }
-            
-            stateDescriptionMapping.Add(namedVertex.Name, sb.ToString().ReplaceLineEndings("<br>"));
+            stateDescriptionMapping.Add(namedVertex.Name, vertexHtmlDescriber.BuildVertexHtml(namedVertex, showTransitionText:true));
         });
-    }
-
-    string Syntax(string className, string code)
-    {
-        return HtmlSpan($"syntax-{className}", code);
-    }
-
-    string HtmlSpan(string className, string code)
-    {
-        return $"<span class='{className}'>{code}</span>";
-    }
-
-    private string GetHtmlDescription(Behavior b)
-    {
-        string result = "";
-        string joiner = "";
-
-        if (b.order == Behavior.ELSE_ORDER)
-        {
-            result += Syntax("order", "else");
-            joiner = " ";
-        }
-        else if (b.order != Behavior.DEFAULT_ORDER)
-        {
-            result += joiner;
-            result += Syntax("order", b.order + ".");
-            joiner = " ";
-        }
-
-        {
-            string prefix = "", postfix = "";
-            if (b.Triggers.Count > 1)
-            {
-                prefix = Syntax("trigger-punctuation", "(");
-                postfix = Syntax("trigger-punctuation", ")");
-            }
-
-            result += prefix + joiner;
-
-            bool needsComma = false;
-            for (int i = 0; i < b.Triggers.Count; i++)
-            {
-                string trigger = b.Triggers[i];
-
-                if (needsComma)
-                {
-                    result += Syntax("trigger-punctuation", ", ");
-                }
-                result += Syntax("trigger-name", trigger);
-                needsComma = true;
-            }
-
-            result += postfix;
-            joiner = " ";
-        }
-
-        if (b.HasGuardCode())
-        {
-            result += joiner + Syntax("guard-bracket", "[") + Syntax("guard-code", HttpUtility.HtmlEncode(b.guardCode)) + Syntax("guard-bracket", "]");
-            joiner = " ";
-        }
-
-        if (b.HasActionCode())
-        {
-            result += joiner + Syntax("action-start-end", "/ { ") + Syntax("action-code", HttpUtility.HtmlEncode(b.actionCode)) + Syntax("action-start-end", " }");
-            joiner = " ";
-        }
-
-        if (b.HasViaExit())
-        {
-            result += joiner + Syntax("via-exit-entry", "via exit " + b.viaExit);
-            joiner = " ";
-        }
-
-        if (b.HasViaEntry())
-        {
-            result += joiner + Syntax("via-exit-entry", "via entry " + b.viaEntry);
-            joiner = " ";
-        }
-
-        if (b.TransitionTarget != null)
-        {
-            result += joiner;
-            result += Syntax("transition-arrow", "--> ");
-            result += Syntax("transition-to", "TransitionTo(") + Syntax("transition-target", HttpUtility.HtmlEncode(Vertex.Describe(b.TransitionTarget))) + Syntax("transition-to", ")");
-        }
-
-        return result;
     }
 
     private void RecordInfoForEachState(StateMachine sm)

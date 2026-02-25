@@ -32,13 +32,6 @@ public class HtmlRenderer
         font-size: 13px;
       }
 
-      code {
-        font-family: monospace;
-        color: #f5c2c6;
-        color: #a58c71;
-        white-space: pre;
-      }
-
       .identifier {
         color: #9bc2e4;
         color: #ededed;
@@ -144,6 +137,7 @@ public class HtmlRenderer
       .syntax-vertex-name,
       .syntax-vertex-id {
         color: #ffffff;
+        font-weight: bold;
       }
 
       .syntax-order {
@@ -155,7 +149,8 @@ public class HtmlRenderer
       }
 
       .syntax-trigger-name {
-        color: #e7c796
+        color: #e7c796;
+        color: #f1b862;
       }
 
       .syntax-guard-bracket
@@ -174,6 +169,7 @@ public class HtmlRenderer
       .syntax-action-code {
         color: #f5c2c6;
         color: #a58c71;
+        color: #cbac8b;
       }
 
       .syntax-via-exit-entry {
@@ -186,11 +182,6 @@ public class HtmlRenderer
       .syntax-transition-to {
         color: #d77e86;
       }
-      .syntax-transition-target {
-        color: #ededed;
-        font-weight: bold;
-      }
-
 
       /* --------------------------------------------------------------- */
 
@@ -205,6 +196,7 @@ public class HtmlRenderer
         font-weight: bold;
         padding: 5px;
         display: flex;
+        align-items: center;
       }
 
       .console {
@@ -268,12 +260,6 @@ public class HtmlRenderer
         font-weight: bold;
       }
 
-      .dispatched .event-id {
-        border: 1px solid #000;
-        border-radius: 4px;
-        padding: 2px 4px;
-      }
-
       .dispatched .forced-state {
         border: 1px solid #000;
         /* color: white; */
@@ -283,15 +269,10 @@ public class HtmlRenderer
         padding: 2px 4px;
       }
 
+      /* ------------------------- event buttons --------------------------- */
+
       button {
         margin: 5px;
-      }
-
-      button.event-button, .event-id {
-        /* background-color: #4e98d4;
-        color: #252541; */
-        background-color: #08487c;
-        color: #e9f5ff;
       }
 
       button.event-button {
@@ -308,7 +289,7 @@ public class HtmlRenderer
       }
 
       button.event-button:not(.hasNoEventHandler):hover {
-        background-color: #00559b;
+        background-color: aquamarine;
       }
 
       /* Style for hiding irrelevant events */
@@ -384,13 +365,15 @@ public class HtmlRenderer
       }
 
       .statediagram-state.active > * {
-        fill: #4e98d4 !important;
-        stroke: #00559b !important;
+        fill: #3c3224 !important;
+        stroke: #d56022 !important;
+        stroke: #d16f3b !important;
+        
         stroke-width: 2px !important;
       }
 
-      .statediagram-state.active span.nodeLabel {
-        color: #000d53 !important;
+      .statediagram-state.active span.nodeLabel span.syntax-vertex-name {
+        color: #fdffb0 !important;
       }
 
       /* we don't want to fill body of parent state with regular active yellow. It's just too much! */
@@ -399,20 +382,9 @@ public class HtmlRenderer
         stroke-width: 2px !important;
       }
 
-      .clickableDiagramElement {
-        cursor: pointer;
-      }
-
-      span.edgeLabel.clickableDiagramElement:hover {
-        color: aquamarine !important;
-      }
-
-      span.nodeLabel.clickableDiagramElement:hover {
-        color: aquamarine !important;
-      }
-
       .clickable:hover {
         cursor: pointer;
+        color: aquamarine !important;
       }
 
     </style>
@@ -441,8 +413,9 @@ config:
     </div>
 
     <div class='pane sidebar'>
-      <div id='buttons'>
-        <div class='titlebar'>Events
+      <div id='buttons'> <!-- TODO - rename/rework this div -->
+        <div class='titlebar'>
+          StateSmith Simulator
           <div class='dropdown'>
             <span id='settings-dropdown-button' class='titlebar-icon dropdown-button' title='Settings'>settings</span>
             <span id='clear-button' class='titlebar-icon dropdown-button' title='Clear event log'>delete</span>
@@ -453,7 +426,11 @@ config:
                 NOTE! Try not to change the ids of input checkboxes below as that will reset user preferences stored in localStorage.
                 NOTE! New settings will be automatically picked up if they start with 'savedSetting_' and are checkboxes.
                -->
-
+              <label class='dropdown-item' for='savedSetting_showEventButtons'
+                title='When disabled, event dispatching buttons will be hidden, but you can still click on diagram or state info panel to send events.'>
+                <input type='checkbox' id='savedSetting_showEventButtons' name='savedSetting_showEventButtons' checked>
+                Show event buttons
+              </label>
               <label class='dropdown-item' for='savedSetting_hideIrrelevantEvents'
                 title='When enabled, event dispatching buttons will be hidden if the current active state(s) ignore the event.'>
                 <input type='checkbox' id='savedSetting_hideIrrelevantEvents' name='savedSetting_hideIrrelevantEvents'>
@@ -462,7 +439,7 @@ config:
               <label class='dropdown-item' for='savedSetting_showStateInfo'
                 title='The state info panel is updated every time a state is entered. This setting controls whether it is visible or not.'>
                 <input type='checkbox' id='savedSetting_showStateInfo' name='savedSetting_showStateInfo' checked>
-                Show state info panel.
+                Show state info panel
               </label>
               <label class='dropdown-item' for='savedSetting_verboseEnter'
                 title='Every time a state is entered, it will be logged below in the event log.'>
@@ -484,12 +461,6 @@ config:
                 <input type='checkbox' id='savedSetting_showEventButtonTooltips' name='savedSetting_showEventButtonTooltips' checked>
                 Show event button tooltips
               </label>
-              <!-- setting for requiring CTRL to held while clicking to force state -->
-                <label class='dropdown-item' for='savedSetting_requireCtrlForForceState'
-                    title='CTRL key must be held while clicking a state to force it.&#10;This can help prevent accidental forced state changes.'>
-                    <input type='checkbox' id='savedSetting_requireCtrlForForceState' name='savedSetting_requireCtrlForForceState'>
-                    Require CTRL to force state
-                </label>
               <label class='dropdown-item' for='savedSetting_timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
                 <input type='checkbox' id='savedSetting_timestamps' name='savedSetting_timestamps'>
@@ -498,6 +469,8 @@ config:
             </div>
           </div>
         </div>
+        <div id='event-buttons'>
+        </div>        
       </div>
     
       <div> <!-- needed to prevent event-logs div from squishing state-info vertically -->
@@ -605,6 +578,14 @@ config:
           tbody.innerHTML = '';
         });
 
+        // this setting needs a page reload anyway so just make it happen for users to avoid confusion
+        document.getElementById('savedSetting_showEventButtonTooltips').addEventListener('click', function() {
+          window.setTimeout(() => {
+            window.alert('Changing this setting causes a page reload.');
+            window.location.reload();
+          }, 100);
+        });
+
         /* When the user clicks on the button, 
         toggle between hiding and showing the dropdown content */
         function toggleDropdown(event) {
@@ -641,6 +622,16 @@ config:
         document.getElementById('savedSetting_hideIrrelevantEvents').addEventListener('change', function() {
           // When checkbox state changes, only update button visibility, not availability
           updateButtonVisibility();
+        });
+
+        document.getElementById('savedSetting_showEventButtons').addEventListener('change', function() {
+          // When checkbox state changes, show or hide the event buttons container
+          const eventButtonsContainer = document.getElementById('event-buttons');
+          if(this.checked) {
+            eventButtonsContainer.style.display = 'block';
+          } else {
+            eventButtonsContainer.style.display = 'none';
+          }
         });
 
         document.getElementById('savedSetting_showStateInfo').addEventListener('change', function() {
@@ -812,7 +803,7 @@ config:
         // clicking on state name in state-info panel will also cause state change
         function updateClickableVertexNames()
         {
-          document.querySelectorAll('.syntax-vertex-name, .syntax-transition-target').forEach(element => {
+          document.querySelectorAll('.syntax-vertex-name').forEach(element => {
             const stateName = element.innerText;
             const isState = stateDescriptionMapping[stateName] !== undefined;
             
@@ -830,7 +821,7 @@ config:
 
         function updateClickableEvents()
         {
-          document.querySelectorAll('.syntax-trigger-name, .event-id').forEach(element => {
+          document.querySelectorAll('.syntax-trigger-name').forEach(element => {
             const eventName = element.innerText;
 
             const button = document.getElementById('button_' + eventName);
@@ -898,10 +889,10 @@ config:
                 sm.tracer.log(`🕑 History: ${description}.`);
             },
             logGuardCodeEvaluation: (guardCode) => {
-                sm.tracer.log(`<span title='Guard code manually evaluated by user for simulation.'>🛡️ Guard: <code>[ ${guardCode} ]</code></span>`, true);
+                sm.tracer.log(`<span title='Guard code manually evaluated by user for simulation.'>🛡️ Guard: <span class='syntax-guard-code'>[ ${guardCode} ]</span></span>`, true);
             },
             logActionCode: (actionCode) => {
-                sm.tracer.log(`<span title='Your actual state machine will run this action code.'>⚡ Action: <code>${actionCode}</code></span>`, true);
+                sm.tracer.log(`<span title='Your actual state machine will run this action code.'>⚡ Action: <span class='syntax-action-code'>${actionCode}</span></span>`, true);
             },
             log: (message, html=false) => {
                 addEventLogRow(new Date(), message, html);
@@ -956,7 +947,7 @@ config:
           clearHighlightedStates();
           // mermaidElement.classList.add('active'); // done by state enter below
 
-          sm.tracer.log(`<span class='dispatched'><a href='https://github.com/StateSmith/StateSmith/issues/519' target='_blank' title='May have impacts! Click for details.'><span class='forced-state'>FORCED STATE</span> to <span class='identifier'>${stateNameAnyCase}</span></span></a>`, true);
+          sm.tracer.log(`<span class='dispatched'><a href='https://github.com/StateSmith/StateSmith/issues/519' target='_blank' title='May have impacts! Click for details.'><span class='forced-state'>FORCED STATE</span></a> to <span class='syntax-vertex-name'>${stateNameAnyCase}</span></span>`, true);
 
           // execute state's enter function
           const enterFunction = sm['_' + stateName + '_enter'];
@@ -981,56 +972,6 @@ config:
           console.log(`Forced state to ${stateNameAnyCase}. See https://github.com/StateSmith/StateSmith/issues/519`);
         }
 
-        // https://github.com/StateSmith/StateSmith/issues/519
-        {
-          // find simple state node labels
-          // Make sure to test with simple states that are just a state name, and ones that have addition labels for non-transition behaviors.
-          document.querySelectorAll('g.statediagram-state[data-id] g.label > foreignObject:first-of-type .nodeLabel').forEach(nodeLabel => {
-            // confirm that node label matches an actual state. This weeds out pseudo states like `$H`, `$HC`, `$entry_pt`, ...
-            const stateName = nodeLabel.textContent.toUpperCase();
-            const stateId = {{smName}}.StateId[stateName];
-            if (stateId === undefined) {
-              return;
-            }
-
-            nodeLabel.classList.add('clickableDiagramElement');
-          });
-
-          // find composite state node labels
-          document.querySelectorAll('g.statediagram-state[id].statediagram-cluster .nodeLabel').forEach(nodeLabel => {
-            nodeLabel.classList.add('clickableDiagramElement');
-          });
-
-          // allow clicking states to force state machine to that state.
-          document.querySelectorAll('.clickableDiagramElement').forEach(nodeLabel => {
-            const stateElement = nodeLabel.closest('g.statediagram-state[id]');
-
-            if (!stateElement)
-            {
-              console.warn('Open bug ticket? Failed finding statediagram-state for', nodeLabel);
-            }
-
-            nodeLabel.addEventListener('click', (event) => {
-
-              if (savedSetting_requireCtrlForForceState.checked && !event.ctrlKey) {
-                  // if the setting to require ctrl key is enabled, and the ctrl key is not pressed, do not force state.
-                  return;
-              }
-
-              let stateName = null;
-
-              // this is a bit hacky. Composite states have their name in the 'id' attribute, while simple states have their name in the 'data-id' attribute. We need to check both to support both types of states.
-              if (stateElement.classList.contains('statediagram-cluster')) {
-                stateName = stateElement.getAttribute('id');
-              } else {
-                stateName = stateElement.getAttribute('data-id');
-              }
-
-              forceStateChange(stateName);
-            });
-          });
-        }
-
         // export forceStateChange to global scope so it can be called from the console for testing purposes.
         window.StateSmith_forceStateChange = forceStateChange;
 
@@ -1048,55 +989,16 @@ config:
 
                 if (alwaysAllowEventDispatch || !button.classList.contains('hasNoEventHandler')) {
                     clearHighlightedEdges();
-                    sm.tracer?.log(`<span class='dispatched'><span class='event-id'>${diagramEventName}</span> DISPATCHED</span>`, true);
+                    sm.tracer?.log(`<span class='dispatched'>Event <span class='syntax-trigger-name'>${diagramEventName}</span> dispatched</span>`, true);
                     const fsmEventName = diagramEventName.toUpperCase();
-                    sm.dispatchEvent({{smName}}.EventId[fsmEventName]); 
+                    sm.dispatchEvent({{smName}}.EventId[fsmEventName]);
+                    updateClickableEvents();
                 }
             });
-            document.getElementById(`buttons`).appendChild(button);
+            document.getElementById(`event-buttons`).appendChild(button);
         });
 
-        // clicking on edge label will try to send event
-        // https://github.com/StateSmith/StateSmith/issues/521
-        // DO AFTER buttons exist as we rely on them.
-        {
-          document.querySelectorAll('g span.edgeLabel').forEach(edgeLabelElement => {
-            const edgeLabel = edgeLabelElement.textContent.trim();
-
-            if (!edgeLabel)
-            {
-              return;
-            }
-
-            // ignore any decimal numbers at start, then look for first word which should be event name.
-            // This allows for edge labels like: 
-            //    `1. INCREASE [count >= 3] / { count++; }` and 
-            //    `1.1. MY_EVENT`
-            // See https://github.com/StateSmith/StateSmith/wiki/Behaviors
-            const eventRegex = /^(?:\d+\.)?(?:\d+\.\s+)?(\w+)\b/;
-            const match = edgeLabel.match(eventRegex);
-            if (!match) {
-              console.log(`Could not parse event name from edge label. This is normal for certain edges. Edge label text was: '${edgeLabel}'.`, edgeLabelElement);
-              return;
-            }
-
-            const eventName = match[1];
-            const button = document.getElementById('button_' + eventName);
-            if (!button)
-            {
-              console.log(`No event button found for event name '${eventName}'. This is normal for certain edges.`, edgeLabelElement);
-              return;
-            }
-
-            edgeLabelElement.classList.add('clickableDiagramElement');
-
-            edgeLabelElement.addEventListener('click', (event) => {
-              button.click();
-            });
-          });
-        }
-
-        sm.tracer?.log(`<span class='dispatched'>START</span>`, true);
+        sm.tracer?.log(`<span class='dispatched'>State machine start</span>`, true);
         sm.start(); // This will cause `updateEventButtonStates()` to be called.
 
         function panOnScreen(element) {

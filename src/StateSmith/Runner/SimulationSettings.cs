@@ -12,4 +12,9 @@ public class SimulationSettings
     public string? outputDirectory = null;
     
     public string outputFileNamePostfix = ".sim.html";
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public bool ellipsizeActionCode = false;
 }

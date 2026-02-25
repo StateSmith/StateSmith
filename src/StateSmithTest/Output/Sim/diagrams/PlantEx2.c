@@ -39,8 +39,6 @@ static void STATE2_enter(PlantEx2* sm);
 
 static void STATE2_exit(PlantEx2* sm);
 
-static void STATE2_ev1(PlantEx2* sm);
-
 static void STATE2_ev6(PlantEx2* sm);
 
 static void STATE2_ev7(PlantEx2* sm);
@@ -160,7 +158,6 @@ void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id)
         case PlantEx2_StateId_STATE2:
             switch (event_id)
             {
-                case PlantEx2_EventId_EV1: STATE2_ev1(sm); break;
                 case PlantEx2_EventId_EV6: STATE2_ev6(sm); break;
                 case PlantEx2_EventId_EV7: STATE2_ev7(sm); break;
                 case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break; // First ancestor handler for this event
@@ -320,12 +317,13 @@ static void NEWVALUEPREVIEW_evnewvaluerejected(PlantEx2* sm)
 static void NEWVALUEPREVIEW_evnewvaluesaved(PlantEx2* sm)
 {
     // NewValuePreview behavior
-    // uml: EvNewValueSaved TransitionTo(NewValueSelection)
+    // uml: EvNewValueSaved / { show("<xml>"); } TransitionTo(NewValueSelection)
     {
         // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(sm, PlantEx2_StateId_CONFIGURING);
         
-        // Step 2: Transition action: ``.
+        // Step 2: Transition action: `show("<xml>");`.
+        show("<xml>");
         
         // Step 3: Enter/move towards transition target `NewValueSelection`.
         NEWVALUESELECTION_enter(sm);
@@ -369,7 +367,7 @@ static void STATE1_ev2(PlantEx2* sm)
         return;
     } // end of behavior for State1
     
-    // unreachable behavior: `Ev2 [pointless] TransitionTo(State2)` due to unconditional transition above
+    // unreachable behavior: `Ev2 [pointless & x>2] TransitionTo(State2)` due to unconditional transition above
     
     // No ancestor handles this event.
 }
@@ -387,26 +385,6 @@ static void STATE2_enter(PlantEx2* sm)
 static void STATE2_exit(PlantEx2* sm)
 {
     sm->state_id = PlantEx2_StateId_NEWVALUEPREVIEW;
-}
-
-static void STATE2_ev1(PlantEx2* sm)
-{
-    // State2 behavior
-    // uml: Ev1 TransitionTo(State2)
-    {
-        // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition).
-        STATE2_exit(sm);
-        
-        // Step 2: Transition action: ``.
-        
-        // Step 3: Enter/move towards transition target `State2`.
-        STATE2_enter(sm);
-        
-        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-        return;
-    } // end of behavior for State2
-    
-    // No ancestor handles this event.
 }
 
 static void STATE2_ev6(PlantEx2* sm)
@@ -563,7 +541,6 @@ char const * PlantEx2_event_id_to_string(PlantEx2_EventId id)
 {
     switch (id)
     {
-        case PlantEx2_EventId_EV1: return "EV1";
         case PlantEx2_EventId_EV2: return "EV2";
         case PlantEx2_EventId_EV6: return "EV6";
         case PlantEx2_EventId_EV7: return "EV7";
