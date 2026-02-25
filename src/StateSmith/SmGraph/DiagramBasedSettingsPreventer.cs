@@ -9,7 +9,7 @@ namespace StateSmith.SmGraph;
 
 /// <summary>
 /// Sometimes we need to prevent the diagram from setting the settings.
-/// Useb by the simulator and also to prevent the settings from being applied twice.
+/// Used by the simulator and also to prevent the settings from being applied twice.
 /// </summary>
 public class DiagramBasedSettingsPreventer
 {

@@ -13,11 +13,13 @@ state Configuring {
   [*] -> NewValueSelection
   NewValueSelection --> NewValuePreview : EvNewValue
   NewValuePreview --> NewValueSelection : EvNewValueRejected
-  NewValuePreview --> NewValueSelection : EvNewValueSaved
+  NewValuePreview --> NewValueSelection : EvNewValueSaved / show("<xml>");
 
   state NewValuePreview {
     [*] -> State1
-    State1 -> State2 : Ev2
+    State1 -> State2 : Ev2 [pointless & x>2]
+    State1 -> State2 : 1. Ev2 [ IsMatch('<xml>') ]
+    State2 -> State2 : (Ev6, Ev7)
   }
 
 }

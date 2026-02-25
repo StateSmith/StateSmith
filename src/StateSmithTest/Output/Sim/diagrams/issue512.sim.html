@@ -398,31 +398,25 @@ config:
 
 stateDiagram
 
-state "<span class='syntax-vertex-name'>ON_GROUP</span>" as ON_GROUP {
+state "<span class='syntax-vertex-name'>ORDER_MENU</span>" as ORDER_MENU {
 
-        ON1
+        %% Initial state name as "." so that it fits in black circle shape.
+        %% See https://github.com/StateSmith/StateSmith/issues/404
+        state "." as ORDER_MENU.(InitialState)
 
-        ON1 : <span class='syntax-vertex-name'>ON1</span>
+        state "<span class='syntax-vertex-name'>FOOD</span>" as FOOD {
 
-        ON1 : <span class='syntax-trigger-name'>enter</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>show(&quot;#35;#35;#35;&quot;);</span><span class='syntax-action-start-end'> }</span>
+                %% Initial state name as "." so that it fits in black circle shape.
+                %% See https://github.com/StateSmith/StateSmith/issues/404
+                state "." as FOOD.(InitialState)
 
-        ON1 : <span class='syntax-trigger-name'>do</span> <span class='syntax-guard-bracket'>[</span><span class='syntax-guard-code'>x#60;3</span><span class='syntax-guard-bracket'>]</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>z++;</span><span class='syntax-action-start-end'> }</span>
+                SANDWICH
 
-        OnHot
+                SANDWICH : <span class='syntax-vertex-name'>SANDWICH</span>
 
-        OnHot : <span class='syntax-vertex-name'>OnHot</span>
+        }
 
-        OnHot : <span class='syntax-trigger-name'>enter</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>light_red();</span><span class='syntax-action-start-end'> }</span>
-
-        ON2
-
-        ON2 : <span class='syntax-vertex-name'>ON2</span>
-
-        ON2 : <span class='syntax-trigger-name'>enter</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>light_yellow();</span><span class='syntax-action-start-end'> }</span>
-
-        ON2 : <span class='syntax-trigger-name'>enter</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>count = 0;</span><span class='syntax-action-start-end'> }</span>
-
-        ON2 : <span class='syntax-order'>1.</span> <span class='syntax-trigger-name'>INCREASE</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>count++;</span><span class='syntax-action-start-end'> }</span>
+        state ORDER_MENU.(ChoicePoint)(FOOD__Mermaid_StateSmith_Issue_512__0) <<choice>>
 
 }
 
@@ -430,27 +424,15 @@ state "<span class='syntax-vertex-name'>ON_GROUP</span>" as ON_GROUP {
 %% See https://github.com/StateSmith/StateSmith/issues/404
 state "." as ROOT.(InitialState)
 
-Off
+ORDER_MENU.(InitialState) --> FOOD
 
-Off : <span class='syntax-vertex-name'>Off</span>
+FOOD --> ORDER_MENU.(ChoicePoint)(FOOD__Mermaid_StateSmith_Issue_512__0) : <span class='syntax-trigger-name'>MY_EVENT</span>
 
-Off : <span class='syntax-trigger-name'>enter</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>console.log( &quot;OFF#92;n&quot;);</span><span class='syntax-action-start-end'> }</span>
+FOOD.(InitialState) --> SANDWICH
 
-ON_GROUP --> Off : <span class='syntax-trigger-name'>off</span>
+ORDER_MENU.(ChoicePoint)(FOOD__Mermaid_StateSmith_Issue_512__0) --> FOOD
 
-ON1 --> ON2 : <span class='syntax-trigger-name'>INCREASE</span>
-
-ON1 --> Off : <span class='syntax-trigger-name'>DimLight</span>
-
-OnHot --> ON2 : <span class='syntax-trigger-name'>DimLight</span>
-
-ON2 --> ON1 : <span class='syntax-trigger-name'>DimLight</span>
-
-ON2 --> OnHot : <span class='syntax-order'>2.</span> <span class='syntax-trigger-name'>INCREASE</span> <span class='syntax-guard-bracket'>[</span><span class='syntax-guard-code'>count #62;= 3</span><span class='syntax-guard-bracket'>]</span>
-
-ROOT.(InitialState) --> Off
-
-Off --> ON1 : <span class='syntax-trigger-name'>INCREASE</span>
+ROOT.(InitialState) --> ORDER_MENU
 
 
 
@@ -539,35 +521,30 @@ Off --> ON1 : <span class='syntax-trigger-name'>INCREASE</span>
 // Algorithm: Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 // Generated state machine
-class LightSm
+class issue512
 {
 // Null by default.
 // May be overridden to override guard evaluation (eg. in a simulator)
 evaluateGuard = null;
     static EventId = 
     {
-        DO : 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
-        DIMLIGHT : 1,
-        INCREASE : 2,
-        OFF : 3,
+        MY_EVENT : 0,
     }
     static { Object.freeze(this.EventId); }
     
-    static EventIdCount = 4;
+    static EventIdCount = 1;
     static { Object.freeze(this.EventIdCount); }
     
     static StateId = 
     {
         ROOT : 0,
-        OFF : 1,
-        ON_GROUP : 2,
-        ON1 : 3,
-        ON2 : 4,
-        ONHOT : 5,
+        ORDER_MENU : 1,
+        FOOD : 2,
+        SANDWICH : 3,
     }
     static { Object.freeze(this.StateId); }
     
-    static StateIdCount = 6;
+    static StateIdCount = 4;
     static { Object.freeze(this.StateIdCount); }
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
@@ -588,18 +565,31 @@ evaluateGuard = null;
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition('edge6'); } TransitionTo(Off)
+            // uml: / { this.tracer?.edgeTransition('edge4'); } TransitionTo(ORDER_MENU)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
-                this.tracer?.edgeTransition('edge6');
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
+                this.tracer?.edgeTransition('edge4');
                 
-                // Step 3: Enter/move towards transition target `Off`.
-                this._OFF_enter();
+                // Step 3: Enter/move towards transition target `ORDER_MENU`.
+                this._ORDER_MENU_enter();
                 
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                return;
+                // ORDER_MENU.<InitialState> behavior
+                // uml: / { this.tracer?.edgeTransition('edge0'); } TransitionTo(FOOD)
+                {
+                    // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                    
+                    // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
+                    this.tracer?.edgeTransition('edge0');
+                    
+                    // Step 3: Enter/move towards transition target `FOOD`.
+                    this._FOOD_enter();
+                    
+                    // Finish transition by calling pseudo state transition function.
+                    this._FOOD_InitialState_transition();
+                    return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                } // end of behavior for ORDER_MENU.<InitialState>
             } // end of behavior for ROOT.<InitialState>
         } // end of behavior for ROOT
     }
@@ -608,57 +598,28 @@ evaluateGuard = null;
     // Note! This function assumes that the `eventId` parameter is valid.
     dispatchEvent(eventId)
     {
+        
         switch (this.stateId)
         {
-            // STATE: LightSm
-            case LightSm.StateId.ROOT:
-                // No events handled by this state (or its ancestors).
+            // STATE: issue512
+            case issue512.StateId.ROOT:
+                // state and ancestors have no handler for `my_event` event.
                 break;
             
-            // STATE: Off
-            case LightSm.StateId.OFF:
-                switch (eventId)
-                {
-                    case LightSm.EventId.INCREASE: this._OFF_increase(); break;
-                }
+            // STATE: ORDER_MENU
+            case issue512.StateId.ORDER_MENU:
+                // state and ancestors have no handler for `my_event` event.
                 break;
             
-            // STATE: ON_GROUP
-            case LightSm.StateId.ON_GROUP:
-                switch (eventId)
-                {
-                    case LightSm.EventId.OFF: this._ON_GROUP_off(); break;
-                }
+            // STATE: FOOD
+            case issue512.StateId.FOOD:
+                this._FOOD_my_event(); 
                 break;
             
-            // STATE: ON1
-            case LightSm.StateId.ON1:
-                switch (eventId)
-                {
-                    case LightSm.EventId.DO: this._ON1_do(); break;
-                    case LightSm.EventId.INCREASE: this._ON1_increase(); break;
-                    case LightSm.EventId.DIMLIGHT: this._ON1_dimlight(); break;
-                    case LightSm.EventId.OFF: this._ON_GROUP_off(); break; // First ancestor handler for this event
-                }
-                break;
-            
-            // STATE: ON2
-            case LightSm.StateId.ON2:
-                switch (eventId)
-                {
-                    case LightSm.EventId.INCREASE: this._ON2_increase(); break;
-                    case LightSm.EventId.DIMLIGHT: this._ON2_dimlight(); break;
-                    case LightSm.EventId.OFF: this._ON_GROUP_off(); break; // First ancestor handler for this event
-                }
-                break;
-            
-            // STATE: OnHot
-            case LightSm.StateId.ONHOT:
-                switch (eventId)
-                {
-                    case LightSm.EventId.DIMLIGHT: this._ONHOT_dimlight(); break;
-                    case LightSm.EventId.OFF: this._ON_GROUP_off(); break; // First ancestor handler for this event
-                }
+            // STATE: SANDWICH
+            case issue512.StateId.SANDWICH:
+                this._FOOD_my_event();  // First ancestor handler for this event
+
                 break;
         }
         
@@ -672,15 +633,11 @@ evaluateGuard = null;
         {
             switch (this.stateId)
             {
-                case LightSm.StateId.OFF: this._OFF_exit(); break;
+                case issue512.StateId.ORDER_MENU: this._ORDER_MENU_exit(); break;
                 
-                case LightSm.StateId.ON_GROUP: this._ON_GROUP_exit(); break;
+                case issue512.StateId.FOOD: this._FOOD_exit(); break;
                 
-                case LightSm.StateId.ON1: this._ON1_exit(); break;
-                
-                case LightSm.StateId.ON2: this._ON2_exit(); break;
-                
-                case LightSm.StateId.ONHOT: this._ONHOT_exit(); break;
+                case issue512.StateId.SANDWICH: this._SANDWICH_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -694,356 +651,146 @@ evaluateGuard = null;
     
     _ROOT_enter()
     {
-        this.stateId = LightSm.StateId.ROOT;
+        this.stateId = issue512.StateId.ROOT;
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state OFF
+    // event handlers for state ORDER_MENU
     ////////////////////////////////////////////////////////////////////////////////
     
-    _OFF_enter()
+    _ORDER_MENU_enter()
     {
-        this.stateId = LightSm.StateId.OFF;
+        this.stateId = issue512.StateId.ORDER_MENU;
         
-        // Off behavior
-        // uml: enter / { this.tracer?.enterState('Off'); }
+        // ORDER_MENU behavior
+        // uml: enter / { this.tracer?.enterState('ORDER_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.enterState('Off');`
-            this.tracer?.enterState('Off');
-        } // end of behavior for Off
-        
-        // Off behavior
-        // uml: enter / { this.tracer?.logActionCode("console.log( \"OFF\n\");"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("console.log( \"OFF\n\");");`
-            this.tracer?.logActionCode("console.log( \"OFF\n\");");
-        } // end of behavior for Off
+            // Step 1: execute action `this.tracer?.enterState('ORDER_MENU');`
+            this.tracer?.enterState('ORDER_MENU');
+        } // end of behavior for ORDER_MENU
     }
     
-    _OFF_exit()
+    _ORDER_MENU_exit()
     {
-        // Off behavior
-        // uml: exit / { this.tracer?.exitState('Off'); }
+        // ORDER_MENU behavior
+        // uml: exit / { this.tracer?.exitState('ORDER_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.exitState('Off');`
-            this.tracer?.exitState('Off');
-        } // end of behavior for Off
+            // Step 1: execute action `this.tracer?.exitState('ORDER_MENU');`
+            this.tracer?.exitState('ORDER_MENU');
+        } // end of behavior for ORDER_MENU
         
-        this.stateId = LightSm.StateId.ROOT;
-    }
-    
-    _OFF_increase()
-    {
-        // Off behavior
-        // uml: INCREASE / { this.tracer?.edgeTransition('edge7'); } TransitionTo(ON1)
-        {
-            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this._OFF_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
-            this.tracer?.edgeTransition('edge7');
-            
-            // Step 3: Enter/move towards transition target `ON1`.
-            this._ON_GROUP_enter();
-            this._ON1_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for Off
-        
-        // No ancestor handles this event.
+        this.stateId = issue512.StateId.ROOT;
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state ON_GROUP
+    // event handlers for state FOOD
     ////////////////////////////////////////////////////////////////////////////////
     
-    _ON_GROUP_enter()
+    _FOOD_enter()
     {
-        this.stateId = LightSm.StateId.ON_GROUP;
+        this.stateId = issue512.StateId.FOOD;
         
-        // ON_GROUP behavior
-        // uml: enter / { this.tracer?.enterState('ON_GROUP'); }
+        // FOOD behavior
+        // uml: enter / { this.tracer?.enterState('FOOD'); }
         {
-            // Step 1: execute action `this.tracer?.enterState('ON_GROUP');`
-            this.tracer?.enterState('ON_GROUP');
-        } // end of behavior for ON_GROUP
+            // Step 1: execute action `this.tracer?.enterState('FOOD');`
+            this.tracer?.enterState('FOOD');
+        } // end of behavior for FOOD
     }
     
-    _ON_GROUP_exit()
+    _FOOD_exit()
     {
-        // ON_GROUP behavior
-        // uml: exit / { this.tracer?.exitState('ON_GROUP'); }
+        // FOOD behavior
+        // uml: exit / { this.tracer?.exitState('FOOD'); }
         {
-            // Step 1: execute action `this.tracer?.exitState('ON_GROUP');`
-            this.tracer?.exitState('ON_GROUP');
-        } // end of behavior for ON_GROUP
+            // Step 1: execute action `this.tracer?.exitState('FOOD');`
+            this.tracer?.exitState('FOOD');
+        } // end of behavior for FOOD
         
-        this.stateId = LightSm.StateId.ROOT;
+        this.stateId = issue512.StateId.ORDER_MENU;
     }
     
-    _ON_GROUP_off()
+    _FOOD_my_event()
     {
-        // ON_GROUP behavior
-        // uml: off / { this.tracer?.edgeTransition('edge0'); } TransitionTo(Off)
+        // FOOD behavior
+        // uml: MY_EVENT / { this.tracer?.edgeTransition('edge1'); } TransitionTo(ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0))
         {
-            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this._exitUpToStateHandler(LightSm.StateId.ROOT);
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
-            this.tracer?.edgeTransition('edge0');
-            
-            // Step 3: Enter/move towards transition target `Off`.
-            this._OFF_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for ON_GROUP
-        
-        // No ancestor handles this event.
-    }
-    
-    
-    ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state ON1
-    ////////////////////////////////////////////////////////////////////////////////
-    
-    _ON1_enter()
-    {
-        this.stateId = LightSm.StateId.ON1;
-        
-        // ON1 behavior
-        // uml: enter / { this.tracer?.enterState('ON1'); }
-        {
-            // Step 1: execute action `this.tracer?.enterState('ON1');`
-            this.tracer?.enterState('ON1');
-        } // end of behavior for ON1
-        
-        // ON1 behavior
-        // uml: enter / { this.tracer?.logActionCode("show(\"###\");"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("show(\"###\");");`
-            this.tracer?.logActionCode("show(\"###\");");
-        } // end of behavior for ON1
-    }
-    
-    _ON1_exit()
-    {
-        // ON1 behavior
-        // uml: exit / { this.tracer?.exitState('ON1'); }
-        {
-            // Step 1: execute action `this.tracer?.exitState('ON1');`
-            this.tracer?.exitState('ON1');
-        } // end of behavior for ON1
-        
-        this.stateId = LightSm.StateId.ON_GROUP;
-    }
-    
-    _ON1_dimlight()
-    {
-        // ON1 behavior
-        // uml: DimLight / { this.tracer?.edgeTransition('edge2'); } TransitionTo(Off)
-        {
-            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this._exitUpToStateHandler(LightSm.StateId.ROOT);
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
-            this.tracer?.edgeTransition('edge2');
-            
-            // Step 3: Enter/move towards transition target `Off`.
-            this._OFF_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for ON1
-        
-        // No ancestor handles this event.
-    }
-    
-    _ON1_do()
-    {
-        // ON1 behavior
-        // uml: do [this.tracer?.logGuardCodeEvaluation("x<3") || this.evaluateGuard('ON1', "do [x<3] / { z++; }")] / { this.tracer?.logActionCode("z++;"); }
-        if (this.tracer?.logGuardCodeEvaluation("x<3") || this.evaluateGuard('ON1', "do [x<3] / { z++; }"))
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("z++;");`
-            this.tracer?.logActionCode("z++;");
-        } // end of behavior for ON1
-        
-        // No ancestor handles this event.
-    }
-    
-    _ON1_increase()
-    {
-        // ON1 behavior
-        // uml: INCREASE / { this.tracer?.edgeTransition('edge1'); } TransitionTo(ON2)
-        {
-            // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
-            this._ON1_exit();
+            // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition).
+            this._exitUpToStateHandler(issue512.StateId.ORDER_MENU);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge1');`.
             this.tracer?.edgeTransition('edge1');
             
-            // Step 3: Enter/move towards transition target `ON2`.
-            this._ON2_enter();
+            // Step 3: Enter/move towards transition target `ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0)`.
+            // ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0) is a pseudo state and cannot have an `enter` trigger.
             
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for ON1
+            // ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0) behavior
+            // uml: / { this.tracer?.log(`<a href='https://github.com/StateSmith/StateSmith/issues/512' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>🧜‍♀️ mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge3'); } TransitionTo(FOOD)
+            {
+                // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `this.tracer?.log(`<a href='https://github.com/StateSmith/StateSmith/issues/512' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>🧜‍♀️ mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge3');`.
+                this.tracer?.log(`<a href='https://github.com/StateSmith/StateSmith/issues/512' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>🧜‍♀️ mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge3');
+                
+                // Step 3: Enter/move towards transition target `FOOD`.
+                this._FOOD_enter();
+                
+                // Finish transition by calling pseudo state transition function.
+                this._FOOD_InitialState_transition();
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0)
+        } // end of behavior for FOOD
         
         // No ancestor handles this event.
     }
     
-    
-    ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state ON2
-    ////////////////////////////////////////////////////////////////////////////////
-    
-    _ON2_enter()
+    _FOOD_InitialState_transition()
     {
-        this.stateId = LightSm.StateId.ON2;
-        
-        // ON2 behavior
-        // uml: enter / { this.tracer?.enterState('ON2'); }
+        // FOOD.<InitialState> behavior
+        // uml: / { this.tracer?.edgeTransition('edge2'); } TransitionTo(SANDWICH)
         {
-            // Step 1: execute action `this.tracer?.enterState('ON2');`
-            this.tracer?.enterState('ON2');
-        } // end of behavior for ON2
-        
-        // ON2 behavior
-        // uml: enter / { this.tracer?.logActionCode("light_yellow();"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("light_yellow();");`
-            this.tracer?.logActionCode("light_yellow();");
-        } // end of behavior for ON2
-        
-        // ON2 behavior
-        // uml: enter / { this.tracer?.logActionCode("count = 0;"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("count = 0;");`
-            this.tracer?.logActionCode("count = 0;");
-        } // end of behavior for ON2
-    }
-    
-    _ON2_exit()
-    {
-        // ON2 behavior
-        // uml: exit / { this.tracer?.exitState('ON2'); }
-        {
-            // Step 1: execute action `this.tracer?.exitState('ON2');`
-            this.tracer?.exitState('ON2');
-        } // end of behavior for ON2
-        
-        this.stateId = LightSm.StateId.ON_GROUP;
-    }
-    
-    _ON2_dimlight()
-    {
-        // ON2 behavior
-        // uml: DimLight / { this.tracer?.edgeTransition('edge4'); } TransitionTo(ON1)
-        {
-            // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
-            this._ON2_exit();
+            // Step 1: Exit states until we reach `FOOD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
-            this.tracer?.edgeTransition('edge4');
+            // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
+            this.tracer?.edgeTransition('edge2');
             
-            // Step 3: Enter/move towards transition target `ON1`.
-            this._ON1_enter();
+            // Step 3: Enter/move towards transition target `SANDWICH`.
+            this._SANDWICH_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
-        } // end of behavior for ON2
-        
-        // No ancestor handles this event.
-    }
-    
-    _ON2_increase()
-    {
-        // ON2 behavior
-        // uml: 1. INCREASE / { this.tracer?.logActionCode("count++;"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("count++;");`
-            this.tracer?.logActionCode("count++;");
-        } // end of behavior for ON2
-        
-        // ON2 behavior
-        // uml: 2. INCREASE [this.tracer?.logGuardCodeEvaluation("count >= 3") || this.evaluateGuard('ON2', "2. INCREASE [count >= 3] TransitionTo(OnHot)")] / { this.tracer?.edgeTransition('edge5'); } TransitionTo(OnHot)
-        if (this.tracer?.logGuardCodeEvaluation("count >= 3") || this.evaluateGuard('ON2', "2. INCREASE [count >= 3] TransitionTo(OnHot)"))
-        {
-            // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
-            this._ON2_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge5');`.
-            this.tracer?.edgeTransition('edge5');
-            
-            // Step 3: Enter/move towards transition target `OnHot`.
-            this._ONHOT_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for ON2
-        
-        // No ancestor handles this event.
+        } // end of behavior for FOOD.<InitialState>
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state ONHOT
+    // event handlers for state SANDWICH
     ////////////////////////////////////////////////////////////////////////////////
     
-    _ONHOT_enter()
+    _SANDWICH_enter()
     {
-        this.stateId = LightSm.StateId.ONHOT;
+        this.stateId = issue512.StateId.SANDWICH;
         
-        // OnHot behavior
-        // uml: enter / { this.tracer?.enterState('OnHot'); }
+        // SANDWICH behavior
+        // uml: enter / { this.tracer?.enterState('SANDWICH'); }
         {
-            // Step 1: execute action `this.tracer?.enterState('OnHot');`
-            this.tracer?.enterState('OnHot');
-        } // end of behavior for OnHot
-        
-        // OnHot behavior
-        // uml: enter / { this.tracer?.logActionCode("light_red();"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("light_red();");`
-            this.tracer?.logActionCode("light_red();");
-        } // end of behavior for OnHot
+            // Step 1: execute action `this.tracer?.enterState('SANDWICH');`
+            this.tracer?.enterState('SANDWICH');
+        } // end of behavior for SANDWICH
     }
     
-    _ONHOT_exit()
+    _SANDWICH_exit()
     {
-        // OnHot behavior
-        // uml: exit / { this.tracer?.exitState('OnHot'); }
+        // SANDWICH behavior
+        // uml: exit / { this.tracer?.exitState('SANDWICH'); }
         {
-            // Step 1: execute action `this.tracer?.exitState('OnHot');`
-            this.tracer?.exitState('OnHot');
-        } // end of behavior for OnHot
+            // Step 1: execute action `this.tracer?.exitState('SANDWICH');`
+            this.tracer?.exitState('SANDWICH');
+        } // end of behavior for SANDWICH
         
-        this.stateId = LightSm.StateId.ON_GROUP;
-    }
-    
-    _ONHOT_dimlight()
-    {
-        // OnHot behavior
-        // uml: DimLight / { this.tracer?.edgeTransition('edge3'); } TransitionTo(ON2)
-        {
-            // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
-            this._ONHOT_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
-            this.tracer?.edgeTransition('edge3');
-            
-            // Step 3: Enter/move towards transition target `ON2`.
-            this._ON2_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for OnHot
-        
-        // No ancestor handles this event.
+        this.stateId = issue512.StateId.FOOD;
     }
     
     // Thread safe.
@@ -1051,12 +798,10 @@ evaluateGuard = null;
     {
         switch (id)
         {
-            case LightSm.StateId.ROOT: return "ROOT";
-            case LightSm.StateId.OFF: return "OFF";
-            case LightSm.StateId.ON_GROUP: return "ON_GROUP";
-            case LightSm.StateId.ON1: return "ON1";
-            case LightSm.StateId.ON2: return "ON2";
-            case LightSm.StateId.ONHOT: return "ONHOT";
+            case issue512.StateId.ROOT: return "ROOT";
+            case issue512.StateId.ORDER_MENU: return "ORDER_MENU";
+            case issue512.StateId.FOOD: return "FOOD";
+            case issue512.StateId.SANDWICH: return "SANDWICH";
             default: return "?";
         }
     }
@@ -1066,10 +811,7 @@ evaluateGuard = null;
     {
         switch (id)
         {
-            case LightSm.EventId.DIMLIGHT: return "DIMLIGHT";
-            case LightSm.EventId.DO: return "DO";
-            case LightSm.EventId.INCREASE: return "INCREASE";
-            case LightSm.EventId.OFF: return "OFF";
+            case issue512.EventId.MY_EVENT: return "MY_EVENT";
             default: return "?";
         }
     }
@@ -1120,65 +862,36 @@ evaluateGuard = null;
             center: true
         });
 
-        const diagramEventNamesArray = ['do', 'DimLight', 'INCREASE', 'off', ];
+        const diagramEventNamesArray = ['MY_EVENT', ];
 
         // Mapping from state to available events
         const stateEventsMapping = {
-  "ON_GROUP": [
-    "off"
+  "ORDER_MENU": [],
+  "FOOD": [
+    "MY_EVENT"
   ],
-  "ON1": [
-    "DimLight",
-    "do",
-    "INCREASE",
-    "off"
-  ],
-  "OnHot": [
-    "DimLight",
-    "off"
-  ],
-  "ON2": [
-    "DimLight",
-    "INCREASE",
-    "off"
-  ],
-  "Off": [
-    "INCREASE"
+  "SANDWICH": [
+    "MY_EVENT"
   ]
 };
 
         // https://github.com/StateSmith/StateSmith/issues/522
         const stateEdgeMapping = {
-  "ON_GROUP": [
-    0
+  "ORDER_MENU": [],
+  "FOOD": [
+    1
   ],
-  "ON1": [
-    0,
-    1,
-    2
-  ],
-  "OnHot": [
-    0,
-    3
-  ],
-  "ON2": [
-    0,
-    4,
-    5
-  ],
-  "Off": [
-    7
+  "SANDWICH": [
+    1
   ]
 };
 
         // https://github.com/StateSmith/StateSmith/issues/523
         const stateDescriptionMapping = {
-  "LightSm": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT.\u0026lt;InitialState\u0026gt;\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "ON_GROUP": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E21\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON1\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOnHot\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON2\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "ON1": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON1\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E23\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Eshow(\u0026quot;###\u0026quot;);\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Edo\u003C/span\u003E \u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E[\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-code\u0027\u003Ex\u0026lt;3\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E]\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Ez\u002B\u002B;\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCREASE\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON2\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDimLight\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E21\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "OnHot": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOnHot\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E19\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elight_red();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDimLight\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON2\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E21\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "ON2": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON2\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E42\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-order\u0027\u003E1.\u003C/span\u003E \u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCREASE\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Ecount\u002B\u002B;\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-order\u0027\u003E2.\u003C/span\u003E \u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCREASE\u003C/span\u003E \u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E[\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-code\u0027\u003Ecount \u0026gt;= 3\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E]\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOnHot\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elight_yellow();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Ecount = 0;\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDimLight\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON1\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E21\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "Off": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E16\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Econsole.log( \u0026quot;OFF\\n\u0026quot;);\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCREASE\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON1\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E"
+  "issue512": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT.\u0026lt;InitialState\u0026gt;\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "ORDER_MENU": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EORDER_MENU\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU.\u0026lt;InitialState\u0026gt;\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EFOOD\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU.\u0026lt;ChoicePoint\u0026gt;(FOOD__Mermaid_StateSmith_Issue_512__0)\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "FOOD": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EFOOD\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EFOOD\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EFOOD.\u0026lt;InitialState\u0026gt;\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ESANDWICH\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EMY_EVENT\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU.\u0026lt;ChoicePoint\u0026gt;(FOOD__Mermaid_StateSmith_Issue_512__0)\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EORDER_MENU\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "SANDWICH": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ESANDWICH\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003ESANDWICH\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EFOOD\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EFOOD\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EMY_EVENT\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU.\u0026lt;ChoicePoint\u0026gt;(FOOD__Mermaid_StateSmith_Issue_512__0)\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EORDER_MENU\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E"
 };
 
         // Get page element references
@@ -1349,7 +1062,7 @@ evaluateGuard = null;
             document.querySelector('#event-logs tbody').appendChild(row);
         }
 
-        var sm = new LightSm();
+        var sm = new issue512();
         window.StateSmith_sm = sm; // expose to global scope so people can interact with it from the console if they want to.
 
         // prompt the user to evaluate guards manually
@@ -1550,15 +1263,15 @@ evaluateGuard = null;
           const stateName = stateNameAnyCase.toUpperCase();
 
           // get ID from stateName
-          const stateId = LightSm.StateId[stateName];
+          const stateId = issue512.StateId[stateName];
           if (stateId === undefined) {
             console.error(`Invalid state name '${stateNameAnyCase}' passed to forceStateChange.`);
-            console.log('Valid state names are (in any case):', Object.keys(LightSm.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
+            console.log('Valid state names are (in any case):', Object.keys(issue512.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
             return;
           }
 
           // note! This and other ROOT code assumes that it is the first state. This is a fairly safe assumption, but if that ever changes this code will need to be updated.
-          if (Object.keys(LightSm.StateId)[0] !== 'ROOT') {
+          if (Object.keys(issue512.StateId)[0] !== 'ROOT') {
             console.warn(`ROOT not found. This should happen. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
           }
 
@@ -1636,7 +1349,7 @@ evaluateGuard = null;
                     clearHighlightedEdges();
                     sm.tracer?.log(`<span class='dispatched'>Event <span class='syntax-trigger-name'>${diagramEventName}</span> dispatched</span>`, true);
                     const fsmEventName = diagramEventName.toUpperCase();
-                    sm.dispatchEvent(LightSm.EventId[fsmEventName]);
+                    sm.dispatchEvent(issue512.EventId[fsmEventName]);
                     updateClickableEvents();
                 }
             });

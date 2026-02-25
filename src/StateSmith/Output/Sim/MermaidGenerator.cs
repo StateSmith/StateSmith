@@ -1,8 +1,6 @@
 using StateSmith.SmGraph;
 using StateSmith.SmGraph.Visitors;
 using System;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Text;
 
 namespace StateSmith.Output.Sim;
@@ -12,21 +10,15 @@ class MermaidGenerator : IVertexVisitor
     int indentLevel = 0;
     StringBuilder sb = new();
     MermaidEdgeTracker mermaidEdgeTracker;
-    BehaviorDescriber behaviorDescriber;
 
     /// <summary>
-    /// We print this as a replacement for newlines in behavior descriptions,
-    /// then the mermaid special characters are escaped, and finally we replace
-    /// this token with a newline character in the final output.
-    /// Without this, new lines in user action code end up as `#92;n` instead of `\n` in the mermaid output.
+    /// https://github.com/StateSmith/StateSmith/issues/525
     /// </summary>
-    const string LINE_BREAK_TOKEN = "__LINE_BREAK__";
+    public bool lowerDiagramDetail = false;
 
     public MermaidGenerator(MermaidEdgeTracker edgeOrderTracker)
     {
         this.mermaidEdgeTracker = edgeOrderTracker;
-        behaviorDescriber = new(singleLineFormat: true, newLine: LINE_BREAK_TOKEN);
-        behaviorDescriber.describeTransition = false; // we don't want `TransitionTo(state)` printed in mermaid labels
     }
 
     public void RenderAll(StateMachine sm)
@@ -61,7 +53,7 @@ class MermaidGenerator : IVertexVisitor
 
     private void VisitCompoundState(State v)
     {
-        AppendIndentedLine($"state {v.Name} {{");
+        AppendIndentedLine($"state \"{VertexHtmlDescriber.VertexName(v)}\" as {v.Name} {{");
         // FIXME - add behavior code here when supported by mermaid
         // https://github.com/StateSmith/StateSmith/issues/268#issuecomment-2111432194
         VisitChildren(v);
@@ -72,12 +64,25 @@ class MermaidGenerator : IVertexVisitor
     {
         string name = v.Name;
         AppendIndentedLine(name);
-        AppendIndentedLine($"{name} : {name}");
+        AppendIndentedLine($"{name} : {VertexHtmlDescriber.VertexName(v)}");
+        bool ellipsized = false;
+
         foreach (var b in v.NonTransitionBehaviors())
         {
-            // always show action code for https://github.com/StateSmith/StateSmith/issues/355
-            string behaviorText = BehaviorToMermaidLabel(b, alwaysShowActionCode: true);
-            AppendIndentedLine($"{name} : {behaviorText}");
+            if (lowerDiagramDetail)
+            {
+                ellipsized = true;
+            }
+            else
+            {
+                string behaviorText = BehaviorToMermaidLabel(b);
+                AppendIndentedLine($"{name} : {behaviorText}");
+            }
+        }
+
+        if (ellipsized)
+        {
+            AppendIndentedLine($"{name} : {VertexHtmlDescriber.ActionCode("...")}");
         }
     }
 
@@ -156,11 +161,13 @@ class MermaidGenerator : IVertexVisitor
         });
     }
 
-    public string BehaviorToMermaidLabel(Behavior behavior, bool alwaysShowActionCode = false)
+    public string BehaviorToMermaidLabel(Behavior behavior)
     {
-        var behaviorText = behaviorDescriber.Describe(behavior, alwaysShowActionCode: alwaysShowActionCode);
-        behaviorText = MermaidEscape(behaviorText);
-        behaviorText = behaviorText.Replace(LINE_BREAK_TOKEN, "\\n");
+        VertexHtmlDescriber vertexHtmlDescriber = new();
+        vertexHtmlDescriber.codeFilter = MermaidEscape;
+        vertexHtmlDescriber.lowerDiagramDetail = lowerDiagramDetail;
+
+        var behaviorText = vertexHtmlDescriber.BuildBehaviorHtml(behavior, showTransitionText:false);
         return behaviorText;
     }
 
@@ -176,14 +183,18 @@ class MermaidGenerator : IVertexVisitor
         }
     }
 
-    // TODO handle #
-    // You can't naively add # to the list of characters because # and ; will interfere with each other
     public static string MermaidEscape(string text)
     {
-        foreach (char c in ":;\\{}".ToCharArray())
+        // replace ';' and ':' with look a likes as Mermaid is really picky about this
+        text = text.Replace(":", "꞉");
+        text = text.Replace(";", ";");
+        
+        foreach (char c in "#\\{}<>".ToCharArray())
         {
+            // kinda strange that we don't prefix with `&` like HTML, but that's how mermaid works
             text = text.Replace(c.ToString(), $"#{(int)c};");
         }
+
         return text;
     }
 
