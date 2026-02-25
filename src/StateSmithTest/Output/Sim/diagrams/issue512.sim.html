@@ -831,6 +831,17 @@ evaluateGuard = null;
         document.querySelector('svg').setAttribute('height', '100%');
         document.querySelector('svg').style['max-width'] = '';
 
+        function escapeHtml(str) {
+          // Create a new, detached DOM node
+          var div = document.createElement('div');
+
+          // Set the textContent to the raw string. The browser automatically escapes special characters.
+          div.textContent = str;
+
+          // Return the escaped HTML string
+          return div.innerHTML;
+        }
+
         // don't scale the arrow when we scale the transition edge
         document.querySelectorAll('g defs marker[id$=barbEnd]').forEach(marker => {
             marker.setAttribute('markerUnits', 'userSpaceOnUse');
@@ -1236,10 +1247,10 @@ evaluateGuard = null;
                 sm.tracer.log(`🕑 History: ${description}.`);
             },
             logGuardCodeEvaluation: (guardCode) => {
-                sm.tracer.log(`<span title='Guard code manually evaluated by user for simulation.'>🛡️ Guard: <span class='syntax-guard-code'>[ ${guardCode} ]</span></span>`, true);
+                sm.tracer.log(`<span title='Guard code manually evaluated by user for simulation.'>🛡️ Guard: <span class='syntax-guard-bracket'>[</span><span class='syntax-guard-code'>${escapeHtml(guardCode)}</span><span class='syntax-guard-bracket'>]</span></span>`, true);
             },
             logActionCode: (actionCode) => {
-                sm.tracer.log(`<span title='Your actual state machine will run this action code.'>⚡ Action: <span class='syntax-action-code'>${actionCode}</span></span>`, true);
+                sm.tracer.log(`<span title='Your actual state machine will run this action code.'>⚡ Action: <span class='syntax-action-code'>${escapeHtml(actionCode)}</span></span>`, true);
             },
             log: (message, html=false) => {
                 addEventLogRow(new Date(), message, html);

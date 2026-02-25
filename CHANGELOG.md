@@ -73,6 +73,7 @@ Test/interim releases are not documented here.
 ## Fixed (minor)
 - Fix - simulator - mermaid bug with parent self transitions.
   - https://github.com/StateSmith/StateSmith/issues/512
+- Fix - simulator - escape html characters in user action/guard code.
 
 ---
 

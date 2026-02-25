@@ -353,7 +353,8 @@ static void STATE1_exit(PlantEx2* sm)
 static void STATE1_ev2(PlantEx2* sm)
 {
     // State1 behavior
-    // uml: 1. Ev2 TransitionTo(State2)
+    // uml: 1. Ev2 [IsMatch('<xml>')] TransitionTo(State2)
+    if (IsMatch('<xml>'))
     {
         // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition).
         STATE1_exit(sm);
@@ -367,7 +368,21 @@ static void STATE1_ev2(PlantEx2* sm)
         return;
     } // end of behavior for State1
     
-    // unreachable behavior: `Ev2 [pointless & x>2] TransitionTo(State2)` due to unconditional transition above
+    // State1 behavior
+    // uml: Ev2 [pointless & x>2] TransitionTo(State2)
+    if (pointless & x>2)
+    {
+        // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition).
+        STATE1_exit(sm);
+        
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `State2`.
+        STATE2_enter(sm);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        return;
+    } // end of behavior for State1
     
     // No ancestor handles this event.
 }
