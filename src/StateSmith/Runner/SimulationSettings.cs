@@ -14,7 +14,7 @@ public class SimulationSettings
     public string outputFileNamePostfix = ".sim.html";
 
     /// <summary>
-    /// 
+    /// https://github.com/StateSmith/StateSmith/issues/525
     /// </summary>
-    public bool ellipsizeActionCode = false;
+    public bool lowerDiagramDetail = false;
 }

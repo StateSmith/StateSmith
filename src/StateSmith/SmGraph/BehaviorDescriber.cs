@@ -8,7 +8,7 @@ public class BehaviorDescriber
 {
     public bool describeTransition = true;
     public bool prependTransitionArrow = false;
-    public bool ellipsizeActionCode = false;
+    public bool lowerDiagramDetail = false;
 
     readonly string _newLine;
     readonly bool _singleLineFormat;
@@ -94,7 +94,7 @@ public class BehaviorDescriber
 
     private string GetActionCode(Behavior b)
     {
-        if (ellipsizeActionCode)
+        if (lowerDiagramDetail)
         {
             return "...";
         }

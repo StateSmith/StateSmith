@@ -28,10 +28,24 @@ public class SimWebGenerator_IntegrationTests
         GenerateForDiagram(diagramName: "LightSm2.drawio.svg", expectedOutputFileName: "LightSm2.sim.html");
     }
 
+    /// <summary>
+    /// Also tests lower diagram detail https://github.com/StateSmith/StateSmith/issues/525
+    /// </summary>
     [Fact]
     public void PlantEx1()
     {
-        GenerateForDiagram(diagramName: "PlantEx1.puml", expectedOutputFileName: "PlantEx1.sim.html");
+        const string ExpectedOutputFileName = "PlantEx1.sim.html";
+        GenerateForDiagram(diagramName: "PlantEx1.puml", expectedOutputFileName: ExpectedOutputFileName);
+
+        string expectedOutputFilePath = diagramDirPath + ExpectedOutputFileName;
+
+        // verify that we see "..." and not "doStuff()" in the output, which indicates that lower diagram detail is working
+        string outputContent = File.ReadAllText(expectedOutputFilePath);
+        Assert.Contains("...", outputContent);
+        Assert.DoesNotContain("""<span class="syntax-action-code">doStuff()""", outputContent);
+
+        // check transition detail was also reduced
+        Assert.DoesNotContain("""<span class="syntax-action-code">do_blah()""", outputContent);
     }
 
     [Fact]

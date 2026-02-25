@@ -118,6 +118,7 @@ AutoExpandedVars  = "stuff..."
 - [SmRunnerSettings.smDesignDescriber](#smrunnersettingssmdesigndescriber)
 - [SmRunnerSettings.algoBalanced1](#smrunnersettingsalgobalanced1)
 - [SmRunnerSettings.simulation](#smrunnersettingssimulation)
+    - [SmRunnerSettings.simulation.lowerDiagramDetail](#smrunnersettingssimulationlowerdiagramdetail)
 - [...more](#more)
 
 <br>
@@ -1333,11 +1334,26 @@ If you are using a .csx file, you need to explicitly enable this feature.
 ```toml
 [SmRunnerSettings.simulation]
 enableGeneration = false
+lowerDiagramDetail = true
 outputDirectory = ".."
 outputFileNamePostfix = ".sim.html" # NOT YET SUPPORTED!
 ```
 
 Note: `outputFileNamePostfix` is [not yet supported](https://github.com/StateSmith/StateSmith/issues/360).
+
+## SmRunnerSettings.simulation.lowerDiagramDetail
+Info: https://github.com/StateSmith/StateSmith/issues/525
+
+Type: `bool`
+
+If set to true, leaf state contents and transition actions are replaced with "...". This can be useful when there's a lot of code in the diagram, but it clutters up the simulation.
+Default is `false`.
+
+```toml
+[SmRunnerSettings.simulation]
+lowerDiagramDetail = true
+```
+
 
 # ...more
 There are more SmRunnerSettings available that are less commonly used and not yet documented here.

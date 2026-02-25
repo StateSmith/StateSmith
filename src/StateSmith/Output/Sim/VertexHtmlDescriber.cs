@@ -13,6 +13,11 @@ public class VertexHtmlDescriber
     public Func<string, string> codeFilter = (s) => s;
 
     /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/525
+    /// </summary>
+    public bool lowerDiagramDetail = false;
+
+    /// <summary>
     /// This MUST be done before simulation tracing behaviors are added.
     /// https://github.com/StateSmith/StateSmith/issues/523
     /// </summary>
@@ -64,6 +69,11 @@ public class VertexHtmlDescriber
     public static string VertexName(Vertex currentVertex)
     {
         return Syntax("vertex-name", HttpUtility.HtmlEncode(Vertex.Describe(currentVertex)));
+    }
+
+    public static string ActionCode(string code)
+    {
+        return Syntax("action-code", code);
     }
 
     public static string Syntax(string className, string code)
@@ -129,7 +139,13 @@ public class VertexHtmlDescriber
         bool alwaysShowActionCode = !b.HasTransition(); // See https://github.com/StateSmith/StateSmith/issues/355
         if (alwaysShowActionCode || b.HasActionCode())
         {
-            result += joiner + Syntax("action-start-end", "/ { ") + Syntax("action-code", HttpUtility.HtmlEncode(codeFilter(b.actionCode))) + Syntax("action-start-end", " }");
+            string actionCode = b.actionCode;
+            if (lowerDiagramDetail)
+            {
+                actionCode = "...";
+            }
+
+            result += joiner + Syntax("action-start-end", "/ { ") + ActionCode(HttpUtility.HtmlEncode(codeFilter(actionCode))) + Syntax("action-start-end", " }");
             joiner = " ";
         }
 

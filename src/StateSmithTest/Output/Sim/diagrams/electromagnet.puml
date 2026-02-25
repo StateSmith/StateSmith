@@ -123,6 +123,9 @@ CFileIncludes = """
     """
 [SmRunnerSettings]
 transpilerId = "C99"
+
+[SmRunnerSettings.simulation]
+lowerDiagramDetail = false
 '/
 
 @enduml 

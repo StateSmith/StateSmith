@@ -12,9 +12,9 @@ class MermaidGenerator : IVertexVisitor
     MermaidEdgeTracker mermaidEdgeTracker;
 
     /// <summary>
-    /// 
+    /// https://github.com/StateSmith/StateSmith/issues/525
     /// </summary>
-    public bool ellipsizeActionCode = false;
+    public bool lowerDiagramDetail = false;
 
     public MermaidGenerator(MermaidEdgeTracker edgeOrderTracker)
     {
@@ -69,7 +69,7 @@ class MermaidGenerator : IVertexVisitor
 
         foreach (var b in v.NonTransitionBehaviors())
         {
-            if (ellipsizeActionCode)
+            if (lowerDiagramDetail)
             {
                 ellipsized = true;
             }
@@ -82,7 +82,7 @@ class MermaidGenerator : IVertexVisitor
 
         if (ellipsized)
         {
-            AppendIndentedLine($"{name} : ...");
+            AppendIndentedLine($"{name} : {VertexHtmlDescriber.ActionCode("...")}");
         }
     }
 
@@ -165,6 +165,7 @@ class MermaidGenerator : IVertexVisitor
     {
         VertexHtmlDescriber vertexHtmlDescriber = new();
         vertexHtmlDescriber.codeFilter = MermaidEscape;
+        vertexHtmlDescriber.lowerDiagramDetail = lowerDiagramDetail;
 
         var behaviorText = vertexHtmlDescriber.BuildBehaviorHtml(behavior, showTransitionText:false);
         return behaviorText;

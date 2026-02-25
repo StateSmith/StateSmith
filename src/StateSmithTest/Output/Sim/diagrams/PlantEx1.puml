@@ -17,12 +17,14 @@ state Configuring {
 
   state NewValuePreview {
     [*] -> State1
-    State1 -> State2 : Ev2
+    State1 -> State2 : Ev2 / do_blah();
   }
 }
 
 ' Test below event consume for https://github.com/StateSmith/StateSmith/issues/355
 Idle: Ev4 /
+
+State1: enter / {\n  doStuff();\n  doEvenMore();\n  x++;y++;\n}
 
 ' The below is meant to test https://github.com/StateSmith/StateSmith/issues/337
 /'! $CONFIG : toml
@@ -30,6 +32,9 @@ Idle: Ev4 /
 ClassCode = "blah blah"
 ExtendsSuperClass = "SomeUserClass"
 UseExportOnClass = true
+
+[SmRunnerSettings.simulation]
+lowerDiagramDetail = true
 '/
 
 @enduml

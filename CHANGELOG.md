@@ -61,7 +61,8 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/497
 - Simulator - added link to simulator wiki page to help make it easier to find quirks and limitations.
   - https://github.com/StateSmith/StateSmith/issues/498
-- Simulator - style event dispatched log to match event button
+- Simulator - support lower diagram detail setting.
+  - https://github.com/StateSmith/StateSmith/issues/525
 - Simulator - prevent accidental text selection of top right buttons.
 - Simulator - add tool tip titles to event and other buttons.
 - Simulator - add setting to disable tool tips on event buttons.

@@ -107,10 +107,11 @@ public class SimWebGenerator
     /// <param name="renderConfigBaseVars">Render configuration base variables</param>
     private void PreventCertainDiagramSpecifiedSettings(RenderConfigBaseVars renderConfigBaseVars)
     {
-        DiagramBasedSettingsPreventer.Process(runner.SmTransformer, action: (readRenderConfigAllVars, _) =>
+        DiagramBasedSettingsPreventer.Process(runner.SmTransformer, action: (readRenderConfigAllVars, readRunnerSettings) =>
         {
             // copy only the settings that are safe to copy for the simulation
             renderConfigBaseVars.TriggerMap = readRenderConfigAllVars.Base.TriggerMap;
+            runner.Settings.simulation.lowerDiagramDetail = readRunnerSettings.simulation.lowerDiagramDetail;
         });
     }
 
@@ -324,6 +325,7 @@ public class SimWebGenerator
     void GenerateMermaidCode(StateMachine sm)
     {
         var visitor = new MermaidGenerator(mermaidEdgeTracker);
+        visitor.lowerDiagramDetail = RunnerSettings.simulation.lowerDiagramDetail;
         visitor.RenderAll(sm);
         mermaidCodeWriter.WriteLine(visitor.GetMermaidCode());
     }
