@@ -1346,7 +1346,8 @@ Info: https://github.com/StateSmith/StateSmith/issues/525
 
 Type: `bool`
 
-If set to true, leaf state contents and transition actions are replaced with "...". This can be useful when there's a lot of code in the diagram, but it clutters up the simulation.
+If set to `true`, leaf state contents and transition actions are replaced with "...". This can be useful when there's a lot of code in the source diagram and you don't want to clutter up the simulation (the default mermaid layout engine can sometimes use the help).
+
 Default is `false`.
 
 ```toml
