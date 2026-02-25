@@ -31,7 +31,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## [WIP]
+## [0.20.0-alpha-1]
 ### Changed (minor)
 - Simulator - enabling verbose modes below by default.
 - Simulator - disabled double click zoom now that we can click on edges to send events.
