@@ -34,3 +34,13 @@ jobs:
 
       - name: Test
         run: dotnet test --no-restore src/StateSmith.sln
+
+      # Test Algorithm.Balanced1
+      # Above `Test` step only tests default algorithm (Balanced2)
+      # https://github.com/StateSmith/StateSmith/issues/526
+      - name: Test Algorithm.Balanced1
+        env:
+          STATESMITH_TEST_ALGORITHM_ID: Balanced1
+
+        # only the early supported languages support Balanced1 so we just test them to avoid expected unsupported failures for later languages.
+        run: dotnet test src/StateSmithTest/ --filter 'DisplayName~Spec.Spec2.C.|DisplayName~Spec.Spec2.CSharp.|DisplayName~Spec.Spec2.JavaScript.'
