@@ -96,6 +96,7 @@ public class HtmlRenderer
 
 
       /* -------------------------------------- STATE INFO -------------------------------- */
+      /* https://github.com/StateSmith/StateSmith/issues/523 */
 
       #state-info {
         display: none;
@@ -436,6 +437,7 @@ config:
                 <input type='checkbox' id='savedSetting_hideIrrelevantEvents' name='savedSetting_hideIrrelevantEvents'>
                 Hide ignored event buttons
               </label>
+              <!--- https://github.com/StateSmith/StateSmith/issues/523 -->
               <label class='dropdown-item' for='savedSetting_showStateInfo'
                 title='The state info panel is updated every time a state is entered. This setting controls whether it is visible or not.'>
                 <input type='checkbox' id='savedSetting_showStateInfo' name='savedSetting_showStateInfo' checked>
@@ -474,6 +476,7 @@ config:
       </div>
     
       <div> <!-- needed to prevent event-logs div from squishing state-info vertically -->
+        <!-- https://github.com/StateSmith/StateSmith/issues/523 -->
         <table id='state-info'>
         </table>
       </div>
@@ -645,15 +648,23 @@ config:
           }
         });
 
-        document.getElementById('savedSetting_showStateInfo').addEventListener('change', function() {
-          // hide #state-info div if unchecked
-          const stateInfoDiv = document.getElementById('state-info');
-          if(this.checked) {
-            stateInfoDiv.style.display = 'block';
-          } else {
-            stateInfoDiv.style.display = 'none';
-          }
-        });
+        // state info
+        // https://github.com/StateSmith/StateSmith/issues/523
+        {
+          const checkBox = document.getElementById('savedSetting_showStateInfo');
+          checkBox.addEventListener('change', function() {
+            // hide #state-info div if unchecked
+            const stateInfoDiv = document.getElementById('state-info');
+            if(this.checked) {
+              stateInfoDiv.style.display = 'block';
+            } else {
+              stateInfoDiv.style.display = 'none';
+            }
+          });
+
+          // trigger a change event on page load to set the initial visibility of the state info div based on the checkbox state (which may be restored from localStorage)
+          checkBox.dispatchEvent(new Event('change'));
+        }
 
         // store and restore checkbox states using localStorage.
         // DO AFTER event listeners are set up, so that restored state will trigger the change event and apply the setting.
@@ -811,7 +822,6 @@ config:
             });
         }
 
-        // clicking on state name in state-info panel will also cause state change
         function updateClickableVertexNames()
         {
           document.querySelectorAll('.syntax-vertex-name').forEach(element => {
@@ -848,6 +858,17 @@ config:
           });
         }
 
+        // https://github.com/StateSmith/StateSmith/issues/523
+        function updateStateInfoPanel(diagramStateName)
+        {
+          const description = stateDescriptionMapping[diagramStateName];
+          if (description) {
+            document.querySelector('#state-info').innerHTML = description;
+          } else {
+            console.warn(`Failed finding description for ${diagramStateName}`);
+          }
+        }
+
         // The simulator uses a tracer callback to perform operations such as 
         // state highlighting and logging.
         sm.tracer = {
@@ -867,16 +888,9 @@ config:
                 
                 updateEventButtonStates(mermaidName);
                 updateEdgeAvailability(mermaidName);
+                updateStateInfoPanel(mermaidName);
 
-                const description = stateDescriptionMapping[mermaidName];
-                if (description) {
-                  // console.log(description);
-                  document.querySelector('#state-info').innerHTML = description;
-                } else {
-                  console.warn(`Failed finding description for ${mermaidName}`);
-                }
-
-                // must be done after description is updated above
+                // must be done after state info panel is updated above so that we can modify it
                 updateClickableVertexNames();
                 updateClickableEvents();
             },
