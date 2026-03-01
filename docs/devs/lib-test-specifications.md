@@ -36,6 +36,9 @@ uv python pin 3.15
 python3 --version # Should print e.g. "Python 3.15.0a1"
 ```
 
+## Berry
+Install Berry
+
 ## Java
 ![Supported Versions](https://img.shields.io/badge/Supported_Versions->=_v5-blue)
 
@@ -93,6 +96,11 @@ src/StateSmith$ dotnet test --filter Spec.
 You can run just the specification tests for python like this:
 ```
 src/StateSmith$ dotnet test --filter Spec2.Python
+```
+
+You can run just the specification tests for berry like this:
+```
+src/StateSmith$ dotnet test --filter Spec2.Berry
 ```
 
 ## Run *all* tests for *all* projects
