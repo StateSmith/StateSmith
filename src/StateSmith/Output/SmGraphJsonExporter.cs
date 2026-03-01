@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -157,14 +158,32 @@ public class SmGraphJsonExporter
         return str;
     }
 
-    public void RecordBeforeTransformations(StateMachine stateMachine)
+    public void RecordBeforeTransformations(Runner.SmGraphJsonExporterSettings settings, StateMachine stateMachine)
     {
-        export.beforeTransformations = BuildNodes(stateMachine);
+        if (settings.enabled && settings.beforeTransformations)
+        {
+            export.beforeTransformations = BuildNodes(stateMachine);
+        }
     }
 
-    public void RecordAfterTransformations(StateMachine stateMachine)
+    public void RecordAfterTransformations(Runner.SmGraphJsonExporterSettings settings, StateMachine stateMachine)
     {
-        export.afterTransformations = BuildNodes(stateMachine);
+        if (settings.enabled && settings.afterTransformations)
+        {
+            export.afterTransformations = BuildNodes(stateMachine);
+        }
+    }
+
+    public void ExportToFile(Runner.SmGraphJsonExporterSettings settings, OutputInfo outputInfo, ICodeFileWriter fileWriter)
+    {
+        if (settings.enabled)
+        {
+            var filePath = $"{settings.outputDirectory}{outputInfo.BaseFileName}{settings.outputFileNamePostfix}";
+            
+            // If the output directory doesn't exist, create it.
+            Directory.CreateDirectory(settings.outputDirectory.ThrowIfNull());
+            fileWriter.WriteFile(filePath, ExportToJson());
+        }
     }
 
     public string ExportToJson()

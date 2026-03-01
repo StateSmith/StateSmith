@@ -7,16 +7,77 @@ using StateSmith.Runner;
 using StateSmith.SmGraph;
 using Xunit;
 
-namespace StateSmithTest.Output.SmDescriberTest;
+namespace StateSmithTest.Output.SmGraphJsonExporterTests;
 
 // https://github.com/StateSmith/StateSmith/issues/528
-public class SmGraphJsonExporterTests
+public class IntegrationTests
 {
-    [Fact]
-    public void IntegrationTest_FileOutput()
-    {
-        var smName = "RocketSm_" + Guid.NewGuid().ToString().Replace('-', '_');
+    private const string AfterTransformationsKey = "afterTransformations";
+    private const string BeforeTransformationsKey = "beforeTransformations";
 
+    // use a unique name to avoid parallel test issues
+    readonly string smName = "RocketSm_" + Guid.NewGuid().ToString().Replace('-', '_');
+    string jsonFileName;
+
+    public IntegrationTests()
+    {
+        jsonFileName = smName + ".export.json";
+    }
+
+    // actually writes to file so that we can get real console messages. If we were to use a fake file writer, we don't see printed messages.
+    [Fact]
+    public void IntegrationTestConsoleMessage()
+    {
+        var plantUmlText = $"""
+            @startuml {smName}
+            [*] --> s1
+
+            /'! $CONFIG : toml
+                SmRunnerSettings.smGraphJsonExporter.enabled = true
+                SmRunnerSettings.smGraphJsonExporter.outputDirectory = "meta"
+            '/
+            @enduml
+            """;
+
+        var console = new StringBuilderConsolePrinter();
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, useRealFileWriter: true, consoleCapturer: console, transpilerId:TranspilerId.JavaScript);
+
+        var printedConsole = console.sb.ToString();
+        printedConsole.Should().Contain($"Writing to file `meta/{jsonFileName}`");
+    }
+
+    [Fact]
+    public void DisabledByDefault()
+    {
+        var plantUmlText = $"""
+            @startuml {smName}
+            [*] --> s1
+
+            /'! $CONFIG : toml
+            '/
+            @enduml
+            """;
+
+        var fakeFs = new CapturingCodeFileWriter();
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
+        
+        // no captures should contain .json
+        fakeFs.captures.GetKeys().Count.Should().Be(1, "only for .js file");
+        fakeFs.captures.GetKeys().Should().NotContain(k => k.Contains(".json"));
+    }
+
+    public (CapturingCodeFileWriter.Capture, string relativeDir) IntegrationTestPlantUml(string plantuml)
+    {
+        var fakeFs = new CapturingCodeFileWriter();
+        var relativeDir = TestHelper.CaptureRunSmRunnerForPlantUmlString(plantuml, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
+        CapturingCodeFileWriter.Capture fileCapture = fakeFs.GetSoleCaptureWithName(jsonFileName);
+
+        return (fileCapture, relativeDir);
+    }
+
+    [Fact]
+    public void FileOutput()
+    {
         var plantUmlText = $"""
             @startuml {smName}
             [*] --> s1
@@ -27,18 +88,14 @@ public class SmGraphJsonExporterTests
             @enduml
             """;
 
-        var fakeFs = new CapturingCodeFileWriter();
-        var jsonFileName = smName + ".export.json";
-        var fileName = smName + ".plantuml";
-
-        var tmpDir = TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, fileName: fileName, transpilerId:TranspilerId.JavaScript);
-        fakeFs.GetSoleCaptureWithName(jsonFileName).filePath.Should().Be($"{tmpDir}/{jsonFileName}");
+        var (fileCapture, relativeDir) = IntegrationTestPlantUml(plantUmlText);
+        fileCapture.filePath.Should().Be($"{relativeDir}/{jsonFileName}");
     }
 
     [Fact]
-    public void IntegrationTest_FileOutputRelative_AndPostfix()
+    public void FileOutputRelative_AndPostfix()
     {
-        var smName = "RocketSm_" + Guid.NewGuid().ToString().Replace('-', '_');
+        jsonFileName = smName + ".json";
 
         var plantUmlText = $"""
             @startuml {smName}
@@ -52,24 +109,17 @@ public class SmGraphJsonExporterTests
             @enduml
             """;
 
-        var fakeFs = new CapturingCodeFileWriter();
-        var jsonFileName = smName + ".json";
-        var fileName = smName + ".plantuml";
-
-        var tmpDir = TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, fileName: fileName, transpilerId:TranspilerId.JavaScript);
-        CapturingCodeFileWriter.Capture capture = fakeFs.GetSoleCaptureWithName(jsonFileName);
-        capture.filePath.Should().Be($"{tmpDir}/meta/sub1/sub2/{jsonFileName}");
+        var (fileCapture, relativeDir) = IntegrationTestPlantUml(plantUmlText);
+        fileCapture.filePath.Should().Be($"{relativeDir}/meta/sub1/sub2/{jsonFileName}");
 
         // sections are present by default
-        capture.code.Should().Contain("beforeTransformations");
-        capture.code.Should().Contain("afterTransformations");
+        fileCapture.code.Should().Contain(BeforeTransformationsKey);
+        fileCapture.code.Should().Contain(AfterTransformationsKey);
     }
 
     [Fact]
-    public void IntegrationTest_DisableBeforeAfterTransformations()
+    public void DisableBeforeTransformations()
     {
-        var smName = "RocketSm_" + Guid.NewGuid().ToString().Replace('-', '_');
-
         var plantUmlText = $"""
             @startuml {smName}
             [*] --> s1
@@ -77,62 +127,64 @@ public class SmGraphJsonExporterTests
             /'! $CONFIG : toml
                 SmRunnerSettings.smGraphJsonExporter.enabled = true
                 SmRunnerSettings.smGraphJsonExporter.beforeTransformations = false
-                SmRunnerSettings.smGraphJsonExporter.afterTransformations = false
             '/
             @enduml
             """;
 
-        var fakeFs = new CapturingCodeFileWriter();
-        var jsonFileName = smName + ".export.json";
-        var fileName = smName + ".plantuml";
-
-        var tmpDir = TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, fileName: fileName, transpilerId:TranspilerId.JavaScript);
-        CapturingCodeFileWriter.Capture capture = fakeFs.GetSoleCaptureWithName(jsonFileName);
-        
-        capture.code.Should().NotContain("beforeTransformations");
-        capture.code.Should().NotContain("afterTransformations");
+        var (fileCapture, _) = IntegrationTestPlantUml(plantUmlText);
+        fileCapture.code.Should().NotContain(BeforeTransformationsKey);
+        fileCapture.code.Should().Contain(AfterTransformationsKey);
     }
 
-    // actually writes to file so that we can get real console messages. If we were to use a fake file writer, we don't see printed messages.
     [Fact]
-    public void IntegrationTestConsoleMessage()
+    public void DisableAfterTransformations()
     {
-        var smName = "RocketSm_" + Guid.NewGuid().ToString().Replace('-', '_');
-
         var plantUmlText = $"""
             @startuml {smName}
             [*] --> s1
 
             /'! $CONFIG : toml
                 SmRunnerSettings.smGraphJsonExporter.enabled = true
-                SmRunnerSettings.smGraphJsonExporter.outputDirectory = "meta"
+                SmRunnerSettings.smGraphJsonExporter.afterTransformations = false
             '/
             @enduml
             """;
 
-        var console = new StringBuilderConsolePrinter();
-        var jsonFileName = smName + ".export.json";
-        var fileName = smName + ".plantuml";
-
-        var tmpDir = TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, useRealFileWriter: true, consoleCapturer: console, fileName: fileName, transpilerId:TranspilerId.JavaScript);
-
-        var printedConsole = console.sb.ToString();
-        printedConsole.Should().Contain($"Writing to file `meta/{jsonFileName}`");
+        var (fileCapture, _) = IntegrationTestPlantUml(plantUmlText);
+        fileCapture.code.Should().Contain(BeforeTransformationsKey);
+        fileCapture.code.Should().NotContain(AfterTransformationsKey);
     }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// https://github.com/StateSmith/StateSmith/issues/528
+public class UnitTests
+{
+    SmGraphJsonExporter exporter = new();
+
+    SmGraphJsonExporterSettings settings = new()
+    {
+        enabled = true
+    };
 
     [Fact]
     public void BeforeTransformations()
     {
-        SmGraphJsonExporter exporter = new();
-        exporter.RecordBeforeTransformations(new StateMachine("RocketSm"));
+        settings.afterTransformations = false;
+
+        exporter.RecordBeforeTransformations(settings, new StateMachine("BeforeSm"));
+        exporter.RecordAfterTransformations(settings, new StateMachine("AfterSm"));
         exporter.ExportToJson().ShouldBeShowDiff("""
             {
               "comment": "NOTE! Json export in alpha. Feedback welcome. See https://github.com/StateSmith/StateSmith/issues/528",
               "beforeTransformations": [
                 {
-                  "nodeId": "<StateMachine>(RocketSm)",
+                  "nodeId": "<StateMachine>(BeforeSm)",
                   "type": "StateMachine",
-                  "name": "RocketSm",
+                  "name": "BeforeSm",
                   "diagramId": ""
                 }
               ]
@@ -143,16 +195,18 @@ public class SmGraphJsonExporterTests
     [Fact]
     public void AfterTransformations()
     {
-        SmGraphJsonExporter exporter = new();
-        exporter.RecordAfterTransformations(new StateMachine("RocketSm"));
+        settings.beforeTransformations = false;
+
+        exporter.RecordBeforeTransformations(settings, new StateMachine("BeforeSm"));
+        exporter.RecordAfterTransformations(settings, new StateMachine("AfterSm"));
         exporter.ExportToJson().ShouldBeShowDiff("""
             {
               "comment": "NOTE! Json export in alpha. Feedback welcome. See https://github.com/StateSmith/StateSmith/issues/528",
               "afterTransformations": [
                 {
-                  "nodeId": "<StateMachine>(RocketSm)",
+                  "nodeId": "<StateMachine>(AfterSm)",
                   "type": "StateMachine",
-                  "name": "RocketSm",
+                  "name": "AfterSm",
                   "diagramId": ""
                 }
               ]
@@ -163,26 +217,25 @@ public class SmGraphJsonExporterTests
     [Fact]
     public void BeforeAndAfterTransformations()
     {
-        SmGraphJsonExporter exporter = new();
-        exporter.RecordAfterTransformations(new StateMachine("RocketSm"));
-        exporter.RecordBeforeTransformations(new StateMachine("MySm"));
+        exporter.RecordBeforeTransformations(settings, new StateMachine("BeforeSm"));
+        exporter.RecordAfterTransformations(settings, new StateMachine("AfterSm"));
 
         exporter.ExportToJson().ShouldBeShowDiff("""
             {
               "comment": "NOTE! Json export in alpha. Feedback welcome. See https://github.com/StateSmith/StateSmith/issues/528",
               "beforeTransformations": [
                 {
-                  "nodeId": "<StateMachine>(MySm)",
+                  "nodeId": "<StateMachine>(BeforeSm)",
                   "type": "StateMachine",
-                  "name": "MySm",
+                  "name": "BeforeSm",
                   "diagramId": ""
                 }
               ],
               "afterTransformations": [
                 {
-                  "nodeId": "<StateMachine>(RocketSm)",
+                  "nodeId": "<StateMachine>(AfterSm)",
                   "type": "StateMachine",
-                  "name": "RocketSm",
+                  "name": "AfterSm",
                   "diagramId": ""
                 }
               ]
@@ -191,10 +244,38 @@ public class SmGraphJsonExporterTests
     }
 
     [Fact]
-    public void ExactWhitespaceTest()
+    public void MoreFullTest()
     {
-        SmGraphJsonExporter exporter = new();
-        exporter.RecordBeforeTransformations(BuildTestSm());
+        exporter.RecordBeforeTransformations(settings, BuildTestSm());
+
+        static StateMachine BuildTestSm()
+        {
+            var sm = new StateMachine("MySm")
+            {
+                DiagramId = "123"
+            };
+            sm.AddEnterAction("sm_enter();");
+            sm.AddBehavior(new Behavior(trigger: "SomeEvent", guardCode:"x < 44", actionCode: "x += 66;"));
+
+            var s1 = sm.AddChild(new State("S1")
+            {
+                DiagramId = "456",
+            });
+            s1.AddEnterAction("s1_enter();");
+            s1.AddBehavior(new Behavior(trigger: "ev1", actionCode: "s1_ev1_stuff();", transitionTarget: s1)).order = 1;
+
+            // purposely use same name as parent to show how non-unique names are handled.
+            s1.AddChild(new State("S1")
+            {
+                DiagramId = "789",
+            });
+
+            // add initial state with initial transition
+            var initialState = sm.AddChild(new InitialState());
+            initialState.AddBehavior(new Behavior(transitionTarget: s1));
+
+            return sm;
+        }
 
         // note nodeId "S1.S1" showing how non-unique state names are handled.
 
@@ -275,34 +356,5 @@ public class SmGraphJsonExporterTests
               ]
             }
             """);
-    }
-
-    public static StateMachine BuildTestSm()
-    {
-        var sm = new StateMachine("MySm")
-        {
-            DiagramId = "123"
-        };
-        sm.AddEnterAction("sm_enter();");
-        sm.AddBehavior(new Behavior(trigger: "SomeEvent", guardCode:"x < 44", actionCode: "x += 66;"));
-
-        var s1 = sm.AddChild(new State("S1")
-        {
-            DiagramId = "456",
-        });
-        s1.AddEnterAction("s1_enter();");
-        s1.AddBehavior(new Behavior(trigger: "ev1", actionCode: "s1_ev1_stuff();", transitionTarget: s1)).order = 1;
-
-        // purposely use same name as parent to show how non-unique names are handled.
-        s1.AddChild(new State("S1")
-        {
-            DiagramId = "789",
-        });
-
-        // add initial state with initial transition
-        var initialState = sm.AddChild(new InitialState());
-        initialState.AddBehavior(new Behavior(transitionTarget: s1));
-
-        return sm;
     }
 }
