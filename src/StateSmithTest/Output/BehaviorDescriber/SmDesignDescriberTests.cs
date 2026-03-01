@@ -13,6 +13,59 @@ namespace StateSmithTest.Output.SmDescriberTest;
 public class SmDesignDescriberTests
 {
     [Fact]
+    public void IntegrationTestPlantuml_OutputDir()
+    {
+        var plantUmlText = $"""
+            @startuml MySm
+            [*] --> s1
+
+            /'! $CONFIG : toml
+                [SmRunnerSettings.smDesignDescriber]
+                enabled = true
+                outputDirectory = "meta-info/sub1/sub2"
+                outputAncestorHandlers = true
+
+                [SmRunnerSettings.smDesignDescriber.outputSections]
+                beforeTransformations = true
+                afterTransformations  = true
+            '/
+            @enduml
+            """;
+
+        var fakeFs = new CapturingCodeFileWriter();
+        var relativeDir = TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
+        CapturingCodeFileWriter.Capture fileCapture = fakeFs.GetSoleCaptureWithName("MySm.md");
+
+        fileCapture.filePath.Should().Be($"{relativeDir}/meta-info/sub1/sub2/MySm.md");
+    }
+
+    // actually writes to file so that we can get real console messages. If we were to use a fake file writer, we don't see printed messages.
+    [Fact]
+    public void IntegrationTestConsoleMessage()
+    {
+        string smName = TestHelper.GenerateUniqueSmName();
+
+        var plantUmlText = $"""
+            @startuml {smName}
+            [*] --> s1
+
+            /'! $CONFIG : toml
+                [SmRunnerSettings.smDesignDescriber]
+                enabled = true
+                outputDirectory = "meta-info"
+                outputAncestorHandlers = true
+            '/
+            @enduml
+            """;
+
+        var console = new StringBuilderConsolePrinter();
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, useRealFileWriter: true, consoleCapturer: console, transpilerId:TranspilerId.JavaScript);
+
+        var printedConsole = console.sb.ToString();
+        printedConsole.Should().Contain($"Writing to file `meta-info/{smName}.md`");
+    }
+
+    [Fact]
     public void IntegrationTestOffByDefault()
     {
         new Tester().RunAndExpect("");

@@ -43,6 +43,12 @@ public class TestHelper
         return fakeFileSystem;
     }
 
+    public static string GenerateUniqueSmName()
+    {
+        string smName = "MyUniqueSm_" + Guid.NewGuid().ToString().Replace('-', '_');
+        return smName;
+    }
+
     public static string CaptureRunSmRunnerForPlantUmlString(string? plantUmlText = null, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, bool useRealFileWriter = false)
     {
         string tempFilePath = WritePlantUmlTempFile(plantUmlText, fileName);

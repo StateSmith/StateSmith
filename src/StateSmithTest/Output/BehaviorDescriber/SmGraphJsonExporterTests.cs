@@ -16,7 +16,7 @@ public class IntegrationTests
     private const string BeforeTransformationsKey = "beforeTransformations";
 
     // use a unique name to avoid parallel test issues
-    readonly string smName = "RocketSm_" + Guid.NewGuid().ToString().Replace('-', '_');
+    readonly string smName = TestHelper.GenerateUniqueSmName();
     string jsonFileName;
 
     public IntegrationTests()
