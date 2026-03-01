@@ -79,7 +79,7 @@ public class Generator
         diagramTemplateStr = SupportDefaultTomlConfig(diagramTemplateStr);
 
         // update semicolon tag based on target language
-        if (settings.TargetLanguageId == TargetLanguageId.Python)
+        if (settings.TargetLanguageId == TargetLanguageId.Python || settings.TargetLanguageId == TargetLanguageId.Swift)
         {
             diagramTemplateStr = diagramTemplateStr.Replace("{{SC}}", "");
         }
