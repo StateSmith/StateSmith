@@ -49,7 +49,12 @@ public class TestHelper
         return smName;
     }
 
-    public static string CaptureRunSmRunnerForPlantUmlString(string? plantUmlText = null, bool disableCodeGen = true, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, bool useRealFileWriter = false)
+    public static string CaptureCodeGenRunSmRunnerForPlantUmlString(string? plantUmlText = null, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, bool useRealFileWriter = false)
+    {
+        return CaptureNonCodeGenRunSmRunnerForPlantUmlString(forceEnableCodeGen: true, plantUmlText: plantUmlText, renderConfig: renderConfig, codeFileWriter: codeFileWriter, postConstruct: postConstruct, preRun: preRun, propagateExceptions: propagateExceptions, fileName: fileName, consoleCapturer: consoleCapturer, transpilerId: transpilerId, algorithmId: algorithmId, useRealFileWriter: useRealFileWriter);
+    }
+
+    public static string CaptureNonCodeGenRunSmRunnerForPlantUmlString(string? plantUmlText = null, bool forceEnableCodeGen = false, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, bool useRealFileWriter = false)
     {
         string tempFilePath = WritePlantUmlTempFile(plantUmlText, fileName);
 
@@ -63,7 +68,7 @@ public class TestHelper
                 smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
             }
 
-            if (disableCodeGen)
+            if (!forceEnableCodeGen)
             {
                 smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
             }

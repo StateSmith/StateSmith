@@ -35,7 +35,7 @@ public class SmDesignDescriberTests
             """;
 
         var fakeFs = new CapturingCodeFileWriter();
-        var relativeDir = TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
+        var relativeDir = TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
         CapturingCodeFileWriter.Capture fileCapture = fakeFs.GetSoleCaptureWithName("MySm.md");
 
         fileCapture.filePath.Should().Be($"{relativeDir}/meta-info/sub1/sub2/MySm.md");
@@ -62,7 +62,7 @@ public class SmDesignDescriberTests
             """;
 
         var console = new StringBuilderConsolePrinter();
-        var relativeDir = TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, useRealFileWriter: true, consoleCapturer: console, transpilerId:TranspilerId.JavaScript);
+        var relativeDir = TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText, useRealFileWriter: true, consoleCapturer: console, transpilerId:TranspilerId.JavaScript);
 
         var printedConsole = console.sb.ToString();
         printedConsole.Should().Contain($"Writing to file `meta-info/{smName}.md`");

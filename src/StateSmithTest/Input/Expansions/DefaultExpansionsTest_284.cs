@@ -57,7 +57,7 @@ public class DefaultExpansionsTest_284
         };
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, renderConfig: renderConfig, codeFileWriter: fakeFs, disableCodeGen: false);
+        TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, renderConfig: renderConfig, codeFileWriter: fakeFs);
         var code = fakeFs.GetCapturesForFileName("ExampleSm.c").Single().code;
 
         code.Should().Contain("""sm->vars.my_funcs.log("init to s1");""");
@@ -80,7 +80,7 @@ public class DefaultExpansionsTest_284
         };
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, renderConfig: renderConfig, codeFileWriter: fakeFs, disableCodeGen: false);
+        TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, renderConfig: renderConfig, codeFileWriter: fakeFs);
         var code = fakeFs.GetCapturesForFileName("ExampleSm.c").Single().code;
 
         code.Should().Contain("""my_stuff.log("init to s1");""");
@@ -105,7 +105,7 @@ public class DefaultExpansionsTest_284
             """;
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs, disableCodeGen: false);
+        TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
         var code = fakeFs.GetCapturesForFileName("ExampleSm.c").Single().code;
 

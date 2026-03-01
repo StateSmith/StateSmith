@@ -83,6 +83,6 @@ public class GrammarStrings_402
 
     private static void ProcessWithoutError(string plantUmlText)
     {
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText); // shouldn't throw an exception
+        TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText); // shouldn't throw an exception
     }
 }

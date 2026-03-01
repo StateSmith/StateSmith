@@ -40,7 +40,7 @@ public class IntegrationTests
             """;
 
         var console = new StringBuilderConsolePrinter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, useRealFileWriter: true, consoleCapturer: console, transpilerId:TranspilerId.JavaScript);
+        TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText, useRealFileWriter: true, consoleCapturer: console, transpilerId:TranspilerId.JavaScript);
 
         var printedConsole = console.sb.ToString();
         printedConsole.Should().Contain($"Writing to file `meta/{jsonFileName}`");
@@ -59,7 +59,7 @@ public class IntegrationTests
             """;
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
+        TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
         
         // no captures should contain .json
         fakeFs.captures.GetKeys().Should().NotContain(k => k.Contains(".json"));
@@ -68,7 +68,7 @@ public class IntegrationTests
     public (CapturingCodeFileWriter.Capture, string relativeDir) IntegrationTestPlantUml(string plantuml)
     {
         var fakeFs = new CapturingCodeFileWriter();
-        var relativeDir = TestHelper.CaptureRunSmRunnerForPlantUmlString(plantuml, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
+        var relativeDir = TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantuml, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
         CapturingCodeFileWriter.Capture fileCapture = fakeFs.GetSoleCaptureWithName(jsonFileName);
 
         return (fileCapture, relativeDir);
