@@ -69,11 +69,12 @@ public class Behavior
         return new Behavior(trigger: TriggerHelper.TRIGGER_EXIT, actionCode: actionCode);
     }
 
-    public Behavior(string trigger, string guardCode = "", string actionCode = "") : this()
+    public Behavior(string trigger, string guardCode = "", string actionCode = "", Vertex? transitionTarget = null) : this()
     {
         this._triggers.Add(trigger);
         this.guardCode = guardCode;
         this.actionCode = actionCode;
+        _MaybeSetTransitionTarget(transitionTarget);
     }
 
     public Behavior(string guardCode = "", string actionCode = "", Vertex? transitionTarget = null) : this()

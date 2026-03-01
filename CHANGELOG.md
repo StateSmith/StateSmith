@@ -27,7 +27,13 @@ Release Template
 -->
 
 # Releases
-Test/interim releases are not documented here.
+Test/interim releases are not necessarily documented here.
+
+---
+
+### Added
+- Output - export state machine graph as json.
+  - https://github.com/StateSmith/StateSmith/issues/528
 
 ---
 
