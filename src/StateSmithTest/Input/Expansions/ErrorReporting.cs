@@ -136,7 +136,7 @@ public class ErrorReporting
 
         // This test is more involved because it requires code injection
         StringBuilderConsolePrinter fakeConsole = new();
-        Action a = () => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, preRun: AddBadCode, propagateExceptions: false, consoleCapturer: fakeConsole);
+        Action a = () => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, preRun: AddBadCode, propagateExceptions: false, consoleCapturer: fakeConsole, disableCodeGen: false);
         a.Should().Throw<FinishedWithFailureException>();
 
         string consoleOutput = fakeConsole.sb.ToString();

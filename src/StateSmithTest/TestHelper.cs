@@ -49,7 +49,7 @@ public class TestHelper
         return smName;
     }
 
-    public static string CaptureRunSmRunnerForPlantUmlString(string? plantUmlText = null, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, bool useRealFileWriter = false)
+    public static string CaptureRunSmRunnerForPlantUmlString(string? plantUmlText = null, bool disableCodeGen = true, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, bool useRealFileWriter = false)
     {
         string tempFilePath = WritePlantUmlTempFile(plantUmlText, fileName);
 
@@ -62,6 +62,12 @@ public class TestHelper
             {
                 smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
             }
+
+            if (disableCodeGen)
+            {
+                smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
+            }
+
             smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
             smRunner.Settings.propagateExceptions = propagateExceptions;
             preRun?.Invoke(smRunner);

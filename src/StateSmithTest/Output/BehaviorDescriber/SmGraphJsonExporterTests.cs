@@ -62,7 +62,6 @@ public class IntegrationTests
         TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
         
         // no captures should contain .json
-        fakeFs.captures.GetKeys().Count.Should().Be(1, "only for .js file");
         fakeFs.captures.GetKeys().Should().NotContain(k => k.Contains(".json"));
     }
 

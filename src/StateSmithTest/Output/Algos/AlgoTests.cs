@@ -92,7 +92,7 @@ public class AlgoTests
         var fakeFs = new CapturingCodeFileWriter();
         var console = new StringBuilderConsolePrinter();
 
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(codeFileWriter: fakeFs, consoleCapturer: console, algorithmId: algo);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(codeFileWriter: fakeFs, consoleCapturer: console, algorithmId: algo, disableCodeGen: false);
         var cCode = fakeFs.GetSoleCaptureWithName("RocketSm.c").code;
         return cCode;
     }

@@ -1,5 +1,6 @@
 #nullable enable
 
+using StateSmith.Common;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 using System;
@@ -20,7 +21,7 @@ public class SmDesignDescriber : IDisposable
     protected IDiagramVerticesProvider diagramVerticesProvider;
     private readonly IOutputInfo outputInfo;
     protected SmGraphDescriber smDescriber;
-    protected TextWriter? writer;
+    protected StringWriter writer = new();
     protected bool needsSeparator = false;
 
     public SmDesignDescriber(SmDesignDescriberSettings settings, IStateMachineProvider stateMachineProvider, IDiagramVerticesProvider diagramVerticesProvider, IOutputInfo outputInfo)
@@ -29,7 +30,7 @@ public class SmDesignDescriber : IDisposable
         this.stateMachineProvider = stateMachineProvider;
         this.diagramVerticesProvider = diagramVerticesProvider;
         this.outputInfo = outputInfo;
-        smDescriber = new SmGraphDescriber(new DummyTextWriter());
+        smDescriber = new SmGraphDescriber(writer);
     }
 
     public void Prepare()
@@ -38,13 +39,6 @@ public class SmDesignDescriber : IDisposable
             return;
 
         smDescriber.SetOutputAncestorHandlers(settings.outputAncestorHandlers);
-
-        if (writer == null)
-        {
-            var filePath = $"{outputInfo.OutputDirectory}{outputInfo.BaseFileName}.md";
-            writer = new StreamWriter(filePath);
-            smDescriber.SetTextWriter(writer);
-        }
     }
 
     public void Dispose()
@@ -106,10 +100,22 @@ public class SmDesignDescriber : IDisposable
         smDescriber.DescribeRecursively(stateMachineProvider.GetStateMachine());
     }
 
-    internal void SetTextWriter(TextWriter writer)
+    public string GetOutput()
     {
-        this.writer = writer;
-        smDescriber.SetTextWriter(writer);
+        return writer.GetStringBuilder().ToString();
+    }
+
+    public void WriteOutput(ICodeFileWriter fileWriter)
+    {
+        if (!settings.enabled)
+            return;
+
+        var filePath = $"{settings.outputDirectory}{outputInfo.BaseFileName}.md";
+
+        // If the output directory doesn't exist, create it.
+        Directory.CreateDirectory(settings.outputDirectory.ThrowIfNull());
+
+        fileWriter.WriteFile(filePath, GetOutput());
     }
 }
 

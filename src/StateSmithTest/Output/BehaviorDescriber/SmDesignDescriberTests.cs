@@ -5,6 +5,7 @@ using StateSmith.Output;
 using StateSmith.Runner;
 using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -12,6 +13,7 @@ namespace StateSmithTest.Output.SmDescriberTest;
 
 public class SmDesignDescriberTests
 {
+    // https://github.com/StateSmith/StateSmith/issues/452
     [Fact]
     public void IntegrationTestPlantuml_OutputDir()
     {
@@ -40,6 +42,7 @@ public class SmDesignDescriberTests
     }
 
     // actually writes to file so that we can get real console messages. If we were to use a fake file writer, we don't see printed messages.
+    // https://github.com/StateSmith/StateSmith/issues/452
     [Fact]
     public void IntegrationTestConsoleMessage()
     {
@@ -59,22 +62,25 @@ public class SmDesignDescriberTests
             """;
 
         var console = new StringBuilderConsolePrinter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, useRealFileWriter: true, consoleCapturer: console, transpilerId:TranspilerId.JavaScript);
+        var relativeDir = TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, useRealFileWriter: true, consoleCapturer: console, transpilerId:TranspilerId.JavaScript);
 
         var printedConsole = console.sb.ToString();
         printedConsole.Should().Contain($"Writing to file `meta-info/{smName}.md`");
+
+        // check that file actually exists
+        File.Exists($"{relativeDir}/meta-info/{smName}.md").Should().BeTrue();
     }
 
     [Fact]
     public void IntegrationTestOffByDefault()
     {
-        new Tester().RunAndExpect("");
+        new Tester().Run().fakeFs.GetCapturesEndingWith(".md").Should().BeEmpty();
     }
 
     [Fact]
     public void IntegrationTestDisabled()
     {
-        new Tester().Disable().RunAndExpect("");
+        new Tester().Disable().Run().fakeFs.GetCapturesEndingWith(".md").Should().BeEmpty();
     }
 
     [Fact]
@@ -236,16 +242,16 @@ public class SmDesignDescriberTests
     }
 
     [Fact]
-    public void IntegrationTestDisableBoth()
+    public void IntegrationTestBoth()
     {
-        Action a = () => new Tester().DisableAfterTransformations().DisableBeforeTransformations().RunAndExpect(ExpectedAfterTransformations);
-        a.Should().Throw<Exception>(); //TODO: better exception
+        new Tester().Enable().EnableBeforeTransformations().EnableAfterTransformations().EnableOutputAncestorHandlers().RunAndExpect(ExpectedFull);
     }
 
     [Fact]
-    public void IntegrationTestToFile()
+    public void IntegrationTestDisableBoth()
     {
-        new Tester(captureToBuffer:false).Enable().EnableOutputAncestorHandlers().EnableAfterTransformations().Run();
+        Action a = () => new Tester().DisableAfterTransformations().DisableBeforeTransformations().RunAndExpect(ExpectedAfterTransformations);
+        a.Should().Throw<Exception>(); //todo-low: better exception
     }
 
     /// <summary>
@@ -253,16 +259,14 @@ public class SmDesignDescriberTests
     /// </summary>
     private class Tester
     {
-        public StringBuilder sb = new();
         public SmRunner smRunner;
         public SmDesignDescriber describer;
+        public CapturingCodeFileWriter fakeFs = new();
 
-        public Tester(bool captureToBuffer = true, string diagramFile = "Ex564.drawio")
+        public Tester(string diagramFile = "Ex564.drawio")
         {
             smRunner = SetupSmRunner(out var diServiceProvider, diagramFile);
             describer = diServiceProvider.GetInstanceOf<SmDesignDescriber>();
-            if (captureToBuffer)
-                describer.SetTextWriter(new StringWriter(sb));
         }
 
         public Tester Enable()
@@ -295,6 +299,12 @@ public class SmDesignDescriberTests
             return this;
         }
 
+        public Tester EnableBeforeTransformations()
+        {
+            smRunner.Settings.smDesignDescriber.outputSections.beforeTransformations = true;
+            return this;
+        }
+
         public Tester EnableAfterTransformations()
         {
             smRunner.Settings.smDesignDescriber.outputSections.afterTransformations = true;
@@ -304,18 +314,23 @@ public class SmDesignDescriberTests
         public void RunAndExpect(string expected)
         {
             Run();
-            sb.ToString().ShouldBeShowDiff(expected, outputCleanActual:true);
+            describer.GetOutput().ShouldBeShowDiff(expected, outputCleanActual:true);
+            fakeFs.GetCapturesEndingWith(".md").Single().code.ShouldBeShowDiff(expected, outputCleanActual:true);
         }
 
-        public void Run()
+        public Tester Run()
         {
             smRunner.Run();
+            return this;
         }
 
-        private static SmRunner SetupSmRunner(out DiServiceProvider di, string diagramFile)
+        private SmRunner SetupSmRunner(out DiServiceProvider di, string diagramFile)
         {
             SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + diagramFile);
             smRunner.Settings.propagateExceptions = true; // for testing
+            smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(fakeFs);
+            smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(new DiscardingConsolePrinter());
+
             di = smRunner.GetExperimentalAccess().DiServiceProvider;
             di.AddSingletonT<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
 
