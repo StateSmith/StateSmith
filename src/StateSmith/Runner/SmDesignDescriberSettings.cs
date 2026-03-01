@@ -18,7 +18,7 @@ public class SmDesignDescriberSettings
 
     /// <summary>
     /// Set to true to show ancestor handlers that are "inherited" for each state.
-    /// Good for understanding hierachical state machines, but will add "noise" for git diffs as
+    /// Good for understanding hierarchical state machines, but will add "noise" for git diffs as
     /// it outputs a bunch of repeated information.
     /// </summary>
     public bool outputAncestorHandlers = false;

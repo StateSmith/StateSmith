@@ -26,9 +26,10 @@ public class SmRunnerInternal
     readonly FilePathPrinter filePathPrinter;
     readonly SmDesignDescriber smDesignDescriber;
     readonly OutputInfo outputInfo;
+    readonly ICodeFileWriter fileWriter;
     readonly SimWebGenerator simWebGenerator;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, SimWebGenerator simWebGenerator)
+    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, SimWebGenerator simWebGenerator, ICodeFileWriter fileWriter)
     {
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
@@ -39,6 +40,7 @@ public class SmRunnerInternal
         this.smDesignDescriber = smDesignDescriber;
         this.outputInfo = outputInfo;
         this.simWebGenerator = simWebGenerator;
+        this.fileWriter = fileWriter;
     }
 
     public void Run()
@@ -60,12 +62,36 @@ public class SmRunnerInternal
             var sm = SetupAndFindStateMachine(inputSmBuilder, settings);
             outputInfo.baseFileName = sm.Name;
 
+            SmGraphJsonExporter jsonExporter = new();
+
             consolePrinter.OutputStageMessage($"State machine `{sm.Name}` selected.");
+
+            // prior to transformations
             smDesignDescriber.Prepare();
             smDesignDescriber.DescribeBeforeTransformations();
+            if (settings.smGraphJsonExporter.enabled && settings.smGraphJsonExporter.beforeTransformations)
+            {
+                jsonExporter.RecordBeforeTransformations(sm);
+            }
 
             inputSmBuilder.FinishRunning();
+
+            // after transformations
             smDesignDescriber.DescribeAfterTransformations();
+            if (settings.smGraphJsonExporter.enabled && settings.smGraphJsonExporter.afterTransformations)
+            {
+                jsonExporter.RecordAfterTransformations(sm);
+            }
+
+            // https://github.com/StateSmith/StateSmith/issues/528
+            if (settings.smGraphJsonExporter.enabled)
+            {
+                var filePath = $"{settings.smGraphJsonExporter.outputDirectory}{outputInfo.BaseFileName}{settings.smGraphJsonExporter.outputFileNamePostfix}";
+                // If the output directory doesn't exist, create it.
+                Directory.CreateDirectory(settings.smGraphJsonExporter.outputDirectory.ThrowIfNull());
+                fileWriter.WriteFile(filePath, jsonExporter.ExportToJson());
+            }
+
             codeGenRunner.Run();
 
             if (settings.simulation.enableGeneration)
@@ -180,6 +206,9 @@ public class SmRunnerInternal
             settings.simulation.outputDirectory ??= settings.outputDirectory;
             settings.simulation.outputDirectory = ProcessDirPath(settings.simulation.outputDirectory, relativeDirectory);
         }
+
+        settings.smGraphJsonExporter.outputDirectory ??= settings.outputDirectory;
+        settings.smGraphJsonExporter.outputDirectory = ProcessDirPath(settings.smGraphJsonExporter.outputDirectory, relativeDirectory);
     }
 
     private static string ProcessDirPath(string dirPath, string relativeDirectory)

@@ -60,12 +60,12 @@ public class CapturingCodeFileWriter : ICodeFileWriter
 
     public class Capture
     {
-        public string fileName;
+        public string filePath;
         public string code;
 
-        public Capture(string fileName, string code)
+        public Capture(string filePath, string code)
         {
-            this.fileName = fileName;
+            this.filePath = filePath;
             this.code = code;
         }
     }

@@ -116,6 +116,7 @@ AutoExpandedVars  = "stuff..."
   - [SmRunnerSettings.propagateExceptions](#smrunnersettingspropagateexceptions)
   - [SmRunnerSettings.dumpErrorsToFile](#smrunnersettingsdumperrorstofile)
 - [SmRunnerSettings.smDesignDescriber](#smrunnersettingssmdesigndescriber)
+- [SmRunnerSettings.smGraphJsonExporter](#smrunnersettingssmgraphjsonexporter)
 - [SmRunnerSettings.algoBalanced1](#smrunnersettingsalgobalanced1)
 - [SmRunnerSettings.simulation](#smrunnersettingssimulation)
     - [SmRunnerSettings.simulation.lowerDiagramDetail](#smrunnersettingssimulationlowerdiagramdetail)
@@ -1356,7 +1357,36 @@ lowerDiagramDetail = true
 ```
 
 
+
+<br>
+<br>
+
+# SmRunnerSettings.smGraphJsonExporter
+Info: https://github.com/StateSmith/StateSmith/issues/528
+
+Particularly useful if you want to write a script that inspects a state machine design/metadata. Saves you from having to parse input diagrams or use .csx if you don't want to. Also allows you to use StateSmith just for parsing diagram files and then your custom script can output state machine code for another state machine library.
+
+The advanced .csx workflow is still much more powerful than this basic feature.
+
+```toml
+[SmRunnerSettings.smGraphJsonExporter]
+enabled = true                  # Default: false
+outputDirectory = "meta-info"   # Not required. Relative or absolute.
+outputFileNamePostfix = ".json" # Not required. Default: .export.json
+beforeTransformations = false   # Default: true
+afterTransformations  = false   # Default: true
+```
+
+`beforeTransformations` is good for when you want to see the original design before
+various transformations/optimizations are performed on state machine graph. Note that state names are not [necessarily unique](https://github.com/StateSmith/StateSmith/issues/138) until after transformations are run.
+
+`afterTransformations` is good for when you want to see what is passed to the code generator.
+This is especially useful when you want to understand transformation steps like
+TriggerMaps and other custom transformations or optimizations.
+
 # ...more
 There are more SmRunnerSettings available that are less commonly used and not yet documented here.
+
+Source code sometimes has more thorough descriptions as well.
 
 See [RunnerSettings.cs](https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Runner/RunnerSettings.cs) in github project.

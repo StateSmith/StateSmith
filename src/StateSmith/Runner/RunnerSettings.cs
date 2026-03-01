@@ -100,7 +100,12 @@ public class RunnerSettings
     /// <summary>
     /// https://github.com/StateSmith/StateSmith/issues/200
     /// </summary>
-    public SmDesignDescriberSettings smDesignDescriber = new ();
+    public SmDesignDescriberSettings smDesignDescriber = new();
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/528
+    /// </summary>
+    public SmGraphJsonExporterSettings smGraphJsonExporter = new();
 
     /// <summary>
     /// See https://github.com/StateSmith/StateSmith/issues/138
