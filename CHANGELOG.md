@@ -34,6 +34,8 @@ Test/interim releases are not necessarily documented here.
 ### Added
 - Output - export state machine graph as json.
   - https://github.com/StateSmith/StateSmith/issues/528
+- Output - implement `SmRunnerSettings.smDesignDescriber.outputDirectory` setting and console message.
+  - https://github.com/StateSmith/StateSmith/issues/452
 
 ---
 

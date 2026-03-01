@@ -40,7 +40,7 @@ public class RenderConfigCpp_Test
             """";
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
         // helper function
         static int ExpectNext(string haystack, int startIndex, string expected)
@@ -116,7 +116,7 @@ public class RenderConfigCpp_Test
             """";
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
         // helper function
         static int ExpectNext(string haystack, int startIndex, string expected)
@@ -172,7 +172,7 @@ public class RenderConfigCpp_Test
             """";
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
         var code = fakeFs.GetCapturesForFileName("ExampleSm.hpp").Single().code;
 
         // use regex to make white space insensitive

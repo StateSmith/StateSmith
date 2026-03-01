@@ -33,13 +33,6 @@ public class SmGraphDescriber : IDisposable
         this.outputAncestorHandlers = outputAncestorHandlers;
     }
 
-    public static void DescribeToFile(Vertex vertex, string filePath)
-    {
-        using var writer = new StreamWriter(filePath);
-        var describer = new SmGraphDescriber(writer);
-        describer.DescribeRecursively(vertex);
-    }
-
     public void OutputHeader(string header)
     {
         WriteLine($"{header}");
@@ -140,11 +133,6 @@ public class SmGraphDescriber : IDisposable
         string description = Vertex.Describe(v);
         description = description.Replace("<", @"\<"); // for markdown
         return description;
-    }
-
-    internal void SetTextWriter(TextWriter writer)
-    {
-        this.writer = writer;
     }
 
     private string Indent(string str)

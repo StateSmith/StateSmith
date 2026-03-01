@@ -42,7 +42,7 @@ public class RenderConfigC_Test
             """";
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
         // helper function
         static int ExpectNext(string haystack, int startIndex, string expected)
@@ -118,7 +118,7 @@ public class RenderConfigC_Test
             """";
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
         // helper function
         static int ExpectNext(string haystack, int startIndex, string expected)
@@ -167,7 +167,7 @@ public class RenderConfigC_Test
             """";
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
         var cCode = fakeFs.GetCapturesForFileName("ExampleSm.c").Single().code.ConvertLineEndingsToN();
         cCode.Should().NotContain("#include <stdbool.h>");
@@ -228,7 +228,7 @@ public class RenderConfigC_Test
         // disabled
         {
             var fakeFs = new CapturingCodeFileWriter();
-            TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+            TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
             var code = fakeFs.GetCapturesForFileName(hFileName).Single().code.ConvertLineEndingsToN();
             Matcher(code).Should().BeFalse();
@@ -238,7 +238,7 @@ public class RenderConfigC_Test
         {
             plantUmlText = plantUmlText.Replace("HFileUseExternC = false", "HFileUseExternC = true");
             var fakeFs = new CapturingCodeFileWriter();
-            TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+            TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
             var code = fakeFs.GetCapturesForFileName(hFileName).Single().code.ConvertLineEndingsToN();
             Matcher(code).Should().BeTrue();

@@ -75,6 +75,7 @@ public class SmRunnerInternal
 
             // after transformations
             smDesignDescriber.DescribeAfterTransformations();
+            smDesignDescriber.WriteOutput(fileWriter);
             jsonExporter.RecordAfterTransformations(settings.smGraphJsonExporter, sm);
             jsonExporter.ExportToFile(settings.smGraphJsonExporter, outputInfo, fileWriter);
 

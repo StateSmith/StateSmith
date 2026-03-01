@@ -16,7 +16,7 @@ public class IntegrationTests
     private const string BeforeTransformationsKey = "beforeTransformations";
 
     // use a unique name to avoid parallel test issues
-    readonly string smName = "RocketSm_" + Guid.NewGuid().ToString().Replace('-', '_');
+    readonly string smName = TestHelper.GenerateUniqueSmName();
     string jsonFileName;
 
     public IntegrationTests()
@@ -40,7 +40,7 @@ public class IntegrationTests
             """;
 
         var console = new StringBuilderConsolePrinter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, useRealFileWriter: true, consoleCapturer: console, transpilerId:TranspilerId.JavaScript);
+        TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText, useRealFileWriter: true, consoleCapturer: console, transpilerId:TranspilerId.JavaScript);
 
         var printedConsole = console.sb.ToString();
         printedConsole.Should().Contain($"Writing to file `meta/{jsonFileName}`");
@@ -59,17 +59,16 @@ public class IntegrationTests
             """;
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
+        TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
         
         // no captures should contain .json
-        fakeFs.captures.GetKeys().Count.Should().Be(1, "only for .js file");
         fakeFs.captures.GetKeys().Should().NotContain(k => k.Contains(".json"));
     }
 
     public (CapturingCodeFileWriter.Capture, string relativeDir) IntegrationTestPlantUml(string plantuml)
     {
         var fakeFs = new CapturingCodeFileWriter();
-        var relativeDir = TestHelper.CaptureRunSmRunnerForPlantUmlString(plantuml, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
+        var relativeDir = TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantuml, codeFileWriter:fakeFs, transpilerId:TranspilerId.JavaScript);
         CapturingCodeFileWriter.Capture fileCapture = fakeFs.GetSoleCaptureWithName(jsonFileName);
 
         return (fileCapture, relativeDir);

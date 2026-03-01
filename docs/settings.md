@@ -1302,17 +1302,21 @@ This feature is useful for:
 - inspecting hierarchical designs
 - understanding StateSmith transformations
 
+All settings below are optional.
 
 ```toml
 [SmRunnerSettings.smDesignDescriber]
-enabled = true
-outputDirectory = ""
-outputAncestorHandlers = true
+enabled = true                  # Default: false
+outputDirectory = ""            # Relative or absolute
+outputAncestorHandlers = true   # Default: false
 
 [SmRunnerSettings.smDesignDescriber.outputSections]
-beforeTransformations = false
-afterTransformations  = true
+beforeTransformations = false   # Default: true
+afterTransformations  = true    # Default: false
 ```
+
+<br>
+<br>
 
 # SmRunnerSettings.algoBalanced1
 Info: https://github.com/StateSmith/StateSmith/issues/181
@@ -1325,6 +1329,12 @@ outputEventIdToStringFunction = false
 outputStateIdToStringFunction = false
 ```
 
+
+
+
+<br>
+<br>
+
 # SmRunnerSettings.simulation
 Info: to be documented
 
@@ -1334,9 +1344,9 @@ If you are using a .csx file, you need to explicitly enable this feature.
 
 ```toml
 [SmRunnerSettings.simulation]
-enableGeneration = false
-lowerDiagramDetail = true
-outputDirectory = ".."
+enableGeneration = false            # Default: false
+lowerDiagramDetail = true           # Default: false
+outputDirectory = ""                # Relative or absolute
 outputFileNamePostfix = ".sim.html" # NOT YET SUPPORTED!
 ```
 
@@ -1368,11 +1378,13 @@ Particularly useful if you want to write a script that inspects a state machine 
 
 The advanced .csx workflow is still much more powerful than this basic feature.
 
+All settings below are optional.
+
 ```toml
 [SmRunnerSettings.smGraphJsonExporter]
 enabled = true                  # Default: false
-outputDirectory = "meta-info"   # Not required. Relative or absolute.
-outputFileNamePostfix = ".json" # Not required. Default: .export.json
+outputDirectory = "meta-info"   # Relative or absolute.
+outputFileNamePostfix = ".json" # Default: `.export.json`
 beforeTransformations = false   # Default: true
 afterTransformations  = false   # Default: true
 ```

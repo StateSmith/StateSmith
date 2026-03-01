@@ -2,9 +2,7 @@ using Xunit;
 using StateSmithTest.Output;
 using System;
 using StateSmith.Runner;
-using StateSmith.SmGraph;
 using FluentAssertions;
-using System.Linq;
 
 namespace StateSmithTest;
 
@@ -27,7 +25,7 @@ public class SmFileNameTests_330
         var fileBaseName = "RocketSm" + Guid.NewGuid().ToString().Replace('-', '_');
         var fileName = fileBaseName + ".plantuml";
 
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, consoleCapturer: console, fileName: fileName, transpilerId:TranspilerId.JavaScript);
+        TestHelper.CaptureCodeGenRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, consoleCapturer: console, fileName: fileName, transpilerId:TranspilerId.JavaScript);
 
         var printedConsole = console.sb.ToString();
         Assert.Contains("RocketSm", printedConsole);
@@ -35,6 +33,6 @@ public class SmFileNameTests_330
 
         printedConsole.Should().Contain($"State machine `{expectedSmName}` selected.");
 
-        fakeFs.GetSoleCaptureWithName(expectedSmName + ".js");
+        fakeFs.GetSoleCaptureWithName(expectedSmName + ".js").code.Should().Contain($"class {expectedSmName}");
     }
 }
