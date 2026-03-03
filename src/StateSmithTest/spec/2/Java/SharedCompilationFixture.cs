@@ -16,24 +16,26 @@ public class SharedCompilationFixture
 
     public SharedCompilationFixture()
     {
-        var action = (SmRunner runner) =>
+        static void preRunAction(SmRunner runner)
         {
             runner.Settings.transpilerId = TranspilerId.Java;
             runner.AlgoOrTranspilerUpdated();
             //runner.Settings.outputGilCodeAlways = true;
-        };
+        }
 
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
-
-        SimpleProcess process;
-
-        process = new()
+        static void compilationAction()
         {
-            WorkingDirectory = OutputDirectory,
-            ProgramPath = "javac",
-            Args = " MainClass.java Spec2SmBase.java Spec2Sm.java"
-        };
-        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+            SimpleProcess process;
+            process = new()
+            {
+                WorkingDirectory = OutputDirectory,
+                ProgramPath = "javac",
+                Args = " MainClass.java Spec2SmBase.java Spec2Sm.java"
+            };
+            process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+        }
+
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, preRunAction: preRunAction, compilationAction: compilationAction);
     }
 
     public class MyGlueFile : IRenderConfigJava

@@ -1280,11 +1280,7 @@ evaluateGuard = null;
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for ESC_CATCHER_1
         
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._MENU_esc();
-        }
+        // Has unconditional transition. Ancestor behavior ignored.
     }
     
     

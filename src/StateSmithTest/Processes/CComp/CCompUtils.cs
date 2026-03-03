@@ -40,6 +40,11 @@ public class CCompUtils
                     process.Args += "-Wno-unused-function ";
                     break;
 
+                case CCompRequest.FlagId.UnusedVariable:
+                    process.Args += "-Wno-unused-variable ";
+                    process.Args += "-Wno-unused-but-set-variable ";
+                    break;
+
                 default:
                     throw new System.Exception($"Unknown flag: {flag}");
             }

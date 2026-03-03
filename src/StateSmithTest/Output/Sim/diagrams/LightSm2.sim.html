@@ -1158,11 +1158,7 @@ evaluateGuard = null;
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEA
         
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._BEVERAGE_ev2();
-        }
+        // Has unconditional transition. Ancestor behavior ignored.
     }
     
     

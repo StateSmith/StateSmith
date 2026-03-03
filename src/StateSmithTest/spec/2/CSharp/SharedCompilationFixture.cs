@@ -16,30 +16,33 @@ public class SharedCompilationFixture
 
     public SharedCompilationFixture()
     {
-        // Delete the output directory to ensure a clean build.
-        // This is important because we use a path based on dotnet version to run faster.
-        // If we don't delete the output directory, we could accidentally use an old build.
-        string binDebugPath = OutputDirectory + "bin/Debug";
-        if (System.IO.Directory.Exists(binDebugPath))
-        {
-            System.IO.Directory.Delete(binDebugPath, recursive: true);
-        }
-
-        var action = (SmRunner runner) =>
+        static void preRunAction(SmRunner runner)
         {
             runner.Settings.transpilerId = TranspilerId.CSharp;
             runner.AlgoOrTranspilerUpdated();
-        };
+        }
 
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
-
-        SimpleProcess process = new()
+        static void compilationAction()
         {
-            WorkingDirectory = OutputDirectory,
-            ProgramPath = "dotnet",
-            Args = "build --verbosity quiet"
-        };
-        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+            // Delete the output directory to ensure a clean build.
+            // This is important because we use a path based on dotnet version to run faster.
+            // If we don't delete the output directory, we could accidentally use an old build.
+            string binDebugPath = OutputDirectory + "bin/Debug";
+            if (System.IO.Directory.Exists(binDebugPath))
+            {
+                System.IO.Directory.Delete(binDebugPath, recursive: true);
+            }
+
+            SimpleProcess process = new()
+            {
+                WorkingDirectory = OutputDirectory,
+                ProgramPath = "dotnet",
+                Args = "build --verbosity quiet"
+            };
+            process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+        }
+
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, compilationAction: compilationAction, preRunAction: preRunAction);
     }
 
     public class MyGlueFile : IRenderConfigCSharp

@@ -121,7 +121,7 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
         }
     }
 
-    override protected void OutputStateEventHandlerFunctionBottom(NamedVertex namedVertex, string eventName)
+    override protected void OutputStateEventHandlerFunctionBottom(NamedVertex namedVertex, string eventName, OutputBehaviorMeta outputBehaviorMeta)
     {
         NamedVertex? nextHandlingState = namedVertex.FirstAncestorThatHandlesEvent(eventName);
 
@@ -131,13 +131,21 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
         }
         else
         {
-            File.AppendIndentedLine($"// Check if event has been consumed before calling ancestor handler.");
-            File.AppendIndented($"if (!{consumeEventVarName})");
-            File.StartCodeBlock();
+            // fix for https://github.com/StateSmith/StateSmith/issues/507
+            if (outputBehaviorMeta.hasUnconditionalTransition)
             {
-                File.AppendIndentedLine($"this.{mangler.SmTriggerHandlerFuncName(nextHandlingState, eventName)}();");
+                File.AppendIndentedLine($"// Has unconditional transition. Ancestor behavior ignored.");
             }
-            File.FinishCodeBlock();
+            else
+            {
+                File.AppendIndentedLine($"// Check if event has been consumed before calling ancestor handler.");
+                File.AppendIndented($"if (!{consumeEventVarName})");
+                File.StartCodeBlock();
+                {
+                    File.AppendIndentedLine($"this.{mangler.SmTriggerHandlerFuncName(nextHandlingState, eventName)}();");
+                }
+                File.FinishCodeBlock();
+            }
         }
     }
 

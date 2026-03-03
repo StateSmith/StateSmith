@@ -2021,11 +2021,7 @@ evaluateGuard = null;
             return;
         } // end of behavior for Wait
         
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ADJUSTSERVOOFFSETS_button2();
-        }
+        // Has unconditional transition. Ancestor behavior ignored.
     }
     
     

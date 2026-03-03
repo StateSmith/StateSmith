@@ -31,6 +31,10 @@ Test/interim releases are not necessarily documented here.
 
 ---
 
+## Fixed
+- Java - prevent unreachable ancestor code error.
+  - https://github.com/StateSmith/StateSmith/issues/507
+
 ### Added
 - Output - export state machine graph as json.
   - https://github.com/StateSmith/StateSmith/issues/528

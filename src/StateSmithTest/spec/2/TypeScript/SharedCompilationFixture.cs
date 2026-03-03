@@ -16,18 +16,14 @@ public class SharedCompilationFixture
 
     public SharedCompilationFixture()
     {
-        var action = (SmRunner runner) =>
+        static void preRunAction(SmRunner runner)
         {
             runner.Settings.transpilerId = TranspilerId.TypeScript;
             runner.AlgoOrTranspilerUpdated();
-        };
-
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
-
-        SimpleProcess process;
+        }
 
         // run `npm install` to get dependencies
-        process = new()
+        SimpleProcess process = new()
         {
             WorkingDirectory = OutputDirectory,
             ProgramPath = "npm",
@@ -36,15 +32,20 @@ public class SharedCompilationFixture
         process.IfWindowsWrapWithCmd();
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
 
-        // run `tsc` to compile TypeScript to JavaScript
-        process = new()
+        static void compilationAction()
         {
-            WorkingDirectory = OutputDirectory,
-            ProgramPath = "npm",
-            Args = "run build"
-        };
-        process.IfWindowsWrapWithCmd();
-        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+            // run `tsc` to compile TypeScript to JavaScript
+            SimpleProcess process = new()
+            {
+                WorkingDirectory = OutputDirectory,
+                ProgramPath = "npm",
+                Args = "run build"
+            };
+            process.IfWindowsWrapWithCmd();
+            process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+        }
+
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, preRunAction: preRunAction, compilationAction: compilationAction);
     }
 
     public class MyGlueFile : IRenderConfigTypeScript

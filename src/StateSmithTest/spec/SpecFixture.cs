@@ -23,7 +23,7 @@ public class SpecFixture
     virtual public string PostInc => "++";
     virtual public string SemiColon => ";";
 
-    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null, string semiColon = ";", string trueString = "true")
+    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? preRunAction = null, string semiColon = ";", string trueString = "true")
     {
         RunnerSettings settings = new(diagramFile: diagramFile, outputDirectory: srcDirectory);
         settings.outputStateSmithVersionInfo = false; // too much noise in repo
@@ -38,7 +38,7 @@ public class SpecFixture
         //settings.outputGilCodeAlways = true;
         SmRunner runner = new(settings, renderConfig);
 
-        smRunnerAction?.Invoke(runner);
+        preRunAction?.Invoke(runner);
 
         settings.propagateExceptions = true;
         settings.dumpGilCodeOnError = true;

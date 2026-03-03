@@ -32,10 +32,17 @@ public class Spec2Fixture : SpecFixture
 {
     public static string Spec2Directory => SpecInputDirectoryPath + "2/";
 
-    public static void CompileAndRun(IRenderConfig renderConfig, string outputDir, Action<SmRunner>? action = null, string semiColon = ";", string trueString = "true")
+    public static void CompileAndRun(IRenderConfig renderConfig, string outputDir, Action compilationAction, Action<SmRunner>? preRunAction = null, string semiColon = ";", string trueString = "true")
     {
         var diagramFile = Spec2Directory + "Spec2Sm.graphml";
-        CompileAndRun(renderConfig, diagramFile, outputDir, smRunnerAction: action, semiColon: semiColon, trueString: trueString);
+
+        // Compile once without tracing first to ensure normally generated code is valid (compiles) before being modified.
+        // Important for Java, but a good practice for all. https://github.com/StateSmith/StateSmith/issues/507
+        CompileAndRun(renderConfig, diagramFile: diagramFile, srcDirectory: outputDir, useTracingModder:false, preRunAction: preRunAction, semiColon: semiColon, trueString: trueString);
+        compilationAction();
+
+        CompileAndRun(renderConfig, diagramFile: diagramFile, srcDirectory: outputDir, useTracingModder:true, preRunAction: preRunAction, semiColon: semiColon, trueString: trueString);
+        compilationAction?.Invoke();
     }
 }
 

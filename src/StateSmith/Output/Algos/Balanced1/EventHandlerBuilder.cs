@@ -43,44 +43,56 @@ public class EventHandlerBuilder
     }
 
     /// <summary>
+    /// Related to unreachable https://github.com/StateSmith/StateSmith/issues/507
+    /// </summary>
+    public class OutputBehaviorMeta
+    {
+        public bool hasUnconditionalTransition;
+        public bool noAncestorHandlesEvent;
+    };
+
+    /// <summary>
     /// 
     /// </summary>
     /// <param name="namedVertex"></param>
     /// <param name="triggerName"></param>
-    public void OutputStateBehaviorsForTrigger(NamedVertex namedVertex, string triggerName)
+    public OutputBehaviorMeta OutputStateBehaviorsForTrigger(NamedVertex namedVertex, string triggerName)
     {
+        OutputBehaviorMeta outputBehaviorMeta = new();
+
         userExpansionScriptBases.UpdateNamedVertex(namedVertex);
         userExpansionScriptBases.UpdateCurrentTrigger(triggerName);
 
-        bool noAncestorHandlesEvent = true;
+        outputBehaviorMeta.noAncestorHandlesEvent = true;
 
         if (TriggerHelper.IsEvent(triggerName))
         {
             NamedVertex? nextAncestorHandlingState = namedVertex.FirstAncestorThatHandlesEvent(triggerName);
-            noAncestorHandlesEvent = nextAncestorHandlingState == null;
+            outputBehaviorMeta.noAncestorHandlesEvent = nextAncestorHandlingState == null;
             OutputNextAncestorHandler(nextAncestorHandlingState, triggerName);
         }
 
         var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(namedVertex, triggerName);
 
-        OutputReachableStateBehaviors(triggerName, noAncestorHandlesEvent, behaviorsWithTrigger);
+        OutputReachableStateBehaviors(triggerName, outputBehaviorMeta, behaviorsWithTrigger);
 
         userExpansionScriptBases.UpdateNamedVertex(null);
         userExpansionScriptBases.UpdateCurrentTrigger(null);
+
+        return outputBehaviorMeta;
     }
 
     /// <summary>
     /// https://github.com/StateSmith/StateSmith/issues/394
     /// </summary>
     /// <param name="triggerName">If null, only transitions are checked</param>
-    /// <param name="noAncestorHandlesEvent"></param>
+    /// <param name="outputBehaviorMeta"></param>
     /// <param name="behaviorsWithTrigger"></param>
-    private void OutputReachableStateBehaviors(string? triggerName, bool noAncestorHandlesEvent, IEnumerable<Behavior> behaviorsWithTrigger)
+    private void OutputReachableStateBehaviors(string? triggerName, OutputBehaviorMeta outputBehaviorMeta, IEnumerable<Behavior> behaviorsWithTrigger)
     {
-        List<Behavior>? unreachableBehaviors = null;
         foreach (var b in behaviorsWithTrigger)
         {
-            if (unreachableBehaviors != null)
+            if (outputBehaviorMeta.hasUnconditionalTransition)
             {
                 File.AppendIndentedLine($"// unreachable behavior: `{b.DescribeAsUml(singleLineFormat: true)}` due to unconditional transition above");
             }
@@ -88,15 +100,15 @@ public class EventHandlerBuilder
             {
                 if (b.HasTransition())
                 {
-                    OutputTransitionCode(b, noAncestorHandlesEvent);
+                    OutputTransitionCode(b, outputBehaviorMeta.noAncestorHandlesEvent);
                     if (!b.HasGuardCode())
                     {
-                        unreachableBehaviors = new();
+                        outputBehaviorMeta.hasUnconditionalTransition = true;
                     }
                 }
                 else if (triggerName != null)
                 {
-                    OutputNonTransitionCode(b, triggerName, noAncestorHandlesEvent);
+                    OutputNonTransitionCode(b, triggerName, outputBehaviorMeta.noAncestorHandlesEvent);
                 }
             }
 
@@ -310,7 +322,7 @@ public class EventHandlerBuilder
     private void RenderPseudoStateTransitionsInner(PseudoStateVertex pseudoState, bool noAncestorHandlesEvent)
     {
         string? noTriggerName = null;  // means that only transitions are checked
-        OutputReachableStateBehaviors(triggerName: noTriggerName, noAncestorHandlesEvent, pseudoState.Behaviors);
+        OutputReachableStateBehaviors(triggerName: noTriggerName, new(){ noAncestorHandlesEvent = noAncestorHandlesEvent}, pseudoState.Behaviors);
     }
 
     private static bool IsExitingRequired(Vertex source, Vertex target, TransitionPath transitionPath)
@@ -547,13 +559,15 @@ public class EventHandlerBuilder
     private void OutputStateEventHandler(NamedVertex state, string eventName)
     {
         OutputTriggerHandlerSignature(state, eventName);
+        OutputBehaviorMeta outputBehaviorMeta;
+
         File.StartCodeBlock();
         {
             userExpansionScriptBases.UpdateNamedVertex(state);
             {
                 OutputStateEventHandlerFunctionTop(state, eventName);
-                OutputStateBehaviorsForTrigger(state, eventName);
-                OutputStateEventHandlerFunctionBottom(state, eventName);
+                outputBehaviorMeta = OutputStateBehaviorsForTrigger(state, eventName);
+                OutputStateEventHandlerFunctionBottom(state, eventName, outputBehaviorMeta);
             }
             userExpansionScriptBases.UpdateNamedVertex(null);
         }
@@ -566,7 +580,7 @@ public class EventHandlerBuilder
         // do nothing
     }
 
-    virtual protected void OutputStateEventHandlerFunctionBottom(NamedVertex state, string eventName)
+    virtual protected void OutputStateEventHandlerFunctionBottom(NamedVertex state, string eventName, OutputBehaviorMeta outputBehaviorMeta)
     {
         // do nothing
     }

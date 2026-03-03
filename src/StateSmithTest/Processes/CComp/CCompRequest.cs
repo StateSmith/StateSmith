@@ -12,6 +12,11 @@ public class CCompRequest
         /// GCC: -Wno-unused-function
         /// </summary>
         IgnoreUnusedFunctions,
+
+        /// <summary>
+        /// -Wno-unused-variable, -Wno-unused-but-set-variable 
+        /// </summary>
+        UnusedVariable,
     }
 
     public bool IsCpp = false;

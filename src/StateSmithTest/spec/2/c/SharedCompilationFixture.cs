@@ -1,4 +1,3 @@
-using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmithTest.Processes.CComp;
 
@@ -14,17 +13,23 @@ public class SharedCompilationFixture
 
     public SharedCompilationFixture()
     {
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory);
-
-        this.compilation = new CCompilerMux().Compile(new CCompRequest()
+        void compilationAction()
         {
-            WorkingDirectory = OutputDirectory,
-            SourceFiles = ["../../lang-helpers/c/helper.c", "main.c", "Spec2Sm.c"],
-            Flags = [
-                // we disable `unused-function` warning because some states are intentionally unreachable
-                CCompRequest.FlagId.IgnoreUnusedFunctions,
-            ]
-        });
+            this.compilation = new CCompilerMux().Compile(new CCompRequest()
+            {
+                WorkingDirectory = OutputDirectory,
+                SourceFiles = ["../../lang-helpers/c/helper.c", "main.c", "Spec2Sm.c"],
+                Flags = [
+                    // we disable `unused-function` warning because some states are intentionally unreachable
+                    CCompRequest.FlagId.IgnoreUnusedFunctions,
+
+                    // do ignore unused variable `consume_event`
+                    CCompRequest.FlagId.UnusedVariable,
+                ]
+            });
+        }
+
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, compilationAction: compilationAction);
     }
 
     public static string OutputDirectory => Spec2Fixture.Spec2Directory + "c/";

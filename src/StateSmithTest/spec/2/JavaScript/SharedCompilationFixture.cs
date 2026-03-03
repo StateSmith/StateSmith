@@ -16,23 +16,24 @@ public class SharedCompilationFixture
 
     public SharedCompilationFixture()
     {
-        var action = (SmRunner runner) =>
+        static void preRunAction(SmRunner runner)
         {
             runner.Settings.transpilerId = TranspilerId.JavaScript;
             runner.AlgoOrTranspilerUpdated();
-        };
+        }
 
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
-
-        SimpleProcess process;
-
-        process = new()
+        static void compilationAction()
         {
-            WorkingDirectory = OutputDirectory,
-            ProgramPath = "node",
-            Args = " --check Spec2Sm.js"
-        };
-        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+            SimpleProcess process = new()
+            {
+                WorkingDirectory = OutputDirectory,
+                ProgramPath = "node",
+                Args = " --check Spec2Sm.js"
+            };
+            process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+        }
+
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, preRunAction: preRunAction, compilationAction: compilationAction);
     }
 
     public class MyGlueFile : IRenderConfigJavaScript

@@ -17,7 +17,7 @@ public class SharedCompilationFixture
 
     public SharedCompilationFixture()
     {
-        var action = (SmRunner runner) =>
+        static void preRunAction(SmRunner runner)
         {
             runner.Settings.transpilerId = TranspilerId.Python;
             runner.AlgoOrTranspilerUpdated();
@@ -25,7 +25,8 @@ public class SharedCompilationFixture
 
             // NOTE!!! This runs before any other transformations so we can be confident that the code we are modifying is in the original form
             // from the diagram and not something that was added by a transformation (like history vertices).
-            runner.SmTransformer.transformationPipeline.Insert(0, new TransformationStep(action: (sm) => {
+            runner.SmTransformer.transformationPipeline.Insert(0, new TransformationStep(action: (sm) =>
+            {
                 sm.VisitRecursively((node) =>
                 {
                     foreach (var behavior in node.Behaviors)
@@ -35,19 +36,20 @@ public class SharedCompilationFixture
                     }
                 });
             }));
-        };
+        }
 
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, semiColon: "", trueString: "True");
-
-        SimpleProcess process;
-
-        process = new()
+        static void compilationAction()
         {
-            WorkingDirectory = OutputDirectory,
-            ProgramPath = "python3",
-            Args = " -m compileall ."   // https://stackoverflow.com/questions/5607283/how-can-i-manually-generate-a-pyc-file-from-a-py-file
-        };
-        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+            SimpleProcess process = new()
+            {
+                WorkingDirectory = OutputDirectory,
+                ProgramPath = "python3",
+                Args = " -m compileall ."   // https://stackoverflow.com/questions/5607283/how-can-i-manually-generate-a-pyc-file-from-a-py-file
+            };
+            process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+        }
+
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, preRunAction: preRunAction, compilationAction: compilationAction, semiColon: "", trueString: "True");
     }
 
     private static string PythonifyDiagramCode(string str)
