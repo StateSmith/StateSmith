@@ -42,10 +42,10 @@ public class JsonSettingsTest
     public void TestAllTargetLanguageIds()
     {
         // Ensure that none of the enum member names have been changed. This is important as the enum values are persisted in the user's configuration file.
-        Enum.GetNames(typeof(TargetLanguageId)).Should().BeEquivalentTo(["C", "Cpp", "CppC", "CSharp", "JavaScript", "TypeScript", "Java", "Python", "Swift"]);
+        Enum.GetNames(typeof(TargetLanguageId)).Should().BeEquivalentTo(["C", "Cpp", "CppC", "CSharp", "JavaScript", "TypeScript", "Java", "Python", "Kotlin", "Swift"]);
 
         // Detect if a new language has been added.
-        Enum.GetNames(typeof(TranspilerId)).Should().BeEquivalentTo(["NotYetSet", "Default", "C99", "Cpp", "CSharp", "JavaScript", "TypeScript", "Java", "Python", "Swift"]);
+        Enum.GetNames(typeof(TranspilerId)).Should().BeEquivalentTo(["NotYetSet", "Default", "C99", "Cpp", "CSharp", "JavaScript", "TypeScript", "Java", "Python", "Kotlin", "Swift"]);
 
         Test("C", TargetLanguageId.C);
         Test("CppC", TargetLanguageId.CppC);
