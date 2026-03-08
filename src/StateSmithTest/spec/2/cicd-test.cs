@@ -31,7 +31,7 @@ public class Spec2TestsSwift : FakeSpec2Tests
     {
         SimpleProcess process = new()
         {
-            ProgramPath = "swiftc",
+            ProgramPath = "swiftccc",
             Args = " --version",
             throwOnStdErr = false   // required for github runner
         };
