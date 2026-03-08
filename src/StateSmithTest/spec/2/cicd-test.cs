@@ -40,7 +40,7 @@ public class TempNewLangTests
 
         SimpleProcess process = new()
         {
-            ProgramPath = "swift",
+            ProgramPath = "swiftccc",
             Args = " --version",
             throwOnStdErr = false   // required for github runner
         };
