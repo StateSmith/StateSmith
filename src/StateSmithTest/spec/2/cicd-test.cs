@@ -1,54 +1,47 @@
 using StateSmithTest.Processes;
 using Xunit;
-using System.Runtime.InteropServices;
-using System;
-
-namespace StateSmithTest.spec2;
 
 // This file is temporary.
 // Will remove once we have swift MR merged
 
-public class TempNewLangTests
+namespace StateSmithTest.spec2.fake;
+
+public abstract class FakeSpec2Tests
 {
-    public static bool IsSwiftTestable()
+    public FakeSpec2Tests()
     {
-        bool isRunningOnMac = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
-
-        if (isRunningOnMac)
-        {
-            return true;
-        }
-
-        // don't run swift tests on github ubuntu runner. Just rely on mac runner for swift tests.
-        return IsRunningOnGitHubActions() == false;
+        Setup();
     }
 
-    public static bool IsRunningOnGitHubActions()
+    public virtual void Setup()
     {
-        string gitHubActions = Environment.GetEnvironmentVariable("GITHUB_ACTIONS");
-        return !string.IsNullOrEmpty(gitHubActions) && gitHubActions.Equals("true", StringComparison.OrdinalIgnoreCase);
+
     }
 
     [Fact]
-    public void CheckSwiftAvailable()
+    public void AssertNoCrash()
     {
-        if (!IsSwiftTestable())
-        {
-            Console.WriteLine("NOTE!!! Skipping swift tests.");
-            return;
-        }
+        Assert.Equal(1, 1);
+    }
+}
 
+public class Spec2TestsSwift : FakeSpec2Tests
+{
+    public override void Setup()
+    {
         SimpleProcess process = new()
         {
-            ProgramPath = "swift",
+            ProgramPath = "swiftc",
             Args = " --version",
             throwOnStdErr = false   // required for github runner
         };
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
     }
+}
 
-    [Fact]
-    public void CheckKotlinAvailable()
+public class Spec2TestsKotlin : FakeSpec2Tests
+{
+    public override void Setup()
     {
         SimpleProcess process = new()
         {
