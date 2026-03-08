@@ -31,7 +31,15 @@ public class Spec2TestsSwift : FakeSpec2Tests
     {
         SimpleProcess process = new()
         {
-            ProgramPath = "swiftccc",
+            ProgramPath = "swiftc",
+            Args = " --version",
+            throwOnStdErr = false   // required for github runner
+        };
+        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+
+        process = new()
+        {
+            ProgramPath = "swift",
             Args = " --version",
             throwOnStdErr = false   // required for github runner
         };
