@@ -33,12 +33,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # Swift setup for Linux (MacOS has it pre-installed)
-      - name: Setup Swift
-        if: runner.os == 'Linux'
-        uses: swift-actions/setup-swift@v3
-        with:
-          swift-version: '6.2'
+      # Note: Swift tests will only run on `macos-latest`
 
       - name: Install dependencies
         run: dotnet restore src/StateSmith.sln

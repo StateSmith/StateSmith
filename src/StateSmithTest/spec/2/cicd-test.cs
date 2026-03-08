@@ -1,5 +1,7 @@
 using StateSmithTest.Processes;
 using Xunit;
+using System.Runtime.InteropServices;
+using System;
 
 namespace StateSmithTest.spec2;
 
@@ -8,14 +10,36 @@ namespace StateSmithTest.spec2;
 
 public class TempNewLangTests
 {
+    public static bool IsSwiftTestable()
+    {
+        bool isRunningOnMac = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
+
+        if (isRunningOnMac)
+        {
+            return true;
+        }
+
+        // don't run swift tests on github ubuntu runner. Just rely on mac runner for swift tests.
+        return IsRunningOnGitHubActions() == false;
+    }
+
+    public static bool IsRunningOnGitHubActions()
+    {
+        string gitHubActions = Environment.GetEnvironmentVariable("GITHUB_ACTIONS");
+        return !string.IsNullOrEmpty(gitHubActions) && gitHubActions.Equals("true", StringComparison.OrdinalIgnoreCase);
+    }
+
     [Fact]
     public void CheckSwiftAvailable()
     {
-        SimpleProcess process;
-
-        process = new()
+        if (!IsSwiftTestable())
         {
-            // WorkingDirectory = OutputDirectory,
+            Console.WriteLine("NOTE!!! Skipping swift tests.");
+            return;
+        }
+
+        SimpleProcess process = new()
+        {
             ProgramPath = "swift",
             Args = " --version",
             throwOnStdErr = false   // required for github runner
@@ -26,9 +50,7 @@ public class TempNewLangTests
     [Fact]
     public void CheckKotlinAvailable()
     {
-        SimpleProcess process;
-
-        process = new()
+        SimpleProcess process = new()
         {
             ProgramPath = "kotlinc",
             Args = " -version",
