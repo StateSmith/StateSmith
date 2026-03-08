@@ -13,9 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup node.js
+        uses: actions/setup-node@v4
         with:
           node-version-file: 'src/test-misc/ts-spec2/package.json'
+
+      - name: Setup Java/Kotlin
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # Note: Swift tests will only run on `macos-latest` for now
 
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v4
@@ -26,14 +35,27 @@ jobs:
             8.0.x
             9.0.x
 
-      - name: Install dependencies
+      - name: Install dotnet dependencies
         run: dotnet restore src/StateSmith.sln
 
       - name: Build
         run: dotnet build --configuration Debug --no-restore src/StateSmith.sln
 
+      - name: Set Test Filter
+        shell: bash
+        run: |
+          FILTER=""
+          
+          # Only run Swift tests on macOS for now. There's no stable github action for swift right now.
+          # This also avoids adding a few minutes of time to download/install swift to linux runner.
+          if [ "${{ runner.os }}" != "macOS" ]; then
+            FILTER="FullyQualifiedName!~Spec2TestsSwift"
+          fi
+          
+          echo "DOTNET_TEST_FILTER=$FILTER" >> $GITHUB_ENV
+
       - name: Test
-        run: dotnet test --no-restore src/StateSmith.sln
+        run: dotnet test --no-restore src/StateSmith.sln --logger "console;verbosity=normal" --filter "${{ env.DOTNET_TEST_FILTER }}"
 
       # Test Algorithm.Balanced1
       # Above `Test` step only tests default algorithm (Balanced2)
@@ -43,4 +65,4 @@ jobs:
           STATESMITH_TEST_ALGORITHM_ID: Balanced1
 
         # only the early supported languages support Balanced1 so we just test them to avoid expected unsupported failures for later languages.
-        run: dotnet test src/StateSmithTest/ --filter 'DisplayName~Spec.Spec2.C.|DisplayName~Spec.Spec2.CSharp.|DisplayName~Spec.Spec2.JavaScript.'
+        run: dotnet test src/StateSmithTest/ --logger "console;verbosity=normal" --filter 'DisplayName~Spec.Spec2.C.|DisplayName~Spec.Spec2.CSharp.|DisplayName~Spec.Spec2.JavaScript.'
