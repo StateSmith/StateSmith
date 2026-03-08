@@ -17,7 +17,8 @@ public class TempNewLangTests
         {
             // WorkingDirectory = OutputDirectory,
             ProgramPath = "swift",
-            Args = " --version"
+            Args = " --version",
+            throwOnStdErr = false   // required for github runner
         };
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
     }

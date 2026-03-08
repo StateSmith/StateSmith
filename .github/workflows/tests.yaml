@@ -36,9 +36,9 @@ jobs:
       # Swift setup for Linux (MacOS has it pre-installed)
       - name: Setup Swift
         if: runner.os == 'Linux'
-        uses: swift-actions/setup-swift@v2
+        uses: swift-actions/setup-swift@v3
         with:
-          swift-version: '5.9'
+          swift-version: '6.2'
 
       - name: Install dependencies
         run: dotnet restore src/StateSmith.sln
