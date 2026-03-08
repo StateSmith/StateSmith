@@ -26,6 +26,20 @@ jobs:
             8.0.x
             9.0.x
 
+      # Kotlin requires Java
+      - name: Setup Java (for Kotlin tests)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # Swift setup for Linux (MacOS has it pre-installed)
+      - name: Setup Swift
+        if: runner.os == 'Linux'
+        uses: swiftty/setup-swift@v2
+        with:
+          swift-version: '5.9'
+
       - name: Install dependencies
         run: dotnet restore src/StateSmith.sln
 
