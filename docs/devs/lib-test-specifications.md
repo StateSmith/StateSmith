@@ -65,7 +65,7 @@ brew install openjdk@25
 Install Kotlin compiler
 
 ```bash
-# Linux/WSL:
+# Linux/WSL if SDKMAN!﻿ installed
 sdk install kotlin
 
 # MacOS:
