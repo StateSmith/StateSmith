@@ -83,7 +83,8 @@ tar zxf swiftly-$(uname -m).tar.gz && \
 ./swiftly init --quiet-shell-followup && \
 . "${SWIFTLY_HOME_DIR:-$HOME/.local/share/swiftly}/env.sh" && \
 hash -r
-
+# You may also need to install ncurses
+sudo apt install libncurses6
 # MacOS:
 curl -O https://download.swift.org/swiftly/darwin/swiftly.pkg && \
 installer -pkg swiftly.pkg -target CurrentUserHomeDirectory && \
