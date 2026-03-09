@@ -107,7 +107,7 @@ public class GrammarRelatedTests
     public void BadBracesThrows_330()
     {
         var plantUmlText = """
-            @startuml {{fileName}
+            @startuml {fileName}
             [*] --> c1
             @enduml
             """;
