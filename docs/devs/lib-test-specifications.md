@@ -67,7 +67,8 @@ Install Kotlin compiler
 ```bash
 # Linux/WSL if SDKMAN!﻿ installed
 sdk install kotlin
-
+# Linux/WSL if Snap installed
+sudo snap install --classic kotlin
 # MacOS:
 brew install kotlin
 ```
