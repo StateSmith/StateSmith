@@ -66,9 +66,9 @@ public class RocketSm
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } catch {} // end of behavior for group.<InitialState>
-            } catch {} // end of behavior for ROOT.<InitialState>
-        } catch {} // end of behavior for ROOT
+                } // end of behavior for group.<InitialState>
+            } // end of behavior for ROOT.<InitialState>
+        } // end of behavior for ROOT
     }
     
     // Dispatches an event to the state machine. Not thread safe.
@@ -178,7 +178,7 @@ public class RocketSm
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for g1
+        } // end of behavior for g1
     }
     
     

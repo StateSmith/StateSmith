@@ -72,9 +72,9 @@ func userCodeMethod() {
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } catch {} // end of behavior for group.<InitialState>
-            } catch {} // end of behavior for ROOT.<InitialState>
-        } catch {} // end of behavior for ROOT
+                } // end of behavior for group.<InitialState>
+            } // end of behavior for ROOT.<InitialState>
+        } // end of behavior for ROOT
     }
     
     // Dispatches an event to the state machine. Not thread safe.
@@ -187,7 +187,7 @@ func userCodeMethod() {
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for group
+        } // end of behavior for group
     }
     
     
@@ -262,7 +262,7 @@ func userCodeMethod() {
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for g2
+        } // end of behavior for g2
     }
     
     
