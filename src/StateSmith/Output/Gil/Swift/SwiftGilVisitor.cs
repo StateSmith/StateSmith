@@ -315,7 +315,7 @@ public class SwiftGilVisitor : CSharpSyntaxWalker
                     sb.AppendLine("do {");
                     VisitStatements(block.Statements);
                     sb.Append(indent);
-                    sb.Append("} catch {}");
+                    sb.Append("}");
                     VisitTrailingTrivia(block.GetLastToken());
                 }
                 else

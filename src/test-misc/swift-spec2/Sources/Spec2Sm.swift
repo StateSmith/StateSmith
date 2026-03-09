@@ -327,8 +327,8 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for ROOT.<InitialState>
-        } catch {} // end of behavior for ROOT
+            } // end of behavior for ROOT.<InitialState>
+        } // end of behavior for ROOT
     }
     
     // Dispatches an event to the state machine. Not thread safe.
@@ -2541,7 +2541,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter Spec2Sm.")`
             MainClass.trace("Enter Spec2Sm.")
-        } catch {} // end of behavior for ROOT
+        } // end of behavior for ROOT
     }
     
     private func ROOT_do()
@@ -2567,7 +2567,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING.")`
             MainClass.trace("Enter PREFIXING.")
-        } catch {} // end of behavior for PREFIXING
+        } // end of behavior for PREFIXING
     }
     
     private func PREFIXING_exit()
@@ -2577,7 +2577,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING.")`
             MainClass.trace("Exit PREFIXING.")
-        } catch {} // end of behavior for PREFIXING
+        } // end of behavior for PREFIXING
         
         self.stateId = StateId.ROOT
     }
@@ -2596,7 +2596,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__ORDER_MENU.")`
             MainClass.trace("Enter PREFIXING__ORDER_MENU.")
-        } catch {} // end of behavior for PREFIXING__ORDER_MENU
+        } // end of behavior for PREFIXING__ORDER_MENU
     }
     
     private func PREFIXING__ORDER_MENU_exit()
@@ -2606,7 +2606,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__ORDER_MENU.")`
             MainClass.trace("Exit PREFIXING__ORDER_MENU.")
-        } catch {} // end of behavior for PREFIXING__ORDER_MENU
+        } // end of behavior for PREFIXING__ORDER_MENU
         
         self.stateId = StateId.PREFIXING
     }
@@ -2625,7 +2625,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__OM__BEVERAGE.")`
             MainClass.trace("Enter PREFIXING__OM__BEVERAGE.")
-        } catch {} // end of behavior for PREFIXING__OM__BEVERAGE
+        } // end of behavior for PREFIXING__OM__BEVERAGE
     }
     
     private func PREFIXING__OM__BEVERAGE_exit()
@@ -2635,7 +2635,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__OM__BEVERAGE.")`
             MainClass.trace("Exit PREFIXING__OM__BEVERAGE.")
-        } catch {} // end of behavior for PREFIXING__OM__BEVERAGE
+        } // end of behavior for PREFIXING__OM__BEVERAGE
         
         self.stateId = StateId.PREFIXING__ORDER_MENU
     }
@@ -2668,7 +2668,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for PREFIXING__OM__VEG.<InitialState>
+            } // end of behavior for PREFIXING__OM__VEG.<InitialState>
         } // end of behavior for PREFIXING__OM__BEVERAGE
     }
     
@@ -2687,7 +2687,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for PREFIXING__OM__BEVERAGE.<InitialState>
+        } // end of behavior for PREFIXING__OM__BEVERAGE.<InitialState>
     }
     
     
@@ -2704,7 +2704,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__NONE.")`
             MainClass.trace("Enter PREFIXING__OM__BEV__NONE.")
-        } catch {} // end of behavior for PREFIXING__OM__BEV__NONE
+        } // end of behavior for PREFIXING__OM__BEV__NONE
     }
     
     private func PREFIXING__OM__BEV__NONE_exit()
@@ -2714,7 +2714,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__NONE.")`
             MainClass.trace("Exit PREFIXING__OM__BEV__NONE.")
-        } catch {} // end of behavior for PREFIXING__OM__BEV__NONE
+        } // end of behavior for PREFIXING__OM__BEV__NONE
         
         self.stateId = StateId.PREFIXING__OM__BEVERAGE
     }
@@ -2753,7 +2753,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__TEA.")`
             MainClass.trace("Enter PREFIXING__OM__BEV__TEA.")
-        } catch {} // end of behavior for PREFIXING__OM__BEV__TEA
+        } // end of behavior for PREFIXING__OM__BEV__TEA
     }
     
     private func PREFIXING__OM__BEV__TEA_exit()
@@ -2763,7 +2763,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__TEA.")`
             MainClass.trace("Exit PREFIXING__OM__BEV__TEA.")
-        } catch {} // end of behavior for PREFIXING__OM__BEV__TEA
+        } // end of behavior for PREFIXING__OM__BEV__TEA
         
         self.stateId = StateId.PREFIXING__OM__BEVERAGE
     }
@@ -2782,7 +2782,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__WATER.")`
             MainClass.trace("Enter PREFIXING__OM__BEV__WATER.")
-        } catch {} // end of behavior for PREFIXING__OM__BEV__WATER
+        } // end of behavior for PREFIXING__OM__BEV__WATER
     }
     
     private func PREFIXING__OM__BEV__WATER_exit()
@@ -2792,7 +2792,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__WATER.")`
             MainClass.trace("Exit PREFIXING__OM__BEV__WATER.")
-        } catch {} // end of behavior for PREFIXING__OM__BEV__WATER
+        } // end of behavior for PREFIXING__OM__BEV__WATER
         
         self.stateId = StateId.PREFIXING__OM__BEVERAGE
     }
@@ -2831,7 +2831,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__OM__VEG.")`
             MainClass.trace("Enter PREFIXING__OM__VEG.")
-        } catch {} // end of behavior for PREFIXING__OM__VEG
+        } // end of behavior for PREFIXING__OM__VEG
     }
     
     private func PREFIXING__OM__VEG_exit()
@@ -2841,7 +2841,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__OM__VEG.")`
             MainClass.trace("Exit PREFIXING__OM__VEG.")
-        } catch {} // end of behavior for PREFIXING__OM__VEG
+        } // end of behavior for PREFIXING__OM__VEG
         
         self.stateId = StateId.PREFIXING__ORDER_MENU
     }
@@ -2881,7 +2881,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__NONE.")`
             MainClass.trace("Enter PREFIXING__OM__VEG__NONE.")
-        } catch {} // end of behavior for PREFIXING__OM__VEG__NONE
+        } // end of behavior for PREFIXING__OM__VEG__NONE
     }
     
     private func PREFIXING__OM__VEG__NONE_exit()
@@ -2891,7 +2891,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__NONE.")`
             MainClass.trace("Exit PREFIXING__OM__VEG__NONE.")
-        } catch {} // end of behavior for PREFIXING__OM__VEG__NONE
+        } // end of behavior for PREFIXING__OM__VEG__NONE
         
         self.stateId = StateId.PREFIXING__OM__VEG
     }
@@ -2930,7 +2930,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__POTATO.")`
             MainClass.trace("Enter PREFIXING__OM__VEG__POTATO.")
-        } catch {} // end of behavior for PREFIXING__OM__VEG__POTATO
+        } // end of behavior for PREFIXING__OM__VEG__POTATO
     }
     
     private func PREFIXING__OM__VEG__POTATO_exit()
@@ -2940,7 +2940,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__POTATO.")`
             MainClass.trace("Exit PREFIXING__OM__VEG__POTATO.")
-        } catch {} // end of behavior for PREFIXING__OM__VEG__POTATO
+        } // end of behavior for PREFIXING__OM__VEG__POTATO
         
         self.stateId = StateId.PREFIXING__OM__VEG
     }
@@ -2979,7 +2979,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__YAM.")`
             MainClass.trace("Enter PREFIXING__OM__VEG__YAM.")
-        } catch {} // end of behavior for PREFIXING__OM__VEG__YAM
+        } // end of behavior for PREFIXING__OM__VEG__YAM
     }
     
     private func PREFIXING__OM__VEG__YAM_exit()
@@ -2989,7 +2989,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__YAM.")`
             MainClass.trace("Exit PREFIXING__OM__VEG__YAM.")
-        } catch {} // end of behavior for PREFIXING__OM__VEG__YAM
+        } // end of behavior for PREFIXING__OM__VEG__YAM
         
         self.stateId = StateId.PREFIXING__OM__VEG
     }
@@ -3008,7 +3008,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.")`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
     }
     
     private func PREFIXING__SHOWS_MANUAL_PREFIX_exit()
@@ -3018,7 +3018,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
         
         self.stateId = StateId.PREFIXING
     }
@@ -3037,7 +3037,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     }
     
     private func PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit()
@@ -3047,7 +3047,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX
     }
@@ -3066,7 +3066,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     }
     
     private func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit()
@@ -3076,7 +3076,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     }
@@ -3109,7 +3109,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState>
+            } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState>
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     }
     
@@ -3128,7 +3128,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState>
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState>
     }
     
     
@@ -3145,7 +3145,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
     }
     
     private func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit()
@@ -3155,7 +3155,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     }
@@ -3194,7 +3194,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
     }
     
     private func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit()
@@ -3204,7 +3204,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     }
@@ -3223,7 +3223,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
     }
     
     private func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit()
@@ -3233,7 +3233,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     }
@@ -3272,7 +3272,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     }
     
     private func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit()
@@ -3282,7 +3282,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     }
@@ -3322,7 +3322,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
     }
     
     private func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit()
@@ -3332,7 +3332,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     }
@@ -3371,7 +3371,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
     }
     
     private func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit()
@@ -3381,7 +3381,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     }
@@ -3420,7 +3420,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
     }
     
     private func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit()
@@ -3430,7 +3430,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
-        } catch {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     }
@@ -3449,7 +3449,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter Spec2Sm__DECIDE.")`
             MainClass.trace("Enter Spec2Sm__DECIDE.")
-        } catch {} // end of behavior for Spec2Sm__DECIDE
+        } // end of behavior for Spec2Sm__DECIDE
     }
     
     private func SPEC2SM__DECIDE_exit()
@@ -3459,7 +3459,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit Spec2Sm__DECIDE.")`
             MainClass.trace("Exit Spec2Sm__DECIDE.")
-        } catch {} // end of behavior for Spec2Sm__DECIDE
+        } // end of behavior for Spec2Sm__DECIDE
         
         self.stateId = StateId.ROOT
     }
@@ -3532,8 +3532,8 @@ public class Spec2Sm : Spec2SmBase
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } catch {} // end of behavior for TEST1_ROOT.<InitialState>
-            } catch {} // end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
+                } // end of behavior for TEST1_ROOT.<InitialState>
+            } // end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
         
         // Spec2Sm__DECIDE behavior
@@ -3583,7 +3583,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST10_CHOICE_POINT.<InitialState>
+            } // end of behavior for TEST10_CHOICE_POINT.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3627,8 +3627,8 @@ public class Spec2Sm : Spec2SmBase
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } catch {} // end of behavior for TEST2_ROOT.<InitialState>
-            } catch {} // end of behavior for TEST2_REGULAR_EVENT_TESTING.<InitialState>
+                } // end of behavior for TEST2_ROOT.<InitialState>
+            } // end of behavior for TEST2_REGULAR_EVENT_TESTING.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3671,8 +3671,8 @@ public class Spec2Sm : Spec2SmBase
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } catch {} // end of behavior for TEST3_ROOT.<InitialState>
-            } catch {} // end of behavior for TEST3_BEHAVIOR_ORDERING.<InitialState>
+                } // end of behavior for TEST3_ROOT.<InitialState>
+            } // end of behavior for TEST3_BEHAVIOR_ORDERING.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3704,7 +3704,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState>
+            } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3736,7 +3736,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState>
+            } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3779,8 +3779,8 @@ public class Spec2Sm : Spec2SmBase
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } catch {} // end of behavior for TEST6_ROOT.<InitialState>
-            } catch {} // end of behavior for TEST6_VARS_EXPANSIONS.<InitialState>
+                } // end of behavior for TEST6_ROOT.<InitialState>
+            } // end of behavior for TEST6_VARS_EXPANSIONS.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3812,7 +3812,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST7_INITIAL_OR_HISTORY.<InitialState>
+            } // end of behavior for TEST7_INITIAL_OR_HISTORY.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3846,7 +3846,7 @@ public class Spec2Sm : Spec2SmBase
                 // Finish transition by calling pseudo state transition function.
                 self.TEST8_ROOT_EntryPoint_1__transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } catch {} // end of behavior for TEST8_ENTRY_CHOICE.<InitialState>
+            } // end of behavior for TEST8_ENTRY_CHOICE.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3878,7 +3878,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST9_EXIT_CHOICE.<InitialState>
+            } // end of behavior for TEST9_EXIT_CHOICE.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3896,7 +3896,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST1_DO_EVENT_TESTING.")`
             MainClass.trace("Enter TEST1_DO_EVENT_TESTING.")
-        } catch {} // end of behavior for TEST1_DO_EVENT_TESTING
+        } // end of behavior for TEST1_DO_EVENT_TESTING
     }
     
     private func TEST1_DO_EVENT_TESTING_exit()
@@ -3906,7 +3906,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST1_DO_EVENT_TESTING.")`
             MainClass.trace("Exit TEST1_DO_EVENT_TESTING.")
-        } catch {} // end of behavior for TEST1_DO_EVENT_TESTING
+        } // end of behavior for TEST1_DO_EVENT_TESTING
         
         self.stateId = StateId.ROOT
     }
@@ -3925,7 +3925,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST1_ROOT.")`
             MainClass.trace("Enter TEST1_ROOT.")
-        } catch {} // end of behavior for TEST1_ROOT
+        } // end of behavior for TEST1_ROOT
     }
     
     private func TEST1_ROOT_exit()
@@ -3935,7 +3935,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST1_ROOT.")`
             MainClass.trace("Exit TEST1_ROOT.")
-        } catch {} // end of behavior for TEST1_ROOT
+        } // end of behavior for TEST1_ROOT
         
         self.stateId = StateId.TEST1_DO_EVENT_TESTING
     }
@@ -3971,7 +3971,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST1_S1.")`
             MainClass.trace("Enter TEST1_S1.")
-        } catch {} // end of behavior for TEST1_S1
+        } // end of behavior for TEST1_S1
     }
     
     private func TEST1_S1_exit()
@@ -3981,7 +3981,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST1_S1.")`
             MainClass.trace("Exit TEST1_S1.")
-        } catch {} // end of behavior for TEST1_S1
+        } // end of behavior for TEST1_S1
         
         self.stateId = StateId.TEST1_ROOT
     }
@@ -4000,7 +4000,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST1_S1_1.")`
             MainClass.trace("Enter TEST1_S1_1.")
-        } catch {} // end of behavior for TEST1_S1_1
+        } // end of behavior for TEST1_S1_1
         
         // TEST1_S1_1 behavior
         // uml: enter [trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
@@ -4018,7 +4018,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST1_S1_1.")`
             MainClass.trace("Exit TEST1_S1_1.")
-        } catch {} // end of behavior for TEST1_S1_1
+        } // end of behavior for TEST1_S1_1
         
         self.stateId = StateId.TEST1_S1
     }
@@ -4074,7 +4074,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST1_S2.")`
             MainClass.trace("Enter TEST1_S2.")
-        } catch {} // end of behavior for TEST1_S2
+        } // end of behavior for TEST1_S2
     }
     
     private func TEST1_S2_exit()
@@ -4084,7 +4084,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST1_S2.")`
             MainClass.trace("Exit TEST1_S2.")
-        } catch {} // end of behavior for TEST1_S2
+        } // end of behavior for TEST1_S2
         
         self.stateId = StateId.TEST1_ROOT
     }
@@ -4123,7 +4123,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST10_CHOICE_POINT.")`
             MainClass.trace("Enter TEST10_CHOICE_POINT.")
-        } catch {} // end of behavior for TEST10_CHOICE_POINT
+        } // end of behavior for TEST10_CHOICE_POINT
     }
     
     private func TEST10_CHOICE_POINT_exit()
@@ -4133,7 +4133,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST10_CHOICE_POINT.")`
             MainClass.trace("Exit TEST10_CHOICE_POINT.")
-        } catch {} // end of behavior for TEST10_CHOICE_POINT
+        } // end of behavior for TEST10_CHOICE_POINT
         
         self.stateId = StateId.ROOT
     }
@@ -4152,7 +4152,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST10_A.")`
             MainClass.trace("Enter TEST10_A.")
-        } catch {} // end of behavior for TEST10_A
+        } // end of behavior for TEST10_A
     }
     
     private func TEST10_A_exit()
@@ -4162,7 +4162,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST10_A.")`
             MainClass.trace("Exit TEST10_A.")
-        } catch {} // end of behavior for TEST10_A
+        } // end of behavior for TEST10_A
         
         self.stateId = StateId.TEST10_CHOICE_POINT
     }
@@ -4200,7 +4200,7 @@ public class Spec2Sm : Spec2SmBase
             // Finish transition by calling pseudo state transition function.
             self.TEST10_A_ChoicePoint__transition_kid_index3()
             return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } catch {} // end of behavior for TEST10_A.<ChoicePoint>()
+        } // end of behavior for TEST10_A.<ChoicePoint>()
     }
     
     private func TEST10_A_ChoicePoint__transition_kid_index3()
@@ -4236,7 +4236,7 @@ public class Spec2Sm : Spec2SmBase
             // Finish transition by calling pseudo state transition function.
             self.TEST10_A_ChoicePoint_a__transition()
             return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } catch {} // end of behavior for TEST10_A.<ChoicePoint>()
+        } // end of behavior for TEST10_A.<ChoicePoint>()
     }
     
     private func TEST10_A_ChoicePoint_a__transition()
@@ -4272,7 +4272,7 @@ public class Spec2Sm : Spec2SmBase
             // Finish transition by calling pseudo state transition function.
             self.TEST10_A_ChoicePoint_a__transition_kid_index5()
             return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } catch {} // end of behavior for TEST10_A.<ChoicePoint>(a)
+        } // end of behavior for TEST10_A.<ChoicePoint>(a)
     }
     
     private func TEST10_A_ChoicePoint_a__transition_kid_index5()
@@ -4290,7 +4290,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for TEST10_A.<ChoicePoint>(a)
+        } // end of behavior for TEST10_A.<ChoicePoint>(a)
     }
     
     
@@ -4307,7 +4307,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST10_A_1.")`
             MainClass.trace("Enter TEST10_A_1.")
-        } catch {} // end of behavior for TEST10_A_1
+        } // end of behavior for TEST10_A_1
     }
     
     private func TEST10_A_1_exit()
@@ -4317,7 +4317,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST10_A_1.")`
             MainClass.trace("Exit TEST10_A_1.")
-        } catch {} // end of behavior for TEST10_A_1
+        } // end of behavior for TEST10_A_1
         
         self.stateId = StateId.TEST10_A
     }
@@ -4336,7 +4336,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST10_ROOT.")`
             MainClass.trace("Enter TEST10_ROOT.")
-        } catch {} // end of behavior for TEST10_ROOT
+        } // end of behavior for TEST10_ROOT
     }
     
     private func TEST10_ROOT_exit()
@@ -4346,7 +4346,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST10_ROOT.")`
             MainClass.trace("Exit TEST10_ROOT.")
-        } catch {} // end of behavior for TEST10_ROOT
+        } // end of behavior for TEST10_ROOT
         
         self.stateId = StateId.TEST10_CHOICE_POINT
     }
@@ -4376,7 +4376,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST10_G.")`
             MainClass.trace("Enter TEST10_G.")
-        } catch {} // end of behavior for TEST10_G
+        } // end of behavior for TEST10_G
     }
     
     private func TEST10_G_exit()
@@ -4386,7 +4386,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST10_G.")`
             MainClass.trace("Exit TEST10_G.")
-        } catch {} // end of behavior for TEST10_G
+        } // end of behavior for TEST10_G
         
         self.stateId = StateId.TEST10_ROOT
     }
@@ -4461,7 +4461,7 @@ public class Spec2Sm : Spec2SmBase
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } catch {} // end of behavior for TEST10_G.<ChoicePoint>(lower)
+                } // end of behavior for TEST10_G.<ChoicePoint>(lower)
             } // end of behavior for TEST10_G.<ChoicePoint>(1)
             
             // TEST10_G.<ChoicePoint>(1) behavior
@@ -4505,9 +4505,9 @@ public class Spec2Sm : Spec2SmBase
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } catch {} // end of behavior for TEST10_G.<ChoicePoint>(upper)
-            } catch {} // end of behavior for TEST10_G.<ChoicePoint>(1)
-        } catch {} // end of behavior for TEST10_G.<ChoicePoint>()
+                } // end of behavior for TEST10_G.<ChoicePoint>(upper)
+            } // end of behavior for TEST10_G.<ChoicePoint>(1)
+        } // end of behavior for TEST10_G.<ChoicePoint>()
     }
     
     
@@ -4524,7 +4524,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST10_G_S0.")`
             MainClass.trace("Enter TEST10_G_S0.")
-        } catch {} // end of behavior for TEST10_G_S0
+        } // end of behavior for TEST10_G_S0
     }
     
     private func TEST10_G_S0_exit()
@@ -4534,7 +4534,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST10_G_S0.")`
             MainClass.trace("Exit TEST10_G_S0.")
-        } catch {} // end of behavior for TEST10_G_S0
+        } // end of behavior for TEST10_G_S0
         
         self.stateId = StateId.TEST10_G
     }
@@ -4553,7 +4553,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST10_G_S1.")`
             MainClass.trace("Enter TEST10_G_S1.")
-        } catch {} // end of behavior for TEST10_G_S1
+        } // end of behavior for TEST10_G_S1
     }
     
     private func TEST10_G_S1_exit()
@@ -4563,7 +4563,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST10_G_S1.")`
             MainClass.trace("Exit TEST10_G_S1.")
-        } catch {} // end of behavior for TEST10_G_S1
+        } // end of behavior for TEST10_G_S1
         
         self.stateId = StateId.TEST10_G
     }
@@ -4582,7 +4582,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST10_G_S2.")`
             MainClass.trace("Enter TEST10_G_S2.")
-        } catch {} // end of behavior for TEST10_G_S2
+        } // end of behavior for TEST10_G_S2
     }
     
     private func TEST10_G_S2_exit()
@@ -4592,7 +4592,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST10_G_S2.")`
             MainClass.trace("Exit TEST10_G_S2.")
-        } catch {} // end of behavior for TEST10_G_S2
+        } // end of behavior for TEST10_G_S2
         
         self.stateId = StateId.TEST10_G
     }
@@ -4611,7 +4611,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST10_G_S3.")`
             MainClass.trace("Enter TEST10_G_S3.")
-        } catch {} // end of behavior for TEST10_G_S3
+        } // end of behavior for TEST10_G_S3
     }
     
     private func TEST10_G_S3_exit()
@@ -4621,7 +4621,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST10_G_S3.")`
             MainClass.trace("Exit TEST10_G_S3.")
-        } catch {} // end of behavior for TEST10_G_S3
+        } // end of behavior for TEST10_G_S3
         
         self.stateId = StateId.TEST10_G
     }
@@ -4640,7 +4640,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST10_S1.")`
             MainClass.trace("Enter TEST10_S1.")
-        } catch {} // end of behavior for TEST10_S1
+        } // end of behavior for TEST10_S1
         
         // TEST10_S1 behavior
         // uml: enter [trace_guard("State TEST10_S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
@@ -4658,7 +4658,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST10_S1.")`
             MainClass.trace("Exit TEST10_S1.")
-        } catch {} // end of behavior for TEST10_S1
+        } // end of behavior for TEST10_S1
         
         self.stateId = StateId.TEST10_ROOT
     }
@@ -4693,7 +4693,7 @@ public class Spec2Sm : Spec2SmBase
                 // Finish transition by calling pseudo state transition function.
                 self.TEST10_G_ChoicePoint__transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } catch {} // end of behavior for TEST10_G.<EntryPoint>(1)
+            } // end of behavior for TEST10_G.<EntryPoint>(1)
         } // end of behavior for TEST10_S1
     }
     
@@ -4761,7 +4761,7 @@ public class Spec2Sm : Spec2SmBase
                 // Finish transition by calling pseudo state transition function.
                 self.TEST10_A_ChoicePoint__transition_kid_index3()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } catch {} // end of behavior for TEST10_A.<InitialState>
+            } // end of behavior for TEST10_A.<InitialState>
         } // end of behavior for TEST10_S1
     }
     
@@ -4816,7 +4816,7 @@ public class Spec2Sm : Spec2SmBase
                 // Finish transition by calling pseudo state transition function.
                 self.TEST10_G_ChoicePoint__transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } catch {} // end of behavior for TEST10_G.<InitialState>
+            } // end of behavior for TEST10_G.<InitialState>
         } // end of behavior for TEST10_S1
     }
     
@@ -4834,7 +4834,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST10_S4.")`
             MainClass.trace("Enter TEST10_S4.")
-        } catch {} // end of behavior for TEST10_S4
+        } // end of behavior for TEST10_S4
     }
     
     private func TEST10_S4_exit()
@@ -4844,7 +4844,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST10_S4.")`
             MainClass.trace("Exit TEST10_S4.")
-        } catch {} // end of behavior for TEST10_S4
+        } // end of behavior for TEST10_S4
         
         self.stateId = StateId.TEST10_ROOT
     }
@@ -4863,7 +4863,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST2_REGULAR_EVENT_TESTING.")`
             MainClass.trace("Enter TEST2_REGULAR_EVENT_TESTING.")
-        } catch {} // end of behavior for TEST2_REGULAR_EVENT_TESTING
+        } // end of behavior for TEST2_REGULAR_EVENT_TESTING
     }
     
     private func TEST2_REGULAR_EVENT_TESTING_exit()
@@ -4873,7 +4873,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST2_REGULAR_EVENT_TESTING.")`
             MainClass.trace("Exit TEST2_REGULAR_EVENT_TESTING.")
-        } catch {} // end of behavior for TEST2_REGULAR_EVENT_TESTING
+        } // end of behavior for TEST2_REGULAR_EVENT_TESTING
         
         self.stateId = StateId.ROOT
     }
@@ -4892,7 +4892,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST2_ROOT.")`
             MainClass.trace("Enter TEST2_ROOT.")
-        } catch {} // end of behavior for TEST2_ROOT
+        } // end of behavior for TEST2_ROOT
     }
     
     private func TEST2_ROOT_exit()
@@ -4902,7 +4902,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST2_ROOT.")`
             MainClass.trace("Exit TEST2_ROOT.")
-        } catch {} // end of behavior for TEST2_ROOT
+        } // end of behavior for TEST2_ROOT
         
         self.stateId = StateId.TEST2_REGULAR_EVENT_TESTING
     }
@@ -4956,7 +4956,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST2_S1.")`
             MainClass.trace("Enter TEST2_S1.")
-        } catch {} // end of behavior for TEST2_S1
+        } // end of behavior for TEST2_S1
     }
     
     private func TEST2_S1_exit()
@@ -4966,7 +4966,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST2_S1.")`
             MainClass.trace("Exit TEST2_S1.")
-        } catch {} // end of behavior for TEST2_S1
+        } // end of behavior for TEST2_S1
         
         self.stateId = StateId.TEST2_ROOT
     }
@@ -4985,7 +4985,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST2_S1_1.")`
             MainClass.trace("Enter TEST2_S1_1.")
-        } catch {} // end of behavior for TEST2_S1_1
+        } // end of behavior for TEST2_S1_1
         
         // TEST2_S1_1 behavior
         // uml: enter [trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
@@ -5003,7 +5003,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST2_S1_1.")`
             MainClass.trace("Exit TEST2_S1_1.")
-        } catch {} // end of behavior for TEST2_S1_1
+        } // end of behavior for TEST2_S1_1
         
         self.stateId = StateId.TEST2_S1
     }
@@ -5069,7 +5069,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST2_S2.")`
             MainClass.trace("Enter TEST2_S2.")
-        } catch {} // end of behavior for TEST2_S2
+        } // end of behavior for TEST2_S2
         
         // TEST2_S2 behavior
         // uml: enter [trace_guard("State TEST2_S2: check behavior `en`.", true)]
@@ -5085,7 +5085,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST2_S2.")`
             MainClass.trace("Exit TEST2_S2.")
-        } catch {} // end of behavior for TEST2_S2
+        } // end of behavior for TEST2_S2
         
         self.stateId = StateId.TEST2_ROOT
     }
@@ -5153,7 +5153,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST3_BEHAVIOR_ORDERING.")`
             MainClass.trace("Enter TEST3_BEHAVIOR_ORDERING.")
-        } catch {} // end of behavior for TEST3_BEHAVIOR_ORDERING
+        } // end of behavior for TEST3_BEHAVIOR_ORDERING
     }
     
     private func TEST3_BEHAVIOR_ORDERING_exit()
@@ -5163,7 +5163,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST3_BEHAVIOR_ORDERING.")`
             MainClass.trace("Exit TEST3_BEHAVIOR_ORDERING.")
-        } catch {} // end of behavior for TEST3_BEHAVIOR_ORDERING
+        } // end of behavior for TEST3_BEHAVIOR_ORDERING
         
         self.stateId = StateId.ROOT
     }
@@ -5182,7 +5182,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST3_ROOT.")`
             MainClass.trace("Enter TEST3_ROOT.")
-        } catch {} // end of behavior for TEST3_ROOT
+        } // end of behavior for TEST3_ROOT
     }
     
     private func TEST3_ROOT_exit()
@@ -5192,7 +5192,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST3_ROOT.")`
             MainClass.trace("Exit TEST3_ROOT.")
-        } catch {} // end of behavior for TEST3_ROOT
+        } // end of behavior for TEST3_ROOT
         
         self.stateId = StateId.TEST3_BEHAVIOR_ORDERING
     }
@@ -5220,7 +5220,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST3_S1.")`
             MainClass.trace("Enter TEST3_S1.")
-        } catch {} // end of behavior for TEST3_S1
+        } // end of behavior for TEST3_S1
         
         // TEST3_S1 behavior
         // uml: enter [trace_guard("State TEST3_S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
@@ -5238,7 +5238,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST3_S1.")`
             MainClass.trace("Exit TEST3_S1.")
-        } catch {} // end of behavior for TEST3_S1
+        } // end of behavior for TEST3_S1
         
         self.stateId = StateId.TEST3_ROOT
     }
@@ -5295,7 +5295,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST3_S2.")`
             MainClass.trace("Enter TEST3_S2.")
-        } catch {} // end of behavior for TEST3_S2
+        } // end of behavior for TEST3_S2
     }
     
     private func TEST3_S2_exit()
@@ -5305,7 +5305,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST3_S2.")`
             MainClass.trace("Exit TEST3_S2.")
-        } catch {} // end of behavior for TEST3_S2
+        } // end of behavior for TEST3_S2
         
         self.stateId = StateId.TEST3_ROOT
     }
@@ -5373,7 +5373,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST3_S3.")`
             MainClass.trace("Enter TEST3_S3.")
-        } catch {} // end of behavior for TEST3_S3
+        } // end of behavior for TEST3_S3
     }
     
     private func TEST3_S3_exit()
@@ -5383,7 +5383,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST3_S3.")`
             MainClass.trace("Exit TEST3_S3.")
-        } catch {} // end of behavior for TEST3_S3
+        } // end of behavior for TEST3_S3
         
         self.stateId = StateId.TEST3_ROOT
     }
@@ -5402,7 +5402,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.")`
             MainClass.trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.")
-        } catch {} // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
+        } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
     }
     
     private func TEST4_PARENT_CHILD_TRANSITIONS_exit()
@@ -5412,7 +5412,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")`
             MainClass.trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")
-        } catch {} // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
+        } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
         
         self.stateId = StateId.ROOT
     }
@@ -5431,7 +5431,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4_B_AND_OTHERS.")`
             MainClass.trace("Enter TEST4_B_AND_OTHERS.")
-        } catch {} // end of behavior for TEST4_B_AND_OTHERS
+        } // end of behavior for TEST4_B_AND_OTHERS
         
         // TEST4_B_AND_OTHERS behavior
         // uml: enter [trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
@@ -5449,7 +5449,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4_B_AND_OTHERS.")`
             MainClass.trace("Exit TEST4_B_AND_OTHERS.")
-        } catch {} // end of behavior for TEST4_B_AND_OTHERS
+        } // end of behavior for TEST4_B_AND_OTHERS
         
         self.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
     }
@@ -5468,7 +5468,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4B_LOCAL.")`
             MainClass.trace("Enter TEST4B_LOCAL.")
-        } catch {} // end of behavior for TEST4B_LOCAL
+        } // end of behavior for TEST4B_LOCAL
     }
     
     private func TEST4B_LOCAL_exit()
@@ -5478,7 +5478,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4B_LOCAL.")`
             MainClass.trace("Exit TEST4B_LOCAL.")
-        } catch {} // end of behavior for TEST4B_LOCAL
+        } // end of behavior for TEST4B_LOCAL
         
         self.stateId = StateId.TEST4_B_AND_OTHERS
     }
@@ -5497,7 +5497,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4B_G.")`
             MainClass.trace("Enter TEST4B_G.")
-        } catch {} // end of behavior for TEST4B_G
+        } // end of behavior for TEST4B_G
     }
     
     private func TEST4B_G_exit()
@@ -5507,7 +5507,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4B_G.")`
             MainClass.trace("Exit TEST4B_G.")
-        } catch {} // end of behavior for TEST4B_G
+        } // end of behavior for TEST4B_G
         
         self.stateId = StateId.TEST4B_LOCAL
     }
@@ -5546,7 +5546,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4B_G_1.")`
             MainClass.trace("Enter TEST4B_G_1.")
-        } catch {} // end of behavior for TEST4B_G_1
+        } // end of behavior for TEST4B_G_1
     }
     
     private func TEST4B_G_1_exit()
@@ -5556,7 +5556,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4B_G_1.")`
             MainClass.trace("Exit TEST4B_G_1.")
-        } catch {} // end of behavior for TEST4B_G_1
+        } // end of behavior for TEST4B_G_1
         
         self.stateId = StateId.TEST4B_G
     }
@@ -5594,7 +5594,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4C_LOCAL_TO_ALIAS.")`
             MainClass.trace("Enter TEST4C_LOCAL_TO_ALIAS.")
-        } catch {} // end of behavior for TEST4C_LOCAL_TO_ALIAS
+        } // end of behavior for TEST4C_LOCAL_TO_ALIAS
     }
     
     private func TEST4C_LOCAL_TO_ALIAS_exit()
@@ -5604,7 +5604,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4C_LOCAL_TO_ALIAS.")`
             MainClass.trace("Exit TEST4C_LOCAL_TO_ALIAS.")
-        } catch {} // end of behavior for TEST4C_LOCAL_TO_ALIAS
+        } // end of behavior for TEST4C_LOCAL_TO_ALIAS
         
         self.stateId = StateId.TEST4_B_AND_OTHERS
     }
@@ -5623,7 +5623,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4C_G.")`
             MainClass.trace("Enter TEST4C_G.")
-        } catch {} // end of behavior for TEST4C_G
+        } // end of behavior for TEST4C_G
     }
     
     private func TEST4C_G_exit()
@@ -5633,7 +5633,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4C_G.")`
             MainClass.trace("Exit TEST4C_G.")
-        } catch {} // end of behavior for TEST4C_G
+        } // end of behavior for TEST4C_G
         
         self.stateId = StateId.TEST4C_LOCAL_TO_ALIAS
     }
@@ -5672,7 +5672,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4C_G_1.")`
             MainClass.trace("Enter TEST4C_G_1.")
-        } catch {} // end of behavior for TEST4C_G_1
+        } // end of behavior for TEST4C_G_1
     }
     
     private func TEST4C_G_1_exit()
@@ -5682,7 +5682,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4C_G_1.")`
             MainClass.trace("Exit TEST4C_G_1.")
-        } catch {} // end of behavior for TEST4C_G_1
+        } // end of behavior for TEST4C_G_1
         
         self.stateId = StateId.TEST4C_G
     }
@@ -5720,7 +5720,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4D_EXTERNAL.")`
             MainClass.trace("Enter TEST4D_EXTERNAL.")
-        } catch {} // end of behavior for TEST4D_EXTERNAL
+        } // end of behavior for TEST4D_EXTERNAL
     }
     
     private func TEST4D_EXTERNAL_exit()
@@ -5730,7 +5730,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4D_EXTERNAL.")`
             MainClass.trace("Exit TEST4D_EXTERNAL.")
-        } catch {} // end of behavior for TEST4D_EXTERNAL
+        } // end of behavior for TEST4D_EXTERNAL
         
         self.stateId = StateId.TEST4_B_AND_OTHERS
     }
@@ -5749,7 +5749,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4D_G.")`
             MainClass.trace("Enter TEST4D_G.")
-        } catch {} // end of behavior for TEST4D_G
+        } // end of behavior for TEST4D_G
     }
     
     private func TEST4D_G_exit()
@@ -5759,7 +5759,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4D_G.")`
             MainClass.trace("Exit TEST4D_G.")
-        } catch {} // end of behavior for TEST4D_G
+        } // end of behavior for TEST4D_G
         
         self.stateId = StateId.TEST4D_EXTERNAL
     }
@@ -5793,7 +5793,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
+            } // end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
         } // end of behavior for TEST4D_G
     }
     
@@ -5811,7 +5811,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4D_G_1.")`
             MainClass.trace("Enter TEST4D_G_1.")
-        } catch {} // end of behavior for TEST4D_G_1
+        } // end of behavior for TEST4D_G_1
     }
     
     private func TEST4D_G_1_exit()
@@ -5821,7 +5821,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4D_G_1.")`
             MainClass.trace("Exit TEST4D_G_1.")
-        } catch {} // end of behavior for TEST4D_G_1
+        } // end of behavior for TEST4D_G_1
         
         self.stateId = StateId.TEST4D_G
     }
@@ -5854,7 +5854,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
+            } // end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
         } // end of behavior for TEST4D_G_1
     }
     
@@ -5872,7 +5872,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4_DECIDE.")`
             MainClass.trace("Enter TEST4_DECIDE.")
-        } catch {} // end of behavior for TEST4_DECIDE
+        } // end of behavior for TEST4_DECIDE
     }
     
     private func TEST4_DECIDE_exit()
@@ -5882,7 +5882,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4_DECIDE.")`
             MainClass.trace("Exit TEST4_DECIDE.")
-        } catch {} // end of behavior for TEST4_DECIDE
+        } // end of behavior for TEST4_DECIDE
         
         self.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
     }
@@ -5936,7 +5936,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST4B_LOCAL.<InitialState>
+            } // end of behavior for TEST4B_LOCAL.<InitialState>
         } // end of behavior for TEST4_DECIDE
     }
     
@@ -5969,7 +5969,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST4C_LOCAL_TO_ALIAS.<InitialState>
+            } // end of behavior for TEST4C_LOCAL_TO_ALIAS.<InitialState>
         } // end of behavior for TEST4_DECIDE
     }
     
@@ -6002,7 +6002,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST4D_EXTERNAL.<InitialState>
+            } // end of behavior for TEST4D_EXTERNAL.<InitialState>
         } // end of behavior for TEST4_DECIDE
     }
     
@@ -6020,7 +6020,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4_ROOT.")`
             MainClass.trace("Enter TEST4_ROOT.")
-        } catch {} // end of behavior for TEST4_ROOT
+        } // end of behavior for TEST4_ROOT
         
         // TEST4_ROOT behavior
         // uml: enter [trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
@@ -6038,7 +6038,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4_ROOT.")`
             MainClass.trace("Exit TEST4_ROOT.")
-        } catch {} // end of behavior for TEST4_ROOT
+        } // end of behavior for TEST4_ROOT
         
         self.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
     }
@@ -6119,7 +6119,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4_S1.")`
             MainClass.trace("Enter TEST4_S1.")
-        } catch {} // end of behavior for TEST4_S1
+        } // end of behavior for TEST4_S1
     }
     
     private func TEST4_S1_exit()
@@ -6129,7 +6129,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4_S1.")`
             MainClass.trace("Exit TEST4_S1.")
-        } catch {} // end of behavior for TEST4_S1
+        } // end of behavior for TEST4_S1
         
         self.stateId = StateId.TEST4_ROOT
     }
@@ -6168,7 +6168,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4_S10.")`
             MainClass.trace("Enter TEST4_S10.")
-        } catch {} // end of behavior for TEST4_S10
+        } // end of behavior for TEST4_S10
     }
     
     private func TEST4_S10_exit()
@@ -6178,7 +6178,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4_S10.")`
             MainClass.trace("Exit TEST4_S10.")
-        } catch {} // end of behavior for TEST4_S10
+        } // end of behavior for TEST4_S10
         
         self.stateId = StateId.TEST4_ROOT
     }
@@ -6225,7 +6225,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4_S10_1.")`
             MainClass.trace("Enter TEST4_S10_1.")
-        } catch {} // end of behavior for TEST4_S10_1
+        } // end of behavior for TEST4_S10_1
     }
     
     private func TEST4_S10_1_exit()
@@ -6235,7 +6235,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4_S10_1.")`
             MainClass.trace("Exit TEST4_S10_1.")
-        } catch {} // end of behavior for TEST4_S10_1
+        } // end of behavior for TEST4_S10_1
         
         self.stateId = StateId.TEST4_S10
     }
@@ -6254,7 +6254,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4_S2.")`
             MainClass.trace("Enter TEST4_S2.")
-        } catch {} // end of behavior for TEST4_S2
+        } // end of behavior for TEST4_S2
     }
     
     private func TEST4_S2_exit()
@@ -6264,7 +6264,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4_S2.")`
             MainClass.trace("Exit TEST4_S2.")
-        } catch {} // end of behavior for TEST4_S2
+        } // end of behavior for TEST4_S2
         
         self.stateId = StateId.TEST4_ROOT
     }
@@ -6303,7 +6303,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4_S20.")`
             MainClass.trace("Enter TEST4_S20.")
-        } catch {} // end of behavior for TEST4_S20
+        } // end of behavior for TEST4_S20
     }
     
     private func TEST4_S20_exit()
@@ -6313,7 +6313,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4_S20.")`
             MainClass.trace("Exit TEST4_S20.")
-        } catch {} // end of behavior for TEST4_S20
+        } // end of behavior for TEST4_S20
         
         self.stateId = StateId.TEST4_ROOT
     }
@@ -6362,7 +6362,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for TEST4_S20.<InitialState>
+        } // end of behavior for TEST4_S20.<InitialState>
     }
     
     
@@ -6379,7 +6379,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4_S20_1.")`
             MainClass.trace("Enter TEST4_S20_1.")
-        } catch {} // end of behavior for TEST4_S20_1
+        } // end of behavior for TEST4_S20_1
     }
     
     private func TEST4_S20_1_exit()
@@ -6389,7 +6389,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4_S20_1.")`
             MainClass.trace("Exit TEST4_S20_1.")
-        } catch {} // end of behavior for TEST4_S20_1
+        } // end of behavior for TEST4_S20_1
         
         self.stateId = StateId.TEST4_S20
     }
@@ -6408,7 +6408,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST4_S3.")`
             MainClass.trace("Enter TEST4_S3.")
-        } catch {} // end of behavior for TEST4_S3
+        } // end of behavior for TEST4_S3
     }
     
     private func TEST4_S3_exit()
@@ -6418,7 +6418,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST4_S3.")`
             MainClass.trace("Exit TEST4_S3.")
-        } catch {} // end of behavior for TEST4_S3
+        } // end of behavior for TEST4_S3
         
         self.stateId = StateId.TEST4_ROOT
     }
@@ -6456,7 +6456,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`
             MainClass.trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
-        } catch {} // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
+        } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     }
     
     private func TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit()
@@ -6466,7 +6466,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`
             MainClass.trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
-        } catch {} // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
+        } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
         
         self.stateId = StateId.ROOT
     }
@@ -6485,7 +6485,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST5_ROOT.")`
             MainClass.trace("Enter TEST5_ROOT.")
-        } catch {} // end of behavior for TEST5_ROOT
+        } // end of behavior for TEST5_ROOT
         
         // TEST5_ROOT behavior
         // uml: enter [trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
@@ -6503,7 +6503,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST5_ROOT.")`
             MainClass.trace("Exit TEST5_ROOT.")
-        } catch {} // end of behavior for TEST5_ROOT
+        } // end of behavior for TEST5_ROOT
         
         self.stateId = StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     }
@@ -6542,7 +6542,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST5_S1.")`
             MainClass.trace("Enter TEST5_S1.")
-        } catch {} // end of behavior for TEST5_S1
+        } // end of behavior for TEST5_S1
     }
     
     private func TEST5_S1_exit()
@@ -6552,7 +6552,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST5_S1.")`
             MainClass.trace("Exit TEST5_S1.")
-        } catch {} // end of behavior for TEST5_S1
+        } // end of behavior for TEST5_S1
         
         self.stateId = StateId.TEST5_ROOT
     }
@@ -6591,7 +6591,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST5_S2.")`
             MainClass.trace("Enter TEST5_S2.")
-        } catch {} // end of behavior for TEST5_S2
+        } // end of behavior for TEST5_S2
     }
     
     private func TEST5_S2_exit()
@@ -6601,7 +6601,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST5_S2.")`
             MainClass.trace("Exit TEST5_S2.")
-        } catch {} // end of behavior for TEST5_S2
+        } // end of behavior for TEST5_S2
         
         self.stateId = StateId.TEST5_ROOT
     }
@@ -6640,7 +6640,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST5_S3.")`
             MainClass.trace("Enter TEST5_S3.")
-        } catch {} // end of behavior for TEST5_S3
+        } // end of behavior for TEST5_S3
     }
     
     private func TEST5_S3_exit()
@@ -6650,7 +6650,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST5_S3.")`
             MainClass.trace("Exit TEST5_S3.")
-        } catch {} // end of behavior for TEST5_S3
+        } // end of behavior for TEST5_S3
         
         self.stateId = StateId.TEST5_ROOT
     }
@@ -6688,7 +6688,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS.")`
             MainClass.trace("Enter TEST6_VARS_EXPANSIONS.")
-        } catch {} // end of behavior for TEST6_VARS_EXPANSIONS
+        } // end of behavior for TEST6_VARS_EXPANSIONS
     }
     
     private func TEST6_VARS_EXPANSIONS_exit()
@@ -6698,7 +6698,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS.")`
             MainClass.trace("Exit TEST6_VARS_EXPANSIONS.")
-        } catch {} // end of behavior for TEST6_VARS_EXPANSIONS
+        } // end of behavior for TEST6_VARS_EXPANSIONS
         
         self.stateId = StateId.ROOT
     }
@@ -6717,7 +6717,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST6_ROOT.")`
             MainClass.trace("Enter TEST6_ROOT.")
-        } catch {} // end of behavior for TEST6_ROOT
+        } // end of behavior for TEST6_ROOT
     }
     
     private func TEST6_ROOT_exit()
@@ -6727,7 +6727,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST6_ROOT.")`
             MainClass.trace("Exit TEST6_ROOT.")
-        } catch {} // end of behavior for TEST6_ROOT
+        } // end of behavior for TEST6_ROOT
         
         self.stateId = StateId.TEST6_VARS_EXPANSIONS
     }
@@ -6746,7 +6746,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter AUTO_VAR_TEST.")`
             MainClass.trace("Enter AUTO_VAR_TEST.")
-        } catch {} // end of behavior for AUTO_VAR_TEST
+        } // end of behavior for AUTO_VAR_TEST
     }
     
     private func AUTO_VAR_TEST_exit()
@@ -6756,7 +6756,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit AUTO_VAR_TEST.")`
             MainClass.trace("Exit AUTO_VAR_TEST.")
-        } catch {} // end of behavior for AUTO_VAR_TEST
+        } // end of behavior for AUTO_VAR_TEST
         
         self.stateId = StateId.TEST6_ROOT
     }
@@ -6775,7 +6775,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter AUTO_VAR_TEST__S1.")`
             MainClass.trace("Enter AUTO_VAR_TEST__S1.")
-        } catch {} // end of behavior for AUTO_VAR_TEST__S1
+        } // end of behavior for AUTO_VAR_TEST__S1
         
         // AUTO_VAR_TEST__S1 behavior
         // uml: enter [trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
@@ -6793,7 +6793,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit AUTO_VAR_TEST__S1.")`
             MainClass.trace("Exit AUTO_VAR_TEST__S1.")
-        } catch {} // end of behavior for AUTO_VAR_TEST__S1
+        } // end of behavior for AUTO_VAR_TEST__S1
         
         self.stateId = StateId.AUTO_VAR_TEST
     }
@@ -6840,7 +6840,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter AUTO_VAR_TEST__S2.")`
             MainClass.trace("Enter AUTO_VAR_TEST__S2.")
-        } catch {} // end of behavior for AUTO_VAR_TEST__S2
+        } // end of behavior for AUTO_VAR_TEST__S2
     }
     
     private func AUTO_VAR_TEST__S2_exit()
@@ -6850,7 +6850,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit AUTO_VAR_TEST__S2.")`
             MainClass.trace("Exit AUTO_VAR_TEST__S2.")
-        } catch {} // end of behavior for AUTO_VAR_TEST__S2
+        } // end of behavior for AUTO_VAR_TEST__S2
         
         self.stateId = StateId.AUTO_VAR_TEST
     }
@@ -6869,7 +6869,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter META_EXPANSIONS.")`
             MainClass.trace("Enter META_EXPANSIONS.")
-        } catch {} // end of behavior for META_EXPANSIONS
+        } // end of behavior for META_EXPANSIONS
     }
     
     private func META_EXPANSIONS_exit()
@@ -6879,7 +6879,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit META_EXPANSIONS.")`
             MainClass.trace("Exit META_EXPANSIONS.")
-        } catch {} // end of behavior for META_EXPANSIONS
+        } // end of behavior for META_EXPANSIONS
         
         self.stateId = StateId.TEST6_ROOT
     }
@@ -6900,7 +6900,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for META_EXPANSIONS.<ChoicePoint>(2)
+        } // end of behavior for META_EXPANSIONS.<ChoicePoint>(2)
     }
     
     
@@ -6917,7 +6917,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter META_EXPANSIONS__S1.")`
             MainClass.trace("Enter META_EXPANSIONS__S1.")
-        } catch {} // end of behavior for META_EXPANSIONS__S1
+        } // end of behavior for META_EXPANSIONS__S1
         
         // META_EXPANSIONS__S1 behavior
         // uml: enter [trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
@@ -6935,7 +6935,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit META_EXPANSIONS__S1.")`
             MainClass.trace("Exit META_EXPANSIONS__S1.")
-        } catch {} // end of behavior for META_EXPANSIONS__S1
+        } // end of behavior for META_EXPANSIONS__S1
         
         self.stateId = StateId.META_EXPANSIONS
     }
@@ -6975,7 +6975,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter META_EXPANSIONS__S2.")`
             MainClass.trace("Enter META_EXPANSIONS__S2.")
-        } catch {} // end of behavior for META_EXPANSIONS__S2
+        } // end of behavior for META_EXPANSIONS__S2
         
         // META_EXPANSIONS__S2 behavior
         // uml: enter [trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta() }`.", true)] / { trace_meta() }
@@ -6993,7 +6993,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit META_EXPANSIONS__S2.")`
             MainClass.trace("Exit META_EXPANSIONS__S2.")
-        } catch {} // end of behavior for META_EXPANSIONS__S2
+        } // end of behavior for META_EXPANSIONS__S2
         
         self.stateId = StateId.META_EXPANSIONS
     }
@@ -7028,7 +7028,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for META_EXPANSIONS.<ChoicePoint>(1)
+            } // end of behavior for META_EXPANSIONS.<ChoicePoint>(1)
         } // end of behavior for META_EXPANSIONS__S2
     }
     
@@ -7067,7 +7067,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter S3.")`
             MainClass.trace("Enter S3.")
-        } catch {} // end of behavior for S3
+        } // end of behavior for S3
     }
     
     private func S3_exit()
@@ -7077,7 +7077,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit S3.")`
             MainClass.trace("Exit S3.")
-        } catch {} // end of behavior for S3
+        } // end of behavior for S3
         
         self.stateId = StateId.META_EXPANSIONS
     }
@@ -7118,7 +7118,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter S4.")`
             MainClass.trace("Enter S4.")
-        } catch {} // end of behavior for S4
+        } // end of behavior for S4
     }
     
     private func S4_exit()
@@ -7128,7 +7128,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit S4.")`
             MainClass.trace("Exit S4.")
-        } catch {} // end of behavior for S4
+        } // end of behavior for S4
         
         self.stateId = StateId.META_EXPANSIONS
     }
@@ -7147,7 +7147,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter S5.")`
             MainClass.trace("Enter S5.")
-        } catch {} // end of behavior for S5
+        } // end of behavior for S5
     }
     
     private func S5_exit()
@@ -7157,7 +7157,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit S5.")`
             MainClass.trace("Exit S5.")
-        } catch {} // end of behavior for S5
+        } // end of behavior for S5
         
         self.stateId = StateId.META_EXPANSIONS
     }
@@ -7176,7 +7176,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter NORMAL.")`
             MainClass.trace("Enter NORMAL.")
-        } catch {} // end of behavior for NORMAL
+        } // end of behavior for NORMAL
     }
     
     private func NORMAL_exit()
@@ -7186,7 +7186,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit NORMAL.")`
             MainClass.trace("Exit NORMAL.")
-        } catch {} // end of behavior for NORMAL
+        } // end of behavior for NORMAL
         
         self.stateId = StateId.TEST6_ROOT
     }
@@ -7205,7 +7205,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter NORMAL__S1.")`
             MainClass.trace("Enter NORMAL__S1.")
-        } catch {} // end of behavior for NORMAL__S1
+        } // end of behavior for NORMAL__S1
         
         // NORMAL__S1 behavior
         // uml: enter [trace_guard("State NORMAL__S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
@@ -7223,7 +7223,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit NORMAL__S1.")`
             MainClass.trace("Exit NORMAL__S1.")
-        } catch {} // end of behavior for NORMAL__S1
+        } // end of behavior for NORMAL__S1
         
         self.stateId = StateId.NORMAL
     }
@@ -7270,7 +7270,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter NORMAL__S2.")`
             MainClass.trace("Enter NORMAL__S2.")
-        } catch {} // end of behavior for NORMAL__S2
+        } // end of behavior for NORMAL__S2
     }
     
     private func NORMAL__S2_exit()
@@ -7280,7 +7280,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit NORMAL__S2.")`
             MainClass.trace("Exit NORMAL__S2.")
-        } catch {} // end of behavior for NORMAL__S2
+        } // end of behavior for NORMAL__S2
         
         self.stateId = StateId.NORMAL
     }
@@ -7299,7 +7299,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.")`
             MainClass.trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.")
-        } catch {} // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
+        } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
     }
     
     private func TEST6_VARS_EXPANSIONS__DECIDE_exit()
@@ -7309,7 +7309,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")`
             MainClass.trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")
-        } catch {} // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
+        } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
         
         self.stateId = StateId.TEST6_ROOT
     }
@@ -7342,7 +7342,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for NORMAL.<InitialState>
+            } // end of behavior for NORMAL.<InitialState>
         } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
     }
     
@@ -7374,7 +7374,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for AUTO_VAR_TEST.<InitialState>
+            } // end of behavior for AUTO_VAR_TEST.<InitialState>
         } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
     }
     
@@ -7406,7 +7406,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for META_EXPANSIONS.<InitialState>
+            } // end of behavior for META_EXPANSIONS.<InitialState>
         } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
     }
     
@@ -7424,7 +7424,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST7_INITIAL_OR_HISTORY.")`
             MainClass.trace("Enter TEST7_INITIAL_OR_HISTORY.")
-        } catch {} // end of behavior for TEST7_INITIAL_OR_HISTORY
+        } // end of behavior for TEST7_INITIAL_OR_HISTORY
     }
     
     private func TEST7_INITIAL_OR_HISTORY_exit()
@@ -7434,7 +7434,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST7_INITIAL_OR_HISTORY.")`
             MainClass.trace("Exit TEST7_INITIAL_OR_HISTORY.")
-        } catch {} // end of behavior for TEST7_INITIAL_OR_HISTORY
+        } // end of behavior for TEST7_INITIAL_OR_HISTORY
         
         self.stateId = StateId.ROOT
     }
@@ -7453,7 +7453,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST7.")`
             MainClass.trace("Enter TEST7.")
-        } catch {} // end of behavior for TEST7
+        } // end of behavior for TEST7
         
         // TEST7 behavior
         // uml: enter [trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
@@ -7471,7 +7471,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST7.")`
             MainClass.trace("Exit TEST7.")
-        } catch {} // end of behavior for TEST7
+        } // end of behavior for TEST7
         
         self.stateId = StateId.TEST7_INITIAL_OR_HISTORY
     }
@@ -7490,7 +7490,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY1.")`
             MainClass.trace("Enter T7__DEEP_HISTORY1.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY1
+        } // end of behavior for T7__DEEP_HISTORY1
     }
     
     private func T7__DEEP_HISTORY1_exit()
@@ -7500,7 +7500,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY1.")`
             MainClass.trace("Exit T7__DEEP_HISTORY1.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY1
+        } // end of behavior for T7__DEEP_HISTORY1
         
         self.stateId = StateId.TEST7
     }
@@ -7519,7 +7519,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__SANTAS_WORKSHOP.")`
             MainClass.trace("Enter T7__DH1__SANTAS_WORKSHOP.")
-        } catch {} // end of behavior for T7__DH1__SANTAS_WORKSHOP
+        } // end of behavior for T7__DH1__SANTAS_WORKSHOP
     }
     
     private func T7__DH1__SANTAS_WORKSHOP_exit()
@@ -7529,7 +7529,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__SANTAS_WORKSHOP.")`
             MainClass.trace("Exit T7__DH1__SANTAS_WORKSHOP.")
-        } catch {} // end of behavior for T7__DH1__SANTAS_WORKSHOP
+        } // end of behavior for T7__DH1__SANTAS_WORKSHOP
         
         self.stateId = StateId.T7__DEEP_HISTORY1
     }
@@ -7548,7 +7548,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__ALIENS_DETECTED.")`
             MainClass.trace("Enter T7__DH1__ALIENS_DETECTED.")
-        } catch {} // end of behavior for T7__DH1__ALIENS_DETECTED
+        } // end of behavior for T7__DH1__ALIENS_DETECTED
     }
     
     private func T7__DH1__ALIENS_DETECTED_exit()
@@ -7558,7 +7558,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__ALIENS_DETECTED.")`
             MainClass.trace("Exit T7__DH1__ALIENS_DETECTED.")
-        } catch {} // end of behavior for T7__DH1__ALIENS_DETECTED
+        } // end of behavior for T7__DH1__ALIENS_DETECTED
         
         self.stateId = StateId.T7__DH1__SANTAS_WORKSHOP
     }
@@ -7598,7 +7598,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__GET_BACKUP.")`
             MainClass.trace("Enter T7__DH1__GET_BACKUP.")
-        } catch {} // end of behavior for T7__DH1__GET_BACKUP
+        } // end of behavior for T7__DH1__GET_BACKUP
     }
     
     private func T7__DH1__GET_BACKUP_exit()
@@ -7608,7 +7608,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__GET_BACKUP.")`
             MainClass.trace("Exit T7__DH1__GET_BACKUP.")
-        } catch {} // end of behavior for T7__DH1__GET_BACKUP
+        } // end of behavior for T7__DH1__GET_BACKUP
         
         self.stateId = StateId.T7__DH1__ALIENS_DETECTED
     }
@@ -7627,7 +7627,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__HERO.")`
             MainClass.trace("Enter T7__DH1__HERO.")
-        } catch {} // end of behavior for T7__DH1__HERO
+        } // end of behavior for T7__DH1__HERO
         
         // T7__DH1__HERO behavior
         // uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }
@@ -7653,7 +7653,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__HERO.")`
             MainClass.trace("Exit T7__DH1__HERO.")
-        } catch {} // end of behavior for T7__DH1__HERO
+        } // end of behavior for T7__DH1__HERO
         
         self.stateId = StateId.T7__DH1__GET_BACKUP
     }
@@ -7673,7 +7673,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for T7__DH1__HERO.<InitialState>
+        } // end of behavior for T7__DH1__HERO.<InitialState>
     }
     
     
@@ -7690,7 +7690,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__CALL_BATMAN.")`
             MainClass.trace("Enter T7__DH1__CALL_BATMAN.")
-        } catch {} // end of behavior for T7__DH1__CALL_BATMAN
+        } // end of behavior for T7__DH1__CALL_BATMAN
     }
     
     private func T7__DH1__CALL_BATMAN_exit()
@@ -7700,7 +7700,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__CALL_BATMAN.")`
             MainClass.trace("Exit T7__DH1__CALL_BATMAN.")
-        } catch {} // end of behavior for T7__DH1__CALL_BATMAN
+        } // end of behavior for T7__DH1__CALL_BATMAN
         
         self.stateId = StateId.T7__DH1__HERO
     }
@@ -7740,7 +7740,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__CALL_THOR.")`
             MainClass.trace("Enter T7__DH1__CALL_THOR.")
-        } catch {} // end of behavior for T7__DH1__CALL_THOR
+        } // end of behavior for T7__DH1__CALL_THOR
     }
     
     private func T7__DH1__CALL_THOR_exit()
@@ -7750,7 +7750,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__CALL_THOR.")`
             MainClass.trace("Exit T7__DH1__CALL_THOR.")
-        } catch {} // end of behavior for T7__DH1__CALL_THOR
+        } // end of behavior for T7__DH1__CALL_THOR
         
         self.stateId = StateId.T7__DH1__HERO
     }
@@ -7789,7 +7789,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__LOCAL_HELP.")`
             MainClass.trace("Enter T7__DH1__LOCAL_HELP.")
-        } catch {} // end of behavior for T7__DH1__LOCAL_HELP
+        } // end of behavior for T7__DH1__LOCAL_HELP
     }
     
     private func T7__DH1__LOCAL_HELP_exit()
@@ -7799,7 +7799,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__LOCAL_HELP.")`
             MainClass.trace("Exit T7__DH1__LOCAL_HELP.")
-        } catch {} // end of behavior for T7__DH1__LOCAL_HELP
+        } // end of behavior for T7__DH1__LOCAL_HELP
         
         self.stateId = StateId.T7__DH1__GET_BACKUP
     }
@@ -7818,7 +7818,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__BUDDY_ELF.")`
             MainClass.trace("Enter T7__DH1__BUDDY_ELF.")
-        } catch {} // end of behavior for T7__DH1__BUDDY_ELF
+        } // end of behavior for T7__DH1__BUDDY_ELF
         
         // T7__DH1__BUDDY_ELF behavior
         // uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }
@@ -7844,7 +7844,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__BUDDY_ELF.")`
             MainClass.trace("Exit T7__DH1__BUDDY_ELF.")
-        } catch {} // end of behavior for T7__DH1__BUDDY_ELF
+        } // end of behavior for T7__DH1__BUDDY_ELF
         
         self.stateId = StateId.T7__DH1__LOCAL_HELP
     }
@@ -7883,7 +7883,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__POLAR_BEARS.")`
             MainClass.trace("Enter T7__DH1__POLAR_BEARS.")
-        } catch {} // end of behavior for T7__DH1__POLAR_BEARS
+        } // end of behavior for T7__DH1__POLAR_BEARS
         
         // T7__DH1__POLAR_BEARS behavior
         // uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }
@@ -7909,7 +7909,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__POLAR_BEARS.")`
             MainClass.trace("Exit T7__DH1__POLAR_BEARS.")
-        } catch {} // end of behavior for T7__DH1__POLAR_BEARS
+        } // end of behavior for T7__DH1__POLAR_BEARS
         
         self.stateId = StateId.T7__DH1__LOCAL_HELP
     }
@@ -7928,7 +7928,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__GIVE_COOKIES.")`
             MainClass.trace("Enter T7__DH1__GIVE_COOKIES.")
-        } catch {} // end of behavior for T7__DH1__GIVE_COOKIES
+        } // end of behavior for T7__DH1__GIVE_COOKIES
         
         // T7__DH1__GIVE_COOKIES behavior
         // uml: enter [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }
@@ -7946,7 +7946,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__GIVE_COOKIES.")`
             MainClass.trace("Exit T7__DH1__GIVE_COOKIES.")
-        } catch {} // end of behavior for T7__DH1__GIVE_COOKIES
+        } // end of behavior for T7__DH1__GIVE_COOKIES
         
         self.stateId = StateId.T7__DH1__ALIENS_DETECTED
     }
@@ -7987,7 +7987,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__SNOWBALL_FIGHT.")`
             MainClass.trace("Enter T7__DH1__SNOWBALL_FIGHT.")
-        } catch {} // end of behavior for T7__DH1__SNOWBALL_FIGHT
+        } // end of behavior for T7__DH1__SNOWBALL_FIGHT
         
         // T7__DH1__SNOWBALL_FIGHT behavior
         // uml: enter [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }
@@ -8005,7 +8005,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__SNOWBALL_FIGHT.")`
             MainClass.trace("Exit T7__DH1__SNOWBALL_FIGHT.")
-        } catch {} // end of behavior for T7__DH1__SNOWBALL_FIGHT
+        } // end of behavior for T7__DH1__SNOWBALL_FIGHT
         
         self.stateId = StateId.T7__DH1__ALIENS_DETECTED
     }
@@ -8044,7 +8044,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__BUILD.")`
             MainClass.trace("Enter T7__DH1__BUILD.")
-        } catch {} // end of behavior for T7__DH1__BUILD
+        } // end of behavior for T7__DH1__BUILD
     }
     
     private func T7__DH1__BUILD_exit()
@@ -8054,7 +8054,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__BUILD.")`
             MainClass.trace("Exit T7__DH1__BUILD.")
-        } catch {} // end of behavior for T7__DH1__BUILD
+        } // end of behavior for T7__DH1__BUILD
         
         self.stateId = StateId.T7__DH1__SANTAS_WORKSHOP
     }
@@ -8168,8 +8168,8 @@ public class Spec2Sm : Spec2SmBase
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } catch {} // end of behavior for T7__DH1__ALIENS_DETECTED.<History>
-            } catch {} // end of behavior for T7__DH1__ALIENS_DETECTED.<InitialState>
+                } // end of behavior for T7__DH1__ALIENS_DETECTED.<History>
+            } // end of behavior for T7__DH1__ALIENS_DETECTED.<InitialState>
         } // end of behavior for T7__DH1__BUILD
     }
     
@@ -8266,8 +8266,8 @@ public class Spec2Sm : Spec2SmBase
                     // Finish transition by calling pseudo state transition function.
                     self.T7__DH1__HERO_InitialState_transition()
                     return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } catch {} // end of behavior for T7__DH1__GET_BACKUP.<ChoicePoint>()
-            } catch {} // end of behavior for T7__DH1__GET_BACKUP.<History>
+                } // end of behavior for T7__DH1__GET_BACKUP.<ChoicePoint>()
+            } // end of behavior for T7__DH1__GET_BACKUP.<History>
         } // end of behavior for T7__DH1__BUILD
     }
     
@@ -8454,8 +8454,8 @@ public class Spec2Sm : Spec2SmBase
                 // Finish transition by calling pseudo state transition function.
                 self.T7__DH1__TOY_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } catch {} // end of behavior for T7__DH1__BUILD.<History>
-        } catch {} // end of behavior for T7__DH1__BUILD.<InitialState>
+            } // end of behavior for T7__DH1__BUILD.<History>
+        } // end of behavior for T7__DH1__BUILD.<InitialState>
     }
     
     
@@ -8472,7 +8472,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__TOOL.")`
             MainClass.trace("Enter T7__DH1__TOOL.")
-        } catch {} // end of behavior for T7__DH1__TOOL
+        } // end of behavior for T7__DH1__TOOL
         
         // T7__DH1__TOOL behavior
         // uml: enter [trace_guard("State T7__DH1__TOOL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }
@@ -8490,7 +8490,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__TOOL.")`
             MainClass.trace("Exit T7__DH1__TOOL.")
-        } catch {} // end of behavior for T7__DH1__TOOL
+        } // end of behavior for T7__DH1__TOOL
         
         self.stateId = StateId.T7__DH1__BUILD
     }
@@ -8531,7 +8531,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for T7__DH1__TOOL.<InitialState>
+        } // end of behavior for T7__DH1__TOOL.<InitialState>
     }
     
     
@@ -8548,7 +8548,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__CIRCULAR_SAW.")`
             MainClass.trace("Enter T7__DH1__CIRCULAR_SAW.")
-        } catch {} // end of behavior for T7__DH1__CIRCULAR_SAW
+        } // end of behavior for T7__DH1__CIRCULAR_SAW
         
         // T7__DH1__CIRCULAR_SAW behavior
         // uml: enter [trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }
@@ -8566,7 +8566,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__CIRCULAR_SAW.")`
             MainClass.trace("Exit T7__DH1__CIRCULAR_SAW.")
-        } catch {} // end of behavior for T7__DH1__CIRCULAR_SAW
+        } // end of behavior for T7__DH1__CIRCULAR_SAW
         
         self.stateId = StateId.T7__DH1__TOOL
     }
@@ -8585,7 +8585,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__IMPACT_DRILL.")`
             MainClass.trace("Enter T7__DH1__IMPACT_DRILL.")
-        } catch {} // end of behavior for T7__DH1__IMPACT_DRILL
+        } // end of behavior for T7__DH1__IMPACT_DRILL
         
         // T7__DH1__IMPACT_DRILL behavior
         // uml: enter [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }
@@ -8603,7 +8603,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__IMPACT_DRILL.")`
             MainClass.trace("Exit T7__DH1__IMPACT_DRILL.")
-        } catch {} // end of behavior for T7__DH1__IMPACT_DRILL
+        } // end of behavior for T7__DH1__IMPACT_DRILL
         
         self.stateId = StateId.T7__DH1__TOOL
     }
@@ -8642,7 +8642,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__TOY.")`
             MainClass.trace("Enter T7__DH1__TOY.")
-        } catch {} // end of behavior for T7__DH1__TOY
+        } // end of behavior for T7__DH1__TOY
         
         // T7__DH1__TOY behavior
         // uml: enter [trace_guard("State T7__DH1__TOY: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }
@@ -8660,7 +8660,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__TOY.")`
             MainClass.trace("Exit T7__DH1__TOY.")
-        } catch {} // end of behavior for T7__DH1__TOY
+        } // end of behavior for T7__DH1__TOY
         
         self.stateId = StateId.T7__DH1__BUILD
     }
@@ -8701,7 +8701,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for T7__DH1__TOY.<InitialState>
+        } // end of behavior for T7__DH1__TOY.<InitialState>
     }
     
     
@@ -8718,7 +8718,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__GLOW_WORM.")`
             MainClass.trace("Enter T7__DH1__GLOW_WORM.")
-        } catch {} // end of behavior for T7__DH1__GLOW_WORM
+        } // end of behavior for T7__DH1__GLOW_WORM
         
         // T7__DH1__GLOW_WORM behavior
         // uml: enter [trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }
@@ -8736,7 +8736,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__GLOW_WORM.")`
             MainClass.trace("Exit T7__DH1__GLOW_WORM.")
-        } catch {} // end of behavior for T7__DH1__GLOW_WORM
+        } // end of behavior for T7__DH1__GLOW_WORM
         
         self.stateId = StateId.T7__DH1__TOY
     }
@@ -8784,7 +8784,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__RACE_CAR.")`
             MainClass.trace("Enter T7__DH1__RACE_CAR.")
-        } catch {} // end of behavior for T7__DH1__RACE_CAR
+        } // end of behavior for T7__DH1__RACE_CAR
         
         // T7__DH1__RACE_CAR behavior
         // uml: enter [trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }
@@ -8802,7 +8802,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__RACE_CAR.")`
             MainClass.trace("Exit T7__DH1__RACE_CAR.")
-        } catch {} // end of behavior for T7__DH1__RACE_CAR
+        } // end of behavior for T7__DH1__RACE_CAR
         
         self.stateId = StateId.T7__DH1__TOY
     }
@@ -8849,7 +8849,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__ROBOT.")`
             MainClass.trace("Enter T7__DH1__ROBOT.")
-        } catch {} // end of behavior for T7__DH1__ROBOT
+        } // end of behavior for T7__DH1__ROBOT
         
         // T7__DH1__ROBOT behavior
         // uml: enter [trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }
@@ -8867,7 +8867,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__ROBOT.")`
             MainClass.trace("Exit T7__DH1__ROBOT.")
-        } catch {} // end of behavior for T7__DH1__ROBOT
+        } // end of behavior for T7__DH1__ROBOT
         
         self.stateId = StateId.T7__DH1__TOY
     }
@@ -8887,7 +8887,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for T7__DH1__ROBOT.<InitialState>
+        } // end of behavior for T7__DH1__ROBOT.<InitialState>
     }
     
     
@@ -8904,7 +8904,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__BATTLEBOT.")`
             MainClass.trace("Enter T7__DH1__BATTLEBOT.")
-        } catch {} // end of behavior for T7__DH1__BATTLEBOT
+        } // end of behavior for T7__DH1__BATTLEBOT
         
         // T7__DH1__BATTLEBOT behavior
         // uml: enter [trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }
@@ -8922,7 +8922,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__BATTLEBOT.")`
             MainClass.trace("Exit T7__DH1__BATTLEBOT.")
-        } catch {} // end of behavior for T7__DH1__BATTLEBOT
+        } // end of behavior for T7__DH1__BATTLEBOT
         
         self.stateId = StateId.T7__DH1__ROBOT
     }
@@ -8969,7 +8969,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__WALL_E.")`
             MainClass.trace("Enter T7__DH1__WALL_E.")
-        } catch {} // end of behavior for T7__DH1__WALL_E
+        } // end of behavior for T7__DH1__WALL_E
         
         // T7__DH1__WALL_E behavior
         // uml: enter [trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }
@@ -8987,7 +8987,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__WALL_E.")`
             MainClass.trace("Exit T7__DH1__WALL_E.")
-        } catch {} // end of behavior for T7__DH1__WALL_E
+        } // end of behavior for T7__DH1__WALL_E
         
         self.stateId = StateId.T7__DH1__ROBOT
     }
@@ -9006,7 +9006,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DH1__TEDDY_BEAR.")`
             MainClass.trace("Enter T7__DH1__TEDDY_BEAR.")
-        } catch {} // end of behavior for T7__DH1__TEDDY_BEAR
+        } // end of behavior for T7__DH1__TEDDY_BEAR
         
         // T7__DH1__TEDDY_BEAR behavior
         // uml: enter [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }
@@ -9024,7 +9024,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DH1__TEDDY_BEAR.")`
             MainClass.trace("Exit T7__DH1__TEDDY_BEAR.")
-        } catch {} // end of behavior for T7__DH1__TEDDY_BEAR
+        } // end of behavior for T7__DH1__TEDDY_BEAR
         
         self.stateId = StateId.T7__DH1__TOY
     }
@@ -9071,7 +9071,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2.")`
             MainClass.trace("Enter T7__DEEP_HISTORY2.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2
+        } // end of behavior for T7__DEEP_HISTORY2
     }
     
     private func T7__DEEP_HISTORY2_exit()
@@ -9081,7 +9081,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2.")`
             MainClass.trace("Exit T7__DEEP_HISTORY2.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2
+        } // end of behavior for T7__DEEP_HISTORY2
         
         self.stateId = StateId.TEST7
     }
@@ -9100,7 +9100,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_0.")`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_0.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_0
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_0
     }
     
     private func T7__DEEP_HISTORY2__T7__STATE_0_exit()
@@ -9110,7 +9110,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_0.")`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_0.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_0
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_0
         
         self.stateId = StateId.T7__DEEP_HISTORY2
     }
@@ -9212,8 +9212,8 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<InitialState>
+            } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<InitialState>
     }
     
     
@@ -9230,7 +9230,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_1.")`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_1.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_1
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
         
         // T7__DEEP_HISTORY2__T7__state_1 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }
@@ -9248,7 +9248,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_1.")`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_1.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_1
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0
     }
@@ -9288,7 +9288,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_2.")`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_2.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_2
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
         
         // T7__DEEP_HISTORY2__T7__state_2 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }
@@ -9306,7 +9306,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_2.")`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_2.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_2
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0
     }
@@ -9346,7 +9346,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_2.<InitialState>
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_2.<InitialState>
     }
     
     
@@ -9363,7 +9363,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_6.")`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_6.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_6
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
         
         // T7__DEEP_HISTORY2__T7__state_6 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }
@@ -9381,7 +9381,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_6.")`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_6.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_6
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2
     }
@@ -9420,7 +9420,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_9.")`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_9.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_9
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
         
         // T7__DEEP_HISTORY2__T7__state_9 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }
@@ -9438,7 +9438,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_9.")`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_9.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_9
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2
     }
@@ -9457,7 +9457,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_3.")`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_3.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_3
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_3
     }
     
     private func T7__DEEP_HISTORY2__T7__STATE_3_exit()
@@ -9467,7 +9467,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_3.")`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_3.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY2__T7__state_3
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_3
         
         self.stateId = StateId.T7__DEEP_HISTORY2
     }
@@ -9507,7 +9507,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3.")`
             MainClass.trace("Enter T7__DEEP_HISTORY3.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3
+        } // end of behavior for T7__DEEP_HISTORY3
     }
     
     private func T7__DEEP_HISTORY3_exit()
@@ -9517,7 +9517,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3.")`
             MainClass.trace("Exit T7__DEEP_HISTORY3.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3
+        } // end of behavior for T7__DEEP_HISTORY3
         
         self.stateId = StateId.TEST7
     }
@@ -9536,7 +9536,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_0.")`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_0.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_0
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_0
     }
     
     private func T7__DEEP_HISTORY3__T7__STATE_0_exit()
@@ -9546,7 +9546,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_0.")`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_0.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_0
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_0
         
         self.stateId = StateId.T7__DEEP_HISTORY3
     }
@@ -9614,8 +9614,8 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<History>
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<InitialState>
+            } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<History>
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<InitialState>
     }
     
     
@@ -9632,7 +9632,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_1.")`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_1.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_1
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
         
         // T7__DEEP_HISTORY3__T7__state_1 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }
@@ -9650,7 +9650,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_1.")`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_1.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_1
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0
     }
@@ -9690,7 +9690,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_2.")`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_2.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_2
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
         
         // T7__DEEP_HISTORY3__T7__state_2 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }
@@ -9708,7 +9708,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_2.")`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_2.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_2
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0
     }
@@ -9748,7 +9748,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_2.<InitialState>
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_2.<InitialState>
     }
     
     
@@ -9765,7 +9765,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_6.")`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_6.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_6
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_6
     }
     
     private func T7__DEEP_HISTORY3__T7__STATE_6_exit()
@@ -9775,7 +9775,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_6.")`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_6.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_6
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_6
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2
     }
@@ -9814,7 +9814,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_9.")`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_9.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_9
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_9
     }
     
     private func T7__DEEP_HISTORY3__T7__STATE_9_exit()
@@ -9824,7 +9824,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_9.")`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_9.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_9
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_9
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2
     }
@@ -9843,7 +9843,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_3.")`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_3.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_3
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_3
     }
     
     private func T7__DEEP_HISTORY3__T7__STATE_3_exit()
@@ -9853,7 +9853,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_3.")`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_3.")
-        } catch {} // end of behavior for T7__DEEP_HISTORY3__T7__state_3
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_3
         
         self.stateId = StateId.T7__DEEP_HISTORY3
     }
@@ -9893,7 +9893,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__HISTORY1.")`
             MainClass.trace("Enter T7__HISTORY1.")
-        } catch {} // end of behavior for T7__HISTORY1
+        } // end of behavior for T7__HISTORY1
     }
     
     private func T7__HISTORY1_exit()
@@ -9903,7 +9903,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__HISTORY1.")`
             MainClass.trace("Exit T7__HISTORY1.")
-        } catch {} // end of behavior for T7__HISTORY1
+        } // end of behavior for T7__HISTORY1
         
         self.stateId = StateId.TEST7
     }
@@ -9922,7 +9922,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__H1__OFF.")`
             MainClass.trace("Enter T7__H1__OFF.")
-        } catch {} // end of behavior for T7__H1__OFF
+        } // end of behavior for T7__H1__OFF
     }
     
     private func T7__H1__OFF_exit()
@@ -9932,7 +9932,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__H1__OFF.")`
             MainClass.trace("Exit T7__H1__OFF.")
-        } catch {} // end of behavior for T7__H1__OFF
+        } // end of behavior for T7__H1__OFF
         
         self.stateId = StateId.T7__HISTORY1
     }
@@ -10057,8 +10057,8 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for T7__H1__OFF.<History>
-        } catch {} // end of behavior for T7__H1__OFF.<InitialState>
+            } // end of behavior for T7__H1__OFF.<History>
+        } // end of behavior for T7__H1__OFF.<InitialState>
     }
     
     
@@ -10075,7 +10075,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__H1__OFF1.")`
             MainClass.trace("Enter T7__H1__OFF1.")
-        } catch {} // end of behavior for T7__H1__OFF1
+        } // end of behavior for T7__H1__OFF1
         
         // T7__H1__OFF1 behavior
         // uml: enter [trace_guard("State T7__H1__OFF1: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }
@@ -10093,7 +10093,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__H1__OFF1.")`
             MainClass.trace("Exit T7__H1__OFF1.")
-        } catch {} // end of behavior for T7__H1__OFF1
+        } // end of behavior for T7__H1__OFF1
         
         self.stateId = StateId.T7__H1__OFF
     }
@@ -10132,7 +10132,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__H1__OFF2.")`
             MainClass.trace("Enter T7__H1__OFF2.")
-        } catch {} // end of behavior for T7__H1__OFF2
+        } // end of behavior for T7__H1__OFF2
         
         // T7__H1__OFF2 behavior
         // uml: enter [trace_guard("State T7__H1__OFF2: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }
@@ -10150,7 +10150,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__H1__OFF2.")`
             MainClass.trace("Exit T7__H1__OFF2.")
-        } catch {} // end of behavior for T7__H1__OFF2
+        } // end of behavior for T7__H1__OFF2
         
         self.stateId = StateId.T7__H1__OFF
     }
@@ -10189,7 +10189,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__H1__OFF3.")`
             MainClass.trace("Enter T7__H1__OFF3.")
-        } catch {} // end of behavior for T7__H1__OFF3
+        } // end of behavior for T7__H1__OFF3
         
         // T7__H1__OFF3 behavior
         // uml: enter [trace_guard("State T7__H1__OFF3: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }
@@ -10207,7 +10207,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__H1__OFF3.")`
             MainClass.trace("Exit T7__H1__OFF3.")
-        } catch {} // end of behavior for T7__H1__OFF3
+        } // end of behavior for T7__H1__OFF3
         
         self.stateId = StateId.T7__H1__OFF
     }
@@ -10226,7 +10226,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__H1__ON.")`
             MainClass.trace("Enter T7__H1__ON.")
-        } catch {} // end of behavior for T7__H1__ON
+        } // end of behavior for T7__H1__ON
     }
     
     private func T7__H1__ON_exit()
@@ -10236,7 +10236,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__H1__ON.")`
             MainClass.trace("Exit T7__H1__ON.")
-        } catch {} // end of behavior for T7__H1__ON
+        } // end of behavior for T7__H1__ON
         
         self.stateId = StateId.T7__HISTORY1
     }
@@ -10320,8 +10320,8 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for T7__H1__ON.<History>
-        } catch {} // end of behavior for T7__H1__ON.<InitialState>
+            } // end of behavior for T7__H1__ON.<History>
+        } // end of behavior for T7__H1__ON.<InitialState>
     }
     
     
@@ -10338,7 +10338,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__H1__ON1.")`
             MainClass.trace("Enter T7__H1__ON1.")
-        } catch {} // end of behavior for T7__H1__ON1
+        } // end of behavior for T7__H1__ON1
         
         // T7__H1__ON1 behavior
         // uml: enter [trace_guard("State T7__H1__ON1: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }
@@ -10356,7 +10356,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__H1__ON1.")`
             MainClass.trace("Exit T7__H1__ON1.")
-        } catch {} // end of behavior for T7__H1__ON1
+        } // end of behavior for T7__H1__ON1
         
         self.stateId = StateId.T7__H1__ON
     }
@@ -10395,7 +10395,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__H1__ON2.")`
             MainClass.trace("Enter T7__H1__ON2.")
-        } catch {} // end of behavior for T7__H1__ON2
+        } // end of behavior for T7__H1__ON2
         
         // T7__H1__ON2 behavior
         // uml: enter [trace_guard("State T7__H1__ON2: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }
@@ -10413,7 +10413,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__H1__ON2.")`
             MainClass.trace("Exit T7__H1__ON2.")
-        } catch {} // end of behavior for T7__H1__ON2
+        } // end of behavior for T7__H1__ON2
         
         self.stateId = StateId.T7__H1__ON
     }
@@ -10452,7 +10452,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__H1__ON3.")`
             MainClass.trace("Enter T7__H1__ON3.")
-        } catch {} // end of behavior for T7__H1__ON3
+        } // end of behavior for T7__H1__ON3
         
         // T7__H1__ON3 behavior
         // uml: enter [trace_guard("State T7__H1__ON3: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }
@@ -10470,7 +10470,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__H1__ON3.")`
             MainClass.trace("Exit T7__H1__ON3.")
-        } catch {} // end of behavior for T7__H1__ON3
+        } // end of behavior for T7__H1__ON3
         
         self.stateId = StateId.T7__H1__ON
     }
@@ -10509,7 +10509,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__INITIAL1.")`
             MainClass.trace("Enter T7__INITIAL1.")
-        } catch {} // end of behavior for T7__INITIAL1
+        } // end of behavior for T7__INITIAL1
     }
     
     private func T7__INITIAL1_exit()
@@ -10519,7 +10519,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__INITIAL1.")`
             MainClass.trace("Exit T7__INITIAL1.")
-        } catch {} // end of behavior for T7__INITIAL1
+        } // end of behavior for T7__INITIAL1
         
         self.stateId = StateId.TEST7
     }
@@ -10538,7 +10538,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__INITIAL1__PARENT.")`
             MainClass.trace("Enter T7__INITIAL1__PARENT.")
-        } catch {} // end of behavior for T7__INITIAL1__PARENT
+        } // end of behavior for T7__INITIAL1__PARENT
     }
     
     private func T7__INITIAL1__PARENT_exit()
@@ -10548,7 +10548,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__INITIAL1__PARENT.")`
             MainClass.trace("Exit T7__INITIAL1__PARENT.")
-        } catch {} // end of behavior for T7__INITIAL1__PARENT
+        } // end of behavior for T7__INITIAL1__PARENT
         
         self.stateId = StateId.T7__INITIAL1
     }
@@ -10579,7 +10579,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for T7__INITIAL1__PARENT.<InitialState>
+        } // end of behavior for T7__INITIAL1__PARENT.<InitialState>
     }
     
     
@@ -10596,7 +10596,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__INITIAL1__G.")`
             MainClass.trace("Enter T7__INITIAL1__G.")
-        } catch {} // end of behavior for T7__INITIAL1__G
+        } // end of behavior for T7__INITIAL1__G
     }
     
     private func T7__INITIAL1__G_exit()
@@ -10606,7 +10606,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__INITIAL1__G.")`
             MainClass.trace("Exit T7__INITIAL1__G.")
-        } catch {} // end of behavior for T7__INITIAL1__G
+        } // end of behavior for T7__INITIAL1__G
         
         self.stateId = StateId.T7__INITIAL1__PARENT
     }
@@ -10679,7 +10679,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for T7__INITIAL1__G.<InitialState>
+        } // end of behavior for T7__INITIAL1__G.<InitialState>
     }
     
     
@@ -10696,7 +10696,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__INITIAL1__G_S1.")`
             MainClass.trace("Enter T7__INITIAL1__G_S1.")
-        } catch {} // end of behavior for T7__INITIAL1__G_S1
+        } // end of behavior for T7__INITIAL1__G_S1
     }
     
     private func T7__INITIAL1__G_S1_exit()
@@ -10706,7 +10706,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__INITIAL1__G_S1.")`
             MainClass.trace("Exit T7__INITIAL1__G_S1.")
-        } catch {} // end of behavior for T7__INITIAL1__G_S1
+        } // end of behavior for T7__INITIAL1__G_S1
         
         self.stateId = StateId.T7__INITIAL1__G
     }
@@ -10725,7 +10725,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__INITIAL1__G_S2.")`
             MainClass.trace("Enter T7__INITIAL1__G_S2.")
-        } catch {} // end of behavior for T7__INITIAL1__G_S2
+        } // end of behavior for T7__INITIAL1__G_S2
     }
     
     private func T7__INITIAL1__G_S2_exit()
@@ -10735,7 +10735,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__INITIAL1__G_S2.")`
             MainClass.trace("Exit T7__INITIAL1__G_S2.")
-        } catch {} // end of behavior for T7__INITIAL1__G_S2
+        } // end of behavior for T7__INITIAL1__G_S2
         
         self.stateId = StateId.T7__INITIAL1__G
     }
@@ -10754,7 +10754,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__INITIAL1__G_S3.")`
             MainClass.trace("Enter T7__INITIAL1__G_S3.")
-        } catch {} // end of behavior for T7__INITIAL1__G_S3
+        } // end of behavior for T7__INITIAL1__G_S3
     }
     
     private func T7__INITIAL1__G_S3_exit()
@@ -10764,7 +10764,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__INITIAL1__G_S3.")`
             MainClass.trace("Exit T7__INITIAL1__G_S3.")
-        } catch {} // end of behavior for T7__INITIAL1__G_S3
+        } // end of behavior for T7__INITIAL1__G_S3
         
         self.stateId = StateId.T7__INITIAL1__G
     }
@@ -10783,7 +10783,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter T7__INITIAL1__S1.")`
             MainClass.trace("Enter T7__INITIAL1__S1.")
-        } catch {} // end of behavior for T7__INITIAL1__S1
+        } // end of behavior for T7__INITIAL1__S1
     }
     
     private func T7__INITIAL1__S1_exit()
@@ -10793,7 +10793,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit T7__INITIAL1__S1.")`
             MainClass.trace("Exit T7__INITIAL1__S1.")
-        } catch {} // end of behavior for T7__INITIAL1__S1
+        } // end of behavior for T7__INITIAL1__S1
         
         self.stateId = StateId.T7__INITIAL1__PARENT
     }
@@ -10855,7 +10855,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST7_DECIDE.")`
             MainClass.trace("Enter TEST7_DECIDE.")
-        } catch {} // end of behavior for TEST7_DECIDE
+        } // end of behavior for TEST7_DECIDE
     }
     
     private func TEST7_DECIDE_exit()
@@ -10865,7 +10865,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST7_DECIDE.")`
             MainClass.trace("Exit TEST7_DECIDE.")
-        } catch {} // end of behavior for TEST7_DECIDE
+        } // end of behavior for TEST7_DECIDE
         
         // TEST7_DECIDE behavior
         // uml: exit [trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
@@ -10908,7 +10908,7 @@ public class Spec2Sm : Spec2SmBase
                 // Finish transition by calling pseudo state transition function.
                 self.T7__INITIAL1__PARENT_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } catch {} // end of behavior for T7__INITIAL1.<InitialState>
+            } // end of behavior for T7__INITIAL1.<InitialState>
         } // end of behavior for TEST7_DECIDE
     }
     
@@ -10942,7 +10942,7 @@ public class Spec2Sm : Spec2SmBase
                 // Finish transition by calling pseudo state transition function.
                 self.T7__H1__ON_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } catch {} // end of behavior for T7__HISTORY1.<InitialState>
+            } // end of behavior for T7__HISTORY1.<InitialState>
         } // end of behavior for TEST7_DECIDE
     }
     
@@ -10977,7 +10977,7 @@ public class Spec2Sm : Spec2SmBase
                 // Finish transition by calling pseudo state transition function.
                 self.T7__DH1__BUILD_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } catch {} // end of behavior for T7__DEEP_HISTORY1.<InitialState>
+            } // end of behavior for T7__DEEP_HISTORY1.<InitialState>
         } // end of behavior for TEST7_DECIDE
     }
     
@@ -11011,7 +11011,7 @@ public class Spec2Sm : Spec2SmBase
                 // Finish transition by calling pseudo state transition function.
                 self.T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } catch {} // end of behavior for T7__DEEP_HISTORY2.<InitialState>
+            } // end of behavior for T7__DEEP_HISTORY2.<InitialState>
         } // end of behavior for TEST7_DECIDE
     }
     
@@ -11045,7 +11045,7 @@ public class Spec2Sm : Spec2SmBase
                 // Finish transition by calling pseudo state transition function.
                 self.T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } catch {} // end of behavior for T7__DEEP_HISTORY3.<InitialState>
+            } // end of behavior for T7__DEEP_HISTORY3.<InitialState>
         } // end of behavior for TEST7_DECIDE
     }
     
@@ -11063,7 +11063,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST8_ENTRY_CHOICE.")`
             MainClass.trace("Enter TEST8_ENTRY_CHOICE.")
-        } catch {} // end of behavior for TEST8_ENTRY_CHOICE
+        } // end of behavior for TEST8_ENTRY_CHOICE
     }
     
     private func TEST8_ENTRY_CHOICE_exit()
@@ -11073,7 +11073,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST8_ENTRY_CHOICE.")`
             MainClass.trace("Exit TEST8_ENTRY_CHOICE.")
-        } catch {} // end of behavior for TEST8_ENTRY_CHOICE
+        } // end of behavior for TEST8_ENTRY_CHOICE
         
         self.stateId = StateId.ROOT
     }
@@ -11092,7 +11092,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST8_ROOT.")`
             MainClass.trace("Enter TEST8_ROOT.")
-        } catch {} // end of behavior for TEST8_ROOT
+        } // end of behavior for TEST8_ROOT
         
         // TEST8_ROOT behavior
         // uml: enter [trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
@@ -11110,7 +11110,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST8_ROOT.")`
             MainClass.trace("Exit TEST8_ROOT.")
-        } catch {} // end of behavior for TEST8_ROOT
+        } // end of behavior for TEST8_ROOT
         
         self.stateId = StateId.TEST8_ENTRY_CHOICE
     }
@@ -11150,7 +11150,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for TEST8_ROOT.<EntryPoint>(1)
+        } // end of behavior for TEST8_ROOT.<EntryPoint>(1)
     }
     
     
@@ -11167,7 +11167,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST8_G.")`
             MainClass.trace("Enter TEST8_G.")
-        } catch {} // end of behavior for TEST8_G
+        } // end of behavior for TEST8_G
     }
     
     private func TEST8_G_exit()
@@ -11177,7 +11177,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST8_G.")`
             MainClass.trace("Exit TEST8_G.")
-        } catch {} // end of behavior for TEST8_G
+        } // end of behavior for TEST8_G
         
         self.stateId = StateId.TEST8_ROOT
     }
@@ -11250,7 +11250,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for TEST8_G.<EntryPoint>(1)
+        } // end of behavior for TEST8_G.<EntryPoint>(1)
     }
     
     private func TEST8_G_EntryPoint_3__transition()
@@ -11270,7 +11270,7 @@ public class Spec2Sm : Spec2SmBase
             // Finish transition by calling pseudo state transition function.
             self.TEST8_G_EntryPoint_1__transition()
             return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } catch {} // end of behavior for TEST8_G.<EntryPoint>(3)
+        } // end of behavior for TEST8_G.<EntryPoint>(3)
     }
     
     
@@ -11287,7 +11287,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST8_G_S1.")`
             MainClass.trace("Enter TEST8_G_S1.")
-        } catch {} // end of behavior for TEST8_G_S1
+        } // end of behavior for TEST8_G_S1
     }
     
     private func TEST8_G_S1_exit()
@@ -11297,7 +11297,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST8_G_S1.")`
             MainClass.trace("Exit TEST8_G_S1.")
-        } catch {} // end of behavior for TEST8_G_S1
+        } // end of behavior for TEST8_G_S1
         
         self.stateId = StateId.TEST8_G
     }
@@ -11316,7 +11316,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST8_G_S2.")`
             MainClass.trace("Enter TEST8_G_S2.")
-        } catch {} // end of behavior for TEST8_G_S2
+        } // end of behavior for TEST8_G_S2
     }
     
     private func TEST8_G_S2_exit()
@@ -11326,7 +11326,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST8_G_S2.")`
             MainClass.trace("Exit TEST8_G_S2.")
-        } catch {} // end of behavior for TEST8_G_S2
+        } // end of behavior for TEST8_G_S2
         
         self.stateId = StateId.TEST8_G
     }
@@ -11345,7 +11345,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST8_G_S3.")`
             MainClass.trace("Enter TEST8_G_S3.")
-        } catch {} // end of behavior for TEST8_G_S3
+        } // end of behavior for TEST8_G_S3
     }
     
     private func TEST8_G_S3_exit()
@@ -11355,7 +11355,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST8_G_S3.")`
             MainClass.trace("Exit TEST8_G_S3.")
-        } catch {} // end of behavior for TEST8_G_S3
+        } // end of behavior for TEST8_G_S3
         
         self.stateId = StateId.TEST8_G
     }
@@ -11374,7 +11374,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST8_S1.")`
             MainClass.trace("Enter TEST8_S1.")
-        } catch {} // end of behavior for TEST8_S1
+        } // end of behavior for TEST8_S1
     }
     
     private func TEST8_S1_exit()
@@ -11384,7 +11384,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST8_S1.")`
             MainClass.trace("Exit TEST8_S1.")
-        } catch {} // end of behavior for TEST8_S1
+        } // end of behavior for TEST8_S1
         
         self.stateId = StateId.TEST8_ROOT
     }
@@ -11485,7 +11485,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9_EXIT_CHOICE.")`
             MainClass.trace("Enter TEST9_EXIT_CHOICE.")
-        } catch {} // end of behavior for TEST9_EXIT_CHOICE
+        } // end of behavior for TEST9_EXIT_CHOICE
     }
     
     private func TEST9_EXIT_CHOICE_exit()
@@ -11495,7 +11495,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9_EXIT_CHOICE.")`
             MainClass.trace("Exit TEST9_EXIT_CHOICE.")
-        } catch {} // end of behavior for TEST9_EXIT_CHOICE
+        } // end of behavior for TEST9_EXIT_CHOICE
         
         self.stateId = StateId.ROOT
     }
@@ -11514,7 +11514,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9_DECIDE.")`
             MainClass.trace("Enter TEST9_DECIDE.")
-        } catch {} // end of behavior for TEST9_DECIDE
+        } // end of behavior for TEST9_DECIDE
     }
     
     private func TEST9_DECIDE_exit()
@@ -11524,7 +11524,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9_DECIDE.")`
             MainClass.trace("Exit TEST9_DECIDE.")
-        } catch {} // end of behavior for TEST9_DECIDE
+        } // end of behavior for TEST9_DECIDE
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
     }
@@ -11568,8 +11568,8 @@ public class Spec2Sm : Spec2SmBase
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } catch {} // end of behavior for TEST9_S1.<InitialState>
-            } catch {} // end of behavior for TEST9_ROOT.<InitialState>
+                } // end of behavior for TEST9_S1.<InitialState>
+            } // end of behavior for TEST9_ROOT.<InitialState>
         } // end of behavior for TEST9_DECIDE
     }
     
@@ -11603,7 +11603,7 @@ public class Spec2Sm : Spec2SmBase
                 // Finish transition by calling pseudo state transition function.
                 self.TEST9A_S1_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } catch {} // end of behavior for TEST9A_ROOT.<InitialState>
+            } // end of behavior for TEST9A_ROOT.<InitialState>
         } // end of behavior for TEST9_DECIDE
     }
     
@@ -11641,7 +11641,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9_ROOT.")`
             MainClass.trace("Enter TEST9_ROOT.")
-        } catch {} // end of behavior for TEST9_ROOT
+        } // end of behavior for TEST9_ROOT
     }
     
     private func TEST9_ROOT_exit()
@@ -11651,7 +11651,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9_ROOT.")`
             MainClass.trace("Exit TEST9_ROOT.")
-        } catch {} // end of behavior for TEST9_ROOT
+        } // end of behavior for TEST9_ROOT
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
     }
@@ -11681,7 +11681,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9_G_S1.")`
             MainClass.trace("Enter TEST9_G_S1.")
-        } catch {} // end of behavior for TEST9_G_S1
+        } // end of behavior for TEST9_G_S1
     }
     
     private func TEST9_G_S1_exit()
@@ -11691,7 +11691,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9_G_S1.")`
             MainClass.trace("Exit TEST9_G_S1.")
-        } catch {} // end of behavior for TEST9_G_S1
+        } // end of behavior for TEST9_G_S1
         
         self.stateId = StateId.TEST9_ROOT
     }
@@ -11710,7 +11710,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9_G_S2.")`
             MainClass.trace("Enter TEST9_G_S2.")
-        } catch {} // end of behavior for TEST9_G_S2
+        } // end of behavior for TEST9_G_S2
     }
     
     private func TEST9_G_S2_exit()
@@ -11720,7 +11720,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9_G_S2.")`
             MainClass.trace("Exit TEST9_G_S2.")
-        } catch {} // end of behavior for TEST9_G_S2
+        } // end of behavior for TEST9_G_S2
         
         self.stateId = StateId.TEST9_ROOT
     }
@@ -11739,7 +11739,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9_G_S3.")`
             MainClass.trace("Enter TEST9_G_S3.")
-        } catch {} // end of behavior for TEST9_G_S3
+        } // end of behavior for TEST9_G_S3
     }
     
     private func TEST9_G_S3_exit()
@@ -11749,7 +11749,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9_G_S3.")`
             MainClass.trace("Exit TEST9_G_S3.")
-        } catch {} // end of behavior for TEST9_G_S3
+        } // end of behavior for TEST9_G_S3
         
         self.stateId = StateId.TEST9_ROOT
     }
@@ -11768,7 +11768,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9_G_S4.")`
             MainClass.trace("Enter TEST9_G_S4.")
-        } catch {} // end of behavior for TEST9_G_S4
+        } // end of behavior for TEST9_G_S4
     }
     
     private func TEST9_G_S4_exit()
@@ -11778,7 +11778,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9_G_S4.")`
             MainClass.trace("Exit TEST9_G_S4.")
-        } catch {} // end of behavior for TEST9_G_S4
+        } // end of behavior for TEST9_G_S4
         
         self.stateId = StateId.TEST9_ROOT
     }
@@ -11797,7 +11797,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9_S1.")`
             MainClass.trace("Enter TEST9_S1.")
-        } catch {} // end of behavior for TEST9_S1
+        } // end of behavior for TEST9_S1
     }
     
     private func TEST9_S1_exit()
@@ -11807,7 +11807,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9_S1.")`
             MainClass.trace("Exit TEST9_S1.")
-        } catch {} // end of behavior for TEST9_S1
+        } // end of behavior for TEST9_S1
         
         self.stateId = StateId.TEST9_ROOT
     }
@@ -11826,7 +11826,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9_S1_1.")`
             MainClass.trace("Enter TEST9_S1_1.")
-        } catch {} // end of behavior for TEST9_S1_1
+        } // end of behavior for TEST9_S1_1
         
         // TEST9_S1_1 behavior
         // uml: enter [trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
@@ -11844,7 +11844,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9_S1_1.")`
             MainClass.trace("Exit TEST9_S1_1.")
-        } catch {} // end of behavior for TEST9_S1_1
+        } // end of behavior for TEST9_S1_1
         
         self.stateId = StateId.TEST9_S1
     }
@@ -11929,7 +11929,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST9_S1.<ExitPoint>(1)
+            } // end of behavior for TEST9_S1.<ExitPoint>(1)
         } // end of behavior for TEST9_S1_1
     }
     
@@ -11947,7 +11947,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9A_ROOT.")`
             MainClass.trace("Enter TEST9A_ROOT.")
-        } catch {} // end of behavior for TEST9A_ROOT
+        } // end of behavior for TEST9A_ROOT
     }
     
     private func TEST9A_ROOT_exit()
@@ -11957,7 +11957,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9A_ROOT.")`
             MainClass.trace("Exit TEST9A_ROOT.")
-        } catch {} // end of behavior for TEST9A_ROOT
+        } // end of behavior for TEST9A_ROOT
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
     }
@@ -11976,7 +11976,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9A_S1.")`
             MainClass.trace("Enter TEST9A_S1.")
-        } catch {} // end of behavior for TEST9A_S1
+        } // end of behavior for TEST9A_S1
     }
     
     private func TEST9A_S1_exit()
@@ -11986,7 +11986,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9A_S1.")`
             MainClass.trace("Exit TEST9A_S1.")
-        } catch {} // end of behavior for TEST9A_S1
+        } // end of behavior for TEST9A_S1
         
         self.stateId = StateId.TEST9A_ROOT
     }
@@ -12006,7 +12006,7 @@ public class Spec2Sm : Spec2SmBase
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } catch {} // end of behavior for TEST9A_S1.<InitialState>
+        } // end of behavior for TEST9A_S1.<InitialState>
     }
     
     
@@ -12023,7 +12023,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9A_S1_1.")`
             MainClass.trace("Enter TEST9A_S1_1.")
-        } catch {} // end of behavior for TEST9A_S1_1
+        } // end of behavior for TEST9A_S1_1
         
         // TEST9A_S1_1 behavior
         // uml: enter [trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output() }`.", count == 0)] / { clear_output() }
@@ -12041,7 +12041,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9A_S1_1.")`
             MainClass.trace("Exit TEST9A_S1_1.")
-        } catch {} // end of behavior for TEST9A_S1_1
+        } // end of behavior for TEST9A_S1_1
         
         // TEST9A_S1_1 behavior
         // uml: exit [trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100 }`.", true)] / { count = 100 }
@@ -12103,7 +12103,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9B_ROOT.")`
             MainClass.trace("Enter TEST9B_ROOT.")
-        } catch {} // end of behavior for TEST9B_ROOT
+        } // end of behavior for TEST9B_ROOT
         
         // TEST9B_ROOT behavior
         // uml: enter [trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
@@ -12121,7 +12121,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9B_ROOT.")`
             MainClass.trace("Exit TEST9B_ROOT.")
-        } catch {} // end of behavior for TEST9B_ROOT
+        } // end of behavior for TEST9B_ROOT
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
     }
@@ -12163,7 +12163,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__A1.")`
             MainClass.trace("Enter TEST9B_ROOT__A1.")
-        } catch {} // end of behavior for TEST9B_ROOT__A1
+        } // end of behavior for TEST9B_ROOT__A1
     }
     
     private func TEST9B_ROOT__A1_exit()
@@ -12173,7 +12173,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__A1.")`
             MainClass.trace("Exit TEST9B_ROOT__A1.")
-        } catch {} // end of behavior for TEST9B_ROOT__A1
+        } // end of behavior for TEST9B_ROOT__A1
         
         self.stateId = StateId.TEST9B_ROOT
     }
@@ -12192,7 +12192,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__A2.")`
             MainClass.trace("Enter TEST9B_ROOT__A2.")
-        } catch {} // end of behavior for TEST9B_ROOT__A2
+        } // end of behavior for TEST9B_ROOT__A2
     }
     
     private func TEST9B_ROOT__A2_exit()
@@ -12202,7 +12202,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__A2.")`
             MainClass.trace("Exit TEST9B_ROOT__A2.")
-        } catch {} // end of behavior for TEST9B_ROOT__A2
+        } // end of behavior for TEST9B_ROOT__A2
         
         self.stateId = StateId.TEST9B_ROOT__A1
     }
@@ -12221,7 +12221,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__A3.")`
             MainClass.trace("Enter TEST9B_ROOT__A3.")
-        } catch {} // end of behavior for TEST9B_ROOT__A3
+        } // end of behavior for TEST9B_ROOT__A3
     }
     
     private func TEST9B_ROOT__A3_exit()
@@ -12231,7 +12231,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__A3.")`
             MainClass.trace("Exit TEST9B_ROOT__A3.")
-        } catch {} // end of behavior for TEST9B_ROOT__A3
+        } // end of behavior for TEST9B_ROOT__A3
         
         self.stateId = StateId.TEST9B_ROOT__A2
     }
@@ -12250,7 +12250,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__A4.")`
             MainClass.trace("Enter TEST9B_ROOT__A4.")
-        } catch {} // end of behavior for TEST9B_ROOT__A4
+        } // end of behavior for TEST9B_ROOT__A4
     }
     
     private func TEST9B_ROOT__A4_exit()
@@ -12260,7 +12260,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__A4.")`
             MainClass.trace("Exit TEST9B_ROOT__A4.")
-        } catch {} // end of behavior for TEST9B_ROOT__A4
+        } // end of behavior for TEST9B_ROOT__A4
         
         self.stateId = StateId.TEST9B_ROOT__A3
     }
@@ -12299,7 +12299,7 @@ public class Spec2Sm : Spec2SmBase
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } catch {} // end of behavior for TEST9B_ROOT__A3.<ExitPoint>(1)
+            } // end of behavior for TEST9B_ROOT__A3.<ExitPoint>(1)
         } // end of behavior for TEST9B_ROOT__A4
         
         // Check if event has been consumed before calling ancestor handler.
@@ -12323,7 +12323,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__B1.")`
             MainClass.trace("Enter TEST9B_ROOT__B1.")
-        } catch {} // end of behavior for TEST9B_ROOT__B1
+        } // end of behavior for TEST9B_ROOT__B1
     }
     
     private func TEST9B_ROOT__B1_exit()
@@ -12333,7 +12333,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__B1.")`
             MainClass.trace("Exit TEST9B_ROOT__B1.")
-        } catch {} // end of behavior for TEST9B_ROOT__B1
+        } // end of behavior for TEST9B_ROOT__B1
         
         self.stateId = StateId.TEST9B_ROOT
     }
@@ -12352,7 +12352,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__B2.")`
             MainClass.trace("Enter TEST9B_ROOT__B2.")
-        } catch {} // end of behavior for TEST9B_ROOT__B2
+        } // end of behavior for TEST9B_ROOT__B2
     }
     
     private func TEST9B_ROOT__B2_exit()
@@ -12362,7 +12362,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__B2.")`
             MainClass.trace("Exit TEST9B_ROOT__B2.")
-        } catch {} // end of behavior for TEST9B_ROOT__B2
+        } // end of behavior for TEST9B_ROOT__B2
         
         self.stateId = StateId.TEST9B_ROOT__B1
     }
@@ -12381,7 +12381,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__B3.")`
             MainClass.trace("Enter TEST9B_ROOT__B3.")
-        } catch {} // end of behavior for TEST9B_ROOT__B3
+        } // end of behavior for TEST9B_ROOT__B3
     }
     
     private func TEST9B_ROOT__B3_exit()
@@ -12391,7 +12391,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__B3.")`
             MainClass.trace("Exit TEST9B_ROOT__B3.")
-        } catch {} // end of behavior for TEST9B_ROOT__B3
+        } // end of behavior for TEST9B_ROOT__B3
         
         self.stateId = StateId.TEST9B_ROOT__B2
     }
@@ -12410,7 +12410,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__B4.")`
             MainClass.trace("Enter TEST9B_ROOT__B4.")
-        } catch {} // end of behavior for TEST9B_ROOT__B4
+        } // end of behavior for TEST9B_ROOT__B4
     }
     
     private func TEST9B_ROOT__B4_exit()
@@ -12420,7 +12420,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__B4.")`
             MainClass.trace("Exit TEST9B_ROOT__B4.")
-        } catch {} // end of behavior for TEST9B_ROOT__B4
+        } // end of behavior for TEST9B_ROOT__B4
         
         self.stateId = StateId.TEST9B_ROOT__B3
     }
@@ -12439,7 +12439,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter UNREACHABLE.")`
             MainClass.trace("Enter UNREACHABLE.")
-        } catch {} // end of behavior for UNREACHABLE
+        } // end of behavior for UNREACHABLE
     }
     
     private func UNREACHABLE_exit()
@@ -12449,7 +12449,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit UNREACHABLE.")`
             MainClass.trace("Exit UNREACHABLE.")
-        } catch {} // end of behavior for UNREACHABLE
+        } // end of behavior for UNREACHABLE
         
         self.stateId = StateId.ROOT
     }
@@ -12468,7 +12468,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Enter USELESS.")`
             MainClass.trace("Enter USELESS.")
-        } catch {} // end of behavior for USELESS
+        } // end of behavior for USELESS
     }
     
     private func USELESS_exit()
@@ -12478,7 +12478,7 @@ public class Spec2Sm : Spec2SmBase
         do {
             // Step 1: execute action `trace("Exit USELESS.")`
             MainClass.trace("Exit USELESS.")
-        } catch {} // end of behavior for USELESS
+        } // end of behavior for USELESS
         
         self.stateId = StateId.ROOT
     }
