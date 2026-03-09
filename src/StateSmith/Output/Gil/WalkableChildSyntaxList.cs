@@ -95,6 +95,11 @@ public class WalkableChildSyntaxList
         index++;
     }
 
+    public void SkipUpTo(SyntaxKind syntaxKind, bool including = false)
+    {
+        SkipUpTo((snot) => snot.IsKind(syntaxKind), including);
+    }
+
     public void VisitUpTo(SyntaxKind syntaxKind, bool including = false)
     {
         VisitUpTo((snot) => snot.IsKind(syntaxKind), including);

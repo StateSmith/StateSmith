@@ -48,6 +48,8 @@ public class CsxTemplateRenderer
             TargetLanguageId.TypeScript => TranspilerId.TypeScript,
             TargetLanguageId.Java => TranspilerId.Java,
             TargetLanguageId.Python => TranspilerId.Python,
+            TargetLanguageId.Kotlin => TranspilerId.Kotlin,
+            TargetLanguageId.Swift => TranspilerId.Swift,
             _ => throw new System.NotImplementedException(),
         };
         str = str.Replace("{{transpilerId}}", transpilerId.ToString());
@@ -62,6 +64,8 @@ public class CsxTemplateRenderer
             TargetLanguageId.TypeScript => nameof(IRenderConfigTypeScript),
             TargetLanguageId.Java => nameof(IRenderConfigJava),
             TargetLanguageId.Python => nameof(IRenderConfigPython),
+            TargetLanguageId.Kotlin => nameof(IRenderConfigKotlin),
+            TargetLanguageId.Swift => nameof(IRenderConfigSwift),
             _ => throw new System.NotImplementedException(),
         };
         str = str.Replace("{{renderConfigBase}}", renderConfigBase);
@@ -76,6 +80,8 @@ public class CsxTemplateRenderer
             TargetLanguageId.TypeScript => "TypeScript",
             TargetLanguageId.Java => "Java",
             TargetLanguageId.Python => "Python",
+            TargetLanguageId.Kotlin => "Kotlin",
+            TargetLanguageId.Swift => "Swift",
             _ => throw new System.NotImplementedException(),
         };
 
