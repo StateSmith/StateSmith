@@ -34,7 +34,7 @@ public class SharedCompilationFixture
             ProgramPath = Environment.OSVersion.Platform == PlatformID.Win32NT ? "kotlinc.bat" : "kotlinc",
             Args = " MainClass.kt Spec2SmBase.kt Spec2Sm.kt -include-runtime -d test.jar"
         };
-        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
+        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs * 2);
     }
 
     public class MyGlueFile : IRenderConfigKotlin

@@ -34,7 +34,7 @@ fun userCodeMethod() {
         ROOT_enter()
         // ROOT behavior
         // uml: TransitionTo(ROOT.<InitialState>)
-        try {
+        run {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: ``.
@@ -44,7 +44,7 @@ fun userCodeMethod() {
             
             // ROOT.<InitialState> behavior
             // uml: TransitionTo(group)
-            try {
+            run {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: ``.
@@ -54,7 +54,7 @@ fun userCodeMethod() {
                 
                 // group.<InitialState> behavior
                 // uml: TransitionTo(g1)
-                try {
+                run {
                     // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     // Step 2: Transition action: ``.
@@ -64,9 +64,9 @@ fun userCodeMethod() {
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } finally {} // end of behavior for group.<InitialState>
-            } finally {} // end of behavior for ROOT.<InitialState>
-        } finally {} // end of behavior for ROOT
+                } // end of behavior for group.<InitialState>
+            } // end of behavior for ROOT.<InitialState>
+        } // end of behavior for ROOT
     }
     
     // Dispatches an event to the state machine. Not thread safe.
@@ -162,7 +162,7 @@ fun userCodeMethod() {
     {
         // group behavior
         // uml: EV1 TransitionTo(s1)
-        try {
+        run {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             exitUpToStateHandler(StateId.ROOT)
             
@@ -173,7 +173,7 @@ fun userCodeMethod() {
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for group
+        } // end of behavior for group
     }
     
     
@@ -237,7 +237,7 @@ fun userCodeMethod() {
     {
         // g2 behavior
         // uml: EV2 TransitionTo(g1)
-        try {
+        run {
             // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
             G2_exit()
             
@@ -248,7 +248,7 @@ fun userCodeMethod() {
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for g2
+        } // end of behavior for g2
     }
     
     
