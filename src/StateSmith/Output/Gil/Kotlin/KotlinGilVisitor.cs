@@ -351,10 +351,10 @@ public class KotlinGilVisitor : CSharpSyntaxWalker
                 {
                     VisitLeadingTrivia(block.GetFirstToken());
                     string indent = StringUtils.FindLastIndent(sb);
-                    sb.AppendLine("try {");
+                    sb.AppendLine("run {");
                     VisitStatements(block.Statements);
                     sb.Append(indent);
-                    sb.Append("} finally {}");
+                    sb.Append("}");
                     VisitTrailingTrivia(block.GetLastToken());
                 }
                 else

@@ -290,7 +290,7 @@ class Spec2Sm : Spec2SmBase()
         ROOT_enter()
         // ROOT behavior
         // uml: TransitionTo(ROOT.<InitialState>)
-        try {
+        run {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: ``.
@@ -300,7 +300,7 @@ class Spec2Sm : Spec2SmBase()
             
             // ROOT.<InitialState> behavior
             // uml: / { trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE."); } TransitionTo(Spec2Sm__DECIDE)
-            try {
+            run {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE.");`.
@@ -311,8 +311,8 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for ROOT.<InitialState>
-        } finally {} // end of behavior for ROOT
+            } // end of behavior for ROOT.<InitialState>
+        } // end of behavior for ROOT
     }
     
     // Dispatches an event to the state machine. Not thread safe.
@@ -2521,10 +2521,10 @@ class Spec2Sm : Spec2SmBase()
         
         // ROOT behavior
         // uml: enter / { trace("Enter Spec2Sm."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter Spec2Sm.");`
             MainClass.trace("Enter Spec2Sm.");
-        } finally {} // end of behavior for ROOT
+        } // end of behavior for ROOT
     }
     
     private fun ROOT_do()
@@ -2547,20 +2547,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING behavior
         // uml: enter / { trace("Enter PREFIXING."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING.");`
             MainClass.trace("Enter PREFIXING.");
-        } finally {} // end of behavior for PREFIXING
+        } // end of behavior for PREFIXING
     }
     
     private fun PREFIXING_exit()
     {
         // PREFIXING behavior
         // uml: exit / { trace("Exit PREFIXING."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING.");`
             MainClass.trace("Exit PREFIXING.");
-        } finally {} // end of behavior for PREFIXING
+        } // end of behavior for PREFIXING
         
         this.stateId = StateId.ROOT
     }
@@ -2576,20 +2576,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__ORDER_MENU behavior
         // uml: enter / { trace("Enter PREFIXING__ORDER_MENU."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__ORDER_MENU.");`
             MainClass.trace("Enter PREFIXING__ORDER_MENU.");
-        } finally {} // end of behavior for PREFIXING__ORDER_MENU
+        } // end of behavior for PREFIXING__ORDER_MENU
     }
     
     private fun PREFIXING__ORDER_MENU_exit()
     {
         // PREFIXING__ORDER_MENU behavior
         // uml: exit / { trace("Exit PREFIXING__ORDER_MENU."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__ORDER_MENU.");`
             MainClass.trace("Exit PREFIXING__ORDER_MENU.");
-        } finally {} // end of behavior for PREFIXING__ORDER_MENU
+        } // end of behavior for PREFIXING__ORDER_MENU
         
         this.stateId = StateId.PREFIXING
     }
@@ -2605,20 +2605,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__OM__BEVERAGE behavior
         // uml: enter / { trace("Enter PREFIXING__OM__BEVERAGE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__OM__BEVERAGE.");`
             MainClass.trace("Enter PREFIXING__OM__BEVERAGE.");
-        } finally {} // end of behavior for PREFIXING__OM__BEVERAGE
+        } // end of behavior for PREFIXING__OM__BEVERAGE
     }
     
     private fun PREFIXING__OM__BEVERAGE_exit()
     {
         // PREFIXING__OM__BEVERAGE behavior
         // uml: exit / { trace("Exit PREFIXING__OM__BEVERAGE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__OM__BEVERAGE.");`
             MainClass.trace("Exit PREFIXING__OM__BEVERAGE.");
-        } finally {} // end of behavior for PREFIXING__OM__BEVERAGE
+        } // end of behavior for PREFIXING__OM__BEVERAGE
         
         this.stateId = StateId.PREFIXING__ORDER_MENU
     }
@@ -2640,7 +2640,7 @@ class Spec2Sm : Spec2SmBase()
             
             // PREFIXING__OM__VEG.<InitialState> behavior
             // uml: / { trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE."); } TransitionTo(PREFIXING__OM__VEG__NONE)
-            try {
+            run {
                 // Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE.");`.
@@ -2651,7 +2651,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for PREFIXING__OM__VEG.<InitialState>
+            } // end of behavior for PREFIXING__OM__VEG.<InitialState>
         } // end of behavior for PREFIXING__OM__BEVERAGE
     }
     
@@ -2659,7 +2659,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // PREFIXING__OM__BEVERAGE.<InitialState> behavior
         // uml: / { trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE."); } TransitionTo(PREFIXING__OM__BEV__NONE)
-        try {
+        run {
             // Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE.");`.
@@ -2670,7 +2670,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for PREFIXING__OM__BEVERAGE.<InitialState>
+        } // end of behavior for PREFIXING__OM__BEVERAGE.<InitialState>
     }
     
     
@@ -2684,20 +2684,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__OM__BEV__NONE behavior
         // uml: enter / { trace("Enter PREFIXING__OM__BEV__NONE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__NONE.");`
             MainClass.trace("Enter PREFIXING__OM__BEV__NONE.");
-        } finally {} // end of behavior for PREFIXING__OM__BEV__NONE
+        } // end of behavior for PREFIXING__OM__BEV__NONE
     }
     
     private fun PREFIXING__OM__BEV__NONE_exit()
     {
         // PREFIXING__OM__BEV__NONE behavior
         // uml: exit / { trace("Exit PREFIXING__OM__BEV__NONE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__NONE.");`
             MainClass.trace("Exit PREFIXING__OM__BEV__NONE.");
-        } finally {} // end of behavior for PREFIXING__OM__BEV__NONE
+        } // end of behavior for PREFIXING__OM__BEV__NONE
         
         this.stateId = StateId.PREFIXING__OM__BEVERAGE
     }
@@ -2733,20 +2733,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__OM__BEV__TEA behavior
         // uml: enter / { trace("Enter PREFIXING__OM__BEV__TEA."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__TEA.");`
             MainClass.trace("Enter PREFIXING__OM__BEV__TEA.");
-        } finally {} // end of behavior for PREFIXING__OM__BEV__TEA
+        } // end of behavior for PREFIXING__OM__BEV__TEA
     }
     
     private fun PREFIXING__OM__BEV__TEA_exit()
     {
         // PREFIXING__OM__BEV__TEA behavior
         // uml: exit / { trace("Exit PREFIXING__OM__BEV__TEA."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__TEA.");`
             MainClass.trace("Exit PREFIXING__OM__BEV__TEA.");
-        } finally {} // end of behavior for PREFIXING__OM__BEV__TEA
+        } // end of behavior for PREFIXING__OM__BEV__TEA
         
         this.stateId = StateId.PREFIXING__OM__BEVERAGE
     }
@@ -2762,20 +2762,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__OM__BEV__WATER behavior
         // uml: enter / { trace("Enter PREFIXING__OM__BEV__WATER."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__WATER.");`
             MainClass.trace("Enter PREFIXING__OM__BEV__WATER.");
-        } finally {} // end of behavior for PREFIXING__OM__BEV__WATER
+        } // end of behavior for PREFIXING__OM__BEV__WATER
     }
     
     private fun PREFIXING__OM__BEV__WATER_exit()
     {
         // PREFIXING__OM__BEV__WATER behavior
         // uml: exit / { trace("Exit PREFIXING__OM__BEV__WATER."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__WATER.");`
             MainClass.trace("Exit PREFIXING__OM__BEV__WATER.");
-        } finally {} // end of behavior for PREFIXING__OM__BEV__WATER
+        } // end of behavior for PREFIXING__OM__BEV__WATER
         
         this.stateId = StateId.PREFIXING__OM__BEVERAGE
     }
@@ -2811,20 +2811,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__OM__VEG behavior
         // uml: enter / { trace("Enter PREFIXING__OM__VEG."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__OM__VEG.");`
             MainClass.trace("Enter PREFIXING__OM__VEG.");
-        } finally {} // end of behavior for PREFIXING__OM__VEG
+        } // end of behavior for PREFIXING__OM__VEG
     }
     
     private fun PREFIXING__OM__VEG_exit()
     {
         // PREFIXING__OM__VEG behavior
         // uml: exit / { trace("Exit PREFIXING__OM__VEG."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__OM__VEG.");`
             MainClass.trace("Exit PREFIXING__OM__VEG.");
-        } finally {} // end of behavior for PREFIXING__OM__VEG
+        } // end of behavior for PREFIXING__OM__VEG
         
         this.stateId = StateId.PREFIXING__ORDER_MENU
     }
@@ -2861,20 +2861,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__OM__VEG__NONE behavior
         // uml: enter / { trace("Enter PREFIXING__OM__VEG__NONE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__NONE.");`
             MainClass.trace("Enter PREFIXING__OM__VEG__NONE.");
-        } finally {} // end of behavior for PREFIXING__OM__VEG__NONE
+        } // end of behavior for PREFIXING__OM__VEG__NONE
     }
     
     private fun PREFIXING__OM__VEG__NONE_exit()
     {
         // PREFIXING__OM__VEG__NONE behavior
         // uml: exit / { trace("Exit PREFIXING__OM__VEG__NONE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__NONE.");`
             MainClass.trace("Exit PREFIXING__OM__VEG__NONE.");
-        } finally {} // end of behavior for PREFIXING__OM__VEG__NONE
+        } // end of behavior for PREFIXING__OM__VEG__NONE
         
         this.stateId = StateId.PREFIXING__OM__VEG
     }
@@ -2910,20 +2910,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__OM__VEG__POTATO behavior
         // uml: enter / { trace("Enter PREFIXING__OM__VEG__POTATO."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__POTATO.");`
             MainClass.trace("Enter PREFIXING__OM__VEG__POTATO.");
-        } finally {} // end of behavior for PREFIXING__OM__VEG__POTATO
+        } // end of behavior for PREFIXING__OM__VEG__POTATO
     }
     
     private fun PREFIXING__OM__VEG__POTATO_exit()
     {
         // PREFIXING__OM__VEG__POTATO behavior
         // uml: exit / { trace("Exit PREFIXING__OM__VEG__POTATO."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__POTATO.");`
             MainClass.trace("Exit PREFIXING__OM__VEG__POTATO.");
-        } finally {} // end of behavior for PREFIXING__OM__VEG__POTATO
+        } // end of behavior for PREFIXING__OM__VEG__POTATO
         
         this.stateId = StateId.PREFIXING__OM__VEG
     }
@@ -2959,20 +2959,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__OM__VEG__YAM behavior
         // uml: enter / { trace("Enter PREFIXING__OM__VEG__YAM."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__YAM.");`
             MainClass.trace("Enter PREFIXING__OM__VEG__YAM.");
-        } finally {} // end of behavior for PREFIXING__OM__VEG__YAM
+        } // end of behavior for PREFIXING__OM__VEG__YAM
     }
     
     private fun PREFIXING__OM__VEG__YAM_exit()
     {
         // PREFIXING__OM__VEG__YAM behavior
         // uml: exit / { trace("Exit PREFIXING__OM__VEG__YAM."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__YAM.");`
             MainClass.trace("Exit PREFIXING__OM__VEG__YAM.");
-        } finally {} // end of behavior for PREFIXING__OM__VEG__YAM
+        } // end of behavior for PREFIXING__OM__VEG__YAM
         
         this.stateId = StateId.PREFIXING__OM__VEG
     }
@@ -2988,20 +2988,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__SHOWS_MANUAL_PREFIX behavior
         // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.");`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
     }
     
     private fun PREFIXING__SHOWS_MANUAL_PREFIX_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.");`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
         
         this.stateId = StateId.PREFIXING
     }
@@ -3017,20 +3017,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
         // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     }
     
     private fun PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
         
         this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX
     }
@@ -3046,20 +3046,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     }
     
     private fun PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
         
         this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     }
@@ -3081,7 +3081,7 @@ class Spec2Sm : Spec2SmBase()
             
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> behavior
             // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE)
-            try {
+            run {
                 // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`.
@@ -3092,7 +3092,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState>
+            } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState>
         } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     }
     
@@ -3100,7 +3100,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> behavior
         // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE)
-        try {
+        run {
             // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`.
@@ -3111,7 +3111,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState>
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState>
     }
     
     
@@ -3125,20 +3125,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
     }
     
     private fun PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
         
         this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     }
@@ -3174,20 +3174,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
         // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
     }
     
     private fun PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
         
         this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     }
@@ -3203,20 +3203,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
     }
     
     private fun PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
         
         this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     }
@@ -3252,20 +3252,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     }
     
     private fun PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
         
         this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     }
@@ -3302,20 +3302,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
     }
     
     private fun PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
         
         this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     }
@@ -3351,20 +3351,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
     }
     
     private fun PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
         
         this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     }
@@ -3400,20 +3400,20 @@ class Spec2Sm : Spec2SmBase()
         
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
         // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");`
             MainClass.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
     }
     
     private fun PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit()
     {
         // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
         // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");`
             MainClass.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
-        } finally {} // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
         
         this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     }
@@ -3429,20 +3429,20 @@ class Spec2Sm : Spec2SmBase()
         
         // Spec2Sm__DECIDE behavior
         // uml: enter / { trace("Enter Spec2Sm__DECIDE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter Spec2Sm__DECIDE.");`
             MainClass.trace("Enter Spec2Sm__DECIDE.");
-        } finally {} // end of behavior for Spec2Sm__DECIDE
+        } // end of behavior for Spec2Sm__DECIDE
     }
     
     private fun SPEC2SM__DECIDE_exit()
     {
         // Spec2Sm__DECIDE behavior
         // uml: exit / { trace("Exit Spec2Sm__DECIDE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit Spec2Sm__DECIDE.");`
             MainClass.trace("Exit Spec2Sm__DECIDE.");
-        } finally {} // end of behavior for Spec2Sm__DECIDE
+        } // end of behavior for Spec2Sm__DECIDE
         
         this.stateId = StateId.ROOT
     }
@@ -3492,7 +3492,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST1_DO_EVENT_TESTING.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT."); } TransitionTo(TEST1_ROOT)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST1_DO_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT.");`.
@@ -3503,7 +3503,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // TEST1_ROOT.<InitialState> behavior
                 // uml: / { trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1."); } TransitionTo(TEST1_S1_1)
-                try {
+                run {
                     // Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     // Step 2: Transition action: `trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1.");`.
@@ -3515,8 +3515,8 @@ class Spec2Sm : Spec2SmBase()
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } finally {} // end of behavior for TEST1_ROOT.<InitialState>
-            } finally {} // end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
+                } // end of behavior for TEST1_ROOT.<InitialState>
+            } // end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
         
         // Spec2Sm__DECIDE behavior
@@ -3554,7 +3554,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST10_CHOICE_POINT.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1."); } TransitionTo(TEST10_S1)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1.");`.
@@ -3566,7 +3566,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST10_CHOICE_POINT.<InitialState>
+            } // end of behavior for TEST10_CHOICE_POINT.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3587,7 +3587,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST2_REGULAR_EVENT_TESTING.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT."); } TransitionTo(TEST2_ROOT)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST2_REGULAR_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT.");`.
@@ -3598,7 +3598,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // TEST2_ROOT.<InitialState> behavior
                 // uml: / { trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1."); } TransitionTo(TEST2_S1_1)
-                try {
+                run {
                     // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     // Step 2: Transition action: `trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1.");`.
@@ -3610,8 +3610,8 @@ class Spec2Sm : Spec2SmBase()
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } finally {} // end of behavior for TEST2_ROOT.<InitialState>
-            } finally {} // end of behavior for TEST2_REGULAR_EVENT_TESTING.<InitialState>
+                } // end of behavior for TEST2_ROOT.<InitialState>
+            } // end of behavior for TEST2_REGULAR_EVENT_TESTING.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3632,7 +3632,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST3_BEHAVIOR_ORDERING.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT."); } TransitionTo(TEST3_ROOT)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST3_BEHAVIOR_ORDERING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT.");`.
@@ -3643,7 +3643,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // TEST3_ROOT.<InitialState> behavior
                 // uml: / { trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1."); } TransitionTo(TEST3_S1)
-                try {
+                run {
                     // Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     // Step 2: Transition action: `trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1.");`.
@@ -3654,8 +3654,8 @@ class Spec2Sm : Spec2SmBase()
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } finally {} // end of behavior for TEST3_ROOT.<InitialState>
-            } finally {} // end of behavior for TEST3_BEHAVIOR_ORDERING.<InitialState>
+                } // end of behavior for TEST3_ROOT.<InitialState>
+            } // end of behavior for TEST3_BEHAVIOR_ORDERING.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3676,7 +3676,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE."); } TransitionTo(TEST4_DECIDE)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE.");`.
@@ -3687,7 +3687,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState>
+            } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3708,7 +3708,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT."); } TransitionTo(TEST5_ROOT)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT.");`.
@@ -3719,7 +3719,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState>
+            } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3740,7 +3740,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST6_VARS_EXPANSIONS.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT."); } TransitionTo(TEST6_ROOT)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST6_VARS_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT.");`.
@@ -3751,7 +3751,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // TEST6_ROOT.<InitialState> behavior
                 // uml: / { trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE."); } TransitionTo(TEST6_VARS_EXPANSIONS__DECIDE)
-                try {
+                run {
                     // Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     // Step 2: Transition action: `trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE.");`.
@@ -3762,8 +3762,8 @@ class Spec2Sm : Spec2SmBase()
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } finally {} // end of behavior for TEST6_ROOT.<InitialState>
-            } finally {} // end of behavior for TEST6_VARS_EXPANSIONS.<InitialState>
+                } // end of behavior for TEST6_ROOT.<InitialState>
+            } // end of behavior for TEST6_VARS_EXPANSIONS.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3784,7 +3784,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST7_INITIAL_OR_HISTORY.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE."); } TransitionTo(TEST7_DECIDE)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE.");`.
@@ -3795,7 +3795,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST7_INITIAL_OR_HISTORY.<InitialState>
+            } // end of behavior for TEST7_INITIAL_OR_HISTORY.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3816,7 +3816,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST8_ENTRY_CHOICE.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1)."); } TransitionTo(TEST8_ROOT.<EntryPoint>(1))
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST8_ENTRY_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1).");`.
@@ -3829,7 +3829,7 @@ class Spec2Sm : Spec2SmBase()
                 // Finish transition by calling pseudo state transition function.
                 TEST8_ROOT_EntryPoint_1__transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } finally {} // end of behavior for TEST8_ENTRY_CHOICE.<InitialState>
+            } // end of behavior for TEST8_ENTRY_CHOICE.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3850,7 +3850,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST9_EXIT_CHOICE.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE."); } TransitionTo(TEST9_DECIDE)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE.");`.
@@ -3861,7 +3861,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST9_EXIT_CHOICE.<InitialState>
+            } // end of behavior for TEST9_EXIT_CHOICE.<InitialState>
         } // end of behavior for Spec2Sm__DECIDE
     }
     
@@ -3876,20 +3876,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST1_DO_EVENT_TESTING behavior
         // uml: enter / { trace("Enter TEST1_DO_EVENT_TESTING."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST1_DO_EVENT_TESTING.");`
             MainClass.trace("Enter TEST1_DO_EVENT_TESTING.");
-        } finally {} // end of behavior for TEST1_DO_EVENT_TESTING
+        } // end of behavior for TEST1_DO_EVENT_TESTING
     }
     
     private fun TEST1_DO_EVENT_TESTING_exit()
     {
         // TEST1_DO_EVENT_TESTING behavior
         // uml: exit / { trace("Exit TEST1_DO_EVENT_TESTING."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST1_DO_EVENT_TESTING.");`
             MainClass.trace("Exit TEST1_DO_EVENT_TESTING.");
-        } finally {} // end of behavior for TEST1_DO_EVENT_TESTING
+        } // end of behavior for TEST1_DO_EVENT_TESTING
         
         this.stateId = StateId.ROOT
     }
@@ -3905,20 +3905,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST1_ROOT behavior
         // uml: enter / { trace("Enter TEST1_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST1_ROOT.");`
             MainClass.trace("Enter TEST1_ROOT.");
-        } finally {} // end of behavior for TEST1_ROOT
+        } // end of behavior for TEST1_ROOT
     }
     
     private fun TEST1_ROOT_exit()
     {
         // TEST1_ROOT behavior
         // uml: exit / { trace("Exit TEST1_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST1_ROOT.");`
             MainClass.trace("Exit TEST1_ROOT.");
-        } finally {} // end of behavior for TEST1_ROOT
+        } // end of behavior for TEST1_ROOT
         
         this.stateId = StateId.TEST1_DO_EVENT_TESTING
     }
@@ -3951,20 +3951,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST1_S1 behavior
         // uml: enter / { trace("Enter TEST1_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST1_S1.");`
             MainClass.trace("Enter TEST1_S1.");
-        } finally {} // end of behavior for TEST1_S1
+        } // end of behavior for TEST1_S1
     }
     
     private fun TEST1_S1_exit()
     {
         // TEST1_S1 behavior
         // uml: exit / { trace("Exit TEST1_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST1_S1.");`
             MainClass.trace("Exit TEST1_S1.");
-        } finally {} // end of behavior for TEST1_S1
+        } // end of behavior for TEST1_S1
         
         this.stateId = StateId.TEST1_ROOT
     }
@@ -3980,10 +3980,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST1_S1_1 behavior
         // uml: enter / { trace("Enter TEST1_S1_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST1_S1_1.");`
             MainClass.trace("Enter TEST1_S1_1.");
-        } finally {} // end of behavior for TEST1_S1_1
+        } // end of behavior for TEST1_S1_1
         
         // TEST1_S1_1 behavior
         // uml: enter [trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
@@ -3998,10 +3998,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST1_S1_1 behavior
         // uml: exit / { trace("Exit TEST1_S1_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST1_S1_1.");`
             MainClass.trace("Exit TEST1_S1_1.");
-        } finally {} // end of behavior for TEST1_S1_1
+        } // end of behavior for TEST1_S1_1
         
         this.stateId = StateId.TEST1_S1
     }
@@ -4054,20 +4054,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST1_S2 behavior
         // uml: enter / { trace("Enter TEST1_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST1_S2.");`
             MainClass.trace("Enter TEST1_S2.");
-        } finally {} // end of behavior for TEST1_S2
+        } // end of behavior for TEST1_S2
     }
     
     private fun TEST1_S2_exit()
     {
         // TEST1_S2 behavior
         // uml: exit / { trace("Exit TEST1_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST1_S2.");`
             MainClass.trace("Exit TEST1_S2.");
-        } finally {} // end of behavior for TEST1_S2
+        } // end of behavior for TEST1_S2
         
         this.stateId = StateId.TEST1_ROOT
     }
@@ -4103,20 +4103,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_CHOICE_POINT behavior
         // uml: enter / { trace("Enter TEST10_CHOICE_POINT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST10_CHOICE_POINT.");`
             MainClass.trace("Enter TEST10_CHOICE_POINT.");
-        } finally {} // end of behavior for TEST10_CHOICE_POINT
+        } // end of behavior for TEST10_CHOICE_POINT
     }
     
     private fun TEST10_CHOICE_POINT_exit()
     {
         // TEST10_CHOICE_POINT behavior
         // uml: exit / { trace("Exit TEST10_CHOICE_POINT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST10_CHOICE_POINT.");`
             MainClass.trace("Exit TEST10_CHOICE_POINT.");
-        } finally {} // end of behavior for TEST10_CHOICE_POINT
+        } // end of behavior for TEST10_CHOICE_POINT
         
         this.stateId = StateId.ROOT
     }
@@ -4132,20 +4132,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_A behavior
         // uml: enter / { trace("Enter TEST10_A."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST10_A.");`
             MainClass.trace("Enter TEST10_A.");
-        } finally {} // end of behavior for TEST10_A
+        } // end of behavior for TEST10_A
     }
     
     private fun TEST10_A_exit()
     {
         // TEST10_A behavior
         // uml: exit / { trace("Exit TEST10_A."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST10_A.");`
             MainClass.trace("Exit TEST10_A.");
-        } finally {} // end of behavior for TEST10_A
+        } // end of behavior for TEST10_A
         
         this.stateId = StateId.TEST10_CHOICE_POINT
     }
@@ -4171,7 +4171,7 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_A.<ChoicePoint>() behavior
         // uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>()."); } TransitionTo(TEST10_A.<ChoicePoint>())
-        try {
+        run {
             // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().");`.
@@ -4183,7 +4183,7 @@ class Spec2Sm : Spec2SmBase()
             // Finish transition by calling pseudo state transition function.
             TEST10_A_ChoicePoint__transition_kid_index3()
             return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } finally {} // end of behavior for TEST10_A.<ChoicePoint>()
+        } // end of behavior for TEST10_A.<ChoicePoint>()
     }
     
     private fun TEST10_A_ChoicePoint__transition_kid_index3()
@@ -4207,7 +4207,7 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_A.<ChoicePoint>() behavior
         // uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
-        try {
+        run {
             // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).");`.
@@ -4219,7 +4219,7 @@ class Spec2Sm : Spec2SmBase()
             // Finish transition by calling pseudo state transition function.
             TEST10_A_ChoicePoint_a__transition()
             return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } finally {} // end of behavior for TEST10_A.<ChoicePoint>()
+        } // end of behavior for TEST10_A.<ChoicePoint>()
     }
     
     private fun TEST10_A_ChoicePoint_a__transition()
@@ -4243,7 +4243,7 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_A.<ChoicePoint>(a) behavior
         // uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
-        try {
+        run {
             // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).");`.
@@ -4255,14 +4255,14 @@ class Spec2Sm : Spec2SmBase()
             // Finish transition by calling pseudo state transition function.
             TEST10_A_ChoicePoint_a__transition_kid_index5()
             return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } finally {} // end of behavior for TEST10_A.<ChoicePoint>(a)
+        } // end of behavior for TEST10_A.<ChoicePoint>(a)
     }
     
     private fun TEST10_A_ChoicePoint_a__transition_kid_index5()
     {
         // TEST10_A.<ChoicePoint>(a) behavior
         // uml: / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1."); } TransitionTo(TEST10_A_1)
-        try {
+        run {
             // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1.");`.
@@ -4273,7 +4273,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for TEST10_A.<ChoicePoint>(a)
+        } // end of behavior for TEST10_A.<ChoicePoint>(a)
     }
     
     
@@ -4287,20 +4287,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_A_1 behavior
         // uml: enter / { trace("Enter TEST10_A_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST10_A_1.");`
             MainClass.trace("Enter TEST10_A_1.");
-        } finally {} // end of behavior for TEST10_A_1
+        } // end of behavior for TEST10_A_1
     }
     
     private fun TEST10_A_1_exit()
     {
         // TEST10_A_1 behavior
         // uml: exit / { trace("Exit TEST10_A_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST10_A_1.");`
             MainClass.trace("Exit TEST10_A_1.");
-        } finally {} // end of behavior for TEST10_A_1
+        } // end of behavior for TEST10_A_1
         
         this.stateId = StateId.TEST10_A
     }
@@ -4316,20 +4316,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_ROOT behavior
         // uml: enter / { trace("Enter TEST10_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST10_ROOT.");`
             MainClass.trace("Enter TEST10_ROOT.");
-        } finally {} // end of behavior for TEST10_ROOT
+        } // end of behavior for TEST10_ROOT
     }
     
     private fun TEST10_ROOT_exit()
     {
         // TEST10_ROOT behavior
         // uml: exit / { trace("Exit TEST10_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST10_ROOT.");`
             MainClass.trace("Exit TEST10_ROOT.");
-        } finally {} // end of behavior for TEST10_ROOT
+        } // end of behavior for TEST10_ROOT
         
         this.stateId = StateId.TEST10_CHOICE_POINT
     }
@@ -4356,20 +4356,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_G behavior
         // uml: enter / { trace("Enter TEST10_G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST10_G.");`
             MainClass.trace("Enter TEST10_G.");
-        } finally {} // end of behavior for TEST10_G
+        } // end of behavior for TEST10_G
     }
     
     private fun TEST10_G_exit()
     {
         // TEST10_G behavior
         // uml: exit / { trace("Exit TEST10_G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST10_G.");`
             MainClass.trace("Exit TEST10_G.");
-        } finally {} // end of behavior for TEST10_G
+        } // end of behavior for TEST10_G
         
         this.stateId = StateId.TEST10_ROOT
     }
@@ -4378,7 +4378,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST10_G.<ChoicePoint>() behavior
         // uml: / { trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1)."); } TransitionTo(TEST10_G.<ChoicePoint>(1))
-        try {
+        run {
             // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).");`.
@@ -4433,7 +4433,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // TEST10_G.<ChoicePoint>(lower) behavior
                 // uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2."); } TransitionTo(TEST10_G_S2)
-                try {
+                run {
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2.");`.
@@ -4444,12 +4444,12 @@ class Spec2Sm : Spec2SmBase()
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } finally {} // end of behavior for TEST10_G.<ChoicePoint>(lower)
+                } // end of behavior for TEST10_G.<ChoicePoint>(lower)
             } // end of behavior for TEST10_G.<ChoicePoint>(1)
             
             // TEST10_G.<ChoicePoint>(1) behavior
             // uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper)."); } TransitionTo(TEST10_G.<ChoicePoint>(upper))
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).");`.
@@ -4476,7 +4476,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // TEST10_G.<ChoicePoint>(upper) behavior
                 // uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4."); } TransitionTo(TEST10_S4)
-                try {
+                run {
                     // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
                     exitUpToStateHandler(StateId.TEST10_ROOT)
                     
@@ -4488,9 +4488,9 @@ class Spec2Sm : Spec2SmBase()
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } finally {} // end of behavior for TEST10_G.<ChoicePoint>(upper)
-            } finally {} // end of behavior for TEST10_G.<ChoicePoint>(1)
-        } finally {} // end of behavior for TEST10_G.<ChoicePoint>()
+                } // end of behavior for TEST10_G.<ChoicePoint>(upper)
+            } // end of behavior for TEST10_G.<ChoicePoint>(1)
+        } // end of behavior for TEST10_G.<ChoicePoint>()
     }
     
     
@@ -4504,20 +4504,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_G_S0 behavior
         // uml: enter / { trace("Enter TEST10_G_S0."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST10_G_S0.");`
             MainClass.trace("Enter TEST10_G_S0.");
-        } finally {} // end of behavior for TEST10_G_S0
+        } // end of behavior for TEST10_G_S0
     }
     
     private fun TEST10_G_S0_exit()
     {
         // TEST10_G_S0 behavior
         // uml: exit / { trace("Exit TEST10_G_S0."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST10_G_S0.");`
             MainClass.trace("Exit TEST10_G_S0.");
-        } finally {} // end of behavior for TEST10_G_S0
+        } // end of behavior for TEST10_G_S0
         
         this.stateId = StateId.TEST10_G
     }
@@ -4533,20 +4533,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_G_S1 behavior
         // uml: enter / { trace("Enter TEST10_G_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST10_G_S1.");`
             MainClass.trace("Enter TEST10_G_S1.");
-        } finally {} // end of behavior for TEST10_G_S1
+        } // end of behavior for TEST10_G_S1
     }
     
     private fun TEST10_G_S1_exit()
     {
         // TEST10_G_S1 behavior
         // uml: exit / { trace("Exit TEST10_G_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST10_G_S1.");`
             MainClass.trace("Exit TEST10_G_S1.");
-        } finally {} // end of behavior for TEST10_G_S1
+        } // end of behavior for TEST10_G_S1
         
         this.stateId = StateId.TEST10_G
     }
@@ -4562,20 +4562,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_G_S2 behavior
         // uml: enter / { trace("Enter TEST10_G_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST10_G_S2.");`
             MainClass.trace("Enter TEST10_G_S2.");
-        } finally {} // end of behavior for TEST10_G_S2
+        } // end of behavior for TEST10_G_S2
     }
     
     private fun TEST10_G_S2_exit()
     {
         // TEST10_G_S2 behavior
         // uml: exit / { trace("Exit TEST10_G_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST10_G_S2.");`
             MainClass.trace("Exit TEST10_G_S2.");
-        } finally {} // end of behavior for TEST10_G_S2
+        } // end of behavior for TEST10_G_S2
         
         this.stateId = StateId.TEST10_G
     }
@@ -4591,20 +4591,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_G_S3 behavior
         // uml: enter / { trace("Enter TEST10_G_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST10_G_S3.");`
             MainClass.trace("Enter TEST10_G_S3.");
-        } finally {} // end of behavior for TEST10_G_S3
+        } // end of behavior for TEST10_G_S3
     }
     
     private fun TEST10_G_S3_exit()
     {
         // TEST10_G_S3 behavior
         // uml: exit / { trace("Exit TEST10_G_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST10_G_S3.");`
             MainClass.trace("Exit TEST10_G_S3.");
-        } finally {} // end of behavior for TEST10_G_S3
+        } // end of behavior for TEST10_G_S3
         
         this.stateId = StateId.TEST10_G
     }
@@ -4620,10 +4620,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_S1 behavior
         // uml: enter / { trace("Enter TEST10_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST10_S1.");`
             MainClass.trace("Enter TEST10_S1.");
-        } finally {} // end of behavior for TEST10_S1
+        } // end of behavior for TEST10_S1
         
         // TEST10_S1 behavior
         // uml: enter [trace_guard("State TEST10_S1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
@@ -4638,10 +4638,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST10_S1 behavior
         // uml: exit / { trace("Exit TEST10_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST10_S1.");`
             MainClass.trace("Exit TEST10_S1.");
-        } finally {} // end of behavior for TEST10_S1
+        } // end of behavior for TEST10_S1
         
         this.stateId = StateId.TEST10_ROOT
     }
@@ -4664,7 +4664,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST10_G.<EntryPoint>(1) behavior
             // uml: / { trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>()."); } TransitionTo(TEST10_G.<ChoicePoint>())
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().");`.
@@ -4676,7 +4676,7 @@ class Spec2Sm : Spec2SmBase()
                 // Finish transition by calling pseudo state transition function.
                 TEST10_G_ChoicePoint__transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } finally {} // end of behavior for TEST10_G.<EntryPoint>(1)
+            } // end of behavior for TEST10_G.<EntryPoint>(1)
         } // end of behavior for TEST10_S1
     }
     
@@ -4732,7 +4732,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST10_A.<InitialState> behavior
             // uml: else / { trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>()."); } TransitionTo(TEST10_A.<ChoicePoint>())
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");`.
@@ -4744,7 +4744,7 @@ class Spec2Sm : Spec2SmBase()
                 // Finish transition by calling pseudo state transition function.
                 TEST10_A_ChoicePoint__transition_kid_index3()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } finally {} // end of behavior for TEST10_A.<InitialState>
+            } // end of behavior for TEST10_A.<InitialState>
         } // end of behavior for TEST10_S1
     }
     
@@ -4787,7 +4787,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST10_G.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>()."); } TransitionTo(TEST10_G.<ChoicePoint>())
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().");`.
@@ -4799,7 +4799,7 @@ class Spec2Sm : Spec2SmBase()
                 // Finish transition by calling pseudo state transition function.
                 TEST10_G_ChoicePoint__transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } finally {} // end of behavior for TEST10_G.<InitialState>
+            } // end of behavior for TEST10_G.<InitialState>
         } // end of behavior for TEST10_S1
     }
     
@@ -4814,20 +4814,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST10_S4 behavior
         // uml: enter / { trace("Enter TEST10_S4."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST10_S4.");`
             MainClass.trace("Enter TEST10_S4.");
-        } finally {} // end of behavior for TEST10_S4
+        } // end of behavior for TEST10_S4
     }
     
     private fun TEST10_S4_exit()
     {
         // TEST10_S4 behavior
         // uml: exit / { trace("Exit TEST10_S4."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST10_S4.");`
             MainClass.trace("Exit TEST10_S4.");
-        } finally {} // end of behavior for TEST10_S4
+        } // end of behavior for TEST10_S4
         
         this.stateId = StateId.TEST10_ROOT
     }
@@ -4843,20 +4843,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST2_REGULAR_EVENT_TESTING behavior
         // uml: enter / { trace("Enter TEST2_REGULAR_EVENT_TESTING."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST2_REGULAR_EVENT_TESTING.");`
             MainClass.trace("Enter TEST2_REGULAR_EVENT_TESTING.");
-        } finally {} // end of behavior for TEST2_REGULAR_EVENT_TESTING
+        } // end of behavior for TEST2_REGULAR_EVENT_TESTING
     }
     
     private fun TEST2_REGULAR_EVENT_TESTING_exit()
     {
         // TEST2_REGULAR_EVENT_TESTING behavior
         // uml: exit / { trace("Exit TEST2_REGULAR_EVENT_TESTING."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST2_REGULAR_EVENT_TESTING.");`
             MainClass.trace("Exit TEST2_REGULAR_EVENT_TESTING.");
-        } finally {} // end of behavior for TEST2_REGULAR_EVENT_TESTING
+        } // end of behavior for TEST2_REGULAR_EVENT_TESTING
         
         this.stateId = StateId.ROOT
     }
@@ -4872,20 +4872,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST2_ROOT behavior
         // uml: enter / { trace("Enter TEST2_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST2_ROOT.");`
             MainClass.trace("Enter TEST2_ROOT.");
-        } finally {} // end of behavior for TEST2_ROOT
+        } // end of behavior for TEST2_ROOT
     }
     
     private fun TEST2_ROOT_exit()
     {
         // TEST2_ROOT behavior
         // uml: exit / { trace("Exit TEST2_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST2_ROOT.");`
             MainClass.trace("Exit TEST2_ROOT.");
-        } finally {} // end of behavior for TEST2_ROOT
+        } // end of behavior for TEST2_ROOT
         
         this.stateId = StateId.TEST2_REGULAR_EVENT_TESTING
     }
@@ -4936,20 +4936,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST2_S1 behavior
         // uml: enter / { trace("Enter TEST2_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST2_S1.");`
             MainClass.trace("Enter TEST2_S1.");
-        } finally {} // end of behavior for TEST2_S1
+        } // end of behavior for TEST2_S1
     }
     
     private fun TEST2_S1_exit()
     {
         // TEST2_S1 behavior
         // uml: exit / { trace("Exit TEST2_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST2_S1.");`
             MainClass.trace("Exit TEST2_S1.");
-        } finally {} // end of behavior for TEST2_S1
+        } // end of behavior for TEST2_S1
         
         this.stateId = StateId.TEST2_ROOT
     }
@@ -4965,10 +4965,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST2_S1_1 behavior
         // uml: enter / { trace("Enter TEST2_S1_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST2_S1_1.");`
             MainClass.trace("Enter TEST2_S1_1.");
-        } finally {} // end of behavior for TEST2_S1_1
+        } // end of behavior for TEST2_S1_1
         
         // TEST2_S1_1 behavior
         // uml: enter [trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
@@ -4983,10 +4983,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST2_S1_1 behavior
         // uml: exit / { trace("Exit TEST2_S1_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST2_S1_1.");`
             MainClass.trace("Exit TEST2_S1_1.");
-        } finally {} // end of behavior for TEST2_S1_1
+        } // end of behavior for TEST2_S1_1
         
         this.stateId = StateId.TEST2_S1
     }
@@ -5049,10 +5049,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST2_S2 behavior
         // uml: enter / { trace("Enter TEST2_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST2_S2.");`
             MainClass.trace("Enter TEST2_S2.");
-        } finally {} // end of behavior for TEST2_S2
+        } // end of behavior for TEST2_S2
         
         // TEST2_S2 behavior
         // uml: enter [trace_guard("State TEST2_S2: check behavior `en`.", true)]
@@ -5065,10 +5065,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST2_S2 behavior
         // uml: exit / { trace("Exit TEST2_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST2_S2.");`
             MainClass.trace("Exit TEST2_S2.");
-        } finally {} // end of behavior for TEST2_S2
+        } // end of behavior for TEST2_S2
         
         this.stateId = StateId.TEST2_ROOT
     }
@@ -5133,20 +5133,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST3_BEHAVIOR_ORDERING behavior
         // uml: enter / { trace("Enter TEST3_BEHAVIOR_ORDERING."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST3_BEHAVIOR_ORDERING.");`
             MainClass.trace("Enter TEST3_BEHAVIOR_ORDERING.");
-        } finally {} // end of behavior for TEST3_BEHAVIOR_ORDERING
+        } // end of behavior for TEST3_BEHAVIOR_ORDERING
     }
     
     private fun TEST3_BEHAVIOR_ORDERING_exit()
     {
         // TEST3_BEHAVIOR_ORDERING behavior
         // uml: exit / { trace("Exit TEST3_BEHAVIOR_ORDERING."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST3_BEHAVIOR_ORDERING.");`
             MainClass.trace("Exit TEST3_BEHAVIOR_ORDERING.");
-        } finally {} // end of behavior for TEST3_BEHAVIOR_ORDERING
+        } // end of behavior for TEST3_BEHAVIOR_ORDERING
         
         this.stateId = StateId.ROOT
     }
@@ -5162,20 +5162,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST3_ROOT behavior
         // uml: enter / { trace("Enter TEST3_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST3_ROOT.");`
             MainClass.trace("Enter TEST3_ROOT.");
-        } finally {} // end of behavior for TEST3_ROOT
+        } // end of behavior for TEST3_ROOT
     }
     
     private fun TEST3_ROOT_exit()
     {
         // TEST3_ROOT behavior
         // uml: exit / { trace("Exit TEST3_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST3_ROOT.");`
             MainClass.trace("Exit TEST3_ROOT.");
-        } finally {} // end of behavior for TEST3_ROOT
+        } // end of behavior for TEST3_ROOT
         
         this.stateId = StateId.TEST3_BEHAVIOR_ORDERING
     }
@@ -5200,10 +5200,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST3_S1 behavior
         // uml: enter / { trace("Enter TEST3_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST3_S1.");`
             MainClass.trace("Enter TEST3_S1.");
-        } finally {} // end of behavior for TEST3_S1
+        } // end of behavior for TEST3_S1
         
         // TEST3_S1 behavior
         // uml: enter [trace_guard("State TEST3_S1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
@@ -5218,10 +5218,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST3_S1 behavior
         // uml: exit / { trace("Exit TEST3_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST3_S1.");`
             MainClass.trace("Exit TEST3_S1.");
-        } finally {} // end of behavior for TEST3_S1
+        } // end of behavior for TEST3_S1
         
         this.stateId = StateId.TEST3_ROOT
     }
@@ -5275,20 +5275,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST3_S2 behavior
         // uml: enter / { trace("Enter TEST3_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST3_S2.");`
             MainClass.trace("Enter TEST3_S2.");
-        } finally {} // end of behavior for TEST3_S2
+        } // end of behavior for TEST3_S2
     }
     
     private fun TEST3_S2_exit()
     {
         // TEST3_S2 behavior
         // uml: exit / { trace("Exit TEST3_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST3_S2.");`
             MainClass.trace("Exit TEST3_S2.");
-        } finally {} // end of behavior for TEST3_S2
+        } // end of behavior for TEST3_S2
         
         this.stateId = StateId.TEST3_ROOT
     }
@@ -5353,20 +5353,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST3_S3 behavior
         // uml: enter / { trace("Enter TEST3_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST3_S3.");`
             MainClass.trace("Enter TEST3_S3.");
-        } finally {} // end of behavior for TEST3_S3
+        } // end of behavior for TEST3_S3
     }
     
     private fun TEST3_S3_exit()
     {
         // TEST3_S3 behavior
         // uml: exit / { trace("Exit TEST3_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST3_S3.");`
             MainClass.trace("Exit TEST3_S3.");
-        } finally {} // end of behavior for TEST3_S3
+        } // end of behavior for TEST3_S3
         
         this.stateId = StateId.TEST3_ROOT
     }
@@ -5382,20 +5382,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4_PARENT_CHILD_TRANSITIONS behavior
         // uml: enter / { trace("Enter TEST4_PARENT_CHILD_TRANSITIONS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.");`
             MainClass.trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.");
-        } finally {} // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
+        } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
     }
     
     private fun TEST4_PARENT_CHILD_TRANSITIONS_exit()
     {
         // TEST4_PARENT_CHILD_TRANSITIONS behavior
         // uml: exit / { trace("Exit TEST4_PARENT_CHILD_TRANSITIONS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");`
             MainClass.trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");
-        } finally {} // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
+        } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
         
         this.stateId = StateId.ROOT
     }
@@ -5411,10 +5411,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4_B_AND_OTHERS behavior
         // uml: enter / { trace("Enter TEST4_B_AND_OTHERS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4_B_AND_OTHERS.");`
             MainClass.trace("Enter TEST4_B_AND_OTHERS.");
-        } finally {} // end of behavior for TEST4_B_AND_OTHERS
+        } // end of behavior for TEST4_B_AND_OTHERS
         
         // TEST4_B_AND_OTHERS behavior
         // uml: enter [trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output(); }`.", true)] / { clear_dispatch_output(); }
@@ -5429,10 +5429,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST4_B_AND_OTHERS behavior
         // uml: exit / { trace("Exit TEST4_B_AND_OTHERS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4_B_AND_OTHERS.");`
             MainClass.trace("Exit TEST4_B_AND_OTHERS.");
-        } finally {} // end of behavior for TEST4_B_AND_OTHERS
+        } // end of behavior for TEST4_B_AND_OTHERS
         
         this.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
     }
@@ -5448,20 +5448,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4B_LOCAL behavior
         // uml: enter / { trace("Enter TEST4B_LOCAL."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4B_LOCAL.");`
             MainClass.trace("Enter TEST4B_LOCAL.");
-        } finally {} // end of behavior for TEST4B_LOCAL
+        } // end of behavior for TEST4B_LOCAL
     }
     
     private fun TEST4B_LOCAL_exit()
     {
         // TEST4B_LOCAL behavior
         // uml: exit / { trace("Exit TEST4B_LOCAL."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4B_LOCAL.");`
             MainClass.trace("Exit TEST4B_LOCAL.");
-        } finally {} // end of behavior for TEST4B_LOCAL
+        } // end of behavior for TEST4B_LOCAL
         
         this.stateId = StateId.TEST4_B_AND_OTHERS
     }
@@ -5477,20 +5477,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4B_G behavior
         // uml: enter / { trace("Enter TEST4B_G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4B_G.");`
             MainClass.trace("Enter TEST4B_G.");
-        } finally {} // end of behavior for TEST4B_G
+        } // end of behavior for TEST4B_G
     }
     
     private fun TEST4B_G_exit()
     {
         // TEST4B_G behavior
         // uml: exit / { trace("Exit TEST4B_G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4B_G.");`
             MainClass.trace("Exit TEST4B_G.");
-        } finally {} // end of behavior for TEST4B_G
+        } // end of behavior for TEST4B_G
         
         this.stateId = StateId.TEST4B_LOCAL
     }
@@ -5526,20 +5526,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4B_G_1 behavior
         // uml: enter / { trace("Enter TEST4B_G_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4B_G_1.");`
             MainClass.trace("Enter TEST4B_G_1.");
-        } finally {} // end of behavior for TEST4B_G_1
+        } // end of behavior for TEST4B_G_1
     }
     
     private fun TEST4B_G_1_exit()
     {
         // TEST4B_G_1 behavior
         // uml: exit / { trace("Exit TEST4B_G_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4B_G_1.");`
             MainClass.trace("Exit TEST4B_G_1.");
-        } finally {} // end of behavior for TEST4B_G_1
+        } // end of behavior for TEST4B_G_1
         
         this.stateId = StateId.TEST4B_G
     }
@@ -5574,20 +5574,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4C_LOCAL_TO_ALIAS behavior
         // uml: enter / { trace("Enter TEST4C_LOCAL_TO_ALIAS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4C_LOCAL_TO_ALIAS.");`
             MainClass.trace("Enter TEST4C_LOCAL_TO_ALIAS.");
-        } finally {} // end of behavior for TEST4C_LOCAL_TO_ALIAS
+        } // end of behavior for TEST4C_LOCAL_TO_ALIAS
     }
     
     private fun TEST4C_LOCAL_TO_ALIAS_exit()
     {
         // TEST4C_LOCAL_TO_ALIAS behavior
         // uml: exit / { trace("Exit TEST4C_LOCAL_TO_ALIAS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4C_LOCAL_TO_ALIAS.");`
             MainClass.trace("Exit TEST4C_LOCAL_TO_ALIAS.");
-        } finally {} // end of behavior for TEST4C_LOCAL_TO_ALIAS
+        } // end of behavior for TEST4C_LOCAL_TO_ALIAS
         
         this.stateId = StateId.TEST4_B_AND_OTHERS
     }
@@ -5603,20 +5603,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4C_G behavior
         // uml: enter / { trace("Enter TEST4C_G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4C_G.");`
             MainClass.trace("Enter TEST4C_G.");
-        } finally {} // end of behavior for TEST4C_G
+        } // end of behavior for TEST4C_G
     }
     
     private fun TEST4C_G_exit()
     {
         // TEST4C_G behavior
         // uml: exit / { trace("Exit TEST4C_G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4C_G.");`
             MainClass.trace("Exit TEST4C_G.");
-        } finally {} // end of behavior for TEST4C_G
+        } // end of behavior for TEST4C_G
         
         this.stateId = StateId.TEST4C_LOCAL_TO_ALIAS
     }
@@ -5652,20 +5652,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4C_G_1 behavior
         // uml: enter / { trace("Enter TEST4C_G_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4C_G_1.");`
             MainClass.trace("Enter TEST4C_G_1.");
-        } finally {} // end of behavior for TEST4C_G_1
+        } // end of behavior for TEST4C_G_1
     }
     
     private fun TEST4C_G_1_exit()
     {
         // TEST4C_G_1 behavior
         // uml: exit / { trace("Exit TEST4C_G_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4C_G_1.");`
             MainClass.trace("Exit TEST4C_G_1.");
-        } finally {} // end of behavior for TEST4C_G_1
+        } // end of behavior for TEST4C_G_1
         
         this.stateId = StateId.TEST4C_G
     }
@@ -5700,20 +5700,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4D_EXTERNAL behavior
         // uml: enter / { trace("Enter TEST4D_EXTERNAL."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4D_EXTERNAL.");`
             MainClass.trace("Enter TEST4D_EXTERNAL.");
-        } finally {} // end of behavior for TEST4D_EXTERNAL
+        } // end of behavior for TEST4D_EXTERNAL
     }
     
     private fun TEST4D_EXTERNAL_exit()
     {
         // TEST4D_EXTERNAL behavior
         // uml: exit / { trace("Exit TEST4D_EXTERNAL."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4D_EXTERNAL.");`
             MainClass.trace("Exit TEST4D_EXTERNAL.");
-        } finally {} // end of behavior for TEST4D_EXTERNAL
+        } // end of behavior for TEST4D_EXTERNAL
         
         this.stateId = StateId.TEST4_B_AND_OTHERS
     }
@@ -5729,20 +5729,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4D_G behavior
         // uml: enter / { trace("Enter TEST4D_G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4D_G.");`
             MainClass.trace("Enter TEST4D_G.");
-        } finally {} // end of behavior for TEST4D_G
+        } // end of behavior for TEST4D_G
     }
     
     private fun TEST4D_G_exit()
     {
         // TEST4D_G behavior
         // uml: exit / { trace("Exit TEST4D_G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4D_G.");`
             MainClass.trace("Exit TEST4D_G.");
-        } finally {} // end of behavior for TEST4D_G
+        } // end of behavior for TEST4D_G
         
         this.stateId = StateId.TEST4D_EXTERNAL
     }
@@ -5764,7 +5764,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST4D_EXTERNAL.<ChoicePoint>() behavior
             // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1."); } TransitionTo(TEST4D_G_1)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1.");`.
@@ -5776,7 +5776,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
+            } // end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
         } // end of behavior for TEST4D_G
     }
     
@@ -5791,20 +5791,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4D_G_1 behavior
         // uml: enter / { trace("Enter TEST4D_G_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4D_G_1.");`
             MainClass.trace("Enter TEST4D_G_1.");
-        } finally {} // end of behavior for TEST4D_G_1
+        } // end of behavior for TEST4D_G_1
     }
     
     private fun TEST4D_G_1_exit()
     {
         // TEST4D_G_1 behavior
         // uml: exit / { trace("Exit TEST4D_G_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4D_G_1.");`
             MainClass.trace("Exit TEST4D_G_1.");
-        } finally {} // end of behavior for TEST4D_G_1
+        } // end of behavior for TEST4D_G_1
         
         this.stateId = StateId.TEST4D_G
     }
@@ -5826,7 +5826,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST4D_EXTERNAL.<ChoicePoint>() behavior
             // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G."); } TransitionTo(TEST4D_G)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G.");`.
@@ -5837,7 +5837,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
+            } // end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
         } // end of behavior for TEST4D_G_1
     }
     
@@ -5852,20 +5852,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4_DECIDE behavior
         // uml: enter / { trace("Enter TEST4_DECIDE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4_DECIDE.");`
             MainClass.trace("Enter TEST4_DECIDE.");
-        } finally {} // end of behavior for TEST4_DECIDE
+        } // end of behavior for TEST4_DECIDE
     }
     
     private fun TEST4_DECIDE_exit()
     {
         // TEST4_DECIDE behavior
         // uml: exit / { trace("Exit TEST4_DECIDE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4_DECIDE.");`
             MainClass.trace("Exit TEST4_DECIDE.");
-        } finally {} // end of behavior for TEST4_DECIDE
+        } // end of behavior for TEST4_DECIDE
         
         this.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
     }
@@ -5908,7 +5908,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST4B_LOCAL.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G."); } TransitionTo(TEST4B_G)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST4B_LOCAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G.");`.
@@ -5919,7 +5919,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST4B_LOCAL.<InitialState>
+            } // end of behavior for TEST4B_LOCAL.<InitialState>
         } // end of behavior for TEST4_DECIDE
     }
     
@@ -5941,7 +5941,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST4C_LOCAL_TO_ALIAS.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G."); } TransitionTo(TEST4C_G)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST4C_LOCAL_TO_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G.");`.
@@ -5952,7 +5952,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST4C_LOCAL_TO_ALIAS.<InitialState>
+            } // end of behavior for TEST4C_LOCAL_TO_ALIAS.<InitialState>
         } // end of behavior for TEST4_DECIDE
     }
     
@@ -5974,7 +5974,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST4D_EXTERNAL.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G."); } TransitionTo(TEST4D_G)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G.");`.
@@ -5985,7 +5985,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST4D_EXTERNAL.<InitialState>
+            } // end of behavior for TEST4D_EXTERNAL.<InitialState>
         } // end of behavior for TEST4_DECIDE
     }
     
@@ -6000,10 +6000,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4_ROOT behavior
         // uml: enter / { trace("Enter TEST4_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4_ROOT.");`
             MainClass.trace("Enter TEST4_ROOT.");
-        } finally {} // end of behavior for TEST4_ROOT
+        } // end of behavior for TEST4_ROOT
         
         // TEST4_ROOT behavior
         // uml: enter [trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
@@ -6018,10 +6018,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST4_ROOT behavior
         // uml: exit / { trace("Exit TEST4_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4_ROOT.");`
             MainClass.trace("Exit TEST4_ROOT.");
-        } finally {} // end of behavior for TEST4_ROOT
+        } // end of behavior for TEST4_ROOT
         
         this.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
     }
@@ -6099,20 +6099,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4_S1 behavior
         // uml: enter / { trace("Enter TEST4_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4_S1.");`
             MainClass.trace("Enter TEST4_S1.");
-        } finally {} // end of behavior for TEST4_S1
+        } // end of behavior for TEST4_S1
     }
     
     private fun TEST4_S1_exit()
     {
         // TEST4_S1 behavior
         // uml: exit / { trace("Exit TEST4_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4_S1.");`
             MainClass.trace("Exit TEST4_S1.");
-        } finally {} // end of behavior for TEST4_S1
+        } // end of behavior for TEST4_S1
         
         this.stateId = StateId.TEST4_ROOT
     }
@@ -6148,20 +6148,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4_S10 behavior
         // uml: enter / { trace("Enter TEST4_S10."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4_S10.");`
             MainClass.trace("Enter TEST4_S10.");
-        } finally {} // end of behavior for TEST4_S10
+        } // end of behavior for TEST4_S10
     }
     
     private fun TEST4_S10_exit()
     {
         // TEST4_S10 behavior
         // uml: exit / { trace("Exit TEST4_S10."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4_S10.");`
             MainClass.trace("Exit TEST4_S10.");
-        } finally {} // end of behavior for TEST4_S10
+        } // end of behavior for TEST4_S10
         
         this.stateId = StateId.TEST4_ROOT
     }
@@ -6205,20 +6205,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4_S10_1 behavior
         // uml: enter / { trace("Enter TEST4_S10_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4_S10_1.");`
             MainClass.trace("Enter TEST4_S10_1.");
-        } finally {} // end of behavior for TEST4_S10_1
+        } // end of behavior for TEST4_S10_1
     }
     
     private fun TEST4_S10_1_exit()
     {
         // TEST4_S10_1 behavior
         // uml: exit / { trace("Exit TEST4_S10_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4_S10_1.");`
             MainClass.trace("Exit TEST4_S10_1.");
-        } finally {} // end of behavior for TEST4_S10_1
+        } // end of behavior for TEST4_S10_1
         
         this.stateId = StateId.TEST4_S10
     }
@@ -6234,20 +6234,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4_S2 behavior
         // uml: enter / { trace("Enter TEST4_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4_S2.");`
             MainClass.trace("Enter TEST4_S2.");
-        } finally {} // end of behavior for TEST4_S2
+        } // end of behavior for TEST4_S2
     }
     
     private fun TEST4_S2_exit()
     {
         // TEST4_S2 behavior
         // uml: exit / { trace("Exit TEST4_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4_S2.");`
             MainClass.trace("Exit TEST4_S2.");
-        } finally {} // end of behavior for TEST4_S2
+        } // end of behavior for TEST4_S2
         
         this.stateId = StateId.TEST4_ROOT
     }
@@ -6283,20 +6283,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4_S20 behavior
         // uml: enter / { trace("Enter TEST4_S20."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4_S20.");`
             MainClass.trace("Enter TEST4_S20.");
-        } finally {} // end of behavior for TEST4_S20
+        } // end of behavior for TEST4_S20
     }
     
     private fun TEST4_S20_exit()
     {
         // TEST4_S20 behavior
         // uml: exit / { trace("Exit TEST4_S20."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4_S20.");`
             MainClass.trace("Exit TEST4_S20.");
-        } finally {} // end of behavior for TEST4_S20
+        } // end of behavior for TEST4_S20
         
         this.stateId = StateId.TEST4_ROOT
     }
@@ -6334,7 +6334,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST4_S20.<InitialState> behavior
         // uml: / { trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1."); } TransitionTo(TEST4_S20_1)
-        try {
+        run {
             // Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.");`.
@@ -6345,7 +6345,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for TEST4_S20.<InitialState>
+        } // end of behavior for TEST4_S20.<InitialState>
     }
     
     
@@ -6359,20 +6359,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4_S20_1 behavior
         // uml: enter / { trace("Enter TEST4_S20_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4_S20_1.");`
             MainClass.trace("Enter TEST4_S20_1.");
-        } finally {} // end of behavior for TEST4_S20_1
+        } // end of behavior for TEST4_S20_1
     }
     
     private fun TEST4_S20_1_exit()
     {
         // TEST4_S20_1 behavior
         // uml: exit / { trace("Exit TEST4_S20_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4_S20_1.");`
             MainClass.trace("Exit TEST4_S20_1.");
-        } finally {} // end of behavior for TEST4_S20_1
+        } // end of behavior for TEST4_S20_1
         
         this.stateId = StateId.TEST4_S20
     }
@@ -6388,20 +6388,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST4_S3 behavior
         // uml: enter / { trace("Enter TEST4_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST4_S3.");`
             MainClass.trace("Enter TEST4_S3.");
-        } finally {} // end of behavior for TEST4_S3
+        } // end of behavior for TEST4_S3
     }
     
     private fun TEST4_S3_exit()
     {
         // TEST4_S3 behavior
         // uml: exit / { trace("Exit TEST4_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST4_S3.");`
             MainClass.trace("Exit TEST4_S3.");
-        } finally {} // end of behavior for TEST4_S3
+        } // end of behavior for TEST4_S3
         
         this.stateId = StateId.TEST4_ROOT
     }
@@ -6436,20 +6436,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
         // uml: enter / { trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");`
             MainClass.trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
-        } finally {} // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
+        } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     }
     
     private fun TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit()
     {
         // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
         // uml: exit / { trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");`
             MainClass.trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
-        } finally {} // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
+        } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
         
         this.stateId = StateId.ROOT
     }
@@ -6465,10 +6465,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST5_ROOT behavior
         // uml: enter / { trace("Enter TEST5_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST5_ROOT.");`
             MainClass.trace("Enter TEST5_ROOT.");
-        } finally {} // end of behavior for TEST5_ROOT
+        } // end of behavior for TEST5_ROOT
         
         // TEST5_ROOT behavior
         // uml: enter [trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
@@ -6483,10 +6483,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST5_ROOT behavior
         // uml: exit / { trace("Exit TEST5_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST5_ROOT.");`
             MainClass.trace("Exit TEST5_ROOT.");
-        } finally {} // end of behavior for TEST5_ROOT
+        } // end of behavior for TEST5_ROOT
         
         this.stateId = StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     }
@@ -6522,20 +6522,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST5_S1 behavior
         // uml: enter / { trace("Enter TEST5_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST5_S1.");`
             MainClass.trace("Enter TEST5_S1.");
-        } finally {} // end of behavior for TEST5_S1
+        } // end of behavior for TEST5_S1
     }
     
     private fun TEST5_S1_exit()
     {
         // TEST5_S1 behavior
         // uml: exit / { trace("Exit TEST5_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST5_S1.");`
             MainClass.trace("Exit TEST5_S1.");
-        } finally {} // end of behavior for TEST5_S1
+        } // end of behavior for TEST5_S1
         
         this.stateId = StateId.TEST5_ROOT
     }
@@ -6571,20 +6571,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST5_S2 behavior
         // uml: enter / { trace("Enter TEST5_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST5_S2.");`
             MainClass.trace("Enter TEST5_S2.");
-        } finally {} // end of behavior for TEST5_S2
+        } // end of behavior for TEST5_S2
     }
     
     private fun TEST5_S2_exit()
     {
         // TEST5_S2 behavior
         // uml: exit / { trace("Exit TEST5_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST5_S2.");`
             MainClass.trace("Exit TEST5_S2.");
-        } finally {} // end of behavior for TEST5_S2
+        } // end of behavior for TEST5_S2
         
         this.stateId = StateId.TEST5_ROOT
     }
@@ -6620,20 +6620,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST5_S3 behavior
         // uml: enter / { trace("Enter TEST5_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST5_S3.");`
             MainClass.trace("Enter TEST5_S3.");
-        } finally {} // end of behavior for TEST5_S3
+        } // end of behavior for TEST5_S3
     }
     
     private fun TEST5_S3_exit()
     {
         // TEST5_S3 behavior
         // uml: exit / { trace("Exit TEST5_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST5_S3.");`
             MainClass.trace("Exit TEST5_S3.");
-        } finally {} // end of behavior for TEST5_S3
+        } // end of behavior for TEST5_S3
         
         this.stateId = StateId.TEST5_ROOT
     }
@@ -6668,20 +6668,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST6_VARS_EXPANSIONS behavior
         // uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS.");`
             MainClass.trace("Enter TEST6_VARS_EXPANSIONS.");
-        } finally {} // end of behavior for TEST6_VARS_EXPANSIONS
+        } // end of behavior for TEST6_VARS_EXPANSIONS
     }
     
     private fun TEST6_VARS_EXPANSIONS_exit()
     {
         // TEST6_VARS_EXPANSIONS behavior
         // uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS.");`
             MainClass.trace("Exit TEST6_VARS_EXPANSIONS.");
-        } finally {} // end of behavior for TEST6_VARS_EXPANSIONS
+        } // end of behavior for TEST6_VARS_EXPANSIONS
         
         this.stateId = StateId.ROOT
     }
@@ -6697,20 +6697,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST6_ROOT behavior
         // uml: enter / { trace("Enter TEST6_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST6_ROOT.");`
             MainClass.trace("Enter TEST6_ROOT.");
-        } finally {} // end of behavior for TEST6_ROOT
+        } // end of behavior for TEST6_ROOT
     }
     
     private fun TEST6_ROOT_exit()
     {
         // TEST6_ROOT behavior
         // uml: exit / { trace("Exit TEST6_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST6_ROOT.");`
             MainClass.trace("Exit TEST6_ROOT.");
-        } finally {} // end of behavior for TEST6_ROOT
+        } // end of behavior for TEST6_ROOT
         
         this.stateId = StateId.TEST6_VARS_EXPANSIONS
     }
@@ -6726,20 +6726,20 @@ class Spec2Sm : Spec2SmBase()
         
         // AUTO_VAR_TEST behavior
         // uml: enter / { trace("Enter AUTO_VAR_TEST."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter AUTO_VAR_TEST.");`
             MainClass.trace("Enter AUTO_VAR_TEST.");
-        } finally {} // end of behavior for AUTO_VAR_TEST
+        } // end of behavior for AUTO_VAR_TEST
     }
     
     private fun AUTO_VAR_TEST_exit()
     {
         // AUTO_VAR_TEST behavior
         // uml: exit / { trace("Exit AUTO_VAR_TEST."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit AUTO_VAR_TEST.");`
             MainClass.trace("Exit AUTO_VAR_TEST.");
-        } finally {} // end of behavior for AUTO_VAR_TEST
+        } // end of behavior for AUTO_VAR_TEST
         
         this.stateId = StateId.TEST6_ROOT
     }
@@ -6755,10 +6755,10 @@ class Spec2Sm : Spec2SmBase()
         
         // AUTO_VAR_TEST__S1 behavior
         // uml: enter / { trace("Enter AUTO_VAR_TEST__S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter AUTO_VAR_TEST__S1.");`
             MainClass.trace("Enter AUTO_VAR_TEST__S1.");
-        } finally {} // end of behavior for AUTO_VAR_TEST__S1
+        } // end of behavior for AUTO_VAR_TEST__S1
         
         // AUTO_VAR_TEST__S1 behavior
         // uml: enter [trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
@@ -6773,10 +6773,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // AUTO_VAR_TEST__S1 behavior
         // uml: exit / { trace("Exit AUTO_VAR_TEST__S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit AUTO_VAR_TEST__S1.");`
             MainClass.trace("Exit AUTO_VAR_TEST__S1.");
-        } finally {} // end of behavior for AUTO_VAR_TEST__S1
+        } // end of behavior for AUTO_VAR_TEST__S1
         
         this.stateId = StateId.AUTO_VAR_TEST
     }
@@ -6820,20 +6820,20 @@ class Spec2Sm : Spec2SmBase()
         
         // AUTO_VAR_TEST__S2 behavior
         // uml: enter / { trace("Enter AUTO_VAR_TEST__S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter AUTO_VAR_TEST__S2.");`
             MainClass.trace("Enter AUTO_VAR_TEST__S2.");
-        } finally {} // end of behavior for AUTO_VAR_TEST__S2
+        } // end of behavior for AUTO_VAR_TEST__S2
     }
     
     private fun AUTO_VAR_TEST__S2_exit()
     {
         // AUTO_VAR_TEST__S2 behavior
         // uml: exit / { trace("Exit AUTO_VAR_TEST__S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit AUTO_VAR_TEST__S2.");`
             MainClass.trace("Exit AUTO_VAR_TEST__S2.");
-        } finally {} // end of behavior for AUTO_VAR_TEST__S2
+        } // end of behavior for AUTO_VAR_TEST__S2
         
         this.stateId = StateId.AUTO_VAR_TEST
     }
@@ -6849,20 +6849,20 @@ class Spec2Sm : Spec2SmBase()
         
         // META_EXPANSIONS behavior
         // uml: enter / { trace("Enter META_EXPANSIONS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter META_EXPANSIONS.");`
             MainClass.trace("Enter META_EXPANSIONS.");
-        } finally {} // end of behavior for META_EXPANSIONS
+        } // end of behavior for META_EXPANSIONS
     }
     
     private fun META_EXPANSIONS_exit()
     {
         // META_EXPANSIONS behavior
         // uml: exit / { trace("Exit META_EXPANSIONS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit META_EXPANSIONS.");`
             MainClass.trace("Exit META_EXPANSIONS.");
-        } finally {} // end of behavior for META_EXPANSIONS
+        } // end of behavior for META_EXPANSIONS
         
         this.stateId = StateId.TEST6_ROOT
     }
@@ -6871,7 +6871,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // META_EXPANSIONS.<ChoicePoint>(2) behavior
         // uml: / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S5.");\ntrace_meta(); } TransitionTo(S5)
-        try {
+        run {
             // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S5.");\ntrace_meta();`.
@@ -6883,7 +6883,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for META_EXPANSIONS.<ChoicePoint>(2)
+        } // end of behavior for META_EXPANSIONS.<ChoicePoint>(2)
     }
     
     
@@ -6897,10 +6897,10 @@ class Spec2Sm : Spec2SmBase()
         
         // META_EXPANSIONS__S1 behavior
         // uml: enter / { trace("Enter META_EXPANSIONS__S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter META_EXPANSIONS__S1.");`
             MainClass.trace("Enter META_EXPANSIONS__S1.");
-        } finally {} // end of behavior for META_EXPANSIONS__S1
+        } // end of behavior for META_EXPANSIONS__S1
         
         // META_EXPANSIONS__S1 behavior
         // uml: enter [trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
@@ -6915,10 +6915,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // META_EXPANSIONS__S1 behavior
         // uml: exit / { trace("Exit META_EXPANSIONS__S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit META_EXPANSIONS__S1.");`
             MainClass.trace("Exit META_EXPANSIONS__S1.");
-        } finally {} // end of behavior for META_EXPANSIONS__S1
+        } // end of behavior for META_EXPANSIONS__S1
         
         this.stateId = StateId.META_EXPANSIONS
     }
@@ -6955,10 +6955,10 @@ class Spec2Sm : Spec2SmBase()
         
         // META_EXPANSIONS__S2 behavior
         // uml: enter / { trace("Enter META_EXPANSIONS__S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter META_EXPANSIONS__S2.");`
             MainClass.trace("Enter META_EXPANSIONS__S2.");
-        } finally {} // end of behavior for META_EXPANSIONS__S2
+        } // end of behavior for META_EXPANSIONS__S2
         
         // META_EXPANSIONS__S2 behavior
         // uml: enter [trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta(); }`.", true)] / { trace_meta(); }
@@ -6973,10 +6973,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // META_EXPANSIONS__S2 behavior
         // uml: exit / { trace("Exit META_EXPANSIONS__S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit META_EXPANSIONS__S2.");`
             MainClass.trace("Exit META_EXPANSIONS__S2.");
-        } finally {} // end of behavior for META_EXPANSIONS__S2
+        } // end of behavior for META_EXPANSIONS__S2
         
         this.stateId = StateId.META_EXPANSIONS
     }
@@ -6999,7 +6999,7 @@ class Spec2Sm : Spec2SmBase()
             
             // META_EXPANSIONS.<ChoicePoint>(1) behavior
             // uml: / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S3.");\ntrace_meta(); } TransitionTo(S3)
-            try {
+            run {
                 // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S3.");\ntrace_meta();`.
@@ -7011,7 +7011,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for META_EXPANSIONS.<ChoicePoint>(1)
+            } // end of behavior for META_EXPANSIONS.<ChoicePoint>(1)
         } // end of behavior for META_EXPANSIONS__S2
     }
     
@@ -7047,20 +7047,20 @@ class Spec2Sm : Spec2SmBase()
         
         // S3 behavior
         // uml: enter / { trace("Enter S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter S3.");`
             MainClass.trace("Enter S3.");
-        } finally {} // end of behavior for S3
+        } // end of behavior for S3
     }
     
     private fun S3_exit()
     {
         // S3 behavior
         // uml: exit / { trace("Exit S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit S3.");`
             MainClass.trace("Exit S3.");
-        } finally {} // end of behavior for S3
+        } // end of behavior for S3
         
         this.stateId = StateId.META_EXPANSIONS
     }
@@ -7098,20 +7098,20 @@ class Spec2Sm : Spec2SmBase()
         
         // S4 behavior
         // uml: enter / { trace("Enter S4."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter S4.");`
             MainClass.trace("Enter S4.");
-        } finally {} // end of behavior for S4
+        } // end of behavior for S4
     }
     
     private fun S4_exit()
     {
         // S4 behavior
         // uml: exit / { trace("Exit S4."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit S4.");`
             MainClass.trace("Exit S4.");
-        } finally {} // end of behavior for S4
+        } // end of behavior for S4
         
         this.stateId = StateId.META_EXPANSIONS
     }
@@ -7127,20 +7127,20 @@ class Spec2Sm : Spec2SmBase()
         
         // S5 behavior
         // uml: enter / { trace("Enter S5."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter S5.");`
             MainClass.trace("Enter S5.");
-        } finally {} // end of behavior for S5
+        } // end of behavior for S5
     }
     
     private fun S5_exit()
     {
         // S5 behavior
         // uml: exit / { trace("Exit S5."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit S5.");`
             MainClass.trace("Exit S5.");
-        } finally {} // end of behavior for S5
+        } // end of behavior for S5
         
         this.stateId = StateId.META_EXPANSIONS
     }
@@ -7156,20 +7156,20 @@ class Spec2Sm : Spec2SmBase()
         
         // NORMAL behavior
         // uml: enter / { trace("Enter NORMAL."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter NORMAL.");`
             MainClass.trace("Enter NORMAL.");
-        } finally {} // end of behavior for NORMAL
+        } // end of behavior for NORMAL
     }
     
     private fun NORMAL_exit()
     {
         // NORMAL behavior
         // uml: exit / { trace("Exit NORMAL."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit NORMAL.");`
             MainClass.trace("Exit NORMAL.");
-        } finally {} // end of behavior for NORMAL
+        } // end of behavior for NORMAL
         
         this.stateId = StateId.TEST6_ROOT
     }
@@ -7185,10 +7185,10 @@ class Spec2Sm : Spec2SmBase()
         
         // NORMAL__S1 behavior
         // uml: enter / { trace("Enter NORMAL__S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter NORMAL__S1.");`
             MainClass.trace("Enter NORMAL__S1.");
-        } finally {} // end of behavior for NORMAL__S1
+        } // end of behavior for NORMAL__S1
         
         // NORMAL__S1 behavior
         // uml: enter [trace_guard("State NORMAL__S1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
@@ -7203,10 +7203,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // NORMAL__S1 behavior
         // uml: exit / { trace("Exit NORMAL__S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit NORMAL__S1.");`
             MainClass.trace("Exit NORMAL__S1.");
-        } finally {} // end of behavior for NORMAL__S1
+        } // end of behavior for NORMAL__S1
         
         this.stateId = StateId.NORMAL
     }
@@ -7250,20 +7250,20 @@ class Spec2Sm : Spec2SmBase()
         
         // NORMAL__S2 behavior
         // uml: enter / { trace("Enter NORMAL__S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter NORMAL__S2.");`
             MainClass.trace("Enter NORMAL__S2.");
-        } finally {} // end of behavior for NORMAL__S2
+        } // end of behavior for NORMAL__S2
     }
     
     private fun NORMAL__S2_exit()
     {
         // NORMAL__S2 behavior
         // uml: exit / { trace("Exit NORMAL__S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit NORMAL__S2.");`
             MainClass.trace("Exit NORMAL__S2.");
-        } finally {} // end of behavior for NORMAL__S2
+        } // end of behavior for NORMAL__S2
         
         this.stateId = StateId.NORMAL
     }
@@ -7279,20 +7279,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST6_VARS_EXPANSIONS__DECIDE behavior
         // uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS__DECIDE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.");`
             MainClass.trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.");
-        } finally {} // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
+        } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
     }
     
     private fun TEST6_VARS_EXPANSIONS__DECIDE_exit()
     {
         // TEST6_VARS_EXPANSIONS__DECIDE behavior
         // uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS__DECIDE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.");`
             MainClass.trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.");
-        } finally {} // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
+        } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
         
         this.stateId = StateId.TEST6_ROOT
     }
@@ -7314,7 +7314,7 @@ class Spec2Sm : Spec2SmBase()
             
             // NORMAL.<InitialState> behavior
             // uml: / { trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1."); } TransitionTo(NORMAL__S1)
-            try {
+            run {
                 // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1.");`.
@@ -7325,7 +7325,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for NORMAL.<InitialState>
+            } // end of behavior for NORMAL.<InitialState>
         } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
     }
     
@@ -7346,7 +7346,7 @@ class Spec2Sm : Spec2SmBase()
             
             // AUTO_VAR_TEST.<InitialState> behavior
             // uml: / { trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1."); } TransitionTo(AUTO_VAR_TEST__S1)
-            try {
+            run {
                 // Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1.");`.
@@ -7357,7 +7357,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for AUTO_VAR_TEST.<InitialState>
+            } // end of behavior for AUTO_VAR_TEST.<InitialState>
         } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
     }
     
@@ -7378,7 +7378,7 @@ class Spec2Sm : Spec2SmBase()
             
             // META_EXPANSIONS.<InitialState> behavior
             // uml: / { trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1."); } TransitionTo(META_EXPANSIONS__S1)
-            try {
+            run {
                 // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1.");`.
@@ -7389,7 +7389,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for META_EXPANSIONS.<InitialState>
+            } // end of behavior for META_EXPANSIONS.<InitialState>
         } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
     }
     
@@ -7404,20 +7404,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST7_INITIAL_OR_HISTORY behavior
         // uml: enter / { trace("Enter TEST7_INITIAL_OR_HISTORY."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST7_INITIAL_OR_HISTORY.");`
             MainClass.trace("Enter TEST7_INITIAL_OR_HISTORY.");
-        } finally {} // end of behavior for TEST7_INITIAL_OR_HISTORY
+        } // end of behavior for TEST7_INITIAL_OR_HISTORY
     }
     
     private fun TEST7_INITIAL_OR_HISTORY_exit()
     {
         // TEST7_INITIAL_OR_HISTORY behavior
         // uml: exit / { trace("Exit TEST7_INITIAL_OR_HISTORY."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST7_INITIAL_OR_HISTORY.");`
             MainClass.trace("Exit TEST7_INITIAL_OR_HISTORY.");
-        } finally {} // end of behavior for TEST7_INITIAL_OR_HISTORY
+        } // end of behavior for TEST7_INITIAL_OR_HISTORY
         
         this.stateId = StateId.ROOT
     }
@@ -7433,10 +7433,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST7 behavior
         // uml: enter / { trace("Enter TEST7."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST7.");`
             MainClass.trace("Enter TEST7.");
-        } finally {} // end of behavior for TEST7
+        } // end of behavior for TEST7
         
         // TEST7 behavior
         // uml: enter [trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output(); }`.", true)] / { clear_dispatch_output(); }
@@ -7451,10 +7451,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST7 behavior
         // uml: exit / { trace("Exit TEST7."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST7.");`
             MainClass.trace("Exit TEST7.");
-        } finally {} // end of behavior for TEST7
+        } // end of behavior for TEST7
         
         this.stateId = StateId.TEST7_INITIAL_OR_HISTORY
     }
@@ -7470,20 +7470,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY1 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY1.");`
             MainClass.trace("Enter T7__DEEP_HISTORY1.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY1
+        } // end of behavior for T7__DEEP_HISTORY1
     }
     
     private fun T7__DEEP_HISTORY1_exit()
     {
         // T7__DEEP_HISTORY1 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY1.");`
             MainClass.trace("Exit T7__DEEP_HISTORY1.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY1
+        } // end of behavior for T7__DEEP_HISTORY1
         
         this.stateId = StateId.TEST7
     }
@@ -7499,20 +7499,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__SANTAS_WORKSHOP behavior
         // uml: enter / { trace("Enter T7__DH1__SANTAS_WORKSHOP."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__SANTAS_WORKSHOP.");`
             MainClass.trace("Enter T7__DH1__SANTAS_WORKSHOP.");
-        } finally {} // end of behavior for T7__DH1__SANTAS_WORKSHOP
+        } // end of behavior for T7__DH1__SANTAS_WORKSHOP
     }
     
     private fun T7__DH1__SANTAS_WORKSHOP_exit()
     {
         // T7__DH1__SANTAS_WORKSHOP behavior
         // uml: exit / { trace("Exit T7__DH1__SANTAS_WORKSHOP."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__SANTAS_WORKSHOP.");`
             MainClass.trace("Exit T7__DH1__SANTAS_WORKSHOP.");
-        } finally {} // end of behavior for T7__DH1__SANTAS_WORKSHOP
+        } // end of behavior for T7__DH1__SANTAS_WORKSHOP
         
         this.stateId = StateId.T7__DEEP_HISTORY1
     }
@@ -7528,20 +7528,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__ALIENS_DETECTED behavior
         // uml: enter / { trace("Enter T7__DH1__ALIENS_DETECTED."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__ALIENS_DETECTED.");`
             MainClass.trace("Enter T7__DH1__ALIENS_DETECTED.");
-        } finally {} // end of behavior for T7__DH1__ALIENS_DETECTED
+        } // end of behavior for T7__DH1__ALIENS_DETECTED
     }
     
     private fun T7__DH1__ALIENS_DETECTED_exit()
     {
         // T7__DH1__ALIENS_DETECTED behavior
         // uml: exit / { trace("Exit T7__DH1__ALIENS_DETECTED."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__ALIENS_DETECTED.");`
             MainClass.trace("Exit T7__DH1__ALIENS_DETECTED.");
-        } finally {} // end of behavior for T7__DH1__ALIENS_DETECTED
+        } // end of behavior for T7__DH1__ALIENS_DETECTED
         
         this.stateId = StateId.T7__DH1__SANTAS_WORKSHOP
     }
@@ -7578,20 +7578,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__GET_BACKUP behavior
         // uml: enter / { trace("Enter T7__DH1__GET_BACKUP."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__GET_BACKUP.");`
             MainClass.trace("Enter T7__DH1__GET_BACKUP.");
-        } finally {} // end of behavior for T7__DH1__GET_BACKUP
+        } // end of behavior for T7__DH1__GET_BACKUP
     }
     
     private fun T7__DH1__GET_BACKUP_exit()
     {
         // T7__DH1__GET_BACKUP behavior
         // uml: exit / { trace("Exit T7__DH1__GET_BACKUP."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__GET_BACKUP.");`
             MainClass.trace("Exit T7__DH1__GET_BACKUP.");
-        } finally {} // end of behavior for T7__DH1__GET_BACKUP
+        } // end of behavior for T7__DH1__GET_BACKUP
         
         this.stateId = StateId.T7__DH1__ALIENS_DETECTED
     }
@@ -7607,10 +7607,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__HERO behavior
         // uml: enter / { trace("Enter T7__DH1__HERO."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__HERO.");`
             MainClass.trace("Enter T7__DH1__HERO.");
-        } finally {} // end of behavior for T7__DH1__HERO
+        } // end of behavior for T7__DH1__HERO
         
         // T7__DH1__HERO behavior
         // uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }
@@ -7633,10 +7633,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__HERO behavior
         // uml: exit / { trace("Exit T7__DH1__HERO."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__HERO.");`
             MainClass.trace("Exit T7__DH1__HERO.");
-        } finally {} // end of behavior for T7__DH1__HERO
+        } // end of behavior for T7__DH1__HERO
         
         this.stateId = StateId.T7__DH1__GET_BACKUP
     }
@@ -7645,7 +7645,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__HERO.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR."); } TransitionTo(T7__DH1__CALL_THOR)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__DH1__HERO` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR.");`.
@@ -7656,7 +7656,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for T7__DH1__HERO.<InitialState>
+        } // end of behavior for T7__DH1__HERO.<InitialState>
     }
     
     
@@ -7670,20 +7670,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__CALL_BATMAN behavior
         // uml: enter / { trace("Enter T7__DH1__CALL_BATMAN."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__CALL_BATMAN.");`
             MainClass.trace("Enter T7__DH1__CALL_BATMAN.");
-        } finally {} // end of behavior for T7__DH1__CALL_BATMAN
+        } // end of behavior for T7__DH1__CALL_BATMAN
     }
     
     private fun T7__DH1__CALL_BATMAN_exit()
     {
         // T7__DH1__CALL_BATMAN behavior
         // uml: exit / { trace("Exit T7__DH1__CALL_BATMAN."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__CALL_BATMAN.");`
             MainClass.trace("Exit T7__DH1__CALL_BATMAN.");
-        } finally {} // end of behavior for T7__DH1__CALL_BATMAN
+        } // end of behavior for T7__DH1__CALL_BATMAN
         
         this.stateId = StateId.T7__DH1__HERO
     }
@@ -7720,20 +7720,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__CALL_THOR behavior
         // uml: enter / { trace("Enter T7__DH1__CALL_THOR."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__CALL_THOR.");`
             MainClass.trace("Enter T7__DH1__CALL_THOR.");
-        } finally {} // end of behavior for T7__DH1__CALL_THOR
+        } // end of behavior for T7__DH1__CALL_THOR
     }
     
     private fun T7__DH1__CALL_THOR_exit()
     {
         // T7__DH1__CALL_THOR behavior
         // uml: exit / { trace("Exit T7__DH1__CALL_THOR."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__CALL_THOR.");`
             MainClass.trace("Exit T7__DH1__CALL_THOR.");
-        } finally {} // end of behavior for T7__DH1__CALL_THOR
+        } // end of behavior for T7__DH1__CALL_THOR
         
         this.stateId = StateId.T7__DH1__HERO
     }
@@ -7769,20 +7769,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__LOCAL_HELP behavior
         // uml: enter / { trace("Enter T7__DH1__LOCAL_HELP."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__LOCAL_HELP.");`
             MainClass.trace("Enter T7__DH1__LOCAL_HELP.");
-        } finally {} // end of behavior for T7__DH1__LOCAL_HELP
+        } // end of behavior for T7__DH1__LOCAL_HELP
     }
     
     private fun T7__DH1__LOCAL_HELP_exit()
     {
         // T7__DH1__LOCAL_HELP behavior
         // uml: exit / { trace("Exit T7__DH1__LOCAL_HELP."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__LOCAL_HELP.");`
             MainClass.trace("Exit T7__DH1__LOCAL_HELP.");
-        } finally {} // end of behavior for T7__DH1__LOCAL_HELP
+        } // end of behavior for T7__DH1__LOCAL_HELP
         
         this.stateId = StateId.T7__DH1__GET_BACKUP
     }
@@ -7798,10 +7798,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__BUDDY_ELF behavior
         // uml: enter / { trace("Enter T7__DH1__BUDDY_ELF."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__BUDDY_ELF.");`
             MainClass.trace("Enter T7__DH1__BUDDY_ELF.");
-        } finally {} // end of behavior for T7__DH1__BUDDY_ELF
+        } // end of behavior for T7__DH1__BUDDY_ELF
         
         // T7__DH1__BUDDY_ELF behavior
         // uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }
@@ -7824,10 +7824,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__BUDDY_ELF behavior
         // uml: exit / { trace("Exit T7__DH1__BUDDY_ELF."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__BUDDY_ELF.");`
             MainClass.trace("Exit T7__DH1__BUDDY_ELF.");
-        } finally {} // end of behavior for T7__DH1__BUDDY_ELF
+        } // end of behavior for T7__DH1__BUDDY_ELF
         
         this.stateId = StateId.T7__DH1__LOCAL_HELP
     }
@@ -7863,10 +7863,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__POLAR_BEARS behavior
         // uml: enter / { trace("Enter T7__DH1__POLAR_BEARS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__POLAR_BEARS.");`
             MainClass.trace("Enter T7__DH1__POLAR_BEARS.");
-        } finally {} // end of behavior for T7__DH1__POLAR_BEARS
+        } // end of behavior for T7__DH1__POLAR_BEARS
         
         // T7__DH1__POLAR_BEARS behavior
         // uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }
@@ -7889,10 +7889,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__POLAR_BEARS behavior
         // uml: exit / { trace("Exit T7__DH1__POLAR_BEARS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__POLAR_BEARS.");`
             MainClass.trace("Exit T7__DH1__POLAR_BEARS.");
-        } finally {} // end of behavior for T7__DH1__POLAR_BEARS
+        } // end of behavior for T7__DH1__POLAR_BEARS
         
         this.stateId = StateId.T7__DH1__LOCAL_HELP
     }
@@ -7908,10 +7908,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__GIVE_COOKIES behavior
         // uml: enter / { trace("Enter T7__DH1__GIVE_COOKIES."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__GIVE_COOKIES.");`
             MainClass.trace("Enter T7__DH1__GIVE_COOKIES.");
-        } finally {} // end of behavior for T7__DH1__GIVE_COOKIES
+        } // end of behavior for T7__DH1__GIVE_COOKIES
         
         // T7__DH1__GIVE_COOKIES behavior
         // uml: enter [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }
@@ -7926,10 +7926,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__GIVE_COOKIES behavior
         // uml: exit / { trace("Exit T7__DH1__GIVE_COOKIES."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__GIVE_COOKIES.");`
             MainClass.trace("Exit T7__DH1__GIVE_COOKIES.");
-        } finally {} // end of behavior for T7__DH1__GIVE_COOKIES
+        } // end of behavior for T7__DH1__GIVE_COOKIES
         
         this.stateId = StateId.T7__DH1__ALIENS_DETECTED
     }
@@ -7967,10 +7967,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__SNOWBALL_FIGHT behavior
         // uml: enter / { trace("Enter T7__DH1__SNOWBALL_FIGHT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__SNOWBALL_FIGHT.");`
             MainClass.trace("Enter T7__DH1__SNOWBALL_FIGHT.");
-        } finally {} // end of behavior for T7__DH1__SNOWBALL_FIGHT
+        } // end of behavior for T7__DH1__SNOWBALL_FIGHT
         
         // T7__DH1__SNOWBALL_FIGHT behavior
         // uml: enter [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }
@@ -7985,10 +7985,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__SNOWBALL_FIGHT behavior
         // uml: exit / { trace("Exit T7__DH1__SNOWBALL_FIGHT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__SNOWBALL_FIGHT.");`
             MainClass.trace("Exit T7__DH1__SNOWBALL_FIGHT.");
-        } finally {} // end of behavior for T7__DH1__SNOWBALL_FIGHT
+        } // end of behavior for T7__DH1__SNOWBALL_FIGHT
         
         this.stateId = StateId.T7__DH1__ALIENS_DETECTED
     }
@@ -8024,20 +8024,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__BUILD behavior
         // uml: enter / { trace("Enter T7__DH1__BUILD."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__BUILD.");`
             MainClass.trace("Enter T7__DH1__BUILD.");
-        } finally {} // end of behavior for T7__DH1__BUILD
+        } // end of behavior for T7__DH1__BUILD
     }
     
     private fun T7__DH1__BUILD_exit()
     {
         // T7__DH1__BUILD behavior
         // uml: exit / { trace("Exit T7__DH1__BUILD."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__BUILD.");`
             MainClass.trace("Exit T7__DH1__BUILD.");
-        } finally {} // end of behavior for T7__DH1__BUILD
+        } // end of behavior for T7__DH1__BUILD
         
         this.stateId = StateId.T7__DH1__SANTAS_WORKSHOP
     }
@@ -8059,7 +8059,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__DH1__ALIENS_DETECTED.<InitialState> behavior
             // uml: / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>."); } TransitionTo(T7__DH1__ALIENS_DETECTED.<History>)
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>.");`.
@@ -8140,7 +8140,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // T7__DH1__ALIENS_DETECTED.<History> behavior
                 // uml: else / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT."); } TransitionTo(T7__DH1__SNOWBALL_FIGHT)
-                try {
+                run {
                     // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT.");`.
@@ -8151,8 +8151,8 @@ class Spec2Sm : Spec2SmBase()
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } finally {} // end of behavior for T7__DH1__ALIENS_DETECTED.<History>
-            } finally {} // end of behavior for T7__DH1__ALIENS_DETECTED.<InitialState>
+                } // end of behavior for T7__DH1__ALIENS_DETECTED.<History>
+            } // end of behavior for T7__DH1__ALIENS_DETECTED.<InitialState>
         } // end of behavior for T7__DH1__BUILD
     }
     
@@ -8226,7 +8226,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__DH1__GET_BACKUP.<History> behavior
             // uml: else / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>()."); } TransitionTo(T7__DH1__GET_BACKUP.<ChoicePoint>())
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>().");`.
@@ -8237,7 +8237,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // T7__DH1__GET_BACKUP.<ChoicePoint>() behavior
                 // uml: / { trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
-                try {
+                run {
                     // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO.");`.
@@ -8249,8 +8249,8 @@ class Spec2Sm : Spec2SmBase()
                     // Finish transition by calling pseudo state transition function.
                     T7__DH1__HERO_InitialState_transition()
                     return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } finally {} // end of behavior for T7__DH1__GET_BACKUP.<ChoicePoint>()
-            } finally {} // end of behavior for T7__DH1__GET_BACKUP.<History>
+                } // end of behavior for T7__DH1__GET_BACKUP.<ChoicePoint>()
+            } // end of behavior for T7__DH1__GET_BACKUP.<History>
         } // end of behavior for T7__DH1__BUILD
     }
     
@@ -8258,7 +8258,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__BUILD.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>."); } TransitionTo(T7__DH1__BUILD.<History>)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>.");`.
@@ -8425,7 +8425,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__DH1__BUILD.<History> behavior
             // uml: else / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY."); } TransitionTo(T7__DH1__TOY)
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY.");`.
@@ -8437,8 +8437,8 @@ class Spec2Sm : Spec2SmBase()
                 // Finish transition by calling pseudo state transition function.
                 T7__DH1__TOY_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } finally {} // end of behavior for T7__DH1__BUILD.<History>
-        } finally {} // end of behavior for T7__DH1__BUILD.<InitialState>
+            } // end of behavior for T7__DH1__BUILD.<History>
+        } // end of behavior for T7__DH1__BUILD.<InitialState>
     }
     
     
@@ -8452,10 +8452,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__TOOL behavior
         // uml: enter / { trace("Enter T7__DH1__TOOL."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__TOOL.");`
             MainClass.trace("Enter T7__DH1__TOOL.");
-        } finally {} // end of behavior for T7__DH1__TOOL
+        } // end of behavior for T7__DH1__TOOL
         
         // T7__DH1__TOOL behavior
         // uml: enter [trace_guard("State T7__DH1__TOOL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }
@@ -8470,10 +8470,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__TOOL behavior
         // uml: exit / { trace("Exit T7__DH1__TOOL."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__TOOL.");`
             MainClass.trace("Exit T7__DH1__TOOL.");
-        } finally {} // end of behavior for T7__DH1__TOOL
+        } // end of behavior for T7__DH1__TOOL
         
         this.stateId = StateId.T7__DH1__BUILD
     }
@@ -8503,7 +8503,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__TOOL.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL."); } TransitionTo(T7__DH1__IMPACT_DRILL)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__DH1__TOOL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL.");`.
@@ -8514,7 +8514,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for T7__DH1__TOOL.<InitialState>
+        } // end of behavior for T7__DH1__TOOL.<InitialState>
     }
     
     
@@ -8528,10 +8528,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__CIRCULAR_SAW behavior
         // uml: enter / { trace("Enter T7__DH1__CIRCULAR_SAW."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__CIRCULAR_SAW.");`
             MainClass.trace("Enter T7__DH1__CIRCULAR_SAW.");
-        } finally {} // end of behavior for T7__DH1__CIRCULAR_SAW
+        } // end of behavior for T7__DH1__CIRCULAR_SAW
         
         // T7__DH1__CIRCULAR_SAW behavior
         // uml: enter [trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }
@@ -8546,10 +8546,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__CIRCULAR_SAW behavior
         // uml: exit / { trace("Exit T7__DH1__CIRCULAR_SAW."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__CIRCULAR_SAW.");`
             MainClass.trace("Exit T7__DH1__CIRCULAR_SAW.");
-        } finally {} // end of behavior for T7__DH1__CIRCULAR_SAW
+        } // end of behavior for T7__DH1__CIRCULAR_SAW
         
         this.stateId = StateId.T7__DH1__TOOL
     }
@@ -8565,10 +8565,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__IMPACT_DRILL behavior
         // uml: enter / { trace("Enter T7__DH1__IMPACT_DRILL."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__IMPACT_DRILL.");`
             MainClass.trace("Enter T7__DH1__IMPACT_DRILL.");
-        } finally {} // end of behavior for T7__DH1__IMPACT_DRILL
+        } // end of behavior for T7__DH1__IMPACT_DRILL
         
         // T7__DH1__IMPACT_DRILL behavior
         // uml: enter [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }
@@ -8583,10 +8583,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__IMPACT_DRILL behavior
         // uml: exit / { trace("Exit T7__DH1__IMPACT_DRILL."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__IMPACT_DRILL.");`
             MainClass.trace("Exit T7__DH1__IMPACT_DRILL.");
-        } finally {} // end of behavior for T7__DH1__IMPACT_DRILL
+        } // end of behavior for T7__DH1__IMPACT_DRILL
         
         this.stateId = StateId.T7__DH1__TOOL
     }
@@ -8622,10 +8622,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__TOY behavior
         // uml: enter / { trace("Enter T7__DH1__TOY."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__TOY.");`
             MainClass.trace("Enter T7__DH1__TOY.");
-        } finally {} // end of behavior for T7__DH1__TOY
+        } // end of behavior for T7__DH1__TOY
         
         // T7__DH1__TOY behavior
         // uml: enter [trace_guard("State T7__DH1__TOY: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }
@@ -8640,10 +8640,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__TOY behavior
         // uml: exit / { trace("Exit T7__DH1__TOY."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__TOY.");`
             MainClass.trace("Exit T7__DH1__TOY.");
-        } finally {} // end of behavior for T7__DH1__TOY
+        } // end of behavior for T7__DH1__TOY
         
         this.stateId = StateId.T7__DH1__BUILD
     }
@@ -8673,7 +8673,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__TOY.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR."); } TransitionTo(T7__DH1__RACE_CAR)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR.");`.
@@ -8684,7 +8684,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for T7__DH1__TOY.<InitialState>
+        } // end of behavior for T7__DH1__TOY.<InitialState>
     }
     
     
@@ -8698,10 +8698,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__GLOW_WORM behavior
         // uml: enter / { trace("Enter T7__DH1__GLOW_WORM."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__GLOW_WORM.");`
             MainClass.trace("Enter T7__DH1__GLOW_WORM.");
-        } finally {} // end of behavior for T7__DH1__GLOW_WORM
+        } // end of behavior for T7__DH1__GLOW_WORM
         
         // T7__DH1__GLOW_WORM behavior
         // uml: enter [trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }
@@ -8716,10 +8716,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__GLOW_WORM behavior
         // uml: exit / { trace("Exit T7__DH1__GLOW_WORM."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__GLOW_WORM.");`
             MainClass.trace("Exit T7__DH1__GLOW_WORM.");
-        } finally {} // end of behavior for T7__DH1__GLOW_WORM
+        } // end of behavior for T7__DH1__GLOW_WORM
         
         this.stateId = StateId.T7__DH1__TOY
     }
@@ -8764,10 +8764,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__RACE_CAR behavior
         // uml: enter / { trace("Enter T7__DH1__RACE_CAR."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__RACE_CAR.");`
             MainClass.trace("Enter T7__DH1__RACE_CAR.");
-        } finally {} // end of behavior for T7__DH1__RACE_CAR
+        } // end of behavior for T7__DH1__RACE_CAR
         
         // T7__DH1__RACE_CAR behavior
         // uml: enter [trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }
@@ -8782,10 +8782,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__RACE_CAR behavior
         // uml: exit / { trace("Exit T7__DH1__RACE_CAR."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__RACE_CAR.");`
             MainClass.trace("Exit T7__DH1__RACE_CAR.");
-        } finally {} // end of behavior for T7__DH1__RACE_CAR
+        } // end of behavior for T7__DH1__RACE_CAR
         
         this.stateId = StateId.T7__DH1__TOY
     }
@@ -8829,10 +8829,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__ROBOT behavior
         // uml: enter / { trace("Enter T7__DH1__ROBOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__ROBOT.");`
             MainClass.trace("Enter T7__DH1__ROBOT.");
-        } finally {} // end of behavior for T7__DH1__ROBOT
+        } // end of behavior for T7__DH1__ROBOT
         
         // T7__DH1__ROBOT behavior
         // uml: enter [trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }
@@ -8847,10 +8847,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__ROBOT behavior
         // uml: exit / { trace("Exit T7__DH1__ROBOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__ROBOT.");`
             MainClass.trace("Exit T7__DH1__ROBOT.");
-        } finally {} // end of behavior for T7__DH1__ROBOT
+        } // end of behavior for T7__DH1__ROBOT
         
         this.stateId = StateId.T7__DH1__TOY
     }
@@ -8859,7 +8859,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__ROBOT.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT."); } TransitionTo(T7__DH1__BATTLEBOT)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__DH1__ROBOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT.");`.
@@ -8870,7 +8870,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for T7__DH1__ROBOT.<InitialState>
+        } // end of behavior for T7__DH1__ROBOT.<InitialState>
     }
     
     
@@ -8884,10 +8884,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__BATTLEBOT behavior
         // uml: enter / { trace("Enter T7__DH1__BATTLEBOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__BATTLEBOT.");`
             MainClass.trace("Enter T7__DH1__BATTLEBOT.");
-        } finally {} // end of behavior for T7__DH1__BATTLEBOT
+        } // end of behavior for T7__DH1__BATTLEBOT
         
         // T7__DH1__BATTLEBOT behavior
         // uml: enter [trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }
@@ -8902,10 +8902,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__BATTLEBOT behavior
         // uml: exit / { trace("Exit T7__DH1__BATTLEBOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__BATTLEBOT.");`
             MainClass.trace("Exit T7__DH1__BATTLEBOT.");
-        } finally {} // end of behavior for T7__DH1__BATTLEBOT
+        } // end of behavior for T7__DH1__BATTLEBOT
         
         this.stateId = StateId.T7__DH1__ROBOT
     }
@@ -8949,10 +8949,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__WALL_E behavior
         // uml: enter / { trace("Enter T7__DH1__WALL_E."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__WALL_E.");`
             MainClass.trace("Enter T7__DH1__WALL_E.");
-        } finally {} // end of behavior for T7__DH1__WALL_E
+        } // end of behavior for T7__DH1__WALL_E
         
         // T7__DH1__WALL_E behavior
         // uml: enter [trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }
@@ -8967,10 +8967,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__WALL_E behavior
         // uml: exit / { trace("Exit T7__DH1__WALL_E."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__WALL_E.");`
             MainClass.trace("Exit T7__DH1__WALL_E.");
-        } finally {} // end of behavior for T7__DH1__WALL_E
+        } // end of behavior for T7__DH1__WALL_E
         
         this.stateId = StateId.T7__DH1__ROBOT
     }
@@ -8986,10 +8986,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DH1__TEDDY_BEAR behavior
         // uml: enter / { trace("Enter T7__DH1__TEDDY_BEAR."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DH1__TEDDY_BEAR.");`
             MainClass.trace("Enter T7__DH1__TEDDY_BEAR.");
-        } finally {} // end of behavior for T7__DH1__TEDDY_BEAR
+        } // end of behavior for T7__DH1__TEDDY_BEAR
         
         // T7__DH1__TEDDY_BEAR behavior
         // uml: enter [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }
@@ -9004,10 +9004,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DH1__TEDDY_BEAR behavior
         // uml: exit / { trace("Exit T7__DH1__TEDDY_BEAR."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DH1__TEDDY_BEAR.");`
             MainClass.trace("Exit T7__DH1__TEDDY_BEAR.");
-        } finally {} // end of behavior for T7__DH1__TEDDY_BEAR
+        } // end of behavior for T7__DH1__TEDDY_BEAR
         
         this.stateId = StateId.T7__DH1__TOY
     }
@@ -9051,20 +9051,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY2 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2.");`
             MainClass.trace("Enter T7__DEEP_HISTORY2.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2
+        } // end of behavior for T7__DEEP_HISTORY2
     }
     
     private fun T7__DEEP_HISTORY2_exit()
     {
         // T7__DEEP_HISTORY2 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2.");`
             MainClass.trace("Exit T7__DEEP_HISTORY2.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2
+        } // end of behavior for T7__DEEP_HISTORY2
         
         this.stateId = StateId.TEST7
     }
@@ -9080,20 +9080,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY2__T7__state_0 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_0."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_0.");`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_0.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_0
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_0
     }
     
     private fun T7__DEEP_HISTORY2__T7__STATE_0_exit()
     {
         // T7__DEEP_HISTORY2__T7__state_0 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_0."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_0.");`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_0.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_0
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_0
         
         this.stateId = StateId.T7__DEEP_HISTORY2
     }
@@ -9122,7 +9122,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DEEP_HISTORY2__T7__state_0.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_0.<History>)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>.");`.
@@ -9184,7 +9184,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             // uml: else / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_1)
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1.");`.
@@ -9195,8 +9195,8 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<InitialState>
+            } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<InitialState>
     }
     
     
@@ -9210,10 +9210,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY2__T7__state_1 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_1.");`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_1.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_1
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
         
         // T7__DEEP_HISTORY2__T7__state_1 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }
@@ -9228,10 +9228,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DEEP_HISTORY2__T7__state_1 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_1.");`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_1.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_1
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
         
         this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0
     }
@@ -9268,10 +9268,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY2__T7__state_2 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_2.");`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_2.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_2
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
         
         // T7__DEEP_HISTORY2__T7__state_2 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }
@@ -9286,10 +9286,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DEEP_HISTORY2__T7__state_2 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_2.");`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_2.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_2
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
         
         this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0
     }
@@ -9318,7 +9318,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DEEP_HISTORY2__T7__state_2.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6.");`.
@@ -9329,7 +9329,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_2.<InitialState>
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_2.<InitialState>
     }
     
     
@@ -9343,10 +9343,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY2__T7__state_6 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_6."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_6.");`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_6.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_6
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
         
         // T7__DEEP_HISTORY2__T7__state_6 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }
@@ -9361,10 +9361,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DEEP_HISTORY2__T7__state_6 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_6."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_6.");`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_6.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_6
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
         
         this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2
     }
@@ -9400,10 +9400,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY2__T7__state_9 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_9."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_9.");`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_9.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_9
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
         
         // T7__DEEP_HISTORY2__T7__state_9 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }
@@ -9418,10 +9418,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DEEP_HISTORY2__T7__state_9 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_9."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_9.");`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_9.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_9
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
         
         this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2
     }
@@ -9437,20 +9437,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY2__T7__state_3 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_3.");`
             MainClass.trace("Enter T7__DEEP_HISTORY2__T7__state_3.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_3
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_3
     }
     
     private fun T7__DEEP_HISTORY2__T7__STATE_3_exit()
     {
         // T7__DEEP_HISTORY2__T7__state_3 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_3.");`
             MainClass.trace("Exit T7__DEEP_HISTORY2__T7__state_3.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY2__T7__state_3
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_3
         
         this.stateId = StateId.T7__DEEP_HISTORY2
     }
@@ -9487,20 +9487,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY3 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3.");`
             MainClass.trace("Enter T7__DEEP_HISTORY3.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3
+        } // end of behavior for T7__DEEP_HISTORY3
     }
     
     private fun T7__DEEP_HISTORY3_exit()
     {
         // T7__DEEP_HISTORY3 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3.");`
             MainClass.trace("Exit T7__DEEP_HISTORY3.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3
+        } // end of behavior for T7__DEEP_HISTORY3
         
         this.stateId = StateId.TEST7
     }
@@ -9516,20 +9516,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY3__T7__state_0 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_0."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_0.");`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_0.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_0
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_0
     }
     
     private fun T7__DEEP_HISTORY3__T7__STATE_0_exit()
     {
         // T7__DEEP_HISTORY3__T7__state_0 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_0."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_0.");`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_0.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_0
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_0
         
         this.stateId = StateId.T7__DEEP_HISTORY3
     }
@@ -9558,7 +9558,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DEEP_HISTORY3__T7__state_0.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_0.<History>)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>.");`.
@@ -9586,7 +9586,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__DEEP_HISTORY3__T7__state_0.<History> behavior
             // uml: else / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_1)
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1.");`.
@@ -9597,8 +9597,8 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<History>
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<InitialState>
+            } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<History>
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<InitialState>
     }
     
     
@@ -9612,10 +9612,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY3__T7__state_1 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_1.");`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_1.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_1
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
         
         // T7__DEEP_HISTORY3__T7__state_1 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }
@@ -9630,10 +9630,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DEEP_HISTORY3__T7__state_1 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_1.");`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_1.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_1
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
         
         this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0
     }
@@ -9670,10 +9670,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY3__T7__state_2 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_2.");`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_2.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_2
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
         
         // T7__DEEP_HISTORY3__T7__state_2 behavior
         // uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }
@@ -9688,10 +9688,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DEEP_HISTORY3__T7__state_2 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_2.");`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_2.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_2
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
         
         this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0
     }
@@ -9720,7 +9720,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__DEEP_HISTORY3__T7__state_2.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_6)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6.");`.
@@ -9731,7 +9731,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_2.<InitialState>
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_2.<InitialState>
     }
     
     
@@ -9745,20 +9745,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY3__T7__state_6 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_6."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_6.");`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_6.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_6
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_6
     }
     
     private fun T7__DEEP_HISTORY3__T7__STATE_6_exit()
     {
         // T7__DEEP_HISTORY3__T7__state_6 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_6."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_6.");`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_6.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_6
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_6
         
         this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2
     }
@@ -9794,20 +9794,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY3__T7__state_9 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_9."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_9.");`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_9.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_9
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_9
     }
     
     private fun T7__DEEP_HISTORY3__T7__STATE_9_exit()
     {
         // T7__DEEP_HISTORY3__T7__state_9 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_9."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_9.");`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_9.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_9
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_9
         
         this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2
     }
@@ -9823,20 +9823,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__DEEP_HISTORY3__T7__state_3 behavior
         // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_3.");`
             MainClass.trace("Enter T7__DEEP_HISTORY3__T7__state_3.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_3
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_3
     }
     
     private fun T7__DEEP_HISTORY3__T7__STATE_3_exit()
     {
         // T7__DEEP_HISTORY3__T7__state_3 behavior
         // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_3.");`
             MainClass.trace("Exit T7__DEEP_HISTORY3__T7__state_3.");
-        } finally {} // end of behavior for T7__DEEP_HISTORY3__T7__state_3
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_3
         
         this.stateId = StateId.T7__DEEP_HISTORY3
     }
@@ -9873,20 +9873,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__HISTORY1 behavior
         // uml: enter / { trace("Enter T7__HISTORY1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__HISTORY1.");`
             MainClass.trace("Enter T7__HISTORY1.");
-        } finally {} // end of behavior for T7__HISTORY1
+        } // end of behavior for T7__HISTORY1
     }
     
     private fun T7__HISTORY1_exit()
     {
         // T7__HISTORY1 behavior
         // uml: exit / { trace("Exit T7__HISTORY1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__HISTORY1.");`
             MainClass.trace("Exit T7__HISTORY1.");
-        } finally {} // end of behavior for T7__HISTORY1
+        } // end of behavior for T7__HISTORY1
         
         this.stateId = StateId.TEST7
     }
@@ -9902,20 +9902,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__H1__OFF behavior
         // uml: enter / { trace("Enter T7__H1__OFF."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__H1__OFF.");`
             MainClass.trace("Enter T7__H1__OFF.");
-        } finally {} // end of behavior for T7__H1__OFF
+        } // end of behavior for T7__H1__OFF
     }
     
     private fun T7__H1__OFF_exit()
     {
         // T7__H1__OFF behavior
         // uml: exit / { trace("Exit T7__H1__OFF."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__H1__OFF.");`
             MainClass.trace("Exit T7__H1__OFF.");
-        } finally {} // end of behavior for T7__H1__OFF
+        } // end of behavior for T7__H1__OFF
         
         this.stateId = StateId.T7__HISTORY1
     }
@@ -9986,7 +9986,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__H1__OFF.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>."); } TransitionTo(T7__H1__OFF.<History>)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>.");`.
@@ -10029,7 +10029,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__H1__OFF.<History> behavior
             // uml: else / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1."); } TransitionTo(T7__H1__OFF1)
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1.");`.
@@ -10040,8 +10040,8 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for T7__H1__OFF.<History>
-        } finally {} // end of behavior for T7__H1__OFF.<InitialState>
+            } // end of behavior for T7__H1__OFF.<History>
+        } // end of behavior for T7__H1__OFF.<InitialState>
     }
     
     
@@ -10055,10 +10055,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__H1__OFF1 behavior
         // uml: enter / { trace("Enter T7__H1__OFF1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__H1__OFF1.");`
             MainClass.trace("Enter T7__H1__OFF1.");
-        } finally {} // end of behavior for T7__H1__OFF1
+        } // end of behavior for T7__H1__OFF1
         
         // T7__H1__OFF1 behavior
         // uml: enter [trace_guard("State T7__H1__OFF1: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }
@@ -10073,10 +10073,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__H1__OFF1 behavior
         // uml: exit / { trace("Exit T7__H1__OFF1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__H1__OFF1.");`
             MainClass.trace("Exit T7__H1__OFF1.");
-        } finally {} // end of behavior for T7__H1__OFF1
+        } // end of behavior for T7__H1__OFF1
         
         this.stateId = StateId.T7__H1__OFF
     }
@@ -10112,10 +10112,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__H1__OFF2 behavior
         // uml: enter / { trace("Enter T7__H1__OFF2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__H1__OFF2.");`
             MainClass.trace("Enter T7__H1__OFF2.");
-        } finally {} // end of behavior for T7__H1__OFF2
+        } // end of behavior for T7__H1__OFF2
         
         // T7__H1__OFF2 behavior
         // uml: enter [trace_guard("State T7__H1__OFF2: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }
@@ -10130,10 +10130,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__H1__OFF2 behavior
         // uml: exit / { trace("Exit T7__H1__OFF2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__H1__OFF2.");`
             MainClass.trace("Exit T7__H1__OFF2.");
-        } finally {} // end of behavior for T7__H1__OFF2
+        } // end of behavior for T7__H1__OFF2
         
         this.stateId = StateId.T7__H1__OFF
     }
@@ -10169,10 +10169,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__H1__OFF3 behavior
         // uml: enter / { trace("Enter T7__H1__OFF3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__H1__OFF3.");`
             MainClass.trace("Enter T7__H1__OFF3.");
-        } finally {} // end of behavior for T7__H1__OFF3
+        } // end of behavior for T7__H1__OFF3
         
         // T7__H1__OFF3 behavior
         // uml: enter [trace_guard("State T7__H1__OFF3: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }
@@ -10187,10 +10187,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__H1__OFF3 behavior
         // uml: exit / { trace("Exit T7__H1__OFF3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__H1__OFF3.");`
             MainClass.trace("Exit T7__H1__OFF3.");
-        } finally {} // end of behavior for T7__H1__OFF3
+        } // end of behavior for T7__H1__OFF3
         
         this.stateId = StateId.T7__H1__OFF
     }
@@ -10206,20 +10206,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__H1__ON behavior
         // uml: enter / { trace("Enter T7__H1__ON."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__H1__ON.");`
             MainClass.trace("Enter T7__H1__ON.");
-        } finally {} // end of behavior for T7__H1__ON
+        } // end of behavior for T7__H1__ON
     }
     
     private fun T7__H1__ON_exit()
     {
         // T7__H1__ON behavior
         // uml: exit / { trace("Exit T7__H1__ON."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__H1__ON.");`
             MainClass.trace("Exit T7__H1__ON.");
-        } finally {} // end of behavior for T7__H1__ON
+        } // end of behavior for T7__H1__ON
         
         this.stateId = StateId.T7__HISTORY1
     }
@@ -10249,7 +10249,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__H1__ON.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>."); } TransitionTo(T7__H1__ON.<History>)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>.");`.
@@ -10292,7 +10292,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__H1__ON.<History> behavior
             // uml: else / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1."); } TransitionTo(T7__H1__ON1)
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1.");`.
@@ -10303,8 +10303,8 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for T7__H1__ON.<History>
-        } finally {} // end of behavior for T7__H1__ON.<InitialState>
+            } // end of behavior for T7__H1__ON.<History>
+        } // end of behavior for T7__H1__ON.<InitialState>
     }
     
     
@@ -10318,10 +10318,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__H1__ON1 behavior
         // uml: enter / { trace("Enter T7__H1__ON1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__H1__ON1.");`
             MainClass.trace("Enter T7__H1__ON1.");
-        } finally {} // end of behavior for T7__H1__ON1
+        } // end of behavior for T7__H1__ON1
         
         // T7__H1__ON1 behavior
         // uml: enter [trace_guard("State T7__H1__ON1: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }
@@ -10336,10 +10336,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__H1__ON1 behavior
         // uml: exit / { trace("Exit T7__H1__ON1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__H1__ON1.");`
             MainClass.trace("Exit T7__H1__ON1.");
-        } finally {} // end of behavior for T7__H1__ON1
+        } // end of behavior for T7__H1__ON1
         
         this.stateId = StateId.T7__H1__ON
     }
@@ -10375,10 +10375,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__H1__ON2 behavior
         // uml: enter / { trace("Enter T7__H1__ON2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__H1__ON2.");`
             MainClass.trace("Enter T7__H1__ON2.");
-        } finally {} // end of behavior for T7__H1__ON2
+        } // end of behavior for T7__H1__ON2
         
         // T7__H1__ON2 behavior
         // uml: enter [trace_guard("State T7__H1__ON2: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }
@@ -10393,10 +10393,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__H1__ON2 behavior
         // uml: exit / { trace("Exit T7__H1__ON2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__H1__ON2.");`
             MainClass.trace("Exit T7__H1__ON2.");
-        } finally {} // end of behavior for T7__H1__ON2
+        } // end of behavior for T7__H1__ON2
         
         this.stateId = StateId.T7__H1__ON
     }
@@ -10432,10 +10432,10 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__H1__ON3 behavior
         // uml: enter / { trace("Enter T7__H1__ON3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__H1__ON3.");`
             MainClass.trace("Enter T7__H1__ON3.");
-        } finally {} // end of behavior for T7__H1__ON3
+        } // end of behavior for T7__H1__ON3
         
         // T7__H1__ON3 behavior
         // uml: enter [trace_guard("State T7__H1__ON3: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }
@@ -10450,10 +10450,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__H1__ON3 behavior
         // uml: exit / { trace("Exit T7__H1__ON3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__H1__ON3.");`
             MainClass.trace("Exit T7__H1__ON3.");
-        } finally {} // end of behavior for T7__H1__ON3
+        } // end of behavior for T7__H1__ON3
         
         this.stateId = StateId.T7__H1__ON
     }
@@ -10489,20 +10489,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__INITIAL1 behavior
         // uml: enter / { trace("Enter T7__INITIAL1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__INITIAL1.");`
             MainClass.trace("Enter T7__INITIAL1.");
-        } finally {} // end of behavior for T7__INITIAL1
+        } // end of behavior for T7__INITIAL1
     }
     
     private fun T7__INITIAL1_exit()
     {
         // T7__INITIAL1 behavior
         // uml: exit / { trace("Exit T7__INITIAL1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__INITIAL1.");`
             MainClass.trace("Exit T7__INITIAL1.");
-        } finally {} // end of behavior for T7__INITIAL1
+        } // end of behavior for T7__INITIAL1
         
         this.stateId = StateId.TEST7
     }
@@ -10518,20 +10518,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__INITIAL1__PARENT behavior
         // uml: enter / { trace("Enter T7__INITIAL1__PARENT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__INITIAL1__PARENT.");`
             MainClass.trace("Enter T7__INITIAL1__PARENT.");
-        } finally {} // end of behavior for T7__INITIAL1__PARENT
+        } // end of behavior for T7__INITIAL1__PARENT
     }
     
     private fun T7__INITIAL1__PARENT_exit()
     {
         // T7__INITIAL1__PARENT behavior
         // uml: exit / { trace("Exit T7__INITIAL1__PARENT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__INITIAL1__PARENT.");`
             MainClass.trace("Exit T7__INITIAL1__PARENT.");
-        } finally {} // end of behavior for T7__INITIAL1__PARENT
+        } // end of behavior for T7__INITIAL1__PARENT
         
         this.stateId = StateId.T7__INITIAL1
     }
@@ -10551,7 +10551,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // T7__INITIAL1__PARENT.<InitialState> behavior
         // uml: / { trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1."); } TransitionTo(T7__INITIAL1__S1)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1.");`.
@@ -10562,7 +10562,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for T7__INITIAL1__PARENT.<InitialState>
+        } // end of behavior for T7__INITIAL1__PARENT.<InitialState>
     }
     
     
@@ -10576,20 +10576,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__INITIAL1__G behavior
         // uml: enter / { trace("Enter T7__INITIAL1__G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__INITIAL1__G.");`
             MainClass.trace("Enter T7__INITIAL1__G.");
-        } finally {} // end of behavior for T7__INITIAL1__G
+        } // end of behavior for T7__INITIAL1__G
     }
     
     private fun T7__INITIAL1__G_exit()
     {
         // T7__INITIAL1__G behavior
         // uml: exit / { trace("Exit T7__INITIAL1__G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__INITIAL1__G.");`
             MainClass.trace("Exit T7__INITIAL1__G.");
-        } finally {} // end of behavior for T7__INITIAL1__G
+        } // end of behavior for T7__INITIAL1__G
         
         this.stateId = StateId.T7__INITIAL1__PARENT
     }
@@ -10651,7 +10651,7 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__INITIAL1__G.<InitialState> behavior
         // uml: else / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3."); } TransitionTo(T7__INITIAL1__G_S3)
-        try {
+        run {
             // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3.");`.
@@ -10662,7 +10662,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for T7__INITIAL1__G.<InitialState>
+        } // end of behavior for T7__INITIAL1__G.<InitialState>
     }
     
     
@@ -10676,20 +10676,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__INITIAL1__G_S1 behavior
         // uml: enter / { trace("Enter T7__INITIAL1__G_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__INITIAL1__G_S1.");`
             MainClass.trace("Enter T7__INITIAL1__G_S1.");
-        } finally {} // end of behavior for T7__INITIAL1__G_S1
+        } // end of behavior for T7__INITIAL1__G_S1
     }
     
     private fun T7__INITIAL1__G_S1_exit()
     {
         // T7__INITIAL1__G_S1 behavior
         // uml: exit / { trace("Exit T7__INITIAL1__G_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__INITIAL1__G_S1.");`
             MainClass.trace("Exit T7__INITIAL1__G_S1.");
-        } finally {} // end of behavior for T7__INITIAL1__G_S1
+        } // end of behavior for T7__INITIAL1__G_S1
         
         this.stateId = StateId.T7__INITIAL1__G
     }
@@ -10705,20 +10705,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__INITIAL1__G_S2 behavior
         // uml: enter / { trace("Enter T7__INITIAL1__G_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__INITIAL1__G_S2.");`
             MainClass.trace("Enter T7__INITIAL1__G_S2.");
-        } finally {} // end of behavior for T7__INITIAL1__G_S2
+        } // end of behavior for T7__INITIAL1__G_S2
     }
     
     private fun T7__INITIAL1__G_S2_exit()
     {
         // T7__INITIAL1__G_S2 behavior
         // uml: exit / { trace("Exit T7__INITIAL1__G_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__INITIAL1__G_S2.");`
             MainClass.trace("Exit T7__INITIAL1__G_S2.");
-        } finally {} // end of behavior for T7__INITIAL1__G_S2
+        } // end of behavior for T7__INITIAL1__G_S2
         
         this.stateId = StateId.T7__INITIAL1__G
     }
@@ -10734,20 +10734,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__INITIAL1__G_S3 behavior
         // uml: enter / { trace("Enter T7__INITIAL1__G_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__INITIAL1__G_S3.");`
             MainClass.trace("Enter T7__INITIAL1__G_S3.");
-        } finally {} // end of behavior for T7__INITIAL1__G_S3
+        } // end of behavior for T7__INITIAL1__G_S3
     }
     
     private fun T7__INITIAL1__G_S3_exit()
     {
         // T7__INITIAL1__G_S3 behavior
         // uml: exit / { trace("Exit T7__INITIAL1__G_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__INITIAL1__G_S3.");`
             MainClass.trace("Exit T7__INITIAL1__G_S3.");
-        } finally {} // end of behavior for T7__INITIAL1__G_S3
+        } // end of behavior for T7__INITIAL1__G_S3
         
         this.stateId = StateId.T7__INITIAL1__G
     }
@@ -10763,20 +10763,20 @@ class Spec2Sm : Spec2SmBase()
         
         // T7__INITIAL1__S1 behavior
         // uml: enter / { trace("Enter T7__INITIAL1__S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter T7__INITIAL1__S1.");`
             MainClass.trace("Enter T7__INITIAL1__S1.");
-        } finally {} // end of behavior for T7__INITIAL1__S1
+        } // end of behavior for T7__INITIAL1__S1
     }
     
     private fun T7__INITIAL1__S1_exit()
     {
         // T7__INITIAL1__S1 behavior
         // uml: exit / { trace("Exit T7__INITIAL1__S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit T7__INITIAL1__S1.");`
             MainClass.trace("Exit T7__INITIAL1__S1.");
-        } finally {} // end of behavior for T7__INITIAL1__S1
+        } // end of behavior for T7__INITIAL1__S1
         
         this.stateId = StateId.T7__INITIAL1__PARENT
     }
@@ -10835,20 +10835,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST7_DECIDE behavior
         // uml: enter / { trace("Enter TEST7_DECIDE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST7_DECIDE.");`
             MainClass.trace("Enter TEST7_DECIDE.");
-        } finally {} // end of behavior for TEST7_DECIDE
+        } // end of behavior for TEST7_DECIDE
     }
     
     private fun TEST7_DECIDE_exit()
     {
         // TEST7_DECIDE behavior
         // uml: exit / { trace("Exit TEST7_DECIDE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST7_DECIDE.");`
             MainClass.trace("Exit TEST7_DECIDE.");
-        } finally {} // end of behavior for TEST7_DECIDE
+        } // end of behavior for TEST7_DECIDE
         
         // TEST7_DECIDE behavior
         // uml: exit [trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output(); }`.", true)] / { clear_dispatch_output(); }
@@ -10879,7 +10879,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__INITIAL1.<InitialState> behavior
             // uml: / { trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT."); } TransitionTo(T7__INITIAL1__PARENT)
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__INITIAL1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT.");`.
@@ -10891,7 +10891,7 @@ class Spec2Sm : Spec2SmBase()
                 // Finish transition by calling pseudo state transition function.
                 T7__INITIAL1__PARENT_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } finally {} // end of behavior for T7__INITIAL1.<InitialState>
+            } // end of behavior for T7__INITIAL1.<InitialState>
         } // end of behavior for TEST7_DECIDE
     }
     
@@ -10913,7 +10913,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__HISTORY1.<InitialState> behavior
             // uml: / { trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON."); } TransitionTo(T7__H1__ON)
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON.");`.
@@ -10925,7 +10925,7 @@ class Spec2Sm : Spec2SmBase()
                 // Finish transition by calling pseudo state transition function.
                 T7__H1__ON_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } finally {} // end of behavior for T7__HISTORY1.<InitialState>
+            } // end of behavior for T7__HISTORY1.<InitialState>
         } // end of behavior for TEST7_DECIDE
     }
     
@@ -10947,7 +10947,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__DEEP_HISTORY1.<InitialState> behavior
             // uml: / { trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD."); } TransitionTo(T7__DH1__BUILD)
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD.");`.
@@ -10960,7 +10960,7 @@ class Spec2Sm : Spec2SmBase()
                 // Finish transition by calling pseudo state transition function.
                 T7__DH1__BUILD_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } finally {} // end of behavior for T7__DEEP_HISTORY1.<InitialState>
+            } // end of behavior for T7__DEEP_HISTORY1.<InitialState>
         } // end of behavior for TEST7_DECIDE
     }
     
@@ -10982,7 +10982,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__DEEP_HISTORY2.<InitialState> behavior
             // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_0)
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.");`.
@@ -10994,7 +10994,7 @@ class Spec2Sm : Spec2SmBase()
                 // Finish transition by calling pseudo state transition function.
                 T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } finally {} // end of behavior for T7__DEEP_HISTORY2.<InitialState>
+            } // end of behavior for T7__DEEP_HISTORY2.<InitialState>
         } // end of behavior for TEST7_DECIDE
     }
     
@@ -11016,7 +11016,7 @@ class Spec2Sm : Spec2SmBase()
             
             // T7__DEEP_HISTORY3.<InitialState> behavior
             // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_0)
-            try {
+            run {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.");`.
@@ -11028,7 +11028,7 @@ class Spec2Sm : Spec2SmBase()
                 // Finish transition by calling pseudo state transition function.
                 T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } finally {} // end of behavior for T7__DEEP_HISTORY3.<InitialState>
+            } // end of behavior for T7__DEEP_HISTORY3.<InitialState>
         } // end of behavior for TEST7_DECIDE
     }
     
@@ -11043,20 +11043,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST8_ENTRY_CHOICE behavior
         // uml: enter / { trace("Enter TEST8_ENTRY_CHOICE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST8_ENTRY_CHOICE.");`
             MainClass.trace("Enter TEST8_ENTRY_CHOICE.");
-        } finally {} // end of behavior for TEST8_ENTRY_CHOICE
+        } // end of behavior for TEST8_ENTRY_CHOICE
     }
     
     private fun TEST8_ENTRY_CHOICE_exit()
     {
         // TEST8_ENTRY_CHOICE behavior
         // uml: exit / { trace("Exit TEST8_ENTRY_CHOICE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST8_ENTRY_CHOICE.");`
             MainClass.trace("Exit TEST8_ENTRY_CHOICE.");
-        } finally {} // end of behavior for TEST8_ENTRY_CHOICE
+        } // end of behavior for TEST8_ENTRY_CHOICE
         
         this.stateId = StateId.ROOT
     }
@@ -11072,10 +11072,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST8_ROOT behavior
         // uml: enter / { trace("Enter TEST8_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST8_ROOT.");`
             MainClass.trace("Enter TEST8_ROOT.");
-        } finally {} // end of behavior for TEST8_ROOT
+        } // end of behavior for TEST8_ROOT
         
         // TEST8_ROOT behavior
         // uml: enter [trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output(); }`.", true)] / { clear_dispatch_output(); }
@@ -11090,10 +11090,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST8_ROOT behavior
         // uml: exit / { trace("Exit TEST8_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST8_ROOT.");`
             MainClass.trace("Exit TEST8_ROOT.");
-        } finally {} // end of behavior for TEST8_ROOT
+        } // end of behavior for TEST8_ROOT
         
         this.stateId = StateId.TEST8_ENTRY_CHOICE
     }
@@ -11122,7 +11122,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST8_ROOT.<EntryPoint>(1) behavior
         // uml: / { trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1."); } TransitionTo(TEST8_S1)
-        try {
+        run {
             // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.");`.
@@ -11133,7 +11133,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for TEST8_ROOT.<EntryPoint>(1)
+        } // end of behavior for TEST8_ROOT.<EntryPoint>(1)
     }
     
     
@@ -11147,20 +11147,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST8_G behavior
         // uml: enter / { trace("Enter TEST8_G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST8_G.");`
             MainClass.trace("Enter TEST8_G.");
-        } finally {} // end of behavior for TEST8_G
+        } // end of behavior for TEST8_G
     }
     
     private fun TEST8_G_exit()
     {
         // TEST8_G behavior
         // uml: exit / { trace("Exit TEST8_G."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST8_G.");`
             MainClass.trace("Exit TEST8_G.");
-        } finally {} // end of behavior for TEST8_G
+        } // end of behavior for TEST8_G
         
         this.stateId = StateId.TEST8_ROOT
     }
@@ -11222,7 +11222,7 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST8_G.<EntryPoint>(1) behavior
         // uml: else / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3."); } TransitionTo(TEST8_G_S3)
-        try {
+        run {
             // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3.");`.
@@ -11233,14 +11233,14 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for TEST8_G.<EntryPoint>(1)
+        } // end of behavior for TEST8_G.<EntryPoint>(1)
     }
     
     private fun TEST8_G_EntryPoint_3__transition()
     {
         // TEST8_G.<EntryPoint>(3) behavior
         // uml: / { trace("Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).");\ncount += 0; } TransitionTo(TEST8_G.<EntryPoint>(1))
-        try {
+        run {
             // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).");\ncount += 0;`.
@@ -11253,7 +11253,7 @@ class Spec2Sm : Spec2SmBase()
             // Finish transition by calling pseudo state transition function.
             TEST8_G_EntryPoint_1__transition()
             return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } finally {} // end of behavior for TEST8_G.<EntryPoint>(3)
+        } // end of behavior for TEST8_G.<EntryPoint>(3)
     }
     
     
@@ -11267,20 +11267,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST8_G_S1 behavior
         // uml: enter / { trace("Enter TEST8_G_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST8_G_S1.");`
             MainClass.trace("Enter TEST8_G_S1.");
-        } finally {} // end of behavior for TEST8_G_S1
+        } // end of behavior for TEST8_G_S1
     }
     
     private fun TEST8_G_S1_exit()
     {
         // TEST8_G_S1 behavior
         // uml: exit / { trace("Exit TEST8_G_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST8_G_S1.");`
             MainClass.trace("Exit TEST8_G_S1.");
-        } finally {} // end of behavior for TEST8_G_S1
+        } // end of behavior for TEST8_G_S1
         
         this.stateId = StateId.TEST8_G
     }
@@ -11296,20 +11296,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST8_G_S2 behavior
         // uml: enter / { trace("Enter TEST8_G_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST8_G_S2.");`
             MainClass.trace("Enter TEST8_G_S2.");
-        } finally {} // end of behavior for TEST8_G_S2
+        } // end of behavior for TEST8_G_S2
     }
     
     private fun TEST8_G_S2_exit()
     {
         // TEST8_G_S2 behavior
         // uml: exit / { trace("Exit TEST8_G_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST8_G_S2.");`
             MainClass.trace("Exit TEST8_G_S2.");
-        } finally {} // end of behavior for TEST8_G_S2
+        } // end of behavior for TEST8_G_S2
         
         this.stateId = StateId.TEST8_G
     }
@@ -11325,20 +11325,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST8_G_S3 behavior
         // uml: enter / { trace("Enter TEST8_G_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST8_G_S3.");`
             MainClass.trace("Enter TEST8_G_S3.");
-        } finally {} // end of behavior for TEST8_G_S3
+        } // end of behavior for TEST8_G_S3
     }
     
     private fun TEST8_G_S3_exit()
     {
         // TEST8_G_S3 behavior
         // uml: exit / { trace("Exit TEST8_G_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST8_G_S3.");`
             MainClass.trace("Exit TEST8_G_S3.");
-        } finally {} // end of behavior for TEST8_G_S3
+        } // end of behavior for TEST8_G_S3
         
         this.stateId = StateId.TEST8_G
     }
@@ -11354,20 +11354,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST8_S1 behavior
         // uml: enter / { trace("Enter TEST8_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST8_S1.");`
             MainClass.trace("Enter TEST8_S1.");
-        } finally {} // end of behavior for TEST8_S1
+        } // end of behavior for TEST8_S1
     }
     
     private fun TEST8_S1_exit()
     {
         // TEST8_S1 behavior
         // uml: exit / { trace("Exit TEST8_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST8_S1.");`
             MainClass.trace("Exit TEST8_S1.");
-        } finally {} // end of behavior for TEST8_S1
+        } // end of behavior for TEST8_S1
         
         this.stateId = StateId.TEST8_ROOT
     }
@@ -11465,20 +11465,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9_EXIT_CHOICE behavior
         // uml: enter / { trace("Enter TEST9_EXIT_CHOICE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9_EXIT_CHOICE.");`
             MainClass.trace("Enter TEST9_EXIT_CHOICE.");
-        } finally {} // end of behavior for TEST9_EXIT_CHOICE
+        } // end of behavior for TEST9_EXIT_CHOICE
     }
     
     private fun TEST9_EXIT_CHOICE_exit()
     {
         // TEST9_EXIT_CHOICE behavior
         // uml: exit / { trace("Exit TEST9_EXIT_CHOICE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9_EXIT_CHOICE.");`
             MainClass.trace("Exit TEST9_EXIT_CHOICE.");
-        } finally {} // end of behavior for TEST9_EXIT_CHOICE
+        } // end of behavior for TEST9_EXIT_CHOICE
         
         this.stateId = StateId.ROOT
     }
@@ -11494,20 +11494,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9_DECIDE behavior
         // uml: enter / { trace("Enter TEST9_DECIDE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9_DECIDE.");`
             MainClass.trace("Enter TEST9_DECIDE.");
-        } finally {} // end of behavior for TEST9_DECIDE
+        } // end of behavior for TEST9_DECIDE
     }
     
     private fun TEST9_DECIDE_exit()
     {
         // TEST9_DECIDE behavior
         // uml: exit / { trace("Exit TEST9_DECIDE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9_DECIDE.");`
             MainClass.trace("Exit TEST9_DECIDE.");
-        } finally {} // end of behavior for TEST9_DECIDE
+        } // end of behavior for TEST9_DECIDE
         
         this.stateId = StateId.TEST9_EXIT_CHOICE
     }
@@ -11529,7 +11529,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST9_ROOT.<InitialState> behavior
             // uml: / { trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1."); } TransitionTo(TEST9_S1)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1.");`.
@@ -11540,7 +11540,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // TEST9_S1.<InitialState> behavior
                 // uml: / { trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1."); } TransitionTo(TEST9_S1_1)
-                try {
+                run {
                     // Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1.");`.
@@ -11551,8 +11551,8 @@ class Spec2Sm : Spec2SmBase()
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } finally {} // end of behavior for TEST9_S1.<InitialState>
-            } finally {} // end of behavior for TEST9_ROOT.<InitialState>
+                } // end of behavior for TEST9_S1.<InitialState>
+            } // end of behavior for TEST9_ROOT.<InitialState>
         } // end of behavior for TEST9_DECIDE
     }
     
@@ -11573,7 +11573,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST9A_ROOT.<InitialState> behavior
             // uml: / { trace("Transition action `count = 0;` for TEST9A_ROOT.<InitialState> to TEST9A_S1.");\ncount = 0; } TransitionTo(TEST9A_S1)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST9A_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `count = 0;` for TEST9A_ROOT.<InitialState> to TEST9A_S1.");\ncount = 0;`.
@@ -11586,7 +11586,7 @@ class Spec2Sm : Spec2SmBase()
                 // Finish transition by calling pseudo state transition function.
                 TEST9A_S1_InitialState_transition()
                 return // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } finally {} // end of behavior for TEST9A_ROOT.<InitialState>
+            } // end of behavior for TEST9A_ROOT.<InitialState>
         } // end of behavior for TEST9_DECIDE
     }
     
@@ -11621,20 +11621,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9_ROOT behavior
         // uml: enter / { trace("Enter TEST9_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9_ROOT.");`
             MainClass.trace("Enter TEST9_ROOT.");
-        } finally {} // end of behavior for TEST9_ROOT
+        } // end of behavior for TEST9_ROOT
     }
     
     private fun TEST9_ROOT_exit()
     {
         // TEST9_ROOT behavior
         // uml: exit / { trace("Exit TEST9_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9_ROOT.");`
             MainClass.trace("Exit TEST9_ROOT.");
-        } finally {} // end of behavior for TEST9_ROOT
+        } // end of behavior for TEST9_ROOT
         
         this.stateId = StateId.TEST9_EXIT_CHOICE
     }
@@ -11661,20 +11661,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9_G_S1 behavior
         // uml: enter / { trace("Enter TEST9_G_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9_G_S1.");`
             MainClass.trace("Enter TEST9_G_S1.");
-        } finally {} // end of behavior for TEST9_G_S1
+        } // end of behavior for TEST9_G_S1
     }
     
     private fun TEST9_G_S1_exit()
     {
         // TEST9_G_S1 behavior
         // uml: exit / { trace("Exit TEST9_G_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9_G_S1.");`
             MainClass.trace("Exit TEST9_G_S1.");
-        } finally {} // end of behavior for TEST9_G_S1
+        } // end of behavior for TEST9_G_S1
         
         this.stateId = StateId.TEST9_ROOT
     }
@@ -11690,20 +11690,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9_G_S2 behavior
         // uml: enter / { trace("Enter TEST9_G_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9_G_S2.");`
             MainClass.trace("Enter TEST9_G_S2.");
-        } finally {} // end of behavior for TEST9_G_S2
+        } // end of behavior for TEST9_G_S2
     }
     
     private fun TEST9_G_S2_exit()
     {
         // TEST9_G_S2 behavior
         // uml: exit / { trace("Exit TEST9_G_S2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9_G_S2.");`
             MainClass.trace("Exit TEST9_G_S2.");
-        } finally {} // end of behavior for TEST9_G_S2
+        } // end of behavior for TEST9_G_S2
         
         this.stateId = StateId.TEST9_ROOT
     }
@@ -11719,20 +11719,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9_G_S3 behavior
         // uml: enter / { trace("Enter TEST9_G_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9_G_S3.");`
             MainClass.trace("Enter TEST9_G_S3.");
-        } finally {} // end of behavior for TEST9_G_S3
+        } // end of behavior for TEST9_G_S3
     }
     
     private fun TEST9_G_S3_exit()
     {
         // TEST9_G_S3 behavior
         // uml: exit / { trace("Exit TEST9_G_S3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9_G_S3.");`
             MainClass.trace("Exit TEST9_G_S3.");
-        } finally {} // end of behavior for TEST9_G_S3
+        } // end of behavior for TEST9_G_S3
         
         this.stateId = StateId.TEST9_ROOT
     }
@@ -11748,20 +11748,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9_G_S4 behavior
         // uml: enter / { trace("Enter TEST9_G_S4."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9_G_S4.");`
             MainClass.trace("Enter TEST9_G_S4.");
-        } finally {} // end of behavior for TEST9_G_S4
+        } // end of behavior for TEST9_G_S4
     }
     
     private fun TEST9_G_S4_exit()
     {
         // TEST9_G_S4 behavior
         // uml: exit / { trace("Exit TEST9_G_S4."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9_G_S4.");`
             MainClass.trace("Exit TEST9_G_S4.");
-        } finally {} // end of behavior for TEST9_G_S4
+        } // end of behavior for TEST9_G_S4
         
         this.stateId = StateId.TEST9_ROOT
     }
@@ -11777,20 +11777,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9_S1 behavior
         // uml: enter / { trace("Enter TEST9_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9_S1.");`
             MainClass.trace("Enter TEST9_S1.");
-        } finally {} // end of behavior for TEST9_S1
+        } // end of behavior for TEST9_S1
     }
     
     private fun TEST9_S1_exit()
     {
         // TEST9_S1 behavior
         // uml: exit / { trace("Exit TEST9_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9_S1.");`
             MainClass.trace("Exit TEST9_S1.");
-        } finally {} // end of behavior for TEST9_S1
+        } // end of behavior for TEST9_S1
         
         this.stateId = StateId.TEST9_ROOT
     }
@@ -11806,10 +11806,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9_S1_1 behavior
         // uml: enter / { trace("Enter TEST9_S1_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9_S1_1.");`
             MainClass.trace("Enter TEST9_S1_1.");
-        } finally {} // end of behavior for TEST9_S1_1
+        } // end of behavior for TEST9_S1_1
         
         // TEST9_S1_1 behavior
         // uml: enter [trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
@@ -11824,10 +11824,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST9_S1_1 behavior
         // uml: exit / { trace("Exit TEST9_S1_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9_S1_1.");`
             MainClass.trace("Exit TEST9_S1_1.");
-        } finally {} // end of behavior for TEST9_S1_1
+        } // end of behavior for TEST9_S1_1
         
         this.stateId = StateId.TEST9_S1
     }
@@ -11900,7 +11900,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST9_S1.<ExitPoint>(1) behavior
             // uml: else / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S3."); } TransitionTo(TEST9_G_S3)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 TEST9_S1_exit()
                 
@@ -11912,7 +11912,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST9_S1.<ExitPoint>(1)
+            } // end of behavior for TEST9_S1.<ExitPoint>(1)
         } // end of behavior for TEST9_S1_1
     }
     
@@ -11927,20 +11927,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9A_ROOT behavior
         // uml: enter / { trace("Enter TEST9A_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9A_ROOT.");`
             MainClass.trace("Enter TEST9A_ROOT.");
-        } finally {} // end of behavior for TEST9A_ROOT
+        } // end of behavior for TEST9A_ROOT
     }
     
     private fun TEST9A_ROOT_exit()
     {
         // TEST9A_ROOT behavior
         // uml: exit / { trace("Exit TEST9A_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9A_ROOT.");`
             MainClass.trace("Exit TEST9A_ROOT.");
-        } finally {} // end of behavior for TEST9A_ROOT
+        } // end of behavior for TEST9A_ROOT
         
         this.stateId = StateId.TEST9_EXIT_CHOICE
     }
@@ -11956,20 +11956,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9A_S1 behavior
         // uml: enter / { trace("Enter TEST9A_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9A_S1.");`
             MainClass.trace("Enter TEST9A_S1.");
-        } finally {} // end of behavior for TEST9A_S1
+        } // end of behavior for TEST9A_S1
     }
     
     private fun TEST9A_S1_exit()
     {
         // TEST9A_S1 behavior
         // uml: exit / { trace("Exit TEST9A_S1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9A_S1.");`
             MainClass.trace("Exit TEST9A_S1.");
-        } finally {} // end of behavior for TEST9A_S1
+        } // end of behavior for TEST9A_S1
         
         this.stateId = StateId.TEST9A_ROOT
     }
@@ -11978,7 +11978,7 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST9A_S1.<InitialState> behavior
         // uml: / { trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1."); } TransitionTo(TEST9A_S1_1)
-        try {
+        run {
             // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.");`.
@@ -11989,7 +11989,7 @@ class Spec2Sm : Spec2SmBase()
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for TEST9A_S1.<InitialState>
+        } // end of behavior for TEST9A_S1.<InitialState>
     }
     
     
@@ -12003,10 +12003,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9A_S1_1 behavior
         // uml: enter / { trace("Enter TEST9A_S1_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9A_S1_1.");`
             MainClass.trace("Enter TEST9A_S1_1.");
-        } finally {} // end of behavior for TEST9A_S1_1
+        } // end of behavior for TEST9A_S1_1
         
         // TEST9A_S1_1 behavior
         // uml: enter [trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.", count == 0)] / { clear_output(); }
@@ -12021,10 +12021,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST9A_S1_1 behavior
         // uml: exit / { trace("Exit TEST9A_S1_1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9A_S1_1.");`
             MainClass.trace("Exit TEST9A_S1_1.");
-        } finally {} // end of behavior for TEST9A_S1_1
+        } // end of behavior for TEST9A_S1_1
         
         // TEST9A_S1_1 behavior
         // uml: exit [trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100; }`.", true)] / { count = 100; }
@@ -12083,10 +12083,10 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9B_ROOT behavior
         // uml: enter / { trace("Enter TEST9B_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9B_ROOT.");`
             MainClass.trace("Enter TEST9B_ROOT.");
-        } finally {} // end of behavior for TEST9B_ROOT
+        } // end of behavior for TEST9B_ROOT
         
         // TEST9B_ROOT behavior
         // uml: enter [trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
@@ -12101,10 +12101,10 @@ class Spec2Sm : Spec2SmBase()
     {
         // TEST9B_ROOT behavior
         // uml: exit / { trace("Exit TEST9B_ROOT."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9B_ROOT.");`
             MainClass.trace("Exit TEST9B_ROOT.");
-        } finally {} // end of behavior for TEST9B_ROOT
+        } // end of behavior for TEST9B_ROOT
         
         this.stateId = StateId.TEST9_EXIT_CHOICE
     }
@@ -12143,20 +12143,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9B_ROOT__A1 behavior
         // uml: enter / { trace("Enter TEST9B_ROOT__A1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__A1.");`
             MainClass.trace("Enter TEST9B_ROOT__A1.");
-        } finally {} // end of behavior for TEST9B_ROOT__A1
+        } // end of behavior for TEST9B_ROOT__A1
     }
     
     private fun TEST9B_ROOT__A1_exit()
     {
         // TEST9B_ROOT__A1 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__A1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__A1.");`
             MainClass.trace("Exit TEST9B_ROOT__A1.");
-        } finally {} // end of behavior for TEST9B_ROOT__A1
+        } // end of behavior for TEST9B_ROOT__A1
         
         this.stateId = StateId.TEST9B_ROOT
     }
@@ -12172,20 +12172,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9B_ROOT__A2 behavior
         // uml: enter / { trace("Enter TEST9B_ROOT__A2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__A2.");`
             MainClass.trace("Enter TEST9B_ROOT__A2.");
-        } finally {} // end of behavior for TEST9B_ROOT__A2
+        } // end of behavior for TEST9B_ROOT__A2
     }
     
     private fun TEST9B_ROOT__A2_exit()
     {
         // TEST9B_ROOT__A2 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__A2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__A2.");`
             MainClass.trace("Exit TEST9B_ROOT__A2.");
-        } finally {} // end of behavior for TEST9B_ROOT__A2
+        } // end of behavior for TEST9B_ROOT__A2
         
         this.stateId = StateId.TEST9B_ROOT__A1
     }
@@ -12201,20 +12201,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9B_ROOT__A3 behavior
         // uml: enter / { trace("Enter TEST9B_ROOT__A3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__A3.");`
             MainClass.trace("Enter TEST9B_ROOT__A3.");
-        } finally {} // end of behavior for TEST9B_ROOT__A3
+        } // end of behavior for TEST9B_ROOT__A3
     }
     
     private fun TEST9B_ROOT__A3_exit()
     {
         // TEST9B_ROOT__A3 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__A3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__A3.");`
             MainClass.trace("Exit TEST9B_ROOT__A3.");
-        } finally {} // end of behavior for TEST9B_ROOT__A3
+        } // end of behavior for TEST9B_ROOT__A3
         
         this.stateId = StateId.TEST9B_ROOT__A2
     }
@@ -12230,20 +12230,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9B_ROOT__A4 behavior
         // uml: enter / { trace("Enter TEST9B_ROOT__A4."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__A4.");`
             MainClass.trace("Enter TEST9B_ROOT__A4.");
-        } finally {} // end of behavior for TEST9B_ROOT__A4
+        } // end of behavior for TEST9B_ROOT__A4
     }
     
     private fun TEST9B_ROOT__A4_exit()
     {
         // TEST9B_ROOT__A4 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__A4."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__A4.");`
             MainClass.trace("Exit TEST9B_ROOT__A4.");
-        } finally {} // end of behavior for TEST9B_ROOT__A4
+        } // end of behavior for TEST9B_ROOT__A4
         
         this.stateId = StateId.TEST9B_ROOT__A3
     }
@@ -12267,7 +12267,7 @@ class Spec2Sm : Spec2SmBase()
             
             // TEST9B_ROOT__A3.<ExitPoint>(1) behavior
             // uml: / { trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4."); } TransitionTo(TEST9B_ROOT__B4)
-            try {
+            run {
                 // Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
                 exitUpToStateHandler(StateId.TEST9B_ROOT)
                 
@@ -12282,7 +12282,7 @@ class Spec2Sm : Spec2SmBase()
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
-            } finally {} // end of behavior for TEST9B_ROOT__A3.<ExitPoint>(1)
+            } // end of behavior for TEST9B_ROOT__A3.<ExitPoint>(1)
         } // end of behavior for TEST9B_ROOT__A4
         
         // Check if event has been consumed before calling ancestor handler.
@@ -12303,20 +12303,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9B_ROOT__B1 behavior
         // uml: enter / { trace("Enter TEST9B_ROOT__B1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__B1.");`
             MainClass.trace("Enter TEST9B_ROOT__B1.");
-        } finally {} // end of behavior for TEST9B_ROOT__B1
+        } // end of behavior for TEST9B_ROOT__B1
     }
     
     private fun TEST9B_ROOT__B1_exit()
     {
         // TEST9B_ROOT__B1 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__B1."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__B1.");`
             MainClass.trace("Exit TEST9B_ROOT__B1.");
-        } finally {} // end of behavior for TEST9B_ROOT__B1
+        } // end of behavior for TEST9B_ROOT__B1
         
         this.stateId = StateId.TEST9B_ROOT
     }
@@ -12332,20 +12332,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9B_ROOT__B2 behavior
         // uml: enter / { trace("Enter TEST9B_ROOT__B2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__B2.");`
             MainClass.trace("Enter TEST9B_ROOT__B2.");
-        } finally {} // end of behavior for TEST9B_ROOT__B2
+        } // end of behavior for TEST9B_ROOT__B2
     }
     
     private fun TEST9B_ROOT__B2_exit()
     {
         // TEST9B_ROOT__B2 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__B2."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__B2.");`
             MainClass.trace("Exit TEST9B_ROOT__B2.");
-        } finally {} // end of behavior for TEST9B_ROOT__B2
+        } // end of behavior for TEST9B_ROOT__B2
         
         this.stateId = StateId.TEST9B_ROOT__B1
     }
@@ -12361,20 +12361,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9B_ROOT__B3 behavior
         // uml: enter / { trace("Enter TEST9B_ROOT__B3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__B3.");`
             MainClass.trace("Enter TEST9B_ROOT__B3.");
-        } finally {} // end of behavior for TEST9B_ROOT__B3
+        } // end of behavior for TEST9B_ROOT__B3
     }
     
     private fun TEST9B_ROOT__B3_exit()
     {
         // TEST9B_ROOT__B3 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__B3."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__B3.");`
             MainClass.trace("Exit TEST9B_ROOT__B3.");
-        } finally {} // end of behavior for TEST9B_ROOT__B3
+        } // end of behavior for TEST9B_ROOT__B3
         
         this.stateId = StateId.TEST9B_ROOT__B2
     }
@@ -12390,20 +12390,20 @@ class Spec2Sm : Spec2SmBase()
         
         // TEST9B_ROOT__B4 behavior
         // uml: enter / { trace("Enter TEST9B_ROOT__B4."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter TEST9B_ROOT__B4.");`
             MainClass.trace("Enter TEST9B_ROOT__B4.");
-        } finally {} // end of behavior for TEST9B_ROOT__B4
+        } // end of behavior for TEST9B_ROOT__B4
     }
     
     private fun TEST9B_ROOT__B4_exit()
     {
         // TEST9B_ROOT__B4 behavior
         // uml: exit / { trace("Exit TEST9B_ROOT__B4."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit TEST9B_ROOT__B4.");`
             MainClass.trace("Exit TEST9B_ROOT__B4.");
-        } finally {} // end of behavior for TEST9B_ROOT__B4
+        } // end of behavior for TEST9B_ROOT__B4
         
         this.stateId = StateId.TEST9B_ROOT__B3
     }
@@ -12419,20 +12419,20 @@ class Spec2Sm : Spec2SmBase()
         
         // UNREACHABLE behavior
         // uml: enter / { trace("Enter UNREACHABLE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter UNREACHABLE.");`
             MainClass.trace("Enter UNREACHABLE.");
-        } finally {} // end of behavior for UNREACHABLE
+        } // end of behavior for UNREACHABLE
     }
     
     private fun UNREACHABLE_exit()
     {
         // UNREACHABLE behavior
         // uml: exit / { trace("Exit UNREACHABLE."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit UNREACHABLE.");`
             MainClass.trace("Exit UNREACHABLE.");
-        } finally {} // end of behavior for UNREACHABLE
+        } // end of behavior for UNREACHABLE
         
         this.stateId = StateId.ROOT
     }
@@ -12448,20 +12448,20 @@ class Spec2Sm : Spec2SmBase()
         
         // USELESS behavior
         // uml: enter / { trace("Enter USELESS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Enter USELESS.");`
             MainClass.trace("Enter USELESS.");
-        } finally {} // end of behavior for USELESS
+        } // end of behavior for USELESS
     }
     
     private fun USELESS_exit()
     {
         // USELESS behavior
         // uml: exit / { trace("Exit USELESS."); }
-        try {
+        run {
             // Step 1: execute action `trace("Exit USELESS.");`
             MainClass.trace("Exit USELESS.");
-        } finally {} // end of behavior for USELESS
+        } // end of behavior for USELESS
         
         this.stateId = StateId.ROOT
     }

@@ -28,7 +28,7 @@ class RocketSm
         ROOT_enter()
         // ROOT behavior
         // uml: TransitionTo(ROOT.<InitialState>)
-        try {
+        run {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: ``.
@@ -38,7 +38,7 @@ class RocketSm
             
             // ROOT.<InitialState> behavior
             // uml: TransitionTo(group)
-            try {
+            run {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: ``.
@@ -48,7 +48,7 @@ class RocketSm
                 
                 // group.<InitialState> behavior
                 // uml: TransitionTo(g1)
-                try {
+                run {
                     // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     // Step 2: Transition action: ``.
@@ -58,9 +58,9 @@ class RocketSm
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
-                } finally {} // end of behavior for group.<InitialState>
-            } finally {} // end of behavior for ROOT.<InitialState>
-        } finally {} // end of behavior for ROOT
+                } // end of behavior for group.<InitialState>
+            } // end of behavior for ROOT.<InitialState>
+        } // end of behavior for ROOT
     }
     
     // Dispatches an event to the state machine. Not thread safe.
@@ -154,7 +154,7 @@ class RocketSm
     {
         // g1 behavior
         // uml: do TransitionTo(g2)
-        try {
+        run {
             // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
             G1_exit()
             
@@ -165,7 +165,7 @@ class RocketSm
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
-        } finally {} // end of behavior for g1
+        } // end of behavior for g1
     }
     
     
