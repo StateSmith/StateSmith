@@ -242,11 +242,11 @@ public class TomlConfigTest_335
             Imports = ""
             Extends = ""
             Implements = ""
+            ClassCode = ""
 
             [RenderConfig.Berry]
             Imports = ""
             Extends = ""
-            ClassCode = ""
 
             ############SmRunner.Settings ###############
 
