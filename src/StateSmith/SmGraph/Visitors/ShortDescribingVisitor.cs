@@ -9,6 +9,8 @@ public class ShortDescribingVisitor : IVertexVisitor // Note! This class should 
     protected StringBuilder stringBuilder;
     protected bool skipParentForRelative;
 
+    public bool outputStateMachineName = false;
+
     /// <summary>
     /// 
     /// </summary>
@@ -33,6 +35,15 @@ public class ShortDescribingVisitor : IVertexVisitor // Note! This class should 
         return sb.ToString();
     }
 
+    public string GetDescription(Vertex vertex)
+    {
+        stringBuilder.Clear();
+        vertex.Accept(this);
+        string result = stringBuilder.ToString();
+        stringBuilder.Clear();
+        return result;
+    }
+
     public string PopString()
     {
         var str = stringBuilder.ToString();
@@ -54,8 +65,14 @@ public class ShortDescribingVisitor : IVertexVisitor // Note! This class should 
 
     void IVertexVisitor.Visit(StateMachine v)
     {
-        //Append($"$STATEMACHINE({v.Name})");   // we should transition to this eventually. Maybe something like `$STATEMACHINE(MySm).ROOT`
-        Append($"ROOT");
+        if (outputStateMachineName)
+        {
+          Append($"<StateMachine>({v.Name})");  
+        }
+        else
+        {
+            Append($"ROOT");
+        }
     }
 
     void IVertexVisitor.Visit(State v)

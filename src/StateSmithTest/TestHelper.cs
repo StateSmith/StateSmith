@@ -1,6 +1,7 @@
 #nullable enable
 
 using FluentAssertions;
+using StateSmith.Common;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
@@ -42,15 +43,36 @@ public class TestHelper
         return fakeFileSystem;
     }
 
-    public static void CaptureRunSmRunnerForPlantUmlString(string? plantUmlText = null, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default)
+    public static string GenerateUniqueSmName()
+    {
+        string smName = "MyUniqueSm_" + Guid.NewGuid().ToString().Replace('-', '_');
+        return smName;
+    }
+
+    public static string CaptureCodeGenRunSmRunnerForPlantUmlString(string? plantUmlText = null, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, bool useRealFileWriter = false)
+    {
+        return CaptureNonCodeGenRunSmRunnerForPlantUmlString(forceEnableCodeGen: true, plantUmlText: plantUmlText, renderConfig: renderConfig, codeFileWriter: codeFileWriter, postConstruct: postConstruct, preRun: preRun, propagateExceptions: propagateExceptions, fileName: fileName, consoleCapturer: consoleCapturer, transpilerId: transpilerId, algorithmId: algorithmId, useRealFileWriter: useRealFileWriter);
+    }
+
+    public static string CaptureNonCodeGenRunSmRunnerForPlantUmlString(string? plantUmlText = null, bool forceEnableCodeGen = false, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default, bool useRealFileWriter = false)
     {
         string tempFilePath = WritePlantUmlTempFile(plantUmlText, fileName);
 
         try
         {
-            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId);
+            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig, transpilerId: transpilerId, algorithmId: algorithmId, callingFilePath: tempFilePath);
             postConstruct?.Invoke(smRunner);
-            smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
+
+            if (!useRealFileWriter)
+            {
+                smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
+            }
+
+            if (!forceEnableCodeGen)
+            {
+                smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
+            }
+
             smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
             smRunner.Settings.propagateExceptions = propagateExceptions;
             preRun?.Invoke(smRunner);
@@ -60,12 +82,14 @@ public class TestHelper
         {
             File.Delete(tempFilePath);
         }
+
+        return Path.GetDirectoryName(tempFilePath).ThrowIfNull();
     }
 
     private static string WritePlantUmlTempFile(string? plantUmlText = null, string? fileName = null)
     {
         var tempFilePath = Path.GetTempPath();
-        tempFilePath += fileName ?? "statesmith_test" + Guid.NewGuid() + ".plantuml";
+        tempFilePath += fileName ?? "statesmith_test_" + Guid.NewGuid() + ".plantuml";
         File.WriteAllText(tempFilePath, plantUmlText ?? MinimalPlantUmlFsm);
         return tempFilePath;
     }

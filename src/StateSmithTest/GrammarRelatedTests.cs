@@ -28,7 +28,7 @@ public class GrammarRelatedTests
             [*] --> c1
             @enduml
             """;
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText);
+        TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText);
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public class GrammarRelatedTests
             [*] --> c1
             @enduml
             """;
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText);
+        TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText);
     }
 
 
@@ -76,7 +76,7 @@ public class GrammarRelatedTests
 
             """;
 
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText);
+        TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText);
     }
 
     /// <summary>
@@ -90,14 +90,14 @@ public class GrammarRelatedTests
             [*] --> c1
             @enduml
             """;
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText);
+        TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText);
 
         plantUmlText = """
             @startuml {fileName}_2
             [*] --> c1
             @enduml
             """;
-        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText);
+        TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText);
     }
 
     /// <summary>
@@ -111,13 +111,13 @@ public class GrammarRelatedTests
             [*] --> c1
             @enduml
             """;
-        Assert.Throws<FormatException>(() => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText));
+        Assert.Throws<FormatException>(() => TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText));
 
         plantUmlText = """
             @startuml {fileName}}
             [*] --> c1
             @enduml
             """;
-        Assert.Throws<FormatException>(() => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText));
+        Assert.Throws<FormatException>(() => TestHelper.CaptureNonCodeGenRunSmRunnerForPlantUmlString(plantUmlText));
     }
 }

@@ -13,6 +13,18 @@ namespace StateSmith.Common
             return dictionary[key];
         }
 
+        public List<V> GetAllValues()
+        {
+            List<V> allValues = new();
+
+            foreach (var list in dictionary.Values)
+            {
+                allValues.AddRange(list);
+            }
+
+            return allValues;
+        }
+
         public List<K> GetKeys()
         {
             return dictionary.Keys.ToList();

@@ -1,5 +1,14 @@
 {
+  "name": "ts-spec2",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc"
+  },
+  "engines": {
+    "node": "^24.10.0"
+  },
   "devDependencies": {
-    "@types/node": "^22.5.5"
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
   }
 }

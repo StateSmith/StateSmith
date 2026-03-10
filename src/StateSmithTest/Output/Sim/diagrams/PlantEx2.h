@@ -7,15 +7,17 @@
 typedef enum PlantEx2_EventId
 {
     PlantEx2_EventId_EV2 = 0,
-    PlantEx2_EventId_EVCONFIG = 1,
-    PlantEx2_EventId_EVNEWVALUE = 2,
-    PlantEx2_EventId_EVNEWVALUEREJECTED = 3,
-    PlantEx2_EventId_EVNEWVALUESAVED = 4
+    PlantEx2_EventId_EV6 = 1,
+    PlantEx2_EventId_EV7 = 2,
+    PlantEx2_EventId_EVCONFIG = 3,
+    PlantEx2_EventId_EVNEWVALUE = 4,
+    PlantEx2_EventId_EVNEWVALUEREJECTED = 5,
+    PlantEx2_EventId_EVNEWVALUESAVED = 6
 } PlantEx2_EventId;
 
 enum
 {
-    PlantEx2_EventIdCount = 5
+    PlantEx2_EventIdCount = 7
 };
 
 typedef enum PlantEx2_StateId

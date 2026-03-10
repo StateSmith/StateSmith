@@ -399,63 +399,41 @@ config:
 
 stateDiagram
 
-state "<span class='syntax-vertex-name'>NORMAL</span>" as NORMAL {
-
-        OFF
-
-        OFF : <span class='syntax-vertex-name'>OFF</span>
-
-        OFF : <span class='syntax-trigger-name'>en</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>set_color(&quot;#35;CCC&quot;);</span><span class='syntax-action-start-end'> }</span>
-
-        BLUE
-
-        BLUE : <span class='syntax-vertex-name'>BLUE</span>
-
-        BLUE : <span class='syntax-trigger-name'>en</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>set_color(&quot;#35;a2f2ff&quot;);</span><span class='syntax-action-start-end'> }</span>
-
-        YELLOW
-
-        YELLOW : <span class='syntax-vertex-name'>YELLOW</span>
-
-        YELLOW : <span class='syntax-trigger-name'>en</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>set_color(&quot;#35;fdff71&quot;);</span><span class='syntax-action-start-end'> }</span>
+state "<span class='syntax-vertex-name'>ORDER_MENU</span>" as ORDER_MENU {
 
         %% Initial state name as "." so that it fits in black circle shape.
         %% See https://github.com/StateSmith/StateSmith/issues/404
-        state "." as NORMAL.(InitialState)
+        state "." as ORDER_MENU.(InitialState)
+
+        state "<span class='syntax-vertex-name'>FOOD</span>" as FOOD {
+
+                %% Initial state name as "." so that it fits in black circle shape.
+                %% See https://github.com/StateSmith/StateSmith/issues/404
+                state "." as FOOD.(InitialState)
+
+                SANDWICH
+
+                SANDWICH : <span class='syntax-vertex-name'>SANDWICH</span>
+
+        }
+
+        state ORDER_MENU.(ChoicePoint)(FOOD__Mermaid_StateSmith_Issue_512__0) <<choice>>
 
 }
-
-RED
-
-RED : <span class='syntax-vertex-name'>RED</span>
-
-RED : <span class='syntax-trigger-name'>en</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>set_color(&quot;#35;ff4f4f&quot;);</span><span class='syntax-action-start-end'> }</span>
-
-RED : <span class='syntax-trigger-name'>INPUT</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>beep();</span><span class='syntax-action-start-end'> }</span>
 
 %% Initial state name as "." so that it fits in black circle shape.
 %% See https://github.com/StateSmith/StateSmith/issues/404
 state "." as ROOT.(InitialState)
 
-NORMAL --> RED : <span class='syntax-trigger-name'>ERR</span>
+ORDER_MENU.(InitialState) --> FOOD
 
-OFF --> BLUE : <span class='syntax-trigger-name'>INC1</span>
+FOOD --> ORDER_MENU.(ChoicePoint)(FOOD__Mermaid_StateSmith_Issue_512__0) : <span class='syntax-trigger-name'>MY_EVENT</span>
 
-OFF --> YELLOW : <span class='syntax-trigger-name'>INC2</span>
+FOOD.(InitialState) --> SANDWICH
 
-BLUE --> OFF : <span class='syntax-trigger-name'>DIMx</span>
+ORDER_MENU.(ChoicePoint)(FOOD__Mermaid_StateSmith_Issue_512__0) --> FOOD
 
-BLUE --> YELLOW : <span class='syntax-trigger-name'>INCx</span>
-
-YELLOW --> BLUE : <span class='syntax-trigger-name'>DIM1</span>
-
-YELLOW --> OFF : <span class='syntax-trigger-name'>DIM2</span>
-
-NORMAL.(InitialState) --> OFF
-
-RED --> NORMAL : <span class='syntax-trigger-name'>INCITE_RESET</span>
-
-ROOT.(InitialState) --> NORMAL
+ROOT.(InitialState) --> ORDER_MENU
 
 
 
@@ -546,37 +524,30 @@ ROOT.(InitialState) --> NORMAL
 // Algorithm: Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 // Generated state machine
-class TriggerMap
+class issue512
 {
 // Null by default.
 // May be overridden to override guard evaluation (eg. in a simulator)
 evaluateGuard = null;
     static EventId = 
     {
-        DIM1 : 0,
-        DIM2 : 1,
-        ERR : 2,
-        INC1 : 3,
-        INC2 : 4,
-        INCITE_RESET : 5,
+        MY_EVENT : 0,
     }
     static { Object.freeze(this.EventId); }
     
-    static EventIdCount = 6;
+    static EventIdCount = 1;
     static { Object.freeze(this.EventIdCount); }
     
     static StateId = 
     {
         ROOT : 0,
-        NORMAL : 1,
-        BLUE : 2,
-        OFF : 3,
-        YELLOW : 4,
-        RED : 5,
+        ORDER_MENU : 1,
+        FOOD : 2,
+        SANDWICH : 3,
     }
     static { Object.freeze(this.StateId); }
     
-    static StateIdCount = 6;
+    static StateIdCount = 4;
     static { Object.freeze(this.StateIdCount); }
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
@@ -597,19 +568,31 @@ evaluateGuard = null;
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition('edge9'); } TransitionTo(NORMAL)
+            // uml: / { this.tracer?.edgeTransition('edge4'); } TransitionTo(ORDER_MENU)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer?.edgeTransition('edge9');`.
-                this.tracer?.edgeTransition('edge9');
+                // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
+                this.tracer?.edgeTransition('edge4');
                 
-                // Step 3: Enter/move towards transition target `NORMAL`.
-                this._NORMAL_enter();
+                // Step 3: Enter/move towards transition target `ORDER_MENU`.
+                this._ORDER_MENU_enter();
                 
-                // Finish transition by calling pseudo state transition function.
-                this._NORMAL_InitialState_transition();
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                // ORDER_MENU.<InitialState> behavior
+                // uml: / { this.tracer?.edgeTransition('edge0'); } TransitionTo(FOOD)
+                {
+                    // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                    
+                    // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
+                    this.tracer?.edgeTransition('edge0');
+                    
+                    // Step 3: Enter/move towards transition target `FOOD`.
+                    this._FOOD_enter();
+                    
+                    // Finish transition by calling pseudo state transition function.
+                    this._FOOD_InitialState_transition();
+                    return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                } // end of behavior for ORDER_MENU.<InitialState>
             } // end of behavior for ROOT.<InitialState>
         } // end of behavior for ROOT
     }
@@ -618,84 +601,28 @@ evaluateGuard = null;
     // Note! This function assumes that the `eventId` parameter is valid.
     dispatchEvent(eventId)
     {
+        
         switch (this.stateId)
         {
-            // STATE: TriggerMap
-            case TriggerMap.StateId.ROOT:
-                switch (eventId)
-                {
-                    case TriggerMap.EventId.ERR: this._ROOT_err(); break;
-                    case TriggerMap.EventId.INC1: this._ROOT_inc1(); break;
-                    case TriggerMap.EventId.INC2: this._ROOT_inc2(); break;
-                    case TriggerMap.EventId.DIM1: this._ROOT_dim1(); break;
-                    case TriggerMap.EventId.DIM2: this._ROOT_dim2(); break;
-                    case TriggerMap.EventId.INCITE_RESET: this._ROOT_incite_reset(); break;
-                }
+            // STATE: issue512
+            case issue512.StateId.ROOT:
+                // state and ancestors have no handler for `my_event` event.
                 break;
             
-            // STATE: NORMAL
-            case TriggerMap.StateId.NORMAL:
-                switch (eventId)
-                {
-                    case TriggerMap.EventId.ERR: this._NORMAL_err(); break;
-                    case TriggerMap.EventId.INC1: this._ROOT_inc1(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INC2: this._ROOT_inc2(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.DIM1: this._ROOT_dim1(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.DIM2: this._ROOT_dim2(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INCITE_RESET: this._ROOT_incite_reset(); break; // First ancestor handler for this event
-                }
+            // STATE: ORDER_MENU
+            case issue512.StateId.ORDER_MENU:
+                // state and ancestors have no handler for `my_event` event.
                 break;
             
-            // STATE: BLUE
-            case TriggerMap.StateId.BLUE:
-                switch (eventId)
-                {
-                    case TriggerMap.EventId.DIM1: this._BLUE_dim1(); break;
-                    case TriggerMap.EventId.DIM2: this._BLUE_dim2(); break;
-                    case TriggerMap.EventId.INC1: this._BLUE_inc1(); break;
-                    case TriggerMap.EventId.INC2: this._BLUE_inc2(); break;
-                    case TriggerMap.EventId.ERR: this._NORMAL_err(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INCITE_RESET: this._ROOT_incite_reset(); break; // First ancestor handler for this event
-                }
+            // STATE: FOOD
+            case issue512.StateId.FOOD:
+                this._FOOD_my_event(); 
                 break;
             
-            // STATE: OFF
-            case TriggerMap.StateId.OFF:
-                switch (eventId)
-                {
-                    case TriggerMap.EventId.INC1: this._OFF_inc1(); break;
-                    case TriggerMap.EventId.INC2: this._OFF_inc2(); break;
-                    case TriggerMap.EventId.ERR: this._NORMAL_err(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.DIM1: this._ROOT_dim1(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.DIM2: this._ROOT_dim2(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INCITE_RESET: this._ROOT_incite_reset(); break; // First ancestor handler for this event
-                }
-                break;
-            
-            // STATE: YELLOW
-            case TriggerMap.StateId.YELLOW:
-                switch (eventId)
-                {
-                    case TriggerMap.EventId.DIM1: this._YELLOW_dim1(); break;
-                    case TriggerMap.EventId.DIM2: this._YELLOW_dim2(); break;
-                    case TriggerMap.EventId.ERR: this._NORMAL_err(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INC1: this._ROOT_inc1(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INC2: this._ROOT_inc2(); break; // First ancestor handler for this event
-                    case TriggerMap.EventId.INCITE_RESET: this._ROOT_incite_reset(); break; // First ancestor handler for this event
-                }
-                break;
-            
-            // STATE: RED
-            case TriggerMap.StateId.RED:
-                switch (eventId)
-                {
-                    case TriggerMap.EventId.DIM1: this._RED_dim1(); break;
-                    case TriggerMap.EventId.INC1: this._RED_inc1(); break;
-                    case TriggerMap.EventId.DIM2: this._RED_dim2(); break;
-                    case TriggerMap.EventId.INC2: this._RED_inc2(); break;
-                    case TriggerMap.EventId.INCITE_RESET: this._RED_incite_reset(); break;
-                    case TriggerMap.EventId.ERR: this._ROOT_err(); break; // First ancestor handler for this event
-                }
+            // STATE: SANDWICH
+            case issue512.StateId.SANDWICH:
+                this._FOOD_my_event();  // First ancestor handler for this event
+
                 break;
         }
         
@@ -709,15 +636,11 @@ evaluateGuard = null;
         {
             switch (this.stateId)
             {
-                case TriggerMap.StateId.NORMAL: this._NORMAL_exit(); break;
+                case issue512.StateId.ORDER_MENU: this._ORDER_MENU_exit(); break;
                 
-                case TriggerMap.StateId.BLUE: this._BLUE_exit(); break;
+                case issue512.StateId.FOOD: this._FOOD_exit(); break;
                 
-                case TriggerMap.StateId.OFF: this._OFF_exit(); break;
-                
-                case TriggerMap.StateId.YELLOW: this._YELLOW_exit(); break;
-                
-                case TriggerMap.StateId.RED: this._RED_exit(); break;
+                case issue512.StateId.SANDWICH: this._SANDWICH_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -731,621 +654,146 @@ evaluateGuard = null;
     
     _ROOT_enter()
     {
-        this.stateId = TriggerMap.StateId.ROOT;
-    }
-    
-    _ROOT_dim1()
-    {
-        // ROOT behavior
-        // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("log_unhandled_event();");`
-            this.tracer?.logActionCode("log_unhandled_event();");
-        } // end of behavior for ROOT
-        
-        // No ancestor handles this event.
-    }
-    
-    _ROOT_dim2()
-    {
-        // ROOT behavior
-        // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("log_unhandled_event();");`
-            this.tracer?.logActionCode("log_unhandled_event();");
-        } // end of behavior for ROOT
-        
-        // No ancestor handles this event.
-    }
-    
-    _ROOT_err()
-    {
-        // ROOT behavior
-        // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("log_unhandled_event();");`
-            this.tracer?.logActionCode("log_unhandled_event();");
-        } // end of behavior for ROOT
-        
-        // No ancestor handles this event.
-    }
-    
-    _ROOT_inc1()
-    {
-        // ROOT behavior
-        // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("log_unhandled_event();");`
-            this.tracer?.logActionCode("log_unhandled_event();");
-        } // end of behavior for ROOT
-        
-        // No ancestor handles this event.
-    }
-    
-    _ROOT_inc2()
-    {
-        // ROOT behavior
-        // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("log_unhandled_event();");`
-            this.tracer?.logActionCode("log_unhandled_event();");
-        } // end of behavior for ROOT
-        
-        // No ancestor handles this event.
-    }
-    
-    _ROOT_incite_reset()
-    {
-        // ROOT behavior
-        // uml: (ERR, INC1, INC2, DIM1, DIM2, INCITE_RESET) / { this.tracer?.logActionCode("log_unhandled_event();"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("log_unhandled_event();");`
-            this.tracer?.logActionCode("log_unhandled_event();");
-        } // end of behavior for ROOT
-        
-        // No ancestor handles this event.
+        this.stateId = issue512.StateId.ROOT;
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state NORMAL
+    // event handlers for state ORDER_MENU
     ////////////////////////////////////////////////////////////////////////////////
     
-    _NORMAL_enter()
+    _ORDER_MENU_enter()
     {
-        this.stateId = TriggerMap.StateId.NORMAL;
+        this.stateId = issue512.StateId.ORDER_MENU;
         
-        // NORMAL behavior
-        // uml: enter / { this.tracer?.enterState('NORMAL'); }
+        // ORDER_MENU behavior
+        // uml: enter / { this.tracer?.enterState('ORDER_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.enterState('NORMAL');`
-            this.tracer?.enterState('NORMAL');
-        } // end of behavior for NORMAL
+            // Step 1: execute action `this.tracer?.enterState('ORDER_MENU');`
+            this.tracer?.enterState('ORDER_MENU');
+        } // end of behavior for ORDER_MENU
     }
     
-    _NORMAL_exit()
+    _ORDER_MENU_exit()
     {
-        // NORMAL behavior
-        // uml: exit / { this.tracer?.exitState('NORMAL'); }
+        // ORDER_MENU behavior
+        // uml: exit / { this.tracer?.exitState('ORDER_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.exitState('NORMAL');`
-            this.tracer?.exitState('NORMAL');
-        } // end of behavior for NORMAL
+            // Step 1: execute action `this.tracer?.exitState('ORDER_MENU');`
+            this.tracer?.exitState('ORDER_MENU');
+        } // end of behavior for ORDER_MENU
         
-        this.stateId = TriggerMap.StateId.ROOT;
-    }
-    
-    _NORMAL_err()
-    {
-        let consume_event = false;
-        
-        // NORMAL behavior
-        // uml: ERR / { this.tracer?.edgeTransition('edge0'); } TransitionTo(RED)
-        {
-            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this._exitUpToStateHandler(TriggerMap.StateId.ROOT);
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge0');`.
-            this.tracer?.edgeTransition('edge0');
-            
-            // Step 3: Enter/move towards transition target `RED`.
-            this._RED_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for NORMAL
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_err();
-        }
-    }
-    
-    _NORMAL_InitialState_transition()
-    {
-        // NORMAL.<InitialState> behavior
-        // uml: / { this.tracer?.edgeTransition('edge7'); } TransitionTo(OFF)
-        {
-            // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge7');`.
-            this.tracer?.edgeTransition('edge7');
-            
-            // Step 3: Enter/move towards transition target `OFF`.
-            this._OFF_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for NORMAL.<InitialState>
+        this.stateId = issue512.StateId.ROOT;
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state BLUE
+    // event handlers for state FOOD
     ////////////////////////////////////////////////////////////////////////////////
     
-    _BLUE_enter()
+    _FOOD_enter()
     {
-        this.stateId = TriggerMap.StateId.BLUE;
+        this.stateId = issue512.StateId.FOOD;
         
-        // BLUE behavior
-        // uml: enter / { this.tracer?.enterState('BLUE'); }
+        // FOOD behavior
+        // uml: enter / { this.tracer?.enterState('FOOD'); }
         {
-            // Step 1: execute action `this.tracer?.enterState('BLUE');`
-            this.tracer?.enterState('BLUE');
-        } // end of behavior for BLUE
-        
-        // BLUE behavior
-        // uml: enter / { this.tracer?.logActionCode("set_color(\"#a2f2ff\");"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("set_color(\"#a2f2ff\");");`
-            this.tracer?.logActionCode("set_color(\"#a2f2ff\");");
-        } // end of behavior for BLUE
+            // Step 1: execute action `this.tracer?.enterState('FOOD');`
+            this.tracer?.enterState('FOOD');
+        } // end of behavior for FOOD
     }
     
-    _BLUE_exit()
+    _FOOD_exit()
     {
-        // BLUE behavior
-        // uml: exit / { this.tracer?.exitState('BLUE'); }
+        // FOOD behavior
+        // uml: exit / { this.tracer?.exitState('FOOD'); }
         {
-            // Step 1: execute action `this.tracer?.exitState('BLUE');`
-            this.tracer?.exitState('BLUE');
-        } // end of behavior for BLUE
+            // Step 1: execute action `this.tracer?.exitState('FOOD');`
+            this.tracer?.exitState('FOOD');
+        } // end of behavior for FOOD
         
-        this.stateId = TriggerMap.StateId.NORMAL;
+        this.stateId = issue512.StateId.ORDER_MENU;
     }
     
-    _BLUE_dim1()
+    _FOOD_my_event()
     {
-        let consume_event = false;
-        
-        // BLUE behavior
-        // uml: (DIM1, DIM2) / { this.tracer?.edgeTransition('edge3'); } TransitionTo(OFF)
+        // FOOD behavior
+        // uml: MY_EVENT / { this.tracer?.edgeTransition('edge1'); } TransitionTo(ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0))
         {
-            // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this._BLUE_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
-            this.tracer?.edgeTransition('edge3');
-            
-            // Step 3: Enter/move towards transition target `OFF`.
-            this._OFF_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for BLUE
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_dim1();
-        }
-    }
-    
-    _BLUE_dim2()
-    {
-        let consume_event = false;
-        
-        // BLUE behavior
-        // uml: (DIM1, DIM2) / { this.tracer?.edgeTransition('edge3'); } TransitionTo(OFF)
-        {
-            // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this._BLUE_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
-            this.tracer?.edgeTransition('edge3');
-            
-            // Step 3: Enter/move towards transition target `OFF`.
-            this._OFF_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for BLUE
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_dim2();
-        }
-    }
-    
-    _BLUE_inc1()
-    {
-        let consume_event = false;
-        
-        // BLUE behavior
-        // uml: (INC1, INC2) / { this.tracer?.edgeTransition('edge4'); } TransitionTo(YELLOW)
-        {
-            // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this._BLUE_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
-            this.tracer?.edgeTransition('edge4');
-            
-            // Step 3: Enter/move towards transition target `YELLOW`.
-            this._YELLOW_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for BLUE
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_inc1();
-        }
-    }
-    
-    _BLUE_inc2()
-    {
-        let consume_event = false;
-        
-        // BLUE behavior
-        // uml: (INC1, INC2) / { this.tracer?.edgeTransition('edge4'); } TransitionTo(YELLOW)
-        {
-            // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this._BLUE_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge4');`.
-            this.tracer?.edgeTransition('edge4');
-            
-            // Step 3: Enter/move towards transition target `YELLOW`.
-            this._YELLOW_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for BLUE
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_inc2();
-        }
-    }
-    
-    
-    ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state OFF
-    ////////////////////////////////////////////////////////////////////////////////
-    
-    _OFF_enter()
-    {
-        this.stateId = TriggerMap.StateId.OFF;
-        
-        // OFF behavior
-        // uml: enter / { this.tracer?.enterState('OFF'); }
-        {
-            // Step 1: execute action `this.tracer?.enterState('OFF');`
-            this.tracer?.enterState('OFF');
-        } // end of behavior for OFF
-        
-        // OFF behavior
-        // uml: enter / { this.tracer?.logActionCode("set_color(\"#CCC\");"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("set_color(\"#CCC\");");`
-            this.tracer?.logActionCode("set_color(\"#CCC\");");
-        } // end of behavior for OFF
-    }
-    
-    _OFF_exit()
-    {
-        // OFF behavior
-        // uml: exit / { this.tracer?.exitState('OFF'); }
-        {
-            // Step 1: execute action `this.tracer?.exitState('OFF');`
-            this.tracer?.exitState('OFF');
-        } // end of behavior for OFF
-        
-        this.stateId = TriggerMap.StateId.NORMAL;
-    }
-    
-    _OFF_inc1()
-    {
-        let consume_event = false;
-        
-        // OFF behavior
-        // uml: INC1 / { this.tracer?.edgeTransition('edge1'); } TransitionTo(BLUE)
-        {
-            // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this._OFF_exit();
+            // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition).
+            this._exitUpToStateHandler(issue512.StateId.ORDER_MENU);
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge1');`.
             this.tracer?.edgeTransition('edge1');
             
-            // Step 3: Enter/move towards transition target `BLUE`.
-            this._BLUE_enter();
+            // Step 3: Enter/move towards transition target `ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0)`.
+            // ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0) is a pseudo state and cannot have an `enter` trigger.
             
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for OFF
+            // ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0) behavior
+            // uml: / { this.tracer?.log(`<a href='https://github.com/StateSmith/StateSmith/issues/512' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>🧜‍♀️ mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge3'); } TransitionTo(FOOD)
+            {
+                // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `this.tracer?.log(`<a href='https://github.com/StateSmith/StateSmith/issues/512' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>🧜‍♀️ mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge3');`.
+                this.tracer?.log(`<a href='https://github.com/StateSmith/StateSmith/issues/512' target='_blank' title='Workaround for mermaid issue tracked in StateSmith #512'>🧜‍♀️ mermaid issue #512</a>`, true);this.tracer?.edgeTransition('edge3');
+                
+                // Step 3: Enter/move towards transition target `FOOD`.
+                this._FOOD_enter();
+                
+                // Finish transition by calling pseudo state transition function.
+                this._FOOD_InitialState_transition();
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for ORDER_MENU.<ChoicePoint>(FOOD__Mermaid_StateSmith_Issue_512__0)
+        } // end of behavior for FOOD
         
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_inc1();
-        }
+        // No ancestor handles this event.
     }
     
-    _OFF_inc2()
+    _FOOD_InitialState_transition()
     {
-        let consume_event = false;
-        
-        // OFF behavior
-        // uml: INC2 / { this.tracer?.edgeTransition('edge2'); } TransitionTo(YELLOW)
+        // FOOD.<InitialState> behavior
+        // uml: / { this.tracer?.edgeTransition('edge2'); } TransitionTo(SANDWICH)
         {
-            // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this._OFF_exit();
+            // Step 1: Exit states until we reach `FOOD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `this.tracer?.edgeTransition('edge2');`.
             this.tracer?.edgeTransition('edge2');
             
-            // Step 3: Enter/move towards transition target `YELLOW`.
-            this._YELLOW_enter();
+            // Step 3: Enter/move towards transition target `SANDWICH`.
+            this._SANDWICH_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return;
-        } // end of behavior for OFF
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_inc2();
-        }
+        } // end of behavior for FOOD.<InitialState>
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state YELLOW
+    // event handlers for state SANDWICH
     ////////////////////////////////////////////////////////////////////////////////
     
-    _YELLOW_enter()
+    _SANDWICH_enter()
     {
-        this.stateId = TriggerMap.StateId.YELLOW;
+        this.stateId = issue512.StateId.SANDWICH;
         
-        // YELLOW behavior
-        // uml: enter / { this.tracer?.enterState('YELLOW'); }
+        // SANDWICH behavior
+        // uml: enter / { this.tracer?.enterState('SANDWICH'); }
         {
-            // Step 1: execute action `this.tracer?.enterState('YELLOW');`
-            this.tracer?.enterState('YELLOW');
-        } // end of behavior for YELLOW
-        
-        // YELLOW behavior
-        // uml: enter / { this.tracer?.logActionCode("set_color(\"#fdff71\");"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("set_color(\"#fdff71\");");`
-            this.tracer?.logActionCode("set_color(\"#fdff71\");");
-        } // end of behavior for YELLOW
+            // Step 1: execute action `this.tracer?.enterState('SANDWICH');`
+            this.tracer?.enterState('SANDWICH');
+        } // end of behavior for SANDWICH
     }
     
-    _YELLOW_exit()
+    _SANDWICH_exit()
     {
-        // YELLOW behavior
-        // uml: exit / { this.tracer?.exitState('YELLOW'); }
+        // SANDWICH behavior
+        // uml: exit / { this.tracer?.exitState('SANDWICH'); }
         {
-            // Step 1: execute action `this.tracer?.exitState('YELLOW');`
-            this.tracer?.exitState('YELLOW');
-        } // end of behavior for YELLOW
+            // Step 1: execute action `this.tracer?.exitState('SANDWICH');`
+            this.tracer?.exitState('SANDWICH');
+        } // end of behavior for SANDWICH
         
-        this.stateId = TriggerMap.StateId.NORMAL;
-    }
-    
-    _YELLOW_dim1()
-    {
-        let consume_event = false;
-        
-        // YELLOW behavior
-        // uml: DIM1 / { this.tracer?.edgeTransition('edge5'); } TransitionTo(BLUE)
-        {
-            // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this._YELLOW_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge5');`.
-            this.tracer?.edgeTransition('edge5');
-            
-            // Step 3: Enter/move towards transition target `BLUE`.
-            this._BLUE_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for YELLOW
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_dim1();
-        }
-    }
-    
-    _YELLOW_dim2()
-    {
-        let consume_event = false;
-        
-        // YELLOW behavior
-        // uml: DIM2 / { this.tracer?.edgeTransition('edge6'); } TransitionTo(OFF)
-        {
-            // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
-            this._YELLOW_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge6');`.
-            this.tracer?.edgeTransition('edge6');
-            
-            // Step 3: Enter/move towards transition target `OFF`.
-            this._OFF_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
-        } // end of behavior for YELLOW
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_dim2();
-        }
-    }
-    
-    
-    ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state RED
-    ////////////////////////////////////////////////////////////////////////////////
-    
-    _RED_enter()
-    {
-        this.stateId = TriggerMap.StateId.RED;
-        
-        // RED behavior
-        // uml: enter / { this.tracer?.enterState('RED'); }
-        {
-            // Step 1: execute action `this.tracer?.enterState('RED');`
-            this.tracer?.enterState('RED');
-        } // end of behavior for RED
-        
-        // RED behavior
-        // uml: enter / { this.tracer?.logActionCode("set_color(\"#ff4f4f\");"); }
-        {
-            // Step 1: execute action `this.tracer?.logActionCode("set_color(\"#ff4f4f\");");`
-            this.tracer?.logActionCode("set_color(\"#ff4f4f\");");
-        } // end of behavior for RED
-    }
-    
-    _RED_exit()
-    {
-        // RED behavior
-        // uml: exit / { this.tracer?.exitState('RED'); }
-        {
-            // Step 1: execute action `this.tracer?.exitState('RED');`
-            this.tracer?.exitState('RED');
-        } // end of behavior for RED
-        
-        this.stateId = TriggerMap.StateId.ROOT;
-    }
-    
-    _RED_dim1()
-    {
-        let consume_event = false;
-        
-        // RED behavior
-        // uml: (DIM1, INC1, DIM2, INC2) / { this.tracer?.logActionCode("beep();"); }
-        {
-            // Consume event `dim1`.
-            consume_event = true;
-            // Step 1: execute action `this.tracer?.logActionCode("beep();");`
-            this.tracer?.logActionCode("beep();");
-        } // end of behavior for RED
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_dim1();
-        }
-    }
-    
-    _RED_dim2()
-    {
-        let consume_event = false;
-        
-        // RED behavior
-        // uml: (DIM1, INC1, DIM2, INC2) / { this.tracer?.logActionCode("beep();"); }
-        {
-            // Consume event `dim2`.
-            consume_event = true;
-            // Step 1: execute action `this.tracer?.logActionCode("beep();");`
-            this.tracer?.logActionCode("beep();");
-        } // end of behavior for RED
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_dim2();
-        }
-    }
-    
-    _RED_inc1()
-    {
-        let consume_event = false;
-        
-        // RED behavior
-        // uml: (DIM1, INC1, DIM2, INC2) / { this.tracer?.logActionCode("beep();"); }
-        {
-            // Consume event `inc1`.
-            consume_event = true;
-            // Step 1: execute action `this.tracer?.logActionCode("beep();");`
-            this.tracer?.logActionCode("beep();");
-        } // end of behavior for RED
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_inc1();
-        }
-    }
-    
-    _RED_inc2()
-    {
-        let consume_event = false;
-        
-        // RED behavior
-        // uml: (DIM1, INC1, DIM2, INC2) / { this.tracer?.logActionCode("beep();"); }
-        {
-            // Consume event `inc2`.
-            consume_event = true;
-            // Step 1: execute action `this.tracer?.logActionCode("beep();");`
-            this.tracer?.logActionCode("beep();");
-        } // end of behavior for RED
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_inc2();
-        }
-    }
-    
-    _RED_incite_reset()
-    {
-        let consume_event = false;
-        
-        // RED behavior
-        // uml: INCITE_RESET / { this.tracer?.edgeTransition('edge8'); } TransitionTo(NORMAL)
-        {
-            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-            this._RED_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge8');`.
-            this.tracer?.edgeTransition('edge8');
-            
-            // Step 3: Enter/move towards transition target `NORMAL`.
-            this._NORMAL_enter();
-            
-            // Finish transition by calling pseudo state transition function.
-            this._NORMAL_InitialState_transition();
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior for RED
-        
-        // Check if event has been consumed before calling ancestor handler.
-        if (!consume_event)
-        {
-            this._ROOT_incite_reset();
-        }
+        this.stateId = issue512.StateId.FOOD;
     }
     
     // Thread safe.
@@ -1353,12 +801,10 @@ evaluateGuard = null;
     {
         switch (id)
         {
-            case TriggerMap.StateId.ROOT: return "ROOT";
-            case TriggerMap.StateId.NORMAL: return "NORMAL";
-            case TriggerMap.StateId.BLUE: return "BLUE";
-            case TriggerMap.StateId.OFF: return "OFF";
-            case TriggerMap.StateId.YELLOW: return "YELLOW";
-            case TriggerMap.StateId.RED: return "RED";
+            case issue512.StateId.ROOT: return "ROOT";
+            case issue512.StateId.ORDER_MENU: return "ORDER_MENU";
+            case issue512.StateId.FOOD: return "FOOD";
+            case issue512.StateId.SANDWICH: return "SANDWICH";
             default: return "?";
         }
     }
@@ -1368,12 +814,7 @@ evaluateGuard = null;
     {
         switch (id)
         {
-            case TriggerMap.EventId.DIM1: return "DIM1";
-            case TriggerMap.EventId.DIM2: return "DIM2";
-            case TriggerMap.EventId.ERR: return "ERR";
-            case TriggerMap.EventId.INC1: return "INC1";
-            case TriggerMap.EventId.INC2: return "INC2";
-            case TriggerMap.EventId.INCITE_RESET: return "INCITE_RESET";
+            case issue512.EventId.MY_EVENT: return "MY_EVENT";
             default: return "?";
         }
     }
@@ -1424,85 +865,36 @@ evaluateGuard = null;
             center: true
         });
 
-        const diagramEventNamesArray = ['DIM1', 'DIM2', 'ERR', 'INC1', 'INC2', 'INCITE_RESET', ];
+        const diagramEventNamesArray = ['MY_EVENT', ];
 
         // Mapping from state to available events
         const stateEventsMapping = {
-  "NORMAL": [
-    "DIM1",
-    "DIM2",
-    "ERR",
-    "INC1",
-    "INC2",
-    "INCITE_RESET"
+  "ORDER_MENU": [],
+  "FOOD": [
+    "MY_EVENT"
   ],
-  "OFF": [
-    "DIM1",
-    "DIM2",
-    "ERR",
-    "INC1",
-    "INC2",
-    "INCITE_RESET"
-  ],
-  "BLUE": [
-    "DIM1",
-    "DIM2",
-    "ERR",
-    "INC1",
-    "INC2",
-    "INCITE_RESET"
-  ],
-  "YELLOW": [
-    "DIM1",
-    "DIM2",
-    "ERR",
-    "INC1",
-    "INC2",
-    "INCITE_RESET"
-  ],
-  "RED": [
-    "DIM1",
-    "DIM2",
-    "ERR",
-    "INC1",
-    "INC2",
-    "INCITE_RESET"
+  "SANDWICH": [
+    "MY_EVENT"
   ]
 };
 
         // https://github.com/StateSmith/StateSmith/issues/522
         const stateEdgeMapping = {
-  "NORMAL": [
-    0
+  "ORDER_MENU": [],
+  "FOOD": [
+    1
   ],
-  "OFF": [
-    0,
-    1,
-    2
-  ],
-  "BLUE": [
-    0,
-    3,
-    4
-  ],
-  "YELLOW": [
-    0,
-    5,
-    6
-  ],
-  "RED": [
-    8
+  "SANDWICH": [
+    1
   ]
 };
 
         // https://github.com/StateSmith/StateSmith/issues/523
         const stateDescriptionMapping = {
-  "TriggerMap": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E152\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ENORMAL\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ERED\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT.\u0026lt;InitialState\u0026gt;\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EANY\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elog_unhandled_event();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "NORMAL": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ENORMAL\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E160\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOFF\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EBLUE\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EYELLOW\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ENORMAL.\u0026lt;InitialState\u0026gt;\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EERR\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003ERED\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E152\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EANY\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elog_unhandled_event();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "OFF": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOFF\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E162\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Een\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Eset_color(\u0026quot;#CCC\u0026quot;);\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINC1\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EBLUE\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINC2\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EYELLOW\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ENORMAL\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E160\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EERR\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003ERED\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E152\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EANY\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elog_unhandled_event();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "BLUE": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EBLUE\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E165\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Een\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Eset_color(\u0026quot;#a2f2ff\u0026quot;);\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDIMx\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOFF\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCx\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EYELLOW\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ENORMAL\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E160\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EERR\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003ERED\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E152\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EANY\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elog_unhandled_event();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "YELLOW": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EYELLOW\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E170\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Een\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Eset_color(\u0026quot;#fdff71\u0026quot;);\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDIM1\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EBLUE\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDIM2\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOFF\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ENORMAL\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E160\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EERR\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003ERED\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E152\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EANY\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elog_unhandled_event();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "RED": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ERED\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E175\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Een\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Eset_color(\u0026quot;#ff4f4f\u0026quot;);\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINPUT\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Ebeep();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCITE_RESET\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003ENORMAL\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E152\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EANY\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elog_unhandled_event();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E"
+  "issue512": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT.\u0026lt;InitialState\u0026gt;\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "ORDER_MENU": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EORDER_MENU\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU.\u0026lt;InitialState\u0026gt;\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EFOOD\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU.\u0026lt;ChoicePoint\u0026gt;(FOOD__Mermaid_StateSmith_Issue_512__0)\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "FOOD": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EFOOD\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EFOOD\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EFOOD.\u0026lt;InitialState\u0026gt;\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ESANDWICH\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EMY_EVENT\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU.\u0026lt;ChoicePoint\u0026gt;(FOOD__Mermaid_StateSmith_Issue_512__0)\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EORDER_MENU\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "SANDWICH": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003ESANDWICH\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003ESANDWICH\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EFOOD\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EFOOD\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EMY_EVENT\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU.\u0026lt;ChoicePoint\u0026gt;(FOOD__Mermaid_StateSmith_Issue_512__0)\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EORDER_MENU\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003EORDER_MENU\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003Eissue512\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E"
 };
 
         // Get page element references
@@ -1681,7 +1073,7 @@ evaluateGuard = null;
             document.querySelector('#event-logs tbody').appendChild(row);
         }
 
-        var sm = new TriggerMap();
+        var sm = new issue512();
         window.StateSmith_sm = sm; // expose to global scope so people can interact with it from the console if they want to.
 
         // prompt the user to evaluate guards manually
@@ -1885,15 +1277,15 @@ evaluateGuard = null;
           const stateName = stateNameAnyCase.toUpperCase();
 
           // get ID from stateName
-          const stateId = TriggerMap.StateId[stateName];
+          const stateId = issue512.StateId[stateName];
           if (stateId === undefined) {
             console.error(`Invalid state name '${stateNameAnyCase}' passed to forceStateChange.`);
-            console.log('Valid state names are (in any case):', Object.keys(TriggerMap.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
+            console.log('Valid state names are (in any case):', Object.keys(issue512.StateId).slice(1)); // slice(1) to remove ROOT from the list of valid states since it cannot be forced to.
             return;
           }
 
           // note! This and other ROOT code assumes that it is the first state. This is a fairly safe assumption, but if that ever changes this code will need to be updated.
-          if (Object.keys(TriggerMap.StateId)[0] !== 'ROOT') {
+          if (Object.keys(issue512.StateId)[0] !== 'ROOT') {
             console.warn(`ROOT not found. This should happen. Please open a bug:`, 'https://github.com/StateSmith/StateSmith/issues/new');
           }
 
@@ -1971,7 +1363,7 @@ evaluateGuard = null;
                     clearHighlightedEdges();
                     sm.tracer?.log(`<span class='dispatched'>Event <span class='syntax-trigger-name'>${diagramEventName}</span> dispatched</span>`, true);
                     const fsmEventName = diagramEventName.toUpperCase();
-                    sm.dispatchEvent(TriggerMap.EventId[fsmEventName]);
+                    sm.dispatchEvent(issue512.EventId[fsmEventName]);
                     updateClickableEvents();
                 }
             });

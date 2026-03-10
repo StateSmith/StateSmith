@@ -1,8 +1,7 @@
 # StateSmith
 StateSmith is a cross platform, free/open source tool for generating state machines in multiple programming languages. The generated code is human readable, has zero dependencies and is suitable for use with tiny bare metal microcontrollers, video games, apps, web, computers... It avoids dynamic memory allocations for the safety or performance inclined.
 
-![misc documentation-main page](https://github.com/user-attachments/assets/42fdb74b-0cd1-43b4-8103-7fd412ca7397)
-
+<img width="1032" height="1642" alt="misc documentation-main page (1)" src="https://github.com/user-attachments/assets/a29b60e8-3f50-4018-9ba9-859b7a3aa0b6" />
 
 *The above is [my current plan](https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support), but I'll gladly help anyone add a new language. I'm hoping contributors will help me with this effort. It is tricky though...*
 

@@ -12,4 +12,9 @@ public class SimulationSettings
     public string? outputDirectory = null;
     
     public string outputFileNamePostfix = ".sim.html";
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/525
+    /// </summary>
+    public bool lowerDiagramDetail = false;
 }

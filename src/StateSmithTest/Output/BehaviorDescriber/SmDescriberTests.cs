@@ -71,7 +71,7 @@ public class SmDescriberTests
         SmGraphDescriber smDescriber = new(new StringWriter(sb));
         StateMachine sm = BuildTestSm();
         smDescriber.SetOutputAncestorHandlers(true);
-        smDescriber.Describe(sm);
+        smDescriber.DescribeRecursively(sm);
 
         sb.ToString().ShouldBeShowDiff(ExpectedWithAncestors);
     }
@@ -83,7 +83,7 @@ public class SmDescriberTests
         SmGraphDescriber smDescriber = new(new StringWriter(sb));
         StateMachine sm = BuildTestSm();
         smDescriber.SetOutputAncestorHandlers(false);
-        smDescriber.Describe(sm);
+        smDescriber.DescribeRecursively(sm);
 
         sb.ToString().ShouldBeShowDiff(ExpectedNoAncestors);
     }

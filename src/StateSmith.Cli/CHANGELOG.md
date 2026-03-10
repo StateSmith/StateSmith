@@ -8,7 +8,54 @@ Test/interim releases are not documented here.
 
 ---
 
-## [0.20.0-alpha-1]
+## [0.21.0-alpha-1]
+### Upgrade StateSmith library version to `0.20.0-alpha-1`
+#### Changed (minor)
+- Simulator - enabling verbose modes below by default.
+- Simulator - disabled double click zoom now that we can click on edges to send events.
+  - related to https://github.com/StateSmith/StateSmith/issues/521
+- See more below.
+
+#### Added
+- Simulator - dark mode!
+  - https://github.com/StateSmith/StateSmith/issues/520
+- Simulator - clicking a state will now force the state machine into that state.
+  - https://github.com/StateSmith/StateSmith/issues/519
+- Simulator - allow clicking events shown in diagram.
+  - https://github.com/StateSmith/StateSmith/issues/521
+- Simulator - distinguish available transition edges.
+  - https://github.com/StateSmith/StateSmith/issues/522
+- Simulator - show full state description on state entry.
+  - https://github.com/StateSmith/StateSmith/issues/523
+- Simulator - verbose mode to show enter behavior.
+  - https://github.com/StateSmith/StateSmith/issues/515
+- Simulator - verbose mode to show exit behavior.
+  - https://github.com/StateSmith/StateSmith/issues/513
+- Simulator - verbose mode to show history var updating.
+  - https://github.com/StateSmith/StateSmith/issues/323
+- Simulator - add event log clearing button.
+  - https://github.com/StateSmith/StateSmith/issues/514
+- Simulator - allow dispatching events that will have no effect.
+  - https://github.com/StateSmith/StateSmith/issues/497
+- Simulator - added link to simulator wiki page to help make it easier to find quirks and limitations.
+  - https://github.com/StateSmith/StateSmith/issues/498
+- Simulator - support lower diagram detail setting.
+  - https://github.com/StateSmith/StateSmith/issues/525
+- Simulator - prevent accidental text selection of top right buttons.
+- Simulator - add tool tip titles to event and other buttons.
+- Simulator - add setting to disable tool tips on event buttons.
+- Simulator - remember settings in localStorage.
+- Simulator - parent/composite states are now highlighted when entered.
+- Simulator - dash edges for transitions just taken.
+
+#### Fixed (minor)
+- Fix - simulator - mermaid bug with parent self transitions.
+  - https://github.com/StateSmith/StateSmith/issues/512
+- Fix - simulator - escape html characters in user action/guard code.
+
+---
+
+## [0.20.0]
 ### Contributors
 - @UCSIG
   - https://github.com/StateSmith/StateSmith/pull/495
@@ -16,7 +63,7 @@ Test/interim releases are not documented here.
 - @simon-spobu
   - https://github.com/StateSmith/StateSmith/pull/483
 
-### Upgrade StateSmith library version to `0.19.0-alpha-1`
+### Upgrade StateSmith library version to `0.19.0`
 #### Fixed (minor)
 - Fix SimWebGenerator failure when multiple statemachine nodes at root level (@simon-spobu).
   - https://github.com/StateSmith/StateSmith/pull/483

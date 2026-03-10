@@ -2,6 +2,7 @@
 
 using StateSmith.Common;
 using StateSmith.Output;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -49,23 +50,43 @@ public class CapturingCodeFileWriter : ICodeFileWriter
 
     public Capture GetSoleCaptureWithName(string fileName)
     {
-        var captures = GetCapturesForFileName(fileName);
-        if (captures.Count != 1)
+        var fileNameCaptures = GetCapturesForFileName(fileName);
+        if (fileNameCaptures.Count != 1)
         {
-            throw new System.Exception($"Expected 1 capture for {fileName}, but found {captures.Count}");
+            throw new System.Exception($"Expected 1 capture for {fileName}, but found {fileNameCaptures.Count}. File names captured: {string.Join(",", captures.GetKeys())}");
         }
 
-        return captures[0];
+        return fileNameCaptures[0];
+    }
+
+    public List<Capture> GetCapturesEndingWith(string fileEnding)
+    {
+        return GetMatchingCaptures((capture) => capture.filePath.EndsWith(fileEnding));
+    }
+
+    public List<Capture> GetMatchingCaptures(Predicate<Capture> matcher)
+    {
+        List<Capture> matchedCaptures = [];
+
+        foreach (var capture in captures.GetAllValues())
+        {
+            if (matcher(capture))
+            {
+                matchedCaptures.Add(capture);
+            }
+        }
+
+        return matchedCaptures;
     }
 
     public class Capture
     {
-        public string fileName;
+        public string filePath;
         public string code;
 
-        public Capture(string fileName, string code)
+        public Capture(string filePath, string code)
         {
-            this.fileName = fileName;
+            this.filePath = filePath;
             this.code = code;
         }
     }

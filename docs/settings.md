@@ -124,8 +124,10 @@ AutoExpandedVars  = "stuff..."
   - [SmRunnerSettings.propagateExceptions](#smrunnersettingspropagateexceptions)
   - [SmRunnerSettings.dumpErrorsToFile](#smrunnersettingsdumperrorstofile)
 - [SmRunnerSettings.smDesignDescriber](#smrunnersettingssmdesigndescriber)
+- [SmRunnerSettings.smGraphJsonExporter](#smrunnersettingssmgraphjsonexporter)
 - [SmRunnerSettings.algoBalanced1](#smrunnersettingsalgobalanced1)
 - [SmRunnerSettings.simulation](#smrunnersettingssimulation)
+    - [SmRunnerSettings.simulation.lowerDiagramDetail](#smrunnersettingssimulationlowerdiagramdetail)
 - [...more](#more)
 
 <br>
@@ -1368,17 +1370,21 @@ This feature is useful for:
 - inspecting hierarchical designs
 - understanding StateSmith transformations
 
+All settings below are optional.
 
 ```toml
 [SmRunnerSettings.smDesignDescriber]
-enabled = true
-outputDirectory = ""
-outputAncestorHandlers = true
+enabled = true                  # Default: false
+outputDirectory = ""            # Relative or absolute
+outputAncestorHandlers = true   # Default: false
 
 [SmRunnerSettings.smDesignDescriber.outputSections]
-beforeTransformations = false
-afterTransformations  = true
+beforeTransformations = false   # Default: true
+afterTransformations  = true    # Default: false
 ```
+
+<br>
+<br>
 
 # SmRunnerSettings.algoBalanced1
 Info: https://github.com/StateSmith/StateSmith/issues/181
@@ -1391,6 +1397,12 @@ outputEventIdToStringFunction = false
 outputStateIdToStringFunction = false
 ```
 
+
+
+
+<br>
+<br>
+
 # SmRunnerSettings.simulation
 Info: to be documented
 
@@ -1400,14 +1412,61 @@ If you are using a .csx file, you need to explicitly enable this feature.
 
 ```toml
 [SmRunnerSettings.simulation]
-enableGeneration = false
-outputDirectory = ".."
+enableGeneration = false            # Default: false
+lowerDiagramDetail = true           # Default: false
+outputDirectory = ""                # Relative or absolute
 outputFileNamePostfix = ".sim.html" # NOT YET SUPPORTED!
 ```
 
 Note: `outputFileNamePostfix` is [not yet supported](https://github.com/StateSmith/StateSmith/issues/360).
 
+## SmRunnerSettings.simulation.lowerDiagramDetail
+Info: https://github.com/StateSmith/StateSmith/issues/525
+
+Type: `bool`
+
+If set to `true`, leaf state contents and transition actions are replaced with "...". This can be useful when there's a lot of code in the source diagram and you don't want to clutter up the simulation (the default mermaid layout engine can sometimes use the help).
+
+Default is `false`.
+
+```toml
+[SmRunnerSettings.simulation]
+lowerDiagramDetail = true
+```
+
+
+
+<br>
+<br>
+
+# SmRunnerSettings.smGraphJsonExporter
+Info: https://github.com/StateSmith/StateSmith/issues/528
+
+Particularly useful if you want to write a script that inspects a state machine design/metadata. Saves you from having to parse input diagrams or use .csx if you don't want to. Also allows you to use StateSmith just for parsing diagram files and then your custom script can output state machine code for another state machine library.
+
+The advanced .csx workflow is still much more powerful than this basic feature.
+
+All settings below are optional.
+
+```toml
+[SmRunnerSettings.smGraphJsonExporter]
+enabled = true                  # Default: false
+outputDirectory = "meta-info"   # Relative or absolute.
+outputFileNamePostfix = ".json" # Default: `.export.json`
+beforeTransformations = false   # Default: true
+afterTransformations  = false   # Default: true
+```
+
+`beforeTransformations` is good for when you want to see the original design before
+various transformations/optimizations are performed on state machine graph. Note that state names are not [necessarily unique](https://github.com/StateSmith/StateSmith/issues/138) until after transformations are run.
+
+`afterTransformations` is good for when you want to see what is passed to the code generator.
+This is especially useful when you want to understand transformation steps like
+TriggerMaps and other custom transformations or optimizations.
+
 # ...more
 There are more SmRunnerSettings available that are less commonly used and not yet documented here.
+
+Source code sometimes has more thorough descriptions as well.
 
 See [RunnerSettings.cs](https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Runner/RunnerSettings.cs) in github project.
