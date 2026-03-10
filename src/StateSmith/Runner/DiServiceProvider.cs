@@ -175,6 +175,7 @@ public class DiServiceProvider : IDisposable
         services.AddSingleton(renderConfigAllVars.JavaScript);
         services.AddSingleton(renderConfigAllVars.Java);
         services.AddSingleton(renderConfigAllVars.Python);
+        services.AddSingleton(renderConfigAllVars.Berry);
         services.AddSingleton(renderConfigAllVars.TypeScript);
         services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
         services.AddSingleton<RunnerSettings>(new RunnerSettings(""));

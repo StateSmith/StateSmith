@@ -52,6 +52,16 @@ FileTop = """
 //!!</filter>
 
 
+//!!<filter:Berry>
+
+[RenderConfig.Berry]
+# Imports = "import string"
+# Extends = "MyBaseClass"
+# ClassCode = ""
+
+//!!</filter>
+
+
 
 ############# SmRunner.Settings ###############
 
@@ -59,6 +69,7 @@ FileTop = """
 # transpilerId = "C99"  //!!<line-filter:C,CppC>
 # transpilerId = "CSharp"  //!!<line-filter:CSharp>
 # transpilerId = "JavaScript"  //!!<line-filter:JavaScript>
+# transpilerId = "Berry"  //!!<line-filter:Berry>
 # outputDirectory = "./gen"
 # outputCodeGenTimestamp = true
 # outputStateSmithVersionInfo = false

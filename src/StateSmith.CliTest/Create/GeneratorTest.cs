@@ -152,6 +152,38 @@ public class GeneratorTest
     }
 
     [Fact]
+    public void CsxTemplate_BerryUsesBerryRenderConfig()
+    {
+        const string CsxFilePath = "BerryCodeGen.csx";
+
+        var settings = new Settings
+        {
+            UseCsxWorkflow = true,
+            diagramFileName = "BerryDiagram.plantuml",
+            scriptFileName = CsxFilePath,
+            TargetLanguageId = TargetLanguageId.Berry,
+            StateSmithVersion = "0.19.0-alpha",
+            FileExtension = ".plantuml",
+            PlantUmlDiagramTemplateId = TemplateIds.PlantUmlSimple1,
+            smName = "BerrySm"
+        };
+
+        var mockFileWriter = Substitute.For<IFileWriter>();
+        Generator generator = new(settings);
+        generator.SetFileWriter(mockFileWriter);
+
+        mockFileWriter.When(x => x.Write(CsxFilePath, Arg.Any<string>())).Do(x => {
+            var content = x.ArgAt<string>(1);
+            content.Should().Contain("TranspilerId.Berry");
+            content.Should().Contain("IRenderConfigBerry");
+        });
+
+        generator.GenerateCsx();
+
+        mockFileWriter.Received().Write(CsxFilePath, Arg.Any<string>());
+    }
+
+    [Fact]
     public void DiagramInSiblingDirectory()
     {
         const string CsxPath = "./code_gen/RocketSm.csx";
@@ -261,5 +293,37 @@ public class GeneratorTest
 
         text = StringUtils.ConvertToSlashNLines(text); // for below assertions
         text.Should().Contain("# transpilerId = \"C99\"");
+    }
+
+    [Fact]
+    public void BerryTomlConfigUsesHashComments()
+    {
+        var toml = Generator.GetTomlConfig(TargetLanguageId.Berry, TemplateLoader.TomlConfigType.Minimal);
+        toml = StringUtils.ConvertToSlashNLines(toml);
+
+        toml.Should().Contain("[RenderConfig.Berry]");
+        toml.Should().Contain("# Whatever you put in this `FileTop` section");
+        toml.Should().NotContain("// Whatever you put in this `FileTop` section");
+    }
+
+    [Fact]
+    public void BerryPlantUmlTemplate()
+    {
+        var settings = new Settings
+        {
+            TargetLanguageId = TargetLanguageId.Berry,
+            FileExtension = ".plantuml",
+            PlantUmlDiagramTemplateId = TemplateIds.PlantUmlSimple1,
+            smName = "BerrySm"
+        };
+
+        var generator = new Generator(settings);
+        var text = generator.GenerateDiagramFileText();
+
+        var normalized = StringUtils.ConvertToSlashNLines(text);
+        normalized.Should().Contain("[RenderConfig.Berry]");
+        normalized.Should().Contain("transpilerId = \"Berry\"");
+        normalized.Should().Contain("# Whatever you put in this `FileTop` section");
+        normalized.Should().NotContain("{{SC}}");
     }
 }
