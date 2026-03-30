@@ -17,9 +17,23 @@ jobs:
         with:
           node-version-file: 'src/test-misc/ts-spec2/package.json'
 
+      # for Berry
+      - name: Install dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreadline-dev
+      
+      # for Berry
+      - name: Install dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install readline
+
       - name: Clone Berry v1.1.0
         run: |
           git clone --depth 1 --branch v1.1.0 https://github.com/berry-lang/berry.git
+          cd berry
           git checkout b5ede66721937533fbf5c286ef44a5111ea30c75
 
       - name: Build Berry
