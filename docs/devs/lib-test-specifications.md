@@ -83,7 +83,7 @@ You can run all StateSmith core library tests with
 src/StateSmith$ dotnet test
 ```
 
-NOTE! You may need to run twice if lib souce was changed.
+NOTE! You may need to run twice if lib source was changed.
 
 You can run just the specification tests with this filter command if you are using the terminal:
 ```
