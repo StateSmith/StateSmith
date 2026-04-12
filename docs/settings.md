@@ -118,6 +118,9 @@ AutoExpandedVars  = "stuff..."
 - [SmRunnerSettings.smDesignDescriber](#smrunnersettingssmdesigndescriber)
 - [SmRunnerSettings.smGraphJsonExporter](#smrunnersettingssmgraphjsonexporter)
 - [SmRunnerSettings.algoBalanced1](#smrunnersettingsalgobalanced1)
+  - [SmRunnerSettings.algoBalanced1.outputEventIdToStringFunction](#smrunnersettingsalgobalanced1outputeventidtostringfunction)
+  - [SmRunnerSettings.algoBalanced1.outputStateIdToStringFunction](#smrunnersettingsalgobalanced1outputstateidtostringfunction)
+  - [SmRunnerSettings.algoBalanced1.outputGetParentIdFunction](#smrunnersettingsalgobalanced1outputgetparentidfunction)
 - [SmRunnerSettings.simulation](#smrunnersettingssimulation)
     - [SmRunnerSettings.simulation.lowerDiagramDetail](#smrunnersettingssimulationlowerdiagramdetail)
 - [...more](#more)
@@ -1329,7 +1332,40 @@ outputEventIdToStringFunction = false
 outputStateIdToStringFunction = false
 ```
 
+## SmRunnerSettings.algoBalanced1.outputEventIdToStringFunction
+Type: `bool`
+Info: https://github.com/StateSmith/StateSmith/issues/181
 
+If `true`, a function that converts event IDs to strings is generated. This can be useful for debugging and logging.
+
+```toml
+[SmRunnerSettings.algoBalanced1]
+outputEventIdToStringFunction = false  # default is true
+```
+
+## SmRunnerSettings.algoBalanced1.outputStateIdToStringFunction
+Type: `bool`
+Info: https://github.com/StateSmith/StateSmith/issues/181
+
+If `true`, a function that converts state IDs to strings is generated. This can be useful for debugging and logging.
+
+```toml
+[SmRunnerSettings.algoBalanced1]
+outputStateIdToStringFunction = false  # default is true
+```
+
+## SmRunnerSettings.algoBalanced1.outputGetParentIdFunction
+Type: `bool`
+Info: https://github.com/StateSmith/StateSmith/issues/535
+
+If `true`, a function that gets the parent state ID is generated. This allows you to determine the state machine graph at runtime.
+
+See also `smGraphJsonExporter` setting.
+
+```toml
+[SmRunnerSettings.algoBalanced1]
+outputGetParentIdFunction = false  # default is true
+```
 
 
 <br>
@@ -1389,6 +1425,8 @@ beforeTransformations = false   # Default: true
 afterTransformations  = false   # Default: true
 ```
 
+If you want state machine graph info at runtime, see also `outputGetParentIdFunction`.
+
 `beforeTransformations` is good for when you want to see the original design before
 various transformations/optimizations are performed on state machine graph. Note that state names are not [necessarily unique](https://github.com/StateSmith/StateSmith/issues/138) until after transformations are run.
 
@@ -1402,3 +1440,8 @@ There are more SmRunnerSettings available that are less commonly used and not ye
 Source code sometimes has more thorough descriptions as well.
 
 See [RunnerSettings.cs](https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Runner/RunnerSettings.cs) in github project.
+
+
+
+# Developer notes
+Remember to update `TomlConfigTest_335.TestReflectionMapping` when new settings are added.

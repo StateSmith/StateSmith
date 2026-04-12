@@ -1165,7 +1165,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     static stateIdToString(id)
     {
         switch (id)
@@ -1182,7 +1182,7 @@ evaluateGuard = null;
         }
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     static eventIdToString(id)
     {
         switch (id)
@@ -1195,6 +1195,24 @@ evaluateGuard = null;
             case PlantEx2.EventId.EVNEWVALUEREJECTED: return "EVNEWVALUEREJECTED";
             case PlantEx2.EventId.EVNEWVALUESAVED: return "EVNEWVALUESAVED";
             default: return "?";
+        }
+    }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case PlantEx2.StateId.ROOT: return PlantEx2.StateId.ROOT;
+            case PlantEx2.StateId.NOTSHOOTING: return PlantEx2.StateId.ROOT;
+            case PlantEx2.StateId.CONFIGURING: return PlantEx2.StateId.NOTSHOOTING;
+            case PlantEx2.StateId.NEWVALUEPREVIEW: return PlantEx2.StateId.CONFIGURING;
+            case PlantEx2.StateId.STATE1: return PlantEx2.StateId.NEWVALUEPREVIEW;
+            case PlantEx2.StateId.STATE2: return PlantEx2.StateId.NEWVALUEPREVIEW;
+            case PlantEx2.StateId.NEWVALUESELECTION: return PlantEx2.StateId.CONFIGURING;
+            case PlantEx2.StateId.IDLE: return PlantEx2.StateId.NOTSHOOTING;
+            default: return PlantEx2.StateId.ROOT;
         }
     }
 }

@@ -168,12 +168,25 @@ static void STATE_2_exit(Ex1* sm)
 }
 
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * Ex1_event_id_to_string(Ex1_EventId id)
 {
     switch (id)
     {
         case Ex1_EventId_DO: return "DO";
         default: return "?";
+    }
+}
+
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+Ex1_StateId Ex1_get_parent_id(Ex1_StateId id)
+{
+    switch (id)
+    {
+        case Ex1_StateId_ROOT: return Ex1_StateId_ROOT;
+        case Ex1_StateId_STATE_1: return Ex1_StateId_ROOT;
+        case Ex1_StateId_STATE_2: return Ex1_StateId_ROOT;
+        default: return Ex1_StateId_ROOT;
     }
 }

@@ -75,7 +75,7 @@ public class EnumBuilder
         file.AppendIndented($"public enum {mangler.SmStateEnumType}");
         file.StartCodeBlock();
 
-        var namedVertices = GetSm().GetNamedVerticesCopy();
+        var namedVertices = GetSm().GetOrderedNamedVerticesCopy();
         for (int i = 0; i < namedVertices.Count; i++)
         {
             NamedVertex namedVertex = namedVertices[i];

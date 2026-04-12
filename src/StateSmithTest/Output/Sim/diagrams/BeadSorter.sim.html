@@ -3355,7 +3355,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     static stateIdToString(id)
     {
         switch (id)
@@ -3392,7 +3392,7 @@ evaluateGuard = null;
         }
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     static eventIdToString(id)
     {
         switch (id)
@@ -3402,6 +3402,44 @@ evaluateGuard = null;
             case BeadSorter.EventId.BUTTON2: return "BUTTON2";
             case BeadSorter.EventId.DO: return "DO";
             default: return "?";
+        }
+    }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case BeadSorter.StateId.ROOT: return BeadSorter.StateId.ROOT;
+            case BeadSorter.StateId.PAUSED: return BeadSorter.StateId.ROOT;
+            case BeadSorter.StateId.RUNNING: return BeadSorter.StateId.ROOT;
+            case BeadSorter.StateId.SETUPCHECK: return BeadSorter.StateId.RUNNING;
+            case BeadSorter.StateId.ADJUSTSERVOOFFSETS: return BeadSorter.StateId.SETUPCHECK;
+            case BeadSorter.StateId.DECREASE: return BeadSorter.StateId.ADJUSTSERVOOFFSETS;
+            case BeadSorter.StateId.INCREASE: return BeadSorter.StateId.ADJUSTSERVOOFFSETS;
+            case BeadSorter.StateId.WAIT: return BeadSorter.StateId.ADJUSTSERVOOFFSETS;
+            case BeadSorter.StateId.SETUPCHECK__START: return BeadSorter.StateId.SETUPCHECK;
+            case BeadSorter.StateId.TOUR: return BeadSorter.StateId.SETUPCHECK;
+            case BeadSorter.StateId.SORTINGMODE: return BeadSorter.StateId.RUNNING;
+            case BeadSorter.StateId.SORTINGMODE__DROPOFF: return BeadSorter.StateId.SORTINGMODE;
+            case BeadSorter.StateId.SORTINGMODE__PICKUP: return BeadSorter.StateId.SORTINGMODE;
+            case BeadSorter.StateId.SORTINGMODE__SENSOR: return BeadSorter.StateId.SORTINGMODE;
+            case BeadSorter.StateId.SORTINGMODE__START: return BeadSorter.StateId.SORTINGMODE;
+            case BeadSorter.StateId.TRAININGMODE: return BeadSorter.StateId.RUNNING;
+            case BeadSorter.StateId.READEMPTYSLOT: return BeadSorter.StateId.TRAININGMODE;
+            case BeadSorter.StateId.READEMPTYSLOT__DROPOFF: return BeadSorter.StateId.READEMPTYSLOT;
+            case BeadSorter.StateId.READEMPTYSLOT__SENSOR: return BeadSorter.StateId.READEMPTYSLOT;
+            case BeadSorter.StateId.READJAMMEDSLOT: return BeadSorter.StateId.TRAININGMODE;
+            case BeadSorter.StateId.JAMMED: return BeadSorter.StateId.READJAMMEDSLOT;
+            case BeadSorter.StateId.READJAMMEDSLOT__DROPOFF: return BeadSorter.StateId.READJAMMEDSLOT;
+            case BeadSorter.StateId.READJAMMEDSLOT__SENSOR: return BeadSorter.StateId.READJAMMEDSLOT;
+            case BeadSorter.StateId.READSLOT: return BeadSorter.StateId.TRAININGMODE;
+            case BeadSorter.StateId.READSLOT__DROPOFF: return BeadSorter.StateId.READSLOT;
+            case BeadSorter.StateId.READSLOT__SENSOR: return BeadSorter.StateId.READSLOT;
+            case BeadSorter.StateId.TRAININGMODE__PICKUP: return BeadSorter.StateId.READSLOT;
+            case BeadSorter.StateId.TRAININGMODE__START: return BeadSorter.StateId.TRAININGMODE;
+            default: return BeadSorter.StateId.ROOT;
         }
     }
 }

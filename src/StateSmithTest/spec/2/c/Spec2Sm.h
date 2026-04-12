@@ -311,11 +311,15 @@ void Spec2Sm_start(Spec2Sm* sm);
 // Note! This function assumes that the `event_id` parameter is valid.
 void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id);
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 char const * Spec2Sm_state_id_to_string(Spec2Sm_StateId id);
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * Spec2Sm_event_id_to_string(Spec2Sm_EventId id);
+
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+Spec2Sm_StateId Spec2Sm_get_parent_id(Spec2Sm_StateId id);
 
 // Generated state machine
 struct Spec2Sm

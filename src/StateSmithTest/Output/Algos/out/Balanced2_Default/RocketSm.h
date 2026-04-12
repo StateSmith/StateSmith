@@ -42,11 +42,15 @@ void RocketSm_start(RocketSm* sm);
 // Note! This function assumes that the `event_id` parameter is valid.
 void RocketSm_dispatch_event(RocketSm* sm, RocketSm_EventId event_id);
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 char const * RocketSm_state_id_to_string(RocketSm_StateId id);
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * RocketSm_event_id_to_string(RocketSm_EventId id);
+
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+RocketSm_StateId RocketSm_get_parent_id(RocketSm_StateId id);
 
 // Generated state machine
 struct RocketSm

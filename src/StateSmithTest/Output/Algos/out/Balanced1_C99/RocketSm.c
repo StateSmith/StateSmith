@@ -220,7 +220,7 @@ static void G2_do(RocketSm* sm)
     } // end of behavior for g2
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 char const * RocketSm_state_id_to_string(RocketSm_StateId id)
 {
     switch (id)
@@ -233,12 +233,26 @@ char const * RocketSm_state_id_to_string(RocketSm_StateId id)
     }
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * RocketSm_event_id_to_string(RocketSm_EventId id)
 {
     switch (id)
     {
         case RocketSm_EventId_DO: return "DO";
         default: return "?";
+    }
+}
+
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+RocketSm_StateId RocketSm_get_parent_id(RocketSm_StateId id)
+{
+    switch (id)
+    {
+        case RocketSm_StateId_ROOT: return RocketSm_StateId_ROOT;
+        case RocketSm_StateId_GROUP: return RocketSm_StateId_ROOT;
+        case RocketSm_StateId_G1: return RocketSm_StateId_GROUP;
+        case RocketSm_StateId_G2: return RocketSm_StateId_GROUP;
+        default: return RocketSm_StateId_ROOT;
     }
 }

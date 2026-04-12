@@ -317,11 +317,15 @@ public:
     // Note! This function assumes that the `eventId` parameter is valid.
     void dispatchEvent(EventId eventId);
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     static char const * stateIdToString(StateId id);
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     static char const * eventIdToString(EventId id);
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+    static StateId getParentId(StateId id);
 
 public:
     void user_class_code_example()

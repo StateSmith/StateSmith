@@ -279,7 +279,7 @@ export class RocketSm extends RocketSmBase implements IRocketSm
         this.stateId = StateId.ROOT;
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     public static stateIdToString(id: StateId): string 
     {
         switch (id)
@@ -293,7 +293,7 @@ export class RocketSm extends RocketSmBase implements IRocketSm
         }
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     public static eventIdToString(id: EventId): string 
     {
         switch (id)
@@ -301,6 +301,21 @@ export class RocketSm extends RocketSmBase implements IRocketSm
             case EventId.EV1: return "EV1";
             case EventId.EV2: return "EV2";
             default: return "?";
+        }
+    }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+    public static getParentId(id: StateId): StateId 
+    {
+        switch (id)
+        {
+            case StateId.ROOT: return StateId.ROOT;
+            case StateId.GROUP: return StateId.ROOT;
+            case StateId.G1: return StateId.GROUP;
+            case StateId.G2: return StateId.GROUP;
+            case StateId.S1: return StateId.ROOT;
+            default: return StateId.ROOT;
         }
     }
 }

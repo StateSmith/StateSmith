@@ -44,14 +44,20 @@ public class AlgoBalanced1Settings
     internal bool outputSwitchDefault = false;
 
     /// <summary>
-    /// Set to false if don't want the event ID to string function to be generated and output.
+    /// Set to false if you don't want the event ID to string function to be generated and output.
     /// https://github.com/StateSmith/StateSmith/issues/181
     /// </summary>
     public bool outputEventIdToStringFunction = true;
 
     /// <summary>
-    /// Set to false if don't want the state ID to string function to be generated and output.
+    /// Set to false if you don't want the state ID to string function to be generated and output.
     /// https://github.com/StateSmith/StateSmith/issues/181
     /// </summary>
     public bool outputStateIdToStringFunction = true;
+
+    /// <summary>
+    /// Set to false if you don't want the get parent id function to be generated and output.
+    /// https://github.com/StateSmith/StateSmith/issues/535
+    /// </summary>
+    public bool outputGetParentIdFunction = true;
 }

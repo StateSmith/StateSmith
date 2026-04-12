@@ -262,11 +262,20 @@ public class TomlConfigTest_335
             [SmRunnerSettings.algoBalanced1]
             outputEventIdToStringFunction = false
             outputStateIdToStringFunction = false
+            outputGetParentIdFunction = false
 
             [SmRunnerSettings.simulation]
             enableGeneration = true
+            lowerDiagramDetail = true
             outputDirectory = ".."
             outputFileNamePostfix = ".sim.html"
+
+            [SmRunnerSettings.smGraphJsonExporter]
+            enabled = true                  # Default: false
+            outputDirectory = "meta-info"   # Relative or absolute.
+            outputFileNamePostfix = ".json" # Default: `.export.json`
+            beforeTransformations = false   # Default: true
+            afterTransformations  = false   # Default: true
 
             [RenderConfig.Python]
             Imports = """

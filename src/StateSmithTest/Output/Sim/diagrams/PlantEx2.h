@@ -52,11 +52,15 @@ void PlantEx2_start(PlantEx2* sm);
 // Note! This function assumes that the `event_id` parameter is valid.
 void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id);
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 char const * PlantEx2_state_id_to_string(PlantEx2_StateId id);
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * PlantEx2_event_id_to_string(PlantEx2_EventId id);
+
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+PlantEx2_StateId PlantEx2_get_parent_id(PlantEx2_StateId id);
 
 // Generated state machine
 struct PlantEx2

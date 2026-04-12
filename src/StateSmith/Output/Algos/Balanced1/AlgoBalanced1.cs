@@ -142,7 +142,7 @@ public class AlgoBalanced1 : IGilAlgo
             OutputExitUpToFunction();
 
             OutputTriggerHandlers();
-            MaybeOutputToStringFunctions();
+            MaybeOutputAdditionalFunctions();
         });
     }
 
@@ -153,7 +153,7 @@ public class AlgoBalanced1 : IGilAlgo
         file.AppendIndentedLine();
     }
 
-    private void MaybeOutputToStringFunctions()
+    private void MaybeOutputAdditionalFunctions()
     {
         if (settings.outputStateIdToStringFunction)
         {
@@ -163,6 +163,11 @@ public class AlgoBalanced1 : IGilAlgo
         if (settings.outputEventIdToStringFunction)
         {
             algoEventIdToString.CreateEventIdToStringFunction(file, Sm);
+        }
+
+        if (settings.outputGetParentIdFunction)
+        {
+            GetParentIdFunctionGen.Generate(file, Sm, mangler);
         }
     }
 
@@ -322,7 +327,7 @@ public class AlgoBalanced1 : IGilAlgo
 
     internal void OutputTriggerHandlers()
     {
-        List<NamedVertex> namedVertices = Sm.GetNamedVerticesCopy();
+        List<NamedVertex> namedVertices = Sm.GetOrderedNamedVerticesCopy();
 
         foreach (var state in namedVertices)
         {

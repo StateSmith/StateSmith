@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace StateSmith.SmGraph.Visitors;
 
-public class SmToNamedVerticesVisitor : VertexVisitor
+public class SmToOrderedNamedVerticesVisitor : VertexVisitor
 {
     /// <summary>
     /// Includes regular states, super states, orthogonal states (some day) and state machines

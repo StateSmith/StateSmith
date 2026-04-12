@@ -2952,7 +2952,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     static stateIdToString(id)
     {
         switch (id)
@@ -2984,7 +2984,7 @@ evaluateGuard = null;
         }
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     static eventIdToString(id)
     {
         switch (id)
@@ -2998,6 +2998,39 @@ evaluateGuard = null;
             case SpaceControlUiSm.EventId.RIGHT: return "RIGHT";
             case SpaceControlUiSm.EventId.UP: return "UP";
             default: return "?";
+        }
+    }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case SpaceControlUiSm.StateId.ROOT: return SpaceControlUiSm.StateId.ROOT;
+            case SpaceControlUiSm.StateId.DONE: return SpaceControlUiSm.StateId.ROOT;
+            case SpaceControlUiSm.StateId.MENU: return SpaceControlUiSm.StateId.ROOT;
+            case SpaceControlUiSm.StateId.ESC_CATCHER_1: return SpaceControlUiSm.StateId.MENU;
+            case SpaceControlUiSm.StateId.DRINK_MENU: return SpaceControlUiSm.StateId.ESC_CATCHER_1;
+            case SpaceControlUiSm.StateId.FOOD_MENU: return SpaceControlUiSm.StateId.ESC_CATCHER_1;
+            case SpaceControlUiSm.StateId.EAT_BURRITO: return SpaceControlUiSm.StateId.FOOD_MENU;
+            case SpaceControlUiSm.StateId.EAT_MRE: return SpaceControlUiSm.StateId.FOOD_MENU;
+            case SpaceControlUiSm.StateId.EAT_SLUDGE: return SpaceControlUiSm.StateId.FOOD_MENU;
+            case SpaceControlUiSm.StateId.EVENT_EATER_2: return SpaceControlUiSm.StateId.FOOD_MENU;
+            case SpaceControlUiSm.StateId.COOKING_FOOD: return SpaceControlUiSm.StateId.EVENT_EATER_2;
+            case SpaceControlUiSm.StateId.COOKING_FOOD1: return SpaceControlUiSm.StateId.EVENT_EATER_2;
+            case SpaceControlUiSm.StateId.SYSTEM_INFO_MENU: return SpaceControlUiSm.StateId.ESC_CATCHER_1;
+            case SpaceControlUiSm.StateId.BURRITO_COUNT: return SpaceControlUiSm.StateId.SYSTEM_INFO_MENU;
+            case SpaceControlUiSm.StateId.DISTANCE: return SpaceControlUiSm.StateId.SYSTEM_INFO_MENU;
+            case SpaceControlUiSm.StateId.SELF_DESTRUCT: return SpaceControlUiSm.StateId.SYSTEM_INFO_MENU;
+            case SpaceControlUiSm.StateId.SD_1: return SpaceControlUiSm.StateId.SELF_DESTRUCT;
+            case SpaceControlUiSm.StateId.SELF_DESTRUCT_OPTION: return SpaceControlUiSm.StateId.SYSTEM_INFO_MENU;
+            case SpaceControlUiSm.StateId.MAIN_MENU_INNER: return SpaceControlUiSm.StateId.MENU;
+            case SpaceControlUiSm.StateId.DRINK: return SpaceControlUiSm.StateId.MAIN_MENU_INNER;
+            case SpaceControlUiSm.StateId.FOOD: return SpaceControlUiSm.StateId.MAIN_MENU_INNER;
+            case SpaceControlUiSm.StateId.SYSTEM_INFO: return SpaceControlUiSm.StateId.MAIN_MENU_INNER;
+            case SpaceControlUiSm.StateId.SPLASH_SCREEN: return SpaceControlUiSm.StateId.ROOT;
+            default: return SpaceControlUiSm.StateId.ROOT;
         }
     }
 }

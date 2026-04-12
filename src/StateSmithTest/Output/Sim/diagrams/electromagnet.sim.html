@@ -2127,7 +2127,7 @@ evaluateGuard = null;
         // No ancestor handles this event.
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     static stateIdToString(id)
     {
         switch (id)
@@ -2151,7 +2151,7 @@ evaluateGuard = null;
         }
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     static eventIdToString(id)
     {
         switch (id)
@@ -2169,6 +2169,31 @@ evaluateGuard = null;
             case electromagnet.EventId.SWITCH_MODE: return "SWITCH_MODE";
             case electromagnet.EventId.TARGET_CURRENT_CHANGE: return "TARGET_CURRENT_CHANGE";
             default: return "?";
+        }
+    }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case electromagnet.StateId.ROOT: return electromagnet.StateId.ROOT;
+            case electromagnet.StateId.ADC_CALIBRATION: return electromagnet.StateId.ROOT;
+            case electromagnet.StateId.SYSTEM_ERROR: return electromagnet.StateId.ROOT;
+            case electromagnet.StateId.SYSTEM_INITIALIZATION: return electromagnet.StateId.ROOT;
+            case electromagnet.StateId.SYSTEM_RUN: return electromagnet.StateId.ROOT;
+            case electromagnet.StateId.ELECTRICITY_CONTROL_MODE: return electromagnet.StateId.SYSTEM_RUN;
+            case electromagnet.StateId.CHANGE_OF_OBJECTIVE: return electromagnet.StateId.ELECTRICITY_CONTROL_MODE;
+            case electromagnet.StateId.ELECTRICITY_CONTROL: return electromagnet.StateId.ELECTRICITY_CONTROL_MODE;
+            case electromagnet.StateId.INITIALIZATION_OF_PID: return electromagnet.StateId.ELECTRICITY_CONTROL_MODE;
+            case electromagnet.StateId.PARAMETER_ADJUSTMENTS: return electromagnet.StateId.ELECTRICITY_CONTROL_MODE;
+            case electromagnet.StateId.ELECTRICITY_CONTROL_MODE2: return electromagnet.StateId.SYSTEM_RUN;
+            case electromagnet.StateId.ELECTRICITY_CONTROL2: return electromagnet.StateId.ELECTRICITY_CONTROL_MODE2;
+            case electromagnet.StateId.INITIALIZATION_OF_PID2: return electromagnet.StateId.ELECTRICITY_CONTROL_MODE2;
+            case electromagnet.StateId.STANDBY: return electromagnet.StateId.SYSTEM_RUN;
+            case electromagnet.StateId.SYSTEM_STOP: return electromagnet.StateId.ROOT;
+            default: return electromagnet.StateId.ROOT;
         }
     }
 }

@@ -267,7 +267,7 @@ function userCodeMethod() {
         this.#currentStateExitHandler = this.#ROOT_exit;
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     static stateIdToString(id)
     {
         switch (id)
@@ -281,7 +281,7 @@ function userCodeMethod() {
         }
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     static eventIdToString(id)
     {
         switch (id)
@@ -289,6 +289,21 @@ function userCodeMethod() {
             case RocketSm.EventId.EV1: return "EV1";
             case RocketSm.EventId.EV2: return "EV2";
             default: return "?";
+        }
+    }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case RocketSm.StateId.ROOT: return RocketSm.StateId.ROOT;
+            case RocketSm.StateId.GROUP: return RocketSm.StateId.ROOT;
+            case RocketSm.StateId.G1: return RocketSm.StateId.GROUP;
+            case RocketSm.StateId.G2: return RocketSm.StateId.GROUP;
+            case RocketSm.StateId.S1: return RocketSm.StateId.ROOT;
+            default: return RocketSm.StateId.ROOT;
         }
     }
 }

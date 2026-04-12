@@ -3,6 +3,10 @@
 
 namespace StateSmith.Output.Algos.Balanced1;
 
+/// <summary>
+/// This class is abstract so that children can easily provide camel case or pascal casing.
+/// See <see cref="CamelCaseNameMangler"/>.
+/// </summary>
 public abstract class AbstractMangler : NameMangler
 {
     /// <summary><inheritdoc/></summary>
@@ -19,6 +23,9 @@ public abstract class AbstractMangler : NameMangler
 
     /// <summary><inheritdoc/></summary>
     public override string SmStateIdToStringFuncName => MangleFuncName(base.SmStateIdToStringFuncName);
+
+    /// <summary><inheritdoc/></summary>
+    public override string SmGetParentIdFuncName =>  MangleFuncName(base.SmGetParentIdFuncName);
 
     /// <summary><inheritdoc/></summary>
     public override string SmExitUpToFuncName => MangleFuncName(base.SmExitUpToFuncName);

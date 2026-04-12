@@ -188,7 +188,7 @@ class RocketSm():
         # No ancestor handles this event.
     
     
-    # Thread safe.
+    # Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     @staticmethod
     def stateIdToString(id):
         match id:
@@ -199,10 +199,22 @@ class RocketSm():
             case _: return "?"
     
     
-    # Thread safe.
+    # Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     @staticmethod
     def eventIdToString(id):
         match id:
             case RocketSm.EventId.DO: return "DO"
             case _: return "?"
+    
+    
+    # Returns the parent state for a given state. Returns ROOT if input has no parent.
+    # Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+    @staticmethod
+    def getParentId(id):
+        match id:
+            case RocketSm.StateId.ROOT: return RocketSm.StateId.ROOT
+            case RocketSm.StateId.GROUP: return RocketSm.StateId.ROOT
+            case RocketSm.StateId.G1: return RocketSm.StateId.GROUP
+            case RocketSm.StateId.G2: return RocketSm.StateId.GROUP
+            case _: return RocketSm.StateId.ROOT
     

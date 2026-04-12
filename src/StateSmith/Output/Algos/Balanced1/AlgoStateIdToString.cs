@@ -15,14 +15,14 @@ public class AlgoStateIdToString : IAlgoStateIdToString
 
     public void CreateStateIdToStringFunction(OutputFile file, StateMachine sm)
     {
-        file.AppendIndentedLine("// Thread safe.");
+        file.AppendIndentedLine("// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.");
         file.AppendIndented($"public static string {mangler.SmStateIdToStringFuncName}({mangler.SmStateEnumType} id)");
         file.StartCodeBlock();
         {
             file.AppendIndented("switch (id)");
             file.StartCodeBlock();
             {
-                foreach (var state in sm.GetNamedVerticesCopy())
+                foreach (var state in sm.GetOrderedNamedVerticesCopy())
                 {
                     file.AppendIndentedLine($"case {mangler.SmQualifiedStateEnumValue(state)}: return \"{mangler.SmStateToString(state)}\";");
                 }

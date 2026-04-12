@@ -214,7 +214,7 @@ class RocketSm
         // No ancestor handles this event.
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     static stateIdToString(id)
     {
         switch (id)
@@ -227,13 +227,27 @@ class RocketSm
         }
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     static eventIdToString(id)
     {
         switch (id)
         {
             case RocketSm.EventId.DO: return "DO";
             default: return "?";
+        }
+    }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case RocketSm.StateId.ROOT: return RocketSm.StateId.ROOT;
+            case RocketSm.StateId.GROUP: return RocketSm.StateId.ROOT;
+            case RocketSm.StateId.G1: return RocketSm.StateId.GROUP;
+            case RocketSm.StateId.G2: return RocketSm.StateId.GROUP;
+            default: return RocketSm.StateId.ROOT;
         }
     }
 }

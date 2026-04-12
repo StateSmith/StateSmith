@@ -1348,7 +1348,7 @@ evaluateGuard = null;
         }
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     static stateIdToString(id)
     {
         switch (id)
@@ -1363,7 +1363,7 @@ evaluateGuard = null;
         }
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     static eventIdToString(id)
     {
         switch (id)
@@ -1375,6 +1375,22 @@ evaluateGuard = null;
             case TriggerMap.EventId.INC2: return "INC2";
             case TriggerMap.EventId.INCITE_RESET: return "INCITE_RESET";
             default: return "?";
+        }
+    }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case TriggerMap.StateId.ROOT: return TriggerMap.StateId.ROOT;
+            case TriggerMap.StateId.NORMAL: return TriggerMap.StateId.ROOT;
+            case TriggerMap.StateId.BLUE: return TriggerMap.StateId.NORMAL;
+            case TriggerMap.StateId.OFF: return TriggerMap.StateId.NORMAL;
+            case TriggerMap.StateId.YELLOW: return TriggerMap.StateId.NORMAL;
+            case TriggerMap.StateId.RED: return TriggerMap.StateId.ROOT;
+            default: return TriggerMap.StateId.ROOT;
         }
     }
 }

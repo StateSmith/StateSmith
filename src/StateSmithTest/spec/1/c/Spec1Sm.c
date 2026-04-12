@@ -458,7 +458,7 @@ static void T111_exit(Spec1Sm* sm)
     sm->state_id = Spec1Sm_StateId_T11;
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 char const * Spec1Sm_state_id_to_string(Spec1Sm_StateId id)
 {
     switch (id)
@@ -474,7 +474,7 @@ char const * Spec1Sm_state_id_to_string(Spec1Sm_StateId id)
     }
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * Spec1Sm_event_id_to_string(Spec1Sm_EventId id)
 {
     switch (id)
@@ -482,5 +482,22 @@ char const * Spec1Sm_event_id_to_string(Spec1Sm_EventId id)
         case Spec1Sm_EventId_EV1: return "EV1";
         case Spec1Sm_EventId_EV2: return "EV2";
         default: return "?";
+    }
+}
+
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+Spec1Sm_StateId Spec1Sm_get_parent_id(Spec1Sm_StateId id)
+{
+    switch (id)
+    {
+        case Spec1Sm_StateId_ROOT: return Spec1Sm_StateId_ROOT;
+        case Spec1Sm_StateId_S: return Spec1Sm_StateId_ROOT;
+        case Spec1Sm_StateId_S1: return Spec1Sm_StateId_S;
+        case Spec1Sm_StateId_S11: return Spec1Sm_StateId_S1;
+        case Spec1Sm_StateId_T1: return Spec1Sm_StateId_S;
+        case Spec1Sm_StateId_T11: return Spec1Sm_StateId_T1;
+        case Spec1Sm_StateId_T111: return Spec1Sm_StateId_T11;
+        default: return Spec1Sm_StateId_ROOT;
     }
 }

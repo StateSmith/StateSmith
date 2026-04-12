@@ -452,7 +452,7 @@ private void T111_exit()
     this.state_id = StateId.T11;
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 public static string state_id_to_string(StateId id)
 {
     switch (id)
@@ -468,7 +468,7 @@ public static string state_id_to_string(StateId id)
     }
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 public static string event_id_to_string(EventId id)
 {
     switch (id)
@@ -476,6 +476,23 @@ public static string event_id_to_string(EventId id)
         case EventId.EV1: return "EV1";
         case EventId.EV2: return "EV2";
         default: return "?";
+    }
+}
+
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+public static StateId get_parent_id(StateId id)
+{
+    switch (id)
+    {
+        case StateId.ROOT: return StateId.ROOT;
+        case StateId.S: return StateId.ROOT;
+        case StateId.S1: return StateId.S;
+        case StateId.S11: return StateId.S1;
+        case StateId.T1: return StateId.S;
+        case StateId.T11: return StateId.T1;
+        case StateId.T111: return StateId.T11;
+        default: return StateId.ROOT;
     }
 }
 

@@ -27,7 +27,7 @@ public class UserAddEventIdToString
         string CreateFuncSignature()
         {
             var output = "// Converts an event id to a string. Thread safe.\n";
-            output += $"const char* {mangler.Sm.Name}_event_id_to_string(const enum {mangler.SmEventEnumType} id)";
+            output += $"const char* {mangler.Sm.Name}_custom_event_id_to_string(const {mangler.Sm.Name}_{mangler.SmEventEnumType} id)";
             return output;
         }
 
@@ -50,7 +50,7 @@ public class UserAddEventIdToString
                 {
                     foreach (var eventName in sm.GetEventListCopy())
                     {
-                        output.AppendIndentedLine($"case {mangler.SmEventEnumValue(eventName)}: return \"{eventName}\";");
+                        output.AppendIndentedLine($"case {mangler.Sm.Name}_EventId_{mangler.SmEventEnumValue(eventName)}: return \"{eventName}\";");
                     }
                 }
                 output.FinishCodeBlock();
@@ -87,6 +87,7 @@ public class UserAddEventIdToString
         // adjust settings because we are unit testing. Normally wouldn't do below.
         runner.Settings.propagateExceptions = true;
         runner.Settings.outputStateSmithVersionInfo = false;
+        runner.Settings.algoBalanced1.outputEventIdToStringFunction = false;
 
         // run StateSmith with our custom code file writer
         runner.Run();
@@ -95,7 +96,7 @@ public class UserAddEventIdToString
         var cCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex2.c");
         var hCode = File.ReadAllText(runner.Settings.outputDirectory + "Ex2.h");
 
-        cCode.Should().Contain("_event_id_to_string");
-        hCode.Should().Contain("_event_id_to_string");
+        cCode.Should().Contain("_custom_event_id_to_string");
+        hCode.Should().Contain("_custom_event_id_to_string");
     }
 }

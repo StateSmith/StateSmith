@@ -14,7 +14,7 @@ public class SmToStatesVisitorTest
     {
         InputSmBuilder inputSmBuilder = ExamplesTestHelpers.SetupTiny2Sm();
 
-        SmToNamedVerticesVisitor visitor = new();
+        SmToOrderedNamedVerticesVisitor visitor = new();
         inputSmBuilder.FindSingleStateMachine();
         inputSmBuilder.GetStateMachine().Accept(visitor);
 

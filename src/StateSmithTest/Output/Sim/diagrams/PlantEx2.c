@@ -534,7 +534,7 @@ static void IDLE_evconfig(PlantEx2* sm)
     // No ancestor handles this event.
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 char const * PlantEx2_state_id_to_string(PlantEx2_StateId id)
 {
     switch (id)
@@ -551,7 +551,7 @@ char const * PlantEx2_state_id_to_string(PlantEx2_StateId id)
     }
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * PlantEx2_event_id_to_string(PlantEx2_EventId id)
 {
     switch (id)
@@ -564,5 +564,23 @@ char const * PlantEx2_event_id_to_string(PlantEx2_EventId id)
         case PlantEx2_EventId_EVNEWVALUEREJECTED: return "EVNEWVALUEREJECTED";
         case PlantEx2_EventId_EVNEWVALUESAVED: return "EVNEWVALUESAVED";
         default: return "?";
+    }
+}
+
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
+PlantEx2_StateId PlantEx2_get_parent_id(PlantEx2_StateId id)
+{
+    switch (id)
+    {
+        case PlantEx2_StateId_ROOT: return PlantEx2_StateId_ROOT;
+        case PlantEx2_StateId_NOTSHOOTING: return PlantEx2_StateId_ROOT;
+        case PlantEx2_StateId_CONFIGURING: return PlantEx2_StateId_NOTSHOOTING;
+        case PlantEx2_StateId_NEWVALUEPREVIEW: return PlantEx2_StateId_CONFIGURING;
+        case PlantEx2_StateId_STATE1: return PlantEx2_StateId_NEWVALUEPREVIEW;
+        case PlantEx2_StateId_STATE2: return PlantEx2_StateId_NEWVALUEPREVIEW;
+        case PlantEx2_StateId_NEWVALUESELECTION: return PlantEx2_StateId_CONFIGURING;
+        case PlantEx2_StateId_IDLE: return PlantEx2_StateId_NOTSHOOTING;
+        default: return PlantEx2_StateId_ROOT;
     }
 }
