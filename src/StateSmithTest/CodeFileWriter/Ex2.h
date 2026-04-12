@@ -46,9 +46,6 @@ void Ex2_dispatch_event(Ex2* sm, Ex2_EventId event_id);
 // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 char const * Ex2_state_id_to_string(Ex2_StateId id);
 
-// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
-char const * Ex2_event_id_to_string(Ex2_EventId id);
-
 // Returns the parent state for a given state. Returns ROOT if input has no parent.
 // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
 Ex2_StateId Ex2_get_parent_id(Ex2_StateId id);
@@ -61,4 +58,4 @@ struct Ex2
 };
 
 // Converts an event id to a string. Thread safe.
-const char* Ex2_event_id_to_string(const enum EventId id);
+const char* Ex2_custom_event_id_to_string(const Ex2_EventId id);

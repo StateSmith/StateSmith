@@ -210,18 +210,6 @@ char const * Ex2_state_id_to_string(Ex2_StateId id)
     }
 }
 
-// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
-char const * Ex2_event_id_to_string(Ex2_EventId id)
-{
-    switch (id)
-    {
-        case Ex2_EventId_DO: return "DO";
-        case Ex2_EventId_EV2: return "EV2";
-        case Ex2_EventId_MYEV1: return "MYEV1";
-        default: return "?";
-    }
-}
-
 // Returns the parent state for a given state. Returns ROOT if input has no parent.
 // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
 Ex2_StateId Ex2_get_parent_id(Ex2_StateId id)
@@ -235,13 +223,13 @@ Ex2_StateId Ex2_get_parent_id(Ex2_StateId id)
     }
 }
 // Converts an event id to a string. Thread safe.
-const char* Ex2_event_id_to_string(const enum EventId id)
+const char* Ex2_custom_event_id_to_string(const Ex2_EventId id)
 {
     switch (id)
     {
-        case DO: return "do";
-        case EV2: return "ev2";
-        case MYEV1: return "myev1";
+        case Ex2_EventId_DO: return "do";
+        case Ex2_EventId_EV2: return "ev2";
+        case Ex2_EventId_MYEV1: return "myev1";
     }
     return "?";
 }
