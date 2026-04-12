@@ -20,9 +20,29 @@ const char * const event_names[] = {
 };
 static_assert(COUNT_OF(event_names) == Spec1Sm_EventIdCount, "above mapping outdated");
 
+// tests for https://github.com/StateSmith/StateSmith/issues/535
+static void test_issue_535(void)
+{
+    assert(Spec1Sm_get_parent_id(Spec1Sm_StateId_ROOT) == Spec1Sm_StateId_ROOT);
+    // While the above is not actually true (ROOT's parent is null and not ROOT), the get parent id function can only return an enum value
+    // so it uses ROOT as the default value. If you were looping over enum ID's and getting their parent ID, just skip checking ROOT.
+
+    assert(Spec1Sm_get_parent_id(Spec1Sm_StateId_S)    == Spec1Sm_StateId_ROOT);
+    assert(Spec1Sm_get_parent_id(Spec1Sm_StateId_S1)   == Spec1Sm_StateId_S);
+    assert(Spec1Sm_get_parent_id(Spec1Sm_StateId_S11)  == Spec1Sm_StateId_S1);
+    assert(Spec1Sm_get_parent_id(Spec1Sm_StateId_T1)   == Spec1Sm_StateId_S);
+    assert(Spec1Sm_get_parent_id(Spec1Sm_StateId_T11)  == Spec1Sm_StateId_T1);
+    assert(Spec1Sm_get_parent_id(Spec1Sm_StateId_T111) == Spec1Sm_StateId_T11);
+
+    // invalid inputs should also give ROOT
+    assert(Spec1Sm_get_parent_id(Spec1Sm_StateIdCount) == Spec1Sm_StateId_ROOT);
+    assert(Spec1Sm_get_parent_id(-1) == Spec1Sm_StateId_ROOT);
+}
 
 int main(int arg_count, char** args)
 {
+    test_issue_535();
+
     Spec1Sm sm;
     Spec1Sm_ctor(&sm);
 

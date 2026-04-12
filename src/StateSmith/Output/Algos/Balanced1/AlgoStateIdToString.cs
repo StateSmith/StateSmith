@@ -22,7 +22,7 @@ public class AlgoStateIdToString : IAlgoStateIdToString
             file.AppendIndented("switch (id)");
             file.StartCodeBlock();
             {
-                foreach (var state in sm.GetNamedVerticesCopy())
+                foreach (var state in sm.GetOrderedNamedVerticesCopy())
                 {
                     file.AppendIndentedLine($"case {mangler.SmQualifiedStateEnumValue(state)}: return \"{mangler.SmStateToString(state)}\";");
                 }

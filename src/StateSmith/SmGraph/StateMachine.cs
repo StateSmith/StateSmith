@@ -38,12 +38,12 @@ public class StateMachine : NamedVertex
     }
 
     /// <summary>
-    /// Includes self
+    /// Includes self. Ordered to help reduce git noise caused by tools like yEd that renumber nodes often.
     /// </summary>
     /// <returns></returns>
-    public List<NamedVertex> GetNamedVerticesCopy()
+    public List<NamedVertex> GetOrderedNamedVerticesCopy()
     {
-        SmToNamedVerticesVisitor visitor = new();
+        SmToOrderedNamedVerticesVisitor visitor = new();
         this.Accept(visitor);
         return visitor.namedVertices;
     }

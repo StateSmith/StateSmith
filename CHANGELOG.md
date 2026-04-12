@@ -32,6 +32,8 @@ Test/interim releases are not necessarily documented here.
 ---
 
 ### Added
+- Output - basic runtime reflection support via `get_parent_id(StateId id)` function.
+  - https://github.com/StateSmith/StateSmith/issues/535
 - Output - export state machine graph as json.
   - https://github.com/StateSmith/StateSmith/issues/528
 - Output - implement `SmRunnerSettings.smDesignDescriber.outputDirectory` setting and console message.

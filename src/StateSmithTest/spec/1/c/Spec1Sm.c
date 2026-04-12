@@ -484,3 +484,20 @@ char const * Spec1Sm_event_id_to_string(Spec1Sm_EventId id)
         default: return "?";
     }
 }
+
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled in StateSmith settings.
+Spec1Sm_StateId Spec1Sm_get_parent_id(Spec1Sm_StateId id)
+{
+    switch (id)
+    {
+        case Spec1Sm_StateId_ROOT: return Spec1Sm_StateId_ROOT;
+        case Spec1Sm_StateId_S: return Spec1Sm_StateId_ROOT;
+        case Spec1Sm_StateId_S1: return Spec1Sm_StateId_S;
+        case Spec1Sm_StateId_S11: return Spec1Sm_StateId_S1;
+        case Spec1Sm_StateId_T1: return Spec1Sm_StateId_S;
+        case Spec1Sm_StateId_T11: return Spec1Sm_StateId_T1;
+        case Spec1Sm_StateId_T111: return Spec1Sm_StateId_T11;
+        default: return Spec1Sm_StateId_ROOT;
+    }
+}

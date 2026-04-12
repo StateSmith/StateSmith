@@ -350,27 +350,41 @@ public class CppGilVisitor : CSharpSyntaxWalker
         //base.VisitMemberAccessExpression(node);
     }
 
-    public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
+    public override void VisitMethodDeclaration(MethodDeclarationSyntax methodNode)
     {
-        if (transpilerHelper.IsGilData(node))
+        if (transpilerHelper.IsGilData(methodNode))
             return;
 
-        MaybeOutputStaticDelegate(node);
+        MaybeOutputStaticDelegate(methodNode);
 
-        var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+        var list = new WalkableChildSyntaxList(this, methodNode.ChildNodesAndTokens());
 
         if (renderingHeader)
         {
-            list.VisitUpTo(node.Body.ThrowIfNull());
+            list.VisitUpTo(methodNode.Body.ThrowIfNull());
             StringUtils.EraseTrailingWhitespace(sb);
             sb.Append(";\n");
         }
         else
         {
-            list.VisitUpTo(node.Identifier);
-            IMethodSymbol symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
+            list.VisitUpTo(methodNode.ReturnType);
 
-            sb.Append(symbol.ContainingSymbol.Name + "::");
+            // the below is needed so that we output nested types correctly
+            //      `Spec2Sm::StateId Spec2Sm::getParentId(StateId id)` rather than 
+            //               `StateId Spec2Sm::getParentId(StateId id)` which doesn't compile because we are in cpp file and not in the class anymore so StateId needs to be fully qualified.
+            // Alternatively, we could do `using StateId = Spec2Sm::StateId;` somewhere beforehand.
+            {
+                ISymbol? returnTypeSymbol = model.GetSymbolInfo(methodNode.ReturnType).Symbol;
+                if (returnTypeSymbol != null && returnTypeSymbol.ContainingNamespace.Name != "System") // skip system types like string or int
+                {
+                    sb.Append(returnTypeSymbol.ContainingSymbol.Name + "::");
+                }
+            }
+
+            list.VisitUpTo(methodNode.Identifier);
+            IMethodSymbol methodSymbol = model.GetDeclaredSymbol(methodNode).ThrowIfNull();
+
+            sb.Append(methodSymbol.ContainingSymbol.Name + "::");
             list.VisitRest();
         }
     }

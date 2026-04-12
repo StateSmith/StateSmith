@@ -70,7 +70,7 @@ public class AlgoBalanced2 : AlgoBalanced1
             {
                 string SEP = settings.allowSingleLineSwitchCase ? " " : "\n" + file.GetIndent();
 
-                foreach (var namedVertex in Sm.GetNamedVerticesCopy())
+                foreach (var namedVertex in Sm.GetOrderedNamedVerticesCopy())
                 {
                     if (namedVertex is StateMachine)
                     {
@@ -122,7 +122,7 @@ public class AlgoBalanced2 : AlgoBalanced1
             file.StartCodeBlock();
             {
                 bool needsLineSpacer = false;
-                foreach (var namedVertex in Sm.GetNamedVerticesCopy())
+                foreach (var namedVertex in Sm.GetOrderedNamedVerticesCopy())
                 {
                     if (needsLineSpacer)
                     {

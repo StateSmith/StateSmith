@@ -6,6 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace StateSmith.Output.Algos.Balanced1;
 
+/// <summary>
+/// NOTE! All functions and variables should use snake casing so that specific manglers like <see cref="CamelCaseNameMangler"/> can easily convert.
+/// </summary>
 public class NameMangler
 {
     protected StateMachine? _sm;
@@ -90,6 +93,11 @@ public class NameMangler
     /// Stringifies an state ID for <see cref="SmStateIdToStringFuncName"/>.
     /// </summary>
     public virtual string SmStateToString(NamedVertex state) => SmStateName(state).ToUpper();
+
+    /// <summary>
+    /// The name of the function that finds the parent state id for a given state id.
+    /// </summary>
+    public virtual string SmGetParentIdFuncName => "get_parent_id";
 
     #endregion StateEnum
 
