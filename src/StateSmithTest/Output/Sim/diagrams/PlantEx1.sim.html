@@ -1152,6 +1152,24 @@ evaluateGuard = null;
             default: return "?";
         }
     }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled in StateSmith settings.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case PlantEx1.StateId.ROOT: return PlantEx1.StateId.ROOT;
+            case PlantEx1.StateId.NOTSHOOTING: return PlantEx1.StateId.ROOT;
+            case PlantEx1.StateId.CONFIGURING: return PlantEx1.StateId.NOTSHOOTING;
+            case PlantEx1.StateId.NEWVALUEPREVIEW: return PlantEx1.StateId.CONFIGURING;
+            case PlantEx1.StateId.STATE1: return PlantEx1.StateId.NEWVALUEPREVIEW;
+            case PlantEx1.StateId.STATE2: return PlantEx1.StateId.NEWVALUEPREVIEW;
+            case PlantEx1.StateId.NEWVALUESELECTION: return PlantEx1.StateId.CONFIGURING;
+            case PlantEx1.StateId.IDLE: return PlantEx1.StateId.NOTSHOOTING;
+            default: return PlantEx1.StateId.ROOT;
+        }
+    }
 }
 
 </script>

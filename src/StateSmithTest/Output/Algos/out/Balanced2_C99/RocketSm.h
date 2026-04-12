@@ -48,6 +48,10 @@ char const * RocketSm_state_id_to_string(RocketSm_StateId id);
 // Thread safe.
 char const * RocketSm_event_id_to_string(RocketSm_EventId id);
 
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled in StateSmith settings.
+RocketSm_StateId RocketSm_get_parent_id(RocketSm_StateId id);
+
 // Generated state machine
 struct RocketSm
 {

@@ -818,6 +818,20 @@ evaluateGuard = null;
             default: return "?";
         }
     }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled in StateSmith settings.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case issue512.StateId.ROOT: return issue512.StateId.ROOT;
+            case issue512.StateId.ORDER_MENU: return issue512.StateId.ROOT;
+            case issue512.StateId.FOOD: return issue512.StateId.ORDER_MENU;
+            case issue512.StateId.SANDWICH: return issue512.StateId.FOOD;
+            default: return issue512.StateId.ROOT;
+        }
+    }
 }
 
 </script>

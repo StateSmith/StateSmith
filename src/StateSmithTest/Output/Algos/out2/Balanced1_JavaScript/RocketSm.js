@@ -291,4 +291,19 @@ function userCodeMethod() {
             default: return "?";
         }
     }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled in StateSmith settings.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case RocketSm.StateId.ROOT: return RocketSm.StateId.ROOT;
+            case RocketSm.StateId.GROUP: return RocketSm.StateId.ROOT;
+            case RocketSm.StateId.G1: return RocketSm.StateId.GROUP;
+            case RocketSm.StateId.G2: return RocketSm.StateId.GROUP;
+            case RocketSm.StateId.S1: return RocketSm.StateId.ROOT;
+            default: return RocketSm.StateId.ROOT;
+        }
+    }
 }

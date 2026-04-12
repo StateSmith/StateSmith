@@ -1076,6 +1076,22 @@ evaluateGuard = null;
             default: return "?";
         }
     }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled in StateSmith settings.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case LightSm.StateId.ROOT: return LightSm.StateId.ROOT;
+            case LightSm.StateId.OFF: return LightSm.StateId.ROOT;
+            case LightSm.StateId.ON_GROUP: return LightSm.StateId.ROOT;
+            case LightSm.StateId.ON1: return LightSm.StateId.ON_GROUP;
+            case LightSm.StateId.ON2: return LightSm.StateId.ON_GROUP;
+            case LightSm.StateId.ONHOT: return LightSm.StateId.ON_GROUP;
+            default: return LightSm.StateId.ROOT;
+        }
+    }
 }
 
 </script>

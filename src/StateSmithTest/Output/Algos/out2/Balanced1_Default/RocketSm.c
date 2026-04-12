@@ -294,3 +294,18 @@ char const * RocketSm_event_id_to_string(RocketSm_EventId id)
         default: return "?";
     }
 }
+
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled in StateSmith settings.
+RocketSm_StateId RocketSm_get_parent_id(RocketSm_StateId id)
+{
+    switch (id)
+    {
+        case RocketSm_StateId_ROOT: return RocketSm_StateId_ROOT;
+        case RocketSm_StateId_GROUP: return RocketSm_StateId_ROOT;
+        case RocketSm_StateId_G1: return RocketSm_StateId_GROUP;
+        case RocketSm_StateId_G2: return RocketSm_StateId_GROUP;
+        case RocketSm_StateId_S1: return RocketSm_StateId_ROOT;
+        default: return RocketSm_StateId_ROOT;
+    }
+}

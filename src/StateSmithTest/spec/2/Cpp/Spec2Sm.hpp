@@ -322,6 +322,10 @@ public:
     
     // Thread safe.
     static char const * eventIdToString(EventId id);
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled in StateSmith settings.
+    static StateId getParentId(StateId id);
 
 public:
     void user_class_code_example()

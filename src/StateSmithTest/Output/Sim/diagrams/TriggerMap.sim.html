@@ -1377,6 +1377,22 @@ evaluateGuard = null;
             default: return "?";
         }
     }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled in StateSmith settings.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case TriggerMap.StateId.ROOT: return TriggerMap.StateId.ROOT;
+            case TriggerMap.StateId.NORMAL: return TriggerMap.StateId.ROOT;
+            case TriggerMap.StateId.BLUE: return TriggerMap.StateId.NORMAL;
+            case TriggerMap.StateId.OFF: return TriggerMap.StateId.NORMAL;
+            case TriggerMap.StateId.YELLOW: return TriggerMap.StateId.NORMAL;
+            case TriggerMap.StateId.RED: return TriggerMap.StateId.ROOT;
+            default: return TriggerMap.StateId.ROOT;
+        }
+    }
 }
 
 </script>

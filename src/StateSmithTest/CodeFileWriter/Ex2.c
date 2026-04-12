@@ -221,6 +221,19 @@ char const * Ex2_event_id_to_string(Ex2_EventId id)
         default: return "?";
     }
 }
+
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled in StateSmith settings.
+Ex2_StateId Ex2_get_parent_id(Ex2_StateId id)
+{
+    switch (id)
+    {
+        case Ex2_StateId_ROOT: return Ex2_StateId_ROOT;
+        case Ex2_StateId_STATE_1: return Ex2_StateId_ROOT;
+        case Ex2_StateId_STATE_2: return Ex2_StateId_ROOT;
+        default: return Ex2_StateId_ROOT;
+    }
+}
 // Converts an event id to a string. Thread safe.
 const char* Ex2_event_id_to_string(const enum EventId id)
 {

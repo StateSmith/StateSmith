@@ -237,4 +237,18 @@ public class RocketSm
             default: return "?";
         }
     }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled in StateSmith settings.
+    public static StateId getParentId(StateId id)
+    {
+        switch (id)
+        {
+            case ROOT: return StateId.ROOT;
+            case GROUP: return StateId.ROOT;
+            case G1: return StateId.GROUP;
+            case G2: return StateId.GROUP;
+            default: return StateId.ROOT;
+        }
+    }
 }

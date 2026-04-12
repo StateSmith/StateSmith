@@ -1630,6 +1630,27 @@ evaluateGuard = null;
             default: return "?";
         }
     }
+    
+    // Returns the parent state for a given state. Returns ROOT if input has no parent.
+    // Thread safe. This function can be disabled in StateSmith settings.
+    static getParentId(id)
+    {
+        switch (id)
+        {
+            case LightSm2.StateId.ROOT: return LightSm2.StateId.ROOT;
+            case LightSm2.StateId.ORDER_MENU: return LightSm2.StateId.ROOT;
+            case LightSm2.StateId.BEVERAGE: return LightSm2.StateId.ORDER_MENU;
+            case LightSm2.StateId.BEVERAGE__FIRST: return LightSm2.StateId.BEVERAGE;
+            case LightSm2.StateId.COFFEE: return LightSm2.StateId.BEVERAGE;
+            case LightSm2.StateId.TEA: return LightSm2.StateId.BEVERAGE;
+            case LightSm2.StateId.FOOD: return LightSm2.StateId.ORDER_MENU;
+            case LightSm2.StateId.FOOD__FIRST: return LightSm2.StateId.FOOD;
+            case LightSm2.StateId.POTATO: return LightSm2.StateId.FOOD;
+            case LightSm2.StateId.SUSHI: return LightSm2.StateId.FOOD;
+            case LightSm2.StateId.WAITING: return LightSm2.StateId.ROOT;
+            default: return LightSm2.StateId.ROOT;
+        }
+    }
 }
 
 </script>

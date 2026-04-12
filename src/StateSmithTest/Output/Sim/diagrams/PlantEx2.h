@@ -58,6 +58,10 @@ char const * PlantEx2_state_id_to_string(PlantEx2_StateId id);
 // Thread safe.
 char const * PlantEx2_event_id_to_string(PlantEx2_EventId id);
 
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled in StateSmith settings.
+PlantEx2_StateId PlantEx2_get_parent_id(PlantEx2_StateId id);
+
 // Generated state machine
 struct PlantEx2
 {

@@ -59,6 +59,10 @@ char const * Spec1bSm_state_id_to_string(Spec1bSm_StateId id);
 // Thread safe.
 char const * Spec1bSm_event_id_to_string(Spec1bSm_EventId id);
 
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled in StateSmith settings.
+Spec1bSm_StateId Spec1bSm_get_parent_id(Spec1bSm_StateId id);
+
 // Generated state machine
 struct Spec1bSm
 {

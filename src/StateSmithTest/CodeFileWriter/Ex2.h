@@ -49,6 +49,10 @@ char const * Ex2_state_id_to_string(Ex2_StateId id);
 // Thread safe.
 char const * Ex2_event_id_to_string(Ex2_EventId id);
 
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled in StateSmith settings.
+Ex2_StateId Ex2_get_parent_id(Ex2_StateId id);
+
 // Generated state machine
 struct Ex2
 {

@@ -48,6 +48,10 @@ void Ex1_dispatch_event(Ex1* sm, Ex1_EventId event_id);
 // Thread safe.
 char const * Ex1_event_id_to_string(Ex1_EventId id);
 
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled in StateSmith settings.
+Ex1_StateId Ex1_get_parent_id(Ex1_StateId id);
+
 // Generated state machine
 struct Ex1
 {

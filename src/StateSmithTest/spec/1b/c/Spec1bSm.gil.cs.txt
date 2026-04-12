@@ -332,6 +332,22 @@ public static string event_id_to_string(EventId id)
     }
 }
 
+// Returns the parent state for a given state. Returns ROOT if input has no parent.
+// Thread safe. This function can be disabled in StateSmith settings.
+public static StateId get_parent_id(StateId id)
+{
+    switch (id)
+    {
+        case StateId.ROOT: return StateId.ROOT;
+        case StateId.S: return StateId.ROOT;
+        case StateId.S1: return StateId.S;
+        case StateId.S1_1: return StateId.S1;
+        case StateId.S2: return StateId.S;
+        case StateId.S2_1: return StateId.S2;
+        default: return StateId.ROOT;
+    }
+}
+
     public static bool ____GilData_EchoStringBool(string toEcho) { return true; }
     public static void ____GilData_EchoStringVoid(string toEcho) { }
     public static bool ____GilData_VarArgsToBool(params object[] args) { return true; }
