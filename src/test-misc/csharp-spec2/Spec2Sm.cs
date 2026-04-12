@@ -12555,7 +12555,7 @@ namespace Csharp.Spec2smTests
             this.stateId = StateId.ROOT;
         }
 
-        // Thread safe.
+        // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
         public static string StateIdToString(StateId id)
         {
             switch (id)
@@ -12738,7 +12738,7 @@ namespace Csharp.Spec2smTests
             }
         }
 
-        // Thread safe.
+        // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
         public static string EventIdToString(EventId id)
         {
             switch (id)
@@ -12763,7 +12763,7 @@ namespace Csharp.Spec2smTests
         }
 
         // Returns the parent state for a given state. Returns ROOT if input has no parent.
-        // Thread safe. This function can be disabled in StateSmith settings.
+        // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
         public static StateId GetParentId(StateId id)
         {
             switch (id)

@@ -11870,7 +11870,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = Spec2Sm.StateId.ROOT
     
     
-    # Thread safe.
+    # Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     @staticmethod
     def stateIdToString(id):
         match id:
@@ -12051,7 +12051,7 @@ class Spec2Sm(Spec2SmBase):
             case _: return "?"
     
     
-    # Thread safe.
+    # Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     @staticmethod
     def eventIdToString(id):
         match id:
@@ -12074,7 +12074,7 @@ class Spec2Sm(Spec2SmBase):
     
     
     # Returns the parent state for a given state. Returns ROOT if input has no parent.
-    # Thread safe. This function can be disabled in StateSmith settings.
+    # Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
     @staticmethod
     def getParentId(id):
         match id:

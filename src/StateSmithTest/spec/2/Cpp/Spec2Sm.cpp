@@ -12605,7 +12605,7 @@ namespace Spec2
         this->stateId = StateId::ROOT;
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     char const * Spec2Sm::stateIdToString(StateId id)
     {
         switch (id)
@@ -12788,7 +12788,7 @@ namespace Spec2
         }
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     char const * Spec2Sm::eventIdToString(EventId id)
     {
         switch (id)
@@ -12813,7 +12813,7 @@ namespace Spec2
     }
     
     // Returns the parent state for a given state. Returns ROOT if input has no parent.
-    // Thread safe. This function can be disabled in StateSmith settings.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
     Spec2Sm::StateId Spec2Sm::getParentId(StateId id)
     {
         switch (id)

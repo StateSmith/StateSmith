@@ -12550,7 +12550,7 @@ export class Spec2Sm
         this.stateId = StateId.ROOT;
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     public static stateIdToString(id: StateId): string 
     {
         switch (id)
@@ -12733,7 +12733,7 @@ export class Spec2Sm
         }
     }
     
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     public static eventIdToString(id: EventId): string 
     {
         switch (id)
@@ -12758,7 +12758,7 @@ export class Spec2Sm
     }
     
     // Returns the parent state for a given state. Returns ROOT if input has no parent.
-    // Thread safe. This function can be disabled in StateSmith settings.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
     public static getParentId(id: StateId): StateId 
     {
         switch (id)

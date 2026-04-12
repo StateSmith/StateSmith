@@ -45,11 +45,11 @@ void Ex1_start(Ex1* sm);
 void Ex1_dispatch_event(Ex1* sm, Ex1_EventId event_id);
 
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * Ex1_event_id_to_string(Ex1_EventId id);
 
 // Returns the parent state for a given state. Returns ROOT if input has no parent.
-// Thread safe. This function can be disabled in StateSmith settings.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
 Ex1_StateId Ex1_get_parent_id(Ex1_StateId id);
 
 // Generated state machine

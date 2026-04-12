@@ -192,7 +192,7 @@ void RocketSm::G2_do()
     // No ancestor handles this event.
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 char const * RocketSm::stateIdToString(StateId id)
 {
     switch (id)
@@ -205,7 +205,7 @@ char const * RocketSm::stateIdToString(StateId id)
     }
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * RocketSm::eventIdToString(EventId id)
 {
     switch (id)
@@ -216,7 +216,7 @@ char const * RocketSm::eventIdToString(EventId id)
 }
 
 // Returns the parent state for a given state. Returns ROOT if input has no parent.
-// Thread safe. This function can be disabled in StateSmith settings.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
 RocketSm::StateId RocketSm::getParentId(StateId id)
 {
     switch (id)

@@ -10310,7 +10310,7 @@ var Spec2Sm = /** @class */ (function () {
         } // end of behavior for USELESS
         this.stateId = StateId.ROOT;
     };
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
     Spec2Sm.stateIdToString = function (id) {
         switch (id) {
             case StateId.ROOT: return "ROOT";
@@ -10490,7 +10490,7 @@ var Spec2Sm = /** @class */ (function () {
             default: return "?";
         }
     };
-    // Thread safe.
+    // Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
     Spec2Sm.eventIdToString = function (id) {
         switch (id) {
             case EventId.DO: return "DO";
@@ -10512,7 +10512,7 @@ var Spec2Sm = /** @class */ (function () {
         }
     };
     // Returns the parent state for a given state. Returns ROOT if input has no parent.
-    // Thread safe. This function can be disabled in StateSmith settings.
+    // Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
     Spec2Sm.getParentId = function (id) {
         switch (id) {
             case StateId.ROOT: return StateId.ROOT;

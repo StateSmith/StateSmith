@@ -13627,7 +13627,7 @@ static void USELESS_exit(Spec2Sm* sm)
     sm->state_id = Spec2Sm_StateId_ROOT;
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 char const * Spec2Sm_state_id_to_string(Spec2Sm_StateId id)
 {
     switch (id)
@@ -13810,7 +13810,7 @@ char const * Spec2Sm_state_id_to_string(Spec2Sm_StateId id)
     }
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * Spec2Sm_event_id_to_string(Spec2Sm_EventId id)
 {
     switch (id)
@@ -13835,7 +13835,7 @@ char const * Spec2Sm_event_id_to_string(Spec2Sm_EventId id)
 }
 
 // Returns the parent state for a given state. Returns ROOT if input has no parent.
-// Thread safe. This function can be disabled in StateSmith settings.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
 Spec2Sm_StateId Spec2Sm_get_parent_id(Spec2Sm_StateId id)
 {
     switch (id)

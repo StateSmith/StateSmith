@@ -12,7 +12,7 @@ public class GetParentIdFunctionGen
     public static void Generate(OutputFile file, StateMachine sm, NameMangler mangler)
     {
         file.AppendIndentedLine("// Returns the parent state for a given state. Returns ROOT if input has no parent.");
-        file.AppendIndentedLine("// Thread safe. This function can be disabled in StateSmith settings.");
+        file.AppendIndentedLine("// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.");
         file.AppendIndented($"public static {mangler.SmStateEnumType} {mangler.SmGetParentIdFuncName}({mangler.SmStateEnumType} id)");
         file.StartCodeBlock();
         {

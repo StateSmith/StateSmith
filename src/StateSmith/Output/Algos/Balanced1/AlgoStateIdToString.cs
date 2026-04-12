@@ -15,7 +15,7 @@ public class AlgoStateIdToString : IAlgoStateIdToString
 
     public void CreateStateIdToStringFunction(OutputFile file, StateMachine sm)
     {
-        file.AppendIndentedLine("// Thread safe.");
+        file.AppendIndentedLine("// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.");
         file.AppendIndented($"public static string {mangler.SmStateIdToStringFuncName}({mangler.SmStateEnumType} id)");
         file.StartCodeBlock();
         {

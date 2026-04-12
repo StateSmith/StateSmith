@@ -270,7 +270,7 @@ static void S1_exit(RocketSm* sm)
     sm->current_state_exit_handler = ROOT_exit;
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 char const * RocketSm_state_id_to_string(RocketSm_StateId id)
 {
     switch (id)
@@ -284,7 +284,7 @@ char const * RocketSm_state_id_to_string(RocketSm_StateId id)
     }
 }
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * RocketSm_event_id_to_string(RocketSm_EventId id)
 {
     switch (id)
@@ -296,7 +296,7 @@ char const * RocketSm_event_id_to_string(RocketSm_EventId id)
 }
 
 // Returns the parent state for a given state. Returns ROOT if input has no parent.
-// Thread safe. This function can be disabled in StateSmith settings.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
 RocketSm_StateId RocketSm_get_parent_id(RocketSm_StateId id)
 {
     switch (id)

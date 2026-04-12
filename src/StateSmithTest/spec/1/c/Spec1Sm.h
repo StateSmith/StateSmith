@@ -54,14 +54,14 @@ void Spec1Sm_start(Spec1Sm* sm);
 // Note! This function assumes that the `event_id` parameter is valid.
 void Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id);
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
 char const * Spec1Sm_state_id_to_string(Spec1Sm_StateId id);
 
-// Thread safe.
+// Thread safe. This function can be disabled with `outputEventIdToStringFunction` setting.
 char const * Spec1Sm_event_id_to_string(Spec1Sm_EventId id);
 
 // Returns the parent state for a given state. Returns ROOT if input has no parent.
-// Thread safe. This function can be disabled in StateSmith settings.
+// Thread safe. This function can be disabled with `outputGetParentIdFunction` setting.
 Spec1Sm_StateId Spec1Sm_get_parent_id(Spec1Sm_StateId id);
 
 // Generated state machine
