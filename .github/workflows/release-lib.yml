@@ -1,0 +1,41 @@
+name: Release lib nuget on lib-v*.*.* tags
+
+on:
+  push:
+    tags:
+      - "lib-v*.*.*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+          
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            6.0.x
+            7.0.x
+            8.0.x
+            9.0.x
+
+      - name: Extract SemVer from GITHUB_REF
+        run: echo "semver=${GITHUB_REF#refs/tags/lib-v}" >> $GITHUB_ENV
+
+      - name: Print SemVer
+        run: echo "Current tag ${{ env.semver }}"
+
+      - name: Install dependencies
+        run: dotnet restore src/StateSmith.sln
+
+      - name: Build And Publish Nuget
+        env:
+          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          dotnet pack src/StateSmith/StateSmith.csproj -c Release -p:Version=${{ env.semver }} --output ./nupkg
+          dotnet nuget push ./nupkg/StateSmith.${{ env.semver }}.nupkg \
+            --api-key "$NUGET_KEY" \
+            --source https://api.nuget.org/v3/index.json

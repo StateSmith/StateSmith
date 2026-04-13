@@ -1,8 +1,5 @@
 name: Release ss.cli on cli-v*.*.* tags
 
-# TODO - prevent release if tests fail
-# https://github.com/StateSmith/StateSmith/issues/447
-
 on:
   push:
     tags:
@@ -29,19 +26,24 @@ jobs:
         run: echo "semver=${GITHUB_REF#refs/tags/cli-v}" >> $GITHUB_ENV
 
       - name: Print SemVer
-        run: echo "Current tag $semver"
+        run: echo "Current tag ${{ env.semver }}"
 
       - name: Install dependencies
         run: dotnet restore src/StateSmith.sln
 
       - name: Build And Publish Nuget
+        env:
+          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
-          dotnet pack src/StateSmith.Cli/StateSmith.Cli.csproj -c Release -p:Version=$semver
-          dotnet nuget push src/StateSmith.Cli/nupkg/StateSmith.Cli.$semver.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          dotnet pack src/StateSmith.Cli/StateSmith.Cli.csproj -c Release -p:Version=${{ env.semver }} --output ./nupkg
+          dotnet nuget push ./nupkg/StateSmith.Cli.${{ env.semver }}.nupkg \
+            --api-key "$NUGET_KEY" \
+            --source https://api.nuget.org/v3/index.json
 
       - name: Ensure zip is installed
         run: sudo apt-get install -y zip
 
+      # TODO - use github strategy matrix to parallelize builds
       - name: Build Binaries
         run: |
           staging="/tmp/staging"
@@ -56,7 +58,7 @@ jobs:
             mkdir -p $staging
             ( 
               cd src/StateSmith.Cli 
-              dotnet publish -c Release -p:Version=$semver -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true -p:DefineConstants="SS_SINGLE_FILE_APPLICATION"
+              dotnet publish -c Release -p:Version=${{ env.semver }} -r $arch -p:PublishSingleFile=true --self-contained --framework $framework -p:EnableCompressionInSingleFile=true -p:DefineConstants="SS_SINGLE_FILE_APPLICATION"
               mv ./bin/Release/$framework/$arch/publish/StateSmith.Cli$extension $staging/ss.cli$extension
               rm -rf ./bin
             )
@@ -72,7 +74,10 @@ jobs:
           done
 
       - name: Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: /tmp/publish/*
-  
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create ${{ github.ref_name }} \
+            --repo ${{ github.repository }} \
+            --generate-notes \
+            /tmp/publish/*
