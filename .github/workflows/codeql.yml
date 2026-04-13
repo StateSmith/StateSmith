@@ -3,10 +3,11 @@ name: "CodeQL"
 on:
   push:
     branches: [ "main" ]
-    tags: ["cli-v*.*.*", "lib-v*.*.*"]
+    # tags: ["cli-v*.*.*", "lib-v*.*.*"]
   pull_request:
   schedule:
     - cron: '0 0 * * *'
+  workflow_call:
   workflow_dispatch:
     inputs:
       reason:
