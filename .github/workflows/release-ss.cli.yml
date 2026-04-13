@@ -80,4 +80,5 @@ jobs:
           gh release create ${{ github.ref_name }} \
             --repo ${{ github.repository }} \
             --generate-notes \
+            --draft \
             /tmp/publish/*
