@@ -39,6 +39,12 @@ Test/interim releases are not necessarily documented here.
 - Output - implement `SmRunnerSettings.smDesignDescriber.outputDirectory` setting and console message.
   - https://github.com/StateSmith/StateSmith/issues/452
 
+### Changed (minor)
+- Output - slight change to version number printing
+  - now prints `StateSmith version - 0.20.0+43839...` rather than `StateSmith lib ver - 0.20.0+43839...`.
+  - note that (for months now) the version number isn't of the "lib" version. It is of the CLI version.
+  - https://github.com/StateSmith/StateSmith/issues/534
+
 ---
 
 ## [0.20.0-alpha-1]

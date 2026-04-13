@@ -4,9 +4,14 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
   schedule:
-    - cron: '45 0 * * 5'
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for running'
+        required: false
+        default: 'Manual run'
 
 jobs:
   analyze:
