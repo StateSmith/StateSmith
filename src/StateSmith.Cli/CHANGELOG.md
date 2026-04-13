@@ -1,9 +1,19 @@
+# ➡️➡️➡️ MOVED! ➡️➡️➡️
+📢 Starting at version `0.22.0`, StateSmith lib & CLI changes are tracked at the project's [root changelog](../../CHANGELOG.md).
+
+<br>
+<br>
+<br>
+<br>
+
+---
+
 # StateSmith CLI Change Log
 Note that this is a change log for the CLI tool, not the StateSmith library.
 
 They usually have different version numbers.
 
-# Releases
+# Previous Releases
 Test/interim releases are not documented here.
 
 ---

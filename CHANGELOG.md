@@ -11,7 +11,7 @@ You can easily find changes by searching for `"### Changed"` or `BREAKING-CHANGE
 # Stability 🌉
 The above might sound a bit scary, but the situation isn't that bad. I just want to be fully transparent.
 
-We have a slew of state machine behavior specification tests to help ensure we don't accidentally break state machine behavior or make them lightly.
+We have hundreds of state machine behavior specification tests to help ensure that we don't accidentally (or flippantly) make breaking changes.
 
 <!-- 
 Release Template
@@ -27,9 +27,14 @@ Release Template
 -->
 
 # Releases
+Starting at version `0.22.0`, this changelog tracks both StateSmith lib and StateSmith CLI (ss.cli).
+
 Test/interim releases are not necessarily documented here.
 
 ---
+
+## [0.22.0-alpha-1]
+NOTE! Version `0.22.0` and change notes apply to both StateSmith lib and StateSmith CLI (ss.cli).
 
 ### Added
 - Output - basic runtime reflection support via `get_parent_id(StateId id)` function.
@@ -38,6 +43,10 @@ Test/interim releases are not necessarily documented here.
   - https://github.com/StateSmith/StateSmith/issues/528
 - Output - implement `SmRunnerSettings.smDesignDescriber.outputDirectory` setting and console message.
   - https://github.com/StateSmith/StateSmith/issues/452
+
+### Fixed (minor)
+- Simulator - fix show state info panel on page load.
+  - https://github.com/StateSmith/StateSmith/issues/523
 
 ### Changed (minor)
 - Output - slight change to version number printing

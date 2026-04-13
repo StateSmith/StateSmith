@@ -1,8 +1,9 @@
-name: Release lib nuget on lib-v*.*.* tags
+name: Release lib nuget
 
 on:
   push:
     tags:
+      - "v[0-9]*.*.*"
       - "lib-v[0-9]*.*.*"
 
 jobs:
@@ -30,7 +31,12 @@ jobs:
             9.0.x
 
       - name: Extract SemVer from GITHUB_REF
-        run: echo "semver=${GITHUB_REF#refs/tags/lib-v}" >> $GITHUB_ENV
+        run: |
+          ref="${GITHUB_REF#refs/tags/}"
+          ref="${ref#cli-v}"
+          ref="${ref#lib-v}"
+          ref="${ref#v}"
+          echo "semver=${ref}" >> $GITHUB_ENV
 
       - name: Print SemVer
         run: echo "Current tag ${{ env.semver }}"
