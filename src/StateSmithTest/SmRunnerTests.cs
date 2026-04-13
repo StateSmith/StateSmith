@@ -26,7 +26,7 @@ public class SmRunnerTests
         //output.Should().Be("");
         output.ConvertLineEndingsToN().ShouldBeShowDiff("""
             
-            StateSmith lib ver - <snip>
+            StateSmith version - <snip>
             StateSmith Runner - Compiling file: `test-input/drawio/Design1Sm.drawio.svg` (no state machine name specified).
             StateSmith Runner - State machine `Design1Sm_svg` selected.
             StateSmith Runner - Writing to file `<snip>/Design1Sm_svg.h`
@@ -39,8 +39,8 @@ public class SmRunnerTests
 
     private static string RemoveLibVersionInfo(string output)
     {
-        // remove version info: StateSmith lib version: 0.12.2-alpha-1+72cb279852751ea363f5990c364c451026847f2e
-        output = new Regex(@"(StateSmith lib ver - ).*").Replace(output, "$1<snip>");
+        // remove version info: StateSmith version: 0.12.2-alpha-1+72cb279852751ea363f5990c364c451026847f2e
+        output = new Regex(@"(StateSmith version - ).*").Replace(output, "$1<snip>");
         return output;
     }
 
@@ -62,7 +62,7 @@ public class SmRunnerTests
 
         output.ConvertLineEndingsToN().ShouldBeShowDiff("""
 
-            StateSmith lib ver - <snip>
+            StateSmith version - <snip>
             StateSmith Runner - Compiling file: `<snip>/Design1Sm.drawio.svg` (no state machine name specified).
             StateSmith Runner - State machine `Design1Sm_svg` selected.
             StateSmith Runner - Writing to file `Design1Sm_svg.h`
