@@ -33,7 +33,7 @@ Test/interim releases are not necessarily documented here.
 
 ---
 
-## [0.22.X]
+## [0.22.1-alpha-1]
 ### Added
 - Output - generate subtree/descendant meta data in runtime.
   - https://github.com/StateSmith/StateSmith/issues/538
