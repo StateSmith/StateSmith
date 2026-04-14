@@ -657,6 +657,31 @@ evaluateGuard = null;
     static StateIdCount = 11;
     static { Object.freeze(this.StateIdCount); }
     
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    static ROOT_SubtreeEndId = 10;  // State 'LightSm2' subtree extends from itself (id: 0) to state 'WAITING' (id: 10)
+    static { Object.freeze(this.ROOT_SubtreeEndId); }
+    static ORDER_MENU_SubtreeEndId = 9;  // State 'ORDER_MENU' subtree extends from itself (id: 1) to state 'SUSHI' (id: 9)
+    static { Object.freeze(this.ORDER_MENU_SubtreeEndId); }
+    static BEVERAGE_SubtreeEndId = 5;  // State 'BEVERAGE' subtree extends from itself (id: 2) to state 'TEA' (id: 5)
+    static { Object.freeze(this.BEVERAGE_SubtreeEndId); }
+    static BEVERAGE__FIRST_SubtreeEndId = 3;  // State 'BEVERAGE__FIRST' subtree extends from itself (id: 3) to state 'BEVERAGE__FIRST' (id: 3)
+    static { Object.freeze(this.BEVERAGE__FIRST_SubtreeEndId); }
+    static COFFEE_SubtreeEndId = 4;  // State 'COFFEE' subtree extends from itself (id: 4) to state 'COFFEE' (id: 4)
+    static { Object.freeze(this.COFFEE_SubtreeEndId); }
+    static TEA_SubtreeEndId = 5;  // State 'TEA' subtree extends from itself (id: 5) to state 'TEA' (id: 5)
+    static { Object.freeze(this.TEA_SubtreeEndId); }
+    static FOOD_SubtreeEndId = 9;  // State 'FOOD' subtree extends from itself (id: 6) to state 'SUSHI' (id: 9)
+    static { Object.freeze(this.FOOD_SubtreeEndId); }
+    static FOOD__FIRST_SubtreeEndId = 7;  // State 'FOOD__FIRST' subtree extends from itself (id: 7) to state 'FOOD__FIRST' (id: 7)
+    static { Object.freeze(this.FOOD__FIRST_SubtreeEndId); }
+    static POTATO_SubtreeEndId = 8;  // State 'POTATO' subtree extends from itself (id: 8) to state 'POTATO' (id: 8)
+    static { Object.freeze(this.POTATO_SubtreeEndId); }
+    static SUSHI_SubtreeEndId = 9;  // State 'SUSHI' subtree extends from itself (id: 9) to state 'SUSHI' (id: 9)
+    static { Object.freeze(this.SUSHI_SubtreeEndId); }
+    static WAITING_SubtreeEndId = 10;  // State 'WAITING' subtree extends from itself (id: 10) to state 'WAITING' (id: 10)
+    static { Object.freeze(this.WAITING_SubtreeEndId); }
+    
     static ORDER_MENU_HistoryId = 
     {
         BEVERAGE : 0, // default transition

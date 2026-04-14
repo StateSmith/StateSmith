@@ -43,6 +43,12 @@ public class EnumBuilderTests
 
             public const int StateIdCount = 3;
             
+            // Subtree meta data generation can be disabled in settings.
+            // Details: https://github.com/StateSmith/StateSmith/issues/538
+            public const int ROOT_SubtreeEndId = 2;  // State 'MySm1' subtree extends from itself (id: 0) to state 'S2' (id: 2)
+            public const int S1_SubtreeEndId = 1;  // State 'S1' subtree extends from itself (id: 1) to state 'S1' (id: 1)
+            public const int S2_SubtreeEndId = 2;  // State 'S2' subtree extends from itself (id: 2) to state 'S2' (id: 2)
+            
             """);
     }
 }

@@ -26,6 +26,16 @@ public enum StateId
 
 public const int StateIdCount = 7;
 
+// Subtree meta data generation can be disabled in settings.
+// Details: https://github.com/StateSmith/StateSmith/issues/538
+public const int ROOT_SubtreeEndId = 6;  // State 'Spec1Sm' subtree extends from itself (id: 0) to state 'T111' (id: 6)
+public const int S_SubtreeEndId = 6;  // State 'S' subtree extends from itself (id: 1) to state 'T111' (id: 6)
+public const int S1_SubtreeEndId = 3;  // State 'S1' subtree extends from itself (id: 2) to state 'S11' (id: 3)
+public const int S11_SubtreeEndId = 3;  // State 'S11' subtree extends from itself (id: 3) to state 'S11' (id: 3)
+public const int T1_SubtreeEndId = 6;  // State 'T1' subtree extends from itself (id: 4) to state 'T111' (id: 6)
+public const int T11_SubtreeEndId = 6;  // State 'T11' subtree extends from itself (id: 5) to state 'T111' (id: 6)
+public const int T111_SubtreeEndId = 6;  // State 'T111' subtree extends from itself (id: 6) to state 'T111' (id: 6)
+
     // Used internally by state machine. Feel free to inspect, but don't modify.
     public StateId state_id;
 

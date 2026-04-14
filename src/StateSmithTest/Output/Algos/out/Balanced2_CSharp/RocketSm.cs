@@ -23,6 +23,13 @@ public partial class RocketSm
 
     public const int StateIdCount = 4;
 
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    public const int ROOT_SubtreeEndId = 3;  // State 'RocketSm' subtree extends from itself (id: 0) to state 'g2' (id: 3)
+    public const int GROUP_SubtreeEndId = 3;  // State 'group' subtree extends from itself (id: 1) to state 'g2' (id: 3)
+    public const int G1_SubtreeEndId = 2;  // State 'g1' subtree extends from itself (id: 2) to state 'g1' (id: 2)
+    public const int G2_SubtreeEndId = 3;  // State 'g2' subtree extends from itself (id: 3) to state 'g2' (id: 3)
+
     // Used internally by state machine. Feel free to inspect, but don't modify.
     public StateId stateId;
 

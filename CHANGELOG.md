@@ -36,6 +36,12 @@ Test/interim releases are not necessarily documented here.
 ## [0.22.X]
 ### Added
 - Simulator - allow user customization of diagram colors.
+- Output - generate subtree/descendant meta data in runtime.
+  - https://github.com/StateSmith/StateSmith/issues/538
+
+### Changed (minor)
+- C99 - constants generated using defines instead of anonymous enums.
+- C++ - constants generated using static const int fields instead of anonymous enums.
 
 ---
 

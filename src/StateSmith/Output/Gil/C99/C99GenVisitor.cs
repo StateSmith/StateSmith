@@ -687,8 +687,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
             return;
 
         bool done = false;
-        bool useDefine = false;
-        bool useEnum = true;
+        bool useDefine = true;
 
         if (node.IsConst())
         {
@@ -696,15 +695,15 @@ public class C99GenVisitor : CSharpSyntaxWalker
             {
                 done = true;
                 AppendNodeLeadingTrivia(node);
-                sb.Append("#define ");
-                var decl = node.Declaration.Variables.Single();
-                sb.Append(GetCName(model.GetDeclaredSymbol(decl).ThrowIfNull()));
-                sb.Append(' ');
-                Visit(decl.Initializer.ThrowIfNull().Value);
-                sb.Append('\n');
+
+                VariableDeclaratorSyntax varField = node.Declaration.Variables.Single();
+                var defineCName = GetCName(model.GetDeclaredSymbol(varField).ThrowIfNull());
+                sb.Append($"#define {defineCName} ({varField.Initializer.ThrowIfNull().Value})");
+                VisitTrailingTrivia(node.GetLastToken());
             }
-            else if (useEnum)
+            else
             {
+                // use enum
                 done = true;
                 AppendNodeLeadingTrivia(node);
                 sb.Append("enum\n{\n    ");

@@ -31,6 +31,19 @@ function userCodeMethod() {
     static StateIdCount = 5;
     static { Object.freeze(this.StateIdCount); }
     
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    static ROOT_SubtreeEndId = 4;  // State 'RocketSm' subtree extends from itself (id: 0) to state 's1' (id: 4)
+    static { Object.freeze(this.ROOT_SubtreeEndId); }
+    static GROUP_SubtreeEndId = 3;  // State 'group' subtree extends from itself (id: 1) to state 'g2' (id: 3)
+    static { Object.freeze(this.GROUP_SubtreeEndId); }
+    static G1_SubtreeEndId = 2;  // State 'g1' subtree extends from itself (id: 2) to state 'g1' (id: 2)
+    static { Object.freeze(this.G1_SubtreeEndId); }
+    static G2_SubtreeEndId = 3;  // State 'g2' subtree extends from itself (id: 3) to state 'g2' (id: 3)
+    static { Object.freeze(this.G2_SubtreeEndId); }
+    static S1_SubtreeEndId = 4;  // State 's1' subtree extends from itself (id: 4) to state 's1' (id: 4)
+    static { Object.freeze(this.S1_SubtreeEndId); }
+    
     // Used internally by state machine. Feel free to inspect, but don't modify.
     stateId;
     

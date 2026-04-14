@@ -241,10 +241,11 @@ public class CppGilVisitor : CSharpSyntaxWalker
 
         if (node.IsConst())
         {
-            VisitToken(node.GetFirstToken()); // should be 'public' or 'private'
-            sb.Append("enum\n    {\n        ");
-            Visit(node.Declaration.Variables.Single());
-            sb.Append("\n    };\n");    // todolow - get proper indentation setting
+            WalkableChildSyntaxList walkableChildSyntaxList = new(this, node.ChildNodesAndTokens());
+            walkableChildSyntaxList.VisitNext();    // should be 'public' or 'private'
+            walkableChildSyntaxList.SkipNext();     // should be const
+            sb.Append("static const ");
+            walkableChildSyntaxList.VisitRest();
             return;
         }
 

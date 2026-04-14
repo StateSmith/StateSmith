@@ -22,6 +22,14 @@ class RocketSm():
     
     # State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
     def __init__(self, *args, **kwargs):
+        # Subtree meta data generation can be disabled in settings.
+        # Details: https:#github.com/StateSmith/StateSmith/issues/538
+        self.ROOT_SubtreeEndId = 4  # State 'RocketSm' subtree extends from itself (id: 0) to state 's1' (id: 4)
+        self.GROUP_SubtreeEndId = 3  # State 'group' subtree extends from itself (id: 1) to state 'g2' (id: 3)
+        self.G1_SubtreeEndId = 2  # State 'g1' subtree extends from itself (id: 2) to state 'g1' (id: 2)
+        self.G2_SubtreeEndId = 3  # State 'g2' subtree extends from itself (id: 3) to state 'g2' (id: 3)
+        self.S1_SubtreeEndId = 4  # State 's1' subtree extends from itself (id: 4) to state 's1' (id: 4)
+        
         # Used internally by state machine. Feel free to inspect, but don't modify.
         self.stateId = None
     

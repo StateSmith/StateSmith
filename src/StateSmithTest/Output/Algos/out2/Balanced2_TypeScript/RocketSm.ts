@@ -20,6 +20,14 @@ export enum StateId
 
 export const StateIdCount: number = 5;
 
+// Subtree meta data generation can be disabled in settings.
+// Details: https://github.com/StateSmith/StateSmith/issues/538
+export const ROOT_SubtreeEndId: number = 4;  // State 'RocketSm' subtree extends from itself (id: 0) to state 's1' (id: 4)
+export const GROUP_SubtreeEndId: number = 3;  // State 'group' subtree extends from itself (id: 1) to state 'g2' (id: 3)
+export const G1_SubtreeEndId: number = 2;  // State 'g1' subtree extends from itself (id: 2) to state 'g1' (id: 2)
+export const G2_SubtreeEndId: number = 3;  // State 'g2' subtree extends from itself (id: 3) to state 'g2' (id: 3)
+export const S1_SubtreeEndId: number = 4;  // State 's1' subtree extends from itself (id: 4) to state 's1' (id: 4)
+
 // Generated state machine
 export class RocketSm extends RocketSmBase implements IRocketSm
 {

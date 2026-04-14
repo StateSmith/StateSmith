@@ -70,31 +70,53 @@ public class EnumBuilder
 
     public void OutputStateIdCode(OutputFile file)
     {
-        string smName = GetSm().Name;
+        SubtreeIdMapper mapper = new();
+        Dictionary<NamedVertex, SubtreeIdMapper.SubtreeData> subtreeDataMap = mapper.MapSubtree(GetSm());
 
         file.AppendIndented($"public enum {mangler.SmStateEnumType}");
         file.StartCodeBlock();
 
-        var namedVertices = GetSm().GetOrderedNamedVerticesCopy();
-        for (int i = 0; i < namedVertices.Count; i++)
+        List<NamedVertex> orderedNamedVertices = GetSm().GetOrderedNamedVerticesCopy();
+        foreach (var namedVertex in orderedNamedVertices)
         {
-            NamedVertex namedVertex = namedVertices[i];
-            file.AppendIndentedLine($"{mangler.SmStateEnumValue(namedVertex)} = {i},");
+            var subtreeData = subtreeDataMap[namedVertex];
+            file.AppendIndentedLine($"{mangler.SmStateEnumValue(namedVertex)} = {subtreeData.id},");
         }
 
         file.FinishCodeBlock("");
         file.AppendIndentedLine();
 
-        OutputStateIdCount(file, smName, namedVertices.Count);
+        OutputStateIdCount(file, orderedNamedVertices.Count);
+        OutputSubtreeEndIds(file, orderedNamedVertices, subtreeDataMap);
     }
 
-    protected void OutputStateIdCount(OutputFile file, string smName, int count)
+    protected void OutputStateIdCount(OutputFile file, int count)
     {
         if (!settings.outputEnumMemberCount)
             return;
 
         var enumValueName = mangler.SmStateEnumCount;
         OutputEnumCount(file, enumValueName, count);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/538
+    /// </summary>
+    protected void OutputSubtreeEndIds(OutputFile file, List<NamedVertex> orderedVertices, Dictionary<NamedVertex, SubtreeIdMapper.SubtreeData> subtreeDataMap)
+    {
+        if (!settings.outputSubtreeEndIds)
+            return;
+        
+        file.AppendIndentedLine($"");
+        file.AppendIndentedLine($"// Subtree meta data generation can be disabled in settings.");
+        file.AppendIndentedLine($"// Details: https://github.com/StateSmith/StateSmith/issues/538");
+
+        foreach (var namedVertex in orderedVertices)
+        {
+            var subtreeData = subtreeDataMap[namedVertex];
+            // file.AppendIndentedLine($"public const int {mangler.SmStateEnumValue(namedVertex)}_SubtreeEndId = (int){mangler.SmStateEnumType}.{mangler.SmStateEnumValue(subtreeData.subtreeEndVertex)};"); // this is nicer, but doesn't work with all languages
+            file.AppendIndentedLine($"public const int {mangler.SmStateEnumValue(namedVertex)}_SubtreeEndId = {subtreeData.subtreeEndId};  // State '{namedVertex.Name}' subtree extends from itself (id: {subtreeData.id}) to state '{subtreeData.subtreeEndVertex.Name}' (id: {subtreeData.subtreeEndId})");
+        }
     }
 
     public void OutputHistoryIdCode(OutputFile file, HistoryVertex historyVertex)

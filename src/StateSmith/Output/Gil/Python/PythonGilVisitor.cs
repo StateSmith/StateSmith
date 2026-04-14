@@ -202,7 +202,7 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
         sb.Append("self.");
         Visit(node.Declaration.Variables.Single());
-        sb.AppendLine();
+        VisitTrailingTrivia(node.GetLastToken());
     }
 
     private string CaptureStringBuf(Action action)

@@ -60,4 +60,9 @@ public class AlgoBalanced1Settings
     /// https://github.com/StateSmith/StateSmith/issues/535
     /// </summary>
     public bool outputGetParentIdFunction = true;
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/538
+    /// </summary>
+    public bool outputSubtreeEndIds = true;
 }

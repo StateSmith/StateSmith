@@ -621,6 +621,25 @@ evaluateGuard = null;
     static StateIdCount = 8;
     static { Object.freeze(this.StateIdCount); }
     
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    static ROOT_SubtreeEndId = 7;  // State 'PlantEx2' subtree extends from itself (id: 0) to state 'Idle' (id: 7)
+    static { Object.freeze(this.ROOT_SubtreeEndId); }
+    static NOTSHOOTING_SubtreeEndId = 7;  // State 'NotShooting' subtree extends from itself (id: 1) to state 'Idle' (id: 7)
+    static { Object.freeze(this.NOTSHOOTING_SubtreeEndId); }
+    static CONFIGURING_SubtreeEndId = 6;  // State 'Configuring' subtree extends from itself (id: 2) to state 'NewValueSelection' (id: 6)
+    static { Object.freeze(this.CONFIGURING_SubtreeEndId); }
+    static NEWVALUEPREVIEW_SubtreeEndId = 5;  // State 'NewValuePreview' subtree extends from itself (id: 3) to state 'State2' (id: 5)
+    static { Object.freeze(this.NEWVALUEPREVIEW_SubtreeEndId); }
+    static STATE1_SubtreeEndId = 4;  // State 'State1' subtree extends from itself (id: 4) to state 'State1' (id: 4)
+    static { Object.freeze(this.STATE1_SubtreeEndId); }
+    static STATE2_SubtreeEndId = 5;  // State 'State2' subtree extends from itself (id: 5) to state 'State2' (id: 5)
+    static { Object.freeze(this.STATE2_SubtreeEndId); }
+    static NEWVALUESELECTION_SubtreeEndId = 6;  // State 'NewValueSelection' subtree extends from itself (id: 6) to state 'NewValueSelection' (id: 6)
+    static { Object.freeze(this.NEWVALUESELECTION_SubtreeEndId); }
+    static IDLE_SubtreeEndId = 7;  // State 'Idle' subtree extends from itself (id: 7) to state 'Idle' (id: 7)
+    static { Object.freeze(this.IDLE_SubtreeEndId); }
+    
     // Used internally by state machine. Feel free to inspect, but don't modify.
     stateId;
     

@@ -817,6 +817,55 @@ evaluateGuard = null;
     static StateIdCount = 23;
     static { Object.freeze(this.StateIdCount); }
     
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    static ROOT_SubtreeEndId = 22;  // State 'SpaceControlUiSm' subtree extends from itself (id: 0) to state 'SPLASH_SCREEN' (id: 22)
+    static { Object.freeze(this.ROOT_SubtreeEndId); }
+    static DONE_SubtreeEndId = 1;  // State 'DONE' subtree extends from itself (id: 1) to state 'DONE' (id: 1)
+    static { Object.freeze(this.DONE_SubtreeEndId); }
+    static MENU_SubtreeEndId = 21;  // State 'MENU' subtree extends from itself (id: 2) to state 'SYSTEM_INFO' (id: 21)
+    static { Object.freeze(this.MENU_SubtreeEndId); }
+    static ESC_CATCHER_1_SubtreeEndId = 17;  // State 'ESC_CATCHER_1' subtree extends from itself (id: 3) to state 'SELF_DESTRUCT_OPTION' (id: 17)
+    static { Object.freeze(this.ESC_CATCHER_1_SubtreeEndId); }
+    static DRINK_MENU_SubtreeEndId = 4;  // State 'DRINK_MENU' subtree extends from itself (id: 4) to state 'DRINK_MENU' (id: 4)
+    static { Object.freeze(this.DRINK_MENU_SubtreeEndId); }
+    static FOOD_MENU_SubtreeEndId = 11;  // State 'FOOD_MENU' subtree extends from itself (id: 5) to state 'COOKING_FOOD1' (id: 11)
+    static { Object.freeze(this.FOOD_MENU_SubtreeEndId); }
+    static EAT_BURRITO_SubtreeEndId = 6;  // State 'EAT_BURRITO' subtree extends from itself (id: 6) to state 'EAT_BURRITO' (id: 6)
+    static { Object.freeze(this.EAT_BURRITO_SubtreeEndId); }
+    static EAT_MRE_SubtreeEndId = 7;  // State 'EAT_MRE' subtree extends from itself (id: 7) to state 'EAT_MRE' (id: 7)
+    static { Object.freeze(this.EAT_MRE_SubtreeEndId); }
+    static EAT_SLUDGE_SubtreeEndId = 8;  // State 'EAT_SLUDGE' subtree extends from itself (id: 8) to state 'EAT_SLUDGE' (id: 8)
+    static { Object.freeze(this.EAT_SLUDGE_SubtreeEndId); }
+    static EVENT_EATER_2_SubtreeEndId = 11;  // State 'EVENT_EATER_2' subtree extends from itself (id: 9) to state 'COOKING_FOOD1' (id: 11)
+    static { Object.freeze(this.EVENT_EATER_2_SubtreeEndId); }
+    static COOKING_FOOD_SubtreeEndId = 10;  // State 'COOKING_FOOD' subtree extends from itself (id: 10) to state 'COOKING_FOOD' (id: 10)
+    static { Object.freeze(this.COOKING_FOOD_SubtreeEndId); }
+    static COOKING_FOOD1_SubtreeEndId = 11;  // State 'COOKING_FOOD1' subtree extends from itself (id: 11) to state 'COOKING_FOOD1' (id: 11)
+    static { Object.freeze(this.COOKING_FOOD1_SubtreeEndId); }
+    static SYSTEM_INFO_MENU_SubtreeEndId = 17;  // State 'SYSTEM_INFO_MENU' subtree extends from itself (id: 12) to state 'SELF_DESTRUCT_OPTION' (id: 17)
+    static { Object.freeze(this.SYSTEM_INFO_MENU_SubtreeEndId); }
+    static BURRITO_COUNT_SubtreeEndId = 13;  // State 'BURRITO_COUNT' subtree extends from itself (id: 13) to state 'BURRITO_COUNT' (id: 13)
+    static { Object.freeze(this.BURRITO_COUNT_SubtreeEndId); }
+    static DISTANCE_SubtreeEndId = 14;  // State 'DISTANCE' subtree extends from itself (id: 14) to state 'DISTANCE' (id: 14)
+    static { Object.freeze(this.DISTANCE_SubtreeEndId); }
+    static SELF_DESTRUCT_SubtreeEndId = 16;  // State 'SELF_DESTRUCT' subtree extends from itself (id: 15) to state 'SD_1' (id: 16)
+    static { Object.freeze(this.SELF_DESTRUCT_SubtreeEndId); }
+    static SD_1_SubtreeEndId = 16;  // State 'SD_1' subtree extends from itself (id: 16) to state 'SD_1' (id: 16)
+    static { Object.freeze(this.SD_1_SubtreeEndId); }
+    static SELF_DESTRUCT_OPTION_SubtreeEndId = 17;  // State 'SELF_DESTRUCT_OPTION' subtree extends from itself (id: 17) to state 'SELF_DESTRUCT_OPTION' (id: 17)
+    static { Object.freeze(this.SELF_DESTRUCT_OPTION_SubtreeEndId); }
+    static MAIN_MENU_INNER_SubtreeEndId = 21;  // State 'MAIN_MENU_INNER' subtree extends from itself (id: 18) to state 'SYSTEM_INFO' (id: 21)
+    static { Object.freeze(this.MAIN_MENU_INNER_SubtreeEndId); }
+    static DRINK_SubtreeEndId = 19;  // State 'DRINK' subtree extends from itself (id: 19) to state 'DRINK' (id: 19)
+    static { Object.freeze(this.DRINK_SubtreeEndId); }
+    static FOOD_SubtreeEndId = 20;  // State 'FOOD' subtree extends from itself (id: 20) to state 'FOOD' (id: 20)
+    static { Object.freeze(this.FOOD_SubtreeEndId); }
+    static SYSTEM_INFO_SubtreeEndId = 21;  // State 'SYSTEM_INFO' subtree extends from itself (id: 21) to state 'SYSTEM_INFO' (id: 21)
+    static { Object.freeze(this.SYSTEM_INFO_SubtreeEndId); }
+    static SPLASH_SCREEN_SubtreeEndId = 22;  // State 'SPLASH_SCREEN' subtree extends from itself (id: 22) to state 'SPLASH_SCREEN' (id: 22)
+    static { Object.freeze(this.SPLASH_SCREEN_SubtreeEndId); }
+    
     // Used internally by state machine. Feel free to inspect, but don't modify.
     stateId;
     

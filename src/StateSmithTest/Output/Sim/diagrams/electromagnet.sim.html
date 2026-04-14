@@ -739,6 +739,39 @@ evaluateGuard = null;
     static StateIdCount = 15;
     static { Object.freeze(this.StateIdCount); }
     
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    static ROOT_SubtreeEndId = 14;  // State 'electromagnet' subtree extends from itself (id: 0) to state 'System_Stop' (id: 14)
+    static { Object.freeze(this.ROOT_SubtreeEndId); }
+    static ADC_CALIBRATION_SubtreeEndId = 1;  // State 'Adc_Calibration' subtree extends from itself (id: 1) to state 'Adc_Calibration' (id: 1)
+    static { Object.freeze(this.ADC_CALIBRATION_SubtreeEndId); }
+    static SYSTEM_ERROR_SubtreeEndId = 2;  // State 'System_Error' subtree extends from itself (id: 2) to state 'System_Error' (id: 2)
+    static { Object.freeze(this.SYSTEM_ERROR_SubtreeEndId); }
+    static SYSTEM_INITIALIZATION_SubtreeEndId = 3;  // State 'System_Initialization' subtree extends from itself (id: 3) to state 'System_Initialization' (id: 3)
+    static { Object.freeze(this.SYSTEM_INITIALIZATION_SubtreeEndId); }
+    static SYSTEM_RUN_SubtreeEndId = 13;  // State 'System_Run' subtree extends from itself (id: 4) to state 'Standby' (id: 13)
+    static { Object.freeze(this.SYSTEM_RUN_SubtreeEndId); }
+    static ELECTRICITY_CONTROL_MODE_SubtreeEndId = 9;  // State 'Electricity_Control_Mode' subtree extends from itself (id: 5) to state 'Parameter_Adjustments' (id: 9)
+    static { Object.freeze(this.ELECTRICITY_CONTROL_MODE_SubtreeEndId); }
+    static CHANGE_OF_OBJECTIVE_SubtreeEndId = 6;  // State 'Change_Of_Objective' subtree extends from itself (id: 6) to state 'Change_Of_Objective' (id: 6)
+    static { Object.freeze(this.CHANGE_OF_OBJECTIVE_SubtreeEndId); }
+    static ELECTRICITY_CONTROL_SubtreeEndId = 7;  // State 'Electricity_Control' subtree extends from itself (id: 7) to state 'Electricity_Control' (id: 7)
+    static { Object.freeze(this.ELECTRICITY_CONTROL_SubtreeEndId); }
+    static INITIALIZATION_OF_PID_SubtreeEndId = 8;  // State 'Initialization_Of_Pid' subtree extends from itself (id: 8) to state 'Initialization_Of_Pid' (id: 8)
+    static { Object.freeze(this.INITIALIZATION_OF_PID_SubtreeEndId); }
+    static PARAMETER_ADJUSTMENTS_SubtreeEndId = 9;  // State 'Parameter_Adjustments' subtree extends from itself (id: 9) to state 'Parameter_Adjustments' (id: 9)
+    static { Object.freeze(this.PARAMETER_ADJUSTMENTS_SubtreeEndId); }
+    static ELECTRICITY_CONTROL_MODE2_SubtreeEndId = 12;  // State 'Electricity_Control_Mode2' subtree extends from itself (id: 10) to state 'Initialization_Of_Pid2' (id: 12)
+    static { Object.freeze(this.ELECTRICITY_CONTROL_MODE2_SubtreeEndId); }
+    static ELECTRICITY_CONTROL2_SubtreeEndId = 11;  // State 'Electricity_Control2' subtree extends from itself (id: 11) to state 'Electricity_Control2' (id: 11)
+    static { Object.freeze(this.ELECTRICITY_CONTROL2_SubtreeEndId); }
+    static INITIALIZATION_OF_PID2_SubtreeEndId = 12;  // State 'Initialization_Of_Pid2' subtree extends from itself (id: 12) to state 'Initialization_Of_Pid2' (id: 12)
+    static { Object.freeze(this.INITIALIZATION_OF_PID2_SubtreeEndId); }
+    static STANDBY_SubtreeEndId = 13;  // State 'Standby' subtree extends from itself (id: 13) to state 'Standby' (id: 13)
+    static { Object.freeze(this.STANDBY_SubtreeEndId); }
+    static SYSTEM_STOP_SubtreeEndId = 14;  // State 'System_Stop' subtree extends from itself (id: 14) to state 'System_Stop' (id: 14)
+    static { Object.freeze(this.SYSTEM_STOP_SubtreeEndId); }
+    
     // Used internally by state machine. Feel free to inspect, but don't modify.
     stateId;
     

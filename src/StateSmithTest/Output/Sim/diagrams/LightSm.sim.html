@@ -602,6 +602,21 @@ evaluateGuard = null;
     static StateIdCount = 6;
     static { Object.freeze(this.StateIdCount); }
     
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    static ROOT_SubtreeEndId = 5;  // State 'LightSm' subtree extends from itself (id: 0) to state 'OnHot' (id: 5)
+    static { Object.freeze(this.ROOT_SubtreeEndId); }
+    static OFF_SubtreeEndId = 1;  // State 'Off' subtree extends from itself (id: 1) to state 'Off' (id: 1)
+    static { Object.freeze(this.OFF_SubtreeEndId); }
+    static ON_GROUP_SubtreeEndId = 5;  // State 'ON_GROUP' subtree extends from itself (id: 2) to state 'OnHot' (id: 5)
+    static { Object.freeze(this.ON_GROUP_SubtreeEndId); }
+    static ON1_SubtreeEndId = 3;  // State 'ON1' subtree extends from itself (id: 3) to state 'ON1' (id: 3)
+    static { Object.freeze(this.ON1_SubtreeEndId); }
+    static ON2_SubtreeEndId = 4;  // State 'ON2' subtree extends from itself (id: 4) to state 'ON2' (id: 4)
+    static { Object.freeze(this.ON2_SubtreeEndId); }
+    static ONHOT_SubtreeEndId = 5;  // State 'OnHot' subtree extends from itself (id: 5) to state 'OnHot' (id: 5)
+    static { Object.freeze(this.ONHOT_SubtreeEndId); }
+    
     // Used internally by state machine. Feel free to inspect, but don't modify.
     stateId;
     

@@ -579,6 +579,17 @@ evaluateGuard = null;
     static StateIdCount = 4;
     static { Object.freeze(this.StateIdCount); }
     
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    static ROOT_SubtreeEndId = 3;  // State 'issue512' subtree extends from itself (id: 0) to state 'SANDWICH' (id: 3)
+    static { Object.freeze(this.ROOT_SubtreeEndId); }
+    static ORDER_MENU_SubtreeEndId = 3;  // State 'ORDER_MENU' subtree extends from itself (id: 1) to state 'SANDWICH' (id: 3)
+    static { Object.freeze(this.ORDER_MENU_SubtreeEndId); }
+    static FOOD_SubtreeEndId = 3;  // State 'FOOD' subtree extends from itself (id: 2) to state 'SANDWICH' (id: 3)
+    static { Object.freeze(this.FOOD_SubtreeEndId); }
+    static SANDWICH_SubtreeEndId = 3;  // State 'SANDWICH' subtree extends from itself (id: 3) to state 'SANDWICH' (id: 3)
+    static { Object.freeze(this.SANDWICH_SubtreeEndId); }
+    
     // Used internally by state machine. Feel free to inspect, but don't modify.
     stateId;
     

@@ -15,10 +15,7 @@ typedef enum PlantEx2_EventId
     PlantEx2_EventId_EVNEWVALUESAVED = 6
 } PlantEx2_EventId;
 
-enum
-{
-    PlantEx2_EventIdCount = 7
-};
+#define PlantEx2_EventIdCount (7)
 
 typedef enum PlantEx2_StateId
 {
@@ -32,10 +29,18 @@ typedef enum PlantEx2_StateId
     PlantEx2_StateId_IDLE = 7
 } PlantEx2_StateId;
 
-enum
-{
-    PlantEx2_StateIdCount = 8
-};
+#define PlantEx2_StateIdCount (8)
+
+// Subtree meta data generation can be disabled in settings.
+// Details: https://github.com/StateSmith/StateSmith/issues/538
+#define PlantEx2_ROOT_SubtreeEndId (7)  // State 'PlantEx2' subtree extends from itself (id: 0) to state 'Idle' (id: 7)
+#define PlantEx2_NOTSHOOTING_SubtreeEndId (7)  // State 'NotShooting' subtree extends from itself (id: 1) to state 'Idle' (id: 7)
+#define PlantEx2_CONFIGURING_SubtreeEndId (6)  // State 'Configuring' subtree extends from itself (id: 2) to state 'NewValueSelection' (id: 6)
+#define PlantEx2_NEWVALUEPREVIEW_SubtreeEndId (5)  // State 'NewValuePreview' subtree extends from itself (id: 3) to state 'State2' (id: 5)
+#define PlantEx2_STATE1_SubtreeEndId (4)  // State 'State1' subtree extends from itself (id: 4) to state 'State1' (id: 4)
+#define PlantEx2_STATE2_SubtreeEndId (5)  // State 'State2' subtree extends from itself (id: 5) to state 'State2' (id: 5)
+#define PlantEx2_NEWVALUESELECTION_SubtreeEndId (6)  // State 'NewValueSelection' subtree extends from itself (id: 6) to state 'NewValueSelection' (id: 6)
+#define PlantEx2_IDLE_SubtreeEndId (7)  // State 'Idle' subtree extends from itself (id: 7) to state 'Idle' (id: 7)
 
 
 // Generated state machine
