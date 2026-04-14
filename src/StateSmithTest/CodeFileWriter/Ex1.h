@@ -9,10 +9,7 @@ typedef enum Ex1_EventId
     Ex1_EventId_DO = 0 // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
 } Ex1_EventId;
 
-enum
-{
-    Ex1_EventIdCount = 1
-};
+#define Ex1_EventIdCount (1)
 
 typedef enum Ex1_StateId
 {
@@ -21,10 +18,13 @@ typedef enum Ex1_StateId
     Ex1_StateId_STATE_2 = 2
 } Ex1_StateId;
 
-enum
-{
-    Ex1_StateIdCount = 3
-};
+#define Ex1_StateIdCount (3)
+
+// Subtree meta data generation can be disabled in settings.
+// Details: https://github.com/StateSmith/StateSmith/issues/538
+#define Ex1_ROOT_SubtreeEndId (2)  // State 'Ex1' subtree extends from itself (id: 0) to state 'STATE_2' (id: 2)
+#define Ex1_STATE_1_SubtreeEndId (1)  // State 'STATE_1' subtree extends from itself (id: 1) to state 'STATE_1' (id: 1)
+#define Ex1_STATE_2_SubtreeEndId (2)  // State 'STATE_2' subtree extends from itself (id: 2) to state 'STATE_2' (id: 2)
 
 
 // Generated state machine

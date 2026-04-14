@@ -263,6 +263,7 @@ public class TomlConfigTest_335
             outputEventIdToStringFunction = false
             outputStateIdToStringFunction = false
             outputGetParentIdFunction = false
+            outputSubtreeEndIds = false
 
             [SmRunnerSettings.simulation]
             enableGeneration = true

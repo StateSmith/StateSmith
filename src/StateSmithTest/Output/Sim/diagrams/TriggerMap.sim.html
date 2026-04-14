@@ -320,7 +320,7 @@
       
       .dropdown-content .dropdown-item {
         display: block;
-        padding: 12px 16px;
+        padding: 8px 16px;
         font-weight: normal;
       }
 
@@ -333,6 +333,7 @@
         display: block;
       }
 
+
       /* ----------------------------- Dropdown related end ----------------------------- */
 
       .transition {
@@ -340,29 +341,30 @@
       }
 
       .transition.pathJustTaken {
-        stroke: #E06C75 !important;
+        stroke: var(--savedSetting_transitionPathJustTakenColor, #e0aa6c) !important;  /* note that var name matches savedSetting_ */
         stroke-width: 4px !important;
-        stroke-dasharray: 10 5;
+        stroke-dasharray: 3 6;
+        stroke-dashoffset: var(--transition-animation-offset, 0);
         filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
       }
 
       /* give priority over pathJustTaken. If it is available and pathJustTaken, then it will still have dash. */
       .transition.available {
-        stroke: #7e70cf !important;
+        stroke: var(--savedSetting_transitionAvailableColor, #7e70cf) !important;  /* note that var name matches savedSetting_ */
         stroke-width: 4px !important;
+        stroke-dasharray: 6 6;
+        stroke-dashoffset: var(--transition-animation-offset, 0); 
         filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
       }
 
       .statediagram-state.active > * {
         fill: #3c3224 !important;
-        stroke: #d56022 !important;
-        stroke: #d16f3b !important;
-        
+        stroke: var(--savedSetting_stateActiveStrokeColor, #d16f3b) !important;   /* note that var name matches savedSetting_ */
         stroke-width: 2px !important;
       }
 
       .statediagram-state.active span.nodeLabel span.syntax-vertex-name {
-        color: #fdffb0 !important;
+        color: var(--savedSetting_stateActiveTitleTextColor,#fdffb0) !important;
       }
 
       /* we don't want to fill body of parent state with regular active yellow. It's just too much! */
@@ -376,9 +378,13 @@
         color: aquamarine !important;
       }
 
+      div.dropdown-item input[type='color'] {
+        width: 25px;
+      }
+
     </style>
   </head>
-
+  
   <body>
     <div class='wrapper'>
     <div class='pane main'>
@@ -512,11 +518,34 @@ ROOT.(InitialState) --> NORMAL
                 <input type='checkbox' id='savedSetting_showEventButtonTooltips' name='savedSetting_showEventButtonTooltips' checked>
                 Show event button tooltips
               </label>
-              <label class='dropdown-item' for='savedSetting_timestamps'
+              <label class='dropdown-item' for='savedSetting_transitionOffsetAnimation'
+                 title=''>
+                <input type='checkbox' id='savedSetting_transitionOffsetAnimation' name='savedSetting_transitionOffsetAnimation' checked>
+                Animate transition arrows.
+              </label>
+              
+              <div class='dropdown-item' style='cursor: default;' >
+                Colors:
+                <!-- 
+                  NOTE!!! These IDs match css variables.
+                -->
+                <input type='color' id='savedSetting_transitionPathJustTakenColor' value='#a3a3a3' title='Color of transition/edge path that was just traversed.'>
+                <input type='color' id='savedSetting_transitionAvailableColor' value='#fff82e' title='Color of transition/edge paths that are ready/available.'>
+                <input type='color' id='savedSetting_stateActiveStrokeColor' value='#d16f3b' title='Active state stroke color.'>
+                <input type='color' id='savedSetting_stateActiveTitleTextColor' value='#fdffb0' title='Active state title text color.'>
+              </div>
+
+              <div class='dropdown-item' style='cursor: default;' >
+                 <button id='resetSettingsButton'>Reset Settings</button>
+              </div>
+
+              <!-- todo-low remove timestamps -->
+              <label style='display: none;' class='dropdown-item' for='savedSetting_timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
                 <input type='checkbox' id='savedSetting_timestamps' name='savedSetting_timestamps'>
                 Timestamps
               </label>
+
             </div>
           </div>
         </div>
@@ -578,6 +607,21 @@ evaluateGuard = null;
     
     static StateIdCount = 6;
     static { Object.freeze(this.StateIdCount); }
+    
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    static ROOT_SubtreeEndId = 5;  // State 'TriggerMap' subtree extends from itself (id: 0) to state 'RED' (id: 5)
+    static { Object.freeze(this.ROOT_SubtreeEndId); }
+    static NORMAL_SubtreeEndId = 4;  // State 'NORMAL' subtree extends from itself (id: 1) to state 'YELLOW' (id: 4)
+    static { Object.freeze(this.NORMAL_SubtreeEndId); }
+    static BLUE_SubtreeEndId = 2;  // State 'BLUE' subtree extends from itself (id: 2) to state 'BLUE' (id: 2)
+    static { Object.freeze(this.BLUE_SubtreeEndId); }
+    static OFF_SubtreeEndId = 3;  // State 'OFF' subtree extends from itself (id: 3) to state 'OFF' (id: 3)
+    static { Object.freeze(this.OFF_SubtreeEndId); }
+    static YELLOW_SubtreeEndId = 4;  // State 'YELLOW' subtree extends from itself (id: 4) to state 'YELLOW' (id: 4)
+    static { Object.freeze(this.YELLOW_SubtreeEndId); }
+    static RED_SubtreeEndId = 5;  // State 'RED' subtree extends from itself (id: 5) to state 'RED' (id: 5)
+    static { Object.freeze(this.RED_SubtreeEndId); }
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
     stateId;
@@ -1563,6 +1607,14 @@ evaluateGuard = null;
           tbody.innerHTML = '';
         });
 
+        // listener for resetSettingsButton
+        document.getElementById('resetSettingsButton').addEventListener('click', function() {
+          if (window.confirm('Are you sure you want to reset all settings to their default values? This will clear all saved settings from localStorage.')) {
+            localStorage.clear();
+            window.location.reload();
+          }
+        });
+
         // this setting needs a page reload anyway so just make it happen for users to avoid confusion
         document.getElementById('savedSetting_showEventButtonTooltips').addEventListener('click', function() {
           window.setTimeout(() => {
@@ -1639,32 +1691,80 @@ evaluateGuard = null;
 
         // store and restore checkbox states using localStorage.
         // DO AFTER event listeners are set up, so that restored state will trigger the change event and apply the setting.
-        const dropdownCheckboxes = document.querySelectorAll(`.dropdown-content input[type='checkbox']`);
-        dropdownCheckboxes.forEach(checkbox => {
+        {
+          const dropdownCheckboxes = document.querySelectorAll(`.dropdown-content input[type='checkbox']`);
+          dropdownCheckboxes.forEach(checkbox => {
 
-          if (checkbox.id.startsWith('savedSetting_') === false)
-          {
-            console.log(`Skipping checkbox with id '${checkbox.id}' for localStorage state saving/restoring because it does not start with 'savedSetting_'.`, checkbox);
-            return;
-          }
+            if (checkbox.id.startsWith('savedSetting_') === false)
+            {
+              console.log(`Skipping checkbox with id '${checkbox.id}' for localStorage state saving/restoring because it does not start with 'savedSetting_'.`, checkbox);
+              return;
+            }
 
-          // append a note to the checkbox title that the state is saved in localStorage
-          checkbox.parentElement.title += '\nThis setting is saved in localStorage and will persist across page reloads.';
+            // append a note to the checkbox title that the state is saved in localStorage
+            checkbox.parentElement.title += '\nThis setting is saved in localStorage and will persist across page reloads.';
 
-          // Restore state from localStorage
-          const savedState = localStorage.getItem(checkbox.id);
-          if (savedState !== null) {
-            checkbox.checked = (savedState === 'true');
-            checkbox.dispatchEvent(new Event('change')); // Trigger change event to apply the setting
-            console.log(`Restored checkbox value for '${checkbox.id}' to '${checkbox.checked}'`, checkbox);
-          }
+            // Restore state from localStorage
+            const savedState = localStorage.getItem(checkbox.id);
+            if (savedState !== null) {
+              checkbox.checked = (savedState === 'true');
+              checkbox.dispatchEvent(new Event('change')); // Trigger change event to apply the setting
+              console.log(`Restored checkbox value for '${checkbox.id}' to '${checkbox.checked}'`, checkbox);
+            }
 
-          // Save state to localStorage on change
-          checkbox.addEventListener('change', function() {
-            localStorage.setItem(checkbox.id, this.checked);
-            console.log(`Saved checkbox value for '${checkbox.id}' to '${this.checked}'`, checkbox);
+            // Save state to localStorage on change
+            checkbox.addEventListener('change', function() {
+              localStorage.setItem(checkbox.id, this.checked);
+              console.log(`Saved checkbox value for '${checkbox.id}' to '${this.checked}'`, checkbox);
+            });
           });
-        });
+        }
+
+        // setup custom color storage
+        {
+          const colorInputs = document.querySelectorAll(`.dropdown-content input[type='color']`);
+          colorInputs.forEach(inputWidget => {
+            // append a note to the input title that the value is saved in localStorage
+            inputWidget.title += '\nThis custom color value is saved in localStorage and will persist across page reloads.';
+
+            // Restore state from localStorage
+            const savedColor = localStorage.getItem(inputWidget.id);
+            if (savedColor !== null) {
+              inputWidget.value = savedColor;
+              updateCssColorVar(inputWidget, savedColor);
+              console.log(`Restored color input value for '${inputWidget.id}' to '${inputWidget.value}'`, inputWidget);
+            }
+
+            // Save state to localStorage on change
+            inputWidget.addEventListener('input', function() {
+              localStorage.setItem(inputWidget.id, this.value);
+              updateCssColorVar(inputWidget, this.value);
+              console.log(`Saved color input value for '${inputWidget.id}' to '${this.value}'`, inputWidget);
+            });
+
+            // update current css style
+            updateCssColorVar(inputWidget, inputWidget.value);
+          });
+
+          function updateCssColorVar(inputWidget, color) {
+              document.documentElement.style.setProperty(`--${inputWidget.id}`, color); // custom css vars start with '--'
+          }
+        }
+
+        // animate transition edges
+        {
+          setInterval(()=>{
+            // only do if animation is enabled
+            if (document.getElementById('savedSetting_transitionOffsetAnimation').checked === false) {
+              return;
+            }
+
+            let offset = document.documentElement.style.getPropertyValue('--transition-animation-offset');
+            offset -= 1;
+            document.documentElement.style.setProperty('--transition-animation-offset', offset);
+          }, 50);
+        }
+
 
         //------------------- drop down functionality end -------------------
 

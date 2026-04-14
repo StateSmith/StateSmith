@@ -214,6 +214,357 @@ export class Spec2Sm
     static StateIdCount = 174;
     static { Object.freeze(this.StateIdCount); }
     
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    static ROOT_SubtreeEndId = 173;  // State 'Spec2Sm' subtree extends from itself (id: 0) to state 'USELESS' (id: 173)
+    static { Object.freeze(this.ROOT_SubtreeEndId); }
+    static PREFIXING_SubtreeEndId = 20;  // State 'PREFIXING' subtree extends from itself (id: 1) to state 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM' (id: 20)
+    static { Object.freeze(this.PREFIXING_SubtreeEndId); }
+    static PREFIXING__ORDER_MENU_SubtreeEndId = 10;  // State 'PREFIXING__ORDER_MENU' subtree extends from itself (id: 2) to state 'PREFIXING__OM__VEG__YAM' (id: 10)
+    static { Object.freeze(this.PREFIXING__ORDER_MENU_SubtreeEndId); }
+    static PREFIXING__OM__BEVERAGE_SubtreeEndId = 6;  // State 'PREFIXING__OM__BEVERAGE' subtree extends from itself (id: 3) to state 'PREFIXING__OM__BEV__WATER' (id: 6)
+    static { Object.freeze(this.PREFIXING__OM__BEVERAGE_SubtreeEndId); }
+    static PREFIXING__OM__BEV__NONE_SubtreeEndId = 4;  // State 'PREFIXING__OM__BEV__NONE' subtree extends from itself (id: 4) to state 'PREFIXING__OM__BEV__NONE' (id: 4)
+    static { Object.freeze(this.PREFIXING__OM__BEV__NONE_SubtreeEndId); }
+    static PREFIXING__OM__BEV__TEA_SubtreeEndId = 5;  // State 'PREFIXING__OM__BEV__TEA' subtree extends from itself (id: 5) to state 'PREFIXING__OM__BEV__TEA' (id: 5)
+    static { Object.freeze(this.PREFIXING__OM__BEV__TEA_SubtreeEndId); }
+    static PREFIXING__OM__BEV__WATER_SubtreeEndId = 6;  // State 'PREFIXING__OM__BEV__WATER' subtree extends from itself (id: 6) to state 'PREFIXING__OM__BEV__WATER' (id: 6)
+    static { Object.freeze(this.PREFIXING__OM__BEV__WATER_SubtreeEndId); }
+    static PREFIXING__OM__VEG_SubtreeEndId = 10;  // State 'PREFIXING__OM__VEG' subtree extends from itself (id: 7) to state 'PREFIXING__OM__VEG__YAM' (id: 10)
+    static { Object.freeze(this.PREFIXING__OM__VEG_SubtreeEndId); }
+    static PREFIXING__OM__VEG__NONE_SubtreeEndId = 8;  // State 'PREFIXING__OM__VEG__NONE' subtree extends from itself (id: 8) to state 'PREFIXING__OM__VEG__NONE' (id: 8)
+    static { Object.freeze(this.PREFIXING__OM__VEG__NONE_SubtreeEndId); }
+    static PREFIXING__OM__VEG__POTATO_SubtreeEndId = 9;  // State 'PREFIXING__OM__VEG__POTATO' subtree extends from itself (id: 9) to state 'PREFIXING__OM__VEG__POTATO' (id: 9)
+    static { Object.freeze(this.PREFIXING__OM__VEG__POTATO_SubtreeEndId); }
+    static PREFIXING__OM__VEG__YAM_SubtreeEndId = 10;  // State 'PREFIXING__OM__VEG__YAM' subtree extends from itself (id: 10) to state 'PREFIXING__OM__VEG__YAM' (id: 10)
+    static { Object.freeze(this.PREFIXING__OM__VEG__YAM_SubtreeEndId); }
+    static PREFIXING__SHOWS_MANUAL_PREFIX_SubtreeEndId = 20;  // State 'PREFIXING__SHOWS_MANUAL_PREFIX' subtree extends from itself (id: 11) to state 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM' (id: 20)
+    static { Object.freeze(this.PREFIXING__SHOWS_MANUAL_PREFIX_SubtreeEndId); }
+    static PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_SubtreeEndId = 20;  // State 'PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU' subtree extends from itself (id: 12) to state 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM' (id: 20)
+    static { Object.freeze(this.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_SubtreeEndId); }
+    static PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_SubtreeEndId = 16;  // State 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE' subtree extends from itself (id: 13) to state 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER' (id: 16)
+    static { Object.freeze(this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_SubtreeEndId); }
+    static PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_SubtreeEndId = 14;  // State 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE' subtree extends from itself (id: 14) to state 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE' (id: 14)
+    static { Object.freeze(this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_SubtreeEndId); }
+    static PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_SubtreeEndId = 15;  // State 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA' subtree extends from itself (id: 15) to state 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA' (id: 15)
+    static { Object.freeze(this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_SubtreeEndId); }
+    static PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_SubtreeEndId = 16;  // State 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER' subtree extends from itself (id: 16) to state 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER' (id: 16)
+    static { Object.freeze(this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_SubtreeEndId); }
+    static PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_SubtreeEndId = 20;  // State 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG' subtree extends from itself (id: 17) to state 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM' (id: 20)
+    static { Object.freeze(this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_SubtreeEndId); }
+    static PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_SubtreeEndId = 18;  // State 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE' subtree extends from itself (id: 18) to state 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE' (id: 18)
+    static { Object.freeze(this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_SubtreeEndId); }
+    static PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_SubtreeEndId = 19;  // State 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO' subtree extends from itself (id: 19) to state 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO' (id: 19)
+    static { Object.freeze(this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_SubtreeEndId); }
+    static PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_SubtreeEndId = 20;  // State 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM' subtree extends from itself (id: 20) to state 'PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM' (id: 20)
+    static { Object.freeze(this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_SubtreeEndId); }
+    static SPEC2SM__DECIDE_SubtreeEndId = 21;  // State 'Spec2Sm__DECIDE' subtree extends from itself (id: 21) to state 'Spec2Sm__DECIDE' (id: 21)
+    static { Object.freeze(this.SPEC2SM__DECIDE_SubtreeEndId); }
+    static TEST1_DO_EVENT_TESTING_SubtreeEndId = 26;  // State 'TEST1_DO_EVENT_TESTING' subtree extends from itself (id: 22) to state 'TEST1_S2' (id: 26)
+    static { Object.freeze(this.TEST1_DO_EVENT_TESTING_SubtreeEndId); }
+    static TEST1_ROOT_SubtreeEndId = 26;  // State 'TEST1_ROOT' subtree extends from itself (id: 23) to state 'TEST1_S2' (id: 26)
+    static { Object.freeze(this.TEST1_ROOT_SubtreeEndId); }
+    static TEST1_S1_SubtreeEndId = 25;  // State 'TEST1_S1' subtree extends from itself (id: 24) to state 'TEST1_S1_1' (id: 25)
+    static { Object.freeze(this.TEST1_S1_SubtreeEndId); }
+    static TEST1_S1_1_SubtreeEndId = 25;  // State 'TEST1_S1_1' subtree extends from itself (id: 25) to state 'TEST1_S1_1' (id: 25)
+    static { Object.freeze(this.TEST1_S1_1_SubtreeEndId); }
+    static TEST1_S2_SubtreeEndId = 26;  // State 'TEST1_S2' subtree extends from itself (id: 26) to state 'TEST1_S2' (id: 26)
+    static { Object.freeze(this.TEST1_S2_SubtreeEndId); }
+    static TEST10_CHOICE_POINT_SubtreeEndId = 37;  // State 'TEST10_CHOICE_POINT' subtree extends from itself (id: 27) to state 'TEST10_S4' (id: 37)
+    static { Object.freeze(this.TEST10_CHOICE_POINT_SubtreeEndId); }
+    static TEST10_A_SubtreeEndId = 29;  // State 'TEST10_A' subtree extends from itself (id: 28) to state 'TEST10_A_1' (id: 29)
+    static { Object.freeze(this.TEST10_A_SubtreeEndId); }
+    static TEST10_A_1_SubtreeEndId = 29;  // State 'TEST10_A_1' subtree extends from itself (id: 29) to state 'TEST10_A_1' (id: 29)
+    static { Object.freeze(this.TEST10_A_1_SubtreeEndId); }
+    static TEST10_ROOT_SubtreeEndId = 37;  // State 'TEST10_ROOT' subtree extends from itself (id: 30) to state 'TEST10_S4' (id: 37)
+    static { Object.freeze(this.TEST10_ROOT_SubtreeEndId); }
+    static TEST10_G_SubtreeEndId = 35;  // State 'TEST10_G' subtree extends from itself (id: 31) to state 'TEST10_G_S3' (id: 35)
+    static { Object.freeze(this.TEST10_G_SubtreeEndId); }
+    static TEST10_G_S0_SubtreeEndId = 32;  // State 'TEST10_G_S0' subtree extends from itself (id: 32) to state 'TEST10_G_S0' (id: 32)
+    static { Object.freeze(this.TEST10_G_S0_SubtreeEndId); }
+    static TEST10_G_S1_SubtreeEndId = 33;  // State 'TEST10_G_S1' subtree extends from itself (id: 33) to state 'TEST10_G_S1' (id: 33)
+    static { Object.freeze(this.TEST10_G_S1_SubtreeEndId); }
+    static TEST10_G_S2_SubtreeEndId = 34;  // State 'TEST10_G_S2' subtree extends from itself (id: 34) to state 'TEST10_G_S2' (id: 34)
+    static { Object.freeze(this.TEST10_G_S2_SubtreeEndId); }
+    static TEST10_G_S3_SubtreeEndId = 35;  // State 'TEST10_G_S3' subtree extends from itself (id: 35) to state 'TEST10_G_S3' (id: 35)
+    static { Object.freeze(this.TEST10_G_S3_SubtreeEndId); }
+    static TEST10_S1_SubtreeEndId = 36;  // State 'TEST10_S1' subtree extends from itself (id: 36) to state 'TEST10_S1' (id: 36)
+    static { Object.freeze(this.TEST10_S1_SubtreeEndId); }
+    static TEST10_S4_SubtreeEndId = 37;  // State 'TEST10_S4' subtree extends from itself (id: 37) to state 'TEST10_S4' (id: 37)
+    static { Object.freeze(this.TEST10_S4_SubtreeEndId); }
+    static TEST2_REGULAR_EVENT_TESTING_SubtreeEndId = 42;  // State 'TEST2_REGULAR_EVENT_TESTING' subtree extends from itself (id: 38) to state 'TEST2_S2' (id: 42)
+    static { Object.freeze(this.TEST2_REGULAR_EVENT_TESTING_SubtreeEndId); }
+    static TEST2_ROOT_SubtreeEndId = 42;  // State 'TEST2_ROOT' subtree extends from itself (id: 39) to state 'TEST2_S2' (id: 42)
+    static { Object.freeze(this.TEST2_ROOT_SubtreeEndId); }
+    static TEST2_S1_SubtreeEndId = 41;  // State 'TEST2_S1' subtree extends from itself (id: 40) to state 'TEST2_S1_1' (id: 41)
+    static { Object.freeze(this.TEST2_S1_SubtreeEndId); }
+    static TEST2_S1_1_SubtreeEndId = 41;  // State 'TEST2_S1_1' subtree extends from itself (id: 41) to state 'TEST2_S1_1' (id: 41)
+    static { Object.freeze(this.TEST2_S1_1_SubtreeEndId); }
+    static TEST2_S2_SubtreeEndId = 42;  // State 'TEST2_S2' subtree extends from itself (id: 42) to state 'TEST2_S2' (id: 42)
+    static { Object.freeze(this.TEST2_S2_SubtreeEndId); }
+    static TEST3_BEHAVIOR_ORDERING_SubtreeEndId = 47;  // State 'TEST3_BEHAVIOR_ORDERING' subtree extends from itself (id: 43) to state 'TEST3_S3' (id: 47)
+    static { Object.freeze(this.TEST3_BEHAVIOR_ORDERING_SubtreeEndId); }
+    static TEST3_ROOT_SubtreeEndId = 47;  // State 'TEST3_ROOT' subtree extends from itself (id: 44) to state 'TEST3_S3' (id: 47)
+    static { Object.freeze(this.TEST3_ROOT_SubtreeEndId); }
+    static TEST3_S1_SubtreeEndId = 45;  // State 'TEST3_S1' subtree extends from itself (id: 45) to state 'TEST3_S1' (id: 45)
+    static { Object.freeze(this.TEST3_S1_SubtreeEndId); }
+    static TEST3_S2_SubtreeEndId = 46;  // State 'TEST3_S2' subtree extends from itself (id: 46) to state 'TEST3_S2' (id: 46)
+    static { Object.freeze(this.TEST3_S2_SubtreeEndId); }
+    static TEST3_S3_SubtreeEndId = 47;  // State 'TEST3_S3' subtree extends from itself (id: 47) to state 'TEST3_S3' (id: 47)
+    static { Object.freeze(this.TEST3_S3_SubtreeEndId); }
+    static TEST4_PARENT_CHILD_TRANSITIONS_SubtreeEndId = 67;  // State 'TEST4_PARENT_CHILD_TRANSITIONS' subtree extends from itself (id: 48) to state 'TEST4_S3' (id: 67)
+    static { Object.freeze(this.TEST4_PARENT_CHILD_TRANSITIONS_SubtreeEndId); }
+    static TEST4_B_AND_OTHERS_SubtreeEndId = 58;  // State 'TEST4_B_AND_OTHERS' subtree extends from itself (id: 49) to state 'TEST4D_G_1' (id: 58)
+    static { Object.freeze(this.TEST4_B_AND_OTHERS_SubtreeEndId); }
+    static TEST4B_LOCAL_SubtreeEndId = 52;  // State 'TEST4B_LOCAL' subtree extends from itself (id: 50) to state 'TEST4B_G_1' (id: 52)
+    static { Object.freeze(this.TEST4B_LOCAL_SubtreeEndId); }
+    static TEST4B_G_SubtreeEndId = 52;  // State 'TEST4B_G' subtree extends from itself (id: 51) to state 'TEST4B_G_1' (id: 52)
+    static { Object.freeze(this.TEST4B_G_SubtreeEndId); }
+    static TEST4B_G_1_SubtreeEndId = 52;  // State 'TEST4B_G_1' subtree extends from itself (id: 52) to state 'TEST4B_G_1' (id: 52)
+    static { Object.freeze(this.TEST4B_G_1_SubtreeEndId); }
+    static TEST4C_LOCAL_TO_ALIAS_SubtreeEndId = 55;  // State 'TEST4C_LOCAL_TO_ALIAS' subtree extends from itself (id: 53) to state 'TEST4C_G_1' (id: 55)
+    static { Object.freeze(this.TEST4C_LOCAL_TO_ALIAS_SubtreeEndId); }
+    static TEST4C_G_SubtreeEndId = 55;  // State 'TEST4C_G' subtree extends from itself (id: 54) to state 'TEST4C_G_1' (id: 55)
+    static { Object.freeze(this.TEST4C_G_SubtreeEndId); }
+    static TEST4C_G_1_SubtreeEndId = 55;  // State 'TEST4C_G_1' subtree extends from itself (id: 55) to state 'TEST4C_G_1' (id: 55)
+    static { Object.freeze(this.TEST4C_G_1_SubtreeEndId); }
+    static TEST4D_EXTERNAL_SubtreeEndId = 58;  // State 'TEST4D_EXTERNAL' subtree extends from itself (id: 56) to state 'TEST4D_G_1' (id: 58)
+    static { Object.freeze(this.TEST4D_EXTERNAL_SubtreeEndId); }
+    static TEST4D_G_SubtreeEndId = 58;  // State 'TEST4D_G' subtree extends from itself (id: 57) to state 'TEST4D_G_1' (id: 58)
+    static { Object.freeze(this.TEST4D_G_SubtreeEndId); }
+    static TEST4D_G_1_SubtreeEndId = 58;  // State 'TEST4D_G_1' subtree extends from itself (id: 58) to state 'TEST4D_G_1' (id: 58)
+    static { Object.freeze(this.TEST4D_G_1_SubtreeEndId); }
+    static TEST4_DECIDE_SubtreeEndId = 59;  // State 'TEST4_DECIDE' subtree extends from itself (id: 59) to state 'TEST4_DECIDE' (id: 59)
+    static { Object.freeze(this.TEST4_DECIDE_SubtreeEndId); }
+    static TEST4_ROOT_SubtreeEndId = 67;  // State 'TEST4_ROOT' subtree extends from itself (id: 60) to state 'TEST4_S3' (id: 67)
+    static { Object.freeze(this.TEST4_ROOT_SubtreeEndId); }
+    static TEST4_S1_SubtreeEndId = 61;  // State 'TEST4_S1' subtree extends from itself (id: 61) to state 'TEST4_S1' (id: 61)
+    static { Object.freeze(this.TEST4_S1_SubtreeEndId); }
+    static TEST4_S10_SubtreeEndId = 63;  // State 'TEST4_S10' subtree extends from itself (id: 62) to state 'TEST4_S10_1' (id: 63)
+    static { Object.freeze(this.TEST4_S10_SubtreeEndId); }
+    static TEST4_S10_1_SubtreeEndId = 63;  // State 'TEST4_S10_1' subtree extends from itself (id: 63) to state 'TEST4_S10_1' (id: 63)
+    static { Object.freeze(this.TEST4_S10_1_SubtreeEndId); }
+    static TEST4_S2_SubtreeEndId = 64;  // State 'TEST4_S2' subtree extends from itself (id: 64) to state 'TEST4_S2' (id: 64)
+    static { Object.freeze(this.TEST4_S2_SubtreeEndId); }
+    static TEST4_S20_SubtreeEndId = 66;  // State 'TEST4_S20' subtree extends from itself (id: 65) to state 'TEST4_S20_1' (id: 66)
+    static { Object.freeze(this.TEST4_S20_SubtreeEndId); }
+    static TEST4_S20_1_SubtreeEndId = 66;  // State 'TEST4_S20_1' subtree extends from itself (id: 66) to state 'TEST4_S20_1' (id: 66)
+    static { Object.freeze(this.TEST4_S20_1_SubtreeEndId); }
+    static TEST4_S3_SubtreeEndId = 67;  // State 'TEST4_S3' subtree extends from itself (id: 67) to state 'TEST4_S3' (id: 67)
+    static { Object.freeze(this.TEST4_S3_SubtreeEndId); }
+    static TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_SubtreeEndId = 72;  // State 'TEST5_PARENT_CHILD_TRANSITIONS_ALIAS' subtree extends from itself (id: 68) to state 'TEST5_S3' (id: 72)
+    static { Object.freeze(this.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_SubtreeEndId); }
+    static TEST5_ROOT_SubtreeEndId = 72;  // State 'TEST5_ROOT' subtree extends from itself (id: 69) to state 'TEST5_S3' (id: 72)
+    static { Object.freeze(this.TEST5_ROOT_SubtreeEndId); }
+    static TEST5_S1_SubtreeEndId = 70;  // State 'TEST5_S1' subtree extends from itself (id: 70) to state 'TEST5_S1' (id: 70)
+    static { Object.freeze(this.TEST5_S1_SubtreeEndId); }
+    static TEST5_S2_SubtreeEndId = 71;  // State 'TEST5_S2' subtree extends from itself (id: 71) to state 'TEST5_S2' (id: 71)
+    static { Object.freeze(this.TEST5_S2_SubtreeEndId); }
+    static TEST5_S3_SubtreeEndId = 72;  // State 'TEST5_S3' subtree extends from itself (id: 72) to state 'TEST5_S3' (id: 72)
+    static { Object.freeze(this.TEST5_S3_SubtreeEndId); }
+    static TEST6_VARS_EXPANSIONS_SubtreeEndId = 87;  // State 'TEST6_VARS_EXPANSIONS' subtree extends from itself (id: 73) to state 'TEST6_VARS_EXPANSIONS__DECIDE' (id: 87)
+    static { Object.freeze(this.TEST6_VARS_EXPANSIONS_SubtreeEndId); }
+    static TEST6_ROOT_SubtreeEndId = 87;  // State 'TEST6_ROOT' subtree extends from itself (id: 74) to state 'TEST6_VARS_EXPANSIONS__DECIDE' (id: 87)
+    static { Object.freeze(this.TEST6_ROOT_SubtreeEndId); }
+    static AUTO_VAR_TEST_SubtreeEndId = 77;  // State 'AUTO_VAR_TEST' subtree extends from itself (id: 75) to state 'AUTO_VAR_TEST__S2' (id: 77)
+    static { Object.freeze(this.AUTO_VAR_TEST_SubtreeEndId); }
+    static AUTO_VAR_TEST__S1_SubtreeEndId = 76;  // State 'AUTO_VAR_TEST__S1' subtree extends from itself (id: 76) to state 'AUTO_VAR_TEST__S1' (id: 76)
+    static { Object.freeze(this.AUTO_VAR_TEST__S1_SubtreeEndId); }
+    static AUTO_VAR_TEST__S2_SubtreeEndId = 77;  // State 'AUTO_VAR_TEST__S2' subtree extends from itself (id: 77) to state 'AUTO_VAR_TEST__S2' (id: 77)
+    static { Object.freeze(this.AUTO_VAR_TEST__S2_SubtreeEndId); }
+    static META_EXPANSIONS_SubtreeEndId = 83;  // State 'META_EXPANSIONS' subtree extends from itself (id: 78) to state 'S5' (id: 83)
+    static { Object.freeze(this.META_EXPANSIONS_SubtreeEndId); }
+    static META_EXPANSIONS__S1_SubtreeEndId = 79;  // State 'META_EXPANSIONS__S1' subtree extends from itself (id: 79) to state 'META_EXPANSIONS__S1' (id: 79)
+    static { Object.freeze(this.META_EXPANSIONS__S1_SubtreeEndId); }
+    static META_EXPANSIONS__S2_SubtreeEndId = 80;  // State 'META_EXPANSIONS__S2' subtree extends from itself (id: 80) to state 'META_EXPANSIONS__S2' (id: 80)
+    static { Object.freeze(this.META_EXPANSIONS__S2_SubtreeEndId); }
+    static S3_SubtreeEndId = 81;  // State 'S3' subtree extends from itself (id: 81) to state 'S3' (id: 81)
+    static { Object.freeze(this.S3_SubtreeEndId); }
+    static S4_SubtreeEndId = 82;  // State 'S4' subtree extends from itself (id: 82) to state 'S4' (id: 82)
+    static { Object.freeze(this.S4_SubtreeEndId); }
+    static S5_SubtreeEndId = 83;  // State 'S5' subtree extends from itself (id: 83) to state 'S5' (id: 83)
+    static { Object.freeze(this.S5_SubtreeEndId); }
+    static NORMAL_SubtreeEndId = 86;  // State 'NORMAL' subtree extends from itself (id: 84) to state 'NORMAL__S2' (id: 86)
+    static { Object.freeze(this.NORMAL_SubtreeEndId); }
+    static NORMAL__S1_SubtreeEndId = 85;  // State 'NORMAL__S1' subtree extends from itself (id: 85) to state 'NORMAL__S1' (id: 85)
+    static { Object.freeze(this.NORMAL__S1_SubtreeEndId); }
+    static NORMAL__S2_SubtreeEndId = 86;  // State 'NORMAL__S2' subtree extends from itself (id: 86) to state 'NORMAL__S2' (id: 86)
+    static { Object.freeze(this.NORMAL__S2_SubtreeEndId); }
+    static TEST6_VARS_EXPANSIONS__DECIDE_SubtreeEndId = 87;  // State 'TEST6_VARS_EXPANSIONS__DECIDE' subtree extends from itself (id: 87) to state 'TEST6_VARS_EXPANSIONS__DECIDE' (id: 87)
+    static { Object.freeze(this.TEST6_VARS_EXPANSIONS__DECIDE_SubtreeEndId); }
+    static TEST7_INITIAL_OR_HISTORY_SubtreeEndId = 143;  // State 'TEST7_INITIAL_OR_HISTORY' subtree extends from itself (id: 88) to state 'TEST7_DECIDE' (id: 143)
+    static { Object.freeze(this.TEST7_INITIAL_OR_HISTORY_SubtreeEndId); }
+    static TEST7_SubtreeEndId = 142;  // State 'TEST7' subtree extends from itself (id: 89) to state 'T7__INITIAL1__S1' (id: 142)
+    static { Object.freeze(this.TEST7_SubtreeEndId); }
+    static T7__DEEP_HISTORY1_SubtreeEndId = 112;  // State 'T7__DEEP_HISTORY1' subtree extends from itself (id: 90) to state 'T7__DH1__TEDDY_BEAR' (id: 112)
+    static { Object.freeze(this.T7__DEEP_HISTORY1_SubtreeEndId); }
+    static T7__DH1__SANTAS_WORKSHOP_SubtreeEndId = 112;  // State 'T7__DH1__SANTAS_WORKSHOP' subtree extends from itself (id: 91) to state 'T7__DH1__TEDDY_BEAR' (id: 112)
+    static { Object.freeze(this.T7__DH1__SANTAS_WORKSHOP_SubtreeEndId); }
+    static T7__DH1__ALIENS_DETECTED_SubtreeEndId = 101;  // State 'T7__DH1__ALIENS_DETECTED' subtree extends from itself (id: 92) to state 'T7__DH1__SNOWBALL_FIGHT' (id: 101)
+    static { Object.freeze(this.T7__DH1__ALIENS_DETECTED_SubtreeEndId); }
+    static T7__DH1__GET_BACKUP_SubtreeEndId = 99;  // State 'T7__DH1__GET_BACKUP' subtree extends from itself (id: 93) to state 'T7__DH1__POLAR_BEARS' (id: 99)
+    static { Object.freeze(this.T7__DH1__GET_BACKUP_SubtreeEndId); }
+    static T7__DH1__HERO_SubtreeEndId = 96;  // State 'T7__DH1__HERO' subtree extends from itself (id: 94) to state 'T7__DH1__CALL_THOR' (id: 96)
+    static { Object.freeze(this.T7__DH1__HERO_SubtreeEndId); }
+    static T7__DH1__CALL_BATMAN_SubtreeEndId = 95;  // State 'T7__DH1__CALL_BATMAN' subtree extends from itself (id: 95) to state 'T7__DH1__CALL_BATMAN' (id: 95)
+    static { Object.freeze(this.T7__DH1__CALL_BATMAN_SubtreeEndId); }
+    static T7__DH1__CALL_THOR_SubtreeEndId = 96;  // State 'T7__DH1__CALL_THOR' subtree extends from itself (id: 96) to state 'T7__DH1__CALL_THOR' (id: 96)
+    static { Object.freeze(this.T7__DH1__CALL_THOR_SubtreeEndId); }
+    static T7__DH1__LOCAL_HELP_SubtreeEndId = 99;  // State 'T7__DH1__LOCAL_HELP' subtree extends from itself (id: 97) to state 'T7__DH1__POLAR_BEARS' (id: 99)
+    static { Object.freeze(this.T7__DH1__LOCAL_HELP_SubtreeEndId); }
+    static T7__DH1__BUDDY_ELF_SubtreeEndId = 98;  // State 'T7__DH1__BUDDY_ELF' subtree extends from itself (id: 98) to state 'T7__DH1__BUDDY_ELF' (id: 98)
+    static { Object.freeze(this.T7__DH1__BUDDY_ELF_SubtreeEndId); }
+    static T7__DH1__POLAR_BEARS_SubtreeEndId = 99;  // State 'T7__DH1__POLAR_BEARS' subtree extends from itself (id: 99) to state 'T7__DH1__POLAR_BEARS' (id: 99)
+    static { Object.freeze(this.T7__DH1__POLAR_BEARS_SubtreeEndId); }
+    static T7__DH1__GIVE_COOKIES_SubtreeEndId = 100;  // State 'T7__DH1__GIVE_COOKIES' subtree extends from itself (id: 100) to state 'T7__DH1__GIVE_COOKIES' (id: 100)
+    static { Object.freeze(this.T7__DH1__GIVE_COOKIES_SubtreeEndId); }
+    static T7__DH1__SNOWBALL_FIGHT_SubtreeEndId = 101;  // State 'T7__DH1__SNOWBALL_FIGHT' subtree extends from itself (id: 101) to state 'T7__DH1__SNOWBALL_FIGHT' (id: 101)
+    static { Object.freeze(this.T7__DH1__SNOWBALL_FIGHT_SubtreeEndId); }
+    static T7__DH1__BUILD_SubtreeEndId = 112;  // State 'T7__DH1__BUILD' subtree extends from itself (id: 102) to state 'T7__DH1__TEDDY_BEAR' (id: 112)
+    static { Object.freeze(this.T7__DH1__BUILD_SubtreeEndId); }
+    static T7__DH1__TOOL_SubtreeEndId = 105;  // State 'T7__DH1__TOOL' subtree extends from itself (id: 103) to state 'T7__DH1__IMPACT_DRILL' (id: 105)
+    static { Object.freeze(this.T7__DH1__TOOL_SubtreeEndId); }
+    static T7__DH1__CIRCULAR_SAW_SubtreeEndId = 104;  // State 'T7__DH1__CIRCULAR_SAW' subtree extends from itself (id: 104) to state 'T7__DH1__CIRCULAR_SAW' (id: 104)
+    static { Object.freeze(this.T7__DH1__CIRCULAR_SAW_SubtreeEndId); }
+    static T7__DH1__IMPACT_DRILL_SubtreeEndId = 105;  // State 'T7__DH1__IMPACT_DRILL' subtree extends from itself (id: 105) to state 'T7__DH1__IMPACT_DRILL' (id: 105)
+    static { Object.freeze(this.T7__DH1__IMPACT_DRILL_SubtreeEndId); }
+    static T7__DH1__TOY_SubtreeEndId = 112;  // State 'T7__DH1__TOY' subtree extends from itself (id: 106) to state 'T7__DH1__TEDDY_BEAR' (id: 112)
+    static { Object.freeze(this.T7__DH1__TOY_SubtreeEndId); }
+    static T7__DH1__GLOW_WORM_SubtreeEndId = 107;  // State 'T7__DH1__GLOW_WORM' subtree extends from itself (id: 107) to state 'T7__DH1__GLOW_WORM' (id: 107)
+    static { Object.freeze(this.T7__DH1__GLOW_WORM_SubtreeEndId); }
+    static T7__DH1__RACE_CAR_SubtreeEndId = 108;  // State 'T7__DH1__RACE_CAR' subtree extends from itself (id: 108) to state 'T7__DH1__RACE_CAR' (id: 108)
+    static { Object.freeze(this.T7__DH1__RACE_CAR_SubtreeEndId); }
+    static T7__DH1__ROBOT_SubtreeEndId = 111;  // State 'T7__DH1__ROBOT' subtree extends from itself (id: 109) to state 'T7__DH1__WALL_E' (id: 111)
+    static { Object.freeze(this.T7__DH1__ROBOT_SubtreeEndId); }
+    static T7__DH1__BATTLEBOT_SubtreeEndId = 110;  // State 'T7__DH1__BATTLEBOT' subtree extends from itself (id: 110) to state 'T7__DH1__BATTLEBOT' (id: 110)
+    static { Object.freeze(this.T7__DH1__BATTLEBOT_SubtreeEndId); }
+    static T7__DH1__WALL_E_SubtreeEndId = 111;  // State 'T7__DH1__WALL_E' subtree extends from itself (id: 111) to state 'T7__DH1__WALL_E' (id: 111)
+    static { Object.freeze(this.T7__DH1__WALL_E_SubtreeEndId); }
+    static T7__DH1__TEDDY_BEAR_SubtreeEndId = 112;  // State 'T7__DH1__TEDDY_BEAR' subtree extends from itself (id: 112) to state 'T7__DH1__TEDDY_BEAR' (id: 112)
+    static { Object.freeze(this.T7__DH1__TEDDY_BEAR_SubtreeEndId); }
+    static T7__DEEP_HISTORY2_SubtreeEndId = 119;  // State 'T7__DEEP_HISTORY2' subtree extends from itself (id: 113) to state 'T7__DEEP_HISTORY2__T7__state_3' (id: 119)
+    static { Object.freeze(this.T7__DEEP_HISTORY2_SubtreeEndId); }
+    static T7__DEEP_HISTORY2__T7__STATE_0_SubtreeEndId = 118;  // State 'T7__DEEP_HISTORY2__T7__state_0' subtree extends from itself (id: 114) to state 'T7__DEEP_HISTORY2__T7__state_9' (id: 118)
+    static { Object.freeze(this.T7__DEEP_HISTORY2__T7__STATE_0_SubtreeEndId); }
+    static T7__DEEP_HISTORY2__T7__STATE_1_SubtreeEndId = 115;  // State 'T7__DEEP_HISTORY2__T7__state_1' subtree extends from itself (id: 115) to state 'T7__DEEP_HISTORY2__T7__state_1' (id: 115)
+    static { Object.freeze(this.T7__DEEP_HISTORY2__T7__STATE_1_SubtreeEndId); }
+    static T7__DEEP_HISTORY2__T7__STATE_2_SubtreeEndId = 118;  // State 'T7__DEEP_HISTORY2__T7__state_2' subtree extends from itself (id: 116) to state 'T7__DEEP_HISTORY2__T7__state_9' (id: 118)
+    static { Object.freeze(this.T7__DEEP_HISTORY2__T7__STATE_2_SubtreeEndId); }
+    static T7__DEEP_HISTORY2__T7__STATE_6_SubtreeEndId = 117;  // State 'T7__DEEP_HISTORY2__T7__state_6' subtree extends from itself (id: 117) to state 'T7__DEEP_HISTORY2__T7__state_6' (id: 117)
+    static { Object.freeze(this.T7__DEEP_HISTORY2__T7__STATE_6_SubtreeEndId); }
+    static T7__DEEP_HISTORY2__T7__STATE_9_SubtreeEndId = 118;  // State 'T7__DEEP_HISTORY2__T7__state_9' subtree extends from itself (id: 118) to state 'T7__DEEP_HISTORY2__T7__state_9' (id: 118)
+    static { Object.freeze(this.T7__DEEP_HISTORY2__T7__STATE_9_SubtreeEndId); }
+    static T7__DEEP_HISTORY2__T7__STATE_3_SubtreeEndId = 119;  // State 'T7__DEEP_HISTORY2__T7__state_3' subtree extends from itself (id: 119) to state 'T7__DEEP_HISTORY2__T7__state_3' (id: 119)
+    static { Object.freeze(this.T7__DEEP_HISTORY2__T7__STATE_3_SubtreeEndId); }
+    static T7__DEEP_HISTORY3_SubtreeEndId = 126;  // State 'T7__DEEP_HISTORY3' subtree extends from itself (id: 120) to state 'T7__DEEP_HISTORY3__T7__state_3' (id: 126)
+    static { Object.freeze(this.T7__DEEP_HISTORY3_SubtreeEndId); }
+    static T7__DEEP_HISTORY3__T7__STATE_0_SubtreeEndId = 125;  // State 'T7__DEEP_HISTORY3__T7__state_0' subtree extends from itself (id: 121) to state 'T7__DEEP_HISTORY3__T7__state_9' (id: 125)
+    static { Object.freeze(this.T7__DEEP_HISTORY3__T7__STATE_0_SubtreeEndId); }
+    static T7__DEEP_HISTORY3__T7__STATE_1_SubtreeEndId = 122;  // State 'T7__DEEP_HISTORY3__T7__state_1' subtree extends from itself (id: 122) to state 'T7__DEEP_HISTORY3__T7__state_1' (id: 122)
+    static { Object.freeze(this.T7__DEEP_HISTORY3__T7__STATE_1_SubtreeEndId); }
+    static T7__DEEP_HISTORY3__T7__STATE_2_SubtreeEndId = 125;  // State 'T7__DEEP_HISTORY3__T7__state_2' subtree extends from itself (id: 123) to state 'T7__DEEP_HISTORY3__T7__state_9' (id: 125)
+    static { Object.freeze(this.T7__DEEP_HISTORY3__T7__STATE_2_SubtreeEndId); }
+    static T7__DEEP_HISTORY3__T7__STATE_6_SubtreeEndId = 124;  // State 'T7__DEEP_HISTORY3__T7__state_6' subtree extends from itself (id: 124) to state 'T7__DEEP_HISTORY3__T7__state_6' (id: 124)
+    static { Object.freeze(this.T7__DEEP_HISTORY3__T7__STATE_6_SubtreeEndId); }
+    static T7__DEEP_HISTORY3__T7__STATE_9_SubtreeEndId = 125;  // State 'T7__DEEP_HISTORY3__T7__state_9' subtree extends from itself (id: 125) to state 'T7__DEEP_HISTORY3__T7__state_9' (id: 125)
+    static { Object.freeze(this.T7__DEEP_HISTORY3__T7__STATE_9_SubtreeEndId); }
+    static T7__DEEP_HISTORY3__T7__STATE_3_SubtreeEndId = 126;  // State 'T7__DEEP_HISTORY3__T7__state_3' subtree extends from itself (id: 126) to state 'T7__DEEP_HISTORY3__T7__state_3' (id: 126)
+    static { Object.freeze(this.T7__DEEP_HISTORY3__T7__STATE_3_SubtreeEndId); }
+    static T7__HISTORY1_SubtreeEndId = 135;  // State 'T7__HISTORY1' subtree extends from itself (id: 127) to state 'T7__H1__ON3' (id: 135)
+    static { Object.freeze(this.T7__HISTORY1_SubtreeEndId); }
+    static T7__H1__OFF_SubtreeEndId = 131;  // State 'T7__H1__OFF' subtree extends from itself (id: 128) to state 'T7__H1__OFF3' (id: 131)
+    static { Object.freeze(this.T7__H1__OFF_SubtreeEndId); }
+    static T7__H1__OFF1_SubtreeEndId = 129;  // State 'T7__H1__OFF1' subtree extends from itself (id: 129) to state 'T7__H1__OFF1' (id: 129)
+    static { Object.freeze(this.T7__H1__OFF1_SubtreeEndId); }
+    static T7__H1__OFF2_SubtreeEndId = 130;  // State 'T7__H1__OFF2' subtree extends from itself (id: 130) to state 'T7__H1__OFF2' (id: 130)
+    static { Object.freeze(this.T7__H1__OFF2_SubtreeEndId); }
+    static T7__H1__OFF3_SubtreeEndId = 131;  // State 'T7__H1__OFF3' subtree extends from itself (id: 131) to state 'T7__H1__OFF3' (id: 131)
+    static { Object.freeze(this.T7__H1__OFF3_SubtreeEndId); }
+    static T7__H1__ON_SubtreeEndId = 135;  // State 'T7__H1__ON' subtree extends from itself (id: 132) to state 'T7__H1__ON3' (id: 135)
+    static { Object.freeze(this.T7__H1__ON_SubtreeEndId); }
+    static T7__H1__ON1_SubtreeEndId = 133;  // State 'T7__H1__ON1' subtree extends from itself (id: 133) to state 'T7__H1__ON1' (id: 133)
+    static { Object.freeze(this.T7__H1__ON1_SubtreeEndId); }
+    static T7__H1__ON2_SubtreeEndId = 134;  // State 'T7__H1__ON2' subtree extends from itself (id: 134) to state 'T7__H1__ON2' (id: 134)
+    static { Object.freeze(this.T7__H1__ON2_SubtreeEndId); }
+    static T7__H1__ON3_SubtreeEndId = 135;  // State 'T7__H1__ON3' subtree extends from itself (id: 135) to state 'T7__H1__ON3' (id: 135)
+    static { Object.freeze(this.T7__H1__ON3_SubtreeEndId); }
+    static T7__INITIAL1_SubtreeEndId = 142;  // State 'T7__INITIAL1' subtree extends from itself (id: 136) to state 'T7__INITIAL1__S1' (id: 142)
+    static { Object.freeze(this.T7__INITIAL1_SubtreeEndId); }
+    static T7__INITIAL1__PARENT_SubtreeEndId = 142;  // State 'T7__INITIAL1__PARENT' subtree extends from itself (id: 137) to state 'T7__INITIAL1__S1' (id: 142)
+    static { Object.freeze(this.T7__INITIAL1__PARENT_SubtreeEndId); }
+    static T7__INITIAL1__G_SubtreeEndId = 141;  // State 'T7__INITIAL1__G' subtree extends from itself (id: 138) to state 'T7__INITIAL1__G_S3' (id: 141)
+    static { Object.freeze(this.T7__INITIAL1__G_SubtreeEndId); }
+    static T7__INITIAL1__G_S1_SubtreeEndId = 139;  // State 'T7__INITIAL1__G_S1' subtree extends from itself (id: 139) to state 'T7__INITIAL1__G_S1' (id: 139)
+    static { Object.freeze(this.T7__INITIAL1__G_S1_SubtreeEndId); }
+    static T7__INITIAL1__G_S2_SubtreeEndId = 140;  // State 'T7__INITIAL1__G_S2' subtree extends from itself (id: 140) to state 'T7__INITIAL1__G_S2' (id: 140)
+    static { Object.freeze(this.T7__INITIAL1__G_S2_SubtreeEndId); }
+    static T7__INITIAL1__G_S3_SubtreeEndId = 141;  // State 'T7__INITIAL1__G_S3' subtree extends from itself (id: 141) to state 'T7__INITIAL1__G_S3' (id: 141)
+    static { Object.freeze(this.T7__INITIAL1__G_S3_SubtreeEndId); }
+    static T7__INITIAL1__S1_SubtreeEndId = 142;  // State 'T7__INITIAL1__S1' subtree extends from itself (id: 142) to state 'T7__INITIAL1__S1' (id: 142)
+    static { Object.freeze(this.T7__INITIAL1__S1_SubtreeEndId); }
+    static TEST7_DECIDE_SubtreeEndId = 143;  // State 'TEST7_DECIDE' subtree extends from itself (id: 143) to state 'TEST7_DECIDE' (id: 143)
+    static { Object.freeze(this.TEST7_DECIDE_SubtreeEndId); }
+    static TEST8_ENTRY_CHOICE_SubtreeEndId = 150;  // State 'TEST8_ENTRY_CHOICE' subtree extends from itself (id: 144) to state 'TEST8_S1' (id: 150)
+    static { Object.freeze(this.TEST8_ENTRY_CHOICE_SubtreeEndId); }
+    static TEST8_ROOT_SubtreeEndId = 150;  // State 'TEST8_ROOT' subtree extends from itself (id: 145) to state 'TEST8_S1' (id: 150)
+    static { Object.freeze(this.TEST8_ROOT_SubtreeEndId); }
+    static TEST8_G_SubtreeEndId = 149;  // State 'TEST8_G' subtree extends from itself (id: 146) to state 'TEST8_G_S3' (id: 149)
+    static { Object.freeze(this.TEST8_G_SubtreeEndId); }
+    static TEST8_G_S1_SubtreeEndId = 147;  // State 'TEST8_G_S1' subtree extends from itself (id: 147) to state 'TEST8_G_S1' (id: 147)
+    static { Object.freeze(this.TEST8_G_S1_SubtreeEndId); }
+    static TEST8_G_S2_SubtreeEndId = 148;  // State 'TEST8_G_S2' subtree extends from itself (id: 148) to state 'TEST8_G_S2' (id: 148)
+    static { Object.freeze(this.TEST8_G_S2_SubtreeEndId); }
+    static TEST8_G_S3_SubtreeEndId = 149;  // State 'TEST8_G_S3' subtree extends from itself (id: 149) to state 'TEST8_G_S3' (id: 149)
+    static { Object.freeze(this.TEST8_G_S3_SubtreeEndId); }
+    static TEST8_S1_SubtreeEndId = 150;  // State 'TEST8_S1' subtree extends from itself (id: 150) to state 'TEST8_S1' (id: 150)
+    static { Object.freeze(this.TEST8_S1_SubtreeEndId); }
+    static TEST9_EXIT_CHOICE_SubtreeEndId = 171;  // State 'TEST9_EXIT_CHOICE' subtree extends from itself (id: 151) to state 'TEST9B_ROOT__B4' (id: 171)
+    static { Object.freeze(this.TEST9_EXIT_CHOICE_SubtreeEndId); }
+    static TEST9_DECIDE_SubtreeEndId = 152;  // State 'TEST9_DECIDE' subtree extends from itself (id: 152) to state 'TEST9_DECIDE' (id: 152)
+    static { Object.freeze(this.TEST9_DECIDE_SubtreeEndId); }
+    static TEST9_ROOT_SubtreeEndId = 159;  // State 'TEST9_ROOT' subtree extends from itself (id: 153) to state 'TEST9_S1_1' (id: 159)
+    static { Object.freeze(this.TEST9_ROOT_SubtreeEndId); }
+    static TEST9_G_S1_SubtreeEndId = 154;  // State 'TEST9_G_S1' subtree extends from itself (id: 154) to state 'TEST9_G_S1' (id: 154)
+    static { Object.freeze(this.TEST9_G_S1_SubtreeEndId); }
+    static TEST9_G_S2_SubtreeEndId = 155;  // State 'TEST9_G_S2' subtree extends from itself (id: 155) to state 'TEST9_G_S2' (id: 155)
+    static { Object.freeze(this.TEST9_G_S2_SubtreeEndId); }
+    static TEST9_G_S3_SubtreeEndId = 156;  // State 'TEST9_G_S3' subtree extends from itself (id: 156) to state 'TEST9_G_S3' (id: 156)
+    static { Object.freeze(this.TEST9_G_S3_SubtreeEndId); }
+    static TEST9_G_S4_SubtreeEndId = 157;  // State 'TEST9_G_S4' subtree extends from itself (id: 157) to state 'TEST9_G_S4' (id: 157)
+    static { Object.freeze(this.TEST9_G_S4_SubtreeEndId); }
+    static TEST9_S1_SubtreeEndId = 159;  // State 'TEST9_S1' subtree extends from itself (id: 158) to state 'TEST9_S1_1' (id: 159)
+    static { Object.freeze(this.TEST9_S1_SubtreeEndId); }
+    static TEST9_S1_1_SubtreeEndId = 159;  // State 'TEST9_S1_1' subtree extends from itself (id: 159) to state 'TEST9_S1_1' (id: 159)
+    static { Object.freeze(this.TEST9_S1_1_SubtreeEndId); }
+    static TEST9A_ROOT_SubtreeEndId = 162;  // State 'TEST9A_ROOT' subtree extends from itself (id: 160) to state 'TEST9A_S1_1' (id: 162)
+    static { Object.freeze(this.TEST9A_ROOT_SubtreeEndId); }
+    static TEST9A_S1_SubtreeEndId = 162;  // State 'TEST9A_S1' subtree extends from itself (id: 161) to state 'TEST9A_S1_1' (id: 162)
+    static { Object.freeze(this.TEST9A_S1_SubtreeEndId); }
+    static TEST9A_S1_1_SubtreeEndId = 162;  // State 'TEST9A_S1_1' subtree extends from itself (id: 162) to state 'TEST9A_S1_1' (id: 162)
+    static { Object.freeze(this.TEST9A_S1_1_SubtreeEndId); }
+    static TEST9B_ROOT_SubtreeEndId = 171;  // State 'TEST9B_ROOT' subtree extends from itself (id: 163) to state 'TEST9B_ROOT__B4' (id: 171)
+    static { Object.freeze(this.TEST9B_ROOT_SubtreeEndId); }
+    static TEST9B_ROOT__A1_SubtreeEndId = 167;  // State 'TEST9B_ROOT__A1' subtree extends from itself (id: 164) to state 'TEST9B_ROOT__A4' (id: 167)
+    static { Object.freeze(this.TEST9B_ROOT__A1_SubtreeEndId); }
+    static TEST9B_ROOT__A2_SubtreeEndId = 167;  // State 'TEST9B_ROOT__A2' subtree extends from itself (id: 165) to state 'TEST9B_ROOT__A4' (id: 167)
+    static { Object.freeze(this.TEST9B_ROOT__A2_SubtreeEndId); }
+    static TEST9B_ROOT__A3_SubtreeEndId = 167;  // State 'TEST9B_ROOT__A3' subtree extends from itself (id: 166) to state 'TEST9B_ROOT__A4' (id: 167)
+    static { Object.freeze(this.TEST9B_ROOT__A3_SubtreeEndId); }
+    static TEST9B_ROOT__A4_SubtreeEndId = 167;  // State 'TEST9B_ROOT__A4' subtree extends from itself (id: 167) to state 'TEST9B_ROOT__A4' (id: 167)
+    static { Object.freeze(this.TEST9B_ROOT__A4_SubtreeEndId); }
+    static TEST9B_ROOT__B1_SubtreeEndId = 171;  // State 'TEST9B_ROOT__B1' subtree extends from itself (id: 168) to state 'TEST9B_ROOT__B4' (id: 171)
+    static { Object.freeze(this.TEST9B_ROOT__B1_SubtreeEndId); }
+    static TEST9B_ROOT__B2_SubtreeEndId = 171;  // State 'TEST9B_ROOT__B2' subtree extends from itself (id: 169) to state 'TEST9B_ROOT__B4' (id: 171)
+    static { Object.freeze(this.TEST9B_ROOT__B2_SubtreeEndId); }
+    static TEST9B_ROOT__B3_SubtreeEndId = 171;  // State 'TEST9B_ROOT__B3' subtree extends from itself (id: 170) to state 'TEST9B_ROOT__B4' (id: 171)
+    static { Object.freeze(this.TEST9B_ROOT__B3_SubtreeEndId); }
+    static TEST9B_ROOT__B4_SubtreeEndId = 171;  // State 'TEST9B_ROOT__B4' subtree extends from itself (id: 171) to state 'TEST9B_ROOT__B4' (id: 171)
+    static { Object.freeze(this.TEST9B_ROOT__B4_SubtreeEndId); }
+    static UNREACHABLE_SubtreeEndId = 172;  // State 'UNREACHABLE' subtree extends from itself (id: 172) to state 'UNREACHABLE' (id: 172)
+    static { Object.freeze(this.UNREACHABLE_SubtreeEndId); }
+    static USELESS_SubtreeEndId = 173;  // State 'USELESS' subtree extends from itself (id: 173) to state 'USELESS' (id: 173)
+    static { Object.freeze(this.USELESS_SubtreeEndId); }
+    
     static T7__H1__ON_HistoryId = 
     {
         T7__H1__ON1 : 0, // default transition

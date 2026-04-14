@@ -33,6 +33,20 @@ Test/interim releases are not necessarily documented here.
 
 ---
 
+## [0.22.X]
+### Added
+- Output - generate subtree/descendant meta data in runtime.
+  - https://github.com/StateSmith/StateSmith/issues/538
+- Simulator - allow user customization of diagram colors.
+- Simulator - animate transition arrows with option to disable.
+
+### Changed (minor)
+- C99 - constants generated using defines instead of anonymous enums.
+- C++ - constants generated using static const int fields instead of anonymous enums.
+- CLI - improved upgrade message for dotnet tool users to work with prereleases.
+
+---
+
 ## [0.22.0-alpha-1]
 NOTE! Version `0.22.0` and change notes apply to both StateSmith lib and StateSmith CLI (ss.cli).
 

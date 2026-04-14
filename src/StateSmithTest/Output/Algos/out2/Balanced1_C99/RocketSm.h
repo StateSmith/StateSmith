@@ -10,10 +10,7 @@ typedef enum RocketSm_EventId
     RocketSm_EventId_EV2 = 1
 } RocketSm_EventId;
 
-enum
-{
-    RocketSm_EventIdCount = 2
-};
+#define RocketSm_EventIdCount (2)
 
 typedef enum RocketSm_StateId
 {
@@ -24,10 +21,15 @@ typedef enum RocketSm_StateId
     RocketSm_StateId_S1 = 4
 } RocketSm_StateId;
 
-enum
-{
-    RocketSm_StateIdCount = 5
-};
+#define RocketSm_StateIdCount (5)
+
+// Subtree meta data generation can be disabled in settings.
+// Details: https://github.com/StateSmith/StateSmith/issues/538
+#define RocketSm_ROOT_SubtreeEndId (4)  // State 'RocketSm' subtree extends from itself (id: 0) to state 's1' (id: 4)
+#define RocketSm_GROUP_SubtreeEndId (3)  // State 'group' subtree extends from itself (id: 1) to state 'g2' (id: 3)
+#define RocketSm_G1_SubtreeEndId (2)  // State 'g1' subtree extends from itself (id: 2) to state 'g1' (id: 2)
+#define RocketSm_G2_SubtreeEndId (3)  // State 'g2' subtree extends from itself (id: 3) to state 'g2' (id: 3)
+#define RocketSm_S1_SubtreeEndId (4)  // State 's1' subtree extends from itself (id: 4) to state 's1' (id: 4)
 
 
 // Generated state machine

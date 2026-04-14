@@ -39,9 +39,30 @@ static void test_issue_535(void)
     assert(Spec1Sm_get_parent_id(-1) == Spec1Sm_StateId_ROOT);
 }
 
+// tests for https://github.com/StateSmith/StateSmith/issues/538
+static void test_issue_538(void)
+{
+    assert(Spec1Sm_ROOT_SubtreeEndId == 6);
+    assert(Spec1Sm_ROOT_SubtreeEndId == Spec1Sm_StateId_T111);
+
+    assert(Spec1Sm_S_SubtreeEndId == 6);
+    assert(Spec1Sm_S_SubtreeEndId == Spec1Sm_StateId_T111);
+
+    assert(Spec1Sm_S1_SubtreeEndId == 3);
+    assert(Spec1Sm_S1_SubtreeEndId == Spec1Sm_StateId_S11);
+    
+    assert(Spec1Sm_S11_SubtreeEndId == 3);
+    assert(Spec1Sm_S11_SubtreeEndId == Spec1Sm_StateId_S11);
+
+    assert(Spec1Sm_T1_SubtreeEndId == 6);
+    assert(Spec1Sm_T11_SubtreeEndId == 6);
+    assert(Spec1Sm_T111_SubtreeEndId == 6);
+}
+
 int main(int arg_count, char** args)
 {
     test_issue_535();
+    test_issue_538();
 
     Spec1Sm sm;
     Spec1Sm_ctor(&sm);

@@ -11,10 +11,7 @@ typedef enum Spec1Sm_EventId
     Spec1Sm_EventId_EV2 = 1
 } Spec1Sm_EventId;
 
-enum
-{
-    Spec1Sm_EventIdCount = 2
-};
+#define Spec1Sm_EventIdCount (2)
 
 typedef enum Spec1Sm_StateId
 {
@@ -27,10 +24,17 @@ typedef enum Spec1Sm_StateId
     Spec1Sm_StateId_T111 = 6
 } Spec1Sm_StateId;
 
-enum
-{
-    Spec1Sm_StateIdCount = 7
-};
+#define Spec1Sm_StateIdCount (7)
+
+// Subtree meta data generation can be disabled in settings.
+// Details: https://github.com/StateSmith/StateSmith/issues/538
+#define Spec1Sm_ROOT_SubtreeEndId (6)  // State 'Spec1Sm' subtree extends from itself (id: 0) to state 'T111' (id: 6)
+#define Spec1Sm_S_SubtreeEndId (6)  // State 'S' subtree extends from itself (id: 1) to state 'T111' (id: 6)
+#define Spec1Sm_S1_SubtreeEndId (3)  // State 'S1' subtree extends from itself (id: 2) to state 'S11' (id: 3)
+#define Spec1Sm_S11_SubtreeEndId (3)  // State 'S11' subtree extends from itself (id: 3) to state 'S11' (id: 3)
+#define Spec1Sm_T1_SubtreeEndId (6)  // State 'T1' subtree extends from itself (id: 4) to state 'T111' (id: 6)
+#define Spec1Sm_T11_SubtreeEndId (6)  // State 'T11' subtree extends from itself (id: 5) to state 'T111' (id: 6)
+#define Spec1Sm_T111_SubtreeEndId (6)  // State 'T111' subtree extends from itself (id: 6) to state 'T111' (id: 6)
 
 
 // Generated state machine

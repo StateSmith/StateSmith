@@ -11,10 +11,7 @@ typedef enum Spec1bSm_EventId
     Spec1bSm_EventId_T1 = 0
 } Spec1bSm_EventId;
 
-enum
-{
-    Spec1bSm_EventIdCount = 1
-};
+#define Spec1bSm_EventIdCount (1)
 
 typedef enum Spec1bSm_StateId
 {
@@ -26,10 +23,16 @@ typedef enum Spec1bSm_StateId
     Spec1bSm_StateId_S2_1 = 5
 } Spec1bSm_StateId;
 
-enum
-{
-    Spec1bSm_StateIdCount = 6
-};
+#define Spec1bSm_StateIdCount (6)
+
+// Subtree meta data generation can be disabled in settings.
+// Details: https://github.com/StateSmith/StateSmith/issues/538
+#define Spec1bSm_ROOT_SubtreeEndId (5)  // State 'Spec1bSm' subtree extends from itself (id: 0) to state 'S2_1' (id: 5)
+#define Spec1bSm_S_SubtreeEndId (5)  // State 'S' subtree extends from itself (id: 1) to state 'S2_1' (id: 5)
+#define Spec1bSm_S1_SubtreeEndId (3)  // State 'S1' subtree extends from itself (id: 2) to state 'S1_1' (id: 3)
+#define Spec1bSm_S1_1_SubtreeEndId (3)  // State 'S1_1' subtree extends from itself (id: 3) to state 'S1_1' (id: 3)
+#define Spec1bSm_S2_SubtreeEndId (5)  // State 'S2' subtree extends from itself (id: 4) to state 'S2_1' (id: 5)
+#define Spec1bSm_S2_1_SubtreeEndId (5)  // State 'S2_1' subtree extends from itself (id: 5) to state 'S2_1' (id: 5)
 
 
 // Generated state machine

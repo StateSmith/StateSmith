@@ -14,10 +14,7 @@ public:
         EV2 = 1,
     };
     
-    enum
-    {
-        EventIdCount = 2
-    };
+    static const int32_t EventIdCount = 2;
     
     enum class StateId: uint8_t
     {
@@ -28,10 +25,15 @@ public:
         S1 = 4,
     };
     
-    enum
-    {
-        StateIdCount = 5
-    };
+    static const int32_t StateIdCount = 5;
+    
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    static const int32_t ROOT_SubtreeEndId = 4;  // State 'RocketSm' subtree extends from itself (id: 0) to state 's1' (id: 4)
+    static const int32_t GROUP_SubtreeEndId = 3;  // State 'group' subtree extends from itself (id: 1) to state 'g2' (id: 3)
+    static const int32_t G1_SubtreeEndId = 2;  // State 'g1' subtree extends from itself (id: 2) to state 'g1' (id: 2)
+    static const int32_t G2_SubtreeEndId = 3;  // State 'g2' subtree extends from itself (id: 3) to state 'g2' (id: 3)
+    static const int32_t S1_SubtreeEndId = 4;  // State 's1' subtree extends from itself (id: 4) to state 's1' (id: 4)
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
     StateId stateId;

@@ -320,7 +320,7 @@
       
       .dropdown-content .dropdown-item {
         display: block;
-        padding: 12px 16px;
+        padding: 8px 16px;
         font-weight: normal;
       }
 
@@ -333,6 +333,7 @@
         display: block;
       }
 
+
       /* ----------------------------- Dropdown related end ----------------------------- */
 
       .transition {
@@ -340,29 +341,30 @@
       }
 
       .transition.pathJustTaken {
-        stroke: #E06C75 !important;
+        stroke: var(--savedSetting_transitionPathJustTakenColor, #e0aa6c) !important;  /* note that var name matches savedSetting_ */
         stroke-width: 4px !important;
-        stroke-dasharray: 10 5;
+        stroke-dasharray: 3 6;
+        stroke-dashoffset: var(--transition-animation-offset, 0);
         filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
       }
 
       /* give priority over pathJustTaken. If it is available and pathJustTaken, then it will still have dash. */
       .transition.available {
-        stroke: #7e70cf !important;
+        stroke: var(--savedSetting_transitionAvailableColor, #7e70cf) !important;  /* note that var name matches savedSetting_ */
         stroke-width: 4px !important;
+        stroke-dasharray: 6 6;
+        stroke-dashoffset: var(--transition-animation-offset, 0); 
         filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
       }
 
       .statediagram-state.active > * {
         fill: #3c3224 !important;
-        stroke: #d56022 !important;
-        stroke: #d16f3b !important;
-        
+        stroke: var(--savedSetting_stateActiveStrokeColor, #d16f3b) !important;   /* note that var name matches savedSetting_ */
         stroke-width: 2px !important;
       }
 
       .statediagram-state.active span.nodeLabel span.syntax-vertex-name {
-        color: #fdffb0 !important;
+        color: var(--savedSetting_stateActiveTitleTextColor,#fdffb0) !important;
       }
 
       /* we don't want to fill body of parent state with regular active yellow. It's just too much! */
@@ -376,9 +378,13 @@
         color: aquamarine !important;
       }
 
+      div.dropdown-item input[type='color'] {
+        width: 25px;
+      }
+
     </style>
   </head>
-
+  
   <body>
     <div class='wrapper'>
     <div class='pane main'>
@@ -722,11 +728,34 @@ ROOT.(InitialState) --> Running
                 <input type='checkbox' id='savedSetting_showEventButtonTooltips' name='savedSetting_showEventButtonTooltips' checked>
                 Show event button tooltips
               </label>
-              <label class='dropdown-item' for='savedSetting_timestamps'
+              <label class='dropdown-item' for='savedSetting_transitionOffsetAnimation'
+                 title=''>
+                <input type='checkbox' id='savedSetting_transitionOffsetAnimation' name='savedSetting_transitionOffsetAnimation' checked>
+                Animate transition arrows.
+              </label>
+              
+              <div class='dropdown-item' style='cursor: default;' >
+                Colors:
+                <!-- 
+                  NOTE!!! These IDs match css variables.
+                -->
+                <input type='color' id='savedSetting_transitionPathJustTakenColor' value='#a3a3a3' title='Color of transition/edge path that was just traversed.'>
+                <input type='color' id='savedSetting_transitionAvailableColor' value='#fff82e' title='Color of transition/edge paths that are ready/available.'>
+                <input type='color' id='savedSetting_stateActiveStrokeColor' value='#d16f3b' title='Active state stroke color.'>
+                <input type='color' id='savedSetting_stateActiveTitleTextColor' value='#fdffb0' title='Active state title text color.'>
+              </div>
+
+              <div class='dropdown-item' style='cursor: default;' >
+                 <button id='resetSettingsButton'>Reset Settings</button>
+              </div>
+
+              <!-- todo-low remove timestamps -->
+              <label style='display: none;' class='dropdown-item' for='savedSetting_timestamps'
                 title='Controls whether timestamps are shown along side event dispatches.'>
                 <input type='checkbox' id='savedSetting_timestamps' name='savedSetting_timestamps'>
                 Timestamps
               </label>
+
             </div>
           </div>
         </div>
@@ -808,6 +837,65 @@ evaluateGuard = null;
     
     static StateIdCount = 28;
     static { Object.freeze(this.StateIdCount); }
+    
+    // Subtree meta data generation can be disabled in settings.
+    // Details: https://github.com/StateSmith/StateSmith/issues/538
+    static ROOT_SubtreeEndId = 27;  // State 'BeadSorter' subtree extends from itself (id: 0) to state 'TrainingMode__Start' (id: 27)
+    static { Object.freeze(this.ROOT_SubtreeEndId); }
+    static PAUSED_SubtreeEndId = 1;  // State 'Paused' subtree extends from itself (id: 1) to state 'Paused' (id: 1)
+    static { Object.freeze(this.PAUSED_SubtreeEndId); }
+    static RUNNING_SubtreeEndId = 27;  // State 'Running' subtree extends from itself (id: 2) to state 'TrainingMode__Start' (id: 27)
+    static { Object.freeze(this.RUNNING_SubtreeEndId); }
+    static SETUPCHECK_SubtreeEndId = 9;  // State 'SetupCheck' subtree extends from itself (id: 3) to state 'Tour' (id: 9)
+    static { Object.freeze(this.SETUPCHECK_SubtreeEndId); }
+    static ADJUSTSERVOOFFSETS_SubtreeEndId = 7;  // State 'AdjustServoOffsets' subtree extends from itself (id: 4) to state 'Wait' (id: 7)
+    static { Object.freeze(this.ADJUSTSERVOOFFSETS_SubtreeEndId); }
+    static DECREASE_SubtreeEndId = 5;  // State 'DECREASE' subtree extends from itself (id: 5) to state 'DECREASE' (id: 5)
+    static { Object.freeze(this.DECREASE_SubtreeEndId); }
+    static INCREASE_SubtreeEndId = 6;  // State 'INCREASE' subtree extends from itself (id: 6) to state 'INCREASE' (id: 6)
+    static { Object.freeze(this.INCREASE_SubtreeEndId); }
+    static WAIT_SubtreeEndId = 7;  // State 'Wait' subtree extends from itself (id: 7) to state 'Wait' (id: 7)
+    static { Object.freeze(this.WAIT_SubtreeEndId); }
+    static SETUPCHECK__START_SubtreeEndId = 8;  // State 'SetupCheck__Start' subtree extends from itself (id: 8) to state 'SetupCheck__Start' (id: 8)
+    static { Object.freeze(this.SETUPCHECK__START_SubtreeEndId); }
+    static TOUR_SubtreeEndId = 9;  // State 'Tour' subtree extends from itself (id: 9) to state 'Tour' (id: 9)
+    static { Object.freeze(this.TOUR_SubtreeEndId); }
+    static SORTINGMODE_SubtreeEndId = 14;  // State 'SortingMode' subtree extends from itself (id: 10) to state 'SortingMode__Start' (id: 14)
+    static { Object.freeze(this.SORTINGMODE_SubtreeEndId); }
+    static SORTINGMODE__DROPOFF_SubtreeEndId = 11;  // State 'SortingMode__Dropoff' subtree extends from itself (id: 11) to state 'SortingMode__Dropoff' (id: 11)
+    static { Object.freeze(this.SORTINGMODE__DROPOFF_SubtreeEndId); }
+    static SORTINGMODE__PICKUP_SubtreeEndId = 12;  // State 'SortingMode__Pickup' subtree extends from itself (id: 12) to state 'SortingMode__Pickup' (id: 12)
+    static { Object.freeze(this.SORTINGMODE__PICKUP_SubtreeEndId); }
+    static SORTINGMODE__SENSOR_SubtreeEndId = 13;  // State 'SortingMode__Sensor' subtree extends from itself (id: 13) to state 'SortingMode__Sensor' (id: 13)
+    static { Object.freeze(this.SORTINGMODE__SENSOR_SubtreeEndId); }
+    static SORTINGMODE__START_SubtreeEndId = 14;  // State 'SortingMode__Start' subtree extends from itself (id: 14) to state 'SortingMode__Start' (id: 14)
+    static { Object.freeze(this.SORTINGMODE__START_SubtreeEndId); }
+    static TRAININGMODE_SubtreeEndId = 27;  // State 'TrainingMode' subtree extends from itself (id: 15) to state 'TrainingMode__Start' (id: 27)
+    static { Object.freeze(this.TRAININGMODE_SubtreeEndId); }
+    static READEMPTYSLOT_SubtreeEndId = 18;  // State 'ReadEmptySlot' subtree extends from itself (id: 16) to state 'ReadEmptySlot__Sensor' (id: 18)
+    static { Object.freeze(this.READEMPTYSLOT_SubtreeEndId); }
+    static READEMPTYSLOT__DROPOFF_SubtreeEndId = 17;  // State 'ReadEmptySlot__Dropoff' subtree extends from itself (id: 17) to state 'ReadEmptySlot__Dropoff' (id: 17)
+    static { Object.freeze(this.READEMPTYSLOT__DROPOFF_SubtreeEndId); }
+    static READEMPTYSLOT__SENSOR_SubtreeEndId = 18;  // State 'ReadEmptySlot__Sensor' subtree extends from itself (id: 18) to state 'ReadEmptySlot__Sensor' (id: 18)
+    static { Object.freeze(this.READEMPTYSLOT__SENSOR_SubtreeEndId); }
+    static READJAMMEDSLOT_SubtreeEndId = 22;  // State 'ReadJammedSlot' subtree extends from itself (id: 19) to state 'ReadJammedSlot__Sensor' (id: 22)
+    static { Object.freeze(this.READJAMMEDSLOT_SubtreeEndId); }
+    static JAMMED_SubtreeEndId = 20;  // State 'Jammed' subtree extends from itself (id: 20) to state 'Jammed' (id: 20)
+    static { Object.freeze(this.JAMMED_SubtreeEndId); }
+    static READJAMMEDSLOT__DROPOFF_SubtreeEndId = 21;  // State 'ReadJammedSlot__Dropoff' subtree extends from itself (id: 21) to state 'ReadJammedSlot__Dropoff' (id: 21)
+    static { Object.freeze(this.READJAMMEDSLOT__DROPOFF_SubtreeEndId); }
+    static READJAMMEDSLOT__SENSOR_SubtreeEndId = 22;  // State 'ReadJammedSlot__Sensor' subtree extends from itself (id: 22) to state 'ReadJammedSlot__Sensor' (id: 22)
+    static { Object.freeze(this.READJAMMEDSLOT__SENSOR_SubtreeEndId); }
+    static READSLOT_SubtreeEndId = 26;  // State 'ReadSlot' subtree extends from itself (id: 23) to state 'TrainingMode__Pickup' (id: 26)
+    static { Object.freeze(this.READSLOT_SubtreeEndId); }
+    static READSLOT__DROPOFF_SubtreeEndId = 24;  // State 'ReadSlot__Dropoff' subtree extends from itself (id: 24) to state 'ReadSlot__Dropoff' (id: 24)
+    static { Object.freeze(this.READSLOT__DROPOFF_SubtreeEndId); }
+    static READSLOT__SENSOR_SubtreeEndId = 25;  // State 'ReadSlot__Sensor' subtree extends from itself (id: 25) to state 'ReadSlot__Sensor' (id: 25)
+    static { Object.freeze(this.READSLOT__SENSOR_SubtreeEndId); }
+    static TRAININGMODE__PICKUP_SubtreeEndId = 26;  // State 'TrainingMode__Pickup' subtree extends from itself (id: 26) to state 'TrainingMode__Pickup' (id: 26)
+    static { Object.freeze(this.TRAININGMODE__PICKUP_SubtreeEndId); }
+    static TRAININGMODE__START_SubtreeEndId = 27;  // State 'TrainingMode__Start' subtree extends from itself (id: 27) to state 'TrainingMode__Start' (id: 27)
+    static { Object.freeze(this.TRAININGMODE__START_SubtreeEndId); }
     
     static Running_HistoryId = 
     {
@@ -3785,6 +3873,14 @@ evaluateGuard = null;
           tbody.innerHTML = '';
         });
 
+        // listener for resetSettingsButton
+        document.getElementById('resetSettingsButton').addEventListener('click', function() {
+          if (window.confirm('Are you sure you want to reset all settings to their default values? This will clear all saved settings from localStorage.')) {
+            localStorage.clear();
+            window.location.reload();
+          }
+        });
+
         // this setting needs a page reload anyway so just make it happen for users to avoid confusion
         document.getElementById('savedSetting_showEventButtonTooltips').addEventListener('click', function() {
           window.setTimeout(() => {
@@ -3861,32 +3957,80 @@ evaluateGuard = null;
 
         // store and restore checkbox states using localStorage.
         // DO AFTER event listeners are set up, so that restored state will trigger the change event and apply the setting.
-        const dropdownCheckboxes = document.querySelectorAll(`.dropdown-content input[type='checkbox']`);
-        dropdownCheckboxes.forEach(checkbox => {
+        {
+          const dropdownCheckboxes = document.querySelectorAll(`.dropdown-content input[type='checkbox']`);
+          dropdownCheckboxes.forEach(checkbox => {
 
-          if (checkbox.id.startsWith('savedSetting_') === false)
-          {
-            console.log(`Skipping checkbox with id '${checkbox.id}' for localStorage state saving/restoring because it does not start with 'savedSetting_'.`, checkbox);
-            return;
-          }
+            if (checkbox.id.startsWith('savedSetting_') === false)
+            {
+              console.log(`Skipping checkbox with id '${checkbox.id}' for localStorage state saving/restoring because it does not start with 'savedSetting_'.`, checkbox);
+              return;
+            }
 
-          // append a note to the checkbox title that the state is saved in localStorage
-          checkbox.parentElement.title += '\nThis setting is saved in localStorage and will persist across page reloads.';
+            // append a note to the checkbox title that the state is saved in localStorage
+            checkbox.parentElement.title += '\nThis setting is saved in localStorage and will persist across page reloads.';
 
-          // Restore state from localStorage
-          const savedState = localStorage.getItem(checkbox.id);
-          if (savedState !== null) {
-            checkbox.checked = (savedState === 'true');
-            checkbox.dispatchEvent(new Event('change')); // Trigger change event to apply the setting
-            console.log(`Restored checkbox value for '${checkbox.id}' to '${checkbox.checked}'`, checkbox);
-          }
+            // Restore state from localStorage
+            const savedState = localStorage.getItem(checkbox.id);
+            if (savedState !== null) {
+              checkbox.checked = (savedState === 'true');
+              checkbox.dispatchEvent(new Event('change')); // Trigger change event to apply the setting
+              console.log(`Restored checkbox value for '${checkbox.id}' to '${checkbox.checked}'`, checkbox);
+            }
 
-          // Save state to localStorage on change
-          checkbox.addEventListener('change', function() {
-            localStorage.setItem(checkbox.id, this.checked);
-            console.log(`Saved checkbox value for '${checkbox.id}' to '${this.checked}'`, checkbox);
+            // Save state to localStorage on change
+            checkbox.addEventListener('change', function() {
+              localStorage.setItem(checkbox.id, this.checked);
+              console.log(`Saved checkbox value for '${checkbox.id}' to '${this.checked}'`, checkbox);
+            });
           });
-        });
+        }
+
+        // setup custom color storage
+        {
+          const colorInputs = document.querySelectorAll(`.dropdown-content input[type='color']`);
+          colorInputs.forEach(inputWidget => {
+            // append a note to the input title that the value is saved in localStorage
+            inputWidget.title += '\nThis custom color value is saved in localStorage and will persist across page reloads.';
+
+            // Restore state from localStorage
+            const savedColor = localStorage.getItem(inputWidget.id);
+            if (savedColor !== null) {
+              inputWidget.value = savedColor;
+              updateCssColorVar(inputWidget, savedColor);
+              console.log(`Restored color input value for '${inputWidget.id}' to '${inputWidget.value}'`, inputWidget);
+            }
+
+            // Save state to localStorage on change
+            inputWidget.addEventListener('input', function() {
+              localStorage.setItem(inputWidget.id, this.value);
+              updateCssColorVar(inputWidget, this.value);
+              console.log(`Saved color input value for '${inputWidget.id}' to '${this.value}'`, inputWidget);
+            });
+
+            // update current css style
+            updateCssColorVar(inputWidget, inputWidget.value);
+          });
+
+          function updateCssColorVar(inputWidget, color) {
+              document.documentElement.style.setProperty(`--${inputWidget.id}`, color); // custom css vars start with '--'
+          }
+        }
+
+        // animate transition edges
+        {
+          setInterval(()=>{
+            // only do if animation is enabled
+            if (document.getElementById('savedSetting_transitionOffsetAnimation').checked === false) {
+              return;
+            }
+
+            let offset = document.documentElement.style.getPropertyValue('--transition-animation-offset');
+            offset -= 1;
+            document.documentElement.style.setProperty('--transition-animation-offset', offset);
+          }, 50);
+        }
+
 
         //------------------- drop down functionality end -------------------
 

@@ -11,10 +11,7 @@ typedef enum Ex2_EventId
     Ex2_EventId_MYEV1 = 2
 } Ex2_EventId;
 
-enum
-{
-    Ex2_EventIdCount = 3
-};
+#define Ex2_EventIdCount (3)
 
 typedef enum Ex2_StateId
 {
@@ -23,10 +20,13 @@ typedef enum Ex2_StateId
     Ex2_StateId_STATE_2 = 2
 } Ex2_StateId;
 
-enum
-{
-    Ex2_StateIdCount = 3
-};
+#define Ex2_StateIdCount (3)
+
+// Subtree meta data generation can be disabled in settings.
+// Details: https://github.com/StateSmith/StateSmith/issues/538
+#define Ex2_ROOT_SubtreeEndId (2)  // State 'Ex2' subtree extends from itself (id: 0) to state 'STATE_2' (id: 2)
+#define Ex2_STATE_1_SubtreeEndId (1)  // State 'STATE_1' subtree extends from itself (id: 1) to state 'STATE_1' (id: 1)
+#define Ex2_STATE_2_SubtreeEndId (2)  // State 'STATE_2' subtree extends from itself (id: 2) to state 'STATE_2' (id: 2)
 
 
 // Generated state machine

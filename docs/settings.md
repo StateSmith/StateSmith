@@ -1367,6 +1367,16 @@ See also `smGraphJsonExporter` setting.
 outputGetParentIdFunction = false  # default is true
 ```
 
+## SmRunnerSettings.algoBalanced1.outputSubtreeEndIds
+Type: `bool`
+Info: https://github.com/StateSmith/StateSmith/issues/538
+
+Generates ancestor/descendant meta data in runtime constants. See link above for more info.
+
+```toml
+[SmRunnerSettings.algoBalanced1]
+outputSubtreeEndIds = false  # default is true
+```
 
 <br>
 <br>
