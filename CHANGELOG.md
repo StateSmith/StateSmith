@@ -42,6 +42,7 @@ Test/interim releases are not necessarily documented here.
 ### Changed (minor)
 - C99 - constants generated using defines instead of anonymous enums.
 - C++ - constants generated using static const int fields instead of anonymous enums.
+- CLI - improved upgrade message for dotnet tool users to work with prereleases.
 
 ---
 
