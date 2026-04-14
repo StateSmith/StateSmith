@@ -33,6 +33,12 @@ Test/interim releases are not necessarily documented here.
 
 ---
 
+## [0.22.X]
+### Added
+- Simulator - allow user customization of diagram colors.
+
+---
+
 ## [0.22.0-alpha-1]
 NOTE! Version `0.22.0` and change notes apply to both StateSmith lib and StateSmith CLI (ss.cli).
 
