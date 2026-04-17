@@ -36,12 +36,12 @@ public class SharedCompilationFixture
         process.IfWindowsWrapWithCmd();
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
 
-        // run `tsc` to compile TypeScript to JavaScript
+        // run `tsc` via npx so local dependency is used cross-platform
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            ProgramPath = "npm",
-            Args = "run build"
+            ProgramPath = "npx",
+            Args = "tsc"
         };
         process.IfWindowsWrapWithCmd();
         process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
