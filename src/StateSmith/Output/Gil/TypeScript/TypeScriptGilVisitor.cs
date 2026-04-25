@@ -160,7 +160,15 @@ public class TypeScriptGilVisitor : CSharpSyntaxWalker
     public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
     {
         VariableDeclaratorSyntax variableDeclaratorSyntax = node.Variables.Single();
-        sb.Append($"{variableDeclaratorSyntax.Identifier}:");
+
+        // https://github.com/StateSmith/StateSmith/issues/506
+        string warningSuppressor = "";
+        if (variableDeclaratorSyntax.Initializer == null)
+        {
+            warningSuppressor = "!";
+        }
+
+        sb.Append($"{variableDeclaratorSyntax.Identifier}{warningSuppressor}:");
         sb.Append(node.Type.GetTrailingTrivia());
         skipLeadingTrivia = true;
         Visit(node.Type);

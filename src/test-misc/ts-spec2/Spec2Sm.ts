@@ -449,13 +449,13 @@ export enum T7__DEEP_HISTORY3__T7__state_0_HistoryId
 // State machine variables. Can be used for inputs, outputs, user variables...
 export class Vars
 {
-    public T7__H1__ON_history: T7__H1__ON_HistoryId;
-    public T7__H1__OFF_history: T7__H1__OFF_HistoryId;
-    public T7__DH1__ALIENS_DETECTED_history: T7__DH1__ALIENS_DETECTED_HistoryId;
-    public T7__DH1__GET_BACKUP_history: T7__DH1__GET_BACKUP_HistoryId;
-    public T7__DH1__BUILD_history: T7__DH1__BUILD_HistoryId;
-    public T7__DEEP_HISTORY2__T7__state_0_history: T7__DEEP_HISTORY2__T7__state_0_HistoryId;
-    public T7__DEEP_HISTORY3__T7__state_0_history: T7__DEEP_HISTORY3__T7__state_0_HistoryId;
+    public T7__H1__ON_history!: T7__H1__ON_HistoryId;
+    public T7__H1__OFF_history!: T7__H1__OFF_HistoryId;
+    public T7__DH1__ALIENS_DETECTED_history!: T7__DH1__ALIENS_DETECTED_HistoryId;
+    public T7__DH1__GET_BACKUP_history!: T7__DH1__GET_BACKUP_HistoryId;
+    public T7__DH1__BUILD_history!: T7__DH1__BUILD_HistoryId;
+    public T7__DEEP_HISTORY2__T7__state_0_history!: T7__DEEP_HISTORY2__T7__state_0_HistoryId;
+    public T7__DEEP_HISTORY3__T7__state_0_history!: T7__DEEP_HISTORY3__T7__state_0_HistoryId;
     public count = 0;
     public auto_var_1: number = 0;
 }
@@ -467,7 +467,7 @@ export class Spec2Sm
 
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
-    public stateId: StateId;
+    public stateId!: StateId;
     
     // Variables. Can be used for inputs, outputs, user variables...
     public vars: Vars = new Vars();
