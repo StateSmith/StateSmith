@@ -15,8 +15,8 @@ public class SubtreeIdMapperTests
     @startuml
     skinparam defaultFontName "Consolas"
     
-    state MySm1
-    MySm1 : id = 0\nendId = 16
+    state ROOT
+    ROOT : id = 0\nendId = 16
 
     state Animal
     Animal : id = 1\nendId = 7
@@ -66,8 +66,8 @@ public class SubtreeIdMapperTests
     state WhiteOak
     WhiteOak : id = 16\nendId = 16
 
-    MySm1 --> Animal
-    MySm1 --> Plant
+    ROOT --> Animal
+    ROOT --> Plant
 
     Animal --> Canine
     Animal --> Feline
@@ -90,6 +90,36 @@ public class SubtreeIdMapperTests
     Oak --> WhiteOak
 
     @enduml
+
+    @startuml MySm
+    [*] -> Animal
+    state Animal {
+        state Canine {
+            state Dog
+            state Wolf
+        }
+        state Feline {
+            state Lion
+            state Panther
+        }
+    }
+
+    state Plant {
+        state Flower {
+            state Rose {
+                state RedRose
+                state WhiteRose
+            }
+        }
+        state Tree {
+            state Oak {
+                state RedOak
+                state WhiteOak
+            }
+        }
+    }
+    @enduml
+
     */
     [Fact]
     public void Test1()

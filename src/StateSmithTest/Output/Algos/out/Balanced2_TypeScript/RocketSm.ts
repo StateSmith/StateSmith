@@ -30,7 +30,7 @@ export class RocketSm
 {
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
-    public stateId: StateId;
+    public stateId!: StateId;
     
     // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
     public RocketSm()

@@ -33,6 +33,12 @@ Test/interim releases are not necessarily documented here.
 
 ---
 
+### Fixed (minor)
+- TypeScript - fix warning for `has no initializer`.
+  - https://github.com/StateSmith/StateSmith/issues/506
+
+---
+
 ## [0.22.1-alpha-1]
 ### Added
 - Output - generate subtree/descendant meta data in runtime.
