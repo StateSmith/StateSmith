@@ -336,7 +336,7 @@
       }
 
       .transition {
-        stroke: var(--savedSetting_transition, #999);
+        stroke: var(--savedSetting_transitionPath, #999) !important;
         stroke-width: 2px !important;
       }
 
@@ -355,6 +355,10 @@
         stroke-dasharray: 6 6;
         stroke-dashoffset: var(--transition-animation-offset, 0); 
         filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
+      }
+
+      .statediagram-state > * {
+        stroke: var(--savedSetting_stateStrokeColor, #999999) !important;
       }
 
       .statediagram-state.active > * {
@@ -530,8 +534,9 @@ Off --> ON1 : <span class='syntax-trigger-name'>INCREASE</span>
                   NOTE!!! These IDs match css variables.
                 -->
                 <input type='color' id='savedSetting_stateTitleTextColor' value='#eeeeee' title='State title text color.'>
-                <input type='color' id='savedSetting_stateActiveStrokeColor' value='#d16f3b' title='Active state stroke color.'>
+                <input type='color' id='savedSetting_stateStrokeColor' value='#999999' title='State stroke color.'>
                 <input type='color' id='savedSetting_stateActiveTitleTextColor' value='#fdffb0' title='Active state title text color.'>
+                <input type='color' id='savedSetting_stateActiveStrokeColor' value='#d16f3b' title='Active state stroke color.'>
                 <input type='color' id='savedSetting_syntaxOrder' value='#e9a1eb' title='Text color for behavior order like `1.` in `1. EV`.'>
                 <input type='color' id='savedSetting_syntaxTriggerName' value='#f1b862' title='Trigger text color.'>
                 <input type='color' id='savedSetting_syntaxTriggerPunctuation' value='#eeb765' title='Text color for characters `(,)` in `(EV1, EV2)`.'>
@@ -547,17 +552,17 @@ Off --> ON1 : <span class='syntax-trigger-name'>INCREASE</span>
                 <div class='themes'>
                   <select id='theme-select'>
                     <option value=''>Select theme...</option>
-                    <option value='original'>Original</option>
-                    <option value='ss-2'>2</option>
-                    <option value='arctic-void'>Arctic Void</option>
-                    <option value='one-dark'>One Dark Pro</option>
+                    <option value='dark-pro-1'>Dark Pro 1</option>
+                    <option value='dark-pro-2'>Dark Pro 2</option>
                     <option value='dracula'>Dracula</option>
                     <option value='tokyo'>Tokyo Night</option>
+                    <option value='original'>Original</option>
+                    <option value='arctic-void'>Arctic Void</option>
                     <option value='github-dark'>Github Dark</option>
                     <option value='night-owl'>Night Owl</option>
+                    <option value='sepia'>Sepia</option>
                     <option value='monochrome'>Monochrome</option>
                     <option value='white'>White</option>
-                    <option value='sepia-muted'>Sepia Muted</option>
                   </select>
                 </div>
               </div>
@@ -1470,169 +1475,190 @@ evaluateGuard = null;
         {
           const themes = {
             'original': {
-              transitionPath:               '#999999',
-              transitionPathJustTakenColor: '#a3a3a3',
-              transitionPathAvailableColor: '#fff82e',
               stateTitleTextColor:          '#e1e0bc',
-              stateActiveStrokeColor:       '#d16f3b',
+              stateStrokeColor:             '#999999',
               stateActiveTitleTextColor:    '#fdffb0',
-              syntaxTriggerName:            '#f1b862',
+              stateActiveStrokeColor:       '#d16f3b',
               syntaxOrder:                  '#e9a1eb',
+              syntaxTriggerName:            '#f1b862',
               syntaxTriggerPunctuation:     '#eeb765',
               syntaxGuardBracket:           '#00bd2b',
               syntaxGuardCode:              '#a6e19f',
               syntaxActionStartEnd:         '#e18d33',
               syntaxActionCode:             '#cbac8b',
-              clickableColor:               '#7fffd4',
-            },
-            'ss-2': {
+              transitionPath:               '#999999',
               transitionPathJustTakenColor: '#a3a3a3',
-              transitionPathAvailableColor: '#42e9ff',
-              stateTitleTextColor:          '#bbc2ce',
-              stateActiveStrokeColor:       '#00ccff',
-              stateActiveTitleTextColor:    '#00ccff',
-              syntaxTriggerName:            '#f47171',
-              syntaxOrder:                  '#b8a2eb',
-              syntaxTriggerPunctuation:     '#a3a3a3',
-              syntaxGuardBracket:           '#00bd7e',
-              syntaxGuardCode:              '#96d68f',
-              syntaxActionStartEnd:         '#42adf0',
-              syntaxActionCode:             '#cdd7e5',
+              transitionPathAvailableColor: '#fff82e',
               clickableColor:               '#7fffd4',
             },
-            'arctic-void': {
-              transitionPathJustTakenColor: '#7090a8',
-              transitionPathAvailableColor: '#00e8ff',
-              stateTitleTextColor:          '#eeeeee',
-              stateActiveStrokeColor:       '#3888e0',
-              stateActiveTitleTextColor:    '#d4f0ff',
-              syntaxTriggerName:            '#60c8f8',
-              syntaxOrder:                  '#c080f0',
-              syntaxTriggerPunctuation:     '#70b8e8',
-              syntaxGuardBracket:           '#00d8a0',
-              syntaxGuardCode:              '#80e8cc',
-              syntaxActionStartEnd:         '#4898e8',
-              syntaxActionCode:             '#8ab8d0',
-              clickableColor:               '#7fffd4',
-            },
-            'one-dark': {
-              transitionPathJustTakenColor: '#5c6370',
-              transitionPathAvailableColor: '#e5c07b',
-              stateTitleTextColor:          '#eeeeee',
+            'dark-pro-1': {
+              stateTitleTextColor:          '#ababab',
+              stateStrokeColor:             '#999999',
+              stateActiveTitleTextColor:    '#fff',
               stateActiveStrokeColor:       '#e06c75',
-              stateActiveTitleTextColor:    '#fffacd',
-              syntaxTriggerName:            '#e5c07b',
               syntaxOrder:                  '#c678dd',
+              syntaxTriggerName:            '#cccccc',
               syntaxTriggerPunctuation:     '#d19a66',
               syntaxGuardBracket:           '#98c379',
               syntaxGuardCode:              '#b5d9a0',
               syntaxActionStartEnd:         '#d19a66',
               syntaxActionCode:             '#abb2bf',
+              transitionPath:               '#999999',
+              transitionPathJustTakenColor: '#c2c2c2',
+              transitionPathAvailableColor: '#ffca38',
+              clickableColor:               '#7fffd4',
+            },
+            'dark-pro-2': {
+              stateTitleTextColor:          '#eeeeee',
+              stateStrokeColor:             '#999999',
+              stateActiveTitleTextColor:    '#fffacd',
+              stateActiveStrokeColor:       '#e06c75',
+              syntaxOrder:                  '#c678dd',
+              syntaxTriggerName:            '#e5c07b',
+              syntaxTriggerPunctuation:     '#d19a66',
+              syntaxGuardBracket:           '#98c379',
+              syntaxGuardCode:              '#b5d9a0',
+              syntaxActionStartEnd:         '#d19a66',
+              syntaxActionCode:             '#abb2bf',
+              transitionPath:               '#999999',
+              transitionPathJustTakenColor: '#c2c2c2',
+              transitionPathAvailableColor: '#e5c07b',
+              clickableColor:               '#7fffd4',
+            },
+            'arctic-void': {
+              stateTitleTextColor:          '#eeeeee',
+              stateStrokeColor:             '#999999',
+              stateActiveTitleTextColor:    '#d4f0ff',
+              stateActiveStrokeColor:       '#3888e0',
+              syntaxOrder:                  '#c080f0',
+              syntaxTriggerName:            '#60c8f8',
+              syntaxTriggerPunctuation:     '#70b8e8',
+              syntaxGuardBracket:           '#00d8a0',
+              syntaxGuardCode:              '#80e8cc',
+              syntaxActionStartEnd:         '#4898e8',
+              syntaxActionCode:             '#8ab8d0',
+              transitionPath:               '#999999',
+              transitionPathJustTakenColor: '#7090a8',
+              transitionPathAvailableColor: '#00e8ff',
               clickableColor:               '#7fffd4',
             },
             'dracula': {
-              transitionPathJustTakenColor: '#6272a4',
-              transitionPathAvailableColor: '#f1fa8c',
-              stateTitleTextColor:          '#eeeeee',
-              stateActiveStrokeColor:       '#ff5555',
+              stateTitleTextColor:          '#b5b5b5',
+              stateStrokeColor:             '#999999',
               stateActiveTitleTextColor:    '#f8f8f2',
-              syntaxTriggerName:            '#ffb86c',
+              stateActiveStrokeColor:       '#ff5555',
               syntaxOrder:                  '#ff79c6',
+              syntaxTriggerName:            '#d1d1d1',
               syntaxTriggerPunctuation:     '#ffb86c',
               syntaxGuardBracket:           '#50fa7b',
               syntaxGuardCode:              '#8af5a4',
               syntaxActionStartEnd:         '#bd93f9',
               syntaxActionCode:             '#8be9fd',
+              transitionPath:               '#999999',
+              transitionPathJustTakenColor: '#6272a4',
+              transitionPathAvailableColor: '#38ff4f',
               clickableColor:               '#7fffd4',
             },
             'tokyo': {
-              transitionPathJustTakenColor: '#565f89',
-              transitionPathAvailableColor: '#e0af68',
               stateTitleTextColor:          '#eeeeee',
-              stateActiveStrokeColor:       '#f7768e',
+              stateStrokeColor:             '#999999',
               stateActiveTitleTextColor:    '#cdd6f4',
-              syntaxTriggerName:            '#e0af68',
+              stateActiveStrokeColor:       '#f7768e',
               syntaxOrder:                  '#bb9af7',
+              syntaxTriggerName:            '#e0af68',
               syntaxTriggerPunctuation:     '#ff9e64',
               syntaxGuardBracket:           '#73daca',
               syntaxGuardCode:              '#9eddcc',
               syntaxActionStartEnd:         '#ff9e64',
               syntaxActionCode:             '#7dcfff',
+              transitionPath:               '#999999',
+              transitionPathJustTakenColor: '#565f89',
+              transitionPathAvailableColor: '#e0af68',
               clickableColor:               '#7fffd4',
             },
             'github-dark': {
-              transitionPathJustTakenColor: '#6e7681',
-              transitionPathAvailableColor: '#e3b341',
               stateTitleTextColor:          '#eeeeee',
-              stateActiveStrokeColor:       '#f85149',
+              stateStrokeColor:             '#999999',
               stateActiveTitleTextColor:    '#e6edf3',
-              syntaxTriggerName:            '#ffa657',
+              stateActiveStrokeColor:       '#f85149',
               syntaxOrder:                  '#d2a8ff',
+              syntaxTriggerName:            '#ffa657',
               syntaxTriggerPunctuation:     '#ffa657',
               syntaxGuardBracket:           '#3fb950',
               syntaxGuardCode:              '#7ee787',
               syntaxActionStartEnd:         '#79c0ff',
               syntaxActionCode:             '#a5d6ff',
+              transitionPath:               '#999999',
+              transitionPathJustTakenColor: '#6e7681',
+              transitionPathAvailableColor: '#e3b341',
               clickableColor:               '#7fffd4',
             },
             'night-owl': {
-              transitionPathJustTakenColor: '#637777',
-              transitionPathAvailableColor: '#ffcb8b',
               stateTitleTextColor:          '#eeeeee',
-              stateActiveStrokeColor:       '#ef5350',
+              stateStrokeColor:             '#999999',
               stateActiveTitleTextColor:    '#d6deeb',
-              syntaxTriggerName:            '#ffcb8b',
+              stateActiveStrokeColor:       '#ef5350',
               syntaxOrder:                  '#c792ea',
+              syntaxTriggerName:            '#ffcb8b',
               syntaxTriggerPunctuation:     '#f78c6c',
               syntaxGuardBracket:           '#addb67',
               syntaxGuardCode:              '#c5e99b',
               syntaxActionStartEnd:         '#f78c6c',
               syntaxActionCode:             '#7fdbca',
+              transitionPath:               '#999999',
+              transitionPathJustTakenColor: '#637777',
+              transitionPathAvailableColor: '#ffcb8b',
               clickableColor:               '#7fffd4',
             },
             'monochrome': {
-              transitionPathJustTakenColor: '#555555',
-              transitionPathAvailableColor: '#ffffff',
               stateTitleTextColor:          '#eeeeee',
-              stateActiveStrokeColor:       '#aaaaaa',
+              stateStrokeColor:             '#999999',
               stateActiveTitleTextColor:    '#f0f0f0',
-              syntaxTriggerName:            '#dddddd',
+              stateActiveStrokeColor:       '#aaaaaa',
               syntaxOrder:                  '#999999',
+              syntaxTriggerName:            '#dddddd',
               syntaxTriggerPunctuation:     '#cccccc',
               syntaxGuardBracket:           '#eeeeee',
               syntaxGuardCode:              '#bbbbbb',
               syntaxActionStartEnd:         '#cccccc',
               syntaxActionCode:             '#888888',
+              transitionPath:               '#999999',
+              transitionPathJustTakenColor: '#b0b0b0',
+              transitionPathAvailableColor: '#ffffff',
               clickableColor:               '#7fffd4',
             },
             'white': {
-              transitionPathJustTakenColor: '#ffffff',
-              transitionPathAvailableColor: '#ffffff',
               stateTitleTextColor:          '#ffffff',
-              stateActiveStrokeColor:       '#ffffff',
+              stateStrokeColor:             '#ffffff',
               stateActiveTitleTextColor:    '#ffffff',
-              syntaxTriggerName:            '#ffffff',
+              stateActiveStrokeColor:       '#ffffff',
               syntaxOrder:                  '#ffffff',
+              syntaxTriggerName:            '#ffffff',
               syntaxTriggerPunctuation:     '#ffffff',
               syntaxGuardBracket:           '#ffffff',
               syntaxGuardCode:              '#ffffff',
               syntaxActionStartEnd:         '#ffffff',
               syntaxActionCode:             '#ffffff',
+              transitionPath:               '#ffffff',
+              transitionPathJustTakenColor: '#ffffff',
+              transitionPathAvailableColor: '#ffffff',
               clickableColor:               '#7fffd4',
             },
-            'sepia-muted': {
-              transitionPathJustTakenColor: '#8c7e6a',
-              transitionPathAvailableColor: '#c9a84c',
+            'sepia': {
               stateTitleTextColor:          '#c4b49a',
-              stateActiveStrokeColor:       '#a0622a',
+              stateStrokeColor:             '#999999',
               stateActiveTitleTextColor:    '#e8dbb0',
-              syntaxTriggerName:            '#c49a52',
+              stateActiveStrokeColor:       '#a0622a',
               syntaxOrder:                  '#b08878',
+              syntaxTriggerName:            '#c49a52',
               syntaxTriggerPunctuation:     '#b8903e',
               syntaxGuardBracket:           '#a87840',
               syntaxGuardCode:              '#a89070',
               syntaxActionStartEnd:         '#a87840',
               syntaxActionCode:             '#a89070',
+              transitionPath:               '#999999',
+              transitionPathJustTakenColor: '#8c7e6a',
+              transitionPathAvailableColor: '#c9a84c',
               clickableColor:               '#7fffd4',
             },
           }
