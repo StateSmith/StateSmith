@@ -33,6 +33,11 @@ Test/interim releases are not necessarily documented here.
 
 ---
 
+## WIP
+### Added
+- Simulator - add color themes and more color control.
+  - https://github.com/StateSmith/StateSmith/issues/541
+
 ### Fixed (minor)
 - TypeScript - fix warning for `has no initializer`.
   - https://github.com/StateSmith/StateSmith/issues/506

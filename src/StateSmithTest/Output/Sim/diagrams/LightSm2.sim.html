@@ -358,27 +358,29 @@
         filter: drop-shadow( 2px 2px 1px rgba(0, 0, 0, .7));
       }
 
-      .statediagram-state > * {
-        stroke: var(--savedSetting_stateStrokeColor, #999999) !important;
-      }
-
-      .statediagram-state.active > * {
-        fill: #3c3224 !important;
-        stroke: var(--savedSetting_stateActiveStrokeColor, #d16f3b) !important;
-        stroke-width: 2px !important;
-      }
-
       .statediagram-state span.nodeLabel span.syntax-vertex-name {
         color: var(--savedSetting_stateTitleTextColor,#eeeeee);
       }
-
       .statediagram-state.active span.nodeLabel span.syntax-vertex-name {
         color: var(--savedSetting_stateActiveTitleTextColor,#fdffb0) !important;
       }
 
-      /* we don't want to fill body of parent state with regular active yellow. It's just too much! */
+      .statediagram-state > * {
+        fill-opacity: 0.8;
+        fill:   var(--savedSetting_stateFillColor, #1f2020) !important;
+        stroke: var(--savedSetting_stateStrokeColor, #999999) !important;
+      }
+      .statediagram-state.active > * {
+        fill:   var(--savedSetting_stateActiveFillColor, #3c3224) !important;
+        stroke: var(--savedSetting_stateActiveStrokeColor, #d16f3b) !important;
+        stroke-width: 2px !important;
+      }
+
+      .statediagram-state rect.inner {
+        fill: var(--savedSetting_stateNestedFillColor, #333) !important;
+      }
       .statediagram-state.active rect.inner {
-        fill: #444  !important;
+        fill: var(--savedSetting_stateActiveNestedFillColor, #444) !important;
         stroke-width: 2px !important;
       }
 
@@ -585,10 +587,10 @@ ROOT.(InitialState) --> WAITING
                     <option value=''>Select theme...</option>
                     <option value='dark-pro-1'>Dark Pro 1</option>
                     <option value='dark-pro-2'>Dark Pro 2</option>
-                    <option value='dracula'>Dracula</option>
-                    <option value='tokyo'>Tokyo Night</option>
                     <option value='original'>Original</option>
+                    <option value='tokyo'>Tokyo Night</option>
                     <option value='arctic-void'>Arctic Void</option>
+                    <option value='dracula'>Dracula</option>
                     <option value='github-dark'>Github Dark</option>
                     <option value='night-owl'>Night Owl</option>
                     <option value='sepia'>Sepia</option>
@@ -596,10 +598,14 @@ ROOT.(InitialState) --> WAITING
                     <option value='white'>White</option>
                   </select>
                 </div>
-                <input type='color' id='savedSetting_stateTitleTextColor' value='#ababab' title='State title text color.'>
-                <input type='color' id='savedSetting_stateStrokeColor' value='#999999' title='State stroke color.'>
+                <input type='color' id='savedSetting_stateTitleTextColor' value='#ababab' title='Inactive state title text color.'>
+                <input type='color' id='savedSetting_stateStrokeColor' value='#999999' title='Inactive state stroke color.'>
+                <input type='color' id='savedSetting_stateFillColor' value='#1f2020' title='Inactive state fill color.'>
+                <input type='color' id='savedSetting_stateNestedFillColor' value='#333' title='Inactive state nested fill color.'>
                 <input type='color' id='savedSetting_stateActiveTitleTextColor' value='#ffffff' title='Active state title text color.'>
                 <input type='color' id='savedSetting_stateActiveStrokeColor' value='#e06c75' title='Active state stroke color.'>
+                <input type='color' id='savedSetting_stateActiveFillColor' value='#3c3224' title='Active state fill color.'>
+                <input type='color' id='savedSetting_stateActiveNestedFillColor' value='#444' title='Active state nested fill color.'>
                 <input type='color' id='savedSetting_syntaxOrder' value='#c678dd' title='Text color for behavior order like `1.` in `1. EV`.'>
                 <input type='color' id='savedSetting_syntaxTriggerName' value='#cccccc' title='Trigger text color.'>
                 <input type='color' id='savedSetting_syntaxTriggerPunctuation' value='#d19a66' title='Text color for characters `(,)` in `(EV1, EV2)`.'>
@@ -2070,68 +2076,51 @@ evaluateGuard = null;
             }
         }
 
-        // setup custom color storage
-        {
-          const colorInputs = document.querySelectorAll(`.dropdown-content input[type='color']`);
-          colorInputs.forEach(inputWidget => {
-            // append a note to the input title that the value is saved in localStorage
-            inputWidget.title += '\nThis custom color value is saved in localStorage and will persist across page reloads.';
-
-            // Restore state from localStorage
-            const savedColor = localStorage.getItem(inputWidget.id);
-            if (savedColor !== null) {
-              inputWidget.value = savedColor;
-              updateCssColorVar(inputWidget.id, savedColor);
-              console.log(`Restored color input value for '${inputWidget.id}' to '${inputWidget.value}'`, inputWidget);
-            }
-
-            // Save state to localStorage on change
-            inputWidget.addEventListener('input', function() {
-              const save=true;
-              updateCssColorVar(inputWidget.id, this.value, save);
-            });
-
-            // update current css style
-            updateCssColorVar(inputWidget.id, inputWidget.value);
-          });
-        }
-
         // setup color themes
         {
+          const defaults = {
+            stateTitleTextColor: '#ababab',
+            stateStrokeColor: '#999999',
+            stateFillColor: '#1f2020',
+            stateNestedFillColor: '#333',
+            stateActiveTitleTextColor: '#ffffff',
+            stateActiveStrokeColor: '#e06c75',
+            stateActiveFillColor: '#3c3224',
+            stateActiveNestedFillColor: '#444',
+            syntaxOrder: '#c678dd',
+            syntaxTriggerName: '#cccccc',
+            syntaxTriggerPunctuation: '#d19a66',
+            syntaxGuardBracket: '#98c379',
+            syntaxGuardCode: '#b5d9a0',
+            syntaxActionStartEnd: '#d19a66',
+            syntaxActionCode: '#abb2bf',
+            transitionPath: '#999999',
+            transitionPathJustTakenColor: '#c2c2c2',
+            transitionPathAvailableColor: '#ffca38',
+            clickableColor: '#24f0ff',
+          };
+
           const themes = {
-            'original': {
-              stateTitleTextColor:          '#e1e0bc',
-              stateStrokeColor:             '#999999',
-              stateActiveTitleTextColor:    '#fdffb0',
-              stateActiveStrokeColor:       '#d16f3b',
-              syntaxOrder:                  '#e9a1eb',
-              syntaxTriggerName:            '#f1b862',
-              syntaxTriggerPunctuation:     '#eeb765',
-              syntaxGuardBracket:           '#00bd2b',
-              syntaxGuardCode:              '#a6e19f',
-              syntaxActionStartEnd:         '#e18d33',
-              syntaxActionCode:             '#cbac8b',
-              transitionPath:               '#999999',
-              transitionPathJustTakenColor: '#a3a3a3',
-              transitionPathAvailableColor: '#fff82e',
-              clickableColor:               '#7fffd4',
-            },
             'dark-pro-1': {
               stateTitleTextColor:          '#ababab',
               stateStrokeColor:             '#999999',
+              stateFillColor:               '#3d3d3d',
+              stateNestedFillColor:         '#303030',
               stateActiveTitleTextColor:    '#fff',
-              stateActiveStrokeColor:       '#6cb3e0',
+              stateActiveStrokeColor:       '#ffffff',
+              stateActiveFillColor:         '#181e20',
+              stateActiveNestedFillColor:   '#4c4e52',
               syntaxOrder:                  '#c678dd',
               syntaxTriggerName:            '#cccccc',
               syntaxTriggerPunctuation:     '#d19a66',
               syntaxGuardBracket:           '#98c379',
               syntaxGuardCode:              '#b5d9a0',
               syntaxActionStartEnd:         '#d19a66',
-              syntaxActionCode:             '#abb2bf',
+              syntaxActionCode:             '#d2d2b6',
               transitionPath:               '#999999',
-              transitionPathJustTakenColor: '#c2c2c2',
-              transitionPathAvailableColor: '#ffca38',
-              clickableColor:               '#7fffd4',
+              transitionPathJustTakenColor: '#c7c7c7',
+              transitionPathAvailableColor: '#ddd840',
+              clickableColor:               '#f09800',
             },
             'dark-pro-2': {
               stateTitleTextColor:          '#eeeeee',
@@ -2150,11 +2139,36 @@ evaluateGuard = null;
               transitionPathAvailableColor: '#e5c07b',
               clickableColor:               '#7fffd4',
             },
+            'original': {
+              stateTitleTextColor:          '#e1e0bc',
+              stateStrokeColor:             '#999999',
+              stateFillColor:               '#1f2020',
+              stateNestedFillColor:         '#333',
+              stateActiveTitleTextColor:    '#fdffb0',
+              stateActiveStrokeColor:       '#d16f3b',
+              stateActiveFillColor:         '#3c3224',
+              stateActiveNestedFillColor:   '#444',
+              syntaxOrder:                  '#e9a1eb',
+              syntaxTriggerName:            '#f1b862',
+              syntaxTriggerPunctuation:     '#eeb765',
+              syntaxGuardBracket:           '#00bd2b',
+              syntaxGuardCode:              '#a6e19f',
+              syntaxActionStartEnd:         '#e18d33',
+              syntaxActionCode:             '#cbac8b',
+              transitionPath:               '#999999',
+              transitionPathJustTakenColor: '#a3a3a3',
+              transitionPathAvailableColor: '#fff82e',
+              clickableColor:               '#7fffd4',
+            },
             'arctic-void': {
               stateTitleTextColor:          '#eeeeee',
               stateStrokeColor:             '#999999',
+              stateFillColor:               '#333333',
+              stateNestedFillColor:         '#303030',
               stateActiveTitleTextColor:    '#d4f0ff',
               stateActiveStrokeColor:       '#3888e0',
+              stateActiveFillColor:         '#262f40',
+              stateActiveNestedFillColor:   '#383b47',
               syntaxOrder:                  '#c080f0',
               syntaxTriggerName:            '#60c8f8',
               syntaxTriggerPunctuation:     '#70b8e8',
@@ -2288,15 +2302,57 @@ evaluateGuard = null;
             },
           }
 
-          document.getElementById('theme-select').addEventListener('change', () => {
-              const name = document.getElementById('theme-select').value;
-              if (!name) return;
+          function setDefaults(save=false)
+          {
+            for (const [key, value] of Object.entries(defaults)) {
+              updateCssColorVar('savedSetting_' + key, value, save);
+            }
+          }
 
-              const t = themes[name];
-              for (const [key, value] of Object.entries(t)) {
-                const save=true;
-                updateCssColorVar('savedSetting_' + key, value, save);
-              }
+          function setTheme(themeId, save=false)
+          {
+            setDefaults(save);
+
+            const theme = themes[themeId];
+            for (const [key, value] of Object.entries(theme)) {
+              updateCssColorVar('savedSetting_' + key, value, save);
+            }
+          }
+
+          document.getElementById('theme-select').addEventListener('change', () => {
+              const themeId = document.getElementById('theme-select').value;
+              if (!themeId) return;
+              const save=true;
+              setTheme(themeId, save);
+          });
+
+          setTheme('dark-pro-1');
+        }
+
+        // setup custom color storage.
+        // MUST come after above so that stored settings applied after default theme.
+        {
+          const colorInputs = document.querySelectorAll(`.dropdown-content input[type='color']`);
+          colorInputs.forEach(inputWidget => {
+            // append a note to the input title that the value is saved in localStorage
+            inputWidget.title += '\nThis custom color value is saved in localStorage and will persist across page reloads.';
+
+            // Restore state from localStorage
+            const savedColor = localStorage.getItem(inputWidget.id);
+            if (savedColor !== null) {
+              inputWidget.value = savedColor;
+              updateCssColorVar(inputWidget.id, savedColor);
+              console.log(`Restored color input value for '${inputWidget.id}' to '${inputWidget.value}'`, inputWidget);
+            }
+
+            // Save state to localStorage on change
+            inputWidget.addEventListener('input', function() {
+              const save=true;
+              updateCssColorVar(inputWidget.id, this.value, save);
+            });
+
+            // update current css style
+            updateCssColorVar(inputWidget.id, inputWidget.value);
           });
         }
 
