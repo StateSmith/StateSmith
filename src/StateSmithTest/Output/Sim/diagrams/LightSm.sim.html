@@ -130,35 +130,31 @@
       }
 
       .syntax-order {
-        color: #e9a1eb;
+        color: var(--savedSetting_syntaxOrder, #e9a1eb);
       }
 
+      /* for characters `(,)` in `(EV1, EV2)` */
       .syntax-trigger-punctuation {
-        color: #eeb765;
+        color: var(--savedSetting_syntaxTriggerPunctuation, #eeb765);
       }
 
       .syntax-trigger-name {
-        color: #e7c796;
-        color: #f1b862;
+        color: var(--savedSetting_syntaxTriggerName, #f1b862);
       }
 
       .syntax-guard-bracket
       {
-        color: #7e70cf;
-        color: #00bd2b;
+        color: var(--savedSetting_syntaxGuardBracket, #00bd2b);
       }
       .syntax-guard-code {
-        color: #a6e19f;
+        color: var(--savedSetting_syntaxGuardCode, #a6e19f);
       }
 
       .syntax-action-start-end {
-        color: #E06C75;
-        color: #e18d33;
+        color: var(--savedSetting_syntaxActionStartEnd, #e18d33);
       }
       .syntax-action-code {
-        color: #f5c2c6;
-        color: #a58c71;
-        color: #cbac8b;
+        color: var(--savedSetting_syntaxActionCode, #cbac8b);
       }
 
       .syntax-via-exit-entry {
@@ -286,8 +282,6 @@
         display: none;
       }
 
-
-
       /* ----------------------------- Dropdown related start ----------------------------- */
       
       .dropdown-button {
@@ -336,12 +330,18 @@
 
       /* ----------------------------- Dropdown related end ----------------------------- */
 
+      .dropdown div.themes button {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
       .transition {
+        stroke: var(--savedSetting_transition, #999);
         stroke-width: 2px !important;
       }
 
       .transition.pathJustTaken {
-        stroke: var(--savedSetting_transitionPathJustTakenColor, #e0aa6c) !important;  /* note that var name matches savedSetting_ */
+        stroke: var(--savedSetting_transitionPathJustTakenColor, #e0aa6c) !important;
         stroke-width: 4px !important;
         stroke-dasharray: 3 6;
         stroke-dashoffset: var(--transition-animation-offset, 0);
@@ -350,7 +350,7 @@
 
       /* give priority over pathJustTaken. If it is available and pathJustTaken, then it will still have dash. */
       .transition.available {
-        stroke: var(--savedSetting_transitionAvailableColor, #7e70cf) !important;  /* note that var name matches savedSetting_ */
+        stroke: var(--savedSetting_transitionPathAvailableColor, #7e70cf) !important;
         stroke-width: 4px !important;
         stroke-dasharray: 6 6;
         stroke-dashoffset: var(--transition-animation-offset, 0); 
@@ -359,8 +359,12 @@
 
       .statediagram-state.active > * {
         fill: #3c3224 !important;
-        stroke: var(--savedSetting_stateActiveStrokeColor, #d16f3b) !important;   /* note that var name matches savedSetting_ */
+        stroke: var(--savedSetting_stateActiveStrokeColor, #d16f3b) !important;
         stroke-width: 2px !important;
+      }
+
+      .statediagram-state span.nodeLabel span.syntax-vertex-name {
+        color: var(--savedSetting_stateTitleTextColor,#eeeeee);
       }
 
       .statediagram-state.active span.nodeLabel span.syntax-vertex-name {
@@ -375,7 +379,7 @@
 
       .clickable:hover {
         cursor: pointer;
-        color: aquamarine !important;
+        color:  var(--savedSetting_clickableColor, #7fffd4) !important;
       }
 
       div.dropdown-item input[type='color'] {
@@ -525,10 +529,37 @@ Off --> ON1 : <span class='syntax-trigger-name'>INCREASE</span>
                 <!-- 
                   NOTE!!! These IDs match css variables.
                 -->
-                <input type='color' id='savedSetting_transitionPathJustTakenColor' value='#a3a3a3' title='Color of transition/edge path that was just traversed.'>
-                <input type='color' id='savedSetting_transitionAvailableColor' value='#fff82e' title='Color of transition/edge paths that are ready/available.'>
+                <input type='color' id='savedSetting_stateTitleTextColor' value='#eeeeee' title='State title text color.'>
                 <input type='color' id='savedSetting_stateActiveStrokeColor' value='#d16f3b' title='Active state stroke color.'>
                 <input type='color' id='savedSetting_stateActiveTitleTextColor' value='#fdffb0' title='Active state title text color.'>
+                <input type='color' id='savedSetting_syntaxOrder' value='#e9a1eb' title='Text color for behavior order like `1.` in `1. EV`.'>
+                <input type='color' id='savedSetting_syntaxTriggerName' value='#f1b862' title='Trigger text color.'>
+                <input type='color' id='savedSetting_syntaxTriggerPunctuation' value='#eeb765' title='Text color for characters `(,)` in `(EV1, EV2)`.'>
+                <input type='color' id='savedSetting_syntaxGuardBracket' value='#00bd2b' title='Text color for guard brackets `[]`.'>
+                <input type='color' id='savedSetting_syntaxGuardCode' value='#a6e19f' title='Text color for guard code.'>
+                <input type='color' id='savedSetting_syntaxActionStartEnd' value='#e18d33' title='Text color for action code start and end characters `/{}`.'>
+                <input type='color' id='savedSetting_syntaxActionCode' value='#cbac8b' title='Text color for action code.'>
+                <input type='color' id='savedSetting_transitionPath' value='#999' title='Color of transition/edge path.'>
+                <input type='color' id='savedSetting_transitionPathJustTakenColor' value='#a3a3a3' title='Color of transition/edge path that was just traversed.'>
+                <input type='color' id='savedSetting_transitionPathAvailableColor' value='#fff82e' title='Color of transition/edge paths that are ready/available.'>
+                <input type='color' id='savedSetting_clickableColor' value='#7fffd4' title='Color of text that is clickable.'>
+
+                <div class='themes'>
+                  <select id='theme-select'>
+                    <option value=''>Select theme...</option>
+                    <option value='original'>Original</option>
+                    <option value='ss-2'>2</option>
+                    <option value='arctic-void'>Arctic Void</option>
+                    <option value='one-dark'>One Dark Pro</option>
+                    <option value='dracula'>Dracula</option>
+                    <option value='tokyo'>Tokyo Night</option>
+                    <option value='github-dark'>Github Dark</option>
+                    <option value='night-owl'>Night Owl</option>
+                    <option value='monochrome'>Monochrome</option>
+                    <option value='white'>White</option>
+                    <option value='sepia-muted'>Sepia Muted</option>
+                  </select>
+                </div>
               </div>
 
               <div class='dropdown-item' style='cursor: default;' >
@@ -1399,6 +1430,16 @@ evaluateGuard = null;
           });
         }
 
+        function updateCssColorVar(id, color, save=false) {
+            document.getElementById(id).value = color;
+            document.documentElement.style.setProperty(`--${id}`, color); // custom css vars start with '--'
+            if (save)
+            {
+              localStorage.setItem(id, color);
+              console.log(`Saved color input value for '${id}' to '${color}'`);
+            }
+        }
+
         // setup custom color storage
         {
           const colorInputs = document.querySelectorAll(`.dropdown-content input[type='color']`);
@@ -1410,24 +1451,202 @@ evaluateGuard = null;
             const savedColor = localStorage.getItem(inputWidget.id);
             if (savedColor !== null) {
               inputWidget.value = savedColor;
-              updateCssColorVar(inputWidget, savedColor);
+              updateCssColorVar(inputWidget.id, savedColor);
               console.log(`Restored color input value for '${inputWidget.id}' to '${inputWidget.value}'`, inputWidget);
             }
 
             // Save state to localStorage on change
             inputWidget.addEventListener('input', function() {
-              localStorage.setItem(inputWidget.id, this.value);
-              updateCssColorVar(inputWidget, this.value);
-              console.log(`Saved color input value for '${inputWidget.id}' to '${this.value}'`, inputWidget);
+              const save=true;
+              updateCssColorVar(inputWidget.id, this.value, save);
             });
 
             // update current css style
-            updateCssColorVar(inputWidget, inputWidget.value);
+            updateCssColorVar(inputWidget.id, inputWidget.value);
           });
+        }
 
-          function updateCssColorVar(inputWidget, color) {
-              document.documentElement.style.setProperty(`--${inputWidget.id}`, color); // custom css vars start with '--'
+        // setup color themes
+        {
+          const themes = {
+            'original': {
+              transitionPath:               '#999999',
+              transitionPathJustTakenColor: '#a3a3a3',
+              transitionPathAvailableColor: '#fff82e',
+              stateTitleTextColor:          '#e1e0bc',
+              stateActiveStrokeColor:       '#d16f3b',
+              stateActiveTitleTextColor:    '#fdffb0',
+              syntaxTriggerName:            '#f1b862',
+              syntaxOrder:                  '#e9a1eb',
+              syntaxTriggerPunctuation:     '#eeb765',
+              syntaxGuardBracket:           '#00bd2b',
+              syntaxGuardCode:              '#a6e19f',
+              syntaxActionStartEnd:         '#e18d33',
+              syntaxActionCode:             '#cbac8b',
+              clickableColor:               '#7fffd4',
+            },
+            'ss-2': {
+              transitionPathJustTakenColor: '#a3a3a3',
+              transitionPathAvailableColor: '#42e9ff',
+              stateTitleTextColor:          '#bbc2ce',
+              stateActiveStrokeColor:       '#00ccff',
+              stateActiveTitleTextColor:    '#00ccff',
+              syntaxTriggerName:            '#f47171',
+              syntaxOrder:                  '#b8a2eb',
+              syntaxTriggerPunctuation:     '#a3a3a3',
+              syntaxGuardBracket:           '#00bd7e',
+              syntaxGuardCode:              '#96d68f',
+              syntaxActionStartEnd:         '#42adf0',
+              syntaxActionCode:             '#cdd7e5',
+              clickableColor:               '#7fffd4',
+            },
+            'arctic-void': {
+              transitionPathJustTakenColor: '#7090a8',
+              transitionPathAvailableColor: '#00e8ff',
+              stateTitleTextColor:          '#eeeeee',
+              stateActiveStrokeColor:       '#3888e0',
+              stateActiveTitleTextColor:    '#d4f0ff',
+              syntaxTriggerName:            '#60c8f8',
+              syntaxOrder:                  '#c080f0',
+              syntaxTriggerPunctuation:     '#70b8e8',
+              syntaxGuardBracket:           '#00d8a0',
+              syntaxGuardCode:              '#80e8cc',
+              syntaxActionStartEnd:         '#4898e8',
+              syntaxActionCode:             '#8ab8d0',
+              clickableColor:               '#7fffd4',
+            },
+            'one-dark': {
+              transitionPathJustTakenColor: '#5c6370',
+              transitionPathAvailableColor: '#e5c07b',
+              stateTitleTextColor:          '#eeeeee',
+              stateActiveStrokeColor:       '#e06c75',
+              stateActiveTitleTextColor:    '#fffacd',
+              syntaxTriggerName:            '#e5c07b',
+              syntaxOrder:                  '#c678dd',
+              syntaxTriggerPunctuation:     '#d19a66',
+              syntaxGuardBracket:           '#98c379',
+              syntaxGuardCode:              '#b5d9a0',
+              syntaxActionStartEnd:         '#d19a66',
+              syntaxActionCode:             '#abb2bf',
+              clickableColor:               '#7fffd4',
+            },
+            'dracula': {
+              transitionPathJustTakenColor: '#6272a4',
+              transitionPathAvailableColor: '#f1fa8c',
+              stateTitleTextColor:          '#eeeeee',
+              stateActiveStrokeColor:       '#ff5555',
+              stateActiveTitleTextColor:    '#f8f8f2',
+              syntaxTriggerName:            '#ffb86c',
+              syntaxOrder:                  '#ff79c6',
+              syntaxTriggerPunctuation:     '#ffb86c',
+              syntaxGuardBracket:           '#50fa7b',
+              syntaxGuardCode:              '#8af5a4',
+              syntaxActionStartEnd:         '#bd93f9',
+              syntaxActionCode:             '#8be9fd',
+              clickableColor:               '#7fffd4',
+            },
+            'tokyo': {
+              transitionPathJustTakenColor: '#565f89',
+              transitionPathAvailableColor: '#e0af68',
+              stateTitleTextColor:          '#eeeeee',
+              stateActiveStrokeColor:       '#f7768e',
+              stateActiveTitleTextColor:    '#cdd6f4',
+              syntaxTriggerName:            '#e0af68',
+              syntaxOrder:                  '#bb9af7',
+              syntaxTriggerPunctuation:     '#ff9e64',
+              syntaxGuardBracket:           '#73daca',
+              syntaxGuardCode:              '#9eddcc',
+              syntaxActionStartEnd:         '#ff9e64',
+              syntaxActionCode:             '#7dcfff',
+              clickableColor:               '#7fffd4',
+            },
+            'github-dark': {
+              transitionPathJustTakenColor: '#6e7681',
+              transitionPathAvailableColor: '#e3b341',
+              stateTitleTextColor:          '#eeeeee',
+              stateActiveStrokeColor:       '#f85149',
+              stateActiveTitleTextColor:    '#e6edf3',
+              syntaxTriggerName:            '#ffa657',
+              syntaxOrder:                  '#d2a8ff',
+              syntaxTriggerPunctuation:     '#ffa657',
+              syntaxGuardBracket:           '#3fb950',
+              syntaxGuardCode:              '#7ee787',
+              syntaxActionStartEnd:         '#79c0ff',
+              syntaxActionCode:             '#a5d6ff',
+              clickableColor:               '#7fffd4',
+            },
+            'night-owl': {
+              transitionPathJustTakenColor: '#637777',
+              transitionPathAvailableColor: '#ffcb8b',
+              stateTitleTextColor:          '#eeeeee',
+              stateActiveStrokeColor:       '#ef5350',
+              stateActiveTitleTextColor:    '#d6deeb',
+              syntaxTriggerName:            '#ffcb8b',
+              syntaxOrder:                  '#c792ea',
+              syntaxTriggerPunctuation:     '#f78c6c',
+              syntaxGuardBracket:           '#addb67',
+              syntaxGuardCode:              '#c5e99b',
+              syntaxActionStartEnd:         '#f78c6c',
+              syntaxActionCode:             '#7fdbca',
+              clickableColor:               '#7fffd4',
+            },
+            'monochrome': {
+              transitionPathJustTakenColor: '#555555',
+              transitionPathAvailableColor: '#ffffff',
+              stateTitleTextColor:          '#eeeeee',
+              stateActiveStrokeColor:       '#aaaaaa',
+              stateActiveTitleTextColor:    '#f0f0f0',
+              syntaxTriggerName:            '#dddddd',
+              syntaxOrder:                  '#999999',
+              syntaxTriggerPunctuation:     '#cccccc',
+              syntaxGuardBracket:           '#eeeeee',
+              syntaxGuardCode:              '#bbbbbb',
+              syntaxActionStartEnd:         '#cccccc',
+              syntaxActionCode:             '#888888',
+              clickableColor:               '#7fffd4',
+            },
+            'white': {
+              transitionPathJustTakenColor: '#ffffff',
+              transitionPathAvailableColor: '#ffffff',
+              stateTitleTextColor:          '#ffffff',
+              stateActiveStrokeColor:       '#ffffff',
+              stateActiveTitleTextColor:    '#ffffff',
+              syntaxTriggerName:            '#ffffff',
+              syntaxOrder:                  '#ffffff',
+              syntaxTriggerPunctuation:     '#ffffff',
+              syntaxGuardBracket:           '#ffffff',
+              syntaxGuardCode:              '#ffffff',
+              syntaxActionStartEnd:         '#ffffff',
+              syntaxActionCode:             '#ffffff',
+              clickableColor:               '#7fffd4',
+            },
+            'sepia-muted': {
+              transitionPathJustTakenColor: '#8c7e6a',
+              transitionPathAvailableColor: '#c9a84c',
+              stateTitleTextColor:          '#c4b49a',
+              stateActiveStrokeColor:       '#a0622a',
+              stateActiveTitleTextColor:    '#e8dbb0',
+              syntaxTriggerName:            '#c49a52',
+              syntaxOrder:                  '#b08878',
+              syntaxTriggerPunctuation:     '#b8903e',
+              syntaxGuardBracket:           '#a87840',
+              syntaxGuardCode:              '#a89070',
+              syntaxActionStartEnd:         '#a87840',
+              syntaxActionCode:             '#a89070',
+              clickableColor:               '#7fffd4',
+            },
           }
+
+          document.getElementById('theme-select').addEventListener('change', () => {
+              const name = document.getElementById('theme-select').value;
+              if (!name) return;
+
+              const t = themes[name];
+              for (const [key, value] of Object.entries(t)) {
+                const save=true;
+                updateCssColorVar('savedSetting_' + key, value, save);
+              }
+          });
         }
 
         // animate transition edges
