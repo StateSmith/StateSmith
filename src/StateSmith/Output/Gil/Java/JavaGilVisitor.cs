@@ -167,6 +167,17 @@ public class JavaGilVisitor : CSharpSyntaxWalker
         iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
         sb.AppendLineIfNotBlank(renderConfigJava.ClassCode);  // append class code after open brace token
 
+        // Add the parameterized constructor
+        if( renderConfig.NoDelegate != "true" ) { // TODO better boolean handling
+            string className = node.Identifier.Text;
+            sb.AppendLine($"    private {className}Delegate delegate;");
+            sb.AppendLine($"    public {className}({className}Delegate delegate)");
+            sb.AppendLine("    {");
+            sb.AppendLine("        this.delegate = delegate;");
+            sb.AppendLine("    }");
+            sb.AppendLine();
+        }
+
         iterableChildSyntaxList.VisitRest();
     }
 
