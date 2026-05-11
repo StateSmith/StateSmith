@@ -458,11 +458,11 @@ ON_GROUP --> Off : <span class='syntax-trigger-name'>off</span>
 
 ON1 --> ON2 : <span class='syntax-trigger-name'>INCREASE</span>
 
-ON1 --> Off : <span class='syntax-trigger-name'>DimLight</span>
+ON1 --> Off : <span class='syntax-trigger-name'>Dim</span>
 
-OnHot --> ON2 : <span class='syntax-trigger-name'>DimLight</span>
+OnHot --> ON2 : <span class='syntax-trigger-punctuation'>(</span><span class='syntax-trigger-name'>Dim</span><span class='syntax-trigger-punctuation'>, </span><span class='syntax-trigger-name'>off</span><span class='syntax-trigger-punctuation'>)</span> <span class='syntax-action-start-end'>/ { </span><span class='syntax-action-code'>blah();</span><span class='syntax-action-start-end'> }</span>
 
-ON2 --> ON1 : <span class='syntax-trigger-name'>DimLight</span>
+ON2 --> ON1 : <span class='syntax-trigger-name'>Dim</span>
 
 ON2 --> OnHot : <span class='syntax-order'>2.</span> <span class='syntax-trigger-name'>INCREASE</span> <span class='syntax-guard-bracket'>[</span><span class='syntax-guard-code'>count #62;= 3</span><span class='syntax-guard-bracket'>]</span>
 
@@ -617,7 +617,7 @@ evaluateGuard = null;
     static EventId = 
     {
         DO : 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
-        DIMLIGHT : 1,
+        DIM : 1,
         INCREASE : 2,
         OFF : 3,
     }
@@ -722,7 +722,7 @@ evaluateGuard = null;
                 {
                     case LightSm.EventId.DO: this._ON1_do(); break;
                     case LightSm.EventId.INCREASE: this._ON1_increase(); break;
-                    case LightSm.EventId.DIMLIGHT: this._ON1_dimlight(); break;
+                    case LightSm.EventId.DIM: this._ON1_dim(); break;
                     case LightSm.EventId.OFF: this._ON_GROUP_off(); break; // First ancestor handler for this event
                 }
                 break;
@@ -732,7 +732,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     case LightSm.EventId.INCREASE: this._ON2_increase(); break;
-                    case LightSm.EventId.DIMLIGHT: this._ON2_dimlight(); break;
+                    case LightSm.EventId.DIM: this._ON2_dim(); break;
                     case LightSm.EventId.OFF: this._ON_GROUP_off(); break; // First ancestor handler for this event
                 }
                 break;
@@ -741,8 +741,8 @@ evaluateGuard = null;
             case LightSm.StateId.ONHOT:
                 switch (eventId)
                 {
-                    case LightSm.EventId.DIMLIGHT: this._ONHOT_dimlight(); break;
-                    case LightSm.EventId.OFF: this._ON_GROUP_off(); break; // First ancestor handler for this event
+                    case LightSm.EventId.DIM: this._ONHOT_dim(); break;
+                    case LightSm.EventId.OFF: this._ONHOT_off(); break;
                 }
                 break;
         }
@@ -926,10 +926,10 @@ evaluateGuard = null;
         this.stateId = LightSm.StateId.ON_GROUP;
     }
     
-    _ON1_dimlight()
+    _ON1_dim()
     {
         // ON1 behavior
-        // uml: DimLight / { this.tracer?.edgeTransition('edge2'); } TransitionTo(Off)
+        // uml: Dim / { this.tracer?.edgeTransition('edge2'); } TransitionTo(Off)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this._exitUpToStateHandler(LightSm.StateId.ROOT);
@@ -1024,10 +1024,10 @@ evaluateGuard = null;
         this.stateId = LightSm.StateId.ON_GROUP;
     }
     
-    _ON2_dimlight()
+    _ON2_dim()
     {
         // ON2 behavior
-        // uml: DimLight / { this.tracer?.edgeTransition('edge4'); } TransitionTo(ON1)
+        // uml: Dim / { this.tracer?.edgeTransition('edge4'); } TransitionTo(ON1)
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
             this._ON2_exit();
@@ -1110,16 +1110,16 @@ evaluateGuard = null;
         this.stateId = LightSm.StateId.ON_GROUP;
     }
     
-    _ONHOT_dimlight()
+    _ONHOT_dim()
     {
         // OnHot behavior
-        // uml: DimLight / { this.tracer?.edgeTransition('edge3'); } TransitionTo(ON2)
+        // uml: (Dim, off) / { this.tracer?.logActionCode("blah();");this.tracer?.edgeTransition('edge3'); } TransitionTo(ON2)
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
             this._ONHOT_exit();
             
-            // Step 2: Transition action: `this.tracer?.edgeTransition('edge3');`.
-            this.tracer?.edgeTransition('edge3');
+            // Step 2: Transition action: `this.tracer?.logActionCode("blah();");this.tracer?.edgeTransition('edge3');`.
+            this.tracer?.logActionCode("blah();");this.tracer?.edgeTransition('edge3');
             
             // Step 3: Enter/move towards transition target `ON2`.
             this._ON2_enter();
@@ -1129,6 +1129,33 @@ evaluateGuard = null;
         } // end of behavior for OnHot
         
         // No ancestor handles this event.
+    }
+    
+    _ONHOT_off()
+    {
+        let consume_event = false;
+        
+        // OnHot behavior
+        // uml: (Dim, off) / { this.tracer?.logActionCode("blah();");this.tracer?.edgeTransition('edge3'); } TransitionTo(ON2)
+        {
+            // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
+            this._ONHOT_exit();
+            
+            // Step 2: Transition action: `this.tracer?.logActionCode("blah();");this.tracer?.edgeTransition('edge3');`.
+            this.tracer?.logActionCode("blah();");this.tracer?.edgeTransition('edge3');
+            
+            // Step 3: Enter/move towards transition target `ON2`.
+            this._ON2_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for OnHot
+        
+        // Check if event has been consumed before calling ancestor handler.
+        if (!consume_event)
+        {
+            this._ON_GROUP_off();
+        }
     }
     
     // Thread safe. This function can be disabled with `outputStateIdToStringFunction` setting.
@@ -1151,7 +1178,7 @@ evaluateGuard = null;
     {
         switch (id)
         {
-            case LightSm.EventId.DIMLIGHT: return "DIMLIGHT";
+            case LightSm.EventId.DIM: return "DIM";
             case LightSm.EventId.DO: return "DO";
             case LightSm.EventId.INCREASE: return "INCREASE";
             case LightSm.EventId.OFF: return "OFF";
@@ -1221,7 +1248,7 @@ evaluateGuard = null;
             center: true
         });
 
-        const diagramEventNamesArray = ['do', 'DimLight', 'INCREASE', 'off', ];
+        const diagramEventNamesArray = ['do', 'Dim', 'INCREASE', 'off', ];
 
         // Mapping from state to available events
         const stateEventsMapping = {
@@ -1229,17 +1256,17 @@ evaluateGuard = null;
     "off"
   ],
   "ON1": [
-    "DimLight",
+    "Dim",
     "do",
     "INCREASE",
     "off"
   ],
   "OnHot": [
-    "DimLight",
+    "Dim",
     "off"
   ],
   "ON2": [
-    "DimLight",
+    "Dim",
     "INCREASE",
     "off"
   ],
@@ -1259,7 +1286,6 @@ evaluateGuard = null;
     2
   ],
   "OnHot": [
-    0,
     3
   ],
   "ON2": [
@@ -1276,9 +1302,9 @@ evaluateGuard = null;
         const stateDescriptionMapping = {
   "LightSm": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT.\u0026lt;InitialState\u0026gt;\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003C/td\u003E\u003C/tr\u003E",
   "ON_GROUP": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E21\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027vertex-meta\u0027\u003EChildren: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON1\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOnHot\u003C/span\u003E, \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON2\u003C/span\u003E\u003Cbr\u003E\u003C/span\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "ON1": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON1\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E23\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Eshow(\u0026quot;###\u0026quot;);\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Edo\u003C/span\u003E \u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E[\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-code\u0027\u003Ex\u0026lt;3\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E]\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Ez\u002B\u002B;\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCREASE\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON2\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDimLight\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E21\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "OnHot": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOnHot\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E19\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elight_red();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDimLight\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON2\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E21\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
-  "ON2": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON2\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E42\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-order\u0027\u003E1.\u003C/span\u003E \u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCREASE\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Ecount\u002B\u002B;\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-order\u0027\u003E2.\u003C/span\u003E \u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCREASE\u003C/span\u003E \u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E[\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-code\u0027\u003Ecount \u0026gt;= 3\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E]\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOnHot\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elight_yellow();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Ecount = 0;\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDimLight\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON1\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E21\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "ON1": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON1\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E23\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Eshow(\u0026quot;###\u0026quot;);\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Edo\u003C/span\u003E \u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E[\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-code\u0027\u003Ex\u0026lt;3\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E]\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Ez\u002B\u002B;\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCREASE\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON2\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDim\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E21\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "OnHot": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOnHot\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E19\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elight_red();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-punctuation\u0027\u003E(\u003C/span\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDim\u003C/span\u003E\u003Cspan class=\u0027syntax-trigger-punctuation\u0027\u003E, \u003C/span\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E\u003Cspan class=\u0027syntax-trigger-punctuation\u0027\u003E)\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Eblah();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON2\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E21\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
+  "ON2": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON2\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E42\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-order\u0027\u003E1.\u003C/span\u003E \u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCREASE\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Ecount\u002B\u002B;\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-order\u0027\u003E2.\u003C/span\u003E \u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCREASE\u003C/span\u003E \u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E[\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-code\u0027\u003Ecount \u0026gt;= 3\u003C/span\u003E\u003Cspan class=\u0027syntax-guard-bracket\u0027\u003E]\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOnHot\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Elight_yellow();\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Ecount = 0;\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EDim\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON1\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON_GROUP\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E21\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eoff\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E",
   "Off": "\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003EVertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EOff\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E16\u003C/span\u003E\u003C/h3\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003Eenter\u003C/span\u003E \u003Cspan class=\u0027syntax-action-start-end\u0027\u003E/ { \u003C/span\u003E\u003Cspan class=\u0027syntax-action-code\u0027\u003Econsole.log( \u0026quot;OFF\\n\u0026quot;);\u003C/span\u003E\u003Cspan class=\u0027syntax-action-start-end\u0027\u003E }\u003C/span\u003E\u003Cbr\u003E\u003Cspan class=\u0027syntax-trigger-name\u0027\u003EINCREASE\u003C/span\u003E \u003Cspan class=\u0027syntax-transition-arrow\u0027\u003E--\u003E \u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003ETransitionTo(\u003C/span\u003E\u003Cspan class=\u0027syntax-vertex-name\u0027\u003EON1\u003C/span\u003E\u003Cspan class=\u0027syntax-transition-to\u0027\u003E)\u003C/span\u003E\u003Cbr\u003E\u003C/td\u003E\u003C/tr\u003E\u003Ctr\u003E\u003Ctd\u003E\u003Ch3\u003E\u21E1 Parent Vertex: \u003Cspan class=\u0027syntax-vertex-name\u0027\u003EROOT\u003C/span\u003E, \u003Cb\u003EDiagram Id:\u003C/b\u003E \u003Cspan class=\u0027syntax-vertex-id\u0027\u003E12\u003C/span\u003E\u003C/h3\u003E\u003C/td\u003E\u003C/tr\u003E"
 };
 
