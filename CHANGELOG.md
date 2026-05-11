@@ -33,9 +33,10 @@ Test/interim releases are not necessarily documented here.
 
 ---
 
-## WIP
+## [0.22.2]
 ### Added
 - Simulator - add color themes and more color control.
+  - These color settings may change over the next few releases while we collect feedback.
   - https://github.com/StateSmith/StateSmith/issues/541
 
 ### Fixed (minor)
